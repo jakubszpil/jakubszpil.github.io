@@ -1,0 +1,106 @@
+{
+  "_articles-CENmCmaH.js": {
+    "file": "assets/articles-CENmCmaH.js",
+    "name": "articles",
+    "imports": [
+      "_react-g8DcR9QH.js",
+      "_runtime-CwmjO8cs.js",
+      "_shared-CjAF5XUt.js",
+      "_content-DWu14Zbf.js"
+    ]
+  },
+  "_content-DWu14Zbf.js": {
+    "file": "assets/content-DWu14Zbf.js",
+    "name": "content",
+    "imports": [
+      "_react-g8DcR9QH.js"
+    ]
+  },
+  "_core-MYzMV3R3.js": {
+    "file": "assets/core-MYzMV3R3.js",
+    "name": "core",
+    "imports": [
+      "_articles-CENmCmaH.js",
+      "_shared-CjAF5XUt.js",
+      "_react-g8DcR9QH.js",
+      "_projects-D5CteT03.js",
+      "_runtime-CwmjO8cs.js"
+    ]
+  },
+  "_courses-BKzXhibj.js": {
+    "file": "assets/courses-BKzXhibj.js",
+    "name": "courses",
+    "imports": [
+      "_shared-CjAF5XUt.js",
+      "_react-g8DcR9QH.js"
+    ]
+  },
+  "_projects-D5CteT03.js": {
+    "file": "assets/projects-D5CteT03.js",
+    "name": "projects",
+    "imports": [
+      "_shared-CjAF5XUt.js",
+      "_react-g8DcR9QH.js"
+    ]
+  },
+  "_react-g8DcR9QH.js": {
+    "file": "assets/react-g8DcR9QH.js",
+    "name": "react",
+    "imports": [
+      "_runtime-CwmjO8cs.js"
+    ]
+  },
+  "_runtime-CwmjO8cs.js": {
+    "file": "assets/runtime-CwmjO8cs.js",
+    "name": "runtime",
+    "imports": [
+      "_react-g8DcR9QH.js"
+    ]
+  },
+  "_shared-CjAF5XUt.js": {
+    "file": "assets/shared-CjAF5XUt.js",
+    "name": "shared",
+    "imports": [
+      "_runtime-CwmjO8cs.js",
+      "_react-g8DcR9QH.js"
+    ]
+  },
+  "index.html": {
+    "file": "assets/index-C7EN8G5K.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_articles-CENmCmaH.js",
+      "_react-g8DcR9QH.js",
+      "_shared-CjAF5XUt.js",
+      "_runtime-CwmjO8cs.js",
+      "_courses-BKzXhibj.js",
+      "_projects-D5CteT03.js",
+      "_core-MYzMV3R3.js",
+      "_content-DWu14Zbf.js"
+    ],
+    "dynamicImports": [
+      "src/app/app.tsx"
+    ]
+  },
+  "src/app/app.tsx": {
+    "file": "assets/app-HxbtCoIN.js",
+    "name": "app",
+    "src": "src/app/app.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_react-g8DcR9QH.js",
+      "_core-MYzMV3R3.js",
+      "_runtime-CwmjO8cs.js",
+      "_articles-CENmCmaH.js",
+      "_shared-CjAF5XUt.js",
+      "_content-DWu14Zbf.js",
+      "_projects-D5CteT03.js"
+    ]
+  },
+  "style.css": {
+    "file": "assets/style-BSVavbVv.css",
+    "src": "style.css"
+  }
+}
