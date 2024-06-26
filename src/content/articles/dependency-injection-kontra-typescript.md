@@ -1,0 +1,173 @@
+---
+title: Szczepienie kodu, czyli jak Typescript radzi sobie z Dependency Injection
+description: "Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami. W TypeScript, DI można zaimplementować na kilka sposobów, w tym za pomocą kontenerów IoC (Inversion of Control), które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów."
+keywords: [typescript, wzorce, javascript]
+categories: [typescript, wzorce]
+createdAt: 2024-06-20
+updatedAt: 2024-06-20
+---
+
+Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami.
+
+W TypeScript, DI można zaimplementować na kilka sposobów, w tym za pomocą kontenerów IoC (Inversion of Control), które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów.
+
+## Spis Treści
+
+1. Podstawy Dependency Injection
+2. Prosty przykład DI
+3. Wstrzykiwanie zależności za pomocą kontenera IoC
+4. Korzystanie z dekoratorów do wstrzykiwania zależności
+
+## 1. Podstawy Dependency Injection
+
+W Dependency Injection chodzi o przekazywanie zależności do obiektu zamiast tworzenia ich bezpośrednio wewnątrz obiektu. Dzięki temu można łatwo wymieniać zależności, co ułatwia testowanie i modyfikowanie kodu.
+
+## 2. Prosty przykład DI
+
+Rozważmy prosty przykład, w którym klasa `UserService` potrzebuje instancji `UserRepository`:
+
+```typescript
+class UserRepository {
+  getUser(userId: number): string {
+    return `User ${userId}`;
+  }
+}
+
+class UserService {
+  private userRepository: UserRepository;
+
+  constructor(userRepository: UserRepository) {
+    this.userRepository = userRepository;
+  }
+
+  getUserName(userId: number): string {
+    return this.userRepository.getUser(userId);
+  }
+}
+
+const userRepository = new UserRepository();
+const userService = new UserService(userRepository);
+
+console.log(userService.getUserName(1)); // Output: User 1
+```
+
+W powyższym przykładzie `UserRepository` jest wstrzykiwany do `UserService` przez konstruktor.
+
+## 3. Wstrzykiwanie zależności za pomocą kontenera IoC
+
+Aby lepiej zarządzać zależnościami, możemy użyć kontenera IoC. Przykład poniżej pokazuje, jak można to zrobić przy użyciu prostego kontenera DI:
+
+```typescript
+class IoCContainer {
+  private dependencies: Map<string, any> = new Map();
+
+  register<T>(key: string, dependency: T): void {
+    this.dependencies.set(key, dependency);
+  }
+
+  resolve<T>(key: string): T {
+    const dependency = this.dependencies.get(key);
+    if (!dependency) {
+      throw new Error(`Dependency not found: ${key}`);
+    }
+    return dependency;
+  }
+}
+
+class UserRepository {
+  getUser(userId: number): string {
+    return `User ${userId}`;
+  }
+}
+
+class UserService {
+  private userRepository: UserRepository;
+
+  constructor(userRepository: UserRepository) {
+    this.userRepository = userRepository;
+  }
+
+  getUserName(userId: number): string {
+    return this.userRepository.getUser(userId);
+  }
+}
+
+const container = new IoCContainer();
+container.register("UserRepository", new UserRepository());
+
+const userRepository = container.resolve<UserRepository>("UserRepository");
+const userService = new UserService(userRepository);
+
+console.log(userService.getUserName(1)); // Output: User 1
+```
+
+W tym przykładzie używamy kontenera IoC do rejestrowania i rozwiązywania zależności.
+
+## 4. Korzystanie z dekoratorów do wstrzykiwania zależności
+
+TypeScript pozwala na używanie dekoratorów, które mogą ułatwić wstrzykiwanie zależności. Przykład poniżej pokazuje, jak można to zrobić:
+
+```typescript
+function Injectable(target: any) {
+  // Rejestracja klasy jako zależności
+  IoCContainer.getInstance().register(target.name, target);
+}
+
+class IoCContainer {
+  private static instance: IoCContainer;
+  private dependencies: Map<string, any> = new Map();
+
+  private constructor() {}
+
+  public static getInstance(): IoCContainer {
+    if (!IoCContainer.instance) {
+      IoCContainer.instance = new IoCContainer();
+    }
+    return IoCContainer.instance;
+  }
+
+  register<T>(key: string, dependency: T): void {
+    this.dependencies.set(key, new dependency());
+  }
+
+  resolve<T>(key: string): T {
+    const dependency = this.dependencies.get(key);
+    if (!dependency) {
+      throw new Error(`Dependency not found: ${key}`);
+    }
+    return dependency;
+  }
+}
+
+@Injectable
+class UserRepository {
+  getUser(userId: number): string {
+    return `User ${userId}`;
+  }
+}
+
+@Injectable
+class UserService {
+  private userRepository: UserRepository;
+
+  constructor() {
+    this.userRepository =
+      IoCContainer.getInstance().resolve<UserRepository>("UserRepository");
+  }
+
+  getUserName(userId: number): string {
+    return this.userRepository.getUser(userId);
+  }
+}
+
+const userService =
+  IoCContainer.getInstance().resolve<UserService>("UserService");
+
+console.log(userService.getUserName(1)); // Output: User 1
+```
+
+W tym przykładzie używamy dekoratorów, aby rejestrować klasy jako zależności w kontenerze IoC i automatycznie wstrzykiwać je w klasach, które ich potrzebują.
+
+## Podsumowanie
+
+Dependency Injection w TypeScript to potężna technika, która może znacznie ułatwić zarządzanie zależnościami i poprawić testowalność oraz modularność kodu. Przedstawione powyżej przykłady pokazują różne podejścia do implementacji DI, w tym bezpośrednie wstrzykiwanie przez konstruktor, korzystanie z kontenerów IoC oraz używanie dekoratorów. Dzięki tym technikom można tworzyć bardziej elastyczne i łatwe w utrzymaniu aplikacje.
