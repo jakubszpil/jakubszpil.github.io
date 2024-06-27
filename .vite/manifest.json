@@ -1,102 +1,87 @@
 {
-  "_articles-CjjMZoP6.js": {
-    "file": "assets/articles-CjjMZoP6.js",
+  "_articles-CGzhBGrG.js": {
+    "file": "assets/articles-CGzhBGrG.js",
     "name": "articles",
     "imports": [
-      "_react-C1gJkM8a.js",
-      "_runtime-B-VZFayr.js",
-      "_shared-CoQ2ktNb.js",
-      "_content-Bo5UGz11.js"
+      "_runtime-MotIFk6S.js",
+      "_shared-Bb9qxY0T.js",
+      "_content-ZfagilsB.js"
     ]
   },
-  "_content-Bo5UGz11.js": {
-    "file": "assets/content-Bo5UGz11.js",
+  "_content-ZfagilsB.js": {
+    "file": "assets/content-ZfagilsB.js",
     "name": "content",
     "imports": [
-      "_react-C1gJkM8a.js"
+      "_runtime-MotIFk6S.js"
     ]
   },
-  "_core-DmvMIMM8.js": {
-    "file": "assets/core-DmvMIMM8.js",
+  "_core-B7bJRzGb.js": {
+    "file": "assets/core-B7bJRzGb.js",
     "name": "core",
     "imports": [
-      "_articles-CjjMZoP6.js",
-      "_shared-CoQ2ktNb.js",
-      "_react-C1gJkM8a.js",
-      "_projects-CePXEQ4l.js",
-      "_runtime-B-VZFayr.js"
+      "_articles-CGzhBGrG.js",
+      "_shared-Bb9qxY0T.js",
+      "_runtime-MotIFk6S.js",
+      "_projects-lltp0uUX.js"
     ]
   },
-  "_courses-D6fvR0fu.js": {
-    "file": "assets/courses-D6fvR0fu.js",
+  "_courses-DzOAqRf3.js": {
+    "file": "assets/courses-DzOAqRf3.js",
     "name": "courses",
     "imports": [
-      "_shared-CoQ2ktNb.js",
-      "_react-C1gJkM8a.js"
+      "_shared-Bb9qxY0T.js",
+      "_runtime-MotIFk6S.js"
     ]
   },
-  "_projects-CePXEQ4l.js": {
-    "file": "assets/projects-CePXEQ4l.js",
+  "_projects-lltp0uUX.js": {
+    "file": "assets/projects-lltp0uUX.js",
     "name": "projects",
     "imports": [
-      "_shared-CoQ2ktNb.js",
-      "_react-C1gJkM8a.js"
+      "_shared-Bb9qxY0T.js",
+      "_runtime-MotIFk6S.js"
     ]
   },
-  "_react-C1gJkM8a.js": {
-    "file": "assets/react-C1gJkM8a.js",
-    "name": "react",
-    "imports": [
-      "_runtime-B-VZFayr.js"
-    ]
+  "_runtime-MotIFk6S.js": {
+    "file": "assets/runtime-MotIFk6S.js",
+    "name": "runtime"
   },
-  "_runtime-B-VZFayr.js": {
-    "file": "assets/runtime-B-VZFayr.js",
-    "name": "runtime",
-    "imports": [
-      "_react-C1gJkM8a.js"
-    ]
-  },
-  "_shared-CoQ2ktNb.js": {
-    "file": "assets/shared-CoQ2ktNb.js",
+  "_shared-Bb9qxY0T.js": {
+    "file": "assets/shared-Bb9qxY0T.js",
     "name": "shared",
     "imports": [
-      "_runtime-B-VZFayr.js",
-      "_react-C1gJkM8a.js"
+      "_runtime-MotIFk6S.js"
     ]
   },
   "index.html": {
-    "file": "assets/index-BXpPJpKI.js",
+    "file": "assets/index-nI7jX0Cz.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_articles-CjjMZoP6.js",
-      "_react-C1gJkM8a.js",
-      "_shared-CoQ2ktNb.js",
-      "_runtime-B-VZFayr.js",
-      "_courses-D6fvR0fu.js",
-      "_projects-CePXEQ4l.js",
-      "_core-DmvMIMM8.js",
-      "_content-Bo5UGz11.js"
+      "_articles-CGzhBGrG.js",
+      "_runtime-MotIFk6S.js",
+      "_shared-Bb9qxY0T.js",
+      "_courses-DzOAqRf3.js",
+      "_projects-lltp0uUX.js",
+      "_core-B7bJRzGb.js",
+      "_content-ZfagilsB.js"
     ],
     "dynamicImports": [
       "src/app/app.tsx"
     ]
   },
   "src/app/app.tsx": {
-    "file": "assets/app-DBQe8LPo.js",
+    "file": "assets/app-Sa2ExEDJ.js",
     "name": "app",
     "src": "src/app/app.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_react-C1gJkM8a.js",
-      "_core-DmvMIMM8.js",
-      "_runtime-B-VZFayr.js",
-      "_articles-CjjMZoP6.js",
-      "_shared-CoQ2ktNb.js",
-      "_content-Bo5UGz11.js",
-      "_projects-CePXEQ4l.js"
+      "_runtime-MotIFk6S.js",
+      "_core-B7bJRzGb.js",
+      "_articles-CGzhBGrG.js",
+      "_shared-Bb9qxY0T.js",
+      "_content-ZfagilsB.js",
+      "_projects-lltp0uUX.js"
     ]
   },
   "style.css": {
