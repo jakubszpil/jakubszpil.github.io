@@ -45,14 +45,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          if (id.includes("/node_modules/")) {
-            const name = excludeModuleName(id, "/node_modules/");
-
-            if (["react", "react-dom", "react-router-dom"].includes(name))
-              return "react";
-
-            return "runtime";
-          }
+          if (id.includes("/node_modules/")) return "runtime";
           if (id.includes("core")) return "core";
           if (id.includes("shared")) return "shared";
           if (id.includes("content")) return "content";
