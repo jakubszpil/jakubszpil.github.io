@@ -14,11 +14,7 @@ const router = createRouter(
   true
 );
 
-const rootElement = import.meta.env.PROD
-  ? document.body
-  : document.getElementById("root")!;
-
-createRoot(rootElement).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <SeoProvider>
       <Seo defaultTitle="Jakub Szpil" titleTemplate="%s - Jakub Szpil" />

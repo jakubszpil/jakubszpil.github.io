@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { v4 as uuid } from "uuid";
 
 export type ResourceFrontmatter<T extends Record<string, unknown>> = {
@@ -11,7 +12,7 @@ export type ResourceFrontmatter<T extends Record<string, unknown>> = {
 export type Resource<T extends ResourceFrontmatter<Record<string, unknown>>> = {
   id: string;
   slug: string;
-  content: string;
+  content: ReactNode;
 } & T;
 
 export type ExtractResourceFrontmatter<

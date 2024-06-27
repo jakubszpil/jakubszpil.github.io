@@ -10,6 +10,11 @@ import rehypeHighlight from "rehype-highlight";
 import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 
+const excludeModuleName = (id: string, matcher: string) => {
+  const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
+  return path.slice(0, path.indexOf("/"));
+};
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -34,13 +39,17 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    minify: true,
     manifest: true,
     sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          if (id.includes("node_modules/")) {
-            if (id.includes("react")) return "react";
+          if (id.includes("/node_modules/")) {
+            const name = excludeModuleName(id, "/node_modules/");
+
+            if (["react", "react-dom", "react-router-dom"].includes(name))
+              return "react";
 
             return "runtime";
           }
@@ -48,10 +57,7 @@ export default defineConfig({
           if (id.includes("shared")) return "shared";
           if (id.includes("content")) return "content";
           if (id.includes("modules")) {
-            const path = id
-              .slice(id.indexOf("/modules/"))
-              .replace("/modules/", "");
-            return path.slice(0, path.indexOf("/"));
+            return excludeModuleName(id, "/modules/");
           }
         },
       },

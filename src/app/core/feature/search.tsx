@@ -1,6 +1,14 @@
 import { Form, redirect } from "react-router-dom";
 
-import { defineLoader, useLoader, Button, Input, Seo } from "@libs/shared";
+import {
+  defineLoader,
+  useLoader,
+  Button,
+  Input,
+  Seo,
+  Resource,
+  ResourceFrontmatter,
+} from "@libs/shared";
 import { Article, getArticles, Articles } from "@libs/articles";
 import { Project, getProjects } from "@libs/projects";
 
@@ -8,12 +16,23 @@ export const loader = defineLoader(({ request }) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("q");
 
-  if (query === "") {
-    url.searchParams.delete("q");
-    throw redirect(url.toString());
+  if (query) {
+    if (query === "") {
+      url.searchParams.delete("q");
+      throw redirect(url.toString());
+    }
+
+    const trimmed = query.trim().split(" ").filter(Boolean).join(" ");
+
+    if (query !== trimmed) {
+      url.searchParams.set("q", trimmed);
+      throw redirect(url.toString());
+    }
   }
 
-  const test = (i: unknown): boolean => {
+  const test = <T extends ResourceFrontmatter<Record<string, unknown>>>(
+    i: Resource<T>
+  ): boolean => {
     if (!query) return false;
     const s = JSON.stringify(i);
     const q = query.toLowerCase();
