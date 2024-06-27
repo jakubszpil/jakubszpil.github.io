@@ -25,7 +25,6 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/app/*"],
       "@libs/articles": ["./src/app/modules/articles/index"],
       "@libs/courses": ["./src/app/modules/courses/index"],
       "@libs/projects": ["./src/app/modules/projects/index"],
