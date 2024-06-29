@@ -51,7 +51,7 @@ export default function NotFound() {
           >
             <Link to="/szukaj">🔍 Szukaj</Link>
           </Button>
-          - Skorzystaj z naszej wyszukiwarki, aby znaleźć potrzebne informacje.
+          - Skorzystaj z wyszukiwarki, aby znaleźć potrzebne informacje.
         </li>
       </ul>
       <p>Dziękuję za zrozumienie i przepraszam za wszelkie niedogodności!</p>
