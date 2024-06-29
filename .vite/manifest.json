@@ -15,8 +15,8 @@
       "_runtime-CavCKr85.js"
     ]
   },
-  "_core-BXwCwQT_.js": {
-    "file": "assets/core-BXwCwQT_.js",
+  "_core-CceQgnRi.js": {
+    "file": "assets/core-CceQgnRi.js",
     "name": "core",
     "imports": [
       "_articles-D-cmMowa.js",
@@ -53,7 +53,7 @@
     ]
   },
   "index.html": {
-    "file": "assets/index-CEIANlVH.js",
+    "file": "assets/index-B75P5La3.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -63,7 +63,7 @@
       "_shared-CYHgtNQ1.js",
       "_courses-D0h8R7Mq.js",
       "_projects-Db4TASTB.js",
-      "_core-BXwCwQT_.js",
+      "_core-CceQgnRi.js",
       "_content-C98H54I4.js"
     ],
     "dynamicImports": [
@@ -71,14 +71,14 @@
     ]
   },
   "src/app/app.tsx": {
-    "file": "assets/app-DXi1VM-d.js",
+    "file": "assets/app-CO64F-b9.js",
     "name": "app",
     "src": "src/app/app.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_runtime-CavCKr85.js",
       "_shared-CYHgtNQ1.js",
-      "_core-BXwCwQT_.js",
+      "_core-CceQgnRi.js",
       "_articles-D-cmMowa.js",
       "_content-C98H54I4.js",
       "_projects-Db4TASTB.js"
