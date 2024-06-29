@@ -5,6 +5,7 @@ import {
   HelmetProvider,
   MetaProps,
 } from "react-helmet-async";
+import { useConfig } from "../data-access";
 
 export interface SeoMeta {
   title?: string;
@@ -16,7 +17,7 @@ export interface SeoMeta {
 export interface SeoProps extends SeoMeta, HelmetProps {}
 
 interface MetaTags {
-  addProperty(property: string, content: string | undefined): MetaTags;
+  addProperty(property: string, content: string | undefined | null): MetaTags;
   addTag(name: string, content: string | undefined): MetaTags;
   build(): MetaProps[];
 }
@@ -40,12 +41,17 @@ function createMetaTags(): MetaTags {
 }
 
 export const Seo = (props: SeoProps) => {
+  const config = useConfig();
+
+  const title = (value?: string) =>
+    value ? `${value} - ${config.meta.title}` : null;
+
   const meta = createMetaTags()
     .addTag("description", props.description)
     .addTag("keywords", props.keywords?.join(","))
-    .addProperty("og:title", props.title)
+    .addProperty("og:title", title(props.title))
     .addProperty("og:description", props.description)
-    .addProperty("twitter:title", props.title)
+    .addProperty("twitter:title", title(props.title))
     .addProperty("twitter:description", props.description)
     .build();
 
