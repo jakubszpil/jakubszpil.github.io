@@ -15,8 +15,8 @@
       "_runtime-MotIFk6S.js"
     ]
   },
-  "_core-B7bJRzGb.js": {
-    "file": "assets/core-B7bJRzGb.js",
+  "_core-DSwXEMM5.js": {
+    "file": "assets/core-DSwXEMM5.js",
     "name": "core",
     "imports": [
       "_articles-CGzhBGrG.js",
@@ -53,7 +53,7 @@
     ]
   },
   "index.html": {
-    "file": "assets/index-nI7jX0Cz.js",
+    "file": "assets/index--yG5aSyy.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -63,7 +63,7 @@
       "_shared-Bb9qxY0T.js",
       "_courses-DzOAqRf3.js",
       "_projects-lltp0uUX.js",
-      "_core-B7bJRzGb.js",
+      "_core-DSwXEMM5.js",
       "_content-ZfagilsB.js"
     ],
     "dynamicImports": [
@@ -71,13 +71,13 @@
     ]
   },
   "src/app/app.tsx": {
-    "file": "assets/app-Sa2ExEDJ.js",
+    "file": "assets/app-BZ79UN01.js",
     "name": "app",
     "src": "src/app/app.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_runtime-MotIFk6S.js",
-      "_core-B7bJRzGb.js",
+      "_core-DSwXEMM5.js",
       "_articles-CGzhBGrG.js",
       "_shared-Bb9qxY0T.js",
       "_content-ZfagilsB.js",
