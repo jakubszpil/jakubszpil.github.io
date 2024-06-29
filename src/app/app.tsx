@@ -3,9 +3,13 @@ import {
   Outlet,
   ScrollRestoration,
   useRouteError,
+  Link,
 } from "react-router-dom";
 
+import { Button } from "@libs/shared";
+
 import Layout from "./core/ui/layout";
+import NotFound from "./core/ui/not-found";
 
 export default function App() {
   return (
@@ -19,26 +23,31 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
 
-  console.error(error);
+  const renderError = (error: unknown) => {
+    if (isRouteErrorResponse(error)) {
+      if (error.status === 404) {
+        return <NotFound />;
+      }
 
-  if (isRouteErrorResponse(error)) {
-    return (
-      <Layout>
-        <header className="container prose">
+      return (
+        <>
           <h1>
             {error.status}: {error.statusText}
           </h1>
           <p>{error.data}</p>
-        </header>
-      </Layout>
-    );
-  }
+          <Button asChild className="no-underline" variant="outline" size="sm">
+            <Link to="/">Powrót do strony głównej</Link>
+          </Button>
+        </>
+      );
+    }
+
+    return <h1>Wystąpił nieoczekiwany błąd</h1>;
+  };
 
   return (
     <Layout>
-      <header className="container prose">
-        <h1>Wystąpił nieoczekiwany błąd</h1>
-      </header>
+      <header className="container prose">{renderError(error)}</header>
     </Layout>
   );
 }
