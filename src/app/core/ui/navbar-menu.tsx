@@ -46,6 +46,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           asChild
           className="inline-flex items-center justify-center"
           aria-label="Szukaj"
+          title="Szukaj"
         >
           <Link to="/szukaj">
             <span className="sr-only">Szukaj</span>
@@ -59,6 +60,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           asChild
           className="inline-flex items-center justify-center"
           aria-label="Mój github"
+          title="Mój github"
         >
           <a href="https://github.com/jakubszpil" target="_blank">
             <span className="sr-only">Mój github</span>
@@ -76,6 +78,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           )}
           variant="link"
           aria-label={show ? "Zamknij menu" : "Otwórz menu"}
+          title={show ? "Zamknij menu" : "Otwórz menu"}
         >
           <span className="sr-only">
             {show ? "Zamknij menu" : "Otwórz menu"}
