@@ -27,7 +27,9 @@ export default function NotFound() {
             variant="link"
             className="text-base no-underline hover:underline"
           >
-            <Link to={location.pathname}>🤔 Sprawdź adres URL</Link>
+            <Link replace to={location.pathname}>
+              🤔 Sprawdź adres URL
+            </Link>
           </Button>
           - Upewnij się, że wpisany adres jest poprawny.
         </li>
@@ -38,7 +40,9 @@ export default function NotFound() {
             variant="link"
             className="text-base no-underline hover:underline"
           >
-            <Link to="/">🏠 Przejdź do strony głównej</Link>
+            <Link replace to="/">
+              🏠 Przejdź do strony głównej
+            </Link>
           </Button>
           - Kliknij tutaj aby wrócić na stronę główną.
         </li>
@@ -49,7 +53,9 @@ export default function NotFound() {
             variant="link"
             className="text-base no-underline hover:underline"
           >
-            <Link to="/szukaj">🔍 Szukaj</Link>
+            <Link replace to="/szukaj">
+              🔍 Szukaj
+            </Link>
           </Button>
           - Skorzystaj z wyszukiwarki, aby znaleźć potrzebne informacje.
         </li>
