@@ -11,8 +11,7 @@ export default function Footer(props: FooterProps) {
     <footer className="prose max-w-full border-t">
       <div className="container flex items-center gap-3 justify-start flex-wrap-reverse xl:justify-between">
         <p className="xl:text-sm">
-          &copy; {new Date().getFullYear()} jakubszpil - Wszelkie prawa
-          zastrzeżone.
+          &copy; {new Date().getFullYear()} jakubszpil
         </p>
 
         <nav className="flex items-center gap-1 flex-wrap -ml-3">
