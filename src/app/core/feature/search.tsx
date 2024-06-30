@@ -11,6 +11,7 @@ import {
 } from "@libs/shared";
 import { Article, getArticles, Articles } from "@libs/articles";
 import { Project, getProjects } from "@libs/projects";
+import { Course, Courses, getCourses } from "@libs/courses";
 
 export const loader = defineLoader(({ request }) => {
   const url = new URL(request.url);
@@ -42,12 +43,13 @@ export const loader = defineLoader(({ request }) => {
 
   const articles = getArticles().filter(test);
   const projects = getProjects().filter(test);
+  const courses = getCourses().filter(test);
 
-  return { query, articles, projects };
+  return { query, articles, projects, courses };
 });
 
 export default function Search() {
-  const { query, articles, projects } = useLoader<typeof loader>();
+  const { query, articles, projects, courses } = useLoader<typeof loader>();
 
   const resultsCount = articles.length + projects.length;
 
@@ -55,7 +57,8 @@ export default function Search() {
     query: string | null,
     resultsCount: number,
     articles: Article[],
-    projects: Project[]
+    projects: Project[],
+    courses: Course[]
   ) => {
     if (!query) {
       return null;
@@ -79,6 +82,13 @@ export default function Search() {
         {projects.length > 0 && (
           <section>
             <h3>Projekty ({projects.length})</h3>
+          </section>
+        )}
+
+        {courses.length > 0 && (
+          <section>
+            <h3>Kursy ({courses.length})</h3>
+            <Courses className="px-0 !grid-cols-1" courses={courses} />
           </section>
         )}
       </>
@@ -106,7 +116,7 @@ export default function Search() {
       </Form>
 
       <div className="container pt-0">
-        {renderResults(query, resultsCount, articles, projects)}
+        {renderResults(query, resultsCount, articles, projects, courses)}
       </div>
     </section>
   );

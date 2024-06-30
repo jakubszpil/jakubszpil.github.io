@@ -16,6 +16,9 @@ export const [
   getProjectsTechnologies,
   getProjectsByTechnology,
 ] = createResourceUtils<Project>(
-  import.meta.glob("../../../../content/projects/*.md", { eager: true }),
+  import.meta.glob(
+    ["../../../../content/projects/*.md", "../../../../content/projects/*.mdx"],
+    { eager: true }
+  ),
   "technologies"
 );

@@ -188,3 +188,7 @@ code.hljs {
 .hljs-deletion {
   @apply text-rose-100 bg-rose-900;
 }
+
+.prose details summary > * {
+  @apply hover:cursor-pointer select-none;
+}

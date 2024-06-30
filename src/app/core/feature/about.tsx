@@ -31,8 +31,9 @@ export default function About() {
       <p>
         Specjalizuję się w pracy w Typescript z React, gdzie przez ostatnie lata
         rozwijałem swoje umiejętności, tworząc zaawansowane interfejsy
-        użytkownika oraz dynamiczne aplikacje internetowe. Nie są mi również
-        obce inne popularne frameworki JavaScript, takie jak Angular i Vue.
+        użytkownika oraz dynamiczne aplikacje internetowe dla sektoru
+        lotniczego. Nie są mi również obce inne popularne frameworki JavaScript,
+        takie jak Angular i Vue.
       </p>
       <p>
         Z radością podchodzę do wyzwań związanych z każdym z nich, dostosowując

@@ -16,6 +16,9 @@ export const [
   getArticlesCategories,
   getArticlesByCategory,
 ] = createResourceUtils<Article>(
-  import.meta.glob("../../../../content/articles/*.md", { eager: true }),
+  import.meta.glob(
+    ["../../../../content/articles/*.md", "../../../../content/articles/*.mdx"],
+    { eager: true }
+  ),
   "categories"
 );

@@ -36,7 +36,10 @@ export function parseContent<
 ): TResource[] {
   return Object.entries(imported)
     .map(([key, entry]) => {
-      const slug = key.slice(key.lastIndexOf("/") + 1).replace(".md", "");
+      const slug = key
+        .slice(key.lastIndexOf("/") + 1)
+        .replace(".mdx", "")
+        .replace(".md", "");
 
       return {
         ...entry.frontmatter,

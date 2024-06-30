@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 
 import { Button, ButtonProps, getLocalizedDate } from "@libs/shared";
 
-import { type Article } from "../data-access/articles";
+import { type Course } from "../data-access/courses";
 
-export interface ArticlesProps {
-  articles: Article[];
+export interface CoursesProps {
+  courses: Course[];
   className?: string;
   variant?: ButtonProps["variant"];
 }
 
-export default function Articles(props: ArticlesProps) {
+export default function Courses(props: CoursesProps) {
   return (
     <section
       className={classNames(
@@ -19,23 +19,23 @@ export default function Articles(props: ArticlesProps) {
         props.className
       )}
     >
-      {props.articles.map((article) => (
+      {props.courses.map((course) => (
         <Button
-          key={article.id}
+          key={course.id}
           asChild
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <Link to={`/blog/${article.slug}`}>
+          <Link to={`/learning/${course.slug}`}>
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
-              {article.title}
+              {course.title}
             </h2>
             <p className="line-clamp-3 mt-2 text-neutral-700 font-normal">
-              {article.description}
+              {course.description}
             </p>
-            {article.createdAt && (
+            {course.createdAt && (
               <span className="text-neutral-500 text-xs">
-                {getLocalizedDate(article.createdAt)}
+                {getLocalizedDate(course.createdAt)}
               </span>
             )}
           </Link>

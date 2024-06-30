@@ -27,7 +27,10 @@ export default function ArticleCategory() {
 
   return (
     <>
-      <Seo title={`Kategoria: ${category}`} />
+      <Seo
+        title={`Kategoria: ${category}`}
+        description="Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych."
+      />
 
       <header className="prose container">
         <h1 className="capitalize">{category}</h1>

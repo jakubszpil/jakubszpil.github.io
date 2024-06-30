@@ -8,7 +8,7 @@ export interface FooterProps {
 
 export default function Footer(props: FooterProps) {
   return (
-    <footer className="prose max-w-full border-t mt-12">
+    <footer className="prose max-w-full border-t">
       <div className="container flex items-center gap-3 justify-start flex-wrap-reverse xl:justify-between">
         <p className="xl:text-sm">
           &copy; {new Date().getFullYear()} jakubszpil - Wszelkie prawa

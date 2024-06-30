@@ -1,0 +1,214 @@
+---
+title: Renesans w JS, czyli wprowadzenie do nowoczesnego JavaScript
+description: JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.
+keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend]
+categories: [wprowadzenie, javascript]
+createdAt: 2024-06-30
+---
+
+JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.
+
+## Zmienne: `let` i `const`
+
+W nowoczesnym JavaScript zmienne są definiowane za pomocą `let` i `const` zamiast `var`.
+
+- `let` pozwala na deklarację zmiennych, które mogą być zmieniane.
+- `const` pozwala na deklarację zmiennych, które są stałe i nie mogą być zmieniane.
+
+### Przykłady:
+
+```javascript
+let zmienna = "To jest zmienna";
+zmienna = "Zmieniona wartość";
+
+const stala = "To jest stała";
+// stala = 'Zmieniona wartość'; // Spowoduje błąd
+```
+
+## Funkcje strzałkowe
+
+Funkcje strzałkowe to skrócony zapis funkcji, który również pozwala na lepsze zrozumienie kontekstu `this`.
+
+### Przykład:
+
+```javascript
+// Standardowa funkcja
+function dodaj(a, b) {
+  return a + b;
+}
+
+// Funkcja strzałkowa
+const dodaj = (a, b) => a + b;
+```
+
+## Szablony stringów (Template Literals)
+
+Szablony stringów umożliwiają interpolację zmiennych i wyrażenia w łańcuchach znaków za pomocą backticków (`` ` ``).
+
+### Przykład:
+
+```javascript
+const name = "Jan";
+const greeting = `Cześć, ${name}! Jak się masz?`;
+console.log(greeting); // "Cześć, Jan! Jak się masz?"
+```
+
+## Destrukturyzacja
+
+Destrukturyzacja pozwala na wyodrębnienie wartości z tablic lub obiektów i przypisanie ich do zmiennych.
+
+### Przykład z tablicą:
+
+```javascript
+const liczby = [1, 2, 3];
+const [jeden, dwa, trzy] = liczby;
+console.log(jeden, dwa, trzy); // 1 2 3
+```
+
+### Przykład z obiektem:
+
+```javascript
+const osoba = { imie: "Jan", wiek: 30 };
+const { imie, wiek } = osoba;
+console.log(imie, wiek); // Jan 30
+```
+
+## Spread operator (`...`)
+
+Spread operator pozwala na rozwinięcie elementów tablicy lub obiektu.
+
+### Przykład z tablicą:
+
+```javascript
+const liczby = [1, 2, 3];
+const wiecejLiczb = [...liczby, 4, 5, 6];
+console.log(wiecejLiczb); // [1, 2, 3, 4, 5, 6]
+```
+
+### Przykład z obiektem:
+
+```javascript
+const osoba = { imie: "Jan", wiek: 30 };
+const nowaOsoba = { ...osoba, miasto: "Warszawa" };
+console.log(nowaOsoba); // { imie: 'Jan', wiek: 30, miasto: 'Warszawa' }
+```
+
+## Promisy
+
+Promisy są używane do obsługi operacji asynchronicznych.
+
+### Przykład:
+
+```javascript
+const obietnica = new Promise((resolve, reject) => {
+  const sukces = true;
+
+  if (sukces) {
+    resolve("Operacja zakończona sukcesem!");
+  } else {
+    reject("Operacja zakończona niepowodzeniem.");
+  }
+});
+
+obietnica
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
+```
+
+## Async/Await
+
+Async/Await to składnia, która upraszcza pracę z promisami i sprawia, że kod asynchroniczny wygląda jak kod synchroniczny.
+
+### Przykład:
+
+```javascript
+const asyncFunction = async () => {
+  try {
+    const result = await obietnica;
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+asyncFunction();
+```
+
+## Zadania do wykonania
+
+### Zadanie 1
+
+Napisz funkcję strzałkową, która przyjmuje dwa argumenty i zwraca ich sumę.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```javascript
+const dodaj = (a, b) => a + b;
+console.log(dodaj(2, 3)); // 5
+```
+
+</details>
+
+### Zadanie 2
+
+Utwórz obiekt reprezentujący samochód, z atrybutami `marka`, `model` i `rok`. Następnie użyj destrukturyzacji, aby wyodrębnić te wartości i wyświetlić je w konsoli.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```javascript
+const samochod = { marka: "Toyota", model: "Corolla", rok: 2020 };
+const { marka, model, rok } = samochod;
+console.log(marka, model, rok); // Toyota Corolla 2020
+```
+
+</details>
+
+### Zadanie 3
+
+Stwórz tablicę liczb od 1 do 5. Następnie użyj operatora spread, aby dodać liczby 6 i 7 do tej tablicy.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```javascript
+const liczby = [1, 2, 3, 4, 5];
+
+const wiecejLiczb = [...liczby, 6, 7];
+
+console.log(wiecejLiczb); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+</details>
+
+### Zadanie 4
+
+Napisz funkcję asynchroniczną, która używa promisów do symulacji opóźnienia (np. za pomocą `setTimeout`). Funkcja powinna zwracać wynik po 2 sekundach.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```javascript
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const asyncFunction = async () => {
+  console.log("Czekam 2 sekundy...");
+  await delay(2000);
+  console.log("2 sekundy minęły!");
+};
+
+asyncFunction();
+```
+
+</details>
+
+To tyle na temat podstaw nowoczesnego JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.

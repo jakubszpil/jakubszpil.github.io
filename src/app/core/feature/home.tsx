@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { defineLoader, useLoader, Button, Seo } from "@libs/shared";
 import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
+import { Courses, getCourses } from "@libs/courses";
 
 export const loader = defineLoader(() => {
   const articles = getArticles(3);
   const projects = getProjects(3);
+  const courses = getCourses(3);
 
   return {
     articles,
     projects,
+    courses,
   };
 });
 
@@ -63,19 +66,25 @@ export default function Home() {
         </nav>
       </section>
 
-      <section className="prose max-w-full bg-background">
-        <header className="container pb-0">
-          <h2>Kursy 🏫 (a.k.a Learning)</h2>
+      <section className="prose max-w-full bg-neutral-50 border-t border-b border-t-neutral-200 border-b-neutral-200">
+        <header className="container pt-12 pb-0">
+          <h2 className="mt-0">Kursy 🏫 (a.k.a Learning)</h2>
           <p>
             Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne
             frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony
             oraz aplikacje internetowe.
           </p>
         </header>
+        <Courses variant="outline" className="" courses={data.courses} />
+        <nav className="container pt-0 pb-12">
+          <Button asChild size="sm" className="!no-underline">
+            <Link to="/learning">Zobacz wszystkie kursy</Link>
+          </Button>
+        </nav>
       </section>
 
       <section className="prose max-w-full bg-background">
-        <header className="container pb-0">
+        <header className="container">
           <h2>Portfolio 🛠️</h2>
           <p>
             Oto moje portfolio frontendowe z projektami nowoczesnych stron i

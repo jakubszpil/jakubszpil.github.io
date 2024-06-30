@@ -14,6 +14,7 @@ import { useLoader } from "@libs/shared";
 import { Articles } from "@libs/articles";
 
 import Home, { loader } from "../home";
+import { Courses } from "@libs/courses";
 
 vi.mock("@libs/shared", async (importActual) => {
   const actual = await importActual<typeof import("@libs/shared")>();
@@ -32,15 +33,25 @@ vi.mock("@libs/articles", async (importActual) => {
   };
 });
 
+vi.mock("@libs/courses", async (importActual) => {
+  const actual = await importActual<typeof import("@libs/courses")>();
+  return {
+    ...actual,
+    Courses: vi.fn(),
+  };
+});
+
 describe("Home route", () => {
   let MOCKED_LOADER_DATA: ReturnType<typeof loader>;
   let MOCKED_LOADER_HOOK: MockInstance;
   let MOCKED_ARTICLES_COMPONENT: MockInstance;
+  let MOCKED_COURSES_COMPONENT: MockInstance;
 
   beforeEach(() => {
     MOCKED_LOADER_DATA = {
       articles: [],
       projects: [],
+      courses: [],
     };
 
     MOCKED_LOADER_HOOK = vi
@@ -50,11 +61,16 @@ describe("Home route", () => {
     MOCKED_ARTICLES_COMPONENT = vi
       .mocked(Articles)
       .mockImplementation(() => <div>Articles</div>);
+
+    MOCKED_COURSES_COMPONENT = vi
+      .mocked(Courses)
+      .mockImplementation(() => <div>Courses</div>);
   });
 
   afterEach(() => {
     MOCKED_LOADER_HOOK.mockRestore();
     MOCKED_ARTICLES_COMPONENT.mockRestore();
+    MOCKED_COURSES_COMPONENT.mockRestore();
   });
 
   test("should render component with proper loader data", async () => {
@@ -71,6 +87,13 @@ describe("Home route", () => {
     expect(MOCKED_ARTICLES_COMPONENT).toHaveBeenCalledWith(
       expect.objectContaining({
         articles: MOCKED_LOADER_DATA.articles,
+      }),
+      {}
+    );
+
+    expect(MOCKED_COURSES_COMPONENT).toHaveBeenCalledWith(
+      expect.objectContaining({
+        courses: MOCKED_LOADER_DATA.courses,
       }),
       {}
     );

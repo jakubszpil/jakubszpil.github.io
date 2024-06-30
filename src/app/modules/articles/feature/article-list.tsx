@@ -19,7 +19,10 @@ export default function ArticleList() {
 
   return (
     <>
-      <Seo title="Artykuły" />
+      <Seo
+        title="Artykuły"
+        description="Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych."
+      />
       <header className="prose container">
         <h1>Artykuły</h1>
         <CategoryList showAllCategory categories={categories} />
