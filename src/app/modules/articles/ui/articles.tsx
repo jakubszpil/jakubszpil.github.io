@@ -34,7 +34,7 @@ export default function Articles(props: ArticlesProps) {
               {article.description}
             </p>
             {article.createdAt && (
-              <span className="text-neutral-500 text-xs">
+              <span className="text-neutral-600 text-xs">
                 {getLocalizedDate(article.createdAt)}
               </span>
             )}

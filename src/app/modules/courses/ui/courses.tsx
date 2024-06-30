@@ -34,7 +34,7 @@ export default function Courses(props: CoursesProps) {
               {course.description}
             </p>
             {course.createdAt && (
-              <span className="text-neutral-500 text-xs">
+              <span className="text-neutral-600 text-xs">
                 {getLocalizedDate(course.createdAt)}
               </span>
             )}

@@ -12,6 +12,7 @@ import {
 import { Article, getArticles, Articles } from "@libs/articles";
 import { Project, getProjects } from "@libs/projects";
 import { Course, Courses, getCourses } from "@libs/courses";
+import { IconSearch } from "@tabler/icons-react";
 
 export const loader = defineLoader(({ request }) => {
   const url = new URL(request.url);
@@ -51,7 +52,7 @@ export const loader = defineLoader(({ request }) => {
 export default function Search() {
   const { query, articles, projects, courses } = useLoader<typeof loader>();
 
-  const resultsCount = articles.length + projects.length;
+  const resultsCount = articles.length + projects.length + courses.length;
 
   const renderResults = (
     query: string | null,
@@ -101,6 +102,12 @@ export default function Search() {
 
       <header className="container pb-0">
         <h1 className="mb-0">Wyszukaj</h1>
+        <p>Wskazówka: Obszary po których możesz szukać:</p>
+        <ul>
+          <li>Artykuły: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>
+          <li>Kursy: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>
+          <li>Projekty: (tytuł, opis, słowa klucz, technologie, zawartość)</li>
+        </ul>
       </header>
 
       <Form method="get" className="container pb-0 flex gap-2">
@@ -112,7 +119,10 @@ export default function Search() {
           defaultValue={query ?? ""}
           required
         />
-        <Button type="submit">Szukaj</Button>
+        <Button type="submit">
+          <IconSearch className="h-5 w-5 mr-1" />
+          Szukaj
+        </Button>
       </Form>
 
       <div className="container pt-0">

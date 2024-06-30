@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { renderToString } from "react-dom/server";
 import { v4 as uuid } from "uuid";
 
 export type ResourceFrontmatter<T extends Record<string, unknown>> = {
@@ -12,7 +12,7 @@ export type ResourceFrontmatter<T extends Record<string, unknown>> = {
 export type Resource<T extends ResourceFrontmatter<Record<string, unknown>>> = {
   id: string;
   slug: string;
-  content: ReactNode;
+  content: string;
 } & T;
 
 export type ExtractResourceFrontmatter<
@@ -45,7 +45,7 @@ export function parseContent<
         ...entry.frontmatter,
         id: uuid(),
         slug,
-        content: entry.default(),
+        content: renderToString(entry.default()),
         createdAt: entry.frontmatter?.createdAt
           ? new Date(entry.frontmatter.createdAt as string).toISOString()
           : undefined,

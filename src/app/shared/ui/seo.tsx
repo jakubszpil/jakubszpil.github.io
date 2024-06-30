@@ -46,13 +46,15 @@ export const Seo = (props: SeoProps) => {
   const title = (value?: string) =>
     value ? `${value} - ${config.meta.title}` : null;
 
+  const description = (value?: string) => value ?? config.meta.description;
+
   const meta = createMetaTags()
-    .addTag("description", props.description)
+    .addTag("description", description(props.description))
     .addTag("keywords", props.keywords?.join(","))
     .addProperty("og:title", title(props.title))
-    .addProperty("og:description", props.description)
+    .addProperty("og:description", description(props.description))
     .addProperty("twitter:title", title(props.title))
-    .addProperty("twitter:description", props.description)
+    .addProperty("twitter:description", description(props.description))
     .build();
 
   return (
