@@ -1,14 +1,8 @@
-import {
-  Resource,
-  ResourceFrontmatter,
-  createResourceUtils,
-} from "@libs/shared";
+import { Resource, createResourceUtils } from "@libs/shared";
 
-export type CourseFrontmatter = ResourceFrontmatter<{
+export interface Course extends Resource {
   categories?: string[];
-}>;
-
-export type Course = Resource<CourseFrontmatter>;
+}
 
 export const [
   getCourses,

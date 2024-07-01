@@ -1,59 +1,19 @@
-import { renderToString } from "react-dom/server";
-import { v4 as uuid } from "uuid";
-
-export type ResourceFrontmatter<T extends Record<string, unknown>> = {
+export interface Resource {
+  id: string;
+  slug: string;
+  content: string;
   title?: string;
   description?: string;
   keywords?: string[];
   createdAt?: string;
   updatedAt?: string;
-} & T;
+}
 
-export type Resource<T extends ResourceFrontmatter<Record<string, unknown>>> = {
-  id: string;
-  slug: string;
-  content: string;
-} & T;
-
-export type ExtractResourceFrontmatter<
-  TResource extends Resource<Record<string, unknown>>
-> = TResource extends Resource<
-  infer TFrontmatter extends ResourceFrontmatter<Record<string, unknown>>
->
-  ? TFrontmatter
-  : Record<string, unknown>;
-
-export function parseContent<
-  const TResource extends Resource<Record<string, unknown>>
->(
-  imported: Record<
-    string,
-    {
-      default: () => JSX.Element;
-      frontmatter: ExtractResourceFrontmatter<TResource>;
-    }
-  >
-): TResource[] {
-  return Object.entries(imported)
-    .map(([key, entry]) => {
-      const slug = key
-        .slice(key.lastIndexOf("/") + 1)
-        .replace(".mdx", "")
-        .replace(".md", "");
-
-      return {
-        ...entry.frontmatter,
-        id: uuid(),
-        slug,
-        content: renderToString(entry.default()),
-        createdAt: entry.frontmatter?.createdAt
-          ? new Date(entry.frontmatter.createdAt as string).toISOString()
-          : undefined,
-        updatedAt: entry.frontmatter?.updatedAt
-          ? new Date(entry.frontmatter.updatedAt as string).toISOString()
-          : undefined,
-      } as TResource;
-    })
+export function parseContent<T extends Resource>(
+  files: Array<{ default: T }>
+): T[] {
+  return files
+    .map((i) => i.default)
     .sort((first, second) => {
       const firstCreationDate = first.createdAt
         ? new Date(first.createdAt as string)
@@ -69,23 +29,15 @@ export function parseContent<
     });
 }
 
-export type ExtractFilters<TResource extends Record<string, unknown>> = {
+export type ExtractFilters<TResource extends Resource> = {
   [K in keyof TResource]: TResource[K] extends string[] | undefined ? K : never;
 }[keyof TResource];
 
-export function createResourceUtils<
-  const TResource extends Resource<Record<string, unknown>>
->(
-  files: Record<
-    string,
-    {
-      default: () => JSX.Element;
-      frontmatter: ExtractResourceFrontmatter<TResource>;
-    }
-  >,
+export function createResourceUtils<TResource extends Resource>(
+  files: Record<string, { default: TResource }>,
   filterKey: NonNullable<ExtractFilters<TResource>>
 ) {
-  const resources: TResource[] = parseContent<TResource>(files);
+  const resources = parseContent(Object.values(files));
 
   function getResources(limit?: number): TResource[] {
     if (limit !== undefined) {

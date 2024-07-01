@@ -1,4 +1,5 @@
 import { Form, redirect } from "react-router-dom";
+import { IconSearch } from "@tabler/icons-react";
 
 import {
   defineLoader,
@@ -7,12 +8,10 @@ import {
   Input,
   Seo,
   Resource,
-  ResourceFrontmatter,
 } from "@libs/shared";
 import { Article, getArticles, Articles } from "@libs/articles";
 import { Project, getProjects } from "@libs/projects";
 import { Course, Courses, getCourses } from "@libs/courses";
-import { IconSearch } from "@tabler/icons-react";
 
 export const loader = defineLoader(({ request }) => {
   const url = new URL(request.url);
@@ -32,9 +31,7 @@ export const loader = defineLoader(({ request }) => {
     }
   }
 
-  const test = <T extends ResourceFrontmatter<Record<string, unknown>>>(
-    i: Resource<T>
-  ): boolean => {
+  const test = <T extends Resource>(i: T): boolean => {
     if (!query) return false;
     const s = JSON.stringify(i);
     const q = query.toLowerCase();

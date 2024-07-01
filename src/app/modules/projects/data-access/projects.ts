@@ -1,14 +1,8 @@
-import {
-  Resource,
-  ResourceFrontmatter,
-  createResourceUtils,
-} from "@libs/shared";
+import { Resource, createResourceUtils } from "@libs/shared";
 
-export type ProjectFrontmatter = ResourceFrontmatter<{
+export interface Project extends Resource {
   technologies?: string[];
-}>;
-
-export type Project = Resource<ProjectFrontmatter>;
+}
 
 export const [
   getProjects,

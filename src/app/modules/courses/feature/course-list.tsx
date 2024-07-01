@@ -1,12 +1,29 @@
-import { defineLoader, Seo, useLoader } from "@libs/shared";
+import { defineLoader, notFound, Seo, useLoader } from "@libs/shared";
 
-import { getCourses, getCoursesCategories } from "../data-access/courses";
+import {
+  getCourses,
+  getCoursesByCategory,
+  getCoursesCategories,
+} from "../data-access/courses";
 import CategoryList from "../ui/categories";
 import Courses from "../ui/courses";
 
-export const loader = defineLoader(() => {
-  const courses = getCourses();
+export const loader = defineLoader(({ params }) => {
+  const category = params.category;
   const categories = getCoursesCategories();
+
+  if (category) {
+    if (!categories.includes(category)) throw notFound();
+    const courses = getCoursesByCategory(category);
+
+    return {
+      category,
+      categories,
+      courses,
+    };
+  }
+
+  const courses = getCourses();
 
   return {
     courses,
@@ -15,16 +32,16 @@ export const loader = defineLoader(() => {
 });
 
 export default function CourseList() {
-  const { courses, categories } = useLoader<typeof loader>();
+  const { courses, categories, category } = useLoader<typeof loader>();
 
   return (
     <>
       <Seo
-        title="Learning"
+        title={category ? `Kategoria: ${category}` : "Learning"}
         description="Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe."
       />
       <header className="prose container">
-        <h1>Learning</h1>
+        <h1 className="capitalize">{category ?? "Learning"}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 
