@@ -32,10 +32,23 @@ export default defineConfig(() => {
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            if (id.includes("/node_modules/")) return "vendor";
+            if (id.includes("/node_modules/")) {
+              if (
+                id.includes("react-router-dom") ||
+                id.includes("@remix-run") ||
+                id.includes("react-router")
+              ) {
+                return "routing";
+              }
+
+              return "vendor";
+            }
             if (id.includes("core")) return "core";
             if (id.includes("shared")) return "shared";
-            if (id.includes("content")) return "content";
+            if (id.includes("content")) {
+              const type = excludeModuleName(id, "/content/");
+              return `content/${type}`;
+            }
             if (id.includes("modules"))
               return excludeModuleName(id, "/modules/");
 
