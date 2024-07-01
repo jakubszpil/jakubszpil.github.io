@@ -1,404 +1,4 @@
-const s={id:"d5747024-8aea-4bc6-b85e-c9b3ae75a481",slug:"dependency-injection-kontra-typescript",content:`<p>Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami.</p>
-<p>W TypeScript, DI można zaimplementować na kilka sposobów, w tym za pomocą kontenerów IoC (Inversion of Control), które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów.</p>
-<h2>Spis Treści</h2>
-<ol>
-<li>Podstawy Dependency Injection</li>
-<li>Prosty przykład DI</li>
-<li>Wstrzykiwanie zależności za pomocą kontenera IoC</li>
-<li>Korzystanie z dekoratorów do wstrzykiwania zależności</li>
-</ol>
-<h2>1. Podstawy Dependency Injection</h2>
-<p>W Dependency Injection chodzi o przekazywanie zależności do obiektu zamiast tworzenia ich bezpośrednio wewnątrz obiektu. Dzięki temu można łatwo wymieniać zależności, co ułatwia testowanie i modyfikowanie kodu.</p>
-<h2>2. Prosty przykład DI</h2>
-<p>Rozważmy prosty przykład, w którym klasa <code>UserService</code> potrzebuje instancji <code>UserRepository</code>:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> {
-  <span class="hljs-title function_">getUser</span>(<span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">\`User <span class="hljs-subst">\${userId}</span>\`</span>;
-  }
-}
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">userRepository</span>: <span class="hljs-title class_">UserRepository</span>;
-
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">userRepository: UserRepository</span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">userRepository</span> = userRepository;
-  }
-
-  <span class="hljs-title function_">getUserName</span>(<span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">userRepository</span>.<span class="hljs-title function_">getUser</span>(userId);
-  }
-}
-
-<span class="hljs-keyword">const</span> userRepository = <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserRepository</span>();
-<span class="hljs-keyword">const</span> userService = <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserService</span>(userRepository);
-
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userService.<span class="hljs-title function_">getUserName</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// Output: User 1</span>
-</code></pre>
-<p>W powyższym przykładzie <code>UserRepository</code> jest wstrzykiwany do <code>UserService</code> przez konstruktor.</p>
-<h2>3. Wstrzykiwanie zależności za pomocą kontenera IoC</h2>
-<p>Aby lepiej zarządzać zależnościami, możemy użyć kontenera IoC. Przykład poniżej pokazuje, jak można to zrobić przy użyciu prostego kontenera DI:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">IoCContainer</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">dependencies</span>: <span class="hljs-title class_">Map</span>&#x3C;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
-
-  register&#x3C;T>(<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">dependency</span>: T): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dependencies</span>.<span class="hljs-title function_">set</span>(key, dependency);
-  }
-
-  resolve&#x3C;T>(<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>): T {
-    <span class="hljs-keyword">const</span> dependency = <span class="hljs-variable language_">this</span>.<span class="hljs-property">dependencies</span>.<span class="hljs-title function_">get</span>(key);
-    <span class="hljs-keyword">if</span> (!dependency) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">\`Dependency not found: <span class="hljs-subst">\${key}</span>\`</span>);
-    }
-    <span class="hljs-keyword">return</span> dependency;
-  }
-}
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> {
-  <span class="hljs-title function_">getUser</span>(<span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">\`User <span class="hljs-subst">\${userId}</span>\`</span>;
-  }
-}
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">userRepository</span>: <span class="hljs-title class_">UserRepository</span>;
-
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">userRepository: UserRepository</span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">userRepository</span> = userRepository;
-  }
-
-  <span class="hljs-title function_">getUserName</span>(<span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">userRepository</span>.<span class="hljs-title function_">getUser</span>(userId);
-  }
-}
-
-<span class="hljs-keyword">const</span> container = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IoCContainer</span>();
-container.<span class="hljs-title function_">register</span>(<span class="hljs-string">"UserRepository"</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserRepository</span>());
-
-<span class="hljs-keyword">const</span> userRepository = container.<span class="hljs-property">resolve</span>&#x3C;<span class="hljs-title class_">UserRepository</span>>(<span class="hljs-string">"UserRepository"</span>);
-<span class="hljs-keyword">const</span> userService = <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserService</span>(userRepository);
-
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userService.<span class="hljs-title function_">getUserName</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// Output: User 1</span>
-</code></pre>
-<p>W tym przykładzie używamy kontenera IoC do rejestrowania i rozwiązywania zależności.</p>
-<h2>4. Korzystanie z dekoratorów do wstrzykiwania zależności</h2>
-<p>TypeScript pozwala na używanie dekoratorów, które mogą ułatwić wstrzykiwanie zależności. Przykład poniżej pokazuje, jak można to zrobić:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Injectable</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span></span>) {
-  <span class="hljs-comment">// Rejestracja klasy jako zależności</span>
-  <span class="hljs-title class_">IoCContainer</span>.<span class="hljs-title function_">getInstance</span>().<span class="hljs-title function_">register</span>(target.<span class="hljs-property">name</span>, target);
-}
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">IoCContainer</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-attr">instance</span>: <span class="hljs-title class_">IoCContainer</span>;
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">dependencies</span>: <span class="hljs-title class_">Map</span>&#x3C;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
-
-  <span class="hljs-keyword">private</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {}
-
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">getInstance</span>(): <span class="hljs-title class_">IoCContainer</span> {
-    <span class="hljs-keyword">if</span> (!<span class="hljs-title class_">IoCContainer</span>.<span class="hljs-property">instance</span>) {
-      <span class="hljs-title class_">IoCContainer</span>.<span class="hljs-property">instance</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IoCContainer</span>();
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">IoCContainer</span>.<span class="hljs-property">instance</span>;
-  }
-
-  register&#x3C;T>(<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">dependency</span>: T): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dependencies</span>.<span class="hljs-title function_">set</span>(key, <span class="hljs-keyword">new</span> <span class="hljs-title function_">dependency</span>());
-  }
-
-  resolve&#x3C;T>(<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>): T {
-    <span class="hljs-keyword">const</span> dependency = <span class="hljs-variable language_">this</span>.<span class="hljs-property">dependencies</span>.<span class="hljs-title function_">get</span>(key);
-    <span class="hljs-keyword">if</span> (!dependency) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">\`Dependency not found: <span class="hljs-subst">\${key}</span>\`</span>);
-    }
-    <span class="hljs-keyword">return</span> dependency;
-  }
-}
-
-<span class="hljs-meta">@Injectable</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepository</span> {
-  <span class="hljs-title function_">getUser</span>(<span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">\`User <span class="hljs-subst">\${userId}</span>\`</span>;
-  }
-}
-
-<span class="hljs-meta">@Injectable</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">userRepository</span>: <span class="hljs-title class_">UserRepository</span>;
-
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">userRepository</span> =
-      <span class="hljs-title class_">IoCContainer</span>.<span class="hljs-title function_">getInstance</span>().<span class="hljs-property">resolve</span>&#x3C;<span class="hljs-title class_">UserRepository</span>>(<span class="hljs-string">"UserRepository"</span>);
-  }
-
-  <span class="hljs-title function_">getUserName</span>(<span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">userRepository</span>.<span class="hljs-title function_">getUser</span>(userId);
-  }
-}
-
-<span class="hljs-keyword">const</span> userService =
-  <span class="hljs-title class_">IoCContainer</span>.<span class="hljs-title function_">getInstance</span>().<span class="hljs-property">resolve</span>&#x3C;<span class="hljs-title class_">UserService</span>>(<span class="hljs-string">"UserService"</span>);
-
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userService.<span class="hljs-title function_">getUserName</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// Output: User 1</span>
-</code></pre>
-<p>W tym przykładzie używamy dekoratorów, aby rejestrować klasy jako zależności w kontenerze IoC i automatycznie wstrzykiwać je w klasach, które ich potrzebują.</p>
-<h2>Podsumowanie</h2>
-<p>Dependency Injection w TypeScript to potężna technika, która może znacznie ułatwić zarządzanie zależnościami i poprawić testowalność oraz modularność kodu. Przedstawione powyżej przykłady pokazują różne podejścia do implementacji DI, w tym bezpośrednie wstrzykiwanie przez konstruktor, korzystanie z kontenerów IoC oraz używanie dekoratorów. Dzięki tym technikom można tworzyć bardziej elastyczne i łatwe w utrzymaniu aplikacje.</p>`,title:"Szczepienie kodu, czyli jak Typescript radzi sobie z Dependency Injection",description:"Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami. W TypeScript, DI można zaimplementować na kilka sposobów, w tym za pomocą kontenerów IoC (Inversion of Control), które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów.",keywords:["typescript","wzorce","javascript"],categories:["typescript","wzorce"],createdAt:"2024-06-20T00:00:00.000Z",updatedAt:"2024-06-20T00:00:00.000Z"},o=Object.freeze(Object.defineProperty({__proto__:null,default:s},Symbol.toStringTag,{value:"Module"})),a={id:"a3f3b44c-2443-4cd4-a5b2-7f1d684df048",slug:"obserwatorium-czyli-wzorzec-projektowy-obserwatora",content:`<p>Wzorzec projektowy Obserwator (ang. Observer) jest jednym z najważniejszych wzorców projektowych, szczególnie użytecznym w kontekście programowania reaktywnego i aplikacji, które muszą reagować na zmiany stanu. W TypeScript możemy zaimplementować ten wzorzec w sposób typowany, co dodatkowo zwiększa bezpieczeństwo i czytelność kodu.</p>
-<h2>Czym jest Wzorzec Obserwatora?</h2>
-<p>Wzorzec Obserwatora polega na tym, że obiekt (obserwowany) zarządza listą zależnych obiektów (obserwatorów) i automatycznie powiadamia ich o zmianach swojego stanu. Jest to realizowane za pomocą metod do subskrybowania, odsubskrybowania oraz powiadamiania obserwatorów.</p>
-<h2>Korzyści z używania Wzorca Obserwatora</h2>
-<ol>
-<li><strong>Reaktywność:</strong> Automatyczne powiadamianie obserwatorów o zmianach stanu.</li>
-<li><strong>Luźne Powiązania:</strong> Obserwatorzy nie muszą znać szczegółów implementacji obiektu, który obserwują.</li>
-<li><strong>Elastyczność:</strong> Łatwość dodawania nowych obserwatorów bez zmiany istniejącego kodu.</li>
-</ol>
-<h2>Implementacja Wzorca Obserwatora w TypeScript</h2>
-<h3>Przykład 1: Prosta Implementacja</h3>
-<p>Poniżej znajduje się prosta implementacja wzorca Obserwatora w TypeScript:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-comment">// Interfejs obserwatora</span>
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Observer</span> {
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;
-}
-
-<span class="hljs-comment">// Klasa obserwowana</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">observers</span>: <span class="hljs-title class_">Observer</span>[] = [];
-
-  <span class="hljs-title function_">subscribe</span>(<span class="hljs-attr">observer</span>: <span class="hljs-title class_">Observer</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">push</span>(observer);
-  }
-
-  <span class="hljs-title function_">unsubscribe</span>(<span class="hljs-attr">observer</span>: <span class="hljs-title class_">Observer</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">obs</span>) =></span> obs !== observer);
-  }
-
-  <span class="hljs-title function_">notify</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">observer</span>) =></span> observer.<span class="hljs-title function_">update</span>(message));
-  }
-}
-
-<span class="hljs-comment">// Implementacja obserwatora</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteObserver</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Observer</span> {
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span></span>) {}
-
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`<span class="hljs-subst">\${<span class="hljs-variable language_">this</span>.name}</span> received message: <span class="hljs-subst">\${message}</span>\`</span>);
-  }
-}
-
-<span class="hljs-comment">// Użycie wzorca Obserwatora</span>
-<span class="hljs-keyword">const</span> subject = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Subject</span>();
-
-<span class="hljs-keyword">const</span> observer1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteObserver</span>(<span class="hljs-string">"Observer 1"</span>);
-<span class="hljs-keyword">const</span> observer2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteObserver</span>(<span class="hljs-string">"Observer 2"</span>);
-
-subject.<span class="hljs-title function_">subscribe</span>(observer1);
-subject.<span class="hljs-title function_">subscribe</span>(observer2);
-
-subject.<span class="hljs-title function_">notify</span>(<span class="hljs-string">"Hello, Observers!"</span>);
-
-<span class="hljs-comment">// Output:</span>
-<span class="hljs-comment">// Observer 1 received message: Hello, Observers!</span>
-<span class="hljs-comment">// Observer 2 received message: Hello, Observers!</span>
-</code></pre>
-<p>W tym przykładzie <code>Subject</code> zarządza listą obserwatorów i powiadamia ich za pomocą metody <code>notify</code>. Obserwatorzy implementują interfejs <code>Observer</code>, który definiuje metodę <code>update</code>.</p>
-<h3>Przykład 2: Rozbudowana Implementacja z Typowaniem</h3>
-<p>W bardziej zaawansowanej wersji możemy użyć typów generycznych do zarządzania różnymi typami danych:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-comment">// Interfejs obserwatora z typem generycznym</span>
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Observer</span>&#x3C;T> {
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">data</span>: T): <span class="hljs-built_in">void</span>;
-}
-
-<span class="hljs-comment">// Klasa obserwowana z typem generycznym</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span>&#x3C;T> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">observers</span>: <span class="hljs-title class_">Observer</span>&#x3C;T>[] = [];
-
-  <span class="hljs-title function_">subscribe</span>(<span class="hljs-attr">observer</span>: <span class="hljs-title class_">Observer</span>&#x3C;T>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">push</span>(observer);
-  }
-
-  <span class="hljs-title function_">unsubscribe</span>(<span class="hljs-attr">observer</span>: <span class="hljs-title class_">Observer</span>&#x3C;T>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">obs</span>) =></span> obs !== observer);
-  }
-
-  <span class="hljs-title function_">notify</span>(<span class="hljs-attr">data</span>: T): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">observer</span>) =></span> observer.<span class="hljs-title function_">update</span>(data));
-  }
-}
-
-<span class="hljs-comment">// Implementacja obserwatora</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteObserver</span>&#x3C;T> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Observer</span>&#x3C;T> {
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span></span>) {}
-
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">data</span>: T): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`<span class="hljs-subst">\${<span class="hljs-variable language_">this</span>.name}</span> received data:\`</span>, data);
-  }
-}
-
-<span class="hljs-comment">// Użycie wzorca Obserwatora z typem generycznym</span>
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">User</span> {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
-}
-
-<span class="hljs-keyword">const</span> userSubject = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Subject</span>&#x3C;<span class="hljs-title class_">User</span>>();
-
-<span class="hljs-keyword">const</span> userObserver1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteObserver</span>&#x3C;<span class="hljs-title class_">User</span>>(<span class="hljs-string">"User Observer 1"</span>);
-<span class="hljs-keyword">const</span> userObserver2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteObserver</span>&#x3C;<span class="hljs-title class_">User</span>>(<span class="hljs-string">"User Observer 2"</span>);
-
-userSubject.<span class="hljs-title function_">subscribe</span>(userObserver1);
-userSubject.<span class="hljs-title function_">subscribe</span>(userObserver2);
-
-userSubject.<span class="hljs-title function_">notify</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">"Alice"</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> });
-
-<span class="hljs-comment">// Output:</span>
-<span class="hljs-comment">// User Observer 1 received data: { name: 'Alice', age: 30 }</span>
-<span class="hljs-comment">// User Observer 2 received data: { name: 'Alice', age: 30 }</span>
-</code></pre>
-<p>W tej wersji <code>Subject</code> i <code>Observer</code> są typowane generycznie, co pozwala na bardziej elastyczne i bezpieczne przekazywanie danych.</p>
-<h2>Zakończenie</h2>
-<p>Wzorzec Obserwatora w TypeScript jest potężnym narzędziem, które pozwala na łatwe zarządzanie zmianami stanu i reaktywnością aplikacji. Dzięki silnemu typowaniu w TypeScript, implementacja tego wzorca jest jeszcze bardziej bezpieczna i czytelna. Implementując ten wzorzec, można znacząco poprawić strukturę i el</p>
-<p>astyczność kodu, co jest szczególnie ważne w dużych i złożonych aplikacjach. Dzięki temu wzorcowi, komponenty mogą komunikować się ze sobą w sposób luźno powiązany, co ułatwia ich testowanie, modyfikowanie i rozbudowę.</p>
-<p>Wzorzec Obserwatora w TypeScript można łatwo zaimplementować na różne sposoby, dostosowując go do specyficznych potrzeb projektu. W powyższych przykładach pokazaliśmy zarówno podstawową implementację, jak i bardziej zaawansowaną wersję z typami generycznymi. Zachęcam do eksperymentowania z tym wzorcem w swoich projektach, aby lepiej zrozumieć jego potencjał i korzyści.</p>
-<h3>Przykładowy Projekt z Wykorzystaniem Wzorca Obserwatora</h3>
-<p>Aby zobaczyć, jak wzorzec Obserwatora może być użyty w bardziej realistycznym scenariuszu, rozważmy prostą aplikację monitorującą zmiany temperatury:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-comment">// Interfejs obserwatora</span>
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Observer</span>&#x3C;T> {
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">data</span>: T): <span class="hljs-built_in">void</span>;
-}
-
-<span class="hljs-comment">// Klasa obserwowana</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">TemperatureSensor</span> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">observers</span>: <span class="hljs-title class_">Observer</span>&#x3C;<span class="hljs-built_in">number</span>>[] = [];
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">temperature</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>;
-
-  <span class="hljs-title function_">subscribe</span>(<span class="hljs-attr">observer</span>: <span class="hljs-title class_">Observer</span>&#x3C;<span class="hljs-built_in">number</span>>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">push</span>(observer);
-  }
-
-  <span class="hljs-title function_">unsubscribe</span>(<span class="hljs-attr">observer</span>: <span class="hljs-title class_">Observer</span>&#x3C;<span class="hljs-built_in">number</span>>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">obs</span>) =></span> obs !== observer);
-  }
-
-  <span class="hljs-title function_">setTemperature</span>(<span class="hljs-attr">temp</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`Setting temperature to <span class="hljs-subst">\${temp}</span>\`</span>);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">temperature</span> = temp;
-    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notify</span>(temp);
-  }
-
-  <span class="hljs-keyword">private</span> <span class="hljs-title function_">notify</span>(<span class="hljs-attr">temp</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">observer</span>) =></span> observer.<span class="hljs-title function_">update</span>(temp));
-  }
-}
-
-<span class="hljs-comment">// Implementacja obserwatora</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">TemperatureDisplay</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Observer</span>&#x3C;<span class="hljs-built_in">number</span>> {
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">temp</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`Temperature Display: <span class="hljs-subst">\${temp}</span>°C\`</span>);
-  }
-}
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">TemperatureLogger</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Observer</span>&#x3C;<span class="hljs-built_in">number</span>> {
-  <span class="hljs-title function_">update</span>(<span class="hljs-attr">temp</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`Logging temperature: <span class="hljs-subst">\${temp}</span>°C\`</span>);
-  }
-}
-
-<span class="hljs-comment">// Użycie wzorca Obserwatora</span>
-<span class="hljs-keyword">const</span> sensor = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TemperatureSensor</span>();
-<span class="hljs-keyword">const</span> display = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TemperatureDisplay</span>();
-<span class="hljs-keyword">const</span> logger = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TemperatureLogger</span>();
-
-sensor.<span class="hljs-title function_">subscribe</span>(display);
-sensor.<span class="hljs-title function_">subscribe</span>(logger);
-
-sensor.<span class="hljs-title function_">setTemperature</span>(<span class="hljs-number">25</span>); <span class="hljs-comment">// Output: Setting temperature to 25</span>
-<span class="hljs-comment">//         Temperature Display: 25°C</span>
-<span class="hljs-comment">//         Logging temperature: 25°C</span>
-
-sensor.<span class="hljs-title function_">setTemperature</span>(<span class="hljs-number">30</span>); <span class="hljs-comment">// Output: Setting temperature to 30</span>
-<span class="hljs-comment">//         Temperature Display: 30°C</span>
-<span class="hljs-comment">//         Logging temperature: 30°C</span>
-</code></pre>
-<p>W tym przykładzie <code>TemperatureSensor</code> pełni rolę obiektu obserwowanego, który powiadamia swoich obserwatorów (<code>TemperatureDisplay</code> i <code>TemperatureLogger</code>) o zmianach temperatury. W praktycznym scenariuszu można by zastosować ten wzorzec do monitorowania różnych parametrów i reagowania na zmiany w czasie rzeczywistym.</p>
-<h2>Zakończenie</h2>
-<p>Wzorzec projektowy Obserwatora jest jednym z fundamentów programowania reaktywnego, pozwalając na luźne powiązanie komponentów i lepszą organizację kodu. TypeScript, dzięki swoim możliwościom typowania, umożliwia bezpieczną i efektywną implementację tego wzorca. Niezależnie od skali projektu, warto rozważyć użycie wzorca Obserwatora, aby poprawić elastyczność i czytelność kodu.</p>`,title:"Obserwatorium, czyli wzorzec projektowy obserwatora",description:"Wzorzec projektowy Obserwator (ang. Observer) jest jednym z najważniejszych wzorców projektowych, szczególnie użytecznym w kontekście programowania reaktywnego i aplikacji, które muszą reagować na zmiany stanu. W TypeScript możemy zaimplementować ten wzorzec w sposób typowany, co dodatkowo zwiększa bezpieczeństwo i czytelność kodu.",keywords:["typescript","wzorce","programowanie"],categories:["typescript","wzorce"],createdAt:"2024-06-20T00:00:00.000Z",updatedAt:"2024-06-20T00:00:00.000Z"},i=Object.freeze(Object.defineProperty({__proto__:null,default:a},Symbol.toStringTag,{value:"Module"})),n={id:"71593636-4521-4ac4-a701-44e3e3bfc251",slug:"signalizacja-czyli-koncept-signals-w-typescript",content:`<p>Signal to koncepcja pochodząca z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzania stanem aplikacji. W TypeScript, dzięki silnemu typowaniu, można zaimplementować sygnały w sposób bezpieczny i efektywny.</p>
-<h2>Czym jest Signal?</h2>
-<p>Signal (sygnał) jest obiektem, który reprezentuje strumień danych, który może być obserwowany i reagować na zmiany tych danych. W kontekście frontendu, sygnały mogą być używane do reagowania na zdarzenia użytkownika, zmiany stanu aplikacji, czy asynchroniczne operacje, takie jak żądania sieciowe.</p>
-<h2>Korzyści z używania Signal</h2>
-<ol>
-<li><strong>Reaktywność:</strong> Umożliwiają budowanie aplikacji, które automatycznie reagują na zmiany danych.</li>
-<li><strong>Czytelność:</strong> Poprawiają czytelność kodu poprzez eliminację złożonych zależności i ręcznego zarządzania stanem.</li>
-<li><strong>Modularność:</strong> Ułatwiają zarządzanie stanem w skomplikowanych aplikacjach poprzez oddzielenie logiki zarządzania stanem od komponentów.</li>
-</ol>
-<h2>Implementacja Signal w TypeScript</h2>
-<h3>Przykład 1: Prosty Signal</h3>
-<p>Poniżej przedstawiono prostą implementację sygnału w TypeScript:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Listener</span>&#x3C;T> = <span class="hljs-function">(<span class="hljs-params">value: T</span>) =></span> <span class="hljs-built_in">void</span>;
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">Signal</span>&#x3C;T> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">listeners</span>: <span class="hljs-title class_">Listener</span>&#x3C;T>[] = [];
-
-  <span class="hljs-title function_">subscribe</span>(<span class="hljs-attr">listener</span>: <span class="hljs-title class_">Listener</span>&#x3C;T>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">push</span>(listener);
-  }
-
-  <span class="hljs-title function_">unsubscribe</span>(<span class="hljs-attr">listener</span>: <span class="hljs-title class_">Listener</span>&#x3C;T>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">l</span>) =></span> l !== listener);
-  }
-
-  <span class="hljs-title function_">emit</span>(<span class="hljs-attr">value</span>: T): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">listener</span>) =></span> <span class="hljs-title function_">listener</span>(value));
-  }
-}
-
-<span class="hljs-comment">// Użycie sygnału</span>
-<span class="hljs-keyword">const</span> numberSignal = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Signal</span>&#x3C;<span class="hljs-built_in">number</span>>();
-
-numberSignal.<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">(<span class="hljs-params">value</span>) =></span> {
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`Received value: <span class="hljs-subst">\${value}</span>\`</span>);
-});
-
-numberSignal.<span class="hljs-title function_">emit</span>(<span class="hljs-number">42</span>); <span class="hljs-comment">// Output: Received value: 42</span>
-</code></pre>
-<p>W tym przykładzie zdefiniowano klasę <code>Signal</code>, która umożliwia subskrybowanie, usuwanie subskrypcji oraz emitowanie wartości do wszystkich subskrybentów.</p>
-<h3>Przykład 2: Zaawansowany Signal z Typowaniem</h3>
-<p>Poniższy przykład przedstawia bardziej zaawansowaną implementację sygnału z wykorzystaniem typów generycznych:</p>
-<pre><code class="hljs language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Listener</span>&#x3C;T> = <span class="hljs-function">(<span class="hljs-params">value: T</span>) =></span> <span class="hljs-built_in">void</span>;
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">Signal</span>&#x3C;T> {
-  <span class="hljs-keyword">private</span> <span class="hljs-attr">listeners</span>: <span class="hljs-title class_">Set</span>&#x3C;<span class="hljs-title class_">Listener</span>&#x3C;T>> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
-
-  <span class="hljs-title function_">subscribe</span>(<span class="hljs-attr">listener</span>: <span class="hljs-title class_">Listener</span>&#x3C;T>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">add</span>(listener);
-  }
-
-  <span class="hljs-title function_">unsubscribe</span>(<span class="hljs-attr">listener</span>: <span class="hljs-title class_">Listener</span>&#x3C;T>): <span class="hljs-built_in">void</span> {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">delete</span>(listener);
-  }
-
-  <span class="hljs-title function_">emit</span>(<span class="hljs-attr">value</span>: T): <span class="hljs-built_in">void</span> {
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> listener <span class="hljs-keyword">of</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>) {
-      <span class="hljs-title function_">listener</span>(value);
-    }
-  }
-}
-
-<span class="hljs-comment">// Użycie sygnału z typem generycznym</span>
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">User</span> {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
-}
-
-<span class="hljs-keyword">const</span> userSignal = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Signal</span>&#x3C;<span class="hljs-title class_">User</span>>();
-
-userSignal.<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">(<span class="hljs-params">user</span>) =></span> {
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">\`User: <span class="hljs-subst">\${user.name}</span>, Age: <span class="hljs-subst">\${user.age}</span>\`</span>);
-});
-
-userSignal.<span class="hljs-title function_">emit</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">"John Doe"</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> }); <span class="hljs-comment">// Output: User: John Doe, Age: 30</span>
-</code></pre>
-<p>W tym przykładzie <code>Signal</code> używa <code>Set</code> do przechowywania subskrybentów, co zapobiega wielokrotnemu dodawaniu tego samego subskrybenta. Zastosowanie typów generycznych pozwala na tworzenie sygnałów obsługujących dowolne typy danych.</p>
-<h2>Zakończenie</h2>
-<p>Signal w TypeScript to potężne narzędzie do budowania reaktywnych aplikacji, które mogą automatycznie reagować na zmiany stanu. Dzięki silnemu typowaniu TypeScript, implementacja sygnałów jest bezpieczna i efektywna, co przyczynia się do tworzenia bardziej zrozumiałych i łatwiejszych w utrzymaniu kodów. Implementując sygnały, możemy znacząco uprościć zarządzanie stanem w naszych aplikacjach i poprawić ich architekturę.</p>`,title:"Signalizacja, czyli koncept Signals w Typescript",description:"Signal to koncepcja pochodząca z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzania stanem aplikacji. W TypeScript, dzięki silnemu typowaniu, można zaimplementować sygnały w sposób bezpieczny i efektywny.",keywords:["typescript","wzorce","signals"],categories:["typescript","wzorce"],createdAt:"2024-06-20T00:00:00.000Z",updatedAt:"2024-06-20T00:00:00.000Z"},h=Object.freeze(Object.defineProperty({__proto__:null,default:n},Symbol.toStringTag,{value:"Module"})),l={id:"745105bc-bbc2-4d0c-ab51-c07ebd0ac085",slug:"nowoczesny-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.</p>
+const s={id:"cf5b75e2-68a1-4353-9607-ebf5da375267",slug:"nowoczesny-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.</p>
 <h2>Zmienne: <code>let</code> i <code>const</code></h2>
 <p>W nowoczesnym JavaScript zmienne są definiowane za pomocą <code>let</code> i <code>const</code> zamiast <code>var</code>.</p>
 <ul>
@@ -537,7 +137,7 @@ obietnica
 <span class="hljs-title function_">asyncFunction</span>();
 </code></pre>
 </details>
-<p>To tyle na temat podstaw nowoczesnego JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.</p>`,title:"Renesans w JS, czyli nowoczesny JavaScript",description:"JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.",keywords:["javascript","kurs","wprowadzenie","przewodnik","web","frontend"],categories:["wprowadzenie","javascript"],createdAt:"2024-06-30T00:00:00.000Z"},j=Object.freeze(Object.defineProperty({__proto__:null,default:l},Symbol.toStringTag,{value:"Module"})),p={id:"cfdef381-baac-4ee3-9a17-69ef60e59ace",slug:"szybszy-css-czyli-wprowadzenie-do-bem",content:`<h2>Czym jest BEM?</h2>
+<p>To tyle na temat podstaw nowoczesnego JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.</p>`,title:"Renesans w JS, czyli nowoczesny JavaScript",description:"JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.",keywords:["javascript","kurs","wprowadzenie","przewodnik","web","frontend"],categories:["wprowadzenie","javascript"],createdAt:"2024-06-30T00:00:00.000Z"},t=Object.freeze(Object.defineProperty({__proto__:null,default:s},Symbol.toStringTag,{value:"Module"})),a={id:"d1d8d1cf-aaee-4878-9865-1a5e89a28b73",slug:"szybszy-css-czyli-wprowadzenie-do-bem",content:`<h2>Czym jest BEM?</h2>
 <p>BEM (Block, Element, Modifier) to metodyka nazewnictwa klas CSS, która pomaga tworzyć komponenty interfejsu użytkownika w sposób modularny i łatwy do utrzymania. BEM dzieli interfejs na bloki, elementy i modyfikatory, co pozwala na lepszą organizację kodu CSS.</p>
 <h2>Struktura BEM</h2>
 <h3>Blok</h3>
@@ -769,7 +369,7 @@ obietnica
 }
 </code></pre>
 </details>
-<p>To tyle na temat podstaw metodyki BEM! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej modularne i łatwe do utrzymania style CSS.</p>`,title:"Wprowadzenie do metodyki BEM",description:"Czym jest BEM? BEM (Block, Element, Modifier) to metodyka nazewnictwa klas CSS, która pomaga tworzyć komponenty interfejsu użytkownika w sposób modularny i łatwy do utrzymania. BEM dzieli interfejs na bloki, elementy i modyfikatory, co pozwala na lepszą organizację kodu CSS.",keywords:["kurs","css","bem","metodyka","metodyki","stylowanie","html"],categories:["wprowadzenie","css","html"],createdAt:"2024-06-30T00:00:00.000Z"},m=Object.freeze(Object.defineProperty({__proto__:null,default:p},Symbol.toStringTag,{value:"Module"})),e={id:"9a450a16-70cf-45df-af62-8455ceee21c8",slug:"wprowadzenie-do-css",content:`<p>CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.</p>
+<p>To tyle na temat podstaw metodyki BEM! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej modularne i łatwe do utrzymania style CSS.</p>`,title:"Wprowadzenie do metodyki BEM",description:"Czym jest BEM? BEM (Block, Element, Modifier) to metodyka nazewnictwa klas CSS, która pomaga tworzyć komponenty interfejsu użytkownika w sposób modularny i łatwy do utrzymania. BEM dzieli interfejs na bloki, elementy i modyfikatory, co pozwala na lepszą organizację kodu CSS.",keywords:["kurs","css","bem","metodyka","metodyki","stylowanie","html"],categories:["wprowadzenie","css","html"],createdAt:"2024-06-30T00:00:00.000Z"},c=Object.freeze(Object.defineProperty({__proto__:null,default:a},Symbol.toStringTag,{value:"Module"})),n={id:"0cafaddc-c808-4906-a360-bf4adc2c9833",slug:"wprowadzenie-do-css",content:`<p>CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.</p>
 <h2>Sposoby załączania CSS do HTML</h2>
 <h3>Inline CSS</h3>
 <p>Inline CSS jest stosowany bezpośrednio w atrybucie <code>style</code> elementu HTML.</p>
@@ -999,7 +599,7 @@ obietnica
 }
 </code></pre>
 </details>
-<p>To tyle na temat podstaw CSS! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i estetyczne strony internetowe.</p>`,title:"Wprowadzenie do CSS",description:"CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.",keywords:["css","html","kurs","wprowadzenie","przewodnik","web","frontend"],categories:["wprowadzenie","css"],createdAt:"2024-06-30T00:00:00.000Z"},d=Object.freeze(Object.defineProperty({__proto__:null,default:e},Symbol.toStringTag,{value:"Module"})),t={id:"50aab985-a414-4cc8-b8a3-e555ab68cbf2",slug:"wprowadzenie-do-dom",content:`<h2>Wprowadzenie</h2>
+<p>To tyle na temat podstaw CSS! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i estetyczne strony internetowe.</p>`,title:"Wprowadzenie do CSS",description:"CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.",keywords:["css","html","kurs","wprowadzenie","przewodnik","web","frontend"],categories:["wprowadzenie","css"],createdAt:"2024-06-30T00:00:00.000Z"},h=Object.freeze(Object.defineProperty({__proto__:null,default:n},Symbol.toStringTag,{value:"Module"})),l={id:"05c641cd-bd0b-4758-8a0d-a82746301056",slug:"wprowadzenie-do-dom",content:`<h2>Wprowadzenie</h2>
 <p>DOM (Document Object Model) to interfejs programistyczny dla dokumentów HTML i XML. Umożliwia dynamiczne manipulowanie strukturą, stylem i treścią dokumentów. DOM reprezentuje dokument jako drzewo obiektów, gdzie każdy element, atrybut i tekst w dokumencie jest węzłem drzewa.</p>
 <h2>Struktura DOM</h2>
 <p>DOM przedstawia dokument HTML jako drzewo hierarchiczne:</p>
@@ -1218,7 +818,7 @@ obietnica
 <span class="hljs-tag">&#x3C;/<span class="hljs-name">html</span>></span>
 </code></pre>
 </details>
-<p>To tyle na temat podstaw DOM! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu.</p>`,title:"Czym jest DOM?",description:"Czym jest DOM? DOM (Document Object Model) to interfejs programistyczny dla dokumentów HTML i XML. Umożliwia dynamiczne manipulowanie strukturą, stylem i treścią dokumentów. DOM reprezentuje dokument jako drzewo obiektów, gdzie każdy element, atrybut i tekst w dokumencie jest węzłem drzewa.",keywords:["kurs","html","dom","struktura","wprowadzenie"],categories:["wprowadzenie","html"],createdAt:"2024-06-30T00:00:00.000Z"},u=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"})),c={id:"dd77af7c-9474-4980-89bb-41d72dbddacf",slug:"wprowadzenie-do-html",content:`<h2>Co to jest HTML?</h2>
+<p>To tyle na temat podstaw DOM! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu.</p>`,title:"Czym jest DOM?",description:"Czym jest DOM? DOM (Document Object Model) to interfejs programistyczny dla dokumentów HTML i XML. Umożliwia dynamiczne manipulowanie strukturą, stylem i treścią dokumentów. DOM reprezentuje dokument jako drzewo obiektów, gdzie każdy element, atrybut i tekst w dokumencie jest węzłem drzewa.",keywords:["kurs","html","dom","struktura","wprowadzenie"],categories:["wprowadzenie","html"],createdAt:"2024-06-30T00:00:00.000Z"},r=Object.freeze(Object.defineProperty({__proto__:null,default:l},Symbol.toStringTag,{value:"Module"})),p={id:"e027e5f9-3ff2-4c3b-8467-1b34300b78f5",slug:"wprowadzenie-do-html",content:`<h2>Co to jest HTML?</h2>
 <p>HTML (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. HTML używa elementów, które definiują różne części dokumentu, takie jak nagłówki, akapity, linki, obrazy, i wiele innych.</p>
 <h2>Podstawowa struktura dokumentu HTML</h2>
 <p>Każdy dokument HTML ma określoną strukturę, która składa się z kilku kluczowych elementów:</p>
@@ -1410,7 +1010,7 @@ obietnica
 <span class="hljs-tag">&#x3C;/<span class="hljs-name">html</span>></span>
 </code></pre>
 </details>
-<p>To tyle na temat podstaw HTML! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej złożone i interaktywne strony internetowe.</p>`,title:"Wprowadzenie do HTML",description:"Co to jest HTML? HTML (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. HTML używa elementów, które definiują różne części dokumentu, takie jak nagłówki, akapity, linki, obrazy, i wiele innych.",keywords:["kurs","html","dom","struktura","wprowadzenie"],categories:["wprowadzenie","html"],createdAt:"2024-06-30T00:00:00.000Z"},g=Object.freeze(Object.defineProperty({__proto__:null,default:c},Symbol.toStringTag,{value:"Module"})),r={id:"0d3378c0-6dc8-4525-a5b8-151741bbb8eb",slug:"wprowadzenie-do-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.</p>
+<p>To tyle na temat podstaw HTML! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej złożone i interaktywne strony internetowe.</p>`,title:"Wprowadzenie do HTML",description:"Co to jest HTML? HTML (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. HTML używa elementów, które definiują różne części dokumentu, takie jak nagłówki, akapity, linki, obrazy, i wiele innych.",keywords:["kurs","html","dom","struktura","wprowadzenie"],categories:["wprowadzenie","html"],createdAt:"2024-06-30T00:00:00.000Z"},o=Object.freeze(Object.defineProperty({__proto__:null,default:p},Symbol.toStringTag,{value:"Module"})),e={id:"656f7181-85e0-42fd-84e1-439f17be142e",slug:"wprowadzenie-do-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.</p>
 <h2>Zmienne</h2>
 <p>Zmienne w JavaScript mogą być deklarowane za pomocą <code>var</code>, <code>let</code> i <code>const</code>.</p>
 <h3>Przykłady:</h3>
@@ -1588,4 +1188,4 @@ liczby.<span class="hljs-title function_">pop</span>(); <span class="hljs-commen
 <span class="hljs-comment">// Maria</span>
 </code></pre>
 </details>
-<p>To tyle na temat podstaw JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.</p>`,title:"Wprowadzenie do JavaScript",description:"JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.",keywords:["javascript","kurs","wprowadzenie","przewodnik","web","frontend"],categories:["wprowadzenie","javascript"],createdAt:"2024-06-30T00:00:00.000Z"},y=Object.freeze(Object.defineProperty({__proto__:null,default:r},Symbol.toStringTag,{value:"Module"}));export{o as _,i as a,h as b,j as c,m as d,d as e,u as f,g,y as h};
+<p>To tyle na temat podstaw JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.</p>`,title:"Wprowadzenie do JavaScript",description:"JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.",keywords:["javascript","kurs","wprowadzenie","przewodnik","web","frontend"],categories:["wprowadzenie","javascript"],createdAt:"2024-06-30T00:00:00.000Z"},j=Object.freeze(Object.defineProperty({__proto__:null,default:e},Symbol.toStringTag,{value:"Module"}));export{t as _,c as a,h as b,r as c,o as d,j as e};
