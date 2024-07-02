@@ -31,6 +31,6 @@
       "@libs/shared": ["./src/app/shared/index"]
     }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
 }

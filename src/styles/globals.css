@@ -192,3 +192,6 @@ code.hljs {
 .prose details summary > * {
   @apply hover:cursor-pointer select-none;
 }
+.prose details summary {
+  @apply w-max;
+}

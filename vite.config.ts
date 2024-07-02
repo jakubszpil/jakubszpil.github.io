@@ -27,6 +27,8 @@ export default defineConfig(() => {
       commonjsOptions: {
         transformMixedEsModules: true,
       },
+      cssMinify: "lightningcss",
+      cssCodeSplit: true,
       minify: true,
       manifest: true,
       rollupOptions: {
