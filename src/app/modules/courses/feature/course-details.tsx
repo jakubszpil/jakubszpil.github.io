@@ -26,6 +26,7 @@ export default function CourseDetails() {
         <h1>{course.title}</h1>
         <Categories categories={course.categories} />
       </header>
+
       <article
         className="prose container"
         dangerouslySetInnerHTML={{ __html: course.content }}

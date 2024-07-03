@@ -26,6 +26,7 @@ export default function ArticleDetails() {
         <h1>{article.title}</h1>
         <Categories categories={article.categories} />
       </header>
+
       <article
         className="prose container"
         dangerouslySetInnerHTML={{ __html: article.content }}

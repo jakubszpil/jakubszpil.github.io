@@ -1,4 +1,10 @@
-import { defineLoader, notFound, Seo, useLoader } from "@libs/shared";
+import {
+  capitalize,
+  defineLoader,
+  notFound,
+  Seo,
+  useLoader,
+} from "@libs/shared";
 
 import {
   getArticles,
@@ -15,19 +21,15 @@ export const loader = defineLoader(({ params }) => {
   if (category) {
     if (!categories.includes(category)) throw notFound();
 
-    const articles = getArticlesByCategory(category);
-
     return {
-      articles,
+      articles: getArticlesByCategory(category),
       categories,
       category,
     };
   }
 
-  const articles = getArticles();
-
   return {
-    articles,
+    articles: getArticles(),
     categories,
   };
 });
@@ -35,14 +37,17 @@ export const loader = defineLoader(({ params }) => {
 export default function ArticleList() {
   const { articles, categories, category } = useLoader<typeof loader>();
 
+  const title = capitalize(category ?? "Artykuły");
+
   return (
     <>
       <Seo
-        title={category ? `Kategoria: ${category}` : "Artykuły"}
+        title={title}
         description="Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych."
       />
+
       <header className="prose container">
-        <h1 className="capitalize">{category ?? "Artykuły"}</h1>
+        <h1>{title}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 

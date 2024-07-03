@@ -1,4 +1,10 @@
-import { defineLoader, notFound, Seo, useLoader } from "@libs/shared";
+import {
+  capitalize,
+  defineLoader,
+  notFound,
+  Seo,
+  useLoader,
+} from "@libs/shared";
 
 import {
   getCourses,
@@ -14,19 +20,16 @@ export const loader = defineLoader(({ params }) => {
 
   if (category) {
     if (!categories.includes(category)) throw notFound();
-    const courses = getCoursesByCategory(category);
 
     return {
       category,
       categories,
-      courses,
+      courses: getCoursesByCategory(category),
     };
   }
 
-  const courses = getCourses();
-
   return {
-    courses,
+    courses: getCourses(),
     categories,
   };
 });
@@ -34,14 +37,17 @@ export const loader = defineLoader(({ params }) => {
 export default function CourseList() {
   const { courses, categories, category } = useLoader<typeof loader>();
 
+  const title = capitalize(category ?? "Learning");
+
   return (
     <>
       <Seo
-        title={category ? `Kategoria: ${category}` : "Learning"}
+        title={title}
         description="Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe."
       />
+
       <header className="prose container">
-        <h1 className="capitalize">{category ?? "Learning"}</h1>
+        <h1>{title}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 
