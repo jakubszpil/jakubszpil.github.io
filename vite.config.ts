@@ -6,7 +6,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 
-import { mdx } from "./vite.plugins";
+import { mdx, minify } from "./vite.plugins";
 
 const excludeModuleName = (id: string, matcher: string) => {
   const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
@@ -16,7 +16,7 @@ const excludeModuleName = (id: string, matcher: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   return {
-    plugins: [mdx(), react(), tsconfigPaths()],
+    plugins: [mdx(), react(), tsconfigPaths(), minify(["html", "svg", "json"])],
     css: {
       postcss: {
         plugins: [tailwindcss(), autoprefixer()],
