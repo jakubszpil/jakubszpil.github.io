@@ -1,4 +1,4 @@
-import { v4 } from "uuid";
+import { randomUUID } from "crypto";
 import { Plugin } from "vite";
 import { unified } from "unified";
 import matter from "gray-matter";
@@ -38,7 +38,7 @@ export function mdx(): Plugin {
 
         return {
           code: `export default ${JSON.stringify({
-            id: v4(),
+            id: randomUUID(),
             slug,
             content: await process(content),
             ...data,
@@ -73,6 +73,47 @@ export function minify(extensions: string[]): Plugin {
 
         await writeFile(join(dist, file), result, "utf-8");
       }
+    },
+  };
+}
+
+export function chunks(): Plugin {
+  const excludeModuleName = (id: string, matcher: string) => {
+    const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
+    return path.slice(0, path.indexOf("/"));
+  };
+
+  return {
+    name: "chunks",
+    config(config) {
+      if (!config.build) config.build = {};
+      if (!config.build.rollupOptions) config.build.rollupOptions = {};
+      if (!config.build.rollupOptions.output)
+        config.build.rollupOptions.output = {};
+
+      config.build.rollupOptions.output = {
+        manualChunks: (id) => {
+          if (id.includes("/node_modules/")) {
+            const name = excludeModuleName(id, "/node_modules/");
+
+            const is = (...libs: string[]) => libs.includes(name);
+
+            if (is("react-router-dom", "@remix-run", "react-router"))
+              return "routing";
+
+            return "vendor";
+          }
+          if (id.includes("core")) return "core";
+          if (id.includes("shared")) return "shared";
+          if (id.includes("content")) {
+            const type = excludeModuleName(id, "/content/");
+            return `content/${type}`;
+          }
+          if (id.includes("modules")) return excludeModuleName(id, "/modules/");
+
+          return "index";
+        },
+      };
     },
   };
 }

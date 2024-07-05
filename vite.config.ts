@@ -6,17 +6,18 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 
-import { mdx, minify } from "./vite.plugins";
-
-const excludeModuleName = (id: string, matcher: string) => {
-  const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
-  return path.slice(0, path.indexOf("/"));
-};
+import { chunks, mdx, minify } from "./vite.plugins";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   return {
-    plugins: [mdx(), react(), tsconfigPaths(), minify(["html", "svg", "json"])],
+    plugins: [
+      chunks(),
+      mdx(),
+      react(),
+      tsconfigPaths(),
+      minify(["html", "svg", "json"]),
+    ],
     css: {
       postcss: {
         plugins: [tailwindcss(), autoprefixer()],
@@ -27,40 +28,12 @@ export default defineConfig(() => {
       commonjsOptions: {
         transformMixedEsModules: true,
       },
-      cssMinify: "lightningcss",
       cssCodeSplit: true,
       minify: true,
       manifest: true,
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            if (id.includes("/node_modules/")) {
-              if (
-                id.includes("react-router-dom") ||
-                id.includes("@remix-run") ||
-                id.includes("react-router")
-              ) {
-                return "routing";
-              }
-
-              return "vendor";
-            }
-            if (id.includes("core")) return "core";
-            if (id.includes("shared")) return "shared";
-            if (id.includes("content")) {
-              const type = excludeModuleName(id, "/content/");
-              return `content/${type}`;
-            }
-            if (id.includes("modules"))
-              return excludeModuleName(id, "/modules/");
-
-            return "index";
-          },
-        },
-      },
     },
     test: {
-      include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mtsw,cts,jsx,tsx}"],
+      include: ["src/app/**/*.{test,spec}.{js,mjs,cjs,ts,mtsw,cts,jsx,tsx}"],
       exclude: ["node_modules/**", "dist/**"],
       testTimeout: 20000,
       globals: true,

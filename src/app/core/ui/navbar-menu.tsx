@@ -3,9 +3,8 @@ import classNames from "classnames";
 import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
-import { v4 as uuid } from "uuid";
 
-import { Button } from "@libs/shared";
+import { Button, uuid } from "@libs/shared";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";

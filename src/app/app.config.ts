@@ -1,8 +1,7 @@
+import { Icon, IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+
 export interface AppConfig {
-  socials: {
-    github: string;
-    linkedin: string;
-  };
+  socials: Array<{ href: string; label: string; icon: Icon }>;
   meta: {
     title: string;
     titleTemplate: string;
@@ -11,10 +10,18 @@ export interface AppConfig {
 }
 
 export const config: AppConfig = {
-  socials: {
-    github: "https://github.com/jakubszpil/",
-    linkedin: "https://www.linkedin.com/in/jakubszpil/",
-  },
+  socials: [
+    {
+      href: "https://www.linkedin.com/in/jakubszpil/",
+      label: "LinkedIn",
+      icon: IconBrandLinkedin,
+    },
+    {
+      href: "https://github.com/jakubszpil/",
+      label: "GitHub",
+      icon: IconBrandGithub,
+    },
+  ],
   meta: {
     title: "Jakub Szpil",
     titleTemplate: "%s - Jakub Szpil",
