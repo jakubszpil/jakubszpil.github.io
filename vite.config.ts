@@ -72,7 +72,6 @@ export default defineConfig(() => {
       cssCodeSplit: true,
       minify: true,
       manifest: true,
-      assetsDir: "static/assets",
     },
     test: {
       include: ["src/app/**/*.{test,spec}.{js,mjs,cjs,ts,mtsw,cts,jsx,tsx}"],
