@@ -20,6 +20,9 @@ export default defineConfig(() => {
       minify(["html", "svg", "json"]),
       pwa({
         registerType: "autoUpdate",
+        devOptions: {
+          enabled: true,
+        },
         manifest: {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
@@ -29,23 +32,25 @@ export default defineConfig(() => {
           display: "standalone",
           icons: [
             {
-              src: "pwa-64x64.png",
-              sizes: "64x64",
-              type: "image/png",
-            },
-            {
-              src: "pwa-192x192.png",
+              src: "/static/icons/manifest-icon-192.maskable.png",
               sizes: "192x192",
               type: "image/png",
+              purpose: "any",
             },
             {
-              src: "pwa-512x512.png",
+              src: "/static/icons/manifest-icon-192.maskable.png",
+              sizes: "192x192",
+              type: "image/png",
+              purpose: "maskable",
+            },
+            {
+              src: "/static/icons/manifest-icon-512.maskable.png",
               sizes: "512x512",
               type: "image/png",
               purpose: "any",
             },
             {
-              src: "maskable-icon-512x512.png",
+              src: "/static/icons/manifest-icon-512.maskable.png",
               sizes: "512x512",
               type: "image/png",
               purpose: "maskable",
@@ -67,6 +72,7 @@ export default defineConfig(() => {
       cssCodeSplit: true,
       minify: true,
       manifest: true,
+      assetsDir: "static/assets",
     },
     test: {
       include: ["src/app/**/*.{test,spec}.{js,mjs,cjs,ts,mtsw,cts,jsx,tsx}"],

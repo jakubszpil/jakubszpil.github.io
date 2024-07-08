@@ -24,15 +24,13 @@ const router = createRouter(
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ConfigProvider config={config}>
-      {(config) => (
-        <SeoProvider>
-          <Seo
-            defaultTitle={config.meta.title}
-            titleTemplate={config.meta.titleTemplate}
-          />
-          <RouterProvider router={router} />
-        </SeoProvider>
-      )}
+      <SeoProvider>
+        <Seo
+          defaultTitle={config.meta.title}
+          titleTemplate={config.meta.titleTemplate}
+        />
+        <RouterProvider router={router} />
+      </SeoProvider>
     </ConfigProvider>
   </StrictMode>
 );
