@@ -20,14 +20,11 @@ export default defineConfig(() => {
       minify(["html", "svg", "json"]),
       pwa({
         registerType: "autoUpdate",
-        devOptions: {
-          enabled: true,
-        },
         manifest: {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
           description: "Jakub Szpil - Blog, portfolio i kursy frontendowe",
-          theme_color: "#ffffff",
+          theme_color: "#0A0A0A",
           lang: "pl",
           display: "standalone",
           icons: [
