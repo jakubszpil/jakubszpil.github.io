@@ -23,7 +23,7 @@ export default defineConfig(() => {
         manifest: {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
-          description: "Jakub Szpil - Blog, portfolio i kursy frontendowe",
+          description: "Blog, portfolio i kursy frontendowe",
           theme_color: "#0A0A0A",
           lang: "pl",
           display: "standalone",
