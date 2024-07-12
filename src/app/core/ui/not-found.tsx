@@ -54,7 +54,7 @@ export default function NotFound() {
             className="text-base no-underline hover:underline"
           >
             <Link replace to="/search">
-              🔍 search
+              🔍 Szukaj
             </Link>
           </Button>
           - Skorzystaj z wyszukiwarki, aby znaleźć potrzebne informacje.
