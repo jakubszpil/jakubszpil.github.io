@@ -18,6 +18,8 @@ import {
   // mkdir
 } from "node:fs/promises";
 
+import { name } from "./package.json";
+
 export function mdx(): Plugin {
   const processor = unified()
     .use(remarkParse)
@@ -79,17 +81,12 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
         await writeFile(join(dist, file), result, "utf-8");
       }
 
-      const robots = await readFile(join(dist, "robots.txt"), "utf-8");
       const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
       // const index = await readFile(join(dist, "index.html"), "utf-8");
 
-      const basePath = robots
-        .slice(robots.indexOf("Sitemap: "), robots.indexOf("/sitemap.txt"))
-        .replace("Sitemap: ", "");
-
       const paths = sitemap
         .split("\r\n")
-        .map((href) => href.replace(basePath, ""))
+        .map((href) => href.slice(href.indexOf(name)).replace(name, ""))
         .filter((path) => path !== "/");
 
       for (const path of paths) {
