@@ -50,7 +50,10 @@ export function mdx(): Plugin {
   };
 }
 
-export function minifyAndPrerender(extensions: string[]): Plugin {
+export function minifyAndPrerender(
+  extensions: string[],
+  prerender?: boolean
+): Plugin {
   return {
     name: "minify",
     async closeBundle() {
@@ -75,20 +78,22 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
         await writeFile(join(dist, file), result, "utf-8");
       }
 
-      const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
-      const index = await readFile(join(dist, "index.html"), "utf-8");
+      if (prerender) {
+        const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
+        const index = await readFile(join(dist, "index.html"), "utf-8");
 
-      const paths = sitemap
-        .split(`https://${name}`)
-        .map((path) => path.replace("\n", "").replace("\r", ""))
-        .filter(Boolean)
-        .filter((path) => path !== "/");
+        const paths = sitemap
+          .split(`https://${name}`)
+          .map((path) => path.replace("\n", "").replace("\r", ""))
+          .filter(Boolean)
+          .filter((path) => path !== "/");
 
-      for (const path of paths) {
-        const dir = join(dist, path);
-        console.log(dir);
-        await mkdir(dir, { recursive: true });
-        await writeFile(join(dir, "index.html"), index, "utf-8");
+        for (const path of paths) {
+          const dir = join(dist, path);
+          console.log(dir);
+          await mkdir(dir, { recursive: true });
+          await writeFile(join(dir, "index.html"), index, "utf-8");
+        }
       }
     },
   };

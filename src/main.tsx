@@ -18,7 +18,7 @@ const router = createRouter(
   createRoute("")
     .addModule(() => import("./app/app"))
     .addChildren(...routes),
-  false
+  true
 );
 
 createRoot(document.getElementById("root")!).render(
