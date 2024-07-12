@@ -1,7 +1,7 @@
 https://jakubszpil.github.io/
 https://jakubszpil.github.io/#/
 https://jakubszpil.github.io/#/me
-https://jakubszpil.github.io/#/szukaj
+https://jakubszpil.github.io/#/search
 https://jakubszpil.github.io/#/blog
 https://jakubszpil.github.io/#/blog/dependency-injection-kontra-typescript
 https://jakubszpil.github.io/#/blog/obserwatorium-czyli-wzorzec-projektowy-obserwatora
