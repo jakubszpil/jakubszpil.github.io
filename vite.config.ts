@@ -27,6 +27,50 @@ export default defineConfig(() => {
           theme_color: "#0A0A0A",
           lang: "pl",
           display: "standalone",
+          screenshots: [
+            {
+              src: "/static/media/screenshot-iphone-home.png",
+              sizes: "375x667",
+              type: "image/png",
+              form_factor: "narrow",
+              label: "Strona główna",
+            },
+            {
+              src: "/static/media/screenshot-iphone-blog.png",
+              sizes: "375x667",
+              type: "image/png",
+              form_factor: "narrow",
+              label: "Lista artykułów",
+            },
+            {
+              src: "/static/media/screenshot-iphone-learning.png",
+              sizes: "375x667",
+              type: "image/png",
+              form_factor: "narrow",
+              label: "Lista kursów",
+            },
+            {
+              src: "/static/media/screenshot-ipad-home.png",
+              sizes: "1024x768",
+              type: "image/png",
+              form_factor: "wide",
+              label: "Strona główna",
+            },
+            {
+              src: "/static/media/screenshot-ipad-blog.png",
+              sizes: "1024x768",
+              type: "image/png",
+              form_factor: "wide",
+              label: "Lista artykułów",
+            },
+            {
+              src: "/static/media/screenshot-ipad-learning.png",
+              sizes: "1024x768",
+              type: "image/png",
+              form_factor: "wide",
+              label: "Lista kursów",
+            },
+          ],
           icons: [
             {
               src: "/static/icons/manifest-icon-192.maskable.png",

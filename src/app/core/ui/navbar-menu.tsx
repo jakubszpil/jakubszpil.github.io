@@ -43,7 +43,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           aria-label="Szukaj"
           title="Szukaj"
         >
-          <Link to="/szukaj">
+          <Link to="/search">
             <span className="sr-only">Szukaj</span>
             <IconSearch className="h-6" />
           </Link>

@@ -31,6 +31,15 @@ export const loader = defineLoader(({ request }) => {
     }
   }
 
+  if (!query) {
+    return {
+      query,
+      articles: [],
+      courses: [],
+      projects: [],
+    };
+  }
+
   const test = <T extends Resource>(i: T): boolean => {
     if (!query) return false;
     const s = JSON.stringify(i);
@@ -40,10 +49,10 @@ export const loader = defineLoader(({ request }) => {
   };
 
   const articles = getArticles().filter(test);
-  const projects = getProjects().filter(test);
   const courses = getCourses().filter(test);
+  const projects = getProjects().filter(test);
 
-  return { query, articles, projects, courses };
+  return { query, articles, courses, projects };
 });
 
 export default function Search() {
