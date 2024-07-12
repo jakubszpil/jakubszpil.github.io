@@ -82,13 +82,12 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
       const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
       // const index = await readFile(join(dist, "index.html"), "utf-8");
 
-      const paths = sitemap
-        .split("\r\n")
-        .map((href) => new URL(href))
-        .map((url) => url.pathname);
+      const urls = sitemap.split("\r\n").map((href) => new URL(href));
 
-      for (const path of paths) {
-        const dir = join(dist, path);
+      console.log(urls);
+
+      for (const url of urls) {
+        const dir = join(dist, url.pathname);
         console.log(dir);
         // await mkdir(dir, { recursive: true });
         // await writeFile(join(dist, path, "index.html"), index, "utf-8");
