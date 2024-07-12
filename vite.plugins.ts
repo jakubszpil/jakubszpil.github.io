@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 import { Plugin } from "vite";
 import { unified } from "unified";
 import matter from "gray-matter";
@@ -11,8 +11,12 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
-import { readdir, readFile, writeFile } from "node:fs/promises";
-// import { mkdir } from "fs/promises";
+import {
+  readdir,
+  readFile,
+  writeFile,
+  // mkdir
+} from "node:fs/promises";
 
 export function mdx(): Plugin {
   const processor = unified()
@@ -75,23 +79,25 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
         await writeFile(join(dist, file), result, "utf-8");
       }
 
-      // const robots = await readFile(join(dist, "robots.txt"), "utf-8");
-      // const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
+      const robots = await readFile(join(dist, "robots.txt"), "utf-8");
+      const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
       // const index = await readFile(join(dist, "index.html"), "utf-8");
 
-      // const basePath = robots
-      //   .slice(robots.indexOf("Sitemap: "), robots.indexOf("/sitemap.txt"))
-      //   .replace("Sitemap: ", "");
+      const basePath = robots
+        .slice(robots.indexOf("Sitemap: "), robots.indexOf("/sitemap.txt"))
+        .replace("Sitemap: ", "");
 
-      // const paths = sitemap
-      //   .split("\r\n")
-      //   .map((href) => href.replace(basePath, ""))
-      //   .filter((path) => path !== "/");
+      const paths = sitemap
+        .split("\r\n")
+        .map((href) => href.replace(basePath, ""))
+        .filter((path) => path !== "/");
 
-      // for (const path of paths) {
-      //   await mkdir(join(dist, path), { recursive: true });
-      //   await writeFile(join(dist, path, "index.html"), index, "utf-8");
-      // }
+      for (const path of paths) {
+        const dir = join(dist, path);
+        console.log(dir);
+        // await mkdir(dir, { recursive: true });
+        // await writeFile(join(dist, path, "index.html"), index, "utf-8");
+      }
     },
   };
 }
