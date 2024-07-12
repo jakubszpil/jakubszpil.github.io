@@ -9,7 +9,7 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
-import { join } from "node:path";
+import { join } from "node:path/posix";
 import { existsSync } from "node:fs";
 import {
   readdir,
@@ -17,8 +17,6 @@ import {
   writeFile,
   // mkdir
 } from "node:fs/promises";
-
-import { name } from "./package.json";
 
 export function mdx(): Plugin {
   const processor = unified()
@@ -86,8 +84,8 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
 
       const paths = sitemap
         .split("\r\n")
-        .map((href) => href.slice(href.indexOf(name)).replace(name, ""))
-        .filter((path) => path !== "/");
+        .map((href) => new URL(href))
+        .map((url) => url.pathname);
 
       for (const path of paths) {
         const dir = join(dist, path);
