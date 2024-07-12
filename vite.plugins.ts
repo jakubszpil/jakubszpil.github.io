@@ -17,6 +17,7 @@ import {
   writeFile,
   // mkdir
 } from "node:fs/promises";
+import { name } from "./package.json";
 
 export function mdx(): Plugin {
   const processor = unified()
@@ -82,16 +83,14 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
       const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
       // const index = await readFile(join(dist, "index.html"), "utf-8");
 
-      const urls = sitemap.split("\r\n").map((href) => new URL(href));
+      const paths = sitemap.split(`https://${name}`);
 
-      console.log(urls);
+      console.log(paths);
 
-      for (const url of urls) {
-        const dir = join(dist, url.pathname);
-        console.log(dir);
-        // await mkdir(dir, { recursive: true });
-        // await writeFile(join(dist, path, "index.html"), index, "utf-8");
-      }
+      // for (const path of paths) {
+      //   // await mkdir(dir, { recursive: true });
+      //   // await writeFile(join(dist, path, "index.html"), index, "utf-8");
+      // }
     },
   };
 }
