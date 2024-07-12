@@ -78,9 +78,9 @@ export function minify(extensions: string[]): Plugin {
 }
 
 export function chunks(): Plugin {
-  const excludeModuleName = (id: string, matcher: string) => {
+  const chunkName = (id: string, matcher: string) => {
     const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
-    return path.slice(0, path.indexOf("/"));
+    return path.slice(0, path.indexOf("/")).replace(/\.tsx?/, "");
   };
 
   return {
@@ -94,22 +94,37 @@ export function chunks(): Plugin {
       config.build.rollupOptions.output = {
         manualChunks: (id) => {
           if (id.includes("/node_modules/")) {
-            const name = excludeModuleName(id, "/node_modules/");
+            const name = chunkName(id, "/node_modules/");
 
             const is = (...libs: string[]) => libs.includes(name);
 
             if (is("react-router-dom", "@remix-run", "react-router"))
-              return "routing";
+              return `vendor/routing`;
 
-            return "vendor";
+            if (
+              is(
+                "react",
+                "react-dom",
+                "scheduler",
+                "react-fast-compare",
+                "shallowequal"
+              )
+            )
+              return `vendor/react`;
+
+            return `vendor/libs`;
           }
+
+          if (id.includes("feature"))
+            return `pages/${chunkName(id, "/feature/")}`;
+
           if (id.includes("core")) return "core";
           if (id.includes("shared")) return "shared";
-          if (id.includes("content")) {
-            const type = excludeModuleName(id, "/content/");
-            return `content/${type}`;
-          }
-          if (id.includes("modules")) return excludeModuleName(id, "/modules/");
+          if (id.includes("content"))
+            return `content/${chunkName(id, "/content/")}`;
+
+          if (id.includes("modules"))
+            return `modules/${chunkName(id, "/modules/")}`;
 
           return "index";
         },
