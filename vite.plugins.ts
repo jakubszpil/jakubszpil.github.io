@@ -11,12 +11,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import { join } from "node:path/posix";
 import { existsSync } from "node:fs";
-import {
-  readdir,
-  readFile,
-  writeFile,
-  // mkdir
-} from "node:fs/promises";
+import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { name } from "./package.json";
 
 export function mdx(): Plugin {
@@ -81,16 +76,20 @@ export function minifyAndPrerender(extensions: string[]): Plugin {
       }
 
       const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
-      // const index = await readFile(join(dist, "index.html"), "utf-8");
+      const index = await readFile(join(dist, "index.html"), "utf-8");
 
-      const paths = sitemap.split(`https://${name}`);
+      const paths = sitemap
+        .split(`https://${name}`)
+        .map((path) => path.replace("\n", "").replace("\r", ""))
+        .filter(Boolean)
+        .filter((path) => path !== "/");
 
-      console.log(paths);
-
-      // for (const path of paths) {
-      //   // await mkdir(dir, { recursive: true });
-      //   // await writeFile(join(dist, path, "index.html"), index, "utf-8");
-      // }
+      for (const path of paths) {
+        const dir = join(dist, path);
+        console.log(dir);
+        await mkdir(dir, { recursive: true });
+        await writeFile(join(dir, "index.html"), index, "utf-8");
+      }
     },
   };
 }
