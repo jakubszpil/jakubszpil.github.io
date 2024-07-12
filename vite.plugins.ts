@@ -9,9 +9,10 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir } from "fs/promises";
 
 export function mdx(): Plugin {
   const processor = unified()
@@ -49,11 +50,11 @@ export function mdx(): Plugin {
   };
 }
 
-export function minify(extensions: string[]): Plugin {
+export function minifyAndPrerender(extensions: string[]): Plugin {
   return {
     name: "minify",
     async closeBundle() {
-      const dist = join(resolve("."), "dist");
+      const dist = join("./dist");
       if (!existsSync(dist)) return;
 
       const files = (await readdir(dist, { recursive: true })).filter((i) =>
@@ -72,6 +73,24 @@ export function minify(extensions: string[]): Plugin {
         if (file.includes("json")) result = result.replace(/\s/g, "");
 
         await writeFile(join(dist, file), result, "utf-8");
+      }
+
+      const robots = await readFile(join(dist, "robots.txt"), "utf-8");
+      const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
+      const index = await readFile(join(dist, "index.html"), "utf-8");
+
+      const basePath = robots
+        .slice(robots.indexOf("Sitemap: "), robots.indexOf("/sitemap.txt"))
+        .replace("Sitemap: ", "");
+
+      const paths = sitemap
+        .split("\r\n")
+        .map((href) => href.replace(basePath, ""))
+        .filter((path) => path !== "/");
+
+      for (const path of paths) {
+        await mkdir(join(dist, path), { recursive: true });
+        await writeFile(join(dist, path, "index.html"), index, "utf-8");
       }
     },
   };

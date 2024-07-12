@@ -7,7 +7,7 @@ import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 import { VitePWA as pwa } from "vite-plugin-pwa";
 
-import { chunks, mdx, minify } from "./vite.plugins";
+import { chunks, mdx, minifyAndPrerender } from "./vite.plugins";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -17,15 +17,14 @@ export default defineConfig(() => {
       mdx(),
       react(),
       tsconfigPaths(),
-      minify(["html", "svg", "json"]),
+      minifyAndPrerender(["html", "svg", "json"]),
       pwa({
         registerType: "autoUpdate",
         manifest: {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
           description: "Blog, portfolio i kursy frontendowe",
-          theme_color: "#ffffff",
-          background_color: "#ffffff",
+          theme_color: "#0a0a0a",
           lang: "pl",
           display: "standalone",
           start_url: "/",
