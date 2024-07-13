@@ -9,9 +9,10 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
-import { join } from "node:path/posix";
+import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+
 import { name } from "./package.json";
 
 export function mdx(): Plugin {
@@ -102,7 +103,10 @@ export function minifyAndPrerender(
 export function chunks(): Plugin {
   const chunkName = (id: string, matcher: string) => {
     const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
-    return path.slice(0, path.indexOf("/")).replace(/\.tsx?/, "");
+    return path
+      .slice(0, path.indexOf("/"))
+      .replace(/\.tsx?/, "")
+      .replace(/\.mdx?/, "");
   };
 
   return {
@@ -142,9 +146,12 @@ export function chunks(): Plugin {
 
           if (id.includes("core")) return "core";
           if (id.includes("shared")) return "shared";
-          if (id.includes("content"))
-            return `content/${chunkName(id, "/content/")}`;
+          if (id.includes("content")) {
+            const contentType = chunkName(id, "/content/");
+            const slug = chunkName(id, `/${contentType}/`);
 
+            return `content/${contentType}/${slug}`;
+          }
           if (id.includes("modules"))
             return `modules/${chunkName(id, "/modules/")}`;
 
