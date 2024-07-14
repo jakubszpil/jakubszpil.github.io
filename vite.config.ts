@@ -17,7 +17,11 @@ export default defineConfig(() => {
       mdx(),
       react(),
       tsconfigPaths(),
-      minifyAndPrerender(["html", "svg", "json"]),
+      minifyAndPrerender({
+        include: ["html", "svg", "json"],
+        exclude: ["js"],
+        prerender: false,
+      }),
       pwa({
         registerType: "autoUpdate",
         manifest: {

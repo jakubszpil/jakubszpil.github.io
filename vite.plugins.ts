@@ -51,19 +51,30 @@ export function mdx(): Plugin {
   };
 }
 
-export function minifyAndPrerender(
-  extensions: string[],
-  prerender?: boolean
-): Plugin {
+export function minifyAndPrerender(config?: {
+  include?: string[];
+  exclude?: string[];
+  prerender?: boolean;
+}): Plugin {
   return {
     name: "minify",
     async closeBundle() {
       const dist = join("./dist");
       if (!existsSync(dist)) return;
 
-      const files = (await readdir(dist, { recursive: true })).filter((i) =>
-        extensions.some((ext) => i.includes(ext))
-      );
+      let files = await readdir(dist, { recursive: true });
+
+      if (config?.include) {
+        files = files.filter((file) =>
+          config.include?.some((ext) => file.endsWith(ext))
+        );
+      }
+
+      if (config?.exclude) {
+        files = files.filter(
+          (file) => !config.exclude?.some((ext) => file.endsWith(ext))
+        );
+      }
 
       for (const file of files) {
         const content = await readFile(join(dist, file), "utf-8");
@@ -79,7 +90,7 @@ export function minifyAndPrerender(
         await writeFile(join(dist, file), result, "utf-8");
       }
 
-      if (prerender) {
+      if (config?.prerender) {
         const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
         const index = await readFile(join(dist, "index.html"), "utf-8");
 
