@@ -13,6 +13,15 @@ import { Article, getArticles, Articles } from "@libs/articles";
 import { Project, getProjects } from "@libs/projects";
 import { Course, Courses, getCourses } from "@libs/courses";
 
+const isValidUrl = (url: unknown) => {
+  try {
+    new URL(url as URL);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export const loader = defineLoader(({ request }) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("q");
@@ -26,7 +35,8 @@ export const loader = defineLoader(({ request }) => {
     const trimmed = query.trim().split(" ").filter(Boolean).join(" ");
 
     if (query !== trimmed) {
-      url.searchParams.set("q", trimmed);
+      if (trimmed) url.searchParams.set("q", trimmed);
+      else url.searchParams.delete("q");
       throw redirect(url.toString());
     }
   }
@@ -38,6 +48,16 @@ export const loader = defineLoader(({ request }) => {
       courses: [],
       projects: [],
     };
+  }
+
+  if (isValidUrl(query)) {
+    const requestUrl = new URL(request.url);
+    const url = new URL(query);
+
+    if (requestUrl.origin === url.origin) {
+      const pathname = url.hash.replace("#", "");
+      throw redirect(pathname);
+    }
   }
 
   const test = <T extends Resource>(i: T): boolean => {
@@ -114,6 +134,10 @@ export default function Search() {
           <li>Kursy: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>
           <li>Projekty: (tytuł, opis, słowa klucz, technologie, zawartość)</li>
         </ul>
+        <p>
+          Możesz też wkleić skopiowany link aby spróbować przejść do wskazanej
+          strony
+        </p>
       </header>
 
       <Form method="get" className="container py-0 bg-background flex gap-2">
