@@ -1,0 +1,1 @@
+import{c as e,U as t,e as o}from"../shared-BY_Lq1CF.js";import"../vendor/react-BIbvbM3Y.js";const r=[e("").addModule(async()=>({default:t}))],[a,n,g,i]=o(Object.assign({}),"technologies");export{a as g,r};
