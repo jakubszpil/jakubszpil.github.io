@@ -1,4 +1,4 @@
-const s={id:"effba2e4-0822-4c8a-819f-b6aa75f3e6da",slug:"semantyczny-html",content:`<h2>Czym jest semantyczny HTML?</h2>
+const s={id:"d6308492-0d47-4eec-892e-8b696cccad49",slug:"semantyczny-html",content:`<h2>Czym jest semantyczny HTML?</h2>
 <p>Semantyczny HTML polega na używaniu elementów HTML, które jednoznacznie opisują swoje znaczenie i cel. Elementy semantyczne nie tylko definiują strukturę dokumentu, ale również pomagają w interpretacji jego zawartości zarówno przez przeglądarki, jak i przez wyszukiwarki internetowe oraz technologie wspomagające (np. czytniki ekranowe).</p>
 <h2>Zalety używania semantycznego HTML</h2>
 <ol>
