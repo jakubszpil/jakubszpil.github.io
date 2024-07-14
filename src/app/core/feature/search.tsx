@@ -72,16 +72,12 @@ export default function Search() {
     }
 
     if (resultsCount === 0) {
-      return (
-        <h2 className="mt-4">
-          Brak wyników wyszukiwania dla zapytania: {query}
-        </h2>
-      );
+      return <h2>Brak wyników wyszukiwania dla zapytania: {query}</h2>;
     }
 
     return (
       <>
-        <h2 className="mt-4">Wyniki wyszukiwania ({resultsCount})</h2>
+        <h2>Wyniki wyszukiwania ({resultsCount})</h2>
 
         {articles.length > 0 && (
           <section>
@@ -120,10 +116,7 @@ export default function Search() {
         </ul>
       </header>
 
-      <Form
-        method="get"
-        className="container bg-background sticky top-12 z-10 left-0 pb-3 flex gap-2 lg:static"
-      >
+      <Form method="get" className="container py-0 bg-background flex gap-2">
         <Input
           key={query}
           type="text"
