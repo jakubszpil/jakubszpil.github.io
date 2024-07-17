@@ -1,4 +1,4 @@
-import { RouteBuilder, createRoute } from "@libs/shared";
+import { type RouteBuilder, createRoute } from "@libs/shared";
 import { routes as articlesRoutes } from "@libs/articles";
 import { routes as coursesRoutes } from "@libs/courses";
 import { routes as projectsRoutes } from "@libs/projects";

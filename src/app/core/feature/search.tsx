@@ -7,11 +7,11 @@ import {
   Button,
   Input,
   Seo,
-  Resource,
+  type Resource,
 } from "@libs/shared";
-import { Article, getArticles, Articles } from "@libs/articles";
-import { Project, getProjects } from "@libs/projects";
-import { Course, Courses, getCourses } from "@libs/courses";
+import { type Article, getArticles, Articles } from "@libs/articles";
+import { type Project, getProjects } from "@libs/projects";
+import { type Course, Courses, getCourses } from "@libs/courses";
 
 const isValidUrl = (url: unknown) => {
   try {

@@ -1,4 +1,4 @@
-import { Resource, createResourceUtils } from "@libs/shared";
+import { type Resource, createResourceUtils } from "@libs/shared";
 
 export interface Course extends Resource {
   categories?: string[];
@@ -10,9 +10,6 @@ export const [
   getCoursesCategories,
   getCoursesByCategory,
 ] = createResourceUtils<Course>(
-  import.meta.glob(
-    ["../../../../content/courses/*.md", "../../../../content/courses/*.mdx"],
-    { eager: true }
-  ),
+  import.meta.glob("../../../../content/courses/*.mdx", { eager: true }),
   "categories"
 );

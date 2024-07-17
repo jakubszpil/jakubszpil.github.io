@@ -3,16 +3,16 @@ import {
   beforeEach,
   describe,
   expect,
-  MockInstance,
+  type MockInstance,
   test,
   vi,
 } from "vitest";
-import { Link, LinkProps } from "react-router-dom";
+import { Link, type LinkProps } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 
-import { Button, ButtonProps } from "@libs/shared";
+import { Button, type ButtonProps } from "@libs/shared";
 
-import NavbarLink, { NavbarLinkProps } from "../navbar-link";
+import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
 
 vi.mock("@libs/shared", async (importActual) => {
   const actual = await importActual<typeof import("@libs/shared")>();

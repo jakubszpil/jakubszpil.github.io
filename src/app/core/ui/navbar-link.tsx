@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-import { Button, ButtonProps } from "@libs/shared";
+import { Button, type ButtonProps } from "@libs/shared";
 
 export type NavbarLinkProps = {
   to: string;

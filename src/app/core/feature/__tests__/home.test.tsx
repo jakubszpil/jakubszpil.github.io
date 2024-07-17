@@ -1,6 +1,6 @@
 import {
   vi,
-  MockInstance,
+  type MockInstance,
   beforeEach,
   afterEach,
   describe,
@@ -10,11 +10,11 @@ import {
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
-import { LoaderData, useLoader } from "@libs/shared";
+import { type LoaderData, useLoader } from "@libs/shared";
 import { Articles } from "@libs/articles";
+import { Courses } from "@libs/courses";
 
 import Home, { loader } from "../home";
-import { Courses } from "@libs/courses";
 
 vi.mock("@libs/shared", async (importActual) => {
   const actual = await importActual<typeof import("@libs/shared")>();

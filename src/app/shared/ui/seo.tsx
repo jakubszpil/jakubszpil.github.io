@@ -1,10 +1,11 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   Helmet,
-  HelmetProps,
+  type HelmetProps,
   HelmetProvider,
-  MetaProps,
+  type MetaProps,
 } from "react-helmet-async";
+
 import { useConfig } from "../data-access";
 
 export interface SeoMeta {

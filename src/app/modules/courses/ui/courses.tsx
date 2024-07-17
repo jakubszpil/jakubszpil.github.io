@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
-import { Button, ButtonProps, getLocalizedDate } from "@libs/shared";
+import { Button, type ButtonProps, getLocalizedDate } from "@libs/shared";
 
 import { type Course } from "../data-access/courses";
 

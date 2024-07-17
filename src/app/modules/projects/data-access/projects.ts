@@ -1,4 +1,4 @@
-import { Resource, createResourceUtils } from "@libs/shared";
+import { type Resource, createResourceUtils } from "@libs/shared";
 
 export interface Project extends Resource {
   technologies?: string[];
@@ -10,9 +10,6 @@ export const [
   getProjectsTechnologies,
   getProjectsByTechnology,
 ] = createResourceUtils<Project>(
-  import.meta.glob(
-    ["../../../../content/projects/*.md", "../../../../content/projects/*.mdx"],
-    { eager: true }
-  ),
+  import.meta.glob("../../../../content/projects/*.mdx", { eager: true }),
   "technologies"
 );

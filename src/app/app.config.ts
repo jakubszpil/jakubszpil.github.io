@@ -1,4 +1,8 @@
-import { Icon, IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  type Icon,
+  IconBrandGithub,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 
 export interface AppConfig {
   socials: Array<{ href: string; label: string; icon: Icon }>;

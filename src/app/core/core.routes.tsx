@@ -1,4 +1,4 @@
-import { RouteBuilder, createRoute } from "@libs/shared";
+import { type RouteBuilder, createRoute } from "@libs/shared";
 
 export const routes: RouteBuilder[] = [
   createRoute("").addModule(() => import("./feature/home")),

@@ -1,4 +1,4 @@
-import { type ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import NavbarMenu, { type NavbarMenuProps } from "./navbar-menu";

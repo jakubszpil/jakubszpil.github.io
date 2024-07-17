@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { Button, ButtonProps, useConfig, uuid } from "@libs/shared";
+import { Button, type ButtonProps, useConfig, uuid } from "@libs/shared";
 
 export interface SocialsProps {
   hideLabels?: boolean;

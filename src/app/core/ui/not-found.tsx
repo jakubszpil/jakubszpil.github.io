@@ -1,5 +1,6 @@
-import { Button } from "@libs/shared";
 import { Link, useLocation } from "react-router-dom";
+
+import { Button } from "@libs/shared";
 
 export default function NotFound() {
   const location = useLocation();

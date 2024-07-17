@@ -1,12 +1,12 @@
 import {
-  ActionFunction,
-  ActionFunctionArgs,
+  type ActionFunction,
+  type ActionFunctionArgs,
+  type LazyRouteFunction,
+  type LoaderFunction,
+  type LoaderFunctionArgs,
+  type RouteObject,
   createBrowserRouter,
   createHashRouter,
-  LazyRouteFunction,
-  LoaderFunction,
-  LoaderFunctionArgs,
-  RouteObject,
   useActionData,
   useLoaderData,
 } from "react-router-dom";
