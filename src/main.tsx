@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
+import invariant from "tiny-invariant";
 
 import {
   createRoute,
@@ -21,7 +22,13 @@ const router = createRouter(
   true
 );
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root");
+
+invariant(rootElement);
+
+const root = createRoot(rootElement);
+
+root.render(
   <StrictMode>
     <ConfigProvider config={config}>
       <SeoProvider>

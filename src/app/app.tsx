@@ -23,6 +23,8 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
 
+  console.error(error);
+
   const renderError = (error: unknown) => {
     if (isRouteErrorResponse(error)) {
       if (error.status === 404) {

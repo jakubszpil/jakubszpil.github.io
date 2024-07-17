@@ -88,22 +88,26 @@ export function createRouter(baseRoute: RouteBuilder, withHash?: boolean) {
   return createBrowserRouter(routes);
 }
 
-export function defineLoader<T>(loader: (args: LoaderFunctionArgs) => T) {
+export type MaybeAsync<T> = T | Promise<T>;
+
+export type Loader<T> = (args: LoaderFunctionArgs) => MaybeAsync<T>;
+export type Action<T> = (args: ActionFunctionArgs) => MaybeAsync<T>;
+
+export type LoaderData<T> = T extends Loader<infer X> ? X : unknown;
+export type ActionData<T> = T extends Action<infer X> ? X : unknown;
+
+export function defineLoader<T>(loader: Loader<T>) {
   return loader;
 }
 
 export function useLoader<T>() {
-  return useLoaderData() as T extends (args: LoaderFunctionArgs) => infer X
-    ? Awaited<X>
-    : T;
+  return useLoaderData() as LoaderData<T>;
 }
 
-export function defineAction<T>(action: (args: ActionFunctionArgs) => T) {
+export function defineAction<T>(action: Action<T>) {
   return action;
 }
 
 export function useAction<T>() {
-  return useActionData() as
-    | (T extends (args: ActionFunctionArgs) => infer X ? Awaited<X> : T)
-    | undefined;
+  return useActionData() as ActionData<T> | undefined;
 }

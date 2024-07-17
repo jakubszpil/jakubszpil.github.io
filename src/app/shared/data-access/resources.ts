@@ -1,3 +1,5 @@
+import invariant from "tiny-invariant";
+
 export interface Resource {
   id: string;
   slug: string;
@@ -6,7 +8,6 @@ export interface Resource {
   description?: string;
   keywords?: string[];
   createdAt?: string;
-  updatedAt?: string;
 }
 
 export function parseContent<T extends Resource>(
@@ -15,15 +16,11 @@ export function parseContent<T extends Resource>(
   return files
     .map((i) => i.default)
     .sort((first, second) => {
-      const firstCreationDate = first.createdAt
-        ? new Date(first.createdAt as string)
-        : undefined;
-      const secondCreationDate = second.createdAt
-        ? new Date(second.createdAt as string)
-        : undefined;
+      invariant(first.createdAt);
+      invariant(second.createdAt);
 
-      const firstCreationTime = firstCreationDate?.getTime() ?? 0;
-      const secondCreationTime = secondCreationDate?.getTime() ?? 0;
+      const firstCreationTime = new Date(first.createdAt).getTime();
+      const secondCreationTime = new Date(second.createdAt).getTime();
 
       return secondCreationTime - firstCreationTime;
     });

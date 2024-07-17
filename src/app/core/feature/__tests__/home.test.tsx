@@ -10,7 +10,7 @@ import {
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
-import { useLoader } from "@libs/shared";
+import { LoaderData, useLoader } from "@libs/shared";
 import { Articles } from "@libs/articles";
 
 import Home, { loader } from "../home";
@@ -42,7 +42,7 @@ vi.mock("@libs/courses", async (importActual) => {
 });
 
 describe("Home route", () => {
-  let MOCKED_LOADER_DATA: ReturnType<typeof loader>;
+  let MOCKED_LOADER_DATA: LoaderData<typeof loader>;
   let MOCKED_LOADER_HOOK: MockInstance;
   let MOCKED_ARTICLES_COMPONENT: MockInstance;
   let MOCKED_COURSES_COMPONENT: MockInstance;
