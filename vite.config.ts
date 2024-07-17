@@ -24,6 +24,7 @@ export default defineConfig(() => {
       }),
       pwa({
         registerType: "autoUpdate",
+        includeAssets: ["robots.txt", "sitemap.txt", "static/**", "assets/**"],
         manifest: {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
