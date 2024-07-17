@@ -13,8 +13,6 @@ import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 
-import { name } from "./package.json";
-
 export function mdx(): Plugin {
   const processor = unified()
     .use(remarkParse)
@@ -95,7 +93,7 @@ export function minifyAndPrerender(config?: {
         const index = await readFile(join(dist, "index.html"), "utf-8");
 
         const paths = sitemap
-          .split(`https://${name}`)
+          .split(`https://jakubszpil.github.io`)
           .map((path) => path.replace("\n", "").replace("\r", ""))
           .filter(Boolean)
           .filter((path) => path !== "/");
