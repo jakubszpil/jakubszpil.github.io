@@ -1,4 +1,4 @@
-const s={id:"e3364db7-b523-4b9e-82ee-a66c6b63d597",slug:"dependency-injection-kontra-typescript",content:`<p>Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami.</p>
+const s={id:"981e772a-9af6-4b2b-ab3d-3c930f25cb20",slug:"dependency-injection-kontra-typescript",content:`<p>Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami.</p>
 <p>W TypeScript, DI można zaimplementować na kilka sposobów, w tym za pomocą kontenerów IoC (Inversion of Control), które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów.</p>
 <h2>Spis Treści</h2>
 <ol>

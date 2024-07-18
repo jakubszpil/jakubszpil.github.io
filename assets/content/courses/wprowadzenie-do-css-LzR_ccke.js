@@ -1,4 +1,4 @@
-const s={id:"1391a498-d7c6-4f7f-9e42-969f49f4c749",slug:"wprowadzenie-do-css",content:`<p>CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.</p>
+const s={id:"e1d58f58-3fa7-4c30-ba91-ed9aa85ef9a0",slug:"wprowadzenie-do-css",content:`<p>CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.</p>
 <h2>Sposoby załączania CSS do HTML</h2>
 <h3>Inline CSS</h3>
 <p>Inline CSS jest stosowany bezpośrednio w atrybucie <code>style</code> elementu HTML.</p>
