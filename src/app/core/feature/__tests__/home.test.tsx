@@ -10,7 +10,7 @@ import {
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
-import { type LoaderData, useLoader } from "@libs/shared";
+import { type LoaderData, Seo, useLoader } from "@libs/shared";
 import { Articles } from "@libs/articles";
 import { Courses } from "@libs/courses";
 
@@ -46,6 +46,7 @@ describe("Home route", () => {
   let MOCKED_LOADER_HOOK: MockInstance;
   let MOCKED_ARTICLES_COMPONENT: MockInstance;
   let MOCKED_COURSES_COMPONENT: MockInstance;
+  let MOCKED_SEO_COMPONENT: MockInstance;
 
   beforeEach(() => {
     MOCKED_LOADER_DATA = {
@@ -65,6 +66,10 @@ describe("Home route", () => {
     MOCKED_COURSES_COMPONENT = vi
       .mocked(Courses)
       .mockImplementation(() => <div>Courses</div>);
+
+    MOCKED_SEO_COMPONENT = vi
+      .mocked(Seo)
+      .mockImplementation(() => <div>Seo</div>);
   });
 
   afterEach(() => {
@@ -82,6 +87,24 @@ describe("Home route", () => {
 
     await screen.findByText(
       `Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz wiedzę i doświadczenie z frontu, jak i portfolio, które przywita Cię moimi ostatnimi projektami. Bon vojage! 🚢`
+    );
+
+    expect(MOCKED_SEO_COMPONENT).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: "Strona główna",
+        description:
+          "Cześć, jestem Kuba, jestem frontend developerem. Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz wiedzę i doświadczenie z frontu, jak i portfolio, które przywita Cię moimi ostatnimi projektami. Bon vojage! 🚢",
+        keywords: [
+          "blog",
+          "portfolio",
+          "kursy",
+          "artykuły",
+          "frontend",
+          "web development",
+          "learning",
+        ],
+      }),
+      {}
     );
 
     expect(MOCKED_ARTICLES_COMPONENT).toHaveBeenCalledWith(

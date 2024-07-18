@@ -1,4 +1,3 @@
-import { randomUUID } from "node:crypto";
 import { Plugin } from "vite";
 import { unified } from "unified";
 import matter from "gray-matter";
@@ -12,6 +11,7 @@ import rehypeStringify from "rehype-stringify";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+import { v4 } from "uuid";
 
 export function mdx(): Plugin {
   const processor = unified()
@@ -38,7 +38,7 @@ export function mdx(): Plugin {
 
         return {
           code: `export default ${JSON.stringify({
-            id: randomUUID(),
+            id: v4(),
             slug,
             content: await process(content),
             ...data,

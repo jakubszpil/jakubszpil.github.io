@@ -3,9 +3,9 @@ import type { ReactElement } from "react";
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import NavbarMenu, { type NavbarMenuProps } from "./navbar-menu";
 
-export type NavbarProps = {
+export interface NavbarProps {
   children: ReactElement<NavbarLinkProps | NavbarMenuProps>[];
-};
+}
 
 export default function Navbar(props: NavbarProps) {
   return (

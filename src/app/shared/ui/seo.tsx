@@ -1,8 +1,8 @@
 import { type ReactNode } from "react";
 import {
   Helmet,
-  type HelmetProps,
   HelmetProvider,
+  type HelmetProps,
   type MetaProps,
 } from "react-helmet-async";
 

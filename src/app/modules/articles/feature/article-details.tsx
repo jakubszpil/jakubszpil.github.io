@@ -3,8 +3,8 @@ import { notFound, useLoader, defineLoader, Seo } from "@libs/shared";
 import { getArticle } from "../data-access/articles";
 import Categories from "../ui/categories";
 
-export const loader = defineLoader(async (args) => {
-  const article = await getArticle(args.params.slug!);
+export const loader = defineLoader(async ({ params }) => {
+  const article = await getArticle(params.slug);
 
   if (!article) throw notFound();
 

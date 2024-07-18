@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
 
-export type LayoutProps = {
+export interface LayoutProps {
   children: ReactNode;
-};
+}
 
 export default function Layout(props: LayoutProps) {
   return (

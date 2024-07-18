@@ -1,7 +1,9 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-import FooterLink, { FooterLinkProps } from "./footer-link";
+import { getCurrentYear } from "@libs/shared";
+
+import FooterLink, { type FooterLinkProps } from "./footer-link";
 
 export interface FooterProps {
   children: ReactElement<FooterLinkProps>[];
@@ -12,7 +14,7 @@ export default function Footer(props: FooterProps) {
     <footer className="prose max-w-full border-t">
       <div className="container flex items-center gap-3 justify-start flex-wrap-reverse lg:justify-between">
         <p className="xl:text-sm">
-          &copy; {new Date().getFullYear()} <Link to="/">jakubszpil</Link>
+          &copy; {getCurrentYear()} <Link to="/">jakubszpil</Link>
         </p>
 
         <nav className="flex items-center flex-wrap -ml-3">

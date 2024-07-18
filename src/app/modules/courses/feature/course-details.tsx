@@ -4,7 +4,7 @@ import { getCourse } from "../data-access/courses";
 import Categories from "../ui/categories";
 
 export const loader = defineLoader(async ({ params }) => {
-  const course = await getCourse(params.slug!);
+  const course = await getCourse(params.slug);
 
   if (!course) throw notFound();
 

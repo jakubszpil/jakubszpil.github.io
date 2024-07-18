@@ -1,6 +1,7 @@
 import classNames from "classnames";
 
-import { Button, type ButtonProps, useConfig, uuid } from "@libs/shared";
+import { Button, type ButtonProps, useConfig } from "@libs/shared";
+import { v4 } from "uuid";
 
 export interface SocialsProps {
   hideLabels?: boolean;
@@ -12,7 +13,7 @@ export default function Socials(props: SocialsProps) {
 
   return config.socials.map((social) => (
     <Button
-      key={uuid()}
+      key={v4()}
       asChild
       size={props.hideLabels ? "icon" : "sm"}
       variant={props.variant ?? "ghost"}

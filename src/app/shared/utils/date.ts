@@ -5,3 +5,7 @@ export function getLocalizedDate(date: string) {
     year: "numeric",
   }).format(new Date(date));
 }
+
+export function getCurrentYear() {
+  return new Date().getFullYear();
+}

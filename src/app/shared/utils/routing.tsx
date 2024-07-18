@@ -11,24 +11,24 @@ import {
   useLoaderData,
 } from "react-router-dom";
 
-export type RouteModule = {
+export interface RouteModule {
   default: () => JSX.Element;
   loader?: LoaderFunction;
   action?: ActionFunction;
   ErrorBoundary?: () => JSX.Element;
-};
+}
 
-export type RouteBuilder = {
+export interface RouteBuilder {
   addModule(module: () => Promise<RouteModule>): RouteBuilder;
   addChildren(...routes: RouteBuilder[]): RouteBuilder;
   build(): RouteObject;
-};
+}
 
-export type RouteBuilderData = {
+export interface RouteBuilderData {
   path: string;
   children: RouteBuilder[];
   lazy?: LazyRouteFunction<RouteObject>;
-};
+}
 
 export function createRoute(path: string): RouteBuilder {
   const data: RouteBuilderData = {

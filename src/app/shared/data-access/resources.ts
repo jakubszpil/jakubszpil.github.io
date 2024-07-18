@@ -40,7 +40,8 @@ export function createResourceUtils<TResource extends Resource>(
     return await parseContent(Object.values(files), limit);
   }
 
-  async function getResouce(slug: string): Promise<TResource | undefined> {
+  async function getResouce(slug?: string): Promise<TResource | undefined> {
+    invariant(slug, "Missing slug");
     const resources = await parseContent(
       Object.entries(files)
         .filter(([k]) => k.includes(slug))

@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 import { Button, type ButtonProps } from "@libs/shared";
 
-export type NavbarLinkProps = {
+export interface NavbarLinkProps {
   to: string;
   children: ReactNode;
   onClick?: () => void;
   className?: string;
   variant?: ButtonProps["variant"];
   size?: ButtonProps["size"];
-};
+}
 
 export default function NavbarLink(props: NavbarLinkProps) {
   return (

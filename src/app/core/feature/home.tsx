@@ -22,7 +22,19 @@ export default function Home() {
 
   return (
     <>
-      <Seo title="Strona główna" />
+      <Seo
+        title="Strona główna"
+        description="Cześć, jestem Kuba, jestem frontend developerem. Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz wiedzę i doświadczenie z frontu, jak i portfolio, które przywita Cię moimi ostatnimi projektami. Bon vojage! 🚢"
+        keywords={[
+          "blog",
+          "portfolio",
+          "kursy",
+          "artykuły",
+          "frontend",
+          "web development",
+          "learning",
+        ]}
+      />
 
       <header className="container prose">
         <h1 className="mt-8">Cześć, jestem Kuba! 🙋‍♂️</h1>

@@ -3,15 +3,16 @@ import classNames from "classnames";
 import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import { v4 } from "uuid";
 
-import { Button, uuid } from "@libs/shared";
+import { Button } from "@libs/shared";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 
-export type NavbarMenuProps = {
+export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
-};
+}
 
 export default function NavbarMenu(props: NavbarMenuProps) {
   const [show, setShow] = useState(false);
@@ -31,7 +32,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
       <div className="flex items-center gap-1">
         <nav className="hidden items-center lg:flex">
           {props.children.map((child) => (
-            <NavbarLink {...child.props} key={uuid()} />
+            <NavbarLink {...child.props} key={v4()} />
           ))}
         </nav>
 
@@ -86,7 +87,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           {props.children.map((child) => (
             <NavbarLink
               {...child.props}
-              key={uuid()}
+              key={v4()}
               size="lg"
               onClick={closeMenu}
             />
