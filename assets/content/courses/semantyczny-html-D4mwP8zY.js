@@ -1,4 +1,4 @@
-const s={id:"89406176-4cee-472a-b81b-e88ac905c993",slug:"semantyczny-html",content:`<h2>Czym jest semantyczny HTML?</h2>
+const s={id:"dc1ed334-bccf-43c9-a332-bca3470e62e9",slug:"semantyczny-html",content:`<h2>Czym jest semantyczny HTML?</h2>
 <p>Semantyczny HTML polega na używaniu elementów HTML, które jednoznacznie opisują swoje znaczenie i cel. Elementy semantyczne nie tylko definiują strukturę dokumentu, ale również pomagają w interpretacji jego zawartości zarówno przez przeglądarki, jak i przez wyszukiwarki internetowe oraz technologie wspomagające (np. czytniki ekranowe).</p>
 <h2>Zalety używania semantycznego HTML</h2>
 <ol>
@@ -242,4 +242,4 @@ const s={id:"89406176-4cee-472a-b81b-e88ac905c993",slug:"semantyczny-html",conte
 <span class="hljs-tag">&#x3C;/<span class="hljs-name">html</span>></span>
 </code></pre>
 </details>
-<p>To tyle na temat semantycznego HTML! Zachęcam do dalszego zgłębiania tematu i praktycznego zastosowania zdobytej wiedzy.</p>`,title:"Wprowadzenie do Semantycznego HTML",description:"Semantyczny HTML polega na używaniu elementów HTML, które jednoznacznie opisują swoje znaczenie i cel. Elementy semantyczne nie tylko definiują strukturę dokumentu, ale również pomagają w interpretacji jego zawartości zarówno przez przeglądarki, jak i przez wyszukiwarki internetowe oraz technologie wspomagające (np. czytniki ekranowe).",keywords:["html","semantyka","seo","dostępność"],categories:["html","seo"],createdAt:"2024-07-05T00:00:00.000Z"},a=Object.freeze(Object.defineProperty({__proto__:null,default:s},Symbol.toStringTag,{value:"Module"}));export{a as _};
+<p>To tyle na temat semantycznego HTML! Zachęcam do dalszego zgłębiania tematu i praktycznego zastosowania zdobytej wiedzy.</p>`,title:"Wprowadzenie do Semantycznego HTML",description:"Semantyczny HTML polega na używaniu elementów HTML, które jednoznacznie opisują swoje znaczenie i cel. Elementy semantyczne nie tylko definiują strukturę dokumentu, ale również pomagają w interpretacji jego zawartości zarówno przez przeglądarki, jak i przez wyszukiwarki internetowe oraz technologie wspomagające (np. czytniki ekranowe).",keywords:["html","semantyka","seo","dostępność"],categories:["html","seo"],createdAt:"2024-07-05T00:00:00.000Z"};export{s as default};
