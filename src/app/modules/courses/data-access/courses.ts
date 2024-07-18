@@ -4,12 +4,13 @@ export interface Course extends Resource {
   categories?: string[];
 }
 
+const courses = import.meta.glob<{ default: Course }>(
+  "../../../../content/courses/*.mdx"
+);
+
 export const [
   getCourses,
   getCourse,
   getCoursesCategories,
   getCoursesByCategory,
-] = createResourceUtils<Course>(
-  import.meta.glob("../../../../content/courses/*.mdx", { eager: true }),
-  "categories"
-);
+] = createResourceUtils<Course>(courses, "categories");

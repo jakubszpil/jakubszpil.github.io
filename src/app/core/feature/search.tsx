@@ -22,7 +22,7 @@ const isValidUrl = (url: unknown) => {
   }
 };
 
-export const loader = defineLoader(({ request }) => {
+export const loader = defineLoader(async ({ request }) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("q");
 
@@ -68,9 +68,9 @@ export const loader = defineLoader(({ request }) => {
     return s.toLowerCase().includes(q);
   };
 
-  const articles = getArticles().filter(test);
-  const courses = getCourses().filter(test);
-  const projects = getProjects().filter(test);
+  const articles = (await getArticles()).filter(test);
+  const courses = (await getCourses()).filter(test);
+  const projects = (await getProjects()).filter(test);
 
   return { query, articles, courses, projects };
 });

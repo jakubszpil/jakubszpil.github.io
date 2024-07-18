@@ -4,12 +4,13 @@ export interface Project extends Resource {
   technologies?: string[];
 }
 
+const projects = import.meta.glob<{ default: Project }>(
+  "../../../../content/projects/*.mdx"
+);
+
 export const [
   getProjects,
   getProject,
   getProjectsTechnologies,
   getProjectsByTechnology,
-] = createResourceUtils<Project>(
-  import.meta.glob("../../../../content/projects/*.mdx", { eager: true }),
-  "technologies"
-);
+] = createResourceUtils<Project>(projects, "technologies");

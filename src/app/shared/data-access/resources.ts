@@ -10,20 +10,22 @@ export interface Resource {
   createdAt?: string;
 }
 
-export function parseContent<T extends Resource>(
-  files: Array<{ default: T }>
-): T[] {
-  return files
-    .map((i) => i.default)
-    .sort((first, second) => {
-      invariant(first.createdAt);
-      invariant(second.createdAt);
+export async function parseContent<T extends Resource>(
+  files: Array<() => Promise<{ default: T }>>,
+  limit?: number
+): Promise<T[]> {
+  const content = await Promise.all(
+    files.slice(0, limit ?? files.length).map((i) => i().then((m) => m.default))
+  );
+  return content.sort((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
 
-      const firstCreationTime = new Date(first.createdAt).getTime();
-      const secondCreationTime = new Date(second.createdAt).getTime();
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
 
-      return secondCreationTime - firstCreationTime;
-    });
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
 export type ExtractFilters<TResource extends Resource> = {
@@ -31,23 +33,25 @@ export type ExtractFilters<TResource extends Resource> = {
 }[keyof TResource];
 
 export function createResourceUtils<TResource extends Resource>(
-  files: Record<string, { default: TResource }>,
+  files: Record<string, () => Promise<{ default: TResource }>>,
   filterKey: NonNullable<ExtractFilters<TResource>>
 ) {
-  const resources = parseContent(Object.values(files));
-
-  function getResources(limit?: number): TResource[] {
-    if (limit !== undefined) {
-      return resources.slice(0, limit);
-    }
-    return resources;
+  async function getResources(limit?: number): Promise<TResource[]> {
+    return await parseContent(Object.values(files), limit);
   }
 
-  function getResouce(slug: string): TResource | undefined {
+  async function getResouce(slug: string): Promise<TResource | undefined> {
+    const resources = await parseContent(
+      Object.entries(files)
+        .filter(([k]) => k.includes(slug))
+        .map(([, file]) => file)
+    );
     return resources.find((resource) => resource.slug === slug);
   }
 
-  function getResourcesFilterKeys(): string[] {
+  async function getResourcesFilterKeys(): Promise<string[]> {
+    const resources = await getResources();
+
     const occurrences: Record<string, number> = {};
 
     const filterKeys = resources.reduce<string[]>((filterKeys, resource) => {
@@ -67,7 +71,8 @@ export function createResourceUtils<TResource extends Resource>(
     return filterKeys.sort((a, b) => occurrences[b] - occurrences[a]);
   }
 
-  function getResourcesByFilterKey(value: string): TResource[] {
+  async function getResourcesByFilterKey(value: string): Promise<TResource[]> {
+    const resources = await getResources();
     return resources.filter((resource) => {
       const items = resource[filterKey];
       return Array.isArray(items) ? items.includes(value) : false;

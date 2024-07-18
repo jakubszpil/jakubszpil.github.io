@@ -5,10 +5,10 @@ import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
 import { Courses, getCourses } from "@libs/courses";
 
-export const loader = defineLoader(() => {
-  const articles = getArticles(3);
-  const projects = getProjects(3);
-  const courses = getCourses(3);
+export const loader = defineLoader(async () => {
+  const articles = await getArticles(3);
+  const projects = await getProjects(3);
+  const courses = await getCourses(3);
 
   return {
     articles,

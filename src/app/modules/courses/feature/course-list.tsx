@@ -14,9 +14,9 @@ import {
 import CategoryList from "../ui/categories";
 import Courses from "../ui/courses";
 
-export const loader = defineLoader(({ params }) => {
+export const loader = defineLoader(async ({ params }) => {
   const category = params.category;
-  const categories = getCoursesCategories();
+  const categories = await getCoursesCategories();
 
   if (category) {
     if (!categories.includes(category)) throw notFound();
@@ -24,12 +24,12 @@ export const loader = defineLoader(({ params }) => {
     return {
       category,
       categories,
-      courses: getCoursesByCategory(category),
+      courses: await getCoursesByCategory(category),
     };
   }
 
   return {
-    courses: getCourses(),
+    courses: await getCourses(),
     categories,
   };
 });

@@ -14,22 +14,22 @@ import {
 import CategoryList from "../ui/categories";
 import Articles from "../ui/articles";
 
-export const loader = defineLoader(({ params }) => {
+export const loader = defineLoader(async ({ params }) => {
   const category = params.category;
-  const categories = getArticlesCategories();
+  const categories = await getArticlesCategories();
 
   if (category) {
     if (!categories.includes(category)) throw notFound();
 
     return {
-      articles: getArticlesByCategory(category),
+      articles: await getArticlesByCategory(category),
       categories,
       category,
     };
   }
 
   return {
-    articles: getArticles(),
+    articles: await getArticles(),
     categories,
   };
 });
