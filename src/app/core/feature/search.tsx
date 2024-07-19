@@ -55,8 +55,7 @@ export const loader = defineLoader(async ({ request }) => {
     const url = new URL(query);
 
     if (requestUrl.origin === url.origin) {
-      const pathname = url.hash.replace("#", "");
-      throw redirect(pathname);
+       throw redirect(url.pathname);
     }
   }
 
