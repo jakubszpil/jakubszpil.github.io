@@ -19,7 +19,7 @@ const router = createRouter(
   createRoute("")
     .addModule(() => import("./app/app"))
     .addChildren(...routes),
-  true
+  false
 );
 
 const rootElement = document.getElementById("root");
