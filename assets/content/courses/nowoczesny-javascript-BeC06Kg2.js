@@ -1,4 +1,4 @@
-const s={id:"b9a1c8b1-2229-4ca4-a5b0-268912f7f28a",slug:"nowoczesny-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.</p>
+const s={id:"f9410927-1e00-456d-bd8a-2076a6190f19",slug:"nowoczesny-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.</p>
 <h2>Zmienne: <code>let</code> i <code>const</code></h2>
 <p>W nowoczesnym JavaScript zmienne są definiowane za pomocą <code>let</code> i <code>const</code> zamiast <code>var</code>.</p>
 <ul>
