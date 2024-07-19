@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { Form, redirect } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
@@ -9,9 +10,9 @@ import {
   Seo,
   type Resource,
 } from "@libs/shared";
-import { type Article, getArticles, Articles } from "@libs/articles";
-import { type Project, getProjects } from "@libs/projects";
-import { type Course, Courses, getCourses } from "@libs/courses";
+import { getArticles, Articles } from "@libs/articles";
+import { getProjects } from "@libs/projects";
+import { Courses, getCourses } from "@libs/courses";
 
 const isValidUrl = (url: unknown) => {
   try {
@@ -55,7 +56,7 @@ export const loader = defineLoader(async ({ request }) => {
     const url = new URL(query);
 
     if (requestUrl.origin === url.origin) {
-       throw redirect(url.pathname);
+      throw redirect(url.pathname);
     }
   }
 
@@ -71,21 +72,16 @@ export const loader = defineLoader(async ({ request }) => {
   const courses = (await getCourses()).filter(test);
   const projects = (await getProjects()).filter(test);
 
-  return { query, articles, courses, projects };
+  const resultsCount = articles.length + projects.length + courses.length;
+
+  return { query, articles, courses, projects, resultsCount };
 });
 
 export default function Search() {
-  const { query, articles, projects, courses } = useLoader<typeof loader>();
+  const { query, articles, projects, courses, resultsCount } =
+    useLoader<typeof loader>();
 
-  const resultsCount = articles.length + projects.length + courses.length;
-
-  const renderResults = (
-    query: string | null,
-    resultsCount: number,
-    articles: Article[],
-    projects: Project[],
-    courses: Course[]
-  ) => {
+  const renderResults = useCallback(() => {
     if (!query) {
       return null;
     }
@@ -119,14 +115,20 @@ export default function Search() {
         )}
       </>
     );
-  };
+  }, [articles, courses, projects.length, query, resultsCount]);
 
   return (
     <section className="prose max-w-full">
-      <Seo title={`Szukaj${query ? `: ${query}` : ""}`} />
+      <Seo
+        title={
+          query
+            ? `(${resultsCount}) Rezultaty wyszukiwania dla ${query}`
+            : "Szukaj"
+        }
+      />
 
       <header className="container pb-0">
-        <h1 className="mb-0">Wyszukaj</h1>
+        <h1 className="mb-0">🔍 Wyszukaj</h1>
         <p>Wskazówka: Obszary po których możesz szukać:</p>
         <ul>
           <li>Artykuły: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>
@@ -154,9 +156,7 @@ export default function Search() {
         </Button>
       </Form>
 
-      <div className="container pt-0">
-        {renderResults(query, resultsCount, articles, projects, courses)}
-      </div>
+      <div className="container pt-0">{renderResults()}</div>
     </section>
   );
 }

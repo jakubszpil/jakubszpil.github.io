@@ -25,6 +25,14 @@ export default defineConfig(() => {
       pwa({
         registerType: "autoUpdate",
         includeAssets: ["robots.txt", "sitemap.txt", "static/**", "assets/**"],
+        workbox: {
+          globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+        },
+        pwaAssets: {
+          config: true,
+          disabled: false,
+          includeHtmlHeadLinks: true,
+        },
         manifest: {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
@@ -80,25 +88,22 @@ export default defineConfig(() => {
           ],
           icons: [
             {
-              src: "/static/icons/manifest-icon-192.maskable.png",
-              sizes: "192x192",
+              src: "/pwa-64x64.png",
+              sizes: "64x64",
               type: "image/png",
-              purpose: "any",
             },
             {
-              src: "/static/icons/manifest-icon-192.maskable.png",
+              src: "/pwa-192x192.png",
               sizes: "192x192",
               type: "image/png",
-              purpose: "maskable",
             },
             {
-              src: "/static/icons/manifest-icon-512.maskable.png",
+              src: "/pwa-512x512.png",
               sizes: "512x512",
               type: "image/png",
-              purpose: "any",
             },
             {
-              src: "/static/icons/manifest-icon-512.maskable.png",
+              src: "/maskable-icon-512x512.png",
               sizes: "512x512",
               type: "image/png",
               purpose: "maskable",

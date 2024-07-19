@@ -31,23 +31,24 @@ export const loader = defineLoader(async ({ params }) => {
   return {
     articles: await getArticles(),
     categories,
+    category,
   };
 });
 
 export default function ArticleList() {
   const { articles, categories, category } = useLoader<typeof loader>();
 
-  const title = capitalize(category ?? "Artykuły");
+  const title = category ? capitalize(category) : undefined;
 
   return (
     <>
       <Seo
-        title={title}
+        title={title ? `Artykuły / ${title}` : "Artykuły"}
         description="Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych."
       />
 
       <header className="prose container">
-        <h1>{title}</h1>
+        <h1>📝 {title ?? "Artykuły"}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 

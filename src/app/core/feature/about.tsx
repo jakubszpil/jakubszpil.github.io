@@ -20,7 +20,7 @@ export default function About() {
         title="O mnie"
         description="Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi."
       />
-      <h1>O mnie</h1>
+      <h1>🙋‍♂️ O mnie</h1>
       <p>
         Cześć! Nazywam się Kuba i jestem frontend developerem z {years}-letnim
         doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych

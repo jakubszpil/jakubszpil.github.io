@@ -32,10 +32,7 @@ root.render(
   <StrictMode>
     <ConfigProvider config={config}>
       <SeoProvider>
-        <Seo
-          defaultTitle={config.meta.title}
-          titleTemplate={config.meta.titleTemplate}
-        />
+        <Seo {...config.meta} />
         <RouterProvider router={router} />
       </SeoProvider>
     </ConfigProvider>

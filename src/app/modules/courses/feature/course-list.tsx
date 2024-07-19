@@ -31,23 +31,24 @@ export const loader = defineLoader(async ({ params }) => {
   return {
     courses: await getCourses(),
     categories,
+    category,
   };
 });
 
 export default function CourseList() {
   const { courses, categories, category } = useLoader<typeof loader>();
 
-  const title = capitalize(category ?? "Learning");
+  const title = category ? capitalize(category) : undefined;
 
   return (
     <>
       <Seo
-        title={title}
+        title={title ? `Learning / ${title}` : "Learning"}
         description="Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe."
       />
 
       <header className="prose container">
-        <h1>{title}</h1>
+        <h1>🏫 {title ?? "Learning"}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 

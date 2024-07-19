@@ -29,7 +29,7 @@ export default function Layout(props: LayoutProps) {
         <Footer.Link to="/learning">🏫 Learning</Footer.Link>
         <Footer.Link to="/portfolio">🛠️ Portfolio</Footer.Link>
         <Footer.Link to="/me">🙋‍♂️ O mnie</Footer.Link>
-        <Footer.Link to="/search">🔍 Wyszukaj</Footer.Link>
+        <Footer.Link to="/search">🔍 Szukaj</Footer.Link>
       </Footer>
     </>
   );
