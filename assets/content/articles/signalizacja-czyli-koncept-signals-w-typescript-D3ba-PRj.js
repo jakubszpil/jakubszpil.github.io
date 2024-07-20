@@ -1,4 +1,4 @@
-const s={id:"b982cc8b-bdf1-49ba-a146-e3c1ca026a1f",slug:"signalizacja-czyli-koncept-signals-w-typescript",content:`<p>Signal to koncepcja pochodząca z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzania stanem aplikacji. W TypeScript, dzięki silnemu typowaniu, można zaimplementować sygnały w sposób bezpieczny i efektywny.</p>
+const s={id:"f0e1374f-3140-4432-890c-c720c37d8061",slug:"signalizacja-czyli-koncept-signals-w-typescript",content:`<p>Signal to koncepcja pochodząca z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzania stanem aplikacji. W TypeScript, dzięki silnemu typowaniu, można zaimplementować sygnały w sposób bezpieczny i efektywny.</p>
 <h2>Czym jest Signal?</h2>
 <p>Signal (sygnał) jest obiektem, który reprezentuje strumień danych, który może być obserwowany i reagować na zmiany tych danych. W kontekście frontendu, sygnały mogą być używane do reagowania na zdarzenia użytkownika, zmiany stanu aplikacji, czy asynchroniczne operacje, takie jak żądania sieciowe.</p>
 <h2>Korzyści z używania Signal</h2>
