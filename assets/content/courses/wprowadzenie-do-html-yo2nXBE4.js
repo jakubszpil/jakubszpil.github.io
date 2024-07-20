@@ -1,4 +1,4 @@
-const s={id:"c82fcbe8-42d9-47c4-adc7-5714c62c870a",slug:"wprowadzenie-do-html",content:`<h2>Co to jest HTML?</h2>
+const s={id:"74955422-fcd8-42d8-ba2c-e2a16a031dfc",slug:"wprowadzenie-do-html",content:`<h2>Co to jest HTML?</h2>
 <p>HTML (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. HTML używa elementów, które definiują różne części dokumentu, takie jak nagłówki, akapity, linki, obrazy, i wiele innych.</p>
 <h2>Podstawowa struktura dokumentu HTML</h2>
 <p>Każdy dokument HTML ma określoną strukturę, która składa się z kilku kluczowych elementów:</p>
