@@ -37,7 +37,7 @@ export default defineConfig(() => {
           name: "Jakub Szpil",
           short_name: "jakubszpil",
           description: "Blog, portfolio i kursy frontendowe",
-          theme_color: "#0a0a0a",
+          theme_color: "#ffffff",
           lang: "pl",
           display: "standalone",
           start_url: "/",
