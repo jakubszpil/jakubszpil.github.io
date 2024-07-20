@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, createPath } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
 import {
@@ -56,7 +56,7 @@ export const loader = defineLoader(async ({ request }) => {
     const url = new URL(query);
 
     if (requestUrl.origin === url.origin) {
-      throw redirect(url.pathname);
+      throw redirect(createPath(url).replace("#/", ""));
     }
   }
 
