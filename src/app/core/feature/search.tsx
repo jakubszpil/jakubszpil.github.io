@@ -128,7 +128,7 @@ export default function Search() {
       />
 
       <header className="container pb-0">
-        <h1 className="mb-0">🔍 Wyszukaj</h1>
+        <h1 className="mb-0">Szukaj</h1>
         <p>Wskazówka: Obszary po których możesz szukać:</p>
         <ul>
           <li>Artykuły: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>

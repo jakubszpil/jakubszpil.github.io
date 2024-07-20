@@ -48,7 +48,7 @@ export default function CourseList() {
       />
 
       <header className="prose container">
-        <h1>🏫 {title ?? "Learning"}</h1>
+        <h1>{title ?? "Learning"}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 

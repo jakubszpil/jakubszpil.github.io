@@ -48,7 +48,7 @@ export default function ArticleList() {
       />
 
       <header className="prose container">
-        <h1>📝 {title ?? "Artykuły"}</h1>
+        <h1>{title ?? "Artykuły"}</h1>
         <CategoryList showAllCategory categories={categories} />
       </header>
 
