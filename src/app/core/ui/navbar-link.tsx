@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
 
-import { Button, type ButtonProps } from "@libs/shared";
+import { Button, type ButtonProps, LinkWithPrefetch } from "@libs/shared";
 
 export interface NavbarLinkProps {
   to: string;
@@ -21,7 +20,7 @@ export default function NavbarLink(props: NavbarLinkProps) {
       variant={props.variant ?? "ghost"}
       size={props.size ?? "sm"}
     >
-      <Link to={props.to}>{props.children}</Link>
+      <LinkWithPrefetch to={props.to}>{props.children}</LinkWithPrefetch>
     </Button>
   );
 }

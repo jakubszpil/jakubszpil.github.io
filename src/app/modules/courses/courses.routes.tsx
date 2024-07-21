@@ -1,7 +1,9 @@
 import { type RouteBuilder, createRoute } from "@libs/shared";
 
 export const routes: RouteBuilder[] = [
-  createRoute("").addModule(() => import("./feature/course-list")),
+  createRoute("")
+    .addModule(() => import("./feature/course-list"))
+    .setIndex(true),
   createRoute("kategorie/:category").addModule(
     () => import("./feature/course-list")
   ),

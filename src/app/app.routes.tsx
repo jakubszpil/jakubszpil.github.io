@@ -5,7 +5,7 @@ import { routes as projectsRoutes } from "@libs/projects";
 
 import { routes as coreRoutes } from "./core/core.routes";
 
-export const routes: RouteBuilder[] = [
+export const appRoutes: RouteBuilder[] = [
   createRoute("").addChildren(
     createRoute("blog").addChildren(...articlesRoutes),
     createRoute("learning").addChildren(...coursesRoutes),

@@ -3,10 +3,9 @@ import {
   Outlet,
   ScrollRestoration,
   useRouteError,
-  Link,
 } from "react-router-dom";
 
-import { Button } from "@libs/shared";
+import { Button, LinkWithPrefetch } from "@libs/shared";
 
 import Layout from "./core/ui/layout";
 import NotFound from "./core/ui/not-found";
@@ -38,7 +37,7 @@ export function ErrorBoundary() {
           </h1>
           <p>{error.data}</p>
           <Button asChild className="no-underline" variant="outline" size="sm">
-            <Link to="/">Powrót do strony głównej</Link>
+            <LinkWithPrefetch to="/">Powrót do strony głównej</LinkWithPrefetch>
           </Button>
         </>
       );
@@ -52,4 +51,8 @@ export function ErrorBoundary() {
       <header className="container prose">{renderError(error)}</header>
     </Layout>
   );
+}
+
+export function HydrateFallback() {
+  return null;
 }

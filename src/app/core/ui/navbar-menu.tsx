@@ -2,10 +2,9 @@ import { useRef, useState, type ReactElement } from "react";
 import classNames from "classnames";
 import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
 import { v4 } from "uuid";
 
-import { Button } from "@libs/shared";
+import { Button, LinkWithPrefetch } from "@libs/shared";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
@@ -44,10 +43,10 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           aria-label="Szukaj"
           title="Szukaj"
         >
-          <Link to="/search">
+          <LinkWithPrefetch to="/search">
             <span className="sr-only">Szukaj</span>
             <IconSearch className="h-6" />
-          </Link>
+          </LinkWithPrefetch>
         </Button>
 
         <Socials hideLabels={true} />

@@ -9,18 +9,28 @@ import {
   Seo,
   SeoProvider,
   ConfigProvider,
+  buildRoutes,
 } from "@libs/shared";
 
 import "./styles/globals.css";
-import { routes } from "./app/app.routes";
+import { appRoutes } from "./app/app.routes";
 import { config } from "./app/app.config";
 
-const router = createRouter(
+const routes = buildRoutes(
   createRoute("")
     .addModule(() => import("./app/app"))
-    .addChildren(...routes),
-  true
+    .addChildren(...appRoutes)
 );
+
+const router = createRouter(routes, {
+  hashLocation: true,
+  future: {
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_relativeSplatPath: true,
+  },
+});
 
 const rootElement = document.getElementById("root");
 
@@ -30,7 +40,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <ConfigProvider config={config}>
+    <ConfigProvider config={{ ...config, routes }}>
       <SeoProvider>
         <Seo {...config.meta} />
         <RouterProvider router={router} />

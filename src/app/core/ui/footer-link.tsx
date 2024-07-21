@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
 
-import { Button } from "@libs/shared";
+import { Button, LinkWithPrefetch } from "@libs/shared";
 
 export interface FooterLinkProps {
   to: string;
@@ -16,7 +15,7 @@ export default function FooterLink(props: FooterLinkProps) {
       size="sm"
       className="no-underline hover:underline"
     >
-      <Link to={props.to}>{props.children}</Link>
+      <LinkWithPrefetch to={props.to}>{props.children}</LinkWithPrefetch>
     </Button>
   );
 }

@@ -1,6 +1,6 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import { Button } from "@libs/shared";
+import { Button, LinkWithPrefetch } from "@libs/shared";
 
 export default function NotFound() {
   const location = useLocation();
@@ -28,9 +28,9 @@ export default function NotFound() {
             variant="link"
             className="text-base no-underline hover:underline"
           >
-            <Link replace to={location.pathname}>
+            <LinkWithPrefetch replace to={location.pathname}>
               🤔 Sprawdź adres URL
-            </Link>
+            </LinkWithPrefetch>
           </Button>
           - Upewnij się, że wpisany adres jest poprawny.
         </li>
@@ -41,9 +41,9 @@ export default function NotFound() {
             variant="link"
             className="text-base no-underline hover:underline"
           >
-            <Link replace to="/">
+            <LinkWithPrefetch replace to="/">
               🏠 Przejdź do strony głównej
-            </Link>
+            </LinkWithPrefetch>
           </Button>
           - Kliknij tutaj aby wrócić na stronę główną.
         </li>
@@ -54,9 +54,9 @@ export default function NotFound() {
             variant="link"
             className="text-base no-underline hover:underline"
           >
-            <Link replace to="/search">
+            <LinkWithPrefetch replace to="/search">
               🔍 Szukaj
-            </Link>
+            </LinkWithPrefetch>
           </Button>
           - Skorzystaj z wyszukiwarki, aby znaleźć potrzebne informacje.
         </li>

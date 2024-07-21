@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-
 import { Button } from "./button";
+import { LinkWithPrefetch } from "./link-with-prefetch";
 
 export default function UnderConstruction() {
   return (
@@ -8,7 +7,7 @@ export default function UnderConstruction() {
       <h1>Strona, której szukasz, jest jeszcze niedostępna.</h1>
       <p>Wróć tutaj za jakiś czas 😜</p>
       <Button asChild variant="secondary" className="no-underline" size="sm">
-        <Link to="/">Powrót do strony głównej</Link>
+        <LinkWithPrefetch to="/">Powrót do strony głównej</LinkWithPrefetch>
       </Button>
     </header>
   );

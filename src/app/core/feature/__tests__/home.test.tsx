@@ -22,6 +22,7 @@ vi.mock("@libs/shared", async (importActual) => {
     ...actual,
     useLoader: vi.fn(),
     Seo: vi.fn(),
+    LinkWithPrefetch: vi.fn(),
   };
 });
 

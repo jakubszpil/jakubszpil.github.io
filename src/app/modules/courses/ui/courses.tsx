@@ -1,7 +1,11 @@
 import classNames from "classnames";
-import { Link } from "react-router-dom";
 
-import { Button, type ButtonProps, getLocalizedDate } from "@libs/shared";
+import {
+  Button,
+  type ButtonProps,
+  getLocalizedDate,
+  LinkWithPrefetch,
+} from "@libs/shared";
 
 import { type Course } from "../data-access/courses";
 
@@ -26,7 +30,7 @@ export default function Courses(props: CoursesProps) {
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <Link to={`/learning/${course.slug}`}>
+          <LinkWithPrefetch to={`/learning/${course.slug}`}>
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {course.title}
             </h2>
@@ -38,7 +42,7 @@ export default function Courses(props: CoursesProps) {
                 {getLocalizedDate(course.createdAt)}
               </span>
             )}
-          </Link>
+          </LinkWithPrefetch>
         </Button>
       ))}
     </section>

@@ -7,10 +7,14 @@ import {
   test,
   vi,
 } from "vitest";
-import { Link, type LinkProps } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 
-import { Button, type ButtonProps } from "@libs/shared";
+import {
+  Button,
+  type ButtonProps,
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "@libs/shared";
 
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
 
@@ -19,14 +23,7 @@ vi.mock("@libs/shared", async (importActual) => {
   return {
     ...actual,
     Button: vi.fn(),
-  };
-});
-
-vi.mock("react-router-dom", async (importActual) => {
-  const actual = await importActual<typeof import("react-router-dom")>();
-  return {
-    ...actual,
-    Link: vi.fn(),
+    LinkWithPrefetch: vi.fn(),
   };
 });
 
@@ -35,12 +32,14 @@ describe("NavbarLink", () => {
   let MOCKED_BUTTON_COMPONENT: MockInstance;
 
   beforeEach(() => {
-    MOCKED_LINK_COMPONENT = vi.mocked(Link).mockImplementation((props) => (
-      <div>
-        <div>Link</div>
-        <div>{props.children}</div>
-      </div>
-    ));
+    MOCKED_LINK_COMPONENT = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <div>
+          <div>Link</div>
+          <div>{props.children}</div>
+        </div>
+      ));
 
     MOCKED_BUTTON_COMPONENT = vi.mocked(Button).mockImplementation((props) => (
       <div>
@@ -84,7 +83,7 @@ describe("NavbarLink", () => {
       expect.objectContaining({
         to: MOCKED_PROPS.to,
         children: MOCKED_PROPS.children,
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       {}
     );
   });

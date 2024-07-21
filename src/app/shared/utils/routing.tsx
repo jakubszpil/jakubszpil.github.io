@@ -15,17 +15,20 @@ export interface RouteModule {
   default: () => JSX.Element;
   loader?: LoaderFunction;
   action?: ActionFunction;
-  ErrorBoundary?: () => JSX.Element;
+  ErrorBoundary?: RouteObject["ErrorBoundary"];
+  HydrateFallback?: RouteObject["HydrateFallback"];
 }
 
 export interface RouteBuilder {
   addModule(module: () => Promise<RouteModule>): RouteBuilder;
   addChildren(...routes: RouteBuilder[]): RouteBuilder;
+  setIndex(index: boolean): RouteBuilder;
   build(): RouteObject;
 }
 
 export interface RouteBuilderData {
   path: string;
+  index: boolean;
   children: RouteBuilder[];
   lazy?: LazyRouteFunction<RouteObject>;
 }
@@ -34,6 +37,7 @@ export function createRoute(path: string): RouteBuilder {
   const data: RouteBuilderData = {
     path,
     children: [],
+    index: false,
   };
 
   return {
@@ -47,9 +51,14 @@ export function createRoute(path: string): RouteBuilder {
             loader: data.loader,
             action: data.action,
             ErrorBoundary: data.ErrorBoundary,
+            HydrateFallback: data.HydrateFallback,
           };
         });
 
+      return this;
+    },
+    setIndex(index) {
+      data.index = index;
       return this;
     },
     addChildren(...routes) {
@@ -58,6 +67,13 @@ export function createRoute(path: string): RouteBuilder {
       return this;
     },
     build() {
+      if (data.index) {
+        return {
+          path: data.path,
+          lazy: data.lazy,
+        };
+      }
+
       return {
         path: data.path,
         lazy: data.lazy,
@@ -74,18 +90,24 @@ export function notFound(message?: string) {
   });
 }
 
-export function createRouter(baseRoute: RouteBuilder, withHash?: boolean) {
-  const routes = [baseRoute.build()];
+export function buildRoutes(...routes: RouteBuilder[]) {
+  return routes.map((route) => route.build());
+}
 
-  if (withHash) {
+export type RouterOptions =
+  | ({ hashLocation?: false } & Parameters<typeof createBrowserRouter>[1])
+  | ({ hashLocation: true } & Parameters<typeof createHashRouter>[1]);
+
+export function createRouter(routes: RouteObject[], options?: RouterOptions) {
+  if (options?.hashLocation) {
     if (!window.location.hash) {
       history.replaceState(null, "", "/#/");
     }
 
-    return createHashRouter(routes);
+    return createHashRouter(routes, options);
   }
 
-  return createBrowserRouter(routes);
+  return createBrowserRouter(routes, options);
 }
 
 export type MaybeAsync<T> = T | Promise<T>;

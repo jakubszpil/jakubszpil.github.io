@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
-
-import { defineLoader, useLoader, Button, Seo } from "@libs/shared";
+import {
+  defineLoader,
+  useLoader,
+  Button,
+  Seo,
+  LinkWithPrefetch,
+} from "@libs/shared";
 import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
 import { Courses, getCourses } from "@libs/courses";
@@ -46,10 +50,12 @@ export default function Home() {
         </p>
         <nav className="grid grid-flow-row sm:grid-flow-col sm:w-max gap-2">
           <Button size="sm" asChild className="!no-underline">
-            <Link to="/blog">📝 Najnowsze artykuły</Link>
+            <LinkWithPrefetch to="/blog">
+              📝 Najnowsze artykuły
+            </LinkWithPrefetch>
           </Button>
           <Button size="sm" variant="outline" asChild className="!no-underline">
-            <Link to="/learning">🏫 Lista kursów</Link>
+            <LinkWithPrefetch to="/learning">🏫 Lista kursów</LinkWithPrefetch>
           </Button>
         </nav>
       </header>
@@ -70,7 +76,9 @@ export default function Home() {
         <Articles variant="outline" className="" articles={data.articles} />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
-            <Link to="/blog">Zobacz wszystkie artykuły</Link>
+            <LinkWithPrefetch to="/blog">
+              Zobacz wszystkie artykuły
+            </LinkWithPrefetch>
           </Button>
         </nav>
       </section>
@@ -87,7 +95,9 @@ export default function Home() {
         <Courses variant="outline" className="" courses={data.courses} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
-            <Link to="/learning">Zobacz wszystkie kursy</Link>
+            <LinkWithPrefetch to="/learning">
+              Zobacz wszystkie kursy
+            </LinkWithPrefetch>
           </Button>
         </nav>
       </section>

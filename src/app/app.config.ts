@@ -1,3 +1,4 @@
+import type { RouteObject } from "react-router-dom";
 import {
   type Icon,
   IconBrandGithub,
@@ -5,6 +6,7 @@ import {
 } from "@tabler/icons-react";
 
 export interface AppConfig {
+  routes: RouteObject[];
   socials: Array<{ href: string; label: string; icon: Icon }>;
   meta: {
     title?: string;
@@ -14,6 +16,7 @@ export interface AppConfig {
 }
 
 export const config: AppConfig = {
+  routes: [],
   socials: [
     {
       href: "https://www.linkedin.com/in/jakubszpil/",
