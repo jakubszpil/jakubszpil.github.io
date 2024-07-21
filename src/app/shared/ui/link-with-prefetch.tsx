@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { type AnchorHTMLAttributes, useMemo, useCallback } from "react";
 import { Link, matchRoutes, type LinkProps } from "react-router-dom";
 
 import { useConfig } from "../data-access";
 
-type PrefetchBehavior = "intent" | "render" | "none";
+type PrefetchBehavior = "intent" | "none";
 
 export interface LinkWithPrefetchProps extends LinkProps {
   prefetch?: PrefetchBehavior;
@@ -14,8 +14,6 @@ export function LinkWithPrefetch({
   ...props
 }: LinkWithPrefetchProps) {
   const { routes } = useConfig();
-
-  const linkRef = useRef<HTMLAnchorElement>(null);
 
   const matches = useMemo(
     () => matchRoutes(routes, props.to),
@@ -37,7 +35,7 @@ export function LinkWithPrefetch({
     });
   }, [matches, props.to]);
 
-  const prefetchOnIntent = useCallback(() => {
+  const handlers = useMemo((): AnchorHTMLAttributes<HTMLAnchorElement> => {
     let prefetchTimeout: NodeJS.Timeout | null = null;
 
     const waitAndPrefetch = () => {
@@ -51,37 +49,37 @@ export function LinkWithPrefetch({
       }
     };
 
-    linkRef.current?.addEventListener("click", prefetchRoute);
-    linkRef.current?.addEventListener("mouseenter", waitAndPrefetch);
-    linkRef.current?.addEventListener("focus", waitAndPrefetch);
-    linkRef.current?.addEventListener("mouseleave", clearPrefetchTimeout);
-    linkRef.current?.addEventListener("blur", clearPrefetchTimeout);
-    linkRef.current?.addEventListener("touchstart", prefetchRoute);
+    if (prefetch === "intent") {
+      return {
+        onClick: (event) => {
+          prefetchRoute();
+          props.onClick?.(event);
+        },
+        onTouchStart: (event) => {
+          prefetchRoute();
+          props.onTouchStart?.(event);
+        },
+        onMouseEnter: (event) => {
+          waitAndPrefetch();
+          props.onMouseEnter?.(event);
+        },
+        onMouseLeave: (event) => {
+          clearPrefetchTimeout();
+          props.onMouseLeave?.(event);
+        },
+        onFocus: (event) => {
+          waitAndPrefetch();
+          props.onFocus?.(event);
+        },
+        onBlur: (event) => {
+          clearPrefetchTimeout();
+          props.onBlur?.(event);
+        },
+      };
+    }
 
-    return () => {
-      if (prefetchTimeout !== null) clearTimeout(prefetchTimeout);
-      linkRef.current?.removeEventListener("click", prefetchRoute);
-      linkRef.current?.removeEventListener("mouseenter", waitAndPrefetch);
-      linkRef.current?.removeEventListener("focus", waitAndPrefetch);
-      linkRef.current?.removeEventListener("mouseleave", clearPrefetchTimeout);
-      linkRef.current?.removeEventListener("blur", clearPrefetchTimeout);
-      linkRef.current?.removeEventListener("touchstart", prefetchRoute);
-    };
-  }, [prefetchRoute]);
+    return {};
+  }, [prefetch, prefetchRoute, props]);
 
-  const prefetchOnRender = useCallback(() => {
-    prefetchRoute();
-    return () => {};
-  }, [prefetchRoute]);
-
-  useEffect(() => {
-    if (!prefetch) return;
-
-    if (prefetch === "intent") return prefetchOnIntent();
-    if (prefetch === "render") return prefetchOnRender();
-
-    return;
-  }, [prefetch, prefetchOnIntent, prefetchOnRender]);
-
-  return <Link {...props} ref={linkRef} />;
+  return <Link {...props} {...handlers} />;
 }
