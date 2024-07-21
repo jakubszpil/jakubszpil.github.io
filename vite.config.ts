@@ -26,7 +26,7 @@ export default defineConfig(() => {
         registerType: "autoUpdate",
         includeAssets: ["robots.txt", "sitemap.txt", "static/**", "assets/**"],
         workbox: {
-          globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+          globPatterns: ["**/*.{js,css,html,ico,png,svg,ttf,txt}"],
         },
         pwaAssets: {
           config: true,
