@@ -56,6 +56,7 @@ export function LinkWithPrefetch({
     linkRef.current?.addEventListener("focus", waitAndPrefetch);
     linkRef.current?.addEventListener("mouseleave", clearPrefetchTimeout);
     linkRef.current?.addEventListener("blur", clearPrefetchTimeout);
+    linkRef.current?.addEventListener("touchstart", prefetchRoute);
 
     return () => {
       if (prefetchTimeout !== null) clearTimeout(prefetchTimeout);
@@ -64,6 +65,7 @@ export function LinkWithPrefetch({
       linkRef.current?.removeEventListener("focus", waitAndPrefetch);
       linkRef.current?.removeEventListener("mouseleave", clearPrefetchTimeout);
       linkRef.current?.removeEventListener("blur", clearPrefetchTimeout);
+      linkRef.current?.removeEventListener("touchstart", prefetchRoute);
     };
   }, [prefetchRoute]);
 

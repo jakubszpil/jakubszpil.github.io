@@ -22,7 +22,7 @@ export default function Layout(props: LayoutProps) {
           <Navbar.Link to="/me">🙋‍♂️ O mnie</Navbar.Link>
         </Navbar.Menu>
       </Navbar>
-      <main className="mt-[68px] lg:mt-auto">{props.children}</main>
+      <main>{props.children}</main>
       <Footer>
         <Footer.Link to="/">🏠 Strona główna</Footer.Link>
         <Footer.Link to="/blog">📝 Blog</Footer.Link>
