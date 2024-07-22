@@ -10,6 +10,7 @@ import {
   SeoProvider,
   ConfigProvider,
   buildRoutes,
+  ThemeContextProvider,
 } from "@libs/shared";
 
 import "./styles/globals.css";
@@ -40,11 +41,13 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <ConfigProvider config={{ ...config, routes }}>
-      <SeoProvider>
-        <Seo {...config.meta} />
-        <RouterProvider router={router} />
-      </SeoProvider>
-    </ConfigProvider>
+    <ThemeContextProvider>
+      <ConfigProvider config={{ ...config, routes }}>
+        <SeoProvider>
+          <Seo {...config.meta} />
+          <RouterProvider router={router} />
+        </SeoProvider>
+      </ConfigProvider>
+    </ThemeContextProvider>
   </StrictMode>
 );

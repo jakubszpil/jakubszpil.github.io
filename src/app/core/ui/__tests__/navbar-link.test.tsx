@@ -18,10 +18,8 @@ import {
 
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
 
-vi.mock("@libs/shared", async (importActual) => {
-  const actual = await importActual<typeof import("@libs/shared")>();
+vi.mock("@libs/shared", async () => {
   return {
-    ...actual,
     Button: vi.fn(),
     LinkWithPrefetch: vi.fn(),
   };

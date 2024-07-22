@@ -79,6 +79,14 @@
   html {
     @apply antialiased xl:text-lg;
   }
+
+  html.switching-theme * {
+    transition: none !important;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
 }
 
 @layer components {
@@ -92,7 +100,7 @@
 }
 
 pre {
-  @apply !bg-slate-800;
+  @apply !bg-slate-800 dark:!bg-neutral-900;
 }
 
 pre code.hljs {
@@ -104,7 +112,7 @@ code.hljs {
 }
 
 .hljs {
-  @apply text-slate-200 bg-slate-800;
+  @apply text-slate-200 bg-slate-800 dark:!bg-neutral-900;
 }
 
 .hljs-doctag,

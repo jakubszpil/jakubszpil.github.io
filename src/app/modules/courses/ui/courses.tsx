@@ -34,11 +34,11 @@ export default function Courses(props: CoursesProps) {
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {course.title}
             </h2>
-            <p className="line-clamp-3 mt-2 text-neutral-700 font-normal">
+            <p className="line-clamp-3 mt-2 text-neutral-700 font-normal dark:text-neutral-300">
               {course.description}
             </p>
             {course.createdAt && (
-              <span className="text-neutral-600 text-xs">
+              <span className="text-neutral-600 text-xs dark:text-neutral-400">
                 {getLocalizedDate(course.createdAt)}
               </span>
             )}

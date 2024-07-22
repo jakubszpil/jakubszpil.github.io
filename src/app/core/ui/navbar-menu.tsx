@@ -4,7 +4,7 @@ import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
-import { Button, LinkWithPrefetch } from "@libs/shared";
+import { Button, LinkWithPrefetch, ThemeSwitcher } from "@libs/shared";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
@@ -51,6 +51,8 @@ export default function NavbarMenu(props: NavbarMenuProps) {
 
         <Socials hideLabels={true} />
 
+        <ThemeSwitcher />
+
         <Button
           size="icon"
           ref={buttonRef}
@@ -69,7 +71,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           {show ? (
             <IconX className="!text-white h-6" />
           ) : (
-            <IconMenu2 className="h-6 !text-black" />
+            <IconMenu2 className="h-6 !text-black dark:!text-white" />
           )}
         </Button>
       </div>
