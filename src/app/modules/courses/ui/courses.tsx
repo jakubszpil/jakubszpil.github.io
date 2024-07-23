@@ -1,5 +1,3 @@
-import classNames from "classnames";
-
 import {
   Button,
   type ButtonProps,
@@ -18,10 +16,9 @@ export interface CoursesProps {
 export default function Courses(props: CoursesProps) {
   return (
     <section
-      className={classNames(
-        "container pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3",
-        props.className
-      )}
+      className={`container pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 ${
+        props.className ?? ""
+      }`}
     >
       {props.courses.map((course) => (
         <Button

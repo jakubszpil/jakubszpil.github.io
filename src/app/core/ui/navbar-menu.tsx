@@ -1,5 +1,4 @@
 import { useRef, useState, type ReactElement } from "react";
-import classNames from "classnames";
 import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
@@ -57,10 +56,9 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           size="icon"
           ref={buttonRef}
           onClick={toggleMenu}
-          className={classNames(
-            "inline-flex items-center justify-center relative z-50 lg:hidden",
-            show && "dark"
-          )}
+          className={`inline-flex items-center justify-center relative z-50 lg:hidden${
+            show ? " dark" : ""
+          }`}
           variant="link"
           aria-label={show ? "Zamknij menu" : "Otwórz menu"}
           title={show ? "Zamknij menu" : "Otwórz menu"}
@@ -77,14 +75,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
       </div>
 
       <Transition show={show}>
-        <nav
-          className={classNames(
-            "flex flex-col gap-1 justify-center items-center fixed inset-0 dark bg-background text-foreground z-40 lg:hidden",
-            "transition-[transform,opacity,visibility] duration-150",
-            "data-[closed]:opacity-0 data-[closed]:invisible",
-            "data-[enter]:translate-y-0 data-[enter]:data-[closed]:translate-y-10"
-          )}
-        >
+        <nav className="flex flex-col gap-1 justify-center items-center fixed inset-0 dark bg-background text-foreground z-40 lg:hidden transition-[transform,opacity,visibility] duration-150 data-[closed]:opacity-0 data-[closed]:invisible data-[enter]:translate-y-0 data-[enter]:data-[closed]:translate-y-10">
           {props.children.map((child) => (
             <NavbarLink
               {...child.props}

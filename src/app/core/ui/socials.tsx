@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { v4 } from "uuid";
 
 import { Button, type ButtonProps, useConfig } from "@libs/shared";
@@ -23,7 +22,7 @@ export default function Socials(props: SocialsProps) {
     >
       <a href={social.href} target="_blank">
         <social.icon />
-        <span className={classNames(props.hideLabels && "sr-only")}>
+        <span className={`${props.hideLabels ? "sr-only" : ""}`}>
           {social.label}
         </span>
       </a>
