@@ -39,7 +39,7 @@ export function LinkWithPrefetch({
     let prefetchTimeout: NodeJS.Timeout | null = null;
 
     const waitAndPrefetch = () => {
-      prefetchTimeout = setTimeout(prefetchRoute, 500);
+      prefetchTimeout = setTimeout(prefetchRoute, 300);
     };
 
     const clearPrefetchTimeout = () => {
