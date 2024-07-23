@@ -55,6 +55,10 @@ export function LinkWithPrefetch({
           prefetchRoute();
           props.onClick?.(event);
         },
+        onTouchStartCapture: (event) => {
+          prefetchRoute();
+          props.onTouchStartCapture?.(event);
+        },
         onTouchStart: (event) => {
           prefetchRoute();
           props.onTouchStart?.(event);
