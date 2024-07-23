@@ -1,4 +1,4 @@
-const s={id:"2e301a08-6852-4ca7-94ad-0bc09b6d9925",slug:"semantyczny-html",content:`<h2>Czym jest semantyczny HTML?</h2>
+const s={id:"3da3e5db-68ff-47e7-ab87-fe577c3c1779",slug:"semantyczny-html",content:`<h2>Czym jest semantyczny HTML?</h2>
 <p>Semantyczny HTML polega na używaniu elementów HTML, które jednoznacznie opisują swoje znaczenie i cel. Elementy semantyczne nie tylko definiują strukturę dokumentu, ale również pomagają w interpretacji jego zawartości zarówno przez przeglądarki, jak i przez wyszukiwarki internetowe oraz technologie wspomagające (np. czytniki ekranowe).</p>
 <h2>Zalety używania semantycznego HTML</h2>
 <ol>
@@ -200,12 +200,7 @@ const s={id:"2e301a08-6852-4ca7-94ad-0bc09b6d9925",slug:"semantyczny-html",conte
 <span class="hljs-tag">&#x3C;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"pl"</span>></span>
   <span class="hljs-tag">&#x3C;<span class="hljs-name">head</span>></span>
     <span class="hljs-tag">&#x3C;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /></span>
-    <span class="hljs-tag">&#x3C;<span class="hljs-name">meta</span>
-      <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span>
-      <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0
-
-"</span>
-    /></span>
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span> /></span>
     <span class="hljs-tag">&#x3C;<span class="hljs-name">title</span>></span>Zadanie 3<span class="hljs-tag">&#x3C;/<span class="hljs-name">title</span>></span>
   <span class="hljs-tag">&#x3C;/<span class="hljs-name">head</span>></span>
   <span class="hljs-tag">&#x3C;<span class="hljs-name">body</span>></span>
