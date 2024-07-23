@@ -83,7 +83,7 @@ export default function Home() {
         </nav>
       </section>
 
-      <section className="prose max-w-full bg-neutral-50 border-t border-b border-t-neutral-200 border-b-neutral-200 dark:bg-neutral-900 dark:border-t-neutral-800 dark:border-b-neutral-800">
+      <section className="prose max-w-full bg-neutral-50 border-t border-b border-t-neutral-200 border-b-neutral-200 dark:bg-neutral-800 dark:border-t-neutral-700 dark:border-b-neutral-700">
         <header className="container pt-12 pb-0">
           <h2 className="mt-0">Kursy 🏫 (a.k.a Learning)</h2>
           <p>
