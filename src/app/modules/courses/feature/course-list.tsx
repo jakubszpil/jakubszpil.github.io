@@ -1,12 +1,9 @@
-import {
-  capitalize,
-  defineLoader,
-  notFound,
-  Seo,
-  useLoader,
-} from "@libs/shared";
+import { type LoaderFunctionArgs as LFA } from "react-router-dom";
+
+import { capitalize, Seo, useLoader } from "@libs/shared";
 
 import {
+  Course,
   getCourses,
   getCoursesByCategory,
   getCoursesCategories,
@@ -14,12 +11,22 @@ import {
 import CategoryList from "../ui/categories";
 import Courses from "../ui/courses";
 
-export const loader = defineLoader(async ({ params }) => {
+export interface CourseListLoaderData {
+  category: string | undefined;
+  categories: string[];
+  courses: Course[];
+}
+
+export async function loader({ params }: LFA) {
   const category = params.category;
   const categories = await getCoursesCategories();
 
   if (category) {
-    if (!categories.includes(category)) throw notFound();
+    if (!categories.includes(category))
+      throw new Response(null, {
+        status: 404,
+        statusText: "Nie znaleziono",
+      });
 
     return {
       category,
@@ -33,7 +40,7 @@ export const loader = defineLoader(async ({ params }) => {
     categories,
     category,
   };
-});
+}
 
 export default function CourseList() {
   const { courses, categories, category } = useLoader<typeof loader>();

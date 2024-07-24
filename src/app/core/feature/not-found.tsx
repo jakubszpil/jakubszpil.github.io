@@ -1,9 +1,14 @@
-import { defineLoader, notFound } from "@libs/shared";
-
-export const loader = defineLoader(() => {
-  throw notFound();
-});
+export async function loader() {
+  throw new Response(null, {
+    status: 404,
+    statusText: "Nie znaleziono strony",
+  });
+}
 
 export default function NotFound() {
-  return <div>NotFound</div>;
+  return (
+    <div>
+      <h1>Nie znaleziono strony</h1>
+    </div>
+  );
 }

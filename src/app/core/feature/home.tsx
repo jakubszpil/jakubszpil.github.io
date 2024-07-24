@@ -1,15 +1,9 @@
-import {
-  defineLoader,
-  useLoader,
-  Button,
-  Seo,
-  LinkWithPrefetch,
-} from "@libs/shared";
+import { useLoader, Button, Seo, LinkWithPrefetch } from "@libs/shared";
 import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
 import { Courses, getCourses } from "@libs/courses";
 
-export const loader = defineLoader(async () => {
+export async function loader() {
   const articles = await getArticles(3);
   const projects = await getProjects(3);
   const courses = await getCourses(3);
@@ -19,7 +13,7 @@ export const loader = defineLoader(async () => {
     projects,
     courses,
   };
-});
+}
 
 export default function Home() {
   const data = useLoader<typeof loader>();

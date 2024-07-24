@@ -1,15 +1,21 @@
-import { notFound, useLoader, defineLoader, Seo } from "@libs/shared";
+import { type LoaderFunctionArgs as LFA } from "react-router-dom";
+
+import { Seo, useLoader } from "@libs/shared";
 
 import { getCourse } from "../data-access/courses";
 import Categories from "../ui/categories";
 
-export const loader = defineLoader(async ({ params }) => {
+export async function loader({ params }: LFA) {
   const course = await getCourse(params.slug);
 
-  if (!course) throw notFound();
+  if (!course)
+    throw new Response(null, {
+      status: 404,
+      statusText: "Nie znaleziono",
+    });
 
   return course;
-});
+}
 
 export default function CourseDetails() {
   const course = useLoader<typeof loader>();

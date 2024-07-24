@@ -1,15 +1,15 @@
-import { defineLoader, Seo, useLoader } from "@libs/shared";
+import { Seo, useLoader } from "@libs/shared";
 
 import Socials from "../ui/socials";
 
-export const loader = defineLoader(() => {
+export async function loader() {
   const currentDate = new Date().getFullYear();
   const startDate = new Date(2021, 6, 1).getFullYear();
 
   const years = currentDate - startDate;
 
   return { years };
-});
+}
 
 export default function About() {
   const { years } = useLoader<typeof loader>();

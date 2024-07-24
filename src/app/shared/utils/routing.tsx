@@ -1,13 +1,11 @@
 import {
   type ActionFunction,
-  type ActionFunctionArgs,
   type LazyRouteFunction,
   type LoaderFunction,
   type LoaderFunctionArgs,
   type RouteObject,
   createBrowserRouter,
   createHashRouter,
-  useActionData,
   useLoaderData,
 } from "react-router-dom";
 
@@ -113,23 +111,9 @@ export function createRouter(routes: RouteObject[], options?: RouterOptions) {
 export type MaybeAsync<T> = T | Promise<T>;
 
 export type Loader<T> = (args: LoaderFunctionArgs) => MaybeAsync<T>;
-export type Action<T> = (args: ActionFunctionArgs) => MaybeAsync<T>;
 
 export type LoaderData<T> = T extends Loader<infer X> ? X : unknown;
-export type ActionData<T> = T extends Action<infer X> ? X : unknown;
-
-export function defineLoader<T>(loader: Loader<T>) {
-  return loader;
-}
 
 export function useLoader<T>() {
   return useLoaderData() as LoaderData<T>;
-}
-
-export function defineAction<T>(action: Action<T>) {
-  return action;
-}
-
-export function useAction<T>() {
-  return useActionData() as ActionData<T> | undefined;
 }

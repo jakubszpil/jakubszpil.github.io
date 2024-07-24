@@ -1,29 +1,18 @@
 import { useCallback } from "react";
-import { Form, redirect, createPath } from "react-router-dom";
+import {
+  Form,
+  redirect,
+  createPath,
+  type LoaderFunctionArgs as LFA,
+} from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
-import {
-  defineLoader,
-  useLoader,
-  Button,
-  Input,
-  Seo,
-  type Resource,
-} from "@libs/shared";
+import { useLoader, Button, Input, Seo, isValidUrl } from "@libs/shared";
 import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
 import { Courses, getCourses } from "@libs/courses";
 
-const isValidUrl = (url: unknown) => {
-  try {
-    new URL(url as URL);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
-export const loader = defineLoader(async ({ request }) => {
+export async function loader({ request }: LFA) {
   const url = new URL(request.url);
   const query = url.searchParams.get("q");
 
@@ -55,18 +44,14 @@ export const loader = defineLoader(async ({ request }) => {
     const requestUrl = new URL(request.url);
     const url = new URL(query);
 
-    if (requestUrl.origin === url.origin) {
+    if (requestUrl.origin === url.origin)
       throw redirect(createPath(url).replace("#/", ""));
-    }
   }
 
-  const test = <T extends Resource>(i: T): boolean => {
-    if (!query) return false;
-    const s = JSON.stringify(i);
-    const q = query.toLowerCase();
-
-    return s.toLowerCase().includes(q);
-  };
+  const test = (i: unknown): boolean =>
+    !query
+      ? false
+      : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
 
   const articles = (await getArticles()).filter(test);
   const courses = (await getCourses()).filter(test);
@@ -75,7 +60,7 @@ export const loader = defineLoader(async ({ request }) => {
   const resultsCount = articles.length + projects.length + courses.length;
 
   return { query, articles, courses, projects, resultsCount };
-});
+}
 
 export default function Search() {
   const { query, articles, projects, courses, resultsCount } =
@@ -141,7 +126,11 @@ export default function Search() {
         </p>
       </header>
 
-      <Form method="get" className="container py-0 bg-background flex gap-2">
+      <Form
+        preventScrollReset={true}
+        method="get"
+        className="container py-0 bg-background flex gap-2"
+      >
         <Input
           key={query}
           type="text"
