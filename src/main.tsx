@@ -24,7 +24,7 @@ const routes = buildRoutes(
 );
 
 const router = createRouter(routes, {
-  hashLocation: false,
+  hashLocation: true,
   future: {
     v7_fetcherPersist: true,
     v7_normalizeFormMethod: true,
