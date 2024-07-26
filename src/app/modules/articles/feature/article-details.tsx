@@ -1,6 +1,6 @@
 import { type LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { Seo, useLoader } from "@libs/shared";
+import { json, Seo, useLoader } from "@libs/shared";
 
 import { getArticle } from "../data-access/articles";
 import Categories from "../ui/categories";
@@ -14,7 +14,7 @@ export async function loader({ params }: LFA) {
       statusText: "Nie znaleziono",
     });
 
-  return article;
+  return json(article);
 }
 
 export default function ArticleDetails() {

@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   createHashRouter,
   useLoaderData,
+  json as nativeJson,
 } from "react-router-dom";
 
 export interface RouteModule {
@@ -108,11 +109,24 @@ export function createRouter(routes: RouteObject[], options?: RouterOptions) {
   return createBrowserRouter(routes, options);
 }
 
+export type TypedResponse<T> = Response & { body: T };
+
+export function json<T>(
+  data: T,
+  init?: number | ResponseInit
+): TypedResponse<T> {
+  return nativeJson(data, init) as TypedResponse<T>;
+}
+
 export type MaybeAsync<T> = T | Promise<T>;
 
 export type Loader<T> = (args: LoaderFunctionArgs) => MaybeAsync<T>;
 
-export type LoaderData<T> = T extends Loader<infer X> ? X : unknown;
+export type LoaderData<T> = T extends Loader<infer X>
+  ? X extends TypedResponse<infer Y>
+    ? Y
+    : X
+  : unknown;
 
 export function useLoader<T>() {
   return useLoaderData() as LoaderData<T>;

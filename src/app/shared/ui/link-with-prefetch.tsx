@@ -21,17 +21,15 @@ export function LinkWithPrefetch({
   );
 
   const prefetchRoute = useCallback(() => {
-    const target = matches?.at(-1);
-
-    if (!target) return;
-
-    target.route.lazy?.().then((route) => {
-      if (route.loader instanceof Function) {
-        route.loader({
-          params: target.params,
-          request: new Request(props.to as URL),
-        });
-      }
+    matches?.forEach((match) => {
+      match.route.lazy?.().then((route) => {
+        if (route.loader instanceof Function) {
+          route.loader({
+            params: match.params,
+            request: new Request(props.to as URL),
+          });
+        }
+      });
     });
   }, [matches, props.to]);
 

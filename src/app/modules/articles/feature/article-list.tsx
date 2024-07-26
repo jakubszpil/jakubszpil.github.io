@@ -1,6 +1,6 @@
 import { type LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { capitalize, Seo, useLoader } from "@libs/shared";
+import { capitalize, json, Seo, useLoader } from "@libs/shared";
 
 import {
   getArticles,
@@ -21,18 +21,18 @@ export async function loader({ params }: LFA) {
         statusText: "Nie znaleziono",
       });
 
-    return {
+    return json({
       articles: await getArticlesByCategory(category),
       categories,
       category,
-    };
+    });
   }
 
-  return {
+  return json({
     articles: await getArticles(),
     categories,
     category,
-  };
+  });
 }
 
 export default function ArticleList() {

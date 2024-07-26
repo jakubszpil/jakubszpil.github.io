@@ -1,4 +1,4 @@
-import { Seo, useLoader } from "@libs/shared";
+import { json, Seo, useLoader } from "@libs/shared";
 
 import Socials from "../ui/socials";
 
@@ -8,7 +8,7 @@ export async function loader() {
 
   const years = currentDate - startDate;
 
-  return { years };
+  return json({ years });
 }
 
 export default function About() {

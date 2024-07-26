@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+import { matchRoutes, RouterProvider } from "react-router-dom";
 import invariant from "tiny-invariant";
 
 import {
@@ -22,6 +22,21 @@ const routes = buildRoutes(
     .addModule(() => import("./app/app"))
     .addChildren(...appRoutes)
 );
+
+const lazyMatches = matchRoutes(
+  routes,
+  window.location.hash.replace("#", "") || window.location.pathname
+)?.filter((m) => m.route.lazy);
+
+if (lazyMatches && lazyMatches?.length > 0) {
+  lazyMatches.forEach(async (m) => {
+    const routeModule = await m.route?.lazy?.();
+    Object.assign(m.route, {
+      ...routeModule,
+      lazy: undefined,
+    });
+  });
+}
 
 const router = createRouter(routes, {
   hashLocation: true,

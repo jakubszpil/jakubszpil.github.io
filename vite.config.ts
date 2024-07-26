@@ -7,7 +7,7 @@ import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 import { VitePWA as pwa } from "vite-plugin-pwa";
 
-import { chunks, mdx, minifyAndPrerender } from "./vite.plugins";
+import { chunks, mdx, minify } from "./vite.plugins";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -17,10 +17,9 @@ export default defineConfig(() => {
       mdx(),
       react(),
       tsconfigPaths(),
-      minifyAndPrerender({
+      minify({
         include: ["html", "svg", "json"],
         exclude: ["js"],
-        prerender: false,
       }),
       pwa({
         registerType: "autoUpdate",

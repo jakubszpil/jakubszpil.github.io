@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
-import { useLoader, Button, Input, Seo, isValidUrl } from "@libs/shared";
+import { useLoader, Button, Input, Seo, isValidUrl, json } from "@libs/shared";
 import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
 import { Courses, getCourses } from "@libs/courses";
@@ -32,12 +32,13 @@ export async function loader({ request }: LFA) {
   }
 
   if (!query) {
-    return {
+    return json({
       query,
       articles: [],
       courses: [],
       projects: [],
-    };
+      resultsCount: 0,
+    });
   }
 
   if (isValidUrl(query)) {
@@ -59,7 +60,7 @@ export async function loader({ request }: LFA) {
 
   const resultsCount = articles.length + projects.length + courses.length;
 
-  return { query, articles, courses, projects, resultsCount };
+  return json({ query, articles, courses, projects, resultsCount });
 }
 
 export default function Search() {

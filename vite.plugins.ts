@@ -10,7 +10,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
-import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import { v4 } from "uuid";
 
 export function mdx(): Plugin {
@@ -49,10 +49,9 @@ export function mdx(): Plugin {
   };
 }
 
-export function minifyAndPrerender(config?: {
+export function minify(config?: {
   include?: string[];
   exclude?: string[];
-  prerender?: boolean;
 }): Plugin {
   return {
     name: "minify",
@@ -86,24 +85,6 @@ export function minifyAndPrerender(config?: {
         if (file.includes("json")) result = result.replace(/\s/g, "");
 
         await writeFile(join(dist, file), result, "utf-8");
-      }
-
-      if (config?.prerender) {
-        const sitemap = await readFile(join(dist, "sitemap.txt"), "utf-8");
-        const index = await readFile(join(dist, "index.html"), "utf-8");
-
-        const paths = sitemap
-          .split(`https://jakubszpil.github.io`)
-          .map((path) => path.replace("\n", "").replace("\r", ""))
-          .filter(Boolean)
-          .filter((path) => path !== "/");
-
-        for (const path of paths) {
-          const dir = join(dist, path);
-          console.log(dir);
-          await mkdir(dir, { recursive: true });
-          await writeFile(join(dir, "index.html"), index, "utf-8");
-        }
       }
     },
   };

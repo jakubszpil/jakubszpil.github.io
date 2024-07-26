@@ -1,4 +1,4 @@
-import { useLoader, Button, Seo, LinkWithPrefetch } from "@libs/shared";
+import { useLoader, Button, Seo, LinkWithPrefetch, json } from "@libs/shared";
 import { getArticles, Articles } from "@libs/articles";
 import { getProjects } from "@libs/projects";
 import { Courses, getCourses } from "@libs/courses";
@@ -8,11 +8,11 @@ export async function loader() {
   const projects = await getProjects(3);
   const courses = await getCourses(3);
 
-  return {
+  return json({
     articles,
     projects,
     courses,
-  };
+  });
 }
 
 export default function Home() {

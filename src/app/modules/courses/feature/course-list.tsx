@@ -1,6 +1,6 @@
 import { type LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { capitalize, Seo, useLoader } from "@libs/shared";
+import { capitalize, json, Seo, useLoader } from "@libs/shared";
 
 import {
   Course,
@@ -28,18 +28,18 @@ export async function loader({ params }: LFA) {
         statusText: "Nie znaleziono",
       });
 
-    return {
+    return json({
       category,
       categories,
       courses: await getCoursesByCategory(category),
-    };
+    });
   }
 
-  return {
+  return json({
     courses: await getCourses(),
     categories,
     category,
-  };
+  });
 }
 
 export default function CourseList() {
