@@ -1,4 +1,4 @@
-const s={id:"4bb3efb2-0062-4646-94ad-1869cfc03e7a",slug:"wprowadzenie-do-dom",content:`<h2>Wprowadzenie</h2>
+const s={id:"e20f5752-ee56-4d09-b568-405ef34550fc",slug:"wprowadzenie-do-dom",content:`<h2>Wprowadzenie</h2>
 <p>DOM (Document Object Model) to interfejs programistyczny dla dokumentów HTML i XML. Umożliwia dynamiczne manipulowanie strukturą, stylem i treścią dokumentów. DOM reprezentuje dokument jako drzewo obiektów, gdzie każdy element, atrybut i tekst w dokumencie jest węzłem drzewa.</p>
 <h2>Struktura DOM</h2>
 <p>DOM przedstawia dokument HTML jako drzewo hierarchiczne:</p>
