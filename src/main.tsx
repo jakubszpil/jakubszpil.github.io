@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { startTransition, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { matchRoutes, RouterProvider } from "react-router-dom";
 import invariant from "tiny-invariant";
@@ -54,15 +54,17 @@ invariant(rootElement);
 
 const root = createRoot(rootElement);
 
-root.render(
-  <StrictMode>
-    <ThemeContextProvider>
-      <ConfigProvider config={{ ...config, routes }}>
-        <SeoProvider>
-          <Seo {...config.meta} />
-          <RouterProvider router={router} />
-        </SeoProvider>
-      </ConfigProvider>
-    </ThemeContextProvider>
-  </StrictMode>
+startTransition(() =>
+  root.render(
+    <StrictMode>
+      <ThemeContextProvider>
+        <ConfigProvider config={{ ...config, routes }}>
+          <SeoProvider>
+            <Seo {...config.meta} />
+            <RouterProvider router={router} />
+          </SeoProvider>
+        </ConfigProvider>
+      </ThemeContextProvider>
+    </StrictMode>
+  )
 );
