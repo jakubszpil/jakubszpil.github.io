@@ -1,4 +1,7 @@
-import { type Resource, createResourceUtils } from "@libs/shared";
+import {
+  type Resource,
+  createResourceUtils,
+} from "@/shared/data-access/resources";
 
 export interface Project extends Resource {
   technologies?: string[];

@@ -9,18 +9,22 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import {
-  Button,
-  type ButtonProps,
-  LinkWithPrefetch,
-  type LinkWithPrefetchProps,
-} from "@libs/shared";
-
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
 
-vi.mock("@libs/shared", async () => {
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "@/shared/ui/link-with-prefetch";
+import { Button, type ButtonProps } from "@/shared/ui/button";
+
+vi.mock("@/shared/ui/button", async () => {
   return {
     Button: vi.fn(),
+  };
+});
+
+vi.mock("@/shared/ui/link-with-prefetch", async () => {
+  return {
     LinkWithPrefetch: vi.fn(),
   };
 });

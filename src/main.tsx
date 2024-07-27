@@ -3,28 +3,14 @@ import { createRoot } from "react-dom/client";
 import { matchRoutes, RouterProvider } from "react-router-dom";
 import invariant from "tiny-invariant";
 
-import {
-  createRoute,
-  createRouter,
-  Seo,
-  SeoProvider,
-  ConfigProvider,
-  buildRoutes,
-  ThemeContextProvider,
-} from "@libs/shared";
-
 import "./styles/globals.css";
-import { appRoutes } from "./app/app.routes";
-import { config } from "./app/app.config";
+import { config } from "./app/config";
 
-const routes = buildRoutes(
-  createRoute("")
-    .addModule(() => import("./app/app"))
-    .addChildren(...appRoutes)
-);
+import { ThemeContextProvider } from "@/shared/data-access/theme";
+import { createRouter } from "@/shared/utils/routing";
 
 const lazyMatches = matchRoutes(
-  routes,
+  config.routes,
   window.location.hash.replace("#", "") || window.location.pathname
 )?.filter((m) => m.route.lazy);
 
@@ -38,7 +24,7 @@ if (lazyMatches && lazyMatches?.length > 0) {
   });
 }
 
-const router = createRouter(routes, {
+const router = createRouter(config.routes, {
   hashLocation: true,
   future: {
     v7_fetcherPersist: true,
@@ -58,12 +44,7 @@ startTransition(() =>
   root.render(
     <StrictMode>
       <ThemeContextProvider>
-        <ConfigProvider config={{ ...config, routes }}>
-          <SeoProvider>
-            <Seo {...config.meta} />
-            <RouterProvider router={router} />
-          </SeoProvider>
-        </ConfigProvider>
+        <RouterProvider router={router} />
       </ThemeContextProvider>
     </StrictMode>
   )

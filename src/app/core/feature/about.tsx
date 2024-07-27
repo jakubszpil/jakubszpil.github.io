@@ -1,4 +1,5 @@
-import { json, Seo, useLoader } from "@libs/shared";
+import { json, useLoader } from "@/shared/utils/routing";
+import { Seo } from "@/shared/ui/seo";
 
 import Socials from "../ui/socials";
 

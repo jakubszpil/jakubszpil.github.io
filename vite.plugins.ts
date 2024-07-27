@@ -115,7 +115,7 @@ export function chunks(): Plugin {
             const is = (...libs: string[]) => libs.includes(name);
 
             if (is("react-router-dom", "@remix-run", "react-router"))
-              return `vendor/routing`;
+              return "routing";
 
             if (
               is(
@@ -126,26 +126,19 @@ export function chunks(): Plugin {
                 "shallowequal"
               )
             )
-              return `vendor/react`;
+              return "react";
 
-            return `vendor/libs`;
+            return "runtime";
           }
 
           if (id.includes("feature"))
             return `pages/${chunkName(id, "/feature/")}`;
 
-          if (id.includes("core")) return "core";
-          if (id.includes("shared")) return "shared";
-          if (id.includes("content")) {
-            const contentType = chunkName(id, "/content/");
-            const slug = chunkName(id, `/${contentType}/`);
-
-            return `content/${contentType}/${slug}`;
-          }
-          if (id.includes("modules"))
-            return `modules/${chunkName(id, "/modules/")}`;
-
-          return "index";
+          if (id.includes("content"))
+            return `content/${chunkName(
+              id,
+              `/${chunkName(id, "/content/")}/`
+            )}`;
         },
       };
     },

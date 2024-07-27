@@ -7,10 +7,16 @@ import {
 } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
-import { useLoader, Button, Input, Seo, isValidUrl, json } from "@libs/shared";
-import { getArticles, Articles } from "@libs/articles";
-import { getProjects } from "@libs/projects";
-import { Courses, getCourses } from "@libs/courses";
+import { getArticles } from "@/modules/articles/data-access/articles";
+import Articles from "@/modules/articles/ui/articles";
+import { getCourses } from "@/modules/courses/data-access/courses";
+import Courses from "@/modules/courses/ui/courses";
+import { getProjects } from "@/modules/projects/data-access/projects";
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input";
+import { Seo } from "@/shared/ui/seo";
+import { json, useLoader } from "@/shared/utils/routing";
+import { isValidUrl } from "@/shared/utils/url";
 
 export async function loader({ request }: LFA) {
   const url = new URL(request.url);

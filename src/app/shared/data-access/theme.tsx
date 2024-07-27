@@ -15,13 +15,13 @@ import {
 } from "@tabler/icons-react";
 
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "../ui";
+} from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
 
 export enum ThemeEnum {
   LIGHT = "LIGHT",

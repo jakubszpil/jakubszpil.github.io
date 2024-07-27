@@ -1,22 +1,14 @@
-import type { RouteObject } from "react-router-dom";
-import {
-  type Icon,
-  IconBrandGithub,
-  IconBrandLinkedin,
-} from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
-export interface AppConfig {
-  routes: RouteObject[];
-  socials: Array<{ href: string; label: string; icon: Icon }>;
-  meta: {
-    title?: string;
-    titleTemplate?: string;
-    description?: string;
-  };
-}
+import { appRoutes } from "./app.routes";
+import { buildRoutes, createRoute } from "./shared/utils/routing";
 
-export const config: AppConfig = {
-  routes: [],
+export const config = {
+  routes: buildRoutes(
+    createRoute("")
+      .addModule(() => import("./app"))
+      .addChildren(...appRoutes)
+  ),
   socials: [
     {
       href: "https://www.linkedin.com/in/jakubszpil/",
@@ -30,11 +22,8 @@ export const config: AppConfig = {
     },
   ],
   meta: {
+    titleTemplate: "%s - Jakub Szpil",
     description:
       "Cześć, jestem Kuba, jestem frontend developerem. Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz wiedzę i doświadczenie z frontu, jak i portfolio, które przywita Cię moimi ostatnimi projektami. Bon vojage! 🚢",
   },
 };
-
-declare module "@libs/shared" {
-  interface Config extends AppConfig {}
-}

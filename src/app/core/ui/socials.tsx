@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
 
-import { Button, type ButtonProps, useConfig } from "@libs/shared";
+import { config } from "@/config";
+import { Button, type ButtonProps } from "@/shared/ui/button";
 
 export interface SocialsProps {
   hideLabels?: boolean;
@@ -8,8 +9,6 @@ export interface SocialsProps {
 }
 
 export default function Socials(props: SocialsProps) {
-  const config = useConfig();
-
   return config.socials.map((social) => (
     <Button
       key={v4()}

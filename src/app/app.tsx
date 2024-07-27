@@ -5,10 +5,10 @@ import {
   useRouteError,
 } from "react-router-dom";
 
-import { Button, LinkWithPrefetch } from "@libs/shared";
-
 import Layout from "./core/ui/layout";
 import NotFound from "./core/ui/not-found";
+import { Button } from "./shared/ui/button";
+import { LinkWithPrefetch } from "./shared/ui/link-with-prefetch";
 
 export default function App() {
   return (

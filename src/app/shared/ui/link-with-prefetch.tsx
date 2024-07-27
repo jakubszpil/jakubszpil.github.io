@@ -1,7 +1,7 @@
 import { type AnchorHTMLAttributes, useMemo, useCallback } from "react";
 import { Link, matchRoutes, type LinkProps } from "react-router-dom";
 
-import { useConfig } from "../data-access";
+import { config } from "@/config";
 
 type PrefetchBehavior = "intent" | "none";
 
@@ -13,7 +13,7 @@ export function LinkWithPrefetch({
   prefetch = "intent",
   ...props
 }: LinkWithPrefetchProps) {
-  const { routes } = useConfig();
+  const { routes } = config;
 
   const matches = useMemo(
     () => matchRoutes(routes, props.to),

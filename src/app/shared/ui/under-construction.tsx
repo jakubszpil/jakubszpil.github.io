@@ -1,7 +1,7 @@
 import { Button } from "./button";
 import { LinkWithPrefetch } from "./link-with-prefetch";
 
-export default function UnderConstruction() {
+export function UnderConstruction() {
   return (
     <header className="prose container">
       <h1>Strona, której szukasz, jest jeszcze niedostępna.</h1>

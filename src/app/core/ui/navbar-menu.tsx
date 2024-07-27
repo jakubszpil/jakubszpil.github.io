@@ -1,12 +1,14 @@
-import { useRef, useState, type ReactElement } from "react";
+import { useCallback, useRef, useState, type ReactElement } from "react";
 import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
-import { Button, LinkWithPrefetch, ThemeSwitcher } from "@libs/shared";
-
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
+
+import { ThemeSwitcher } from "@/shared/data-access/theme";
+import { Button } from "@/shared/ui/button";
+import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
@@ -16,14 +18,14 @@ export default function NavbarMenu(props: NavbarMenuProps) {
   const [show, setShow] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setShow(false);
     buttonRef.current?.focus();
-  };
+  }, []);
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     setShow((prev) => !prev);
-  };
+  }, []);
 
   return (
     <>

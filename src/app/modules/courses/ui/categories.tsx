@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 
-import { Button, LinkWithPrefetch } from "@libs/shared";
+import { Button } from "@/shared/ui/button";
+import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 
 export interface CategoriesProps {
   categories?: string[];

@@ -1,12 +1,7 @@
-import { type ReactNode } from "react";
-import {
-  Helmet,
-  HelmetProvider,
-  type HelmetProps,
-  type MetaProps,
-} from "react-helmet-async";
+import { useEffect } from "react";
+import { type HelmetProps, type MetaProps } from "react-helmet-async";
 
-import { useConfig } from "../data-access";
+import { config } from "@/config";
 
 export interface SeoMeta {
   title?: string;
@@ -42,36 +37,30 @@ function createMetaTags(): MetaTags {
 }
 
 export const Seo = (props: SeoProps) => {
-  const config = useConfig();
+  useEffect(() => {
+    document.title = props.title ?? "Trwa ładowanie";
 
-  const title = (value?: string) =>
-    value ? `${value} - ${config.meta.title}` : null;
+    const title = (value?: string) =>
+      value ? config.meta.titleTemplate.replace("%s", value) : null;
 
-  const description = (value?: string) => value ?? config.meta.description;
+    const description = (value?: string) => value ?? config.meta.description;
 
-  const meta = createMetaTags()
-    .addTag("description", description(props.description))
-    .addTag("keywords", props.keywords?.join(","))
-    .addProperty("og:title", title(props.title))
-    .addProperty("og:description", description(props.description))
-    .addProperty("twitter:title", title(props.title))
-    .addProperty("twitter:description", description(props.description))
-    .build();
+    const meta = createMetaTags()
+      .addTag("description", description(props.description))
+      .addTag("keywords", props.keywords?.join(","))
+      .addProperty("og:title", title(props.title))
+      .addProperty("og:description", description(props.description))
+      .addProperty("twitter:title", title(props.title))
+      .addProperty("twitter:description", description(props.description))
+      .build();
 
-  return (
-    <Helmet
-      {...props}
-      title={props.title}
-      meta={meta}
-      prioritizeSeoTags={true}
-    />
-  );
-};
+    meta.forEach((meta) => {
+      const tag = document.createElement("meta");
+      tag.name = meta.name!;
+      tag.content = meta.content!;
+      document.head.append(tag);
+    });
+  }, [props]);
 
-export interface SeoProviderProps {
-  children: ReactNode;
-}
-
-export const SeoProvider = (props: SeoProviderProps) => {
-  return <HelmetProvider>{props.children}</HelmetProvider>;
+  return null;
 };

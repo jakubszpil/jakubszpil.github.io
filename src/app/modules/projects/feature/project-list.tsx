@@ -1,4 +1,5 @@
-import { Seo, UnderConstruction } from "@libs/shared";
+import { Seo } from "@/shared/ui/seo";
+import { UnderConstruction } from "@/shared/ui/under-construction";
 
 export default function ProjectList() {
   return (

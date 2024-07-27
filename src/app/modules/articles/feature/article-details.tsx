@@ -1,9 +1,10 @@
 import { type LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { json, Seo, useLoader } from "@libs/shared";
-
 import { getArticle } from "../data-access/articles";
 import Categories from "../ui/categories";
+
+import { Seo } from "@/shared/ui/seo";
+import { json, useLoader } from "@/shared/utils/routing";
 
 export async function loader({ params }: LFA) {
   const article = await getArticle(params.slug);

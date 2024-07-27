@@ -1,4 +1,4 @@
-import { type RouteBuilder, createRoute } from "@libs/shared";
+import { createRoute, type RouteBuilder } from "@/shared/utils/routing";
 
 export const routes: RouteBuilder[] = [
   createRoute("")

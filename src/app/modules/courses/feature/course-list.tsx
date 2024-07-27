@@ -1,7 +1,5 @@
 import { type LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { capitalize, json, Seo, useLoader } from "@libs/shared";
-
 import {
   Course,
   getCourses,
@@ -10,6 +8,10 @@ import {
 } from "../data-access/courses";
 import CategoryList from "../ui/categories";
 import Courses from "../ui/courses";
+
+import { Seo } from "@/shared/ui/seo";
+import { json, useLoader } from "@/shared/utils/routing";
+import { capitalize } from "@/shared/utils/string";
 
 export interface CourseListLoaderData {
   category: string | undefined;

@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 
-import { Button, LinkWithPrefetch } from "@libs/shared";
+import { Button } from "@/shared/ui/button";
+import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 
 export default function NotFound() {
   const location = useLocation();

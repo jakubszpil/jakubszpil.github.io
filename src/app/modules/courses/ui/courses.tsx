@@ -1,11 +1,8 @@
-import {
-  Button,
-  type ButtonProps,
-  getLocalizedDate,
-  LinkWithPrefetch,
-} from "@libs/shared";
-
 import { type Course } from "../data-access/courses";
+
+import { Button, type ButtonProps } from "@/shared/ui/button";
+import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
+import { getLocalizedDate } from "@/shared/utils/date";
 
 export interface CoursesProps {
   courses: Course[];

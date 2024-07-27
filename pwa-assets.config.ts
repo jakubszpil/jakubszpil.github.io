@@ -10,11 +10,32 @@ export default defineConfig({
   },
   preset: {
     ...minimal2023Preset,
+    assetName(type, size) {
+      switch (type) {
+        case "apple": {
+          return `apple-touch-icon-${size.width}x${size.height}.webp`;
+        }
+        case "maskable": {
+          return `maskable-icon-${size.width}x${size.height}.webp`;
+        }
+        case "transparent": {
+          return `pwa-${size.width}x${size.height}.webp`;
+        }
+      }
+    },
     appleSplashScreens: createAppleSplashScreens(
       {
         padding: 0.3,
         resizeOptions: { fit: "contain", background: "#ffffff" },
         darkResizeOptions: { fit: "contain", background: "#0a0a0a" },
+        name: (landscape, size, dark) => {
+          return `apple-splash-${landscape ? "landscape" : "portrait"}-${
+            dark ? "dark" : "light"
+          }-${size.width}x${size.height}.webp`;
+        },
+        png: {
+          quality: 60,
+        },
         linkMediaOptions: {
           log: true,
           addMediaScreen: true,

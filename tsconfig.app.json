@@ -25,10 +25,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "@libs/articles": ["./src/app/modules/articles/index"],
-      "@libs/courses": ["./src/app/modules/courses/index"],
-      "@libs/projects": ["./src/app/modules/projects/index"],
-      "@libs/shared": ["./src/app/shared/index"]
+      "@/*": ["./src/app/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

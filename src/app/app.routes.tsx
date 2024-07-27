@@ -1,9 +1,8 @@
-import { type RouteBuilder, createRoute } from "@libs/shared";
-import { routes as articlesRoutes } from "@libs/articles";
-import { routes as coursesRoutes } from "@libs/courses";
-import { routes as projectsRoutes } from "@libs/projects";
-
 import { routes as coreRoutes } from "./core/core.routes";
+import { routes as articlesRoutes } from "./modules/articles/articles.routes";
+import { routes as coursesRoutes } from "./modules/courses/courses.routes";
+import { routes as projectsRoutes } from "./modules/projects/projects.routes";
+import { createRoute, RouteBuilder } from "./shared/utils/routing";
 
 export const appRoutes: RouteBuilder[] = [
   createRoute("").addChildren(
