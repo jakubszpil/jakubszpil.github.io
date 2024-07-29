@@ -9,7 +9,6 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
-        mono: ["JetBrains Mono", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",
