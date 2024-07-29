@@ -131,10 +131,7 @@ export function chunks(): Plugin {
             return "runtime";
           }
 
-          if (id.includes("feature"))
-            return `pages/${chunkName(id, "/feature/")}`;
-
-          if (id.includes("content"))
+          if (id.includes("/content/"))
             return `content/${chunkName(
               id,
               `/${chunkName(id, "/content/")}/`

@@ -1,4 +1,4 @@
-import { json, useLoader } from "@/shared/utils/routing";
+import { useLoader } from "@/shared/utils/routing";
 import { Seo } from "@/shared/ui/seo";
 
 import Socials from "../ui/socials";
@@ -6,14 +6,11 @@ import Socials from "../ui/socials";
 export async function loader() {
   const currentDate = new Date().getFullYear();
   const startDate = new Date(2021, 6, 1).getFullYear();
-
-  const years = currentDate - startDate;
-
-  return json({ years });
+  return currentDate - startDate;
 }
 
 export default function About() {
-  const { years } = useLoader<typeof loader>();
+  const years = useLoader<typeof loader>();
 
   return (
     <div className="container prose">
