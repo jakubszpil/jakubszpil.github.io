@@ -1,4 +1,4 @@
-const s={id:"9fcbccdd-d798-46d4-8261-c13802119922",slug:"wprowadzenie-do-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.</p>
+const s={id:"aaa9f9a8-568c-465a-b51b-911224076d74",slug:"wprowadzenie-do-javascript",content:`<p>JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.</p>
 <h2>Zmienne</h2>
 <p>Zmienne w JavaScript mogą być deklarowane za pomocą <code>var</code>, <code>let</code> i <code>const</code>.</p>
 <h3>Przykłady:</h3>

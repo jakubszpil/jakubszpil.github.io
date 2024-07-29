@@ -1,4 +1,4 @@
-const s={id:"e7e97aa3-eba1-4f2b-9cdc-6792a378232a",slug:"szybszy-css-czyli-wprowadzenie-do-bem",content:`<h2>Czym jest BEM?</h2>
+const s={id:"a92e0ed8-b0a5-4b18-9278-2b04c321d82b",slug:"szybszy-css-czyli-wprowadzenie-do-bem",content:`<h2>Czym jest BEM?</h2>
 <p>BEM (Block, Element, Modifier) to metodyka nazewnictwa klas CSS, która pomaga tworzyć komponenty interfejsu użytkownika w sposób modularny i łatwy do utrzymania. BEM dzieli interfejs na bloki, elementy i modyfikatory, co pozwala na lepszą organizację kodu CSS.</p>
 <h2>Struktura BEM</h2>
 <h3>Blok</h3>
