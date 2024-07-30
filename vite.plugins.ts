@@ -136,6 +136,15 @@ export function chunks(): Plugin {
               id,
               `/${chunkName(id, "/content/")}/`
             )}`;
+
+          if (id.includes("/feature/"))
+            return `pages/${chunkName(id, "/feature/")}`;
+
+          if (id.includes("/ui/")) return "components";
+
+          if (id.includes("/utils/")) return "utils";
+
+          if (id.includes("app.")) return "app";
         },
       };
     },

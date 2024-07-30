@@ -6,9 +6,9 @@ import { v4 } from "uuid";
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 
-import { ThemeSwitcher } from "@/shared/data-access/theme";
 import { Button } from "@/shared/ui/button";
 import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
+import { ThemeSwitcher } from "@/shared/ui/theme-switcher";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];

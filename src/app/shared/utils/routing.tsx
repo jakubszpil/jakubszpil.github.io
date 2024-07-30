@@ -8,6 +8,8 @@ import {
   createHashRouter,
   useLoaderData,
   json as nativeJson,
+  ActionFunctionArgs,
+  useActionData,
 } from "react-router-dom";
 
 export interface RouteModule {
@@ -130,4 +132,16 @@ export type LoaderData<T> = T extends Loader<infer X>
 
 export function useLoader<T>() {
   return useLoaderData() as LoaderData<T>;
+}
+
+export type Action<T> = (args: ActionFunctionArgs) => MaybeAsync<T>;
+
+export type ActionData<T> = T extends Action<infer X>
+  ? X extends TypedResponse<infer Y>
+    ? Y
+    : X
+  : unknown;
+
+export function useAction<T>() {
+  return useActionData() as ActionData<T> | undefined;
 }
