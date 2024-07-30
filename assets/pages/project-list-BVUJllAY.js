@@ -1,0 +1,1 @@
+import{j as t}from"../react-f9Xa8TJW.js";import{S as o,U as r}from"../components-DMJuwcw9.js";import"../utils-DdRODKh7.js";import"../routing-CQDCBRuK.js";import"../runtime-Bil-2W2T.js";function p(){return t.jsxs(t.Fragment,{children:[t.jsx(o,{title:"Portfolio"}),t.jsx(r,{})]})}export{p as default};
