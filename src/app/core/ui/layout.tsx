@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { ThemeContextProvider } from "@/shared/data-access/theme";
+
 import Navbar from "./navbar";
 import Footer from "./footer";
 
@@ -9,7 +11,7 @@ export interface LayoutProps {
 
 export default function Layout(props: LayoutProps) {
   return (
-    <>
+    <ThemeContextProvider>
       <Navbar>
         <Navbar.Link className="font-bold" to="/">
           jakubszpil
@@ -31,6 +33,6 @@ export default function Layout(props: LayoutProps) {
         <Footer.Link to="/me">🙋‍♂️ O mnie</Footer.Link>
         <Footer.Link to="/search">🔍 Szukaj</Footer.Link>
       </Footer>
-    </>
+    </ThemeContextProvider>
   );
 }

@@ -1,14 +1,6 @@
 import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
-import { appRoutes } from "./app.routes";
-import { buildRoutes, createRoute } from "./shared/utils/routing";
-
 export const config = {
-  routes: buildRoutes(
-    createRoute("")
-      .addModule(() => import("./app"))
-      .addChildren(...appRoutes)
-  ),
   socials: [
     {
       href: "https://www.linkedin.com/in/jakubszpil/",

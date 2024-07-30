@@ -4,13 +4,18 @@ import { matchRoutes, RouterProvider } from "react-router-dom";
 import invariant from "tiny-invariant";
 
 import "./styles/globals.css";
-import { config } from "./app/config";
 
-import { ThemeContextProvider } from "@/shared/data-access/theme";
-import { createRouter } from "@/shared/utils/routing";
+import { buildRoutes, createRoute, createRouter } from "@/shared/utils/routing";
+import { appRoutes } from "@/app.routes";
+
+const routes = buildRoutes(
+  createRoute("")
+    .addModule(() => import("./app/app"))
+    .addChildren(...appRoutes)
+);
 
 const lazyMatches = matchRoutes(
-  config.routes,
+  routes,
   window.location.hash.replace("#", "") || window.location.pathname
 )?.filter((m) => m.route.lazy);
 
@@ -24,12 +29,11 @@ if (lazyMatches && lazyMatches?.length > 0) {
   });
 }
 
-const router = createRouter(config.routes, {
+const router = createRouter(routes, {
   hashLocation: true,
   future: {
     v7_fetcherPersist: true,
     v7_normalizeFormMethod: true,
-    v7_partialHydration: true,
     v7_relativeSplatPath: true,
   },
 });
@@ -43,9 +47,7 @@ const root = createRoot(rootElement);
 startTransition(() =>
   root.render(
     <StrictMode>
-      <ThemeContextProvider>
-        <RouterProvider router={router} />
-      </ThemeContextProvider>
+      <RouterProvider router={router} />
     </StrictMode>
   )
 );

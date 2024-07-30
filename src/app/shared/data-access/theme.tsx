@@ -78,6 +78,34 @@ export function ThemeContextProvider(props: ThemeContextProviderProps) {
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    const ac = new AbortController();
+
+    const nextThemeValue =
+      resolvedTheme === ResolvedThemeEnum.DARK
+        ? ThemeEnum.LIGHT
+        : ThemeEnum.DARK;
+
+    const down = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        document.documentElement.classList.add("switching-theme");
+        setValue(nextThemeValue);
+        setThemeInLocalStorage(nextThemeValue);
+      }
+    };
+
+    const up = (e: KeyboardEvent) => {
+      if (document.documentElement.classList.contains("switching-theme")) {
+        e.preventDefault();
+        document.documentElement.classList.remove("switching-theme");
+      }
+    };
+
+    document.addEventListener("keydown", down, { signal: ac.signal });
+    document.addEventListener("keyup", up, { signal: ac.signal });
+
+    return () => ac.abort();
   }, [resolvedTheme]);
 
   return (

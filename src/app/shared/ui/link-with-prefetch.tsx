@@ -1,7 +1,7 @@
 import { type AnchorHTMLAttributes, useMemo, useCallback } from "react";
 import { Link, matchRoutes, type LinkProps } from "react-router-dom";
 
-import { config } from "@/config";
+import { useRouter } from "../utils/routing";
 
 type PrefetchBehavior = "intent" | "none";
 
@@ -13,15 +13,10 @@ export function LinkWithPrefetch({
   prefetch = "intent",
   ...props
 }: LinkWithPrefetchProps) {
-  const { routes } = config;
-
-  const matches = useMemo(
-    () => matchRoutes(routes, props.to),
-    [props.to, routes]
-  );
+  const { routes } = useRouter();
 
   const prefetchRoute = useCallback(() => {
-    matches?.forEach((match) => {
+    matchRoutes(routes, props.to)?.forEach((match) => {
       match.route.lazy?.().then((route) => {
         if (route.loader instanceof Function) {
           route.loader({
@@ -31,7 +26,7 @@ export function LinkWithPrefetch({
         }
       });
     });
-  }, [matches, props.to]);
+  }, [props.to, routes]);
 
   const handlers = useMemo((): AnchorHTMLAttributes<HTMLAnchorElement> => {
     let prefetchTimeout: NodeJS.Timeout | null = null;

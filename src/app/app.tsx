@@ -22,8 +22,6 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
 
-  console.error(error);
-
   const renderError = (error: unknown) => {
     if (isRouteErrorResponse(error)) {
       if (error.status === 404) {
@@ -43,6 +41,8 @@ export function ErrorBoundary() {
       );
     }
 
+    console.error(error);
+
     return <h1>Wystąpił nieoczekiwany błąd</h1>;
   };
 
@@ -51,8 +51,4 @@ export function ErrorBoundary() {
       <header className="container prose">{renderError(error)}</header>
     </Layout>
   );
-}
-
-export function HydrateFallback() {
-  return null;
 }

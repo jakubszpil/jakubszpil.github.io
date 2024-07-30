@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   type ActionFunction,
   type LazyRouteFunction,
@@ -10,14 +11,15 @@ import {
   json as nativeJson,
   ActionFunctionArgs,
   useActionData,
+  UNSAFE_DataRouterContext,
 } from "react-router-dom";
+import invariant from "tiny-invariant";
 
 export interface RouteModule {
   default: () => JSX.Element;
   loader?: LoaderFunction;
   action?: ActionFunction;
   ErrorBoundary?: RouteObject["ErrorBoundary"];
-  HydrateFallback?: RouteObject["HydrateFallback"];
 }
 
 export interface RouteBuilder {
@@ -52,7 +54,6 @@ export function createRoute(path: string): RouteBuilder {
             loader: data.loader,
             action: data.action,
             ErrorBoundary: data.ErrorBoundary,
-            HydrateFallback: data.HydrateFallback,
           };
         });
 
@@ -144,4 +145,12 @@ export type ActionData<T> = T extends Action<infer X>
 
 export function useAction<T>() {
   return useActionData() as ActionData<T> | undefined;
+}
+
+export function useRouter() {
+  const router = useContext(UNSAFE_DataRouterContext)?.router;
+
+  invariant(router, "Cannot use useRouter outside router context");
+
+  return router;
 }
