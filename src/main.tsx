@@ -1,6 +1,7 @@
 import { startTransition, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { matchRoutes, RouterProvider } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import invariant from "tiny-invariant";
 
 import "./styles/globals.css";
@@ -47,7 +48,9 @@ const root = createRoot(rootElement);
 startTransition(() =>
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </StrictMode>
   )
 );

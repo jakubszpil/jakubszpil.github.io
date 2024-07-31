@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { type HelmetProps, type MetaProps } from "react-helmet-async";
+import { Helmet, type HelmetProps, type MetaProps } from "react-helmet-async";
+import { useMemo } from "react";
 
 import { config } from "@/config";
 
@@ -10,7 +10,11 @@ export interface SeoMeta {
   creationDate?: string;
 }
 
-export interface SeoProps extends SeoMeta, HelmetProps {}
+export interface SeoProps extends HelmetProps {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+}
 
 interface MetaTags {
   addProperty(property: string, content: string | undefined | null): MetaTags;
@@ -37,30 +41,22 @@ function createMetaTags(): MetaTags {
 }
 
 export const Seo = (props: SeoProps) => {
-  useEffect(() => {
-    document.title = props.title ?? "Trwa ładowanie";
+  const title = props.title ?? config.meta.defaultTitle;
 
-    const title = (value?: string) =>
-      value ? config.meta.titleTemplate.replace("%s", value) : null;
+  const description = props.description ?? config.meta.description;
 
-    const description = (value?: string) => value ?? config.meta.description;
+  const meta = useMemo(
+    () =>
+      createMetaTags()
+        .addTag("description", description)
+        .addTag("keywords", props.keywords?.join(","))
+        .addProperty("og:title", title)
+        .addProperty("og:description", description)
+        .addProperty("twitter:title", title)
+        .addProperty("twitter:description", description)
+        .build(),
+    [description, props.keywords, title]
+  );
 
-    const meta = createMetaTags()
-      .addTag("description", description(props.description))
-      .addTag("keywords", props.keywords?.join(","))
-      .addProperty("og:title", title(props.title))
-      .addProperty("og:description", description(props.description))
-      .addProperty("twitter:title", title(props.title))
-      .addProperty("twitter:description", description(props.description))
-      .build();
-
-    meta.forEach((meta) => {
-      const tag = document.createElement("meta");
-      tag.name = meta.name!;
-      tag.content = meta.content!;
-      document.head.append(tag);
-    });
-  }, [props]);
-
-  return null;
+  return <Helmet title={title} meta={meta} />;
 };
