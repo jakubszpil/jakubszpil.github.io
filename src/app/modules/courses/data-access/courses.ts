@@ -1,5 +1,3 @@
-import { fetchAPI } from "@/shared/utils/fetch";
-
 export interface Course {
   id: string;
   slug: string;
@@ -12,14 +10,18 @@ export interface Course {
 }
 
 export async function getCourses(limit?: number): Promise<Course[]> {
-  const response = await fetchAPI("/content/courses.json");
+  const response = await fetch("/content/courses.json", {
+    cache: "force-cache",
+  });
   const courses: Course[] = await response.json();
 
   return courses.slice(0, limit ?? courses.length);
 }
 
 export async function getCourse(slug: string): Promise<Course> {
-  const course = await fetchAPI(`/content/courses/${slug}.json`);
+  const course = await fetch(`/content/courses/${slug}.json`, {
+    cache: "force-cache",
+  });
   if (!course.ok) throw course;
   return course.json();
 }
