@@ -22,17 +22,21 @@ export function LinkWithPrefetch({
   const [prefetched, setPrefetched] = useState(false);
 
   const prefetchRoute = useCallback(() => {
-    if (!prefetched) return;
+    if (prefetched) return;
+
     matchRoutes(routes, props.to)?.forEach((match) => {
       match.route.lazy?.().then((route) => {
         if (route.loader instanceof Function) {
+          const url = new URL(`${window.location.origin}${props.to}`);
+
           route.loader({
             params: match.params,
-            request: new Request(props.to as URL),
+            request: new Request(url),
           });
         }
       });
     });
+
     setPrefetched(true);
   }, [prefetched, props.to, routes]);
 
