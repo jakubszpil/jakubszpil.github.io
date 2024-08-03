@@ -7,7 +7,7 @@ import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
 export async function loader({ params }: LFA) {
-  const article = await getArticle(params.slug);
+  const article = await getArticle(params.slug!);
 
   if (!article)
     throw new Response(null, {

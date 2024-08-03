@@ -7,25 +7,55 @@ import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 import { VitePWA as pwa } from "vite-plugin-pwa";
 
-import { chunks, mdx, minify } from "./vite.plugins";
+import { chunks, mdxToApiJSON, minify } from "./vite.plugins";
+
+const timestamp = new Date().getTime().toString();
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   return {
+    define: {
+      "import.meta.env.VITE_BUILD_TIMESTAMP": timestamp,
+    },
     plugins: [
       chunks(),
-      mdx(),
+      mdxToApiJSON(),
       react(),
       tsconfigPaths(),
       minify({
-        include: ["html", "svg", "json"],
+        include: ["html", "svg"],
         exclude: ["js"],
       }),
       pwa({
         registerType: "autoUpdate",
-        includeAssets: ["robots.txt", "sitemap.txt", "static/**", "assets/**"],
+        includeAssets: [
+          "robots.txt",
+          "sitemap.txt",
+          "static/**",
+          "assets/**",
+          "content/**",
+        ],
         workbox: {
-          globPatterns: ["**/*.{js,css,html,ico,webp,png,svg,woff2}"],
+          cacheId: timestamp,
+          globPatterns: ["**/*.{js,css,html,ico,svg,woff2,json}"],
+          runtimeCaching: [
+            {
+              urlPattern: ({ sameOrigin, url }) =>
+                sameOrigin && url.pathname.endsWith(".js"),
+              handler: "CacheFirst",
+              options: {
+                cacheName: "module-cache",
+              },
+            },
+            {
+              urlPattern: ({ sameOrigin, url }) =>
+                sameOrigin && url.pathname.startsWith("/content"),
+              handler: "CacheFirst",
+              options: {
+                cacheName: "api-content-cache",
+              },
+            },
+          ],
         },
         pwaAssets: {
           config: true,
@@ -115,6 +145,11 @@ export default defineConfig(() => {
     css: {
       postcss: {
         plugins: [tailwindcss(), autoprefixer()],
+      },
+    },
+    preview: {
+      headers: {
+        "cache-control": "max-age=600,public",
       },
     },
     build: {

@@ -1,17 +1,16 @@
 import { type LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import {
-  Course,
-  getCourses,
-  getCoursesByCategory,
-  getCoursesCategories,
-} from "../data-access/courses";
-import CategoryList from "../ui/categories";
-import Courses from "../ui/courses";
-
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 import { capitalize } from "@/shared/utils/string";
+
+import {
+  type Course,
+  getCoursesByCategory,
+  getCoursesWithCategories,
+} from "../data-access/courses";
+import CategoryList from "../ui/categories";
+import Courses from "../ui/courses";
 
 export interface CourseListLoaderData {
   category: string | undefined;
@@ -21,7 +20,7 @@ export interface CourseListLoaderData {
 
 export async function loader({ params }: LFA) {
   const category = params.category;
-  const categories = await getCoursesCategories();
+  const { categories, courses } = await getCoursesWithCategories();
 
   if (category) {
     if (!categories.includes(category))
@@ -33,12 +32,12 @@ export async function loader({ params }: LFA) {
     return json({
       category,
       categories,
-      courses: await getCoursesByCategory(category),
+      courses: await getCoursesByCategory(courses, category),
     });
   }
 
   return json({
-    courses: await getCourses(),
+    courses,
     categories,
     category,
   });

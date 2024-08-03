@@ -7,7 +7,7 @@ import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
 export async function loader({ params }: LFA) {
-  const course = await getCourse(params.slug);
+  const course = await getCourse(params.slug!);
 
   if (!course)
     throw new Response(null, {

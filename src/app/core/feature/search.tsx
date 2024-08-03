@@ -11,7 +11,6 @@ import { getArticles } from "@/modules/articles/data-access/articles";
 import Articles from "@/modules/articles/ui/articles";
 import { getCourses } from "@/modules/courses/data-access/courses";
 import Courses from "@/modules/courses/ui/courses";
-import { getProjects } from "@/modules/projects/data-access/projects";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Seo } from "@/shared/ui/seo";
@@ -37,17 +36,7 @@ export async function loader({ request }: LFA) {
     }
   }
 
-  if (!query) {
-    return json({
-      query,
-      articles: [],
-      courses: [],
-      projects: [],
-      resultsCount: 0,
-    });
-  }
-
-  if (isValidUrl(query)) {
+  if (query && isValidUrl(query)) {
     const requestUrl = new URL(request.url);
     const url = new URL(query);
 
@@ -62,16 +51,14 @@ export async function loader({ request }: LFA) {
 
   const articles = (await getArticles()).filter(test);
   const courses = (await getCourses()).filter(test);
-  const projects = (await getProjects()).filter(test);
 
-  const resultsCount = articles.length + projects.length + courses.length;
+  const resultsCount = articles.length + courses.length;
 
-  return json({ query, articles, courses, projects, resultsCount });
+  return json({ query, articles, courses, resultsCount });
 }
 
 export default function Search() {
-  const { query, articles, projects, courses, resultsCount } =
-    useLoader<typeof loader>();
+  const { query, articles, courses, resultsCount } = useLoader<typeof loader>();
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -93,12 +80,6 @@ export default function Search() {
           </section>
         )}
 
-        {projects.length > 0 && (
-          <section>
-            <h3>Projekty ({projects.length})</h3>
-          </section>
-        )}
-
         {courses.length > 0 && (
           <section>
             <h3>Kursy ({courses.length})</h3>
@@ -107,7 +88,7 @@ export default function Search() {
         )}
       </>
     );
-  }, [articles, courses, projects.length, query, resultsCount]);
+  }, [articles, courses, query, resultsCount]);
 
   return (
     <section className="prose max-w-full">

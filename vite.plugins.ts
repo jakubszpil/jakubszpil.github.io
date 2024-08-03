@@ -1,3 +1,4 @@
+import invariant from "tiny-invariant";
 import { Plugin } from "vite";
 import { unified } from "unified";
 import matter from "gray-matter";
@@ -10,44 +11,8 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { v4 } from "uuid";
-
-export function mdx(): Plugin {
-  const processor = unified()
-    .use(remarkParse)
-    .use(remarkHtml)
-    .use(remarkGfm)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeHighlight)
-    .use(rehypeStringify);
-
-  const process = async (content: string) => {
-    const results = await processor.process(content);
-    return results.toString();
-  };
-
-  return {
-    name: "markdown",
-    async transform(code, id) {
-      if (id.includes(".md")) {
-        const slug = id.slice(id.lastIndexOf("/") + 1, id.indexOf(".md"));
-
-        const { data, content } = matter(code);
-
-        return {
-          code: `export default ${JSON.stringify({
-            id: v4(),
-            slug,
-            content: await process(content),
-            ...data,
-          })}`,
-        };
-      }
-    },
-  };
-}
 
 export function minify(config?: {
   include?: string[];
@@ -147,6 +112,100 @@ export function chunks(): Plugin {
           if (id.includes("app.")) return "app";
         },
       };
+    },
+  };
+}
+
+export function mdxToApiJSON(): Plugin {
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkHtml)
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeHighlight)
+    .use(rehypeStringify);
+
+  const process = async (content: string) => {
+    const results = await processor.process(content);
+    return results.toString();
+  };
+
+  interface Resource {
+    id: string;
+    slug: string;
+    content: string;
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    createdAt?: string;
+  }
+
+  return {
+    name: "mdx-to-api-json",
+    async config(_, env) {
+      const publicDir = join("./public");
+
+      const publicContentDir = join(publicDir, "content");
+      const contentDir = join("./content");
+
+      if (env.command === "build") {
+        if (existsSync(publicContentDir)) return;
+      }
+
+      const resourceTypes = await readdir(contentDir);
+
+      if (!existsSync(publicContentDir)) await mkdir(publicContentDir);
+
+      for (const resourceType of resourceTypes) {
+        const resources: Resource[] = [];
+
+        const resourceTypeDir = join(contentDir, resourceType);
+        const publicResourceTypeDir = join(publicContentDir, resourceType);
+
+        if (!existsSync(publicResourceTypeDir))
+          await mkdir(publicResourceTypeDir);
+
+        const filenames = await readdir(resourceTypeDir);
+
+        for (const filename of filenames) {
+          const file = await readFile(join(resourceTypeDir, filename), "utf-8");
+          const slug = filename.replace(".mdx", "");
+
+          const { data, content } = matter(file);
+
+          const resource: Resource = {
+            id: v4(),
+            slug,
+            content: await process(content),
+            ...data,
+          };
+
+          resources.push(resource);
+
+          await writeFile(
+            join(publicResourceTypeDir, `${slug}.json`),
+            JSON.stringify(resource),
+            "utf-8"
+          );
+        }
+
+        await writeFile(
+          join(publicContentDir, `${resourceType}.json`),
+          JSON.stringify(
+            resources.sort((first, second) => {
+              invariant(first.createdAt);
+              invariant(second.createdAt);
+
+              const firstCreationTime = new Date(first.createdAt).getTime();
+              const secondCreationTime = new Date(second.createdAt).getTime();
+
+              return secondCreationTime - firstCreationTime;
+            })
+          ),
+          "utf-8"
+        );
+      }
     },
   };
 }
