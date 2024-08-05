@@ -9,13 +9,13 @@ import { VitePWA as pwa } from "vite-plugin-pwa";
 
 import { chunks, mdxToApiJSON, minify } from "./vite.plugins";
 
-const timestamp = new Date().getTime().toString();
+const timestamp = Date.now().toString();
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   return {
     define: {
-      "import.meta.env.VITE_BUILD_TIMESTAMP": timestamp,
+      "import.meta.env.VITE_ETAG": timestamp,
     },
     plugins: [
       chunks(),

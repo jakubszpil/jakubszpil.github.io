@@ -193,15 +193,18 @@ export function mdxToApiJSON(): Plugin {
         await writeFile(
           join(publicContentDir, `${resourceType}.json`),
           JSON.stringify(
-            resources.sort((first, second) => {
-              invariant(first.createdAt);
-              invariant(second.createdAt);
+            resources
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              .map(({ content, ...resource }) => resource)
+              .sort((first, second) => {
+                invariant(first.createdAt);
+                invariant(second.createdAt);
 
-              const firstCreationTime = new Date(first.createdAt).getTime();
-              const secondCreationTime = new Date(second.createdAt).getTime();
+                const firstCreationTime = new Date(first.createdAt).getTime();
+                const secondCreationTime = new Date(second.createdAt).getTime();
 
-              return secondCreationTime - firstCreationTime;
-            })
+                return secondCreationTime - firstCreationTime;
+              })
           ),
           "utf-8"
         );
