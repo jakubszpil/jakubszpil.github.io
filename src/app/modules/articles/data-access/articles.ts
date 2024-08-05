@@ -9,28 +9,36 @@ export interface Article {
   categories?: string[];
 }
 
-export async function getArticles(limit?: number): Promise<Article[]> {
+export async function getArticles(
+  request: Request,
+  limit?: number
+): Promise<Article[]> {
   const response = await fetch("/content/articles.json", {
     cache: "force-cache",
+    signal: request.signal,
   });
   const articles: Article[] = await response.json();
 
   return articles.slice(0, limit ?? articles.length);
 }
 
-export async function getArticle(slug: string): Promise<Article> {
+export async function getArticle(
+  request: Request,
+  slug: string
+): Promise<Article> {
   const article = await fetch(`/content/articles/${slug}.json`, {
     cache: "force-cache",
+    signal: request.signal,
   });
   if (!article.ok) throw article;
   return article.json();
 }
 
-export async function getArticlesWithCategories(): Promise<{
+export async function getArticlesWithCategories(request: Request): Promise<{
   categories: string[];
   articles: Article[];
 }> {
-  const articles = await getArticles();
+  const articles = await getArticles(request);
 
   const occurrences: Record<string, number> = {};
 

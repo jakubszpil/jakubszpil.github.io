@@ -1,3 +1,5 @@
+import type { LoaderFunctionArgs as LFA } from "react-router-dom";
+
 import { getArticles } from "@/modules/articles/data-access/articles";
 import Articles from "@/modules/articles/ui/articles";
 import { getCourses } from "@/modules/courses/data-access/courses";
@@ -7,9 +9,9 @@ import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
-export async function loader() {
-  const articles = await getArticles(3);
-  const courses = await getCourses(3);
+export async function loader({ request }: LFA) {
+  const articles = await getArticles(request, 3);
+  const courses = await getCourses(request, 3);
 
   return json({
     articles,

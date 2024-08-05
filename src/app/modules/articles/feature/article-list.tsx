@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs as LFA } from "react-router-dom";
+import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
 import {
   getArticlesByCategory,
@@ -11,9 +11,9 @@ import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 import { capitalize } from "@/shared/utils/string";
 
-export async function loader({ params }: LFA) {
+export async function loader({ params, request }: LFA) {
   const category = params.category;
-  const { categories, articles } = await getArticlesWithCategories();
+  const { categories, articles } = await getArticlesWithCategories(request);
 
   if (category) {
     if (!categories.includes(category))

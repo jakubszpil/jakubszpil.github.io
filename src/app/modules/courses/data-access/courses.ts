@@ -9,28 +9,36 @@ export interface Course {
   categories?: string[];
 }
 
-export async function getCourses(limit?: number): Promise<Course[]> {
+export async function getCourses(
+  request: Request,
+  limit?: number
+): Promise<Course[]> {
   const response = await fetch("/content/courses.json", {
     cache: "force-cache",
+    signal: request.signal,
   });
   const courses: Course[] = await response.json();
 
   return courses.slice(0, limit ?? courses.length);
 }
 
-export async function getCourse(slug: string): Promise<Course> {
+export async function getCourse(
+  request: Request,
+  slug: string
+): Promise<Course> {
   const course = await fetch(`/content/courses/${slug}.json`, {
     cache: "force-cache",
+    signal: request.signal,
   });
   if (!course.ok) throw course;
   return course.json();
 }
 
-export async function getCoursesWithCategories(): Promise<{
+export async function getCoursesWithCategories(request: Request): Promise<{
   categories: string[];
   courses: Course[];
 }> {
-  const courses = await getCourses();
+  const courses = await getCourses(request);
 
   const occurrences: Record<string, number> = {};
 

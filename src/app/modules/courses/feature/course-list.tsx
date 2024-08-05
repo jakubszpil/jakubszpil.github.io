@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs as LFA } from "react-router-dom";
+import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
@@ -18,9 +18,9 @@ export interface CourseListLoaderData {
   courses: Course[];
 }
 
-export async function loader({ params }: LFA) {
+export async function loader({ params, request }: LFA) {
   const category = params.category;
-  const { categories, courses } = await getCoursesWithCategories();
+  const { categories, courses } = await getCoursesWithCategories(request);
 
   if (category) {
     if (!categories.includes(category))

@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs as LFA } from "react-router-dom";
+import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
 import { getCourse } from "../data-access/courses";
 import Categories from "../ui/categories";
@@ -6,8 +6,8 @@ import Categories from "../ui/categories";
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
-export async function loader({ params }: LFA) {
-  const course = await getCourse(params.slug!);
+export async function loader({ params, request }: LFA) {
+  const course = await getCourse(request, params.slug!);
 
   if (!course)
     throw new Response(null, {

@@ -49,8 +49,8 @@ export async function loader({ request }: LFA) {
       ? false
       : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
 
-  const articles = (await getArticles()).filter(test);
-  const courses = (await getCourses()).filter(test);
+  const articles = (await getArticles(request)).filter(test);
+  const courses = (await getCourses(request)).filter(test);
 
   const resultsCount = articles.length + courses.length;
 
