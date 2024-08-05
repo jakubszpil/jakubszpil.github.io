@@ -1,13 +1,13 @@
 {
-  "_app-BAZ0MSsp.js": {
-    "file": "assets/app-BAZ0MSsp.js",
+  "_app-DdFrpZtC.js": {
+    "file": "assets/app-DdFrpZtC.js",
     "name": "app",
     "isDynamicEntry": true,
     "imports": [
       "_utils-BZMZnvBm.js",
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
-      "_components-Chjwwj7i.js"
+      "_components-Lf0NVCX9.js"
     ],
     "dynamicImports": [
       "src/app/core/feature/home.tsx",
@@ -16,25 +16,25 @@
       "src/app/core/feature/not-found.tsx",
       "src/app/modules/articles/feature/article-list.tsx",
       "src/app/modules/articles/feature/article-list.tsx",
-      "_article-details-DCb2pzVm.js",
+      "_article-details-rZAUA8-p.js",
       "src/app/modules/courses/feature/course-list.tsx",
       "src/app/modules/courses/feature/course-list.tsx",
-      "_course-details-BZbeSvXF.js",
+      "_course-details-ChJxg1uE.js",
       "src/app/modules/projects/feature/project-list.tsx"
     ]
   },
-  "_article-details-DCb2pzVm.js": {
-    "file": "assets/pages/article-details-DCb2pzVm.js",
+  "_article-details-rZAUA8-p.js": {
+    "file": "assets/pages/article-details-rZAUA8-p.js",
     "name": "pages/article-details",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_components-Chjwwj7i.js",
+      "_components-Lf0NVCX9.js",
       "_utils-BZMZnvBm.js"
     ]
   },
-  "_components-Chjwwj7i.js": {
-    "file": "assets/components-Chjwwj7i.js",
+  "_components-Lf0NVCX9.js": {
+    "file": "assets/components-Lf0NVCX9.js",
     "name": "components",
     "imports": [
       "_react-vvBGimMH.js",
@@ -43,13 +43,13 @@
       "_routing-CDreLu1L.js"
     ]
   },
-  "_course-details-BZbeSvXF.js": {
-    "file": "assets/pages/course-details-BZbeSvXF.js",
+  "_course-details-ChJxg1uE.js": {
+    "file": "assets/pages/course-details-ChJxg1uE.js",
     "name": "pages/course-details",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_components-Chjwwj7i.js",
+      "_components-Lf0NVCX9.js",
       "_utils-BZMZnvBm.js"
     ]
   },
@@ -81,48 +81,48 @@
     ]
   },
   "index.html": {
-    "file": "assets/index-BoofcS7B.js",
+    "file": "assets/index-BEqGH25T.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_app-BAZ0MSsp.js",
+      "_app-DdFrpZtC.js",
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
       "_runtime-Fe8qnWBl.js",
       "_utils-BZMZnvBm.js",
-      "_components-Chjwwj7i.js"
+      "_components-Lf0NVCX9.js"
     ],
     "dynamicImports": [
-      "_app-BAZ0MSsp.js"
+      "_app-DdFrpZtC.js"
     ],
     "css": [
       "assets/index-DMHNG8Fp.css"
     ]
   },
   "src/app/core/feature/about.tsx": {
-    "file": "assets/pages/about-CMJnkPBr.js",
+    "file": "assets/pages/about-Cl69el8f.js",
     "name": "pages/about",
     "src": "src/app/core/feature/about.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
       "_utils-BZMZnvBm.js",
-      "_components-Chjwwj7i.js",
+      "_components-Lf0NVCX9.js",
       "_routing-CDreLu1L.js",
       "_runtime-Fe8qnWBl.js"
     ]
   },
   "src/app/core/feature/home.tsx": {
-    "file": "assets/pages/home-DNbykU9d.js",
+    "file": "assets/pages/home-CzrFo9pm.js",
     "name": "pages/home",
     "src": "src/app/core/feature/home.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_article-details-DCb2pzVm.js",
-      "_components-Chjwwj7i.js",
-      "_course-details-BZbeSvXF.js",
+      "_article-details-rZAUA8-p.js",
+      "_components-Lf0NVCX9.js",
+      "_course-details-ChJxg1uE.js",
       "_utils-BZMZnvBm.js",
       "_runtime-Fe8qnWBl.js",
       "_routing-CDreLu1L.js"
@@ -138,56 +138,56 @@
     ]
   },
   "src/app/core/feature/search.tsx": {
-    "file": "assets/pages/search-C0SDZ5fJ.js",
+    "file": "assets/pages/search-Dvwj7Zu_.js",
     "name": "pages/search",
     "src": "src/app/core/feature/search.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
-      "_article-details-DCb2pzVm.js",
-      "_components-Chjwwj7i.js",
-      "_course-details-BZbeSvXF.js",
+      "_article-details-rZAUA8-p.js",
+      "_components-Lf0NVCX9.js",
+      "_course-details-ChJxg1uE.js",
       "_utils-BZMZnvBm.js",
       "_runtime-Fe8qnWBl.js"
     ]
   },
   "src/app/modules/articles/feature/article-list.tsx": {
-    "file": "assets/pages/article-list-BG_7H-Qi.js",
+    "file": "assets/pages/article-list-BA8bf-0P.js",
     "name": "pages/article-list",
     "src": "src/app/modules/articles/feature/article-list.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_article-details-DCb2pzVm.js",
-      "_components-Chjwwj7i.js",
+      "_article-details-rZAUA8-p.js",
+      "_components-Lf0NVCX9.js",
       "_utils-BZMZnvBm.js",
       "_runtime-Fe8qnWBl.js",
       "_routing-CDreLu1L.js"
     ]
   },
   "src/app/modules/courses/feature/course-list.tsx": {
-    "file": "assets/pages/course-list-Bgi58w06.js",
+    "file": "assets/pages/course-list-6rwyPrSz.js",
     "name": "pages/course-list",
     "src": "src/app/modules/courses/feature/course-list.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_components-Chjwwj7i.js",
+      "_components-Lf0NVCX9.js",
       "_utils-BZMZnvBm.js",
-      "_course-details-BZbeSvXF.js",
+      "_course-details-ChJxg1uE.js",
       "_runtime-Fe8qnWBl.js",
       "_routing-CDreLu1L.js"
     ]
   },
   "src/app/modules/projects/feature/project-list.tsx": {
-    "file": "assets/pages/project-list-TCrzqPTF.js",
+    "file": "assets/pages/project-list-CJQIW3vU.js",
     "name": "pages/project-list",
     "src": "src/app/modules/projects/feature/project-list.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_components-Chjwwj7i.js",
+      "_components-Lf0NVCX9.js",
       "_utils-BZMZnvBm.js",
       "_routing-CDreLu1L.js",
       "_runtime-Fe8qnWBl.js"
