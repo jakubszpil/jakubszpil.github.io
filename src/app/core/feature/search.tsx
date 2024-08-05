@@ -49,8 +49,10 @@ export async function loader({ request }: LFA) {
       ? false
       : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
 
-  const articles = (await getArticles(request)).filter(test);
-  const courses = (await getCourses(request)).filter(test);
+  const [articles, courses] = await Promise.all([
+    getArticles(request).then((r) => r.filter(test)),
+    getCourses(request).then((r) => r.filter(test)),
+  ]);
 
   const resultsCount = articles.length + courses.length;
 

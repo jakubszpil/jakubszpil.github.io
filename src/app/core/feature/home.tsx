@@ -10,8 +10,10 @@ import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
 export async function loader({ request }: LFA) {
-  const articles = await getArticles(request, 3);
-  const courses = await getCourses(request, 3);
+  const [articles, courses] = await Promise.all([
+    getArticles(request, 3),
+    getCourses(request, 3),
+  ]);
 
   return json({
     articles,
