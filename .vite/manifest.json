@@ -1,6 +1,6 @@
 {
-  "_app-DN3tO-Jq.js": {
-    "file": "assets/app-DN3tO-Jq.js",
+  "_app-BAZ0MSsp.js": {
+    "file": "assets/app-BAZ0MSsp.js",
     "name": "app",
     "isDynamicEntry": true,
     "imports": [
@@ -16,15 +16,15 @@
       "src/app/core/feature/not-found.tsx",
       "src/app/modules/articles/feature/article-list.tsx",
       "src/app/modules/articles/feature/article-list.tsx",
-      "_article-details-Bk74aj5l.js",
+      "_article-details-DCb2pzVm.js",
       "src/app/modules/courses/feature/course-list.tsx",
       "src/app/modules/courses/feature/course-list.tsx",
-      "_course-details-BPwLk6Dt.js",
+      "_course-details-BZbeSvXF.js",
       "src/app/modules/projects/feature/project-list.tsx"
     ]
   },
-  "_article-details-Bk74aj5l.js": {
-    "file": "assets/pages/article-details-Bk74aj5l.js",
+  "_article-details-DCb2pzVm.js": {
+    "file": "assets/pages/article-details-DCb2pzVm.js",
     "name": "pages/article-details",
     "isDynamicEntry": true,
     "imports": [
@@ -43,8 +43,8 @@
       "_routing-CDreLu1L.js"
     ]
   },
-  "_course-details-BPwLk6Dt.js": {
-    "file": "assets/pages/course-details-BPwLk6Dt.js",
+  "_course-details-BZbeSvXF.js": {
+    "file": "assets/pages/course-details-BZbeSvXF.js",
     "name": "pages/course-details",
     "isDynamicEntry": true,
     "imports": [
@@ -81,12 +81,12 @@
     ]
   },
   "index.html": {
-    "file": "assets/index-CiDxjZRH.js",
+    "file": "assets/index-BoofcS7B.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_app-DN3tO-Jq.js",
+      "_app-BAZ0MSsp.js",
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
       "_runtime-Fe8qnWBl.js",
@@ -94,7 +94,7 @@
       "_components-Chjwwj7i.js"
     ],
     "dynamicImports": [
-      "_app-DN3tO-Jq.js"
+      "_app-BAZ0MSsp.js"
     ],
     "css": [
       "assets/index-DMHNG8Fp.css"
@@ -114,15 +114,15 @@
     ]
   },
   "src/app/core/feature/home.tsx": {
-    "file": "assets/pages/home-BT3mUcXi.js",
+    "file": "assets/pages/home-DNbykU9d.js",
     "name": "pages/home",
     "src": "src/app/core/feature/home.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_article-details-Bk74aj5l.js",
+      "_article-details-DCb2pzVm.js",
       "_components-Chjwwj7i.js",
-      "_course-details-BPwLk6Dt.js",
+      "_course-details-BZbeSvXF.js",
       "_utils-BZMZnvBm.js",
       "_runtime-Fe8qnWBl.js",
       "_routing-CDreLu1L.js"
@@ -138,28 +138,28 @@
     ]
   },
   "src/app/core/feature/search.tsx": {
-    "file": "assets/pages/search-5CYkWwqw.js",
+    "file": "assets/pages/search-C0SDZ5fJ.js",
     "name": "pages/search",
     "src": "src/app/core/feature/search.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
-      "_article-details-Bk74aj5l.js",
+      "_article-details-DCb2pzVm.js",
       "_components-Chjwwj7i.js",
-      "_course-details-BPwLk6Dt.js",
+      "_course-details-BZbeSvXF.js",
       "_utils-BZMZnvBm.js",
       "_runtime-Fe8qnWBl.js"
     ]
   },
   "src/app/modules/articles/feature/article-list.tsx": {
-    "file": "assets/pages/article-list-CYVAk8qh.js",
+    "file": "assets/pages/article-list-BG_7H-Qi.js",
     "name": "pages/article-list",
     "src": "src/app/modules/articles/feature/article-list.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_react-vvBGimMH.js",
-      "_article-details-Bk74aj5l.js",
+      "_article-details-DCb2pzVm.js",
       "_components-Chjwwj7i.js",
       "_utils-BZMZnvBm.js",
       "_runtime-Fe8qnWBl.js",
@@ -167,7 +167,7 @@
     ]
   },
   "src/app/modules/courses/feature/course-list.tsx": {
-    "file": "assets/pages/course-list-B8Yezr5u.js",
+    "file": "assets/pages/course-list-Bgi58w06.js",
     "name": "pages/course-list",
     "src": "src/app/modules/courses/feature/course-list.tsx",
     "isDynamicEntry": true,
@@ -175,7 +175,7 @@
       "_react-vvBGimMH.js",
       "_components-Chjwwj7i.js",
       "_utils-BZMZnvBm.js",
-      "_course-details-BPwLk6Dt.js",
+      "_course-details-BZbeSvXF.js",
       "_runtime-Fe8qnWBl.js",
       "_routing-CDreLu1L.js"
     ]
