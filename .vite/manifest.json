@@ -1,6 +1,6 @@
 {
-  "_app-DdFrpZtC.js": {
-    "file": "assets/app-DdFrpZtC.js",
+  "_app-CKLsIxYc.js": {
+    "file": "assets/app-CKLsIxYc.js",
     "name": "app",
     "isDynamicEntry": true,
     "imports": [
@@ -81,12 +81,12 @@
     ]
   },
   "index.html": {
-    "file": "assets/index-BEqGH25T.js",
+    "file": "assets/index-BECJqm8a.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_app-DdFrpZtC.js",
+      "_app-CKLsIxYc.js",
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
       "_runtime-Fe8qnWBl.js",
@@ -94,10 +94,10 @@
       "_components-Lf0NVCX9.js"
     ],
     "dynamicImports": [
-      "_app-DdFrpZtC.js"
+      "_app-CKLsIxYc.js"
     ],
     "css": [
-      "assets/index-DMHNG8Fp.css"
+      "assets/index-a2aG6zYX.css"
     ]
   },
   "src/app/core/feature/about.tsx": {
@@ -114,7 +114,7 @@
     ]
   },
   "src/app/core/feature/home.tsx": {
-    "file": "assets/pages/home-CzrFo9pm.js",
+    "file": "assets/pages/home-CDeINRzD.js",
     "name": "pages/home",
     "src": "src/app/core/feature/home.tsx",
     "isDynamicEntry": true,
@@ -138,7 +138,7 @@
     ]
   },
   "src/app/core/feature/search.tsx": {
-    "file": "assets/pages/search-Dvwj7Zu_.js",
+    "file": "assets/pages/search-C_REJ5Wq.js",
     "name": "pages/search",
     "src": "src/app/core/feature/search.tsx",
     "isDynamicEntry": true,
