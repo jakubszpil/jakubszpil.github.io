@@ -34,33 +34,24 @@ export async function getCourse(
   return course.json();
 }
 
-export async function getCoursesWithCategories(request: Request): Promise<{
-  categories: string[];
-  courses: Course[];
-}> {
-  const courses = await getCourses(request);
-
-  const occurrences: Record<string, number> = {};
-
-  const categories = courses.reduce<string[]>((categories, course) => {
-    course.categories?.forEach((category) => {
-      if (!(category in occurrences)) occurrences[category] = 0;
-      if (!categories.includes(category)) categories.push(category);
-      occurrences[category]++;
-    });
-
-    return categories;
-  }, []);
-
-  return {
-    categories: categories.sort((a, b) => occurrences[b] - occurrences[a]),
-    courses,
-  };
+export async function getCoursesCategories(
+  request: Request
+): Promise<string[]> {
+  const response = await fetch("/content/courses/categories.json", {
+    cache: "force-cache",
+    signal: request.signal,
+  });
+  return await response.json();
 }
 
 export async function getCoursesByCategory(
-  courses: Course[],
+  request: Request,
   category: string
 ): Promise<Course[]> {
-  return courses.filter((course) => course.categories?.includes(category));
+  const response = await fetch(`/content/courses/categories/${category}.json`, {
+    cache: "force-cache",
+    signal: request.signal,
+  });
+
+  return await response.json();
 }

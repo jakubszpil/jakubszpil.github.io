@@ -6,8 +6,9 @@ import { capitalize } from "@/shared/utils/string";
 
 import {
   type Course,
+  getCourses,
   getCoursesByCategory,
-  getCoursesWithCategories,
+  getCoursesCategories,
 } from "../data-access/courses";
 import CategoryList from "../ui/categories";
 import Courses from "../ui/courses";
@@ -20,7 +21,7 @@ export interface CourseListLoaderData {
 
 export async function loader({ params, request }: LFA) {
   const category = params.category;
-  const { categories, courses } = await getCoursesWithCategories(request);
+  const categories = await getCoursesCategories(request);
 
   if (category) {
     if (!categories.includes(category))
@@ -32,12 +33,12 @@ export async function loader({ params, request }: LFA) {
     return json({
       category,
       categories,
-      courses: await getCoursesByCategory(courses, category),
+      courses: await getCoursesByCategory(request, category),
     });
   }
 
   return json({
-    courses,
+    courses: await getCourses(request),
     categories,
     category,
   });

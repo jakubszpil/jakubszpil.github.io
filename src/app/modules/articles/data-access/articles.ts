@@ -34,33 +34,27 @@ export async function getArticle(
   return article.json();
 }
 
-export async function getArticlesWithCategories(request: Request): Promise<{
-  categories: string[];
-  articles: Article[];
-}> {
-  const articles = await getArticles(request);
-
-  const occurrences: Record<string, number> = {};
-
-  const categories = articles.reduce<string[]>((categories, article) => {
-    article.categories?.forEach((category) => {
-      if (!(category in occurrences)) occurrences[category] = 0;
-      if (!categories.includes(category)) categories.push(category);
-      occurrences[category]++;
-    });
-
-    return categories;
-  }, []);
-
-  return {
-    categories: categories.sort((a, b) => occurrences[b] - occurrences[a]),
-    articles,
-  };
+export async function getArticlesCategories(
+  request: Request
+): Promise<string[]> {
+  const response = await fetch("/content/articles/categories.json", {
+    cache: "force-cache",
+    signal: request.signal,
+  });
+  return await response.json();
 }
 
 export async function getArticlesByCategory(
-  articles: Article[],
+  request: Request,
   category: string
 ): Promise<Article[]> {
-  return articles.filter((article) => article.categories?.includes(category));
+  const response = await fetch(
+    `/content/articles/categories/${category}.json`,
+    {
+      cache: "force-cache",
+      signal: request.signal,
+    }
+  );
+
+  return await response.json();
 }

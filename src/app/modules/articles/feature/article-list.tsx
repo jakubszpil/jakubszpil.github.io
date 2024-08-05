@@ -1,8 +1,9 @@
 import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
 import {
+  getArticles,
   getArticlesByCategory,
-  getArticlesWithCategories,
+  getArticlesCategories,
 } from "../data-access/articles";
 import CategoryList from "../ui/categories";
 import Articles from "../ui/articles";
@@ -13,7 +14,7 @@ import { capitalize } from "@/shared/utils/string";
 
 export async function loader({ params, request }: LFA) {
   const category = params.category;
-  const { categories, articles } = await getArticlesWithCategories(request);
+  const categories = await getArticlesCategories(request);
 
   if (category) {
     if (!categories.includes(category))
@@ -23,14 +24,14 @@ export async function loader({ params, request }: LFA) {
       });
 
     return json({
-      articles: await getArticlesByCategory(articles, category),
+      articles: await getArticlesByCategory(request, category),
       categories,
       category,
     });
   }
 
   return json({
-    articles,
+    articles: await getArticles(request),
     categories,
     category,
   });

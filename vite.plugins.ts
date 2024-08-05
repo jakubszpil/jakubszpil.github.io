@@ -138,6 +138,7 @@ export function mdxToApiJSON(): Plugin {
     title?: string;
     description?: string;
     keywords?: string[];
+    categories?: string[];
     createdAt?: string;
   }
 
@@ -190,22 +191,60 @@ export function mdxToApiJSON(): Plugin {
           );
         }
 
+        const resourcesLimited = resources
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          .map(({ content, ...resource }) => resource)
+          .sort((first, second) => {
+            invariant(first.createdAt);
+            invariant(second.createdAt);
+
+            const firstCreationTime = new Date(first.createdAt).getTime();
+            const secondCreationTime = new Date(second.createdAt).getTime();
+
+            return secondCreationTime - firstCreationTime;
+          });
+
+        const categoriesDir = join(publicResourceTypeDir, "categories");
+
+        if (!existsSync(categoriesDir)) await mkdir(categoriesDir);
+
+        const categoriesOccurrences: Record<string, number> = {};
+
+        const categories = resourcesLimited
+          .reduce<string[]>((categories, resource) => {
+            resource.categories?.forEach((category) => {
+              if (!(category in categoriesOccurrences))
+                categoriesOccurrences[category] = 0;
+              if (!categories.includes(category)) categories.push(category);
+
+              categoriesOccurrences[category]++;
+            });
+
+            return categories;
+          }, [])
+          .sort((a, b) => categoriesOccurrences[b] - categoriesOccurrences[a]);
+
+        await writeFile(
+          join(publicResourceTypeDir, "categories.json"),
+          JSON.stringify(categories),
+          "utf-8"
+        );
+
+        for (const category of categories) {
+          const resourcesByCategory = resourcesLimited.filter((resource) =>
+            resource.categories?.includes(category)
+          );
+
+          await writeFile(
+            join(categoriesDir, `${category}.json`),
+            JSON.stringify(resourcesByCategory),
+            "utf-8"
+          );
+        }
+
         await writeFile(
           join(publicContentDir, `${resourceType}.json`),
-          JSON.stringify(
-            resources
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              .map(({ content, ...resource }) => resource)
-              .sort((first, second) => {
-                invariant(first.createdAt);
-                invariant(second.createdAt);
-
-                const firstCreationTime = new Date(first.createdAt).getTime();
-                const secondCreationTime = new Date(second.createdAt).getTime();
-
-                return secondCreationTime - firstCreationTime;
-              })
-          ),
+          JSON.stringify(resourcesLimited),
           "utf-8"
         );
       }
