@@ -1,3 +1,5 @@
+import { fetch } from "@/shared/utils/fetch";
+
 export interface Article {
   id: string;
   slug: string;
@@ -32,6 +34,15 @@ export async function getArticle(
   });
   if (!article.ok) throw article;
   return article.json();
+}
+
+export async function getArticlesSlugs(request: Request): Promise<string[]> {
+  const slugs = await fetch(`/content/articles/slugs.json`, {
+    cache: "force-cache",
+    signal: request.signal,
+  });
+  if (!slugs.ok) throw slugs;
+  return slugs.json();
 }
 
 export async function getArticlesCategories(

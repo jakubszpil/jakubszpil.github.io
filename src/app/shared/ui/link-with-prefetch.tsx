@@ -25,15 +25,17 @@ export function LinkWithPrefetch({
     if (prefetched) return;
 
     matchRoutes(routes, props.to)?.forEach((match) => {
-      match.route.lazy?.().then((route) => {
-        if (route.loader instanceof Function) {
-          const url = new URL(`${window.location.origin}${props.to}`);
+      const url = new URL(`${window.location.origin}${match.pathname}`);
+      const loaderArgs = {
+        params: match.params,
+        request: new Request(url),
+      };
 
-          route.loader({
-            params: match.params,
-            request: new Request(url),
-          });
-        }
+      if (match.route.loader instanceof Function)
+        match.route.loader(loaderArgs);
+
+      match.route.lazy?.().then((route) => {
+        if (route.loader instanceof Function) route.loader(loaderArgs);
       });
     });
 

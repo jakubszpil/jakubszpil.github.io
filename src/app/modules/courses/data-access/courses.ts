@@ -1,3 +1,5 @@
+import { fetch } from "@/shared/utils/fetch";
+
 export interface Course {
   id: string;
   slug: string;
@@ -20,6 +22,15 @@ export async function getCourses(
   const courses: Course[] = await response.json();
 
   return courses.slice(0, limit ?? courses.length);
+}
+
+export async function getCoursesSlugs(request: Request): Promise<string[]> {
+  const slugs = await fetch(`/content/courses/slugs.json`, {
+    cache: "force-cache",
+    signal: request.signal,
+  });
+  if (!slugs.ok) throw slugs;
+  return slugs.json();
 }
 
 export async function getCourse(

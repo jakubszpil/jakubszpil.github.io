@@ -1,62 +1,29 @@
 import { useCallback } from "react";
-import {
-  Form,
-  redirect,
-  createPath,
-  type LoaderFunctionArgs as LFA,
-} from "react-router-dom";
+import { Form, type LoaderFunctionArgs as LFA } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
-import { getArticles } from "@/modules/articles/data-access/articles";
 import Articles from "@/modules/articles/ui/articles";
-import { getCourses } from "@/modules/courses/data-access/courses";
 import Courses from "@/modules/courses/ui/courses";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
-import { isValidUrl } from "@/shared/utils/url";
+
+import { getSearchResults, validateSearhQuery } from "../data-access/search";
 
 export async function loader({ request }: LFA) {
-  const url = new URL(request.url);
-  const query = url.searchParams.get("q");
+  const query = await validateSearhQuery(request);
+  const searchResults = await getSearchResults(request, query);
 
-  if (query) {
-    if (query === "") {
-      url.searchParams.delete("q");
-      throw redirect(url.toString());
-    }
+  const resultsCount =
+    searchResults.articles.length + searchResults.courses.length;
 
-    const trimmed = query.trim().split(" ").filter(Boolean).join(" ");
-
-    if (query !== trimmed) {
-      if (trimmed) url.searchParams.set("q", trimmed);
-      else url.searchParams.delete("q");
-      throw redirect(url.toString());
-    }
-  }
-
-  if (query && isValidUrl(query)) {
-    const requestUrl = new URL(request.url);
-    const url = new URL(query);
-
-    if (requestUrl.origin === url.origin)
-      throw redirect(createPath(url).replace("#/", ""));
-  }
-
-  const test = (i: unknown): boolean =>
-    !query
-      ? false
-      : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
-
-  const [articles, courses] = await Promise.all([
-    getArticles(request).then((r) => r.filter(test)),
-    getCourses(request).then((r) => r.filter(test)),
-  ]);
-
-  const resultsCount = articles.length + courses.length;
-
-  return json({ query, articles, courses, resultsCount });
+  return json({
+    query,
+    articles: searchResults.articles,
+    courses: searchResults.courses,
+    resultsCount,
+  });
 }
 
 export default function Search() {

@@ -142,6 +142,14 @@ export function mdxToApiJSON(): Plugin {
     createdAt?: string;
   }
 
+  function exludeContentFromResource({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    content,
+    ...resource
+  }: Resource): Omit<Resource, "content"> {
+    return resource;
+  }
+
   return {
     name: "mdx-to-api-json",
     async config(_, env) {
@@ -158,8 +166,10 @@ export function mdxToApiJSON(): Plugin {
 
       if (!existsSync(publicContentDir)) await mkdir(publicContentDir);
 
+      const searchResults: Record<string, Resource[]> = {};
+
       for (const resourceType of resourceTypes) {
-        const resources: Resource[] = [];
+        const resourcesByType: Resource[] = [];
 
         const resourceTypeDir = join(contentDir, resourceType);
         const publicResourceTypeDir = join(publicContentDir, resourceType);
@@ -182,7 +192,7 @@ export function mdxToApiJSON(): Plugin {
             ...data,
           };
 
-          resources.push(resource);
+          resourcesByType.push(resource);
 
           await writeFile(
             join(publicResourceTypeDir, `${slug}.json`),
@@ -191,18 +201,15 @@ export function mdxToApiJSON(): Plugin {
           );
         }
 
-        const resourcesLimited = resources
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          .map(({ content, ...resource }) => resource)
-          .sort((first, second) => {
-            invariant(first.createdAt);
-            invariant(second.createdAt);
+        const resources = resourcesByType.sort((first, second) => {
+          invariant(first.createdAt);
+          invariant(second.createdAt);
 
-            const firstCreationTime = new Date(first.createdAt).getTime();
-            const secondCreationTime = new Date(second.createdAt).getTime();
+          const firstCreationTime = new Date(first.createdAt).getTime();
+          const secondCreationTime = new Date(second.createdAt).getTime();
 
-            return secondCreationTime - firstCreationTime;
-          });
+          return secondCreationTime - firstCreationTime;
+        });
 
         const categoriesDir = join(publicResourceTypeDir, "categories");
 
@@ -210,7 +217,15 @@ export function mdxToApiJSON(): Plugin {
 
         const categoriesOccurrences: Record<string, number> = {};
 
-        const categories = resourcesLimited
+        const slugs = resources.map((resource) => resource.slug);
+
+        await writeFile(
+          join(publicResourceTypeDir, "slugs.json"),
+          JSON.stringify(slugs),
+          "utf-8"
+        );
+
+        const categories = resources
           .reduce<string[]>((categories, resource) => {
             resource.categories?.forEach((category) => {
               if (!(category in categoriesOccurrences))
@@ -231,23 +246,31 @@ export function mdxToApiJSON(): Plugin {
         );
 
         for (const category of categories) {
-          const resourcesByCategory = resourcesLimited.filter((resource) =>
+          const resourcesByCategory = resources.filter((resource) =>
             resource.categories?.includes(category)
           );
 
           await writeFile(
             join(categoriesDir, `${category}.json`),
-            JSON.stringify(resourcesByCategory),
+            JSON.stringify(resourcesByCategory.map(exludeContentFromResource)),
             "utf-8"
           );
         }
 
         await writeFile(
           join(publicContentDir, `${resourceType}.json`),
-          JSON.stringify(resourcesLimited),
+          JSON.stringify(resources.map(exludeContentFromResource)),
           "utf-8"
         );
+
+        searchResults[resourceType] = resources;
       }
+
+      await writeFile(
+        join(publicContentDir, "search.json"),
+        JSON.stringify(searchResults),
+        "utf-8"
+      );
     },
   };
 }

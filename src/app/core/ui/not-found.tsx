@@ -2,12 +2,14 @@ import { useLocation } from "react-router-dom";
 
 import { Button } from "@/shared/ui/button";
 import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
+import { Seo } from "@/shared/ui/seo";
 
 export default function NotFound() {
   const location = useLocation();
 
   return (
     <>
+      <Seo title="404: Nie znaleziono strony" />
       <h1>Oops! Strona nie została znaleziona 🙁 (404)</h1>
       <p>
         Przepraszam, ale strona, której szukasz, nie istnieje. Może to być

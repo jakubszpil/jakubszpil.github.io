@@ -1,19 +1,22 @@
 import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { getArticle } from "../data-access/articles";
+import { getArticle, getArticlesSlugs } from "../data-access/articles";
 import Categories from "../ui/categories";
 
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
 export async function loader({ params, request }: LFA) {
-  const article = await getArticle(request, params.slug!);
+  const slug = params.slug!;
+  const slugs = await getArticlesSlugs(request);
 
-  if (!article)
+  if (!slugs.includes(slug))
     throw new Response(null, {
       status: 404,
       statusText: "Nie znaleziono",
     });
+
+  const article = await getArticle(request, slug);
 
   return json(article);
 }
