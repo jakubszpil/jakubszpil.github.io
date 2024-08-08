@@ -1,8 +1,8 @@
-import { type Article } from "../data-access/articles";
-
 import { Button, type ButtonProps } from "@/shared/ui/button";
 import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 import { getLocalizedDate } from "@/shared/utils/date";
+
+import type { Article } from "../data-access/articles";
 
 export interface ArticlesProps {
   articles: Article[];

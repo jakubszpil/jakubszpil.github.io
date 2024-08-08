@@ -1,5 +1,9 @@
 import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
+import { Seo } from "@/shared/ui/seo";
+import { json, useLoader } from "@/shared/utils/routing";
+import { capitalize } from "@/shared/utils/string";
+
 import {
   getArticles,
   getArticlesByCategory,
@@ -7,10 +11,6 @@ import {
 } from "../data-access/articles";
 import CategoryList from "../ui/categories";
 import Articles from "../ui/articles";
-
-import { Seo } from "@/shared/ui/seo";
-import { json, useLoader } from "@/shared/utils/routing";
-import { capitalize } from "@/shared/utils/string";
 
 export async function loader({ params, request }: LFA) {
   const category = params.category;

@@ -5,19 +5,12 @@ import { json, useLoader } from "@/shared/utils/routing";
 import { capitalize } from "@/shared/utils/string";
 
 import {
-  type Course,
   getCourses,
   getCoursesByCategory,
   getCoursesCategories,
 } from "../data-access/courses";
 import CategoryList from "../ui/categories";
 import Courses from "../ui/courses";
-
-export interface CourseListLoaderData {
-  category: string | undefined;
-  categories: string[];
-  courses: Course[];
-}
 
 export async function loader({ params, request }: LFA) {
   const category = params.category;

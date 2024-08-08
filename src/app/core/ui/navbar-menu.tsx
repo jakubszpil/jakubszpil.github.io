@@ -3,12 +3,12 @@ import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
-import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
-import Socials from "./socials";
-
 import { Button } from "@/shared/ui/button";
 import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 import { ThemeSwitcher } from "@/shared/ui/theme-switcher";
+
+import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
+import Socials from "./socials";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];

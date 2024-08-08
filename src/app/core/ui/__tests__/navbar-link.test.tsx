@@ -9,13 +9,13 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
-
 import {
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
 } from "@/shared/ui/link-with-prefetch";
 import { Button, type ButtonProps } from "@/shared/ui/button";
+
+import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
 
 vi.mock("@/shared/ui/button", async () => {
   return {
