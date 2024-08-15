@@ -142,11 +142,13 @@ export function mdxToApiJSON(): Plugin {
     createdAt?: string;
   }
 
-  function exludeContentFromResource({
+  function excludeFieldsFromResource({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     content,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    keywords,
     ...resource
-  }: Resource): Omit<Resource, "content"> {
+  }: Resource): Omit<Resource, "content" | "keywords"> {
     return resource;
   }
 
@@ -252,14 +254,14 @@ export function mdxToApiJSON(): Plugin {
 
           await writeFile(
             join(categoriesDir, `${category}.json`),
-            JSON.stringify(resourcesByCategory.map(exludeContentFromResource)),
+            JSON.stringify(resourcesByCategory.map(excludeFieldsFromResource)),
             "utf-8"
           );
         }
 
         await writeFile(
           join(publicContentDir, `${resourceType}.json`),
-          JSON.stringify(resources.map(exludeContentFromResource)),
+          JSON.stringify(resources.map(excludeFieldsFromResource)),
           "utf-8"
         );
 
