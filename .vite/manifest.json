@@ -1,6 +1,6 @@
 {
-  "_app-Pl3IruPf.js": {
-    "file": "assets/app-Pl3IruPf.js",
+  "_app-CMLIn5UH.js": {
+    "file": "assets/app-CMLIn5UH.js",
     "name": "app",
     "isDynamicEntry": true,
     "imports": [
@@ -81,12 +81,12 @@
     ]
   },
   "index.html": {
-    "file": "assets/index-CrP0jx70.js",
+    "file": "assets/index-1QklDN98.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_app-Pl3IruPf.js",
+      "_app-CMLIn5UH.js",
       "_react-vvBGimMH.js",
       "_routing-CDreLu1L.js",
       "_runtime-Fe8qnWBl.js",
@@ -94,7 +94,7 @@
       "_components-CxpGlKlM.js"
     ],
     "dynamicImports": [
-      "_app-Pl3IruPf.js"
+      "_app-CMLIn5UH.js"
     ],
     "css": [
       "assets/index-a2aG6zYX.css"
@@ -138,7 +138,7 @@
     ]
   },
   "src/app/core/feature/search.tsx": {
-    "file": "assets/pages/search-DNY1t0bg.js",
+    "file": "assets/pages/search-B-_JJnsp.js",
     "name": "pages/search",
     "src": "src/app/core/feature/search.tsx",
     "isDynamicEntry": true,
