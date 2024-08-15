@@ -1,19 +1,14 @@
 import { createPath, redirect } from "react-router-dom";
 
-import type { Article } from "@/modules/articles/data-access/articles";
-import type { Course } from "@/modules/courses/data-access/courses";
 import { fetch } from "@/shared/utils/fetch";
 import { isValidUrl } from "@/shared/utils/url";
 
-export type SearchResults = {
-  articles: Article[];
-  courses: Course[];
-};
+export type SearchResults = Record<string, unknown[]>;
 
-export async function getSearchResults(
+export async function getSearchResults<TSearchResults extends SearchResults>(
   request: Request,
   query: string | null
-): Promise<SearchResults> {
+): Promise<TSearchResults> {
   const response = await fetch("/content/search.json", {
     cache: "force-cache",
     signal: request.signal,
@@ -24,12 +19,23 @@ export async function getSearchResults(
       ? false
       : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
 
-  const results: SearchResults = await response.json();
+  const results: TSearchResults = await response.json();
 
-  return {
-    articles: results.articles.filter(checkIfMatchesQuery),
-    courses: results.courses.filter(checkIfMatchesQuery),
-  };
+  return Object.fromEntries(
+    Object.entries(results).map(([key, results]) => [
+      key,
+      results.filter(checkIfMatchesQuery),
+    ])
+  ) as TSearchResults;
+}
+
+export async function getSearchResultsLength<
+  TSearchResults extends SearchResults
+>(searchResults: TSearchResults): Promise<number> {
+  return Object.values(searchResults).reduce<number>(
+    (count, { length }) => count + length,
+    0
+  );
 }
 
 export async function validateSearhQuery(request: Request) {

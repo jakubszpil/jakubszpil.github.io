@@ -2,26 +2,34 @@ import { useCallback } from "react";
 import { Form, type LoaderFunctionArgs as LFA } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 
+import type { Article } from "@/modules/articles/data-access/articles";
 import Articles from "@/modules/articles/ui/articles";
+import type { Course } from "@/modules/courses/data-access/courses";
 import Courses from "@/modules/courses/ui/courses";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
-import { getSearchResults, validateSearhQuery } from "../data-access/search";
+import {
+  getSearchResults,
+  getSearchResultsLength,
+  validateSearhQuery,
+} from "../data-access/search";
 
 export async function loader({ request }: LFA) {
   const query = await validateSearhQuery(request);
-  const searchResults = await getSearchResults(request, query);
 
-  const resultsCount =
-    searchResults.articles.length + searchResults.courses.length;
+  const searchResults = await getSearchResults<{
+    articles: Article[];
+    courses: Course[];
+  }>(request, query);
+
+  const resultsCount = await getSearchResultsLength(searchResults);
 
   return json({
+    ...searchResults,
     query,
-    articles: searchResults.articles,
-    courses: searchResults.courses,
     resultsCount,
   });
 }
