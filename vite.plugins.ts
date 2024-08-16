@@ -147,8 +147,10 @@ export function mdxToApiJSON(): Plugin {
     content,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     keywords,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    categories,
     ...resource
-  }: Resource): Omit<Resource, "content" | "keywords"> {
+  }: Resource): Omit<Resource, "content" | "keywords" | "categories"> {
     return resource;
   }
 
