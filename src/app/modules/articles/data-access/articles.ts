@@ -4,6 +4,7 @@ export interface Article {
   id: string;
   slug: string;
   content: string;
+  resourceUrl?: string;
   title?: string;
   description?: string;
   keywords?: string[];

@@ -135,6 +135,7 @@ export function mdxToApiJSON(): Plugin {
     id: string;
     slug: string;
     content: string;
+    resourceUrl?: string;
     title?: string;
     description?: string;
     keywords?: string[];
@@ -149,8 +150,13 @@ export function mdxToApiJSON(): Plugin {
     keywords,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     categories,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    resourceUrl,
     ...resource
-  }: Resource): Omit<Resource, "content" | "keywords" | "categories"> {
+  }: Resource): Omit<
+    Resource,
+    "content" | "keywords" | "categories" | "resourceUrl"
+  > {
     return resource;
   }
 
@@ -193,6 +199,7 @@ export function mdxToApiJSON(): Plugin {
             id: v4(),
             slug,
             content: await process(content),
+            resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/content/${resourceType}/${filename}`,
             ...data,
           };
 

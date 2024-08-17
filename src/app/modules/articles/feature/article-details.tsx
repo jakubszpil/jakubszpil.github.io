@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
 import { Seo } from "@/shared/ui/seo";
+import { EditResource } from "@/shared/ui/edit-resource";
 import { json, useLoader } from "@/shared/utils/routing";
 
 import { getArticle, getArticlesSlugs } from "../data-access/articles";
@@ -41,6 +42,8 @@ export default function ArticleDetails() {
         className="prose container"
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
+
+      <EditResource resourceUrl={article.resourceUrl} />
     </>
   );
 }
