@@ -279,7 +279,17 @@ export function mdxToApiJSON(): Plugin {
 
       await writeFile(
         join(publicContentDir, "search.json"),
-        JSON.stringify(searchResults),
+        JSON.stringify(
+          Object.fromEntries(
+            Object.entries(searchResults).map(([key, value]) => [
+              key,
+              value.map((r) => {
+                delete r.resourceUrl;
+                return r;
+              }),
+            ])
+          )
+        ),
         "utf-8"
       );
     },
