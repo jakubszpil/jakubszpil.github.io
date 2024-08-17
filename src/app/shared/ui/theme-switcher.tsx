@@ -35,7 +35,7 @@ export function ThemeSwitcher() {
     >
       <DropdownMenuTrigger asChild>
         <Button title="Zmień motyw" size="icon" variant="ghost">
-          <Icon />
+          <Icon className="h-6" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

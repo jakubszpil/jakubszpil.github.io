@@ -20,7 +20,7 @@ export default function Socials(props: SocialsProps) {
       aria-label={social.label}
     >
       <a href={social.href} target="_blank">
-        <social.icon />
+        <social.icon className="h-6" />
         <span className={`${props.hideLabels ? "sr-only" : ""}`}>
           {social.label}
         </span>

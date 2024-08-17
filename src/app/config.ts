@@ -1,4 +1,8 @@
-import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMessages,
+} from "@tabler/icons-react";
 
 export const config = {
   socials: [
@@ -11,6 +15,11 @@ export const config = {
       href: "https://github.com/jakubszpil/",
       label: "GitHub",
       icon: IconBrandGithub,
+    },
+    {
+      href: "https://github.com/jakubszpil/jakubszpil.github.io/discussions/categories/q-a",
+      label: "Q&A",
+      icon: IconMessages,
     },
   ],
   meta: {

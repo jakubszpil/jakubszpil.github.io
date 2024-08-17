@@ -50,7 +50,9 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           </LinkWithPrefetch>
         </Button>
 
-        <Socials hideLabels={true} />
+        <div className="hidden xs:flex items-center sm:gap-1">
+          <Socials hideLabels={true} />
+        </div>
 
         <ThemeSwitcher />
 
@@ -63,7 +65,6 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           }`}
           variant="link"
           aria-label={show ? "Zamknij menu" : "Otwórz menu"}
-          title={show ? "Zamknij menu" : "Otwórz menu"}
         >
           <span className="sr-only">
             {show ? "Zamknij menu" : "Otwórz menu"}
@@ -86,6 +87,10 @@ export default function NavbarMenu(props: NavbarMenuProps) {
               onClick={closeMenu}
             />
           ))}
+
+          <div className="flex absolute bottom-20 gap-3 xs:hidden">
+            <Socials hideLabels={true} />
+          </div>
         </nav>
       </Transition>
     </>
