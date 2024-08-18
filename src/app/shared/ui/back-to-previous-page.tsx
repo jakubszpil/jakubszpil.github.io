@@ -15,7 +15,7 @@ export function BackToPreviousPage() {
 
   const state = location.state;
 
-  if (!state?.label || !state.pathname) return null;
+  if (!state?.label || !state?.pathname) return null;
 
   return (
     <Button
