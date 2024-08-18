@@ -8,6 +8,7 @@ import type { Course } from "@/modules/courses/data-access/courses";
 import Courses from "@/modules/courses/ui/courses";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
+import { type LinkWithPrefetchLocationState } from "@/shared/ui/link-with-prefetch";
 import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
@@ -46,6 +47,11 @@ export default function Search() {
       return <h2>Brak wyników wyszukiwania dla zapytania: {query}</h2>;
     }
 
+    const locationState: LinkWithPrefetchLocationState = {
+      pathname: `/search?q=${query}`,
+      label: "Powrót do wyników wyszukiwania",
+    };
+
     return (
       <>
         <h2>Wyniki wyszukiwania ({resultsCount})</h2>
@@ -53,14 +59,22 @@ export default function Search() {
         {articles.length > 0 && (
           <section>
             <h3>Artykuły ({articles.length})</h3>
-            <Articles className="px-0 !grid-cols-1" articles={articles} />
+            <Articles
+              className="px-0 !grid-cols-1"
+              articles={articles}
+              locationState={locationState}
+            />
           </section>
         )}
 
         {courses.length > 0 && (
           <section>
             <h3>Kursy ({courses.length})</h3>
-            <Courses className="px-0 !grid-cols-1" courses={courses} />
+            <Courses
+              className="px-0 !grid-cols-1"
+              courses={courses}
+              locationState={locationState}
+            />
           </section>
         )}
       </>

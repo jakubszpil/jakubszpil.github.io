@@ -1,7 +1,8 @@
 import type { LoaderFunctionArgs as LFA } from "react-router-dom";
 
-import { Seo } from "@/shared/ui/seo";
+import { BackToPreviousPage } from "@/shared/ui/back-to-previous-page";
 import { EditResource } from "@/shared/ui/edit-resource";
+import { Seo } from "@/shared/ui/seo";
 import { json, useLoader } from "@/shared/utils/routing";
 
 import { getArticle, getArticlesSlugs } from "../data-access/articles";
@@ -34,6 +35,7 @@ export default function ArticleDetails() {
       />
 
       <header className="prose container">
+        <BackToPreviousPage />
         <h1>{article.title}</h1>
         <Categories categories={article.categories} />
       </header>

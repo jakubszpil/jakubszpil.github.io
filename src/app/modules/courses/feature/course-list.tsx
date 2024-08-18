@@ -54,7 +54,13 @@ export default function CourseList() {
         <CategoryList showAllCategory categories={categories} />
       </header>
 
-      <Courses courses={courses} />
+      <Courses
+        courses={courses}
+        locationState={{
+          pathname: category ? `/learning/kategorie/${category}` : "/learning",
+          label: "Powrót do listy kursów",
+        }}
+      />
     </>
   );
 }

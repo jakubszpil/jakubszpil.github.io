@@ -54,7 +54,13 @@ export default function ArticleList() {
         <CategoryList showAllCategory categories={categories} />
       </header>
 
-      <Articles articles={articles} />
+      <Articles
+        articles={articles}
+        locationState={{
+          pathname: category ? `/blog/kategorie/${category}` : "/blog",
+          label: "Powrót do listy artykułów",
+        }}
+      />
     </>
   );
 }

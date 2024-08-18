@@ -1,5 +1,8 @@
 import { Button, type ButtonProps } from "@/shared/ui/button";
-import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchLocationState,
+} from "@/shared/ui/link-with-prefetch";
 import { getLocalizedDate } from "@/shared/utils/date";
 
 import type { Course } from "../data-access/courses";
@@ -8,6 +11,7 @@ export interface CoursesProps {
   courses: Course[];
   className?: string;
   variant?: ButtonProps["variant"];
+  locationState?: LinkWithPrefetchLocationState;
 }
 
 export default function Courses(props: CoursesProps) {
@@ -24,7 +28,10 @@ export default function Courses(props: CoursesProps) {
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <LinkWithPrefetch to={`/learning/${course.slug}`}>
+          <LinkWithPrefetch
+            to={`/learning/${course.slug}`}
+            state={props.locationState}
+          >
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {course.title}
             </h2>

@@ -1,5 +1,8 @@
 import { Button, type ButtonProps } from "@/shared/ui/button";
-import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchLocationState,
+} from "@/shared/ui/link-with-prefetch";
 import { getLocalizedDate } from "@/shared/utils/date";
 
 import type { Article } from "../data-access/articles";
@@ -8,6 +11,7 @@ export interface ArticlesProps {
   articles: Article[];
   className?: string;
   variant?: ButtonProps["variant"];
+  locationState?: LinkWithPrefetchLocationState;
 }
 
 export default function Articles(props: ArticlesProps) {
@@ -24,7 +28,10 @@ export default function Articles(props: ArticlesProps) {
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <LinkWithPrefetch to={`/blog/${article.slug}`}>
+          <LinkWithPrefetch
+            to={`/blog/${article.slug}`}
+            state={props.locationState}
+          >
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {article.title}
             </h2>

@@ -10,8 +10,14 @@ import { useRouter } from "../utils/routing";
 
 type PrefetchBehavior = "intent" | "none";
 
+export interface LinkWithPrefetchLocationState {
+  pathname: string;
+  label: string;
+}
+
 export interface LinkWithPrefetchProps extends LinkProps {
   prefetch?: PrefetchBehavior;
+  state?: LinkWithPrefetchLocationState;
 }
 
 export function LinkWithPrefetch({
