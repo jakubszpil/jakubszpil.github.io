@@ -22,7 +22,7 @@ export function BackToPreviousPage() {
       asChild
       variant="link"
       size="sm"
-      className="-ml-3 mb-3 inline-flex gap-2 no-underline hover:underline"
+      className="-ml-3 mb-3 inline-flex gap-2"
     >
       <LinkWithPrefetch
         to={state.pathname}

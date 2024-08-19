@@ -66,6 +66,8 @@ const config = {
       },
       screens: {
         xs: { raw: "(min-width: 360px)" },
+        "hover-available": { raw: "not (hover: none)" },
+        "hover-unavailable": { raw: "(hover: none)" },
       },
     },
   },

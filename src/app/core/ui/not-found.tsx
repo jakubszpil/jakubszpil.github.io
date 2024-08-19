@@ -25,12 +25,7 @@ export default function NotFound() {
       </p>
       <ul>
         <li>
-          <Button
-            asChild
-            size="sm"
-            variant="link"
-            className="text-base no-underline hover:underline"
-          >
+          <Button asChild size="sm" variant="link" className="text-base">
             <LinkWithPrefetch replace to={location.pathname}>
               🤔 Sprawdź adres URL
             </LinkWithPrefetch>
@@ -38,12 +33,7 @@ export default function NotFound() {
           - Upewnij się, że wpisany adres jest poprawny.
         </li>
         <li>
-          <Button
-            asChild
-            size="sm"
-            variant="link"
-            className="text-base no-underline hover:underline"
-          >
+          <Button asChild size="sm" variant="link" className="text-base">
             <LinkWithPrefetch replace to="/">
               🏠 Przejdź do strony głównej
             </LinkWithPrefetch>
@@ -51,12 +41,7 @@ export default function NotFound() {
           - Kliknij tutaj aby wrócić na stronę główną.
         </li>
         <li>
-          <Button
-            asChild
-            size="sm"
-            variant="link"
-            className="text-base no-underline hover:underline"
-          >
+          <Button asChild size="sm" variant="link" className="text-base">
             <LinkWithPrefetch replace to="/search">
               🔍 Szukaj
             </LinkWithPrefetch>
