@@ -31,7 +31,7 @@ export function LinkWithPrefetch({
     if (prefetched) return;
 
     matchRoutes(routes, props.to)?.forEach((match) => {
-      const url = new URL(`${window.location.origin}${match.pathname}`);
+      const url = new URL(`${window.location.origin}${props.to}`);
       const loaderArgs = {
         params: match.params,
         request: new Request(url),
