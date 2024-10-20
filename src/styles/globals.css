@@ -77,7 +77,7 @@
     @apply bg-background text-foreground overflow-y-scroll;
   }
   html {
-    @apply antialiased text-sm xs:text-base 2xl:!text-lg;
+    @apply antialiased text-sm xs:text-base;
   }
 
   html.switching-theme * {
