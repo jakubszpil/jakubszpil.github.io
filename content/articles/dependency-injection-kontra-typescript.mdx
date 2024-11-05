@@ -58,7 +58,7 @@ Aby lepiej zarządzać zależnościami, możemy użyć kontenera IoC. Przykład 
 ```typescript
 const dependencies: Map<string, any> = new Map();
 
-function inject<T>(dependency: T) {
+function inject<T>(dependency: new () => T): T {
   if (dependencies.has(dependency.name)) {
     const dep = dependencies.get(dependency.name);
     if (dep) {
