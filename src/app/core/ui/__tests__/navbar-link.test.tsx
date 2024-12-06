@@ -2,18 +2,14 @@ import {
   afterEach,
   beforeEach,
   describe,
-  expect,
   type MockInstance,
   test,
   vi,
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import {
-  LinkWithPrefetch,
-  type LinkWithPrefetchProps,
-} from "@/shared/ui/link-with-prefetch";
-import { Button, type ButtonProps } from "@/shared/ui/button";
+import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
+import { Button } from "@/shared/ui/button";
 
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
 
