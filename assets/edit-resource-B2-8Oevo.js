@@ -1,6 +1,0 @@
-import{c as s,u as l,j as r}from"./index-CvRpRBP1.js";import{c as o,B as t}from"./seo-rJwk32Kw.js";import{L as c}from"./link-with-prefetch-B9_LceBL.js";/**
- * @license @tabler/icons-react v3.24.0 - MIT
- *
- * This source code is licensed under the MIT license.
- * See the LICENSE file in the root directory of this source tree.
- */var u=o("outline","arrow-left","IconArrowLeft",[["path",{d:"M5 12l14 0",key:"svg-0"}],["path",{d:"M5 12l6 6",key:"svg-1"}],["path",{d:"M5 12l6 -6",key:"svg-2"}]]);function f(){const a=s(),n=l(),e=a.state;return!(e!=null&&e.label)||!(e!=null&&e.pathname)?null:r.jsx(t,{asChild:!0,variant:"link",size:"sm",className:"-ml-3 mb-3 inline-flex gap-2",children:r.jsxs(c,{to:e.pathname,onClick:i=>{i.preventDefault(),n(-1)},children:[r.jsx(u,{className:"h-5"})," ",e.label]})})}function m(a){return a.resourceUrl?r.jsx("div",{className:"container",children:r.jsx(t,{asChild:!0,variant:"secondary",size:"lg",className:"w-full p-10 text-wrap flex-wrap h-auto text-center gap-y-4",children:r.jsxs("p",{children:["Widzisz jakiś błąd, bądź literówkę? Chcesz coś poprawić?",r.jsx(t,{asChild:!0,variant:"link",children:r.jsx("a",{href:a.resourceUrl,target:"_blank",rel:"noreferrer",children:"✏️ Przejdź do edycji tego pliku"})})]})})}):null}export{f as B,m as E};
