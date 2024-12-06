@@ -1,9 +1,9 @@
 import { isRouteErrorResponse, Outlet, useRouteError } from "react-router";
 
-import Layout from "./core/ui/layout";
-import NotFound from "./core/ui/not-found";
-import { Button } from "./shared/ui/button";
-import { LinkWithPrefetch } from "./shared/ui/link-with-prefetch";
+import Layout from "./components/layout";
+import NotFound from "./components/not-found";
+import { Button } from "./components/ui/button";
+import { LinkWithPrefetch } from "./components/ui/link-with-prefetch";
 
 export default function App() {
   return (

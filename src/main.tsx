@@ -4,7 +4,7 @@ import { createHashRouter, RouterProvider } from "react-router";
 import invariant from "tiny-invariant";
 
 import "./styles/globals.css";
-import { route } from "./app/shared/utils/routing";
+import { route } from "./app/lib/routing";
 import { routes } from "./app/routes";
 
 if (!window.location.hash) {
@@ -22,8 +22,6 @@ const router = createHashRouter(
     },
   }
 );
-
-// if (!window.location.hash) router.navigate("/", { replace: true });
 
 const rootElement = document.getElementById("root");
 

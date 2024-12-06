@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router";
 
-import { index } from "@/shared/utils/routing";
+import { index } from "~/lib/routing";
 
 export const routes: RouteObject[] = [
-  index(() => import("./feature/project-list")),
+  index(() => import("./routes/project-list")),
 ];
