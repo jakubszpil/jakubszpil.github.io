@@ -1,4 +1,4 @@
-import { type Location, useLocation, useNavigate } from "react-router-dom";
+import { type Location, useLocation, useNavigate } from "react-router";
 import { IconArrowLeft } from "@tabler/icons-react";
 
 import { Button } from "./button";

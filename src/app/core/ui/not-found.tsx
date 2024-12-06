@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 import { Button } from "@/shared/ui/button";
 import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";

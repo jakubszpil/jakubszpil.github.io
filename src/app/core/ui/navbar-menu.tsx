@@ -1,14 +1,14 @@
 import { useCallback, useRef, useState, type ReactElement } from "react";
-import { IconMenu2, IconSearch, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
 import { Button } from "@/shared/ui/button";
-import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 import { ThemeSwitcher } from "@/shared/ui/theme-switcher";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
+import SearchButton from "./search-button";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
@@ -36,19 +36,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           ))}
         </nav>
 
-        <Button
-          size="icon"
-          variant="ghost"
-          asChild
-          className="inline-flex items-center justify-center"
-          aria-label="Szukaj"
-          title="Szukaj"
-        >
-          <LinkWithPrefetch to="/search">
-            <span className="sr-only">Szukaj</span>
-            <IconSearch className="h-6" />
-          </LinkWithPrefetch>
-        </Button>
+        <SearchButton />
 
         <div className="hidden xs:flex items-center sm:gap-1">
           <Socials hideLabels={true} />

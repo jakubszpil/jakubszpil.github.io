@@ -1,9 +1,12 @@
-import type { LoaderFunctionArgs as LFA } from "react-router-dom";
+import {
+  data,
+  useLoaderData,
+  type LoaderFunctionArgs as LFA,
+} from "react-router";
 
 import { BackToPreviousPage } from "@/shared/ui/back-to-previous-page";
 import { EditResource } from "@/shared/ui/edit-resource";
 import { Seo } from "@/shared/ui/seo";
-import { json, useLoader } from "@/shared/utils/routing";
 
 import { getCourse, getCoursesSlugs } from "../data-access/courses";
 import Categories from "../ui/categories";
@@ -20,11 +23,11 @@ export async function loader({ params, request }: LFA) {
 
   const course = await getCourse(request, slug);
 
-  return json(course);
+  return data(course);
 }
 
 export default function CourseDetails() {
-  const course = useLoader<typeof loader>();
+  const course = useLoaderData<typeof loader>();
 
   return (
     <>

@@ -5,9 +5,9 @@ import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
-import { VitePWA as pwa } from "vite-plugin-pwa";
+import { VitePWA } from "vite-plugin-pwa";
 
-import { chunks, mdxToApiJSON, minify } from "./vite.plugins";
+import { mdxToApiJSON, minify } from "./vite.plugins";
 
 const timestamp = Date.now().toString();
 
@@ -18,7 +18,6 @@ export default defineConfig(() => {
       "import.meta.env.VITE_ETAG": timestamp,
     },
     plugins: [
-      chunks(),
       mdxToApiJSON(),
       react(),
       tsconfigPaths(),
@@ -26,7 +25,7 @@ export default defineConfig(() => {
         include: ["html", "svg"],
         exclude: ["js"],
       }),
-      pwa({
+      VitePWA({
         registerType: "autoUpdate",
         includeAssets: [
           "robots.txt",
@@ -150,6 +149,11 @@ export default defineConfig(() => {
     preview: {
       headers: {
         "cache-control": "max-age=600,public",
+      },
+    },
+    resolve: {
+      alias: {
+        "@tabler/icons-react": "@tabler/icons-react/dist/esm/icons/index.mjs",
       },
     },
     build: {

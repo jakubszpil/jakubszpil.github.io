@@ -1,7 +1,10 @@
-import type { LoaderFunctionArgs as LFA } from "react-router-dom";
+import {
+  data,
+  useLoaderData,
+  type LoaderFunctionArgs as LFA,
+} from "react-router";
 
 import { Seo } from "@/shared/ui/seo";
-import { json, useLoader } from "@/shared/utils/routing";
 import { capitalize } from "@/shared/utils/string";
 
 import {
@@ -23,14 +26,14 @@ export async function loader({ params, request }: LFA) {
         statusText: "Nie znaleziono",
       });
 
-    return json({
+    return data({
       category,
       categories,
       courses: await getCoursesByCategory(request, category),
     });
   }
 
-  return json({
+  return data({
     courses: await getCourses(request),
     categories,
     category,
@@ -38,7 +41,7 @@ export async function loader({ params, request }: LFA) {
 }
 
 export default function CourseList() {
-  const { courses, categories, category } = useLoader<typeof loader>();
+  const { courses, categories, category } = useLoaderData<typeof loader>();
 
   const title = category ? capitalize(category) : undefined;
 

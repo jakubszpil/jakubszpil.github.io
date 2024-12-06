@@ -1,4 +1,5 @@
-import { useLoader } from "@/shared/utils/routing";
+import { useLoaderData } from "react-router";
+
 import { Seo } from "@/shared/ui/seo";
 
 import Socials from "../ui/socials";
@@ -10,7 +11,7 @@ export async function loader() {
 }
 
 export default function About() {
-  const years = useLoader<typeof loader>();
+  const years = useLoaderData<typeof loader>();
 
   return (
     <div className="container prose">

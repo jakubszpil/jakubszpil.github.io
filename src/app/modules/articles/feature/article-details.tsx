@@ -1,9 +1,12 @@
-import type { LoaderFunctionArgs as LFA } from "react-router-dom";
+import {
+  data,
+  useLoaderData,
+  type LoaderFunctionArgs as LFA,
+} from "react-router";
 
 import { BackToPreviousPage } from "@/shared/ui/back-to-previous-page";
 import { EditResource } from "@/shared/ui/edit-resource";
 import { Seo } from "@/shared/ui/seo";
-import { json, useLoader } from "@/shared/utils/routing";
 
 import { getArticle, getArticlesSlugs } from "../data-access/articles";
 import Categories from "../ui/categories";
@@ -20,11 +23,11 @@ export async function loader({ params, request }: LFA) {
 
   const article = await getArticle(request, slug);
 
-  return json(article);
+  return data(article);
 }
 
 export default function ArticleDetails() {
-  const article = useLoader<typeof loader>();
+  const article = useLoaderData<typeof loader>();
 
   return (
     <>

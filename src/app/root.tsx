@@ -1,9 +1,4 @@
-import {
-  isRouteErrorResponse,
-  Outlet,
-  ScrollRestoration,
-  useRouteError,
-} from "react-router-dom";
+import { isRouteErrorResponse, Outlet, useRouteError } from "react-router";
 
 import Layout from "./core/ui/layout";
 import NotFound from "./core/ui/not-found";
@@ -13,7 +8,6 @@ import { LinkWithPrefetch } from "./shared/ui/link-with-prefetch";
 export default function App() {
   return (
     <Layout>
-      <ScrollRestoration />
       <Outlet />
     </Layout>
   );

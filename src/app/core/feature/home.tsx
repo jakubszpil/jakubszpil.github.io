@@ -1,4 +1,8 @@
-import type { LoaderFunctionArgs as LFA } from "react-router-dom";
+import {
+  data,
+  useLoaderData,
+  type LoaderFunctionArgs as LFA,
+} from "react-router";
 
 import { getArticles } from "@/modules/articles/data-access/articles";
 import Articles from "@/modules/articles/ui/articles";
@@ -7,7 +11,6 @@ import Courses from "@/modules/courses/ui/courses";
 import { Button } from "@/shared/ui/button";
 import { LinkWithPrefetch } from "@/shared/ui/link-with-prefetch";
 import { Seo } from "@/shared/ui/seo";
-import { json, useLoader } from "@/shared/utils/routing";
 
 export async function loader({ request }: LFA) {
   const [articles, courses] = await Promise.all([
@@ -15,14 +18,14 @@ export async function loader({ request }: LFA) {
     getCourses(request, 3),
   ]);
 
-  return json({
+  return data({
     articles,
     courses,
   });
 }
 
 export default function Home() {
-  const data = useLoader<typeof loader>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { createPath, redirect } from "react-router-dom";
+import { createPath, redirect } from "react-router";
 
 import { fetch } from "@/shared/utils/fetch";
 import { isValidUrl } from "@/shared/utils/url";

@@ -1,5 +1,10 @@
 import { useCallback } from "react";
-import { Form, type LoaderFunctionArgs as LFA } from "react-router-dom";
+import {
+  data,
+  Form,
+  useLoaderData,
+  type LoaderFunctionArgs as LFA,
+} from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
 import type { Article } from "@/modules/articles/data-access/articles";
@@ -10,7 +15,6 @@ import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { type LinkWithPrefetchLocationState } from "@/shared/ui/link-with-prefetch";
 import { Seo } from "@/shared/ui/seo";
-import { json, useLoader } from "@/shared/utils/routing";
 
 import {
   getSearchResults,
@@ -28,7 +32,7 @@ export async function loader({ request }: LFA) {
 
   const resultsCount = await getSearchResultsLength(searchResults);
 
-  return json({
+  return data({
     ...searchResults,
     query,
     resultsCount,
@@ -36,7 +40,8 @@ export async function loader({ request }: LFA) {
 }
 
 export default function Search() {
-  const { query, articles, courses, resultsCount } = useLoader<typeof loader>();
+  const { query, articles, courses, resultsCount } =
+    useLoaderData<typeof loader>();
 
   const renderResults = useCallback(() => {
     if (!query) {

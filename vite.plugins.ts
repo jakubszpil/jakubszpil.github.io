@@ -9,6 +9,7 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
+import rehypeSlug from "rehype-slug";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
@@ -55,78 +56,18 @@ export function minify(config?: {
   };
 }
 
-export function chunks(): Plugin {
-  const chunkName = (id: string, matcher: string) => {
-    const path = id.slice(id.indexOf(matcher)).replace(matcher, "");
-    return path
-      .slice(0, path.indexOf("/"))
-      .replace(/\.tsx?/, "")
-      .replace(/\.mdx?/, "");
-  };
-
-  return {
-    name: "chunks",
-    config(config) {
-      if (!config.build) config.build = {};
-      if (!config.build.rollupOptions) config.build.rollupOptions = {};
-      if (!config.build.rollupOptions.output)
-        config.build.rollupOptions.output = {};
-
-      config.build.rollupOptions.output = {
-        manualChunks: (id) => {
-          if (id.includes("/node_modules/")) {
-            const name = chunkName(id, "/node_modules/");
-
-            const is = (...libs: string[]) => libs.includes(name);
-
-            if (is("react-router-dom", "@remix-run", "react-router"))
-              return "routing";
-
-            if (
-              is(
-                "react",
-                "react-dom",
-                "scheduler",
-                "react-fast-compare",
-                "shallowequal"
-              )
-            )
-              return "react";
-
-            return "runtime";
-          }
-
-          if (id.includes("/content/"))
-            return `content/${chunkName(
-              id,
-              `/${chunkName(id, "/content/")}/`
-            )}`;
-
-          if (id.includes("/feature/"))
-            return `pages/${chunkName(id, "/feature/")}`;
-
-          if (id.includes("/ui/")) return "components";
-
-          if (id.includes("/utils/")) return "utils";
-
-          if (id.includes("app.")) return "app";
-        },
-      };
-    },
-  };
-}
-
 export function mdxToApiJSON(): Plugin {
-  const processor = unified()
-    .use(remarkParse)
-    .use(remarkHtml)
-    .use(remarkGfm)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeHighlight)
-    .use(rehypeStringify);
-
   const process = async (content: string) => {
+    const processor = unified()
+      .use(remarkParse)
+      .use(remarkHtml)
+      .use(remarkGfm)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(rehypeSlug)
+      .use(rehypeHighlight)
+      .use(rehypeStringify);
+
     const results = await processor.process(content);
     return results.toString();
   };

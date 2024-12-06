@@ -111,7 +111,7 @@ export function ThemeContextProvider(props: ThemeContextProviderProps) {
   return (
     <ThemeContext.Provider
       value={{
-        theme,
+        theme: value,
         resolvedTheme,
         setTheme,
       }}

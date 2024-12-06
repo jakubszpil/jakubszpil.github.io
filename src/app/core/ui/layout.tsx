@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ScrollRestoration } from "react-router";
 
 import { ThemeContextProvider } from "@/shared/data-access/theme";
 
@@ -12,6 +13,7 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps) {
   return (
     <ThemeContextProvider>
+      <ScrollRestoration />
       <Navbar>
         <Navbar.Link className="font-bold" to="/">
           jakubszpil

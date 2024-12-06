@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { getCurrentYear } from "@/shared/utils/date";
 import { Button } from "@/shared/ui/button";

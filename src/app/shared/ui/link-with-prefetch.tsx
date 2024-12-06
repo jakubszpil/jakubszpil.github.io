@@ -4,11 +4,9 @@ import {
   useCallback,
   useState,
 } from "react";
-import { Link, matchRoutes, type LinkProps } from "react-router-dom";
+import { matchRoutes, Link, type LinkProps } from "react-router";
 
 import { useRouter } from "../utils/routing";
-
-type PrefetchBehavior = "intent" | "none";
 
 export interface LinkWithPrefetchLocationState {
   pathname: string;
@@ -16,14 +14,10 @@ export interface LinkWithPrefetchLocationState {
 }
 
 export interface LinkWithPrefetchProps extends LinkProps {
-  prefetch?: PrefetchBehavior;
   state?: LinkWithPrefetchLocationState;
 }
 
-export function LinkWithPrefetch({
-  prefetch = "intent",
-  ...props
-}: LinkWithPrefetchProps) {
+export function LinkWithPrefetch({ ...props }: LinkWithPrefetchProps) {
   const { routes } = useRouter();
   const [prefetched, setPrefetched] = useState(false);
 
@@ -52,7 +46,7 @@ export function LinkWithPrefetch({
     let prefetchTimeout: NodeJS.Timeout | null = null;
 
     const waitAndPrefetch = () => {
-      prefetchTimeout = setTimeout(prefetchRoute, 300);
+      prefetchTimeout = setTimeout(prefetchRoute, 500);
     };
 
     const clearPrefetchTimeout = () => {
@@ -62,41 +56,37 @@ export function LinkWithPrefetch({
       }
     };
 
-    if (prefetch === "intent") {
-      return {
-        onClick: (event) => {
-          prefetchRoute();
-          props.onClick?.(event);
-        },
-        onTouchStartCapture: (event) => {
-          prefetchRoute();
-          props.onTouchStartCapture?.(event);
-        },
-        onTouchStart: (event) => {
-          prefetchRoute();
-          props.onTouchStart?.(event);
-        },
-        onMouseEnter: (event) => {
-          waitAndPrefetch();
-          props.onMouseEnter?.(event);
-        },
-        onMouseLeave: (event) => {
-          clearPrefetchTimeout();
-          props.onMouseLeave?.(event);
-        },
-        onFocus: (event) => {
-          waitAndPrefetch();
-          props.onFocus?.(event);
-        },
-        onBlur: (event) => {
-          clearPrefetchTimeout();
-          props.onBlur?.(event);
-        },
-      };
-    }
+    return {
+      onClick: (event) => {
+        prefetchRoute();
+        props.onClick?.(event);
+      },
+      onTouchStartCapture: (event) => {
+        prefetchRoute();
+        props.onTouchStartCapture?.(event);
+      },
+      onTouchStart: (event) => {
+        prefetchRoute();
+        props.onTouchStart?.(event);
+      },
+      onMouseEnter: (event) => {
+        waitAndPrefetch();
+        props.onMouseEnter?.(event);
+      },
+      onMouseLeave: (event) => {
+        clearPrefetchTimeout();
+        props.onMouseLeave?.(event);
+      },
+      onFocus: (event) => {
+        waitAndPrefetch();
+        props.onFocus?.(event);
+      },
+      onBlur: (event) => {
+        clearPrefetchTimeout();
+        props.onBlur?.(event);
+      },
+    };
+  }, [prefetchRoute, props]);
 
-    return {};
-  }, [prefetch, prefetchRoute, props]);
-
-  return <Link {...props} {...handlers} />;
+  return <Link {...props} {...handlers} prefetch="intent" />;
 }
