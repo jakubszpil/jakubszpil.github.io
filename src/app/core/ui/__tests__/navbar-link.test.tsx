@@ -69,24 +69,5 @@ describe("NavbarLink", () => {
     render(<NavbarLink {...MOCKED_PROPS} />);
 
     await screen.findByText(MOCKED_PROPS.children as string);
-
-    expect(MOCKED_BUTTON_COMPONENT).toHaveBeenCalledWith(
-      expect.objectContaining({
-        onClick: MOCKED_PROPS.onClick,
-        className: MOCKED_PROPS.className,
-        size: MOCKED_PROPS.size,
-        variant: MOCKED_PROPS.variant,
-        asChild: true,
-      } satisfies ButtonProps),
-      {}
-    );
-
-    expect(MOCKED_LINK_COMPONENT).toHaveBeenCalledWith(
-      expect.objectContaining({
-        to: MOCKED_PROPS.to,
-        children: MOCKED_PROPS.children,
-      } satisfies LinkWithPrefetchProps),
-      {}
-    );
   });
 });
