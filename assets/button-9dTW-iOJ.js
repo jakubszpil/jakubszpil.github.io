@@ -1,4 +1,4 @@
-import{r as v,j as w}from"./index-BhFGxWmI.js";/**
+import{r as v,j as w}from"./index-B-iIjij2.js";/**
  * @license @tabler/icons-react v3.24.0 - MIT
  *
  * This source code is licensed under the MIT license.
