@@ -31,8 +31,6 @@ export function LinkWithPrefetch({ ...props }: LinkWithPrefetchProps) {
         request: new Request(url),
       };
 
-      console.log(match);
-
       if (match.route.loader instanceof Function)
         match.route.loader(loaderArgs);
 
@@ -48,7 +46,7 @@ export function LinkWithPrefetch({ ...props }: LinkWithPrefetchProps) {
     let prefetchTimeout: NodeJS.Timeout | null = null;
 
     const waitAndPrefetch = () => {
-      prefetchTimeout = setTimeout(prefetchRoute, 500);
+      prefetchTimeout = setTimeout(prefetchRoute, 300);
     };
 
     const clearPrefetchTimeout = () => {
