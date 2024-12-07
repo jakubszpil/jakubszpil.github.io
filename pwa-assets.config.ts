@@ -13,13 +13,13 @@ export default defineConfig({
     assetName(type, size) {
       switch (type) {
         case "apple": {
-          return `images/apple-touch-icon-${size.width}x${size.height}.webp`;
+          return `static/media/apple-touch-icon-${size.width}x${size.height}.webp`;
         }
         case "maskable": {
-          return `images/maskable-icon-${size.width}x${size.height}.webp`;
+          return `static/media/maskable-icon-${size.width}x${size.height}.webp`;
         }
         case "transparent": {
-          return `images/pwa-${size.width}x${size.height}.webp`;
+          return `static/media/pwa-${size.width}x${size.height}.webp`;
         }
       }
     },
@@ -29,9 +29,9 @@ export default defineConfig({
         resizeOptions: { fit: "contain", background: "#ffffff" },
         darkResizeOptions: { fit: "contain", background: "#0a0a0a" },
         name: (landscape, size, dark) => {
-          return `images/apple-splash-${landscape ? "landscape" : "portrait"}-${
-            dark ? "dark" : "light"
-          }-${size.width}x${size.height}.webp`;
+          return `static/media/apple-splash-${
+            landscape ? "landscape" : "portrait"
+          }-${dark ? "dark" : "light"}-${size.width}x${size.height}.webp`;
         },
         png: {
           quality: 60,
