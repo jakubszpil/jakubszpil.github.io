@@ -1,4 +1,4 @@
-import{c as s,u as l,j as r}from"./index-D2qAGerE.js";import{c as o,B as t}from"./button-BA8Jzfmf.js";import{L as c}from"./link-with-prefetch-DKnGTecg.js";/**
+import{c as s,u as l,j as r}from"./index-Dj7ygcOB.js";import{c as o,B as t}from"./button-CscWyoNn.js";import{L as c}from"./link-with-prefetch-BNEX4AUn.js";/**
  * @license @tabler/icons-react v3.24.0 - MIT
  *
  * This source code is licensed under the MIT license.
