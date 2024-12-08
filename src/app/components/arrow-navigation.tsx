@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export default function ArrowNavigation() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -21,7 +22,7 @@ export default function ArrowNavigation() {
           e.preventDefault();
           navigate(1);
         }
-        if (e.key === "H") {
+        if (e.key === "H" && location.pathname !== "/handbook") {
           e.preventDefault();
           navigate("/handbook");
         }
@@ -33,7 +34,7 @@ export default function ArrowNavigation() {
     });
 
     return () => abortController.abort();
-  });
+  }, [location, navigate]);
 
   return null;
 }
