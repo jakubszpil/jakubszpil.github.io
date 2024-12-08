@@ -9,6 +9,10 @@ export default function ArrowNavigation() {
 
     const down = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey) {
+        if (!e.shiftKey) {
+          return;
+        }
+
         if (e.key === "<") {
           e.preventDefault();
           navigate(-1);
@@ -16,6 +20,10 @@ export default function ArrowNavigation() {
         if (e.key === ">") {
           e.preventDefault();
           navigate(1);
+        }
+        if (e.key === "H") {
+          e.preventDefault();
+          navigate("/handbook");
         }
       }
     };

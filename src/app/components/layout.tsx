@@ -36,6 +36,7 @@ export default function Layout(props: LayoutProps) {
         <Footer.Link to="/portfolio">🛠️ Portfolio</Footer.Link>
         <Footer.Link to="/me">🙋‍♂️ O mnie</Footer.Link>
         <Footer.Link to="/search">🔍 Szukaj</Footer.Link>
+        <Footer.Link to="/handbook">📋 Handbook</Footer.Link>
       </Footer>
     </ThemeContextProvider>
   );

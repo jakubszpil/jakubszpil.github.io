@@ -11,6 +11,7 @@ export const routes: RouteObject[] = [
   prefix("learning", coursesRoutes),
   prefix("portfolio", projectsRoutes),
   route("search", () => import("./routes/search")),
+  route("handbook", () => import("./routes/handbook")),
   route("me", () => import("./routes/about")),
   route("*", () => import("./routes/not-found")),
 ];
