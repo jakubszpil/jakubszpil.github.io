@@ -1,4 +1,4 @@
-import{r as o,j as e}from"./index-NsJUTium.js";/**
+import{r as o,j as e}from"./index-6YJCeW33.js";/**
  * @license @tabler/icons-react v3.24.0 - MIT
  *
  * This source code is licensed under the MIT license.
