@@ -40,28 +40,72 @@ export function loadRouteModule(module: () => Promise<RouteModule>) {
     );
 }
 
-export function route(
-  path: string,
+export function route<TPath extends string, TChildren extends RouteObject[]>(
+  path: TPath,
   module: () => Promise<RouteModule>,
-  children?: RouteObject[]
-): RouteObject {
+  children?: TChildren
+) {
   return {
     path,
     children,
     lazy: loadRouteModule(module),
-  };
+  } as const satisfies RouteObject;
 }
 
-export function index(module: () => Promise<RouteModule>): RouteObject {
+export function index(module: () => Promise<RouteModule>) {
   return {
     index: true,
     lazy: loadRouteModule(module),
-  };
+  } as const satisfies RouteObject;
 }
 
-export function prefix(path: string, children: RouteObject[]): RouteObject {
+export function prefix<TPath extends string, TChildren extends RouteObject[]>(
+  path: TPath,
+  children: TChildren
+) {
   return {
     path,
     children,
-  };
+  } as const satisfies RouteObject;
 }
+
+export type PreparePath<T extends string> = T extends `/${infer X}/`
+  ? X
+  : T extends `/${infer X}`
+  ? X
+  : T extends `${infer X}/`
+  ? X
+  : T;
+
+export type ConcatPaths<
+  A extends string,
+  B extends string
+> = PreparePath<B> extends ""
+  ? `/${PreparePath<A>}`
+  : PreparePath<A> extends ""
+  ? `/${PreparePath<B>}`
+  : `/${PreparePath<A>}/${PreparePath<B>}`;
+
+export type PathFromRoute<
+  TRoute extends RouteObject,
+  TPrefix extends string
+> = ConcatPaths<TPrefix, TRoute["path"] extends string ? TRoute["path"] : "">;
+
+export type ExtractPathsFromRoute<
+  TRoute extends RouteObject,
+  TPrefix extends string
+> =
+  | PathFromRoute<TRoute, TPrefix>
+  | (TRoute["children"] extends RouteObject[]
+      ? ExtractPathsFromRoutes<
+          TRoute["children"],
+          PathFromRoute<TRoute, TPrefix>
+        >
+      : never);
+
+export type ExtractPathsFromRoutes<
+  TRoutes extends RouteObject[],
+  TPrefix extends string = ""
+> = {
+  [K in keyof TRoutes]: ExtractPathsFromRoute<TRoutes[K], TPrefix>;
+}[number];
