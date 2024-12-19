@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { getCurrentYear } from "~/lib/date";
 
 import { Button } from "./ui/button";
-import FooterLink, { type FooterLinkProps } from "./footer-link";
+import type { FooterLinkProps } from "./footer-link";
 
 export interface FooterProps {
   children: ReactElement<FooterLinkProps>[];
@@ -28,5 +28,3 @@ export default function Footer(props: FooterProps) {
     </footer>
   );
 }
-
-Footer.Link = FooterLink;

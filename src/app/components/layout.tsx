@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 import { ScrollRestoration } from "react-router";
 
-import { ThemeContextProvider } from "~/lib/theme";
-
 import Navbar from "./navbar";
+import NavbarLink from "./navbar-link";
+import NavbarMenu from "./navbar-menu";
 import Footer from "./footer";
+import FooterLink from "./footer-link";
 import ArrowNavigation from "./arrow-navigation";
 
 export interface LayoutProps {
@@ -13,31 +14,31 @@ export interface LayoutProps {
 
 export default function Layout(props: LayoutProps) {
   return (
-    <ThemeContextProvider>
+    <>
       <ArrowNavigation />
       <ScrollRestoration />
       <Navbar>
-        <Navbar.Link className="font-bold" to="/">
+        <NavbarLink className="font-bold" to="/">
           jakubszpil
-        </Navbar.Link>
-        <Navbar.Menu>
-          <Navbar.Link to="/">🏠 Strona główna</Navbar.Link>
-          <Navbar.Link to="/blog">📝 Blog</Navbar.Link>
-          <Navbar.Link to="/learning">🏫 Learning</Navbar.Link>
-          <Navbar.Link to="/portfolio">🛠️ Portfolio</Navbar.Link>
-          <Navbar.Link to="/me">🙋‍♂️ O mnie</Navbar.Link>
-        </Navbar.Menu>
+        </NavbarLink>
+        <NavbarMenu>
+          <NavbarLink to="/">🏠 Strona główna</NavbarLink>
+          <NavbarLink to="/blog">📝 Blog</NavbarLink>
+          <NavbarLink to="/learning">🏫 Learning</NavbarLink>
+          <NavbarLink to="/portfolio">🛠️ Portfolio</NavbarLink>
+          <NavbarLink to="/me">🙋‍♂️ O mnie</NavbarLink>
+        </NavbarMenu>
       </Navbar>
       <main>{props.children}</main>
       <Footer>
-        <Footer.Link to="/">🏠 Strona główna</Footer.Link>
-        <Footer.Link to="/blog">📝 Blog</Footer.Link>
-        <Footer.Link to="/learning">🏫 Learning</Footer.Link>
-        <Footer.Link to="/portfolio">🛠️ Portfolio</Footer.Link>
-        <Footer.Link to="/me">🙋‍♂️ O mnie</Footer.Link>
-        <Footer.Link to="/search">🔍 Szukaj</Footer.Link>
-        <Footer.Link to="/handbook">📋 Handbook</Footer.Link>
+        <FooterLink to="/">🏠 Strona główna</FooterLink>
+        <FooterLink to="/blog">📝 Blog</FooterLink>
+        <FooterLink to="/learning">🏫 Learning</FooterLink>
+        <FooterLink to="/portfolio">🛠️ Portfolio</FooterLink>
+        <FooterLink to="/me">🙋‍♂️ O mnie</FooterLink>
+        <FooterLink to="/search">🔍 Szukaj</FooterLink>
+        <FooterLink to="/handbook">📋 Handbook</FooterLink>
       </Footer>
-    </ThemeContextProvider>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
-import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
-import NavbarMenu, { type NavbarMenuProps } from "./navbar-menu";
+import type { NavbarLinkProps } from "./navbar-link";
+import type { NavbarMenuProps } from "./navbar-menu";
 
 export interface NavbarProps {
   children: ReactElement<NavbarLinkProps | NavbarMenuProps>[];
@@ -16,6 +16,3 @@ export default function Navbar(props: NavbarProps) {
     </header>
   );
 }
-
-Navbar.Link = NavbarLink;
-Navbar.Menu = NavbarMenu;
