@@ -1,8 +1,4 @@
-import {
-  data,
-  useLoaderData,
-  type LoaderFunctionArgs as LFA,
-} from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { BackToPreviousPage } from "~/components/ui/back-to-previous-page";
 import { EditResource } from "~/components/ui/edit-resource";
@@ -11,7 +7,7 @@ import { Seo } from "~/components/ui/seo";
 import { getArticle, getArticlesSlugs } from "../lib/articles";
 import Categories from "../components/categories";
 
-export async function loader({ params, request }: LFA) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   const slug = params.slug!;
   const slugs = await getArticlesSlugs(request);
 
@@ -23,7 +19,7 @@ export async function loader({ params, request }: LFA) {
 
   const article = await getArticle(request, slug);
 
-  return data(article);
+  return article;
 }
 
 export default function ArticleDetails() {
@@ -40,7 +36,7 @@ export default function ArticleDetails() {
       <header className="prose container">
         <BackToPreviousPage />
         <h1>{article.title}</h1>
-        <Categories categories={article.categories} />
+        <Categories categories={article.categories} prefix=".." />
       </header>
 
       <article

@@ -4,6 +4,7 @@ import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 
 export interface CategoriesProps {
+  prefix: string;
   categories?: string[];
   showAllCategory?: boolean;
 }
@@ -25,9 +26,9 @@ export default function Categories(props: CategoriesProps) {
 
   return (
     <div className="flex items-center gap-3 flex-wrap">
-      {props.showAllCategory && renderCategory("wszystko", "/blog")}
+      {props.showAllCategory && renderCategory("wszystko", props.prefix)}
       {props.categories?.map((name) =>
-        renderCategory(name, `/blog/kategorie/${name}`)
+        renderCategory(name, `${props.prefix}/kategorie/${name}`)
       )}
     </div>
   );

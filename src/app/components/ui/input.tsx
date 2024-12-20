@@ -3,7 +3,7 @@ import type { InputHTMLAttributes, RefObject } from "react";
 import { cn } from "~/lib/utils";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  ref?: RefObject<HTMLInputElement>;
+  ref?: RefObject<HTMLInputElement | null>;
 }
 
 const Input = ({ className, type, ref, ...props }: InputProps) => {

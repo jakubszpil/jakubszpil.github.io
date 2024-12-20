@@ -9,6 +9,7 @@ import type { Course } from "../lib/courses";
 
 export interface CoursesProps {
   courses: Course[];
+  prefix: string;
   className?: string;
   variant?: ButtonProps["variant"];
   locationState?: LinkWithPrefetchLocationState;
@@ -29,7 +30,7 @@ export default function Courses(props: CoursesProps) {
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
           <LinkWithPrefetch
-            to={`/learning/${course.slug}`}
+            to={`${props.prefix}/${course.slug}`}
             state={props.locationState}
           >
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">

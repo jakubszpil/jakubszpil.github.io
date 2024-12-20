@@ -1,7 +1,7 @@
 import {
-  data,
   useLoaderData,
-  type LoaderFunctionArgs as LFA,
+  useLocation,
+  type LoaderFunctionArgs,
 } from "react-router";
 
 import { Seo } from "~/components/ui/seo";
@@ -15,7 +15,7 @@ import {
 import CategoryList from "../components/categories";
 import Courses from "../components/courses";
 
-export async function loader({ params, request }: LFA) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   const category = params.category;
   const categories = await getCoursesCategories(request);
 
@@ -26,24 +26,26 @@ export async function loader({ params, request }: LFA) {
         statusText: "Nie znaleziono",
       });
 
-    return data({
+    return {
       category,
       categories,
       courses: await getCoursesByCategory(request, category),
-    });
+    };
   }
 
-  return data({
+  return {
     courses: await getCourses(request),
     categories,
     category,
-  });
+  };
 }
 
 export default function CourseList() {
   const { courses, categories, category } = useLoaderData<typeof loader>();
+  const { pathname } = useLocation();
 
   const title = category ? capitalize(category) : undefined;
+  const prefix = category ? ".." : ".";
 
   return (
     <>
@@ -54,13 +56,14 @@ export default function CourseList() {
 
       <header className="prose container">
         <h1>{title ?? "Learning"}</h1>
-        <CategoryList showAllCategory categories={categories} />
+        <CategoryList showAllCategory categories={categories} prefix={prefix} />
       </header>
 
       <Courses
+        prefix={prefix}
         courses={courses}
         locationState={{
-          pathname: category ? `/learning/kategorie/${category}` : "/learning",
+          pathname,
           label: "Powrót do listy kursów",
         }}
       />

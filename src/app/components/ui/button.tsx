@@ -39,7 +39,7 @@ export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  ref?: RefObject<HTMLButtonElement>;
+  ref?: RefObject<HTMLButtonElement | null>;
 }
 
 const Button = ({

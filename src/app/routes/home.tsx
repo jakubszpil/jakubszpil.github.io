@@ -1,8 +1,4 @@
-import {
-  data,
-  useLoaderData,
-  type LoaderFunctionArgs as LFA,
-} from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { getArticles } from "~/modules/articles/lib/articles";
 import Articles from "~/modules/articles/components/articles";
@@ -12,16 +8,16 @@ import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
 
-export async function loader({ request }: LFA) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const [articles, courses] = await Promise.all([
     getArticles(request, 3),
     getCourses(request, 3),
   ]);
 
-  return data({
+  return {
     articles,
     courses,
-  });
+  };
 }
 
 export default function Home() {
@@ -76,7 +72,12 @@ export default function Home() {
             frontend developmentu!
           </p>
         </header>
-        <Articles variant="outline" className="" articles={data.articles} />
+        <Articles
+          variant="outline"
+          className=""
+          articles={data.articles}
+          prefix="/blog"
+        />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
             <LinkWithPrefetch to="/blog">
@@ -95,7 +96,12 @@ export default function Home() {
             oraz aplikacje internetowe.
           </p>
         </header>
-        <Courses variant="outline" className="" courses={data.courses} />
+        <Courses
+          variant="outline"
+          className=""
+          courses={data.courses}
+          prefix="/learning"
+        />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
             <LinkWithPrefetch to="/learning">

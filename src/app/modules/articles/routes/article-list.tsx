@@ -1,7 +1,7 @@
 import {
-  data,
   useLoaderData,
-  type LoaderFunctionArgs as LFA,
+  useLocation,
+  type LoaderFunctionArgs,
 } from "react-router";
 
 import { Seo } from "~/components/ui/seo";
@@ -15,7 +15,7 @@ import {
 import CategoryList from "../components/categories";
 import Articles from "../components/articles";
 
-export async function loader({ params, request }: LFA) {
+export async function loader({ params, request }: LoaderFunctionArgs) {
   const category = params.category;
   const categories = await getArticlesCategories(request);
 
@@ -26,24 +26,26 @@ export async function loader({ params, request }: LFA) {
         statusText: "Nie znaleziono",
       });
 
-    return data({
+    return {
       articles: await getArticlesByCategory(request, category),
       categories,
       category,
-    });
+    };
   }
 
-  return data({
+  return {
     articles: await getArticles(request),
     categories,
     category,
-  });
+  };
 }
 
 export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();
+  const { pathname } = useLocation();
 
   const title = category ? capitalize(category) : undefined;
+  const prefix = category ? ".." : ".";
 
   return (
     <>
@@ -54,13 +56,14 @@ export default function ArticleList() {
 
       <header className="prose container">
         <h1>{title ?? "Artykuły"}</h1>
-        <CategoryList showAllCategory categories={categories} />
+        <CategoryList prefix={prefix} showAllCategory categories={categories} />
       </header>
 
       <Articles
+        prefix={prefix}
         articles={articles}
         locationState={{
-          pathname: category ? `/blog/kategorie/${category}` : "/blog",
+          pathname,
           label: "Powrót do listy artykułów",
         }}
       />

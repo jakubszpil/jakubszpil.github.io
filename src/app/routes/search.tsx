@@ -1,10 +1,5 @@
 import { useCallback } from "react";
-import {
-  data,
-  Form,
-  useLoaderData,
-  type LoaderFunctionArgs as LFA,
-} from "react-router";
+import { Form, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
 import { Button } from "~/components/ui/button";
@@ -21,7 +16,7 @@ import Articles from "~/modules/articles/components/articles";
 import type { Course } from "~/modules/courses/lib/courses";
 import Courses from "~/modules/courses/components/courses";
 
-export async function loader({ request }: LFA) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const query = await validateSearhQuery(request);
 
   const searchResults = await getSearchResults<{
@@ -31,11 +26,11 @@ export async function loader({ request }: LFA) {
 
   const resultsCount = await getSearchResultsLength(searchResults);
 
-  return data({
+  return {
     ...searchResults,
     query,
     resultsCount,
-  });
+  };
 }
 
 export default function Search() {
@@ -67,6 +62,7 @@ export default function Search() {
               className="px-0 !grid-cols-1"
               articles={articles}
               locationState={locationState}
+              prefix="/blog"
             />
           </section>
         )}
@@ -78,6 +74,7 @@ export default function Search() {
               className="px-0 !grid-cols-1"
               courses={courses}
               locationState={locationState}
+              prefix="/learning"
             />
           </section>
         )}
