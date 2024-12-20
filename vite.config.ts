@@ -73,7 +73,7 @@ function mdxToApiJSON(): Plugin {
       const publicDir = join("./public");
 
       const publicContentDir = join(publicDir, "content");
-      const contentDir = join("./content");
+      const contentDir = join("./src/app/content");
 
       if (env.command === "build") {
         if (existsSync(publicContentDir)) return;
