@@ -1,5 +1,10 @@
 import { useCallback } from "react";
-import { Form, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import {
+  Form,
+  useLoaderData,
+  useLocation,
+  type LoaderFunctionArgs,
+} from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
 import { Button } from "~/components/ui/button";
@@ -9,6 +14,7 @@ import { Seo } from "~/components/ui/seo";
 import {
   getSearchResults,
   getSearchResultsLength,
+  queryParamName,
   validateSearhQuery,
 } from "~/lib/search";
 import type { Article } from "~/modules/articles/lib/articles";
@@ -37,6 +43,8 @@ export default function Search() {
   const { query, articles, courses, resultsCount } =
     useLoaderData<typeof loader>();
 
+  const { pathname } = useLocation();
+
   const renderResults = useCallback(() => {
     if (!query) {
       return null;
@@ -47,7 +55,7 @@ export default function Search() {
     }
 
     const locationState: LinkWithPrefetchLocationState = {
-      pathname: `/search?q=${query}`,
+      pathname,
       label: "Powrót do wyników wyszukiwania",
     };
 
@@ -114,7 +122,7 @@ export default function Search() {
         <Input
           key={query}
           type="text"
-          name="q"
+          name={queryParamName}
           placeholder="Treść zapytania"
           defaultValue={query ?? ""}
           required

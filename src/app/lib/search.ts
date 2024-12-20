@@ -5,6 +5,8 @@ import { isValidUrl } from "./url";
 
 export type SearchResults = Record<string, unknown[]>;
 
+export const queryParamName = "query";
+
 export async function getSearchResults<TSearchResults extends SearchResults>(
   request: Request,
   query: string | null
@@ -40,19 +42,19 @@ export async function getSearchResultsLength<
 
 export async function validateSearhQuery(request: Request) {
   const url = new URL(request.url);
-  const query = url.searchParams.get("q");
+  const query = url.searchParams.get(queryParamName);
 
   if (query) {
     if (query === "") {
-      url.searchParams.delete("q");
+      url.searchParams.delete(queryParamName);
       throw redirect(url.toString());
     }
 
     const trimmed = query.trim().split(" ").filter(Boolean).join(" ");
 
     if (query !== trimmed) {
-      if (trimmed) url.searchParams.set("q", trimmed);
-      else url.searchParams.delete("q");
+      if (trimmed) url.searchParams.set(queryParamName, trimmed);
+      else url.searchParams.delete(queryParamName);
       throw redirect(url.toString());
     }
   }
