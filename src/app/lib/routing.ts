@@ -27,7 +27,6 @@ export function useRouter() {
 export function loadRouteModule(module: () => Promise<RouteModule>) {
   return () =>
     module().then((m) => {
-      console.log(m);
       return {
         element: createElement(m.default),
         loader: m.loader,
