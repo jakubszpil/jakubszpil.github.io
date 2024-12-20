@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { ScrollRestoration } from "react-router";
 
+import { ThemeContextProvider } from "~/lib/theme";
+
 import Navbar from "./navbar";
 import NavbarLink from "./navbar-link";
 import NavbarMenu from "./navbar-menu";
@@ -14,7 +16,7 @@ export interface LayoutProps {
 
 export default function Layout(props: LayoutProps) {
   return (
-    <>
+    <ThemeContextProvider>
       <ArrowNavigation />
       <ScrollRestoration />
       <Navbar>
@@ -39,6 +41,6 @@ export default function Layout(props: LayoutProps) {
         <FooterLink to="/search">🔍 Szukaj</FooterLink>
         <FooterLink to="/handbook">📋 Handbook</FooterLink>
       </Footer>
-    </>
+    </ThemeContextProvider>
   );
 }

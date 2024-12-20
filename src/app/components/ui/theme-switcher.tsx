@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import {
-  Icon,
+  type Icon,
   IconDeviceDesktop,
   IconMoonStars,
   IconSun,

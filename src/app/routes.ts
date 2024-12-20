@@ -1,6 +1,11 @@
 import type { RouteObject } from "react-router";
 
-import { ExtractPathsFromRoutes, index, prefix, route } from "./lib/routing";
+import {
+  type ExtractPathsFromRoutes,
+  index,
+  prefix,
+  route,
+} from "./lib/routing";
 import { routes as articlesRoutes } from "./modules/articles/articles.routes";
 import { routes as coursesRoutes } from "./modules/courses/courses.routes";
 import { routes as projectsRoutes } from "./modules/projects/projects.routes";

@@ -4,6 +4,7 @@ import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
 import { Button } from "./ui/button";
+import { ThemeSwitcher } from "./ui/theme-switcher";
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 import SearchButton from "./search-button";
@@ -39,6 +40,8 @@ export default function NavbarMenu(props: NavbarMenuProps) {
         <div className="hidden xs:flex items-center sm:gap-1">
           <Socials hideLabels={true} />
         </div>
+
+        <ThemeSwitcher />
 
         <Button
           size="icon"

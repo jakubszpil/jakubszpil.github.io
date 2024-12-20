@@ -1,4 +1,4 @@
-import { JSX, createElement, useContext } from "react";
+import { type JSX, createElement, useContext } from "react";
 import { UNSAFE_DataRouterContext, type RouteObject } from "react-router";
 import invariant from "tiny-invariant";
 
@@ -26,18 +26,19 @@ export function useRouter() {
 
 export function loadRouteModule(module: () => Promise<RouteModule>) {
   return () =>
-    module().then(
-      (m) =>
-        ({
-          element: createElement(m.default),
-          loader: m.loader,
-          action: m.action,
-          ErrorBoundary: m.ErrorBoundary,
-        } satisfies Pick<
-          RouteObject,
-          "element" | "loader" | "action" | "ErrorBoundary"
-        >)
-    );
+    module().then((m) => {
+      console.log(m);
+      return {
+        element: createElement(m.default),
+        loader: m.loader,
+        action: m.action,
+        ErrorBoundary: m.ErrorBoundary,
+        HydrateFallback: m.HydrateFallback,
+      } satisfies Pick<
+        RouteObject,
+        "element" | "loader" | "action" | "ErrorBoundary" | "HydrateFallback"
+      >;
+    });
 }
 
 export function route<TPath extends string, TChildren extends RouteObject[]>(
