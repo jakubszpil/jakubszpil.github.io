@@ -26,3 +26,5 @@ dist-ssr
 
 vite.config.ts.timestamp-*.mjs
 public/content
+.react-router/types/app/+types
+.react-router/types/app/routes/+types
