@@ -12,11 +12,12 @@ export interface Course {
   categories?: string[];
 }
 
-const courses = import.meta.glob<string>("../../../content/courses/*.mdx", {
+const courses = import.meta.glob<string>("../content/courses/*.mdx", {
   import: "default",
   query: "?raw",
   eager: true,
 });
+
 export const [
   getCourses,
   getCourse,

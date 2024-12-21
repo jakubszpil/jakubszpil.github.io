@@ -1,11 +1,12 @@
 import { Link, useLoaderData } from "react-router";
 
-import { getArticles } from "~/modules/articles/lib/articles";
-import Articles from "~/modules/articles/components/articles";
-import { getCourses } from "~/modules/courses/lib/courses";
-import Courses from "~/modules/courses/components/courses";
+import Articles from "~/components/blog/articles";
+import Courses from "~/components/learning/courses";
 import { Button } from "~/components/ui/button";
 import { Seo } from "~/components/ui/seo";
+
+import { getArticles } from "~/lib/articles";
+import { getCourses } from "~/lib/courses";
 
 export async function loader() {
   const articles = await getArticles(3);

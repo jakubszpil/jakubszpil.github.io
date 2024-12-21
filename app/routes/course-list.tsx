@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 
 import CategoryList from "~/components/learning/categories";
 import Courses from "~/components/learning/courses";
@@ -10,7 +10,9 @@ import {
 } from "~/lib/courses";
 import { capitalize } from "~/lib/string";
 
-export async function loader({ params }: LoaderFunctionArgs) {
+import type { Route } from "./+types/course-list";
+
+export async function loader({ params }: Route.LoaderArgs) {
   const category = params.category;
   const categories = await getCoursesCategories();
 

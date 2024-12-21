@@ -12,11 +12,12 @@ export interface Article {
   categories?: string[];
 }
 
-const articles = import.meta.glob<string>("../../../content/articles/*.mdx", {
+const articles = import.meta.glob<string>("../content/articles/*.mdx", {
   import: "default",
   query: "?raw",
   eager: true,
 });
+
 export const [
   getArticles,
   getArticle,

@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 
 import CategoryList from "~/components/blog/categories";
 import Articles from "~/components/blog/articles";
@@ -10,7 +10,9 @@ import {
 } from "~/lib/articles";
 import { capitalize } from "~/lib/string";
 
-export async function loader({ params }: LoaderFunctionArgs) {
+import type { Route } from "./+types/article-list";
+
+export async function loader({ params }: Route.LoaderArgs) {
   const category = params.category;
   const categories = await getArticlesCategories();
 
