@@ -7,9 +7,9 @@ import { Seo } from "~/components/ui/seo";
 import { getArticle, getArticlesSlugs } from "../lib/articles";
 import Categories from "../components/categories";
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const slug = params.slug!;
-  const slugs = await getArticlesSlugs(request);
+  const slugs = await getArticlesSlugs();
 
   if (!slugs.includes(slug))
     throw new Response(null, {
@@ -17,7 +17,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       statusText: "Nie znaleziono",
     });
 
-  const article = await getArticle(request, slug);
+  const article = await getArticle(slug);
 
   return article;
 }
@@ -36,7 +36,7 @@ export default function ArticleDetails() {
       <header className="prose container">
         <BackToPreviousPage />
         <h1>{article.title}</h1>
-        <Categories categories={article.categories} prefix=".." />
+        <Categories categories={article.categories} />
       </header>
 
       <article

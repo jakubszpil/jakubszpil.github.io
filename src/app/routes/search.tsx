@@ -23,12 +23,12 @@ import type { Course } from "~/modules/courses/lib/courses";
 import Courses from "~/modules/courses/components/courses";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const query = await validateSearhQuery(request);
+  const query = await validateSearhQuery(request.url);
 
   const searchResults = await getSearchResults<{
     articles: Article[];
     courses: Course[];
-  }>(request, query);
+  }>(query);
 
   const resultsCount = await getSearchResultsLength(searchResults);
 
@@ -70,7 +70,6 @@ export default function Search() {
               className="px-0 !grid-cols-1"
               articles={articles}
               locationState={locationState}
-              prefix="/blog"
             />
           </section>
         )}
@@ -82,7 +81,6 @@ export default function Search() {
               className="px-0 !grid-cols-1"
               courses={courses}
               locationState={locationState}
-              prefix="/learning"
             />
           </section>
         )}

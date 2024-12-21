@@ -1,6 +1,5 @@
-import { type JSX, createElement, useContext } from "react";
-import { UNSAFE_DataRouterContext, type RouteObject } from "react-router";
-import invariant from "tiny-invariant";
+import { type JSX, createElement } from "react";
+import type { RouteObject } from "react-router";
 
 export type RouteModule = {
   default: () => JSX.Element;
@@ -14,14 +13,6 @@ export function notFound(message?: string) {
     status: 404,
     statusText: message ?? "Nie znaleziono strony",
   });
-}
-
-export function useRouter() {
-  const router = useContext(UNSAFE_DataRouterContext)?.router;
-
-  invariant(router, "Cannot use useRouter outside router context");
-
-  return router;
 }
 
 export function loadRouteModule(module: () => Promise<RouteModule>) {

@@ -15,9 +15,9 @@ import {
 import CategoryList from "../components/categories";
 import Courses from "../components/courses";
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const category = params.category;
-  const categories = await getCoursesCategories(request);
+  const categories = await getCoursesCategories();
 
   if (category) {
     if (!categories.includes(category))
@@ -29,12 +29,12 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
     return {
       category,
       categories,
-      courses: await getCoursesByCategory(request, category),
+      courses: await getCoursesByCategory(category),
     };
   }
 
   return {
-    courses: await getCourses(request),
+    courses: await getCourses(),
     categories,
     category,
   };
@@ -45,7 +45,6 @@ export default function CourseList() {
   const { pathname } = useLocation();
 
   const title = category ? capitalize(category) : undefined;
-  const prefix = category ? ".." : ".";
 
   return (
     <>
@@ -56,11 +55,10 @@ export default function CourseList() {
 
       <header className="prose container">
         <h1>{title ?? "Learning"}</h1>
-        <CategoryList showAllCategory categories={categories} prefix={prefix} />
+        <CategoryList showAllCategory categories={categories} />
       </header>
 
       <Courses
-        prefix={prefix}
         courses={courses}
         locationState={{
           pathname,

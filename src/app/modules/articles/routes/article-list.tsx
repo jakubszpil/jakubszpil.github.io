@@ -15,9 +15,9 @@ import {
 import CategoryList from "../components/categories";
 import Articles from "../components/articles";
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const category = params.category;
-  const categories = await getArticlesCategories(request);
+  const categories = await getArticlesCategories();
 
   if (category) {
     if (!categories.includes(category))
@@ -27,14 +27,14 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       });
 
     return {
-      articles: await getArticlesByCategory(request, category),
+      articles: await getArticlesByCategory(category),
       categories,
       category,
     };
   }
 
   return {
-    articles: await getArticles(request),
+    articles: await getArticles(),
     categories,
     category,
   };
@@ -45,7 +45,6 @@ export default function ArticleList() {
   const { pathname } = useLocation();
 
   const title = category ? capitalize(category) : undefined;
-  const prefix = category ? ".." : ".";
 
   return (
     <>
@@ -56,11 +55,10 @@ export default function ArticleList() {
 
       <header className="prose container">
         <h1>{title ?? "Artykuły"}</h1>
-        <CategoryList prefix={prefix} showAllCategory categories={categories} />
+        <CategoryList showAllCategory categories={categories} />
       </header>
 
       <Articles
-        prefix={prefix}
         articles={articles}
         locationState={{
           pathname,

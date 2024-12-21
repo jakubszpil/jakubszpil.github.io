@@ -7,9 +7,9 @@ import { Seo } from "~/components/ui/seo";
 import { getCourse, getCoursesSlugs } from "../lib/courses";
 import Categories from "../components/categories";
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const slug = params.slug!;
-  const slugs = await getCoursesSlugs(request);
+  const slugs = await getCoursesSlugs();
 
   if (!slugs.includes(slug))
     throw new Response(null, {
@@ -17,7 +17,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
       statusText: "Nie znaleziono",
     });
 
-  const course = await getCourse(request, slug);
+  const course = await getCourse(slug);
 
   return course;
 }
@@ -36,7 +36,7 @@ export default function CourseDetails() {
       <header className="prose container">
         <BackToPreviousPage />
         <h1>{course.title}</h1>
-        <Categories categories={course.categories} prefix=".." />
+        <Categories categories={course.categories} />
       </header>
 
       <article

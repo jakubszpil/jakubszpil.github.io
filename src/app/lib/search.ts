@@ -8,12 +8,10 @@ export type SearchResults = Record<string, unknown[]>;
 export const queryParamName = "query";
 
 export async function getSearchResults<TSearchResults extends SearchResults>(
-  request: Request,
   query: string | null
 ): Promise<TSearchResults> {
   const response = await fetch("/content/search.json", {
     cache: "force-cache",
-    signal: request.signal,
   });
 
   const checkIfMatchesQuery = (i: unknown): boolean =>
@@ -40,8 +38,8 @@ export async function getSearchResultsLength<
   );
 }
 
-export async function validateSearhQuery(request: Request) {
-  const url = new URL(request.url);
+export async function validateSearhQuery(requestUrl: string) {
+  const url = new URL(requestUrl);
   const query = url.searchParams.get(queryParamName);
 
   if (query) {
@@ -60,10 +58,10 @@ export async function validateSearhQuery(request: Request) {
   }
 
   if (query && isValidUrl(query)) {
-    const requestUrl = new URL(request.url);
+    const sourceUrl = new URL(requestUrl);
     const url = new URL(query);
 
-    if (requestUrl.origin === url.origin)
+    if (sourceUrl.origin === url.origin)
       throw redirect(createPath(url).replace("#/", ""));
   }
 

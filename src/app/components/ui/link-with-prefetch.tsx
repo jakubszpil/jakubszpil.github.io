@@ -3,10 +3,15 @@ import {
   useMemo,
   useCallback,
   useState,
+  useContext,
 } from "react";
-import { matchRoutes, Link, type LinkProps } from "react-router";
-
-import { useRouter } from "~/lib/routing";
+import {
+  matchRoutes,
+  Link,
+  type LinkProps,
+  type LoaderFunctionArgs,
+  UNSAFE_DataRouterContext,
+} from "react-router";
 
 export interface LinkWithPrefetchLocationState {
   pathname: string;
@@ -17,25 +22,26 @@ export interface LinkWithPrefetchProps extends LinkProps {
   state?: LinkWithPrefetchLocationState;
 }
 
-export function LinkWithPrefetch({ ...props }: LinkWithPrefetchProps) {
-  const { routes } = useRouter();
+export function LinkWithPrefetch(props: LinkWithPrefetchProps) {
+  const { routes } = useContext(UNSAFE_DataRouterContext)!.router;
   const [prefetched, setPrefetched] = useState(false);
 
   const prefetchRoute = useCallback(() => {
     if (prefetched) return;
 
-    matchRoutes(routes, props.to)?.forEach((match) => {
-      const url = new URL(`${window.location.origin}${props.to}`);
-      const loaderArgs = {
+    matchRoutes(routes, props.to)?.forEach(async (match) => {
+      const url = new URL(`${window.location.origin}${match.pathname}`);
+
+      const loaderArgs: LoaderFunctionArgs = {
         params: match.params,
         request: new Request(url),
       };
 
       if (match.route.loader instanceof Function)
-        match.route.loader(loaderArgs);
+        await match.route.loader(loaderArgs);
 
-      match.route.lazy?.().then((route) => {
-        if (route.loader instanceof Function) route.loader(loaderArgs);
+      match.route.lazy?.().then(async (route) => {
+        if (route.loader instanceof Function) await route.loader(loaderArgs);
       });
     });
 
@@ -88,5 +94,5 @@ export function LinkWithPrefetch({ ...props }: LinkWithPrefetchProps) {
     };
   }, [prefetchRoute, props]);
 
-  return <Link {...props} {...handlers} prefetch="intent" />;
+  return <Link {...props} {...handlers} />;
 }
