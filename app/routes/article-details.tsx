@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router";
 
+import Categories from "~/components/blog/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
+import { getArticle, getArticlesSlugs } from "~/lib/articles";
 
-import { getArticle, getArticlesSlugs } from "../lib/articles";
-import Categories from "../components/categories";
 import type { Route } from "./+types/article-details";
 
 export async function loader({ params }: Route.LoaderArgs) {

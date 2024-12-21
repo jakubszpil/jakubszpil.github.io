@@ -1,15 +1,14 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
+import CategoryList from "~/components/blog/categories";
+import Articles from "~/components/blog/articles";
 import { Seo } from "~/components/ui/seo";
-import { capitalize } from "~/lib/string";
-
 import {
   getArticles,
   getArticlesByCategory,
   getArticlesCategories,
-} from "../lib/articles";
-import CategoryList from "../components/categories";
-import Articles from "../components/articles";
+} from "~/lib/articles";
+import { capitalize } from "~/lib/string";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const category = params.category;

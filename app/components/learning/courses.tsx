@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 
-import { Button, type ButtonProps } from "~/components/ui/button";
+import type { Course } from "~/lib/courses";
 import { getLocalizedDate } from "~/lib/date";
 
-import type { Course } from "../lib/courses";
+import { Button, type ButtonProps } from "../ui/button";
 
 export interface CoursesProps {
   courses: Course[];

@@ -2,19 +2,20 @@ import { useCallback } from "react";
 import { Form, useLoaderData } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
+import Articles from "~/components/blog/articles";
+import Courses from "~/components/learning/courses";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
+import { getArticles } from "~/lib/articles";
+import { getCourses } from "~/lib/courses";
 import {
   getSearchResults,
   getSearchResultsLength,
   queryParamName,
   validateSearhQuery,
 } from "~/lib/search";
-import { getArticles } from "~/modules/articles/lib/articles";
-import Articles from "~/modules/articles/components/articles";
-import { getCourses } from "~/modules/courses/lib/courses";
-import Courses from "~/modules/courses/components/courses";
+
 import type { Route } from "./+types/search";
 
 export async function loader() {

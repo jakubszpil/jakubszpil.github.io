@@ -8,29 +8,29 @@ import {
 export default [
   index("routes/home.tsx"),
   ...prefix("blog", [
-    route("", "modules/articles/routes/article-list.tsx", {
+    route("", "routes/article-list.tsx", {
       id: "article-list",
     }),
-    route("kategorie/:category", "modules/articles/routes/article-list.tsx", {
+    route("kategorie/:category", "routes/article-list.tsx", {
       id: "article-list-with-category",
     }),
-    route(":slug", "modules/articles/routes/article-details.tsx", {
+    route(":slug", "routes/article-details.tsx", {
       id: "article-details",
     }),
   ]),
   ...prefix("learning", [
-    route("", "modules/courses/routes/course-list.tsx", {
+    route("", "routes/course-list.tsx", {
       id: "course-list",
     }),
-    route("kategorie/:category", "modules/courses/routes/course-list.tsx", {
+    route("kategorie/:category", "routes/course-list.tsx", {
       id: "course-list-with-category",
     }),
-    route(":slug", "modules/courses/routes/course-details.tsx", {
+    route(":slug", "routes/course-details.tsx", {
       id: "course-details",
     }),
   ]),
   ...prefix("portfolio", [
-    route("", "modules/projects/routes/project-list.tsx", {
+    route("", "routes/project-list.tsx", {
       id: "project-list",
     }),
   ]),

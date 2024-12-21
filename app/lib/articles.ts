@@ -1,4 +1,4 @@
-import { createResourceUtils } from "~/lib/resources";
+import { createResourceUtils } from "./resources";
 
 export interface Article {
   id: string;
