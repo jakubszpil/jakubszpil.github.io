@@ -14,16 +14,11 @@ export default defineConfig(() => {
       reactRouter(),
       tsconfigPaths(),
       pwa({
-        disable: true,
         registerType: "autoUpdate",
+        injectRegister: "script",
         workbox: {
           cacheId: timestamp,
-          globPatterns: [
-            "assets/**/*.{js,css}",
-            "content/**/*.json",
-            "static/**/*.{css,woff2,png}",
-            "./*.{html,webp,ico,svg,js}",
-          ],
+          navigateFallback: null,
           runtimeCaching: [
             {
               urlPattern: ({ sameOrigin, url }) =>
@@ -35,10 +30,10 @@ export default defineConfig(() => {
             },
             {
               urlPattern: ({ sameOrigin, url }) =>
-                sameOrigin && url.pathname.startsWith("/content"),
+                sameOrigin && url.pathname.endsWith(".data"),
               handler: "CacheFirst",
               options: {
-                cacheName: "api-content-cache",
+                cacheName: "page-data",
               },
             },
           ],
@@ -47,6 +42,7 @@ export default defineConfig(() => {
           config: true,
           disabled: false,
           includeHtmlHeadLinks: true,
+          injectThemeColor: true,
         },
         manifest: {
           name: "Jakub Szpil",

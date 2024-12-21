@@ -29,6 +29,7 @@ export const links: Route.LinksFunction = () => [
     crossOrigin: "anonymous",
   },
   { rel: "stylesheet", href: stylesheet },
+  { rel: "manifest", href: "/manifest.webmanifest" },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -54,31 +55,27 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  const renderError = (error: unknown) => {
-    if (isRouteErrorResponse(error)) {
-      if (error.status === 404) {
-        return <NotFound />;
-      }
-
-      return (
-        <>
-          <h1>
-            {error.status}: {error.statusText}
-          </h1>
-          <p>{error.data}</p>
-          <Button asChild className="no-underline" variant="outline" size="sm">
-            <Link prefetch="intent" to="/">
-              Powrót do strony głównej
-            </Link>
-          </Button>
-        </>
-      );
+  if (isRouteErrorResponse(error)) {
+    if (error.status === 404) {
+      return <NotFound />;
     }
 
-    console.error(error);
+    return (
+      <header className="container prose">
+        <h1>
+          {error.status}: {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+        <Button asChild className="no-underline" variant="outline" size="sm">
+          <Link prefetch="intent" to="/">
+            Powrót do strony głównej
+          </Link>
+        </Button>
+      </header>
+    );
+  }
 
-    return <h1>Wystąpił nieoczekiwany błąd</h1>;
-  };
+  console.error(error);
 
-  return <header className="container prose">{renderError(error)}</header>;
+  return <h1>Wystąpił nieoczekiwany błąd</h1>;
 }

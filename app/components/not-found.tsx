@@ -7,7 +7,7 @@ export default function NotFound() {
   const location = useLocation();
 
   return (
-    <>
+    <header className="container prose">
       <Seo title="404: Nie znaleziono strony" />
       <h1>Oops! Strona nie została znaleziona 🙁 (404)</h1>
       <p>
@@ -49,6 +49,6 @@ export default function NotFound() {
         </li>
       </ul>
       <p>Dziękuję za zrozumienie i przepraszam za wszelkie niedogodności!</p>
-    </>
+    </header>
   );
 }
