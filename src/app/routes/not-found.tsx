@@ -1,14 +1,13 @@
+import NotFound from "~/components/not-found";
+
 export async function loader() {
-  throw new Response(null, {
-    status: 404,
-    statusText: "Nie znaleziono strony",
-  });
+  return null;
 }
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
-    <div>
-      <h1>Nie znaleziono strony</h1>
-    </div>
+    <header className="container prose">
+      <NotFound />
+    </header>
   );
 }

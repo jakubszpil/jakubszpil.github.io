@@ -1,8 +1,6 @@
+import { Link } from "react-router";
+
 import { Button, type ButtonProps } from "~/components/ui/button";
-import {
-  LinkWithPrefetch,
-  type LinkWithPrefetchLocationState,
-} from "~/components/ui/link-with-prefetch";
 import { getLocalizedDate } from "~/lib/date";
 
 import type { Course } from "../lib/courses";
@@ -11,7 +9,6 @@ export interface CoursesProps {
   courses: Course[];
   className?: string;
   variant?: ButtonProps["variant"];
-  locationState?: LinkWithPrefetchLocationState;
 }
 
 export default function Courses(props: CoursesProps) {
@@ -28,10 +25,7 @@ export default function Courses(props: CoursesProps) {
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <LinkWithPrefetch
-            to={`/learning/${course.slug}`}
-            state={props.locationState}
-          >
+          <Link prefetch="intent" to={`/learning/${course.slug}`}>
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {course.title}
             </h2>
@@ -43,7 +37,7 @@ export default function Courses(props: CoursesProps) {
                 {getLocalizedDate(course.createdAt)}
               </span>
             )}
-          </LinkWithPrefetch>
+          </Link>
         </Button>
       ))}
     </section>

@@ -23,9 +23,6 @@ export default function Handbook() {
 
         <ul>
           <li>
-            <kbd>CTRL</kbd>+<kbd>j</kbd> - Zmiana motywu strony
-          </li>
-          <li>
             <kbd>CTRL</kbd>+<kbd>k</kbd> - Przejście do wyszukiwarki
           </li>
           <li>

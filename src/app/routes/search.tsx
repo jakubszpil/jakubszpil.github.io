@@ -1,15 +1,9 @@
 import { useCallback } from "react";
-import {
-  Form,
-  useLoaderData,
-  useLocation,
-  type LoaderFunctionArgs,
-} from "react-router";
+import { Form, useLoaderData } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { type LinkWithPrefetchLocationState } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
 import {
   getSearchResults,
@@ -17,33 +11,45 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "~/lib/search";
-import type { Article } from "~/modules/articles/lib/articles";
+import { getArticles } from "~/modules/articles/lib/articles";
 import Articles from "~/modules/articles/components/articles";
-import type { Course } from "~/modules/courses/lib/courses";
+import { getCourses } from "~/modules/courses/lib/courses";
 import Courses from "~/modules/courses/components/courses";
+import type { Route } from "./+types/search";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const query = await validateSearhQuery(request.url);
-
-  const searchResults = await getSearchResults<{
-    articles: Article[];
-    courses: Course[];
-  }>(query);
-
-  const resultsCount = await getSearchResultsLength(searchResults);
+export async function loader() {
+  const articles = await getArticles();
+  const courses = await getCourses();
 
   return {
-    ...searchResults,
-    query,
-    resultsCount,
+    articles,
+    courses,
   };
 }
 
+export async function clientLoader({
+  request,
+  serverLoader,
+}: Route.ClientLoaderArgs) {
+  const results = await serverLoader();
+  const query = validateSearhQuery(request.url);
+
+  const searchResults = getSearchResults(results, query);
+
+  const resultsCount = getSearchResultsLength(searchResults);
+
+  return {
+    ...searchResults,
+    resultsCount,
+    query,
+  };
+}
+
+clientLoader.hydrate = true;
+
 export default function Search() {
   const { query, articles, courses, resultsCount } =
-    useLoaderData<typeof loader>();
-
-  const { pathname } = useLocation();
+    useLoaderData<typeof clientLoader>();
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -54,11 +60,6 @@ export default function Search() {
       return <h2>Brak wyników wyszukiwania dla zapytania: {query}</h2>;
     }
 
-    const locationState: LinkWithPrefetchLocationState = {
-      pathname,
-      label: "Powrót do wyników wyszukiwania",
-    };
-
     return (
       <>
         <h2>Wyniki wyszukiwania ({resultsCount})</h2>
@@ -66,22 +67,14 @@ export default function Search() {
         {articles.length > 0 && (
           <section>
             <h3>Artykuły ({articles.length})</h3>
-            <Articles
-              className="px-0 !grid-cols-1"
-              articles={articles}
-              locationState={locationState}
-            />
+            <Articles className="px-0 !grid-cols-1" articles={articles} />
           </section>
         )}
 
         {courses.length > 0 && (
           <section>
             <h3>Kursy ({courses.length})</h3>
-            <Courses
-              className="px-0 !grid-cols-1"
-              courses={courses}
-              locationState={locationState}
-            />
+            <Courses className="px-0 !grid-cols-1" courses={courses} />
           </section>
         )}
       </>

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
+import { Link } from "react-router";
 
 import { Button } from "~/components/ui/button";
-import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 
 export interface CategoriesProps {
   categories?: string[];
@@ -18,7 +18,9 @@ export default function Categories(props: CategoriesProps) {
         size="sm"
         className="!no-underline lowercase"
       >
-        <LinkWithPrefetch to={href}>#{name}</LinkWithPrefetch>
+        <Link prefetch="intent" to={href}>
+          #{name}
+        </Link>
       </Button>
     );
   }, []);

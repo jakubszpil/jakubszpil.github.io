@@ -1,15 +1,10 @@
 const responses: Map<string, Response> = new Map();
 const pendingRequests: Map<string, Promise<Response>> = new Map();
-
-function getRequest(input: string, init?: RequestInit) {
-  const url = new URL(`${window.location.origin}${input}`);
-  url.searchParams.append("etag", import.meta.env.VITE_ETAG);
-  const request = new Request(url, init);
-  return request;
-}
+const nativeFetch = globalThis.fetch;
 
 export async function fetch(input: string, init?: RequestInit) {
-  const request = getRequest(input, init);
+  const request = new Request(input, init);
+  console.log(request);
 
   const requestUrl = request.url;
 
@@ -22,7 +17,7 @@ export async function fetch(input: string, init?: RequestInit) {
   if (existingPendingRequest)
     return existingPendingRequest.then((response) => response.clone());
 
-  const pendingRequest = window.fetch(request).then((response) => {
+  const pendingRequest = nativeFetch(request).then((response) => {
     if (!response.ok) throw response;
     responses.set(requestUrl, response);
     return response.clone();
@@ -31,4 +26,9 @@ export async function fetch(input: string, init?: RequestInit) {
   pendingRequests.set(requestUrl, pendingRequest);
 
   return pendingRequest;
+}
+
+export function normalizeRequestUrl(request: Request, url: string): string {
+  const _url = new URL(request.url);
+  return `${_url.origin}${url}`;
 }

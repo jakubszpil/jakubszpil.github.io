@@ -1,18 +1,15 @@
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 import { getArticles } from "~/modules/articles/lib/articles";
 import Articles from "~/modules/articles/components/articles";
 import { getCourses } from "~/modules/courses/lib/courses";
 import Courses from "~/modules/courses/components/courses";
 import { Button } from "~/components/ui/button";
-import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
 
 export async function loader() {
-  const [articles, courses] = await Promise.all([
-    getArticles(3),
-    getCourses(3),
-  ]);
+  const articles = await getArticles(3);
+  const courses = await getCourses(3);
 
   return {
     articles,
@@ -49,12 +46,14 @@ export default function Home() {
         </p>
         <nav className="grid grid-flow-row sm:grid-flow-col sm:w-max gap-2">
           <Button size="sm" asChild className="!no-underline">
-            <LinkWithPrefetch to="/blog">
+            <Link prefetch="intent" to="/blog">
               📝 Najnowsze artykuły
-            </LinkWithPrefetch>
+            </Link>
           </Button>
           <Button size="sm" variant="outline" asChild className="!no-underline">
-            <LinkWithPrefetch to="/learning">🏫 Lista kursów</LinkWithPrefetch>
+            <Link prefetch="intent" to="/learning">
+              🏫 Lista kursów
+            </Link>
           </Button>
         </nav>
       </header>
@@ -75,9 +74,9 @@ export default function Home() {
         <Articles variant="outline" className="" articles={data.articles} />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
-            <LinkWithPrefetch to="/blog">
+            <Link prefetch="intent" to="/blog">
               Zobacz wszystkie artykuły
-            </LinkWithPrefetch>
+            </Link>
           </Button>
         </nav>
       </section>
@@ -94,9 +93,9 @@ export default function Home() {
         <Courses variant="outline" className="" courses={data.courses} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
-            <LinkWithPrefetch to="/learning">
+            <Link prefetch="intent" to="/learning">
               Zobacz wszystkie kursy
-            </LinkWithPrefetch>
+            </Link>
           </Button>
         </nav>
       </section>

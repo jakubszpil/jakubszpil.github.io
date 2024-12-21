@@ -1,9 +1,8 @@
 import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 import { Button } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
 export default function SearchButton() {
   const navigate = useNavigate();
@@ -35,10 +34,10 @@ export default function SearchButton() {
       aria-label="Szukaj"
       title="Szukaj (CTRL+K)"
     >
-      <LinkWithPrefetch to="/search">
+      <Link prefetch="intent" to="/search">
         <span className="sr-only">Szukaj</span>
         <IconSearch className="h-6" />
-      </LinkWithPrefetch>
+      </Link>
     </Button>
   );
 }

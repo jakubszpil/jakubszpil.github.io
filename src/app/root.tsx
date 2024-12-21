@@ -1,21 +1,57 @@
-import { isRouteErrorResponse, Outlet, useRouteError } from "react-router";
+import type { ReactNode } from "react";
+import {
+  isRouteErrorResponse,
+  Link,
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "react-router";
 
-import Layout from "./components/layout";
 import NotFound from "./components/not-found";
 import { Button } from "./components/ui/button";
-import { LinkWithPrefetch } from "./components/ui/link-with-prefetch";
+import type { Route } from "./+types/root";
+import stylesheet from "./styles.css?url";
+import LayoutComponent from "./components/layout";
 
-export default function App() {
+export const links: Route.LinksFunction = () => [
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+  },
+  { rel: "stylesheet", href: stylesheet },
+];
+
+export function Layout({ children }: { children: ReactNode }) {
   return (
-    <Layout>
-      <Outlet />
-    </Layout>
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <LayoutComponent>{children}</LayoutComponent>
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
   );
 }
 
-export function ErrorBoundary() {
-  const error = useRouteError();
+export default function App() {
+  return <Outlet />;
+}
 
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const renderError = (error: unknown) => {
     if (isRouteErrorResponse(error)) {
       if (error.status === 404) {
@@ -29,7 +65,9 @@ export function ErrorBoundary() {
           </h1>
           <p>{error.data}</p>
           <Button asChild className="no-underline" variant="outline" size="sm">
-            <LinkWithPrefetch to="/">Powrót do strony głównej</LinkWithPrefetch>
+            <Link prefetch="intent" to="/">
+              Powrót do strony głównej
+            </Link>
           </Button>
         </>
       );
@@ -40,9 +78,5 @@ export function ErrorBoundary() {
     return <h1>Wystąpił nieoczekiwany błąd</h1>;
   };
 
-  return (
-    <Layout>
-      <header className="container prose">{renderError(error)}</header>
-    </Layout>
-  );
+  return <header className="container prose">{renderError(error)}</header>;
 }

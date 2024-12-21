@@ -1,25 +1,19 @@
 import { createPath, redirect } from "react-router";
 
-import { fetch } from "./fetch";
 import { isValidUrl } from "./url";
 
 export type SearchResults = Record<string, unknown[]>;
 
 export const queryParamName = "query";
 
-export async function getSearchResults<TSearchResults extends SearchResults>(
+export function getSearchResults<TSearchResults extends SearchResults>(
+  results: TSearchResults,
   query: string | null
-): Promise<TSearchResults> {
-  const response = await fetch("/content/search.json", {
-    cache: "force-cache",
-  });
-
+): TSearchResults {
   const checkIfMatchesQuery = (i: unknown): boolean =>
     !query
       ? false
       : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
-
-  const results: TSearchResults = await response.json();
 
   return Object.fromEntries(
     Object.entries(results).map(([key, results]) => [
@@ -29,16 +23,16 @@ export async function getSearchResults<TSearchResults extends SearchResults>(
   ) as TSearchResults;
 }
 
-export async function getSearchResultsLength<
-  TSearchResults extends SearchResults
->(searchResults: TSearchResults): Promise<number> {
+export function getSearchResultsLength<TSearchResults extends SearchResults>(
+  searchResults: TSearchResults
+): number {
   return Object.values(searchResults).reduce<number>(
     (count, { length }) => count + length,
     0
   );
 }
 
-export async function validateSearhQuery(requestUrl: string) {
+export function validateSearhQuery(requestUrl: string) {
   const url = new URL(requestUrl);
   const query = url.searchParams.get(queryParamName);
 

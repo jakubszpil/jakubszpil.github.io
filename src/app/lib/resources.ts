@@ -1,22 +1,19 @@
 import invariant from "tiny-invariant";
+import { parseMarkdownFile, type ContentResource } from "./content";
 
-export interface Resource {
-  id: string;
-  slug: string;
-  content: string;
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  createdAt?: string;
-}
-
-export async function parseContent<T extends Resource>(
-  files: Array<() => Promise<{ default: T }>>,
-  limit?: number
+export async function parseContent<T extends ContentResource>(
+  files: Record<string, string>
 ): Promise<T[]> {
   const content = await Promise.all(
-    files.slice(0, limit ?? files.length).map((i) => i().then((m) => m.default))
+    Object.entries(files).map(async ([key, file]) => {
+      const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".mdx"));
+      const keyWithoutSlug = key.slice(0, key.lastIndexOf("/"));
+      const resourceType = keyWithoutSlug.slice(key.lastIndexOf("/") + 1);
+      const resource = await parseMarkdownFile<T>(file, slug, resourceType);
+      return resource;
+    })
   );
+
   return content.sort((first, second) => {
     invariant(first.createdAt);
     invariant(second.createdAt);
@@ -28,26 +25,24 @@ export async function parseContent<T extends Resource>(
   });
 }
 
-export type ExtractFilters<TResource extends Resource> = {
+export type ExtractFilters<TResource extends ContentResource> = {
   [K in keyof TResource]: TResource[K] extends string[] | undefined ? K : never;
 }[keyof TResource];
 
-export function createResourceUtils<TResource extends Resource>(
-  files: Record<string, () => Promise<{ default: TResource }>>,
+export function createResourceUtils<TResource extends ContentResource>(
+  files: Record<string, string>,
   filterKey: NonNullable<ExtractFilters<TResource>>
 ) {
   async function getResources(limit?: number): Promise<TResource[]> {
-    return await parseContent(Object.values(files), limit);
+    const resources = await parseContent<TResource>(files);
+    return resources.slice(0, limit ?? resources.length);
   }
 
-  async function getResouce(slug?: string): Promise<TResource | undefined> {
-    invariant(slug, "Missing slug");
-    const resources = await parseContent(
-      Object.entries(files)
-        .filter(([k]) => k.includes(slug))
-        .map(([, file]) => file)
-    );
-    return resources.find((resource) => resource.slug === slug);
+  async function getResouce(slug: string): Promise<TResource> {
+    const resources = await getResources();
+    const resource = resources.find((resource) => resource.slug === slug);
+    invariant(resource);
+    return resource;
   }
 
   async function getResourcesFilterKeys(): Promise<string[]> {
@@ -74,10 +69,16 @@ export function createResourceUtils<TResource extends Resource>(
 
   async function getResourcesByFilterKey(value: string): Promise<TResource[]> {
     const resources = await getResources();
+
     return resources.filter((resource) => {
       const items = resource[filterKey];
       return Array.isArray(items) ? items.includes(value) : false;
     });
+  }
+
+  async function getResourcesSlugs(): Promise<string[]> {
+    const resources = await getResources();
+    return resources.map(({ slug }) => slug);
   }
 
   return [
@@ -85,5 +86,6 @@ export function createResourceUtils<TResource extends Resource>(
     getResouce,
     getResourcesFilterKeys,
     getResourcesByFilterKey,
+    getResourcesSlugs,
   ] as const;
 }

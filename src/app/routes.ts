@@ -1,17 +1,41 @@
-import type { RouteObject } from "react-router";
+import {
+  type RouteConfig,
+  index,
+  prefix,
+  route,
+} from "@react-router/dev/routes";
 
-import { index, prefix, route } from "./lib/routing";
-import { routes as articlesRoutes } from "./modules/articles/articles.routes";
-import { routes as coursesRoutes } from "./modules/courses/courses.routes";
-import { routes as projectsRoutes } from "./modules/projects/projects.routes";
-
-export const routes = [
-  index(() => import("./routes/home")),
-  prefix("blog", articlesRoutes),
-  prefix("learning", coursesRoutes),
-  prefix("portfolio", projectsRoutes),
-  route("search", () => import("./routes/search")),
-  route("handbook", () => import("./routes/handbook")),
-  route("me", () => import("./routes/about")),
-  route("*", () => import("./routes/not-found")),
-] as const satisfies RouteObject[];
+export default [
+  index("routes/home.tsx"),
+  ...prefix("blog", [
+    route("", "modules/articles/routes/article-list.tsx", {
+      id: "article-list",
+    }),
+    route("kategorie/:category", "modules/articles/routes/article-list.tsx", {
+      id: "article-list-with-category",
+    }),
+    route(":slug", "modules/articles/routes/article-details.tsx", {
+      id: "article-details",
+    }),
+  ]),
+  ...prefix("learning", [
+    route("", "modules/courses/routes/course-list.tsx", {
+      id: "course-list",
+    }),
+    route("kategorie/:category", "modules/courses/routes/course-list.tsx", {
+      id: "course-list-with-category",
+    }),
+    route(":slug", "modules/courses/routes/course-details.tsx", {
+      id: "course-details",
+    }),
+  ]),
+  ...prefix("portfolio", [
+    route("", "modules/projects/routes/project-list.tsx", {
+      id: "project-list",
+    }),
+  ]),
+  route("search", "routes/search.tsx"),
+  route("handbook", "routes/handbook.tsx"),
+  route("me", "routes/about.tsx"),
+  route("*", "routes/not-found.tsx"),
+] satisfies RouteConfig;

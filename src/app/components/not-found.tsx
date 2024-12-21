@@ -1,7 +1,6 @@
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 
 import { Button } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 import { Seo } from "./ui/seo";
 
 export default function NotFound() {
@@ -26,25 +25,25 @@ export default function NotFound() {
       <ul>
         <li>
           <Button asChild size="sm" variant="link" className="text-base">
-            <LinkWithPrefetch replace to={location.pathname}>
+            <Link prefetch="intent" replace to={location.pathname}>
               🤔 Sprawdź adres URL
-            </LinkWithPrefetch>
+            </Link>
           </Button>
           - Upewnij się, że wpisany adres jest poprawny.
         </li>
         <li>
           <Button asChild size="sm" variant="link" className="text-base">
-            <LinkWithPrefetch replace to="/">
+            <Link prefetch="intent" replace to="/">
               🏠 Przejdź do strony głównej
-            </LinkWithPrefetch>
+            </Link>
           </Button>
           - Kliknij tutaj aby wrócić na stronę główną.
         </li>
         <li>
           <Button asChild size="sm" variant="link" className="text-base">
-            <LinkWithPrefetch replace to="/search">
+            <Link prefetch="intent" replace to="/search">
               🔍 Szukaj
-            </LinkWithPrefetch>
+            </Link>
           </Button>
           - Skorzystaj z wyszukiwarki, aby znaleźć potrzebne informacje.
         </li>

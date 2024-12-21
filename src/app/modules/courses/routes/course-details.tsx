@@ -1,6 +1,5 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { BackToPreviousPage } from "~/components/ui/back-to-previous-page";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 
@@ -34,7 +33,6 @@ export default function CourseDetails() {
       />
 
       <header className="prose container">
-        <BackToPreviousPage />
         <h1>{course.title}</h1>
         <Categories categories={course.categories} />
       </header>

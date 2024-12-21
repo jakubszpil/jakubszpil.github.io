@@ -17,7 +17,9 @@ export default function Footer(props: FooterProps) {
         <p className="xl:text-sm">
           &copy; {getCurrentYear()}
           <Button asChild variant="link" size="sm">
-            <Link to="/">jakubszpil</Link>
+            <Link prefetch="intent" to="/">
+              jakubszpil
+            </Link>
           </Button>
         </p>
 

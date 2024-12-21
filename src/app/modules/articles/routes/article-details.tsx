@@ -1,14 +1,14 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 
-import { BackToPreviousPage } from "~/components/ui/back-to-previous-page";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 
 import { getArticle, getArticlesSlugs } from "../lib/articles";
 import Categories from "../components/categories";
+import type { Route } from "./+types/article-details";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const slug = params.slug!;
+export async function loader({ params }: Route.LoaderArgs) {
+  const slug = params.slug;
   const slugs = await getArticlesSlugs();
 
   if (!slugs.includes(slug))
@@ -34,7 +34,6 @@ export default function ArticleDetails() {
       />
 
       <header className="prose container">
-        <BackToPreviousPage />
         <h1>{article.title}</h1>
         <Categories categories={article.categories} />
       </header>

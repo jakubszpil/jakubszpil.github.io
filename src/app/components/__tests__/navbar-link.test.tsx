@@ -7,8 +7,8 @@ import {
   vi,
 } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { Link } from "react-router";
 
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 import { Button } from "../ui/button";
 
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
@@ -19,9 +19,9 @@ vi.mock("../ui/button", async () => {
   };
 });
 
-vi.mock("../ui/link-with-prefetch", async () => {
+vi.mock("react-router", async () => {
   return {
-    LinkWithPrefetch: vi.fn(),
+    Link: vi.fn(),
   };
 });
 
@@ -30,14 +30,12 @@ describe("NavbarLink", () => {
   let MOCKED_BUTTON_COMPONENT: MockInstance;
 
   beforeEach(() => {
-    MOCKED_LINK_COMPONENT = vi
-      .mocked(LinkWithPrefetch)
-      .mockImplementation((props) => (
-        <div>
-          <div>Link</div>
-          <div>{props.children}</div>
-        </div>
-      ));
+    MOCKED_LINK_COMPONENT = vi.mocked(Link).mockImplementation((props) => (
+      <div>
+        <div>Link</div>
+        <div>{props.children}</div>
+      </div>
+    ));
 
     MOCKED_BUTTON_COMPONENT = vi.mocked(Button).mockImplementation((props) => (
       <div>

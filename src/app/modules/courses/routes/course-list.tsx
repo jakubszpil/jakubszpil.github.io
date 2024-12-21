@@ -1,8 +1,4 @@
-import {
-  useLoaderData,
-  useLocation,
-  type LoaderFunctionArgs,
-} from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Seo } from "~/components/ui/seo";
 import { capitalize } from "~/lib/string";
@@ -42,7 +38,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function CourseList() {
   const { courses, categories, category } = useLoaderData<typeof loader>();
-  const { pathname } = useLocation();
 
   const title = category ? capitalize(category) : undefined;
 
@@ -58,13 +53,7 @@ export default function CourseList() {
         <CategoryList showAllCategory categories={categories} />
       </header>
 
-      <Courses
-        courses={courses}
-        locationState={{
-          pathname,
-          label: "Powrót do listy kursów",
-        }}
-      />
+      <Courses courses={courses} />
     </>
   );
 }
