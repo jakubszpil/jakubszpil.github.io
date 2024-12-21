@@ -16,29 +16,31 @@ import stylesheet from "./styles.css?url";
 import LayoutComponent from "./components/layout";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
+    rel: "stylesheet",
+    href: "/static/fonts/inter/font.css",
     crossOrigin: "anonymous",
   },
   {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    rel: "preload prefetch",
+    href: "/static/fonts/inter/font.woff2",
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
   },
   { rel: "stylesheet", href: stylesheet },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pl">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body style={{ WebkitTapHighlightColor: "transparent" }}>
         <LayoutComponent>{children}</LayoutComponent>
         <ScrollRestoration />
         <Scripts />
