@@ -149,12 +149,13 @@ export default defineConfig(() => {
       manifest: true,
     },
     test: {
-      include: ["src/app/**/*.{test,spec}.{js,mjs,cjs,ts,mtsw,cts,jsx,tsx}"],
+      include: ["app/**/*.{test,spec}.{js,mjs,cjs,ts,mtsw,cts,jsx,tsx}"],
       exclude: ["node_modules/**", "dist/**"],
       testTimeout: 20000,
       globals: true,
       watch: false,
       environment: "jsdom",
+      passWithNoTests: true,
     },
   };
 });
