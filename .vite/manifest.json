@@ -67,8 +67,8 @@
       "_button-CdK07Thq.js"
     ]
   },
-  "_not-found-J7-6kXcm.js": {
-    "file": "assets/not-found-J7-6kXcm.js",
+  "_not-found-CZNI8DlN.js": {
+    "file": "assets/not-found-CZNI8DlN.js",
     "name": "not-found",
     "imports": [
       "_chunk-W3HZJLUQ-BEGNWxIJ.js",
@@ -97,14 +97,14 @@
     "name": "string"
   },
   "app/root.tsx?__react-router-build-client-route": {
-    "file": "assets/root-D7UICyr7.js",
+    "file": "assets/root-BUUVphq8.js",
     "name": "root",
     "src": "app/root.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
       "_seo-06cwga6z.js",
       "_chunk-W3HZJLUQ-BEGNWxIJ.js",
-      "_not-found-J7-6kXcm.js",
+      "_not-found-CZNI8DlN.js",
       "_button-CdK07Thq.js",
       "_socials-B4ghHw5I.js",
       "_IconSearch-SoyC95lY.js",
@@ -207,14 +207,14 @@
     ]
   },
   "app/routes/not-found.tsx?__react-router-build-client-route": {
-    "file": "assets/not-found-CccH3_9y.js",
+    "file": "assets/not-found-B9JiFEYb.js",
     "name": "not-found",
     "src": "app/routes/not-found.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
       "_seo-06cwga6z.js",
       "_chunk-W3HZJLUQ-BEGNWxIJ.js",
-      "_not-found-J7-6kXcm.js",
+      "_not-found-CZNI8DlN.js",
       "_button-CdK07Thq.js"
     ]
   },

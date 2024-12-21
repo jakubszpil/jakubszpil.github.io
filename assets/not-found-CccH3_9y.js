@@ -1,1 +1,0 @@
-import{w as t}from"./seo-06cwga6z.js";import{l as o}from"./chunk-W3HZJLUQ-BEGNWxIJ.js";import{N as r}from"./not-found-J7-6kXcm.js";import"./button-CdK07Thq.js";const i=t(function(){return o.jsx("header",{className:"container prose",children:o.jsx(r,{})})});export{i as default};
