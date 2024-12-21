@@ -1,34 +1,24 @@
 import type { Config } from "@react-router/dev/config";
 
+import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
+import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
+
 export default {
   ssr: true,
   buildDirectory: "dist",
-  async prerender() {
+  async prerender({ getStaticPaths }) {
+    const articlesSlugs = await getArticlesSlugs();
+    const articlesCategories = await getArticlesCategories();
+
+    const coursesSlugs = await getCoursesSlugs();
+    const coursesCategories = await getCoursesCategories();
+
     return [
-      "/",
-      "/me",
-      "/search",
-      "/blog",
-      "/blog/dependency-injection-kontra-typescript",
-      "/blog/obserwatorium-czyli-wzorzec-projektowy-obserwatora",
-      "/blog/signalizacja-czyli-koncept-signals-w-typescript",
-      "/blog/kategorie/typescript",
-      "/blog/kategorie/wzorce",
-      "/learning",
-      "/learning/kategorie/wprowadzenie",
-      "/learning/kategorie/html",
-      "/learning/kategorie/javascript",
-      "/learning/kategorie/css",
-      "/learning/kategorie/seo",
-      "/learning/nowoczesny-javascript",
-      "/learning/szybszy-css-czyli-wprowadzenie-do-bem",
-      "/learning/wprowadzenie-do-css",
-      "/learning/wprowadzenie-do-dom",
-      "/learning/wprowadzenie-do-html",
-      "/learning/wprowadzenie-do-javascript",
-      "/learning/semantyczny-html",
-      "/portfolio",
-      "/handbook",
+      ...getStaticPaths(),
+      ...articlesSlugs.map((s) => `/blog/${s}`),
+      ...articlesCategories.map((s) => `/blog/kategorie/${s}`),
+      ...coursesSlugs.map((s) => `/learning/${s}`),
+      ...coursesCategories.map((s) => `/learning/kategorie/${s}`),
       "/404",
     ];
   },
