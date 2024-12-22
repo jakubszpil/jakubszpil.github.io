@@ -32,16 +32,13 @@ export default function Handbook() {
             <kbd>SHIFT</kbd>+<kbd>TAB</kbd> - Sfokusowanie poprzedniego elementu
           </li>
           <li>
-            <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>&#62;</kbd> - Przejście do
-            następnej strony
+            <kbd>ALT</kbd>+<kbd>&rarr;</kbd> - Przejście do następnej strony
           </li>
           <li>
-            <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>&#60;</kbd> - Przejście do
-            poprzedniej strony
+            <kbd>ALT</kbd>+<kbd>&larr;</kbd> - Przejście do poprzedniej strony
           </li>
           <li>
-            <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>H</kbd> - Przejście do listy
-            komend
+            <kbd>ALT</kbd>+<kbd>H</kbd> - Przejście do listy komend
           </li>
         </ul>
       </section>

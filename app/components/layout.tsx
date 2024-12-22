@@ -5,7 +5,6 @@ import NavbarLink from "./navbar-link";
 import NavbarMenu from "./navbar-menu";
 import Footer from "./footer";
 import FooterLink from "./footer-link";
-import ArrowNavigation from "./arrow-navigation";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -14,7 +13,6 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps) {
   return (
     <>
-      <ArrowNavigation />
       <Navbar>
         <NavbarLink className="font-bold" to="/">
           jakubszpil
