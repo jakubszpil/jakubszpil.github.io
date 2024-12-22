@@ -1,6 +1,6 @@
 {
   "/home/runner/work/jakubszpil.github.io/jakubszpil.github.io/app/styles.css": {
-    "file": "assets/styles-cw5Ag6jX.css",
+    "file": "assets/styles-0tPSqYkH.css",
     "src": "/home/runner/work/jakubszpil.github.io/jakubszpil.github.io/app/styles.css"
   },
   "_IconSearch-SoyC95lY.js": {
@@ -97,7 +97,7 @@
     "name": "string"
   },
   "app/root.tsx?__react-router-build-client-route": {
-    "file": "assets/root-DH9tlWUO.js",
+    "file": "assets/root-BMz0al3n.js",
     "name": "root",
     "src": "app/root.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -111,7 +111,7 @@
       "_date-BfXueLdd.js"
     ],
     "assets": [
-      "assets/styles-cw5Ag6jX.css"
+      "assets/styles-0tPSqYkH.css"
     ]
   },
   "app/routes/about.tsx?__react-router-build-client-route": {
