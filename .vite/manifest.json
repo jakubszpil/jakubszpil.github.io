@@ -26,10 +26,6 @@
       "_chunk-W3HZJLUQ-BEGNWxIJ.js"
     ]
   },
-  "_cache-CFQIxiMv.js": {
-    "file": "assets/cache-CFQIxiMv.js",
-    "name": "cache"
-  },
   "_categories-16XkQI9H.js": {
     "file": "assets/categories-16XkQI9H.js",
     "name": "categories",
@@ -131,7 +127,7 @@
     ]
   },
   "app/routes/article-details.tsx?__react-router-build-client-route": {
-    "file": "assets/article-details-DCGiIL_J.js",
+    "file": "assets/article-details-Bkv766VO.js",
     "name": "article-details",
     "src": "app/routes/article-details.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -140,12 +136,11 @@
       "_chunk-W3HZJLUQ-BEGNWxIJ.js",
       "_categories-16XkQI9H.js",
       "_edit-resource-DUrh4WuX.js",
-      "_cache-CFQIxiMv.js",
       "_button-CdK07Thq.js"
     ]
   },
   "app/routes/article-list.tsx?__react-router-build-client-route": {
-    "file": "assets/article-list-XqhBP44n.js",
+    "file": "assets/article-list-CK7s6BFP.js",
     "name": "article-list",
     "src": "app/routes/article-list.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -155,13 +150,12 @@
       "_categories-16XkQI9H.js",
       "_articles-De5zskhx.js",
       "_string-BZnAEtKi.js",
-      "_cache-CFQIxiMv.js",
       "_button-CdK07Thq.js",
       "_date-BfXueLdd.js"
     ]
   },
   "app/routes/course-details.tsx?__react-router-build-client-route": {
-    "file": "assets/course-details-DFU10IQ1.js",
+    "file": "assets/course-details-d-6H_Th-.js",
     "name": "course-details",
     "src": "app/routes/course-details.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -170,12 +164,11 @@
       "_chunk-W3HZJLUQ-BEGNWxIJ.js",
       "_categories-MPoWQ6bF.js",
       "_edit-resource-DUrh4WuX.js",
-      "_cache-CFQIxiMv.js",
       "_button-CdK07Thq.js"
     ]
   },
   "app/routes/course-list.tsx?__react-router-build-client-route": {
-    "file": "assets/course-list-BJaU9rb6.js",
+    "file": "assets/course-list-M1b4txE9.js",
     "name": "course-list",
     "src": "app/routes/course-list.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -185,7 +178,6 @@
       "_categories-MPoWQ6bF.js",
       "_courses-Dj3nZlq9.js",
       "_string-BZnAEtKi.js",
-      "_cache-CFQIxiMv.js",
       "_button-CdK07Thq.js",
       "_date-BfXueLdd.js"
     ]
@@ -201,7 +193,7 @@
     ]
   },
   "app/routes/home.tsx?__react-router-build-client-route": {
-    "file": "assets/home-D8Qq0UZo.js",
+    "file": "assets/home-BmEQbmlq.js",
     "name": "home",
     "src": "app/routes/home.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -211,7 +203,6 @@
       "_articles-De5zskhx.js",
       "_courses-Dj3nZlq9.js",
       "_button-CdK07Thq.js",
-      "_cache-CFQIxiMv.js",
       "_date-BfXueLdd.js"
     ]
   },
@@ -239,7 +230,7 @@
     ]
   },
   "app/routes/search.tsx?__react-router-build-client-route": {
-    "file": "assets/search-DQh5cVwI.js",
+    "file": "assets/search-BCkx-Lc4.js",
     "name": "search",
     "src": "app/routes/search.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -249,7 +240,6 @@
       "_articles-De5zskhx.js",
       "_courses-Dj3nZlq9.js",
       "_button-CdK07Thq.js",
-      "_cache-CFQIxiMv.js",
       "_IconSearch-SoyC95lY.js",
       "_date-BfXueLdd.js"
     ]
