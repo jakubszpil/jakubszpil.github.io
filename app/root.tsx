@@ -15,22 +15,29 @@ import type { Route } from "./+types/root";
 import stylesheet from "./styles.css?url";
 import LayoutComponent from "./components/layout";
 
-export const links: Route.LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: "/static/fonts/inter/font.css",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "preload prefetch",
-    href: "/static/fonts/inter/font.woff2",
-    as: "font",
-    type: "font/woff2",
-    crossOrigin: "anonymous",
-  },
-  { rel: "stylesheet", href: stylesheet },
-  { rel: "manifest", href: "/manifest.webmanifest" },
-];
+export const links: Route.LinksFunction = () => {
+  const links: Route.LinkDescriptors = [
+    {
+      rel: "stylesheet",
+      href: "/static/fonts/inter/font.css",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "preload prefetch",
+      href: "/static/fonts/inter/font.woff2",
+      as: "font",
+      type: "font/woff2",
+      crossOrigin: "anonymous",
+    },
+    { rel: "stylesheet", href: stylesheet },
+  ];
+
+  if (import.meta.env.PROD) {
+    links.push({ rel: "manifest", href: "/manifest.webmanifest" });
+  }
+
+  return links;
+};
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -45,7 +52,9 @@ export function Layout({ children }: { children: ReactNode }) {
         <LayoutComponent>{children}</LayoutComponent>
         <ScrollRestoration />
         <Scripts />
-        <script type="text/javascript" src="/registerSW.js" />
+        {import.meta.env.PROD && (
+          <script type="text/javascript" src="/registerSW.js" />
+        )}
       </body>
     </html>
   );

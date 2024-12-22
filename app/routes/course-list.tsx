@@ -11,6 +11,7 @@ import {
 import { capitalize } from "~/lib/string";
 
 import type { Route } from "./+types/course-list";
+import { cacheServerLoader } from "~/lib/cache";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const category = params.category;
@@ -35,6 +36,16 @@ export async function loader({ params }: Route.LoaderArgs) {
     categories,
     category,
   };
+}
+
+export async function clientLoader({
+  serverLoader,
+  params,
+}: Route.ClientLoaderArgs) {
+  return await cacheServerLoader(
+    ["course-list", params?.category],
+    serverLoader
+  );
 }
 
 export default function CourseList() {

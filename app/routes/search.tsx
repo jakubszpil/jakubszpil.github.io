@@ -8,6 +8,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
+import { cacheServerLoader } from "~/lib/cache";
 import { getCourses } from "~/lib/courses";
 import {
   getSearchResults,
@@ -32,7 +33,7 @@ export async function clientLoader({
   request,
   serverLoader,
 }: Route.ClientLoaderArgs) {
-  const results = await serverLoader();
+  const results = await cacheServerLoader(["search"], serverLoader);
   const query = validateSearhQuery(request.url);
 
   const searchResults = getSearchResults(results, query);
