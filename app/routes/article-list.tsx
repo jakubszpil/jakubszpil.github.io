@@ -11,7 +11,6 @@ import {
 import { capitalize } from "~/lib/string";
 
 import type { Route } from "./+types/article-list";
-import { cacheServerLoader } from "~/lib/cache";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const category = params.category;
@@ -36,16 +35,6 @@ export async function loader({ params }: Route.LoaderArgs) {
     categories,
     category,
   };
-}
-
-export async function clientLoader({
-  serverLoader,
-  params,
-}: Route.ClientLoaderArgs) {
-  return await cacheServerLoader(
-    ["article-list", params?.category],
-    serverLoader
-  );
 }
 
 export default function ArticleList() {

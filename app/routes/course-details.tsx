@@ -6,7 +6,6 @@ import { Seo } from "~/components/ui/seo";
 import { getCourse, getCoursesSlugs } from "~/lib/courses";
 
 import type { Route } from "./+types/course-details";
-import { cacheServerLoader } from "~/lib/cache";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const slug = params.slug!;
@@ -21,16 +20,6 @@ export async function loader({ params }: Route.LoaderArgs) {
   const course = await getCourse(slug);
 
   return course;
-}
-
-export async function clientLoader({
-  serverLoader,
-  params,
-}: Route.ClientLoaderArgs) {
-  return await cacheServerLoader(
-    ["course-details", params?.slug],
-    serverLoader
-  );
 }
 
 export default function CourseDetails() {

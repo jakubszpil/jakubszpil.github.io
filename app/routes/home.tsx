@@ -5,10 +5,7 @@ import Courses from "~/components/learning/courses";
 import { Button } from "~/components/ui/button";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
-import { cacheServerLoader } from "~/lib/cache";
 import { getCourses } from "~/lib/courses";
-
-import type { Route } from "./+types/home";
 
 export async function loader() {
   const articles = await getArticles(3);
@@ -18,10 +15,6 @@ export async function loader() {
     articles,
     courses,
   };
-}
-
-export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
-  return await cacheServerLoader(["home"], serverLoader);
 }
 
 export default function Home() {
