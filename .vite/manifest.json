@@ -97,7 +97,7 @@
     "name": "string"
   },
   "app/root.tsx?__react-router-build-client-route": {
-    "file": "assets/root-DuxbOOna.js",
+    "file": "assets/root-6ghy4PIy.js",
     "name": "root",
     "src": "app/root.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -183,7 +183,7 @@
     ]
   },
   "app/routes/handbook.tsx?__react-router-build-client-route": {
-    "file": "assets/handbook-DT85n76K.js",
+    "file": "assets/handbook-CQSJukCw.js",
     "name": "handbook",
     "src": "app/routes/handbook.tsx?__react-router-build-client-route",
     "isEntry": true,
