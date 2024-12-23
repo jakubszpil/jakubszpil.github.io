@@ -21,19 +21,10 @@ export default defineConfig(() => {
           navigateFallback: null,
           runtimeCaching: [
             {
-              urlPattern: ({ sameOrigin, url }) =>
-                sameOrigin && url.pathname.endsWith(".js"),
+              urlPattern: ({ sameOrigin }) => sameOrigin,
               handler: "CacheFirst",
               options: {
-                cacheName: "module-cache",
-              },
-            },
-            {
-              urlPattern: ({ sameOrigin, url }) =>
-                sameOrigin && url.pathname.endsWith(".data"),
-              handler: "CacheFirst",
-              options: {
-                cacheName: "page-data",
+                cacheName: "assets-cache",
               },
             },
           ],
