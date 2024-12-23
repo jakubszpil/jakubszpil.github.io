@@ -50,7 +50,18 @@ export function Layout({ children }: { children: ReactNode }) {
       </head>
       <body style={{ WebkitTapHighlightColor: "transparent" }}>
         <LayoutComponent>{children}</LayoutComponent>
-        <ScrollRestoration />
+        <ScrollRestoration
+          getKey={(location) => {
+            const key = [
+              location.pathname,
+              location.key,
+              location.hash,
+              location.search,
+            ];
+
+            return key.filter(Boolean).join(".");
+          }}
+        />
         <Scripts />
         {import.meta.env.PROD && (
           <script type="text/javascript" src="/registerSW.js" />
