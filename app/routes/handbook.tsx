@@ -17,6 +17,7 @@ export default function Handbook() {
 
       <section className="prose container">
         <h1>Handbook</h1>
+
         <p>
           Spis przydatnych komend, które usprawnią poruszanie się po stronie 😎
         </p>
@@ -38,7 +39,8 @@ export default function Handbook() {
             <kbd>ALT</kbd>+<kbd>&larr;</kbd> - Przejście do poprzedniej strony
           </li>
           <li>
-            <kbd>ALT</kbd>+<kbd>H</kbd> - Przejście do listy komend
+            <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>H</kbd> - Przejście do listy
+            komend
           </li>
         </ul>
       </section>
