@@ -3,21 +3,12 @@ import { useLoaderData } from "react-router";
 import Categories from "~/components/blog/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
-import { getArticle, getArticlesSlugs } from "~/lib/articles";
+import { getArticle } from "~/lib/articles";
 
 import type { Route } from "./+types/article-details";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const slug = params.slug;
-  const slugs = await getArticlesSlugs();
-
-  if (!slugs.includes(slug))
-    throw new Response(null, {
-      status: 404,
-      statusText: "Nie znaleziono",
-    });
-
-  const article = await getArticle(slug);
+  const article = await getArticle(params.slug);
 
   return article;
 }

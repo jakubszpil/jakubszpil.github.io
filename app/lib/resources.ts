@@ -41,7 +41,14 @@ export function createResourceUtils<TResource extends ContentResource>(
   async function getResouce(slug: string): Promise<TResource> {
     const resources = await getResources();
     const resource = resources.find((resource) => resource.slug === slug);
-    invariant(resource);
+
+    if (!resource) {
+      throw new Response(null, {
+        status: 404,
+        statusText: "Nie znaleziono",
+      });
+    }
+
     return resource;
   }
 

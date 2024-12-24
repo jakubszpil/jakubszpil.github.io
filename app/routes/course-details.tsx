@@ -3,21 +3,12 @@ import { useLoaderData } from "react-router";
 import Categories from "~/components/learning/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
-import { getCourse, getCoursesSlugs } from "~/lib/courses";
+import { getCourse } from "~/lib/courses";
 
 import type { Route } from "./+types/course-details";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const slug = params.slug!;
-  const slugs = await getCoursesSlugs();
-
-  if (!slugs.includes(slug))
-    throw new Response(null, {
-      status: 404,
-      statusText: "Nie znaleziono",
-    });
-
-  const course = await getCourse(slug);
+  const course = await getCourse(params.slug);
 
   return course;
 }
