@@ -5,8 +5,6 @@ import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 import { VitePWA as pwa } from "vite-plugin-pwa";
 
-const timestamp = Date.now().toString();
-
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   return {
@@ -17,15 +15,13 @@ export default defineConfig(() => {
         registerType: "autoUpdate",
         injectRegister: "script",
         workbox: {
-          cacheId: timestamp,
+          cacheId: "jakubszpil.github.io",
+          cleanupOutdatedCaches: true,
           navigateFallback: null,
           runtimeCaching: [
             {
               urlPattern: ({ sameOrigin }) => sameOrigin,
               handler: "CacheFirst",
-              options: {
-                cacheName: "assets-cache",
-              },
             },
           ],
         },

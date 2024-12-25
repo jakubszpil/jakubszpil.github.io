@@ -25,7 +25,7 @@ export const processContent = async (content: string) => {
           "mr-1.5 no-underline hover:underline focus-visible:underline",
       },
       headingProperties: {
-        className: "scroll-mt-20",
+        className: "scroll-mt-20 lg:scroll-mt-4",
       },
       behavior: "prepend",
       content: [
