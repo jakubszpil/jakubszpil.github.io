@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { Form, useLoaderData } from "react-router";
-import { IconSearch } from "@tabler/icons-react";
+import { Form, useLoaderData, useNavigation } from "react-router";
+import { IconLoader, IconSearch } from "@tabler/icons-react";
 
 import Articles from "~/components/blog/articles";
 import Courses from "~/components/learning/courses";
@@ -51,6 +51,11 @@ clientLoader.hydrate = true;
 export default function Search() {
   const { query, articles, courses, resultsCount } =
     useLoaderData<typeof clientLoader>();
+
+  const navigation = useNavigation();
+
+  const pending =
+    navigation.state === "loading" && Boolean(navigation.location);
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -111,14 +116,22 @@ export default function Search() {
         method="get"
         className="container py-0 bg-background flex gap-2"
       >
-        <Input
-          key={query}
-          type="text"
-          name={queryParamName}
-          placeholder="Treść zapytania"
-          defaultValue={query ?? ""}
-          required
-        />
+        <div className="flex-1 relative">
+          {pending && (
+            <div className="flex absolute right-1 h-full items-center justify-center w-max">
+              <IconLoader className="animate-spin" />
+            </div>
+          )}
+          <Input
+            key={query}
+            type="text"
+            name={queryParamName}
+            placeholder="Treść zapytania"
+            defaultValue={query ?? ""}
+            required
+          />
+        </div>
+
         <Button type="submit">
           <IconSearch className="h-5 w-5 mr-1" />
           Szukaj

@@ -18,8 +18,12 @@ export interface SeoProps {
 export const Seo = (props: SeoProps) => {
   const { pathname } = useLocation();
 
-  const title = props.title ?? config.meta.defaultTitle;
+  const title = props.title
+    ? config.meta.titleTemplate.replace("%s", props.title)
+    : config.meta.defaultTitle;
+
   const description = props.description ?? config.meta.description;
+
   const keywords = props.keywords?.join(",");
 
   const origin = import.meta.env.PROD
