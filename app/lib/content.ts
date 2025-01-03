@@ -67,6 +67,6 @@ export const parseMarkdownFile = async <T extends ContentResource>(
     id: v4(),
     slug,
     content: await processContent(content),
-    resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/content/${resourceType}/${slug}.mdx`,
+    resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.mdx`,
   } as T;
 };

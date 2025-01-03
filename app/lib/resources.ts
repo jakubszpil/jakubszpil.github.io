@@ -8,7 +8,9 @@ export async function parseContent<T extends ContentResource>(
     Object.entries(files).map(async ([key, file]) => {
       const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".mdx"));
       const keyWithoutSlug = key.slice(0, key.lastIndexOf("/"));
-      const resourceType = keyWithoutSlug.slice(key.lastIndexOf("/") + 1);
+      const resourceType = keyWithoutSlug.slice(
+        keyWithoutSlug.lastIndexOf("/") + 1
+      );
       const resource = await parseMarkdownFile<T>(file, slug, resourceType);
       return resource;
     })
