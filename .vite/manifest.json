@@ -1,95 +1,95 @@
 {
   "/home/runner/work/jakubszpil.github.io/jakubszpil.github.io/app/styles.css": {
-    "file": "assets/styles-CdzMiB_0.css",
+    "file": "assets/styles-DnLQXbjV.css",
     "src": "/home/runner/work/jakubszpil.github.io/jakubszpil.github.io/app/styles.css"
   },
-  "_IconSearch-B-he3ZKI.js": {
-    "file": "assets/IconSearch-B-he3ZKI.js",
+  "_IconSearch-Drg7MNtE.js": {
+    "file": "assets/IconSearch-Drg7MNtE.js",
     "name": "IconSearch",
     "imports": [
-      "_seo-CKXxacMM.js"
+      "_seo-CKrSCG3-.js"
     ]
   },
-  "_articles-CrQN1nAv.js": {
-    "file": "assets/articles-CrQN1nAv.js",
+  "_articles-pDEdQqDx.js": {
+    "file": "assets/articles-pDEdQqDx.js",
     "name": "articles",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
       "_date-BfXueLdd.js",
-      "_button-Dn-q0_DK.js"
+      "_button-BchY-9V6.js"
     ]
   },
-  "_button-Dn-q0_DK.js": {
-    "file": "assets/button-Dn-q0_DK.js",
+  "_button-BchY-9V6.js": {
+    "file": "assets/button-BchY-9V6.js",
     "name": "button",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js"
     ]
   },
-  "_categories-BvkVYMsX.js": {
-    "file": "assets/categories-BvkVYMsX.js",
+  "_categories-Bix1k7dQ.js": {
+    "file": "assets/categories-Bix1k7dQ.js",
     "name": "categories",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_button-Dn-q0_DK.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_button-BchY-9V6.js"
     ]
   },
-  "_categories-DO2Q1E6W.js": {
-    "file": "assets/categories-DO2Q1E6W.js",
+  "_categories-qtjEJZOO.js": {
+    "file": "assets/categories-qtjEJZOO.js",
     "name": "categories",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_button-Dn-q0_DK.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_button-BchY-9V6.js"
     ]
   },
-  "_chunk-K6AXKMTT-DnR1GwIg.js": {
-    "file": "assets/chunk-K6AXKMTT-DnR1GwIg.js",
+  "_chunk-K6AXKMTT-CzbRfI_4.js": {
+    "file": "assets/chunk-K6AXKMTT-CzbRfI_4.js",
     "name": "chunk-K6AXKMTT"
   },
-  "_courses-B3m7CP1N.js": {
-    "file": "assets/courses-B3m7CP1N.js",
+  "_courses-WZuXP5qd.js": {
+    "file": "assets/courses-WZuXP5qd.js",
     "name": "courses",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
       "_date-BfXueLdd.js",
-      "_button-Dn-q0_DK.js"
+      "_button-BchY-9V6.js"
     ]
   },
   "_date-BfXueLdd.js": {
     "file": "assets/date-BfXueLdd.js",
     "name": "date"
   },
-  "_edit-resource-o5BZaf7O.js": {
-    "file": "assets/edit-resource-o5BZaf7O.js",
+  "_edit-resource-BJis294H.js": {
+    "file": "assets/edit-resource-BJis294H.js",
     "name": "edit-resource",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_button-Dn-q0_DK.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_button-BchY-9V6.js"
     ]
   },
-  "_not-found-DC2PBoX3.js": {
-    "file": "assets/not-found-DC2PBoX3.js",
+  "_not-found-tH07ceUu.js": {
+    "file": "assets/not-found-tH07ceUu.js",
     "name": "not-found",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_button-Dn-q0_DK.js",
-      "_seo-CKXxacMM.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_button-BchY-9V6.js",
+      "_seo-CKrSCG3-.js"
     ]
   },
-  "_seo-CKXxacMM.js": {
-    "file": "assets/seo-CKXxacMM.js",
+  "_seo-CKrSCG3-.js": {
+    "file": "assets/seo-CKrSCG3-.js",
     "name": "seo",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js"
     ]
   },
-  "_socials-XkxG3Vq2.js": {
-    "file": "assets/socials-XkxG3Vq2.js",
+  "_socials-VVUhWxh9.js": {
+    "file": "assets/socials-VVUhWxh9.js",
     "name": "socials",
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_seo-CKXxacMM.js",
-      "_button-Dn-q0_DK.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_seo-CKrSCG3-.js",
+      "_button-BchY-9V6.js"
     ]
   },
   "_string-BZnAEtKi.js": {
@@ -97,160 +97,160 @@
     "name": "string"
   },
   "app/root.tsx?__react-router-build-client-route": {
-    "file": "assets/root-EC5m2f1j.js",
+    "file": "assets/root-CzGyRdGW.js",
     "name": "root",
     "src": "app/root.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_not-found-DC2PBoX3.js",
-      "_button-Dn-q0_DK.js",
-      "_socials-XkxG3Vq2.js",
-      "_IconSearch-B-he3ZKI.js",
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_not-found-tH07ceUu.js",
+      "_button-BchY-9V6.js",
+      "_socials-VVUhWxh9.js",
+      "_IconSearch-Drg7MNtE.js",
       "_date-BfXueLdd.js"
     ],
     "assets": [
-      "assets/styles-CdzMiB_0.css"
+      "assets/styles-DnLQXbjV.css"
     ]
   },
   "app/routes/about.tsx?__react-router-build-client-route": {
-    "file": "assets/about-WQw-U4jN.js",
+    "file": "assets/about-CrbL6r6I.js",
     "name": "about",
     "src": "app/routes/about.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_socials-XkxG3Vq2.js",
-      "_button-Dn-q0_DK.js"
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_socials-VVUhWxh9.js",
+      "_button-BchY-9V6.js"
     ]
   },
   "app/routes/article-details.tsx?__react-router-build-client-route": {
-    "file": "assets/article-details-CoxTtg3S.js",
+    "file": "assets/article-details-CZIppzCI.js",
     "name": "article-details",
     "src": "app/routes/article-details.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_categories-BvkVYMsX.js",
-      "_edit-resource-o5BZaf7O.js",
-      "_button-Dn-q0_DK.js"
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_categories-qtjEJZOO.js",
+      "_edit-resource-BJis294H.js",
+      "_button-BchY-9V6.js"
     ]
   },
   "app/routes/article-list.tsx?__react-router-build-client-route": {
-    "file": "assets/article-list-ScXdxFra.js",
+    "file": "assets/article-list-DAQT5tuX.js",
     "name": "article-list",
     "src": "app/routes/article-list.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_categories-BvkVYMsX.js",
-      "_articles-CrQN1nAv.js",
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_categories-qtjEJZOO.js",
+      "_articles-pDEdQqDx.js",
       "_string-BZnAEtKi.js",
-      "_button-Dn-q0_DK.js",
+      "_button-BchY-9V6.js",
       "_date-BfXueLdd.js"
     ]
   },
   "app/routes/course-details.tsx?__react-router-build-client-route": {
-    "file": "assets/course-details-DKuMdZj5.js",
+    "file": "assets/course-details-BU9-OT-W.js",
     "name": "course-details",
     "src": "app/routes/course-details.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_categories-DO2Q1E6W.js",
-      "_edit-resource-o5BZaf7O.js",
-      "_button-Dn-q0_DK.js"
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_categories-Bix1k7dQ.js",
+      "_edit-resource-BJis294H.js",
+      "_button-BchY-9V6.js"
     ]
   },
   "app/routes/course-list.tsx?__react-router-build-client-route": {
-    "file": "assets/course-list-DcEWsUpt.js",
+    "file": "assets/course-list-22S8mZ-x.js",
     "name": "course-list",
     "src": "app/routes/course-list.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_categories-DO2Q1E6W.js",
-      "_courses-B3m7CP1N.js",
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_categories-Bix1k7dQ.js",
+      "_courses-WZuXP5qd.js",
       "_string-BZnAEtKi.js",
-      "_button-Dn-q0_DK.js",
+      "_button-BchY-9V6.js",
       "_date-BfXueLdd.js"
     ]
   },
   "app/routes/handbook.tsx?__react-router-build-client-route": {
-    "file": "assets/handbook-C7FHK1rd.js",
+    "file": "assets/handbook-D6kAHIGS.js",
     "name": "handbook",
     "src": "app/routes/handbook.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js"
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js"
     ]
   },
   "app/routes/home.tsx?__react-router-build-client-route": {
-    "file": "assets/home-DvCyktF2.js",
+    "file": "assets/home-Do09juyi.js",
     "name": "home",
     "src": "app/routes/home.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_articles-CrQN1nAv.js",
-      "_courses-B3m7CP1N.js",
-      "_button-Dn-q0_DK.js",
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_articles-pDEdQqDx.js",
+      "_courses-WZuXP5qd.js",
+      "_button-BchY-9V6.js",
       "_date-BfXueLdd.js"
     ]
   },
   "app/routes/not-found.tsx?__react-router-build-client-route": {
-    "file": "assets/not-found-DP1FDa7k.js",
+    "file": "assets/not-found-DiH2G4sN.js",
     "name": "not-found",
     "src": "app/routes/not-found.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_not-found-DC2PBoX3.js",
-      "_button-Dn-q0_DK.js"
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_not-found-tH07ceUu.js",
+      "_button-BchY-9V6.js"
     ]
   },
   "app/routes/project-list.tsx?__react-router-build-client-route": {
-    "file": "assets/project-list-Cne5_tsx.js",
+    "file": "assets/project-list-gDWB79jc.js",
     "name": "project-list",
     "src": "app/routes/project-list.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_button-Dn-q0_DK.js"
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_button-BchY-9V6.js"
     ]
   },
   "app/routes/search.tsx?__react-router-build-client-route": {
-    "file": "assets/search-CRUi4ByP.js",
+    "file": "assets/search-CuTi2M91.js",
     "name": "search",
     "src": "app/routes/search.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
-      "_seo-CKXxacMM.js",
-      "_chunk-K6AXKMTT-DnR1GwIg.js",
-      "_articles-CrQN1nAv.js",
-      "_courses-B3m7CP1N.js",
-      "_button-Dn-q0_DK.js",
-      "_IconSearch-B-he3ZKI.js",
+      "_seo-CKrSCG3-.js",
+      "_chunk-K6AXKMTT-CzbRfI_4.js",
+      "_articles-pDEdQqDx.js",
+      "_courses-WZuXP5qd.js",
+      "_button-BchY-9V6.js",
+      "_IconSearch-Drg7MNtE.js",
       "_date-BfXueLdd.js"
     ]
   },
   "node_modules/@react-router/dev/dist/config/defaults/entry.client.tsx": {
-    "file": "assets/entry.client-BC4z5TYf.js",
+    "file": "assets/entry.client-CU8QQB6l.js",
     "name": "entry.client",
     "src": "node_modules/@react-router/dev/dist/config/defaults/entry.client.tsx",
     "isEntry": true,
     "imports": [
-      "_chunk-K6AXKMTT-DnR1GwIg.js"
+      "_chunk-K6AXKMTT-CzbRfI_4.js"
     ]
   }
 }
