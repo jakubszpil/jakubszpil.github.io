@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "npm@10.2.3",
   "scripts": {
-    "build": "cross-env NODE_ENV=production react-router build && mv dist/client/404/index.html dist/client/404.html",
+    "build": "cross-env NODE_ENV=production react-router build && node script.mjs",
     "dev": "react-router dev",
     "start": "cross-env NODE_ENV=production react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
