@@ -15,13 +15,15 @@ export default defineConfig(() => {
         registerType: "autoUpdate",
         injectRegister: "script",
         workbox: {
-          cacheId: "jakubszpil.github.io",
           cleanupOutdatedCaches: true,
           navigateFallback: null,
           runtimeCaching: [
             {
               urlPattern: ({ sameOrigin }) => sameOrigin,
               handler: "CacheFirst",
+              options: {
+                cacheName: "jakubszpil.cache",
+              },
             },
           ],
         },

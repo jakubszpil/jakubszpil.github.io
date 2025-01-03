@@ -8,8 +8,8 @@ import { getArticles } from "~/lib/articles";
 import { getCourses } from "~/lib/courses";
 
 export async function loader() {
-  const articles = await getArticles(3);
-  const courses = await getCourses(3);
+  const articles = await getArticles({ limit: 3 });
+  const courses = await getCourses({ limit: 3 });
 
   return {
     articles,

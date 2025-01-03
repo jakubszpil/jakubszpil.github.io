@@ -12,8 +12,7 @@ import { capitalize } from "~/lib/string";
 
 import type { Route } from "./+types/article-list";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const category = params.category;
+export async function loader({ params: { category } }: Route.LoaderArgs) {
   const categories = await getArticlesCategories();
 
   if (category) {

@@ -46,7 +46,7 @@ export const processContent = async (content: string) => {
 export interface ContentResource {
   id: string;
   slug: string;
-  content: string;
+  content?: string;
   resourceUrl?: string;
   title?: string;
   description?: string;

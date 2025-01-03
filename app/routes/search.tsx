@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { Form, useLoaderData, useNavigation } from "react-router";
-import { IconLoader, IconSearch } from "@tabler/icons-react";
+import { Form, useLoaderData } from "react-router";
+import { IconSearch } from "@tabler/icons-react";
 
 import Articles from "~/components/blog/articles";
 import Courses from "~/components/learning/courses";
@@ -8,6 +8,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
+import { cacheServerLoader } from "~/lib/cache";
 import { getCourses } from "~/lib/courses";
 import {
   getSearchResults,
@@ -19,8 +20,8 @@ import {
 import type { Route } from "./+types/search";
 
 export async function loader() {
-  const articles = await getArticles();
-  const courses = await getCourses();
+  const articles = await getArticles({ minify: false });
+  const courses = await getCourses({ minify: false });
 
   return {
     articles,
@@ -32,7 +33,7 @@ export async function clientLoader({
   request,
   serverLoader,
 }: Route.ClientLoaderArgs) {
-  const results = await serverLoader();
+  const results = await cacheServerLoader(request.url, serverLoader);
   const query = validateSearhQuery(request.url);
 
   const searchResults = getSearchResults(results, query);
@@ -51,11 +52,6 @@ clientLoader.hydrate = true;
 export default function Search() {
   const { query, articles, courses, resultsCount } =
     useLoaderData<typeof clientLoader>();
-
-  const navigation = useNavigation();
-
-  const pending =
-    navigation.state === "loading" && Boolean(navigation.location);
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -117,11 +113,6 @@ export default function Search() {
         className="container py-0 bg-background flex gap-2"
       >
         <div className="flex-1 relative">
-          {pending && (
-            <div className="flex absolute right-1 h-full items-center justify-center w-max">
-              <IconLoader className="animate-spin" />
-            </div>
-          )}
           <Input
             key={query}
             type="text"

@@ -33,13 +33,30 @@ export function createResourceUtils<TResource extends ContentResource>(
   files: Record<string, string>,
   filterKey: NonNullable<ExtractFilters<TResource>>
 ) {
-  async function getResources(limit?: number): Promise<TResource[]> {
-    const resources = await parseContent<TResource>(files);
-    return resources.slice(0, limit ?? resources.length);
+  function excludeContentFromResource(resource: TResource) {
+    resource.content = undefined;
+    return resource;
+  }
+
+  async function getResources(
+    filters: {
+      limit?: number;
+      minify?: boolean;
+    } = { minify: true }
+  ): Promise<TResource[]> {
+    let resources = await parseContent<TResource>(files);
+
+    resources = resources.slice(0, filters?.limit ?? resources.length);
+
+    if (filters.minify) {
+      resources = resources.map(excludeContentFromResource);
+    }
+
+    return resources;
   }
 
   async function getResouce(slug: string): Promise<TResource> {
-    const resources = await getResources();
+    const resources = await getResources({ minify: false });
     const resource = resources.find((resource) => resource.slug === slug);
 
     if (!resource) {
