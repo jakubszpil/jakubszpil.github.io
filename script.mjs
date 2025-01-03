@@ -13,7 +13,8 @@ try {
     .map((file) => join(__clientDirname, file));
 
   for (const file of files) {
-    const path = file.replace("\\index", "");
+    const path = `${join(file, "..")}.html`;
+
     await rename(file, path);
     console.log(path);
   }
