@@ -2,12 +2,15 @@ import { useLoaderData } from "react-router";
 
 import { Seo } from "~/components/ui/seo";
 import Socials from "~/components/socials";
+import { cacheClientLoader } from "~/lib/cache";
 
 export async function loader() {
   const currentDate = new Date().getFullYear();
   const startDate = new Date(2021, 6, 1).getFullYear();
   return currentDate - startDate;
 }
+
+export const clientLoader = cacheClientLoader;
 
 export default function About() {
   const years = useLoaderData<typeof loader>();

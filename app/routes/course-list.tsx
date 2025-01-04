@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import CategoryList from "~/components/learning/categories";
 import Courses from "~/components/learning/courses";
 import { Seo } from "~/components/ui/seo";
+import { cacheClientLoader } from "~/lib/cache";
 import {
   getCourses,
   getCoursesByCategory,
@@ -35,6 +36,8 @@ export async function loader({ params: { category } }: Route.LoaderArgs) {
     category,
   };
 }
+
+export const clientLoader = cacheClientLoader;
 
 export default function CourseList() {
   const { courses, categories, category } = useLoaderData<typeof loader>();
