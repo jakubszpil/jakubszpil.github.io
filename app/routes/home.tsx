@@ -5,7 +5,6 @@ import Courses from "~/components/learning/courses";
 import { Button } from "~/components/ui/button";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
-import { cacheClientLoader } from "~/lib/cache";
 import { getCourses } from "~/lib/courses";
 
 export async function loader() {
@@ -17,8 +16,6 @@ export async function loader() {
     courses,
   };
 }
-
-export const clientLoader = cacheClientLoader;
 
 export default function Home() {
   const data = useLoaderData<typeof loader>();

@@ -8,7 +8,6 @@ import {
   getArticlesByCategory,
   getArticlesCategories,
 } from "~/lib/articles";
-import { cacheClientLoader } from "~/lib/cache";
 import { capitalize } from "~/lib/string";
 
 import type { Route } from "./+types/article-list";
@@ -36,8 +35,6 @@ export async function loader({ params: { category } }: Route.LoaderArgs) {
     category,
   };
 }
-
-export const clientLoader = cacheClientLoader;
 
 export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();

@@ -1,5 +1,3 @@
-import type { ClientLoaderFunctionArgs } from "react-router";
-
 const serverLoaderCache = new Map<string, any>();
 
 export async function cacheServerLoader<T>(
@@ -16,11 +14,4 @@ export async function cacheServerLoader<T>(
   const promise = await serverLoader();
   serverLoaderCache.set(pathname, promise);
   return serverLoaderCache.get(pathname);
-}
-
-export async function cacheClientLoader<T>(
-  args: ClientLoaderFunctionArgs
-): Promise<T> {
-  const serverLoader = (): Promise<T> => args.serverLoader<T>() as Promise<T>;
-  return cacheServerLoader<T>(args.request.url, serverLoader);
 }

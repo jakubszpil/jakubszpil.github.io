@@ -3,7 +3,6 @@ import { useLoaderData } from "react-router";
 import Categories from "~/components/learning/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
-import { cacheClientLoader } from "~/lib/cache";
 import { getCourse } from "~/lib/courses";
 
 import type { Route } from "./+types/course-details";
@@ -13,8 +12,6 @@ export async function loader({ params }: Route.LoaderArgs) {
 
   return course;
 }
-
-export const clientLoader = cacheClientLoader;
 
 export default function CourseDetails() {
   const course = useLoaderData<typeof loader>();
