@@ -1,0 +1,1 @@
+function r(e){return new Intl.DateTimeFormat("pl-PL",{day:"numeric",month:"long",year:"numeric"}).format(new Date(e))}function u(){return new Date().getFullYear()}function o(e){const t=new Date,n=new Date(t.getTime()-e.getTime()).getUTCFullYear();return Math.abs(n-1970)}export{r as a,o as b,u as g};
