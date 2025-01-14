@@ -1,11 +1,9 @@
 import { Seo } from "~/components/ui/seo";
 import Socials from "~/components/socials";
-import { getCurrentYear } from "~/lib/date";
+import { getDifferenceInYears } from "~/lib/date";
 
 export default function About() {
-  const currentYear = getCurrentYear();
-  const startDateYear = new Date(2021, 6, 1).getFullYear();
-  const years = currentYear - startDateYear;
+  const years = getDifferenceInYears(new Date(2021, 6, 1));
 
   return (
     <div className="container prose">
