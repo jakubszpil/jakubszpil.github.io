@@ -8,7 +8,7 @@ import {
 export default [
   index("routes/home.tsx"),
   ...prefix("blog", [
-    route("", "routes/article-list.tsx", {
+    index("routes/article-list.tsx", {
       id: "article-list",
     }),
     route("kategorie/:category", "routes/article-list.tsx", {
@@ -19,7 +19,7 @@ export default [
     }),
   ]),
   ...prefix("learning", [
-    route("", "routes/course-list.tsx", {
+    index("routes/course-list.tsx", {
       id: "course-list",
     }),
     route("kategorie/:category", "routes/course-list.tsx", {
@@ -30,7 +30,7 @@ export default [
     }),
   ]),
   ...prefix("portfolio", [
-    route("", "routes/project-list.tsx", {
+    index("routes/project-list.tsx", {
       id: "project-list",
     }),
   ]),
