@@ -1,4 +1,5 @@
 import invariant from "tiny-invariant";
+
 import { parseMarkdownFile, type ContentResource } from "./content";
 
 export async function parseContent<T extends ContentResource>(

@@ -51,16 +51,9 @@ export function Layout({ children }: { children: ReactNode }) {
       <body style={{ WebkitTapHighlightColor: "transparent" }}>
         <LayoutComponent>{children}</LayoutComponent>
         <ScrollRestoration
-          getKey={(location) => {
-            const key = [
-              location.pathname,
-              location.key,
-              location.hash,
-              location.search,
-            ];
-
-            return key.filter(Boolean).join(".");
-          }}
+          getKey={(location) =>
+            Object.values(location).filter(Boolean).join(".")
+          }
         />
         <Scripts />
         {import.meta.env.PROD && (
