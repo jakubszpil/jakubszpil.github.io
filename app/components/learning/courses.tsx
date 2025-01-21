@@ -14,7 +14,7 @@ export interface CoursesProps {
 export default function Courses(props: CoursesProps) {
   return (
     <section
-      className={`container pt-0 prose grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3 ${
+      className={`container pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 ${
         props.className ?? ""
       }`}
     >
