@@ -1,6 +1,6 @@
 {
   "/home/runner/work/jakubszpil.github.io/jakubszpil.github.io/app/styles.css": {
-    "file": "assets/styles-BRUNdHOL.css",
+    "file": "assets/styles-DnLQXbjV.css",
     "src": "/home/runner/work/jakubszpil.github.io/jakubszpil.github.io/app/styles.css"
   },
   "_IconSearch-CdDopEKO.js": {
@@ -10,8 +10,8 @@
       "_seo-C3TPlgfD.js"
     ]
   },
-  "_articles-F9-Bi-A1.js": {
-    "file": "assets/articles-F9-Bi-A1.js",
+  "_articles-BFpDHFHq.js": {
+    "file": "assets/articles-BFpDHFHq.js",
     "name": "articles",
     "imports": [
       "_chunk-V7UHCZHK-CifzZQHo.js",
@@ -46,8 +46,8 @@
     "file": "assets/chunk-V7UHCZHK-CifzZQHo.js",
     "name": "chunk-V7UHCZHK"
   },
-  "_courses-CS5eLD3U.js": {
-    "file": "assets/courses-CS5eLD3U.js",
+  "_courses-B8PYLxSz.js": {
+    "file": "assets/courses-B8PYLxSz.js",
     "name": "courses",
     "imports": [
       "_chunk-V7UHCZHK-CifzZQHo.js",
@@ -97,7 +97,7 @@
     "name": "string"
   },
   "app/root.tsx?__react-router-build-client-route": {
-    "file": "assets/root-ZhDetybk.js",
+    "file": "assets/root-CP_2HDz3.js",
     "name": "root",
     "src": "app/root.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -111,7 +111,7 @@
       "_date-Id6XWU1s.js"
     ],
     "assets": [
-      "assets/styles-BRUNdHOL.css"
+      "assets/styles-DnLQXbjV.css"
     ]
   },
   "app/routes/about.tsx?__react-router-build-client-route": {
@@ -141,7 +141,7 @@
     ]
   },
   "app/routes/article-list.tsx?__react-router-build-client-route": {
-    "file": "assets/article-list-CptXKI2h.js",
+    "file": "assets/article-list-BxBptSMa.js",
     "name": "article-list",
     "src": "app/routes/article-list.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -149,7 +149,7 @@
       "_seo-C3TPlgfD.js",
       "_chunk-V7UHCZHK-CifzZQHo.js",
       "_categories-DSoX4Ipk.js",
-      "_articles-F9-Bi-A1.js",
+      "_articles-BFpDHFHq.js",
       "_string-BZnAEtKi.js",
       "_button-XUFoPiJn.js",
       "_date-Id6XWU1s.js"
@@ -169,7 +169,7 @@
     ]
   },
   "app/routes/course-list.tsx?__react-router-build-client-route": {
-    "file": "assets/course-list-Dtc7Tmpc.js",
+    "file": "assets/course-list-D2_698IK.js",
     "name": "course-list",
     "src": "app/routes/course-list.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -177,7 +177,7 @@
       "_seo-C3TPlgfD.js",
       "_chunk-V7UHCZHK-CifzZQHo.js",
       "_categories-CFZ1cq2c.js",
-      "_courses-CS5eLD3U.js",
+      "_courses-B8PYLxSz.js",
       "_string-BZnAEtKi.js",
       "_button-XUFoPiJn.js",
       "_date-Id6XWU1s.js"
@@ -194,15 +194,15 @@
     ]
   },
   "app/routes/home.tsx?__react-router-build-client-route": {
-    "file": "assets/home-BjhoR7f2.js",
+    "file": "assets/home-19tKrt2R.js",
     "name": "home",
     "src": "app/routes/home.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
       "_seo-C3TPlgfD.js",
       "_chunk-V7UHCZHK-CifzZQHo.js",
-      "_articles-F9-Bi-A1.js",
-      "_courses-CS5eLD3U.js",
+      "_articles-BFpDHFHq.js",
+      "_courses-B8PYLxSz.js",
       "_button-XUFoPiJn.js",
       "_date-Id6XWU1s.js"
     ]
@@ -231,15 +231,15 @@
     ]
   },
   "app/routes/search.tsx?__react-router-build-client-route": {
-    "file": "assets/search-CCMVoYpd.js",
+    "file": "assets/search-BsJrRtgt.js",
     "name": "search",
     "src": "app/routes/search.tsx?__react-router-build-client-route",
     "isEntry": true,
     "imports": [
       "_seo-C3TPlgfD.js",
       "_chunk-V7UHCZHK-CifzZQHo.js",
-      "_articles-F9-Bi-A1.js",
-      "_courses-CS5eLD3U.js",
+      "_articles-BFpDHFHq.js",
+      "_courses-B8PYLxSz.js",
       "_button-XUFoPiJn.js",
       "_IconSearch-CdDopEKO.js",
       "_date-Id6XWU1s.js"
