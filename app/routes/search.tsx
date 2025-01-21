@@ -19,13 +19,15 @@ import {
 
 import type { Route } from "./+types/search";
 
-export async function loader() {
+export async function loader({ request }: Route.LoaderArgs) {
   const articles = await getArticles({ minify: false });
   const courses = await getCourses({ minify: false });
+  const { pathname } = new URL(request.url);
 
   return {
     articles,
     courses,
+    pathname,
   };
 }
 
@@ -33,7 +35,10 @@ export async function clientLoader({
   request,
   serverLoader,
 }: Route.ClientLoaderArgs) {
-  const results = await cacheServerLoader(request.url, serverLoader);
+  const { pathname, ...results } = await cacheServerLoader(
+    request.url,
+    serverLoader
+  );
   const query = validateSearhQuery(request.url);
 
   const searchResults = getSearchResults(results, query);
@@ -44,13 +49,14 @@ export async function clientLoader({
     ...searchResults,
     resultsCount,
     query,
+    pathname,
   };
 }
 
 clientLoader.hydrate = true;
 
 export default function Search() {
-  const { query, articles, courses, resultsCount } =
+  const { query, articles, courses, resultsCount, pathname } =
     useLoaderData<typeof clientLoader>();
 
   const renderResults = useCallback(() => {
@@ -111,6 +117,7 @@ export default function Search() {
         preventScrollReset={true}
         method="get"
         className="container py-0 bg-background flex gap-2"
+        action={pathname}
       >
         <div className="flex-1 relative">
           <Input
