@@ -6,12 +6,13 @@ import autoprefixer from "autoprefixer";
 import { VitePWA as pwa } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   return {
     plugins: [
       reactRouter(),
       tsconfigPaths(),
       pwa({
+        disable: mode === "development",
         registerType: "autoUpdate",
         injectRegister: "script",
         workbox: {
@@ -117,11 +118,6 @@ export default defineConfig(() => {
     css: {
       postcss: {
         plugins: [tailwindcss(), autoprefixer()],
-      },
-    },
-    resolve: {
-      alias: {
-        "@tabler/icons-react": "@tabler/icons-react/dist/esm/icons/index.mjs",
       },
     },
     build: {

@@ -18,7 +18,7 @@
     "@react-router/dev": "7.1.2",
     "@react-router/fs-routes": "7.1.2",
     "@react-router/node": "7.1.2",
-    "@tabler/icons-react": "3.28.1",
+    "@tabler/icons-react": "3.17.0",
     "class-variance-authority": "0.7.1",
     "classnames": "2.5.1",
     "clsx": "2.1.1",
