@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
       reactRouter(),
       tsconfigPaths(),
       pwa({
-        disable: mode === "development",
+        disable: true,
         registerType: "autoUpdate",
         injectRegister: "script",
         workbox: {
