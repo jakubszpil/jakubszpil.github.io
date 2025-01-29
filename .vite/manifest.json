@@ -26,8 +26,8 @@
       "_chunk-V7UHCZHK-D-xKbf1i.js"
     ]
   },
-  "_cache-DIg_CrIG.js": {
-    "file": "assets/cache-DIg_CrIG.js",
+  "_cache-Dep1OJ0t.js": {
+    "file": "assets/cache-Dep1OJ0t.js",
     "name": "cache",
     "imports": [
       "_chunk-V7UHCZHK-D-xKbf1i.js"
@@ -135,7 +135,7 @@
     ]
   },
   "app/routes/article-details.tsx?__react-router-build-client-route": {
-    "file": "assets/article-details-DqrKkxaa.js",
+    "file": "assets/article-details-DW1P2tIE.js",
     "name": "article-details",
     "src": "app/routes/article-details.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -144,12 +144,12 @@
       "_chunk-V7UHCZHK-D-xKbf1i.js",
       "_categories-CqDIyVaU.js",
       "_edit-resource-BMwuvD0e.js",
-      "_cache-DIg_CrIG.js",
+      "_cache-Dep1OJ0t.js",
       "_button-CyW1gt0p.js"
     ]
   },
   "app/routes/article-list.tsx?__react-router-build-client-route": {
-    "file": "assets/article-list-CkHCXNDE.js",
+    "file": "assets/article-list-DivFeJs3.js",
     "name": "article-list",
     "src": "app/routes/article-list.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -159,13 +159,13 @@
       "_categories-CqDIyVaU.js",
       "_articles--2FASBm3.js",
       "_string-BZnAEtKi.js",
-      "_cache-DIg_CrIG.js",
+      "_cache-Dep1OJ0t.js",
       "_button-CyW1gt0p.js",
       "_date-Id6XWU1s.js"
     ]
   },
   "app/routes/course-details.tsx?__react-router-build-client-route": {
-    "file": "assets/course-details-ywbXX8wF.js",
+    "file": "assets/course-details-DJ9tddQ2.js",
     "name": "course-details",
     "src": "app/routes/course-details.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -174,12 +174,12 @@
       "_chunk-V7UHCZHK-D-xKbf1i.js",
       "_categories-C_pXaKGM.js",
       "_edit-resource-BMwuvD0e.js",
-      "_cache-DIg_CrIG.js",
+      "_cache-Dep1OJ0t.js",
       "_button-CyW1gt0p.js"
     ]
   },
   "app/routes/course-list.tsx?__react-router-build-client-route": {
-    "file": "assets/course-list-DmChbaRT.js",
+    "file": "assets/course-list-mHyzLEXX.js",
     "name": "course-list",
     "src": "app/routes/course-list.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -189,7 +189,7 @@
       "_categories-C_pXaKGM.js",
       "_courses-bTJ_ypTv.js",
       "_string-BZnAEtKi.js",
-      "_cache-DIg_CrIG.js",
+      "_cache-Dep1OJ0t.js",
       "_button-CyW1gt0p.js",
       "_date-Id6XWU1s.js"
     ]
@@ -205,7 +205,7 @@
     ]
   },
   "app/routes/home.tsx?__react-router-build-client-route": {
-    "file": "assets/home-DtX6KQOl.js",
+    "file": "assets/home-DmL9NXba.js",
     "name": "home",
     "src": "app/routes/home.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -215,7 +215,7 @@
       "_articles--2FASBm3.js",
       "_courses-bTJ_ypTv.js",
       "_button-CyW1gt0p.js",
-      "_cache-DIg_CrIG.js",
+      "_cache-Dep1OJ0t.js",
       "_date-Id6XWU1s.js"
     ]
   },
@@ -243,7 +243,7 @@
     ]
   },
   "app/routes/search.tsx?__react-router-build-client-route": {
-    "file": "assets/search-DbP79Nqs.js",
+    "file": "assets/search-VatwKhX4.js",
     "name": "search",
     "src": "app/routes/search.tsx?__react-router-build-client-route",
     "isEntry": true,
@@ -253,7 +253,7 @@
       "_articles--2FASBm3.js",
       "_courses-bTJ_ypTv.js",
       "_button-CyW1gt0p.js",
-      "_cache-DIg_CrIG.js",
+      "_cache-Dep1OJ0t.js",
       "_IconSearch-Bt2FErQw.js",
       "_date-Id6XWU1s.js"
     ]
