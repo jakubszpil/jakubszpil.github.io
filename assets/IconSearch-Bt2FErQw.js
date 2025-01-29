@@ -1,5 +1,5 @@
-import{c as a}from"./seo-C3TPlgfD.js";/**
- * @license @tabler/icons-react v3.28.1 - MIT
+import{c as a}from"./seo-DZI-OIT8.js";/**
+ * @license @tabler/icons-react v3.17.0 - MIT
  *
  * This source code is licensed under the MIT license.
  * See the LICENSE file in the root directory of this source tree.
