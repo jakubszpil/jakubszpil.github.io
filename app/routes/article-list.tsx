@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import CategoryList from "~/components/blog/categories";
 import Articles from "~/components/blog/articles";
@@ -10,9 +10,9 @@ import {
 } from "~/lib/articles";
 import { capitalize } from "~/lib/string";
 
-import type { Route } from "./+types/article-list";
+import { cacheClientLoader } from "~/lib/cache";
 
-export async function loader({ params: { category } }: Route.LoaderArgs) {
+export async function loader({ params: { category } }: LoaderFunctionArgs) {
   const categories = await getArticlesCategories();
 
   if (category) {
@@ -35,6 +35,8 @@ export async function loader({ params: { category } }: Route.LoaderArgs) {
     category,
   };
 }
+
+export const clientLoader = cacheClientLoader;
 
 export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();

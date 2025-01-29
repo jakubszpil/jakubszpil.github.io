@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import CategoryList from "~/components/learning/categories";
 import Courses from "~/components/learning/courses";
@@ -10,9 +10,9 @@ import {
 } from "~/lib/courses";
 import { capitalize } from "~/lib/string";
 
-import type { Route } from "./+types/course-list";
+import { cacheClientLoader } from "~/lib/cache";
 
-export async function loader({ params: { category } }: Route.LoaderArgs) {
+export async function loader({ params: { category } }: LoaderFunctionArgs) {
   const categories = await getCoursesCategories();
 
   if (category) {
@@ -35,6 +35,8 @@ export async function loader({ params: { category } }: Route.LoaderArgs) {
     category,
   };
 }
+
+export const clientLoader = cacheClientLoader;
 
 export default function CourseList() {
   const { courses, categories, category } = useLoaderData<typeof loader>();

@@ -1,17 +1,19 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/blog/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
 
-import type { Route } from "./+types/article-details";
+import { cacheClientLoader } from "~/lib/cache";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const article = await getArticle(params.slug);
+export async function loader({ params: { slug } }: LoaderFunctionArgs) {
+  const article = await getArticle(slug!);
 
   return article;
 }
+
+export const clientLoader = cacheClientLoader;
 
 export default function ArticleDetails() {
   const article = useLoaderData<typeof loader>();

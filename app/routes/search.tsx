@@ -1,5 +1,9 @@
 import { useCallback } from "react";
-import { Form, useLoaderData } from "react-router";
+import {
+  Form,
+  useLoaderData,
+  type ClientLoaderFunctionArgs,
+} from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
 import Articles from "~/components/blog/articles";
@@ -17,27 +21,23 @@ import {
   validateSearhQuery,
 } from "~/lib/search";
 
-import type { Route } from "./+types/search";
-
-export async function loader({ request }: Route.LoaderArgs) {
+export async function loader() {
   const articles = await getArticles({ minify: false });
   const courses = await getCourses({ minify: false });
-  const { pathname } = new URL(request.url);
 
   return {
     articles,
     courses,
-    pathname,
   };
 }
 
 export async function clientLoader({
   request,
   serverLoader,
-}: Route.ClientLoaderArgs) {
-  const { pathname, ...results } = await cacheServerLoader(
+}: ClientLoaderFunctionArgs) {
+  const results = await cacheServerLoader(
     request.url,
-    serverLoader
+    serverLoader<typeof loader>
   );
   const query = validateSearhQuery(request.url);
 
@@ -49,14 +49,13 @@ export async function clientLoader({
     ...searchResults,
     resultsCount,
     query,
-    pathname,
   };
 }
 
 clientLoader.hydrate = true;
 
 export default function Search() {
-  const { query, articles, courses, resultsCount, pathname } =
+  const { query, articles, courses, resultsCount } =
     useLoaderData<typeof clientLoader>();
 
   const renderResults = useCallback(() => {
@@ -117,18 +116,17 @@ export default function Search() {
         preventScrollReset={true}
         method="get"
         className="container py-0 bg-background flex gap-2"
-        action={pathname}
+        action="/search"
       >
-        <div className="flex-1 relative">
-          <Input
-            key={query}
-            type="text"
-            name={queryParamName}
-            placeholder="Treść zapytania"
-            defaultValue={query ?? ""}
-            required
-          />
-        </div>
+        <Input
+          key={query}
+          type="text"
+          name={queryParamName}
+          placeholder="Treść zapytania"
+          defaultValue={query ?? ""}
+          required
+          className="flex-1 relative"
+        />
 
         <Button type="submit">
           <IconSearch className="h-5 w-5 mr-1" />

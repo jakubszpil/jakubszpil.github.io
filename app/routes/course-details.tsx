@@ -1,17 +1,19 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/learning/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getCourse } from "~/lib/courses";
 
-import type { Route } from "./+types/course-details";
+import { cacheClientLoader } from "~/lib/cache";
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const course = await getCourse(params.slug);
+export async function loader({ params: { slug } }: LoaderFunctionArgs) {
+  const course = await getCourse(slug!);
 
   return course;
 }
+
+export const clientLoader = cacheClientLoader;
 
 export default function CourseDetails() {
   const course = useLoaderData<typeof loader>();

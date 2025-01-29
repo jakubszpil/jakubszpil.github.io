@@ -8,6 +8,9 @@ import { VitePWA as pwa } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
+    define: {
+      "import.meta.env.TIMESTAMP": Date.now(),
+    },
     plugins: [
       reactRouter(),
       tsconfigPaths(),

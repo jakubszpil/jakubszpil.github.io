@@ -7,16 +7,17 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  type LinkDescriptor,
+  type LinksFunction,
 } from "react-router";
 
 import NotFound from "./components/not-found";
 import { Button } from "./components/ui/button";
-import type { Route } from "./+types/root";
 import stylesheet from "./styles.css?url";
 import LayoutComponent from "./components/layout";
 
-export const links: Route.LinksFunction = () => {
-  const links: Route.LinkDescriptors = [
+export const links: LinksFunction = () => {
+  const links: LinkDescriptor[] = [
     {
       rel: "stylesheet",
       href: "/static/fonts/inter/font.css",
@@ -68,7 +69,7 @@ export default function App() {
   return <Outlet />;
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary({ error }: { error: unknown }) {
   if (isRouteErrorResponse(error)) {
     if (error.status === 404) {
       return <NotFound />;
