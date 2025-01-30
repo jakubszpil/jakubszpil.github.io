@@ -7,7 +7,7 @@ export async function parseContent<T extends ContentResource>(
 ): Promise<T[]> {
   const content = await Promise.all(
     Object.entries(files).map(async ([key, file]) => {
-      const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".mdx"));
+      const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
       const keyWithoutSlug = key.slice(0, key.lastIndexOf("/"));
       const resourceType = keyWithoutSlug.slice(
         keyWithoutSlug.lastIndexOf("/") + 1
