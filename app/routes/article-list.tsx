@@ -10,8 +10,6 @@ import {
 } from "~/lib/articles";
 import { capitalize } from "~/lib/string";
 
-import { cacheClientLoader } from "~/lib/cache";
-
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   const categories = await getArticlesCategories();
 
@@ -35,8 +33,6 @@ export async function loader({ params: { category } }: LoaderFunctionArgs) {
     category,
   };
 }
-
-export const clientLoader = cacheClientLoader;
 
 export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();

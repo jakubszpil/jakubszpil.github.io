@@ -5,15 +5,11 @@ import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getCourse } from "~/lib/courses";
 
-import { cacheClientLoader } from "~/lib/cache";
-
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await getCourse(slug!);
 
   return course;
 }
-
-export const clientLoader = cacheClientLoader;
 
 export default function CourseDetails() {
   const course = useLoaderData<typeof loader>();

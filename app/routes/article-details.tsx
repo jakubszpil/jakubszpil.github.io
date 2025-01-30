@@ -5,15 +5,11 @@ import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
 
-import { cacheClientLoader } from "~/lib/cache";
-
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug!);
 
   return article;
 }
-
-export const clientLoader = cacheClientLoader;
 
 export default function ArticleDetails() {
   const article = useLoaderData<typeof loader>();
