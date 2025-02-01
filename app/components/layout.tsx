@@ -5,6 +5,7 @@ import NavbarLink from "./navbar-link";
 import NavbarMenu from "./navbar-menu";
 import Footer from "./footer";
 import FooterLink from "./footer-link";
+import BusyIndicator from "./busy-indicator";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -17,6 +18,7 @@ export default function Layout(props: LayoutProps) {
         <NavbarLink className="font-bold" to="/">
           jakubszpil
         </NavbarLink>
+        <BusyIndicator />
         <NavbarMenu>
           <NavbarLink to="/">🏠 Strona główna</NavbarLink>
           <NavbarLink to="/blog">📝 Blog</NavbarLink>

@@ -27,7 +27,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
 
   return (
     <>
-      <div className="flex items-center sm:gap-1">
+      <div className="flex flex-1 justify-end items-center sm:gap-1">
         <nav className="hidden items-center lg:flex">
           {props.children.map((child) => (
             <NavbarLink {...child.props} key={v4()} />
