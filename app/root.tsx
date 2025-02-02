@@ -33,10 +33,6 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: stylesheet },
   ];
 
-  // if (import.meta.env.PROD) {
-  //   links.push({ rel: "manifest", href: "/manifest.webmanifest" });
-  // }
-
   return links;
 };
 
@@ -57,9 +53,6 @@ export function Layout({ children }: { children: ReactNode }) {
           }
         />
         <Scripts />
-        {/* {import.meta.env.PROD && (
-          <script type="text/javascript" src="/registerSW.js" />
-        )} */}
       </body>
     </html>
   );
