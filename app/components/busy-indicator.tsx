@@ -14,7 +14,7 @@ export default function BusyIndicator() {
     <Transition
       show
       appear
-      enter="delay-300"
+      enter="delay-150"
       enterFrom="opacity-0"
       enterTo="opacity-100"
     >
