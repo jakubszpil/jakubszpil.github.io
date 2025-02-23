@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_ENV=production react-router build && node script.mjs",
+    "build": "react-router build && node script.mjs",
     "dev": "react-router dev",
-    "start": "cross-env NODE_ENV=production react-router-serve ./build/server/index.js",
+    "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "test": "vitest run",
     "test:ci": "vitest run --hideSkippedTests --silent --no-color"
@@ -36,10 +36,8 @@
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "@types/uuid": "10.0.0",
-    "@vite-pwa/assets-generator": "0.2.6",
     "@vitejs/plugin-react": "4.3.4",
     "autoprefixer": "10.4.20",
-    "cross-env": "7.0.3",
     "gray-matter": "4.0.3",
     "jsdom": "26.0.0",
     "rehype-autolink-headings": "7.1.0",
@@ -56,10 +54,7 @@
     "typescript": "5.7.3",
     "unified": "11.0.5",
     "vite": "6.0.7",
-    "vite-plugin-pwa": "0.21.1",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.0.1",
-    "workbox-core": "7.3.0",
-    "workbox-strategies": "7.3.0"
+    "vitest": "3.0.1"
   }
 }

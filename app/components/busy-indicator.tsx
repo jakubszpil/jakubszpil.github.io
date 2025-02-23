@@ -18,7 +18,7 @@ export default function BusyIndicator() {
       enterFrom="opacity-0"
       enterTo="opacity-100"
     >
-      <IconLoader className="animate-spin" />
+      <IconLoader className="animate-spin" data-testid="spinner" />
     </Transition>
   );
 }

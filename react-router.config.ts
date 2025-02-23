@@ -6,9 +6,6 @@ import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
 export default {
   ssr: true,
   buildDirectory: "dist",
-  future: {
-    unstable_optimizeDeps: true,
-  },
   async prerender({ getStaticPaths }) {
     const articlesSlugs = await getArticlesSlugs();
     const articlesCategories = await getArticlesCategories();
