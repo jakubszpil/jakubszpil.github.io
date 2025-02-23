@@ -1,4 +1,4 @@
-import{E as f,G as h,y as k,H as g,a as o,I as z,p as x,n as t}from"./chunk-IR6S3I6Y-DrCiO71b.js";function L(e){return function(){const a={params:g(),loaderData:k(),actionData:h(),matches:f()};return o.createElement(e,a)}}function D(e){return function(){const a={params:g(),loaderData:k(),actionData:h(),error:z()};return o.createElement(e,a)}}/**
+import{E as f,G as h,y as k,H as g,a as o,I as z,p as x,n as t}from"./chunk-IR6S3I6Y-0XLUeRb-.js";function L(e){return function(){const a={params:g(),loaderData:k(),actionData:h(),matches:f()};return o.createElement(e,a)}}function D(e){return function(){const a={params:g(),loaderData:k(),actionData:h(),error:z()};return o.createElement(e,a)}}/**
  * @license @tabler/icons-react v3.17.0 - MIT
  *
  * This source code is licensed under the MIT license.

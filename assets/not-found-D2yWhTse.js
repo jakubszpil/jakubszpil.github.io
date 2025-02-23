@@ -1,1 +1,0 @@
-import{w as o}from"./seo-Bf4XXCJ0.js";import{n as t}from"./chunk-IR6S3I6Y-DrCiO71b.js";import{N as n}from"./not-found-CkkxaozA.js";import"./button-DlMBPkDy.js";const u=o(function(){return t.jsx(n,{})});export{u as default};
