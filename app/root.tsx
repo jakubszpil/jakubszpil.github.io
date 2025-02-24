@@ -70,9 +70,7 @@ export function ErrorBoundary({ error }: { error: unknown }) {
         </h1>
         <p>{error.data}</p>
         <Button asChild className="no-underline" variant="outline" size="sm">
-          <Link prefetch="intent" to="/">
-            Powrót do strony głównej
-          </Link>
+          <Link to="/">Powrót do strony głównej</Link>
         </Button>
       </header>
     );

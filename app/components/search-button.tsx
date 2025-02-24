@@ -34,7 +34,7 @@ export default function SearchButton() {
       aria-label="Szukaj"
       title="Szukaj (CTRL+K)"
     >
-      <Link prefetch="intent" to="/search">
+      <Link to="/search">
         <span className="sr-only">Szukaj</span>
         <IconSearch className="h-6" />
       </Link>
