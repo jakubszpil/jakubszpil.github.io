@@ -24,4 +24,6 @@ export const [
   getCoursesCategories,
   getCoursesByCategory,
   getCoursesSlugs,
+  getCoursesSlugsByCategory,
+  getCourseSiblings,
 ] = createResourceUtils<Course>(courses, "categories");

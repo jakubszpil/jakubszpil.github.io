@@ -64,7 +64,7 @@ describe("<Articles />", () => {
       expect(MockedLink).toHaveBeenNthCalledWith(
         1,
         expect.objectContaining({
-          to: "/blog/test-1",
+          to: "./test-1",
         } satisfies LinkProps),
         undefined
       );
@@ -73,7 +73,7 @@ describe("<Articles />", () => {
     expect(MockedLink).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
-        to: "/blog/test-2",
+        to: "./test-2",
       } satisfies LinkProps),
       undefined
     );

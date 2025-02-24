@@ -108,11 +108,28 @@ export function createResourceUtils<TResource extends ContentResource>(
     return resources.map(({ slug }) => slug);
   }
 
+  async function getResourcesSlugsByFilterKey(
+    value: string
+  ): Promise<string[]> {
+    const resources = await getResourcesByFilterKey(value);
+    return resources.map((resource) => resource.slug);
+  }
+
+  async function getSiblings(
+    slug: string,
+    filterKey: string
+  ): Promise<TResource[]> {
+    const resources = await getResourcesByFilterKey(filterKey);
+    return resources.filter((resource) => resource.slug !== slug).slice(0, 2);
+  }
+
   return [
     getResources,
     getResouce,
     getResourcesFilterKeys,
     getResourcesByFilterKey,
     getResourcesSlugs,
+    getResourcesSlugsByFilterKey,
+    getSiblings,
   ] as const;
 }

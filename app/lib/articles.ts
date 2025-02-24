@@ -24,4 +24,6 @@ export const [
   getArticlesCategories,
   getArticlesByCategory,
   getArticlesSlugs,
+  getArticlesSlugsByCategory,
+  getArticleSiblings,
 ] = createResourceUtils<Article>(articles, "categories");

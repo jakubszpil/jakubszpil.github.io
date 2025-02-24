@@ -9,6 +9,7 @@ export interface ArticlesProps {
   articles: Article[];
   className?: string;
   variant?: ButtonProps["variant"];
+  path?: (slug: string) => string;
 }
 
 export default function Articles(props: ArticlesProps) {
@@ -25,7 +26,10 @@ export default function Articles(props: ArticlesProps) {
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <Link prefetch="intent" to={`/blog/${article.slug}`}>
+          <Link
+            prefetch="intent"
+            to={props.path?.(article.slug) ?? `./${article.slug}`}
+          >
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {article.title}
             </h2>

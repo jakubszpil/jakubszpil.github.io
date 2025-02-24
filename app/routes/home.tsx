@@ -71,7 +71,11 @@ export default function Home() {
             frontend developmentu!
           </p>
         </header>
-        <Articles variant="outline" articles={data.articles} />
+        <Articles
+          variant="outline"
+          articles={data.articles}
+          path={(slug) => `/blog/${slug}`}
+        />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
             <Link prefetch="intent" to="/blog">
@@ -90,7 +94,11 @@ export default function Home() {
             oraz aplikacje internetowe.
           </p>
         </header>
-        <Courses variant="outline" courses={data.courses} />
+        <Courses
+          variant="outline"
+          courses={data.courses}
+          path={(slug) => `/learning/${slug}`}
+        />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
             <Link prefetch="intent" to="/learning">

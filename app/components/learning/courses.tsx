@@ -9,6 +9,7 @@ export interface CoursesProps {
   courses: Course[];
   className?: string;
   variant?: ButtonProps["variant"];
+  path?: (slug: string) => string;
 }
 
 export default function Courses(props: CoursesProps) {
@@ -25,7 +26,10 @@ export default function Courses(props: CoursesProps) {
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap !no-underline truncate p-6"
         >
-          <Link prefetch="intent" to={`/learning/${course.slug}`}>
+          <Link
+            prefetch="intent"
+            to={props.path?.(course.slug) ?? `./${course.slug}`}
+          >
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0">
               {course.title}
             </h2>
