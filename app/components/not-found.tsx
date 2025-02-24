@@ -25,7 +25,7 @@ export default function NotFound() {
       <ul>
         <li>
           <Button asChild size="sm" variant="link" className="text-base">
-            <Link replace to={location.pathname}>
+            <Link prefetch="intent" replace to={location.pathname}>
               🤔 Sprawdź adres URL
             </Link>
           </Button>
@@ -33,7 +33,7 @@ export default function NotFound() {
         </li>
         <li>
           <Button asChild size="sm" variant="link" className="text-base">
-            <Link replace to="/">
+            <Link prefetch="intent" replace to="/">
               🏠 Przejdź do strony głównej
             </Link>
           </Button>
@@ -41,7 +41,7 @@ export default function NotFound() {
         </li>
         <li>
           <Button asChild size="sm" variant="link" className="text-base">
-            <Link replace to="/search">
+            <Link prefetch="intent" replace to="/search">
               🔍 Szukaj
             </Link>
           </Button>

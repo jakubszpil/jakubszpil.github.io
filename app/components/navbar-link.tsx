@@ -21,7 +21,9 @@ export default function NavbarLink(props: NavbarLinkProps) {
       variant={props.variant ?? "ghost"}
       size={props.size ?? "sm"}
     >
-      <Link to={props.to}>{props.children}</Link>
+      <Link prefetch="intent" to={props.to}>
+        {props.children}
+      </Link>
     </Button>
   );
 }

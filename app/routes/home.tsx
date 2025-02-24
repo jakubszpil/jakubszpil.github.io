@@ -46,10 +46,14 @@ export default function Home() {
         </p>
         <nav className="grid grid-flow-row sm:grid-flow-col sm:w-max gap-2">
           <Button size="sm" asChild className="!no-underline">
-            <Link to="/blog">📝 Najnowsze artykuły</Link>
+            <Link prefetch="intent" to="/blog">
+              📝 Najnowsze artykuły
+            </Link>
           </Button>
           <Button size="sm" variant="outline" asChild className="!no-underline">
-            <Link to="/learning">🏫 Lista kursów</Link>
+            <Link prefetch="intent" to="/learning">
+              🏫 Lista kursów
+            </Link>
           </Button>
         </nav>
       </header>
@@ -70,7 +74,9 @@ export default function Home() {
         <Articles variant="outline" articles={data.articles} />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
-            <Link to="/blog">Zobacz wszystkie artykuły</Link>
+            <Link prefetch="intent" to="/blog">
+              Zobacz wszystkie artykuły
+            </Link>
           </Button>
         </nav>
       </section>
@@ -87,7 +93,9 @@ export default function Home() {
         <Courses variant="outline" courses={data.courses} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
-            <Link to="/learning">Zobacz wszystkie kursy</Link>
+            <Link prefetch="intent" to="/learning">
+              Zobacz wszystkie kursy
+            </Link>
           </Button>
         </nav>
       </section>

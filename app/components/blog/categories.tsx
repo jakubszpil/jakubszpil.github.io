@@ -18,7 +18,9 @@ export default function Categories(props: CategoriesProps) {
         size="sm"
         className="!no-underline lowercase"
       >
-        <Link to={href}>#{name}</Link>
+        <Link prefetch="intent" to={href}>
+          #{name}
+        </Link>
       </Button>
     );
   }, []);
