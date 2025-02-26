@@ -1,61 +1,24 @@
 import type { Config } from "@react-router/dev/config";
 
-import {
-  getArticlesCategories,
-  getArticlesSlugs,
-  getArticlesSlugsByCategory,
-} from "./app/lib/articles";
-import {
-  getCoursesCategories,
-  getCoursesSlugs,
-  getCoursesSlugsByCategory,
-} from "./app/lib/courses";
-
-async function getModulePaths(
-  moduleName: string,
-  getCategories: () => Promise<string[]>,
-  getSlugs: () => Promise<string[]>,
-  getSlugsByCategory: (category: string) => Promise<string[]>
-) {
-  const slugs = await getSlugs();
-  const categories = await getCategories();
-
-  const slugsByCategory: string[] = [];
-
-  for (const category of categories) {
-    const slugsByCurrentCategory = await getSlugsByCategory(category);
-    slugsByCategory.push(
-      ...slugsByCurrentCategory.map(
-        (slug) => `/${moduleName}/kategorie/${category}/${slug}`
-      )
-    );
-  }
-
-  return [
-    ...slugs.map((s) => `/${moduleName}/${s}`),
-    ...categories.map((s) => `/${moduleName}/kategorie/${s}`),
-    ...slugsByCategory,
-  ];
-}
+import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
+import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
 
 export default {
   ssr: true,
   buildDirectory: "dist",
   async prerender({ getStaticPaths }) {
+    const blogArticles = await getArticlesSlugs();
+    const blogCategories = await getArticlesCategories();
+
+    const learningCourses = await getCoursesSlugs();
+    const learningCategories = await getCoursesCategories();
+
     return [
       ...getStaticPaths(),
-      ...(await getModulePaths(
-        "blog",
-        getArticlesCategories,
-        getArticlesSlugs,
-        getArticlesSlugsByCategory
-      )),
-      ...(await getModulePaths(
-        "learning",
-        getCoursesCategories,
-        getCoursesSlugs,
-        getCoursesSlugsByCategory
-      )),
+      ...blogArticles.map((slug) => `/blog/${slug}`),
+      ...blogCategories.map((cat) => `/blog/kategorie/${cat}`),
+      ...learningCourses.map((slug) => `/learning/${slug}`),
+      ...learningCategories.map((cat) => `/learning/kategorie/${cat}`),
       "/404",
     ];
   },

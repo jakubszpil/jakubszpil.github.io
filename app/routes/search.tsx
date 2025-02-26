@@ -74,22 +74,14 @@ export default function Search() {
         {articles.length > 0 && (
           <section>
             <h3>Artykuły ({articles.length})</h3>
-            <Articles
-              className="px-0 !grid-cols-1"
-              articles={articles}
-              path={(slug) => `/blog/${slug}`}
-            />
+            <Articles className="px-0 !grid-cols-1" articles={articles} />
           </section>
         )}
 
         {courses.length > 0 && (
           <section>
             <h3>Kursy ({courses.length})</h3>
-            <Courses
-              className="px-0 !grid-cols-1"
-              courses={courses}
-              path={(slug) => `/learning/${slug}`}
-            />
+            <Courses className="px-0 !grid-cols-1" courses={courses} />
           </section>
         )}
       </>
