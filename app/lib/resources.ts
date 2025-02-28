@@ -36,8 +36,8 @@ export function createResourceUtils<TResource extends ContentResource>(
   files: Record<string, string>,
   filterKey: NonNullable<ExtractFilters<TResource>>
 ) {
-  function excludeContentFromResource(resource: TResource) {
-    resource.content = undefined;
+  function minifyResource(resource: TResource) {
+    resource.content = "";
     return resource;
   }
 
@@ -51,8 +51,8 @@ export function createResourceUtils<TResource extends ContentResource>(
 
     resources = resources.slice(0, filters?.limit ?? resources.length);
 
-    if (filters.minify) {
-      resources = resources.map(excludeContentFromResource);
+    if (filters.minify ?? true) {
+      resources = resources.map(minifyResource);
     }
 
     return resources;
