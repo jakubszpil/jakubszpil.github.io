@@ -1,5 +1,4 @@
 import localforage from "localforage";
-import type { ClientLoaderFunctionArgs } from "react-router";
 
 const timestamp = Number(import.meta.env.TIMESTAMP);
 
@@ -37,12 +36,3 @@ export async function cacheServerLoader<T>(
   await saveItem(key, promise);
   return promise;
 }
-
-export async function cacheClientLoader({
-  request,
-  serverLoader,
-}: ClientLoaderFunctionArgs) {
-  return cacheServerLoader(request.url, serverLoader);
-}
-
-cacheClientLoader.hydrate = true;
