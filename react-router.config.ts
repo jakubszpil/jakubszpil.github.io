@@ -4,8 +4,13 @@ import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
 import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
 
 export default {
-  ssr: true,
+  ssr: false,
   buildDirectory: "dist",
+  future: {
+    unstable_viteEnvironmentApi: true,
+    unstable_optimizeDeps: true,
+    unstable_splitRouteModules: true,
+  },
   async prerender({ getStaticPaths }) {
     const blogArticles = await getArticlesSlugs();
     const blogCategories = await getArticlesCategories();
