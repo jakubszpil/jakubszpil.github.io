@@ -4,7 +4,7 @@ import {
   type ShouldRevalidateFunctionArgs,
 } from "react-router";
 
-import CategoryList from "~/components/blog/categories";
+import Categories from "~/components/blog/categories";
 import Articles from "~/components/blog/articles";
 import { Seo } from "~/components/ui/seo";
 import {
@@ -61,7 +61,7 @@ export default function ArticleList() {
 
       <header className="prose container">
         <h1>{title ?? "Artykuły"}</h1>
-        <CategoryList showAllCategory categories={categories} />
+        <Categories showAllCategory categories={categories} />
       </header>
 
       <Articles articles={articles} />

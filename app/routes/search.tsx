@@ -8,12 +8,14 @@ import { IconSearch } from "@tabler/icons-react";
 
 import Articles from "~/components/blog/articles";
 import Courses from "~/components/learning/courses";
+import Projects from "~/components/portfolio/projects";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
-import { cacheServerLoader } from "~/lib/cache";
 import { getCourses } from "~/lib/courses";
+import { getProjects } from "~/lib/projects";
+import { cacheServerLoader } from "~/lib/cache";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -24,10 +26,12 @@ import {
 export async function loader() {
   const articles = await getArticles({ minify: false });
   const courses = await getCourses({ minify: false });
+  const projects = await getProjects({ minify: false });
 
   return {
     articles,
     courses,
+    projects,
   };
 }
 
@@ -55,7 +59,7 @@ export async function clientLoader({
 clientLoader.hydrate = true;
 
 export default function Search() {
-  const { query, articles, courses, resultsCount } =
+  const { query, articles, courses, projects, resultsCount } =
     useLoaderData<typeof clientLoader>();
 
   const renderResults = useCallback(() => {
@@ -82,6 +86,13 @@ export default function Search() {
           <section>
             <h3>Kursy ({courses.length})</h3>
             <Courses className="px-0 !grid-cols-1" courses={courses} />
+          </section>
+        )}
+
+        {projects.length > 0 && (
+          <section>
+            <h3>Projekty ({projects.length})</h3>
+            <Projects className="px-0 !grid-cols-1" projects={projects} />
           </section>
         )}
       </>

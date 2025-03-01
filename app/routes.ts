@@ -33,6 +33,9 @@ export default [
     index("routes/project-list.tsx", {
       id: "project-list",
     }),
+    route("technologie/:technology", "routes/project-list.tsx", {
+      id: "project-list-with-technology",
+    }),
   ]),
   route("search", "routes/search.tsx"),
   route("handbook", "routes/handbook.tsx"),

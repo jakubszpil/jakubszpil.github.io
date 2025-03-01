@@ -2,18 +2,22 @@ import { Link, useLoaderData } from "react-router";
 
 import Articles from "~/components/blog/articles";
 import Courses from "~/components/learning/courses";
+import Projects from "~/components/portfolio/projects";
 import { Button } from "~/components/ui/button";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
 import { getCourses } from "~/lib/courses";
+import { getProjects } from "~/lib/projects";
 
 export async function loader() {
   const articles = await getArticles({ limit: 3 });
   const courses = await getCourses({ limit: 3 });
+  const projects = await getProjects({ limit: 3 });
 
   return {
     articles,
     courses,
+    projects,
   };
 }
 
@@ -109,6 +113,14 @@ export default function Home() {
             potrafię!
           </p>
         </header>
+        <Projects variant="outline" projects={data.projects} />
+        <nav className="container pt-0 pb-12">
+          <Button asChild size="sm" className="!no-underline">
+            <Link prefetch="intent" to="/portfolio">
+              Zobacz wszystkie projekty
+            </Link>
+          </Button>
+        </nav>
       </section>
     </>
   );
