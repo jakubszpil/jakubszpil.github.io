@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 
-import { getCurrentYear } from "~/lib/date";
+import { getCurrentYear } from "@/lib/date";
 
 import { Button } from "./ui/button";
 import type { FooterLinkProps } from "./footer-link";

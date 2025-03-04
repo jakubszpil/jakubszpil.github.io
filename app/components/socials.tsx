@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-import { config } from "~/lib/config";
+import { config } from "@/lib/config";
 
 import { Button, type ButtonProps } from "./ui/button";
 

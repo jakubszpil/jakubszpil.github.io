@@ -1,7 +1,7 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 
-import type { Project, ProjectStatus } from "~/lib/projects";
-import { getLocalizedDate } from "~/lib/date";
+import type { Project, ProjectStatus } from "@/lib/projects";
+import { getLocalizedDate } from "@/lib/date";
 
 import { Button, type ButtonProps } from "../ui/button";
 

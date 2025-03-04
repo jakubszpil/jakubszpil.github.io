@@ -1,4 +1,4 @@
-import { Seo } from "~/components/ui/seo";
+import { Seo } from "@/components/ui/seo";
 
 export default function Handbook() {
   return (

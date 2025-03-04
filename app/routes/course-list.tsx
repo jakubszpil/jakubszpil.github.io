@@ -4,15 +4,15 @@ import {
   type ShouldRevalidateFunctionArgs,
 } from "react-router";
 
-import Categories from "~/components/learning/categories";
-import Courses from "~/components/learning/courses";
-import { Seo } from "~/components/ui/seo";
+import Categories from "@/components/learning/categories";
+import Courses from "@/components/learning/courses";
+import { Seo } from "@/components/ui/seo";
 import {
   getCourses,
   getCoursesByCategory,
   getCoursesCategories,
-} from "~/lib/courses";
-import { capitalize } from "~/lib/string";
+} from "@/lib/courses";
+import { capitalize } from "@/lib/string";
 
 export function shouldRevalidate({
   currentParams,

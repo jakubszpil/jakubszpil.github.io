@@ -6,22 +6,22 @@ import {
 } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
-import Articles from "~/components/blog/articles";
-import Courses from "~/components/learning/courses";
-import Projects from "~/components/portfolio/projects";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { Seo } from "~/components/ui/seo";
-import { getArticles } from "~/lib/articles";
-import { getCourses } from "~/lib/courses";
-import { getProjects } from "~/lib/projects";
-import { cacheServerLoader } from "~/lib/cache";
+import Articles from "@/components/blog/articles";
+import Courses from "@/components/learning/courses";
+import Projects from "@/components/portfolio/projects";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Seo } from "@/components/ui/seo";
+import { getArticles } from "@/lib/articles";
+import { getCourses } from "@/lib/courses";
+import { getProjects } from "@/lib/projects";
+import { cacheServerLoader } from "@/lib/cache";
 import {
   getSearchResults,
   getSearchResultsLength,
   queryParamName,
   validateSearhQuery,
-} from "~/lib/search";
+} from "@/lib/search";
 
 export async function loader() {
   const articles = await getArticles({ minify: false });
