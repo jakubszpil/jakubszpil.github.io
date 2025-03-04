@@ -6,21 +6,33 @@ export type SearchResults = Record<string, unknown[]>;
 
 export const queryParamName = "query";
 
+const searchResultsCache = new Map<string, SearchResults>();
+
 export function getSearchResults<TSearchResults extends SearchResults>(
   results: TSearchResults,
   query: string | null
 ): TSearchResults {
+  if (query && searchResultsCache.has(query)) {
+    return searchResultsCache.get(query) as TSearchResults;
+  }
+
   const checkIfMatchesQuery = (i: unknown): boolean =>
     !query
       ? false
       : JSON.stringify(i).toLowerCase().includes(query.toLowerCase());
 
-  return Object.fromEntries(
+  const searchResults = Object.fromEntries(
     Object.entries(results).map(([key, results]) => [
       key,
       results.filter(checkIfMatchesQuery),
     ])
   ) as TSearchResults;
+
+  if (query) {
+    searchResultsCache.set(query, searchResults);
+  }
+
+  return searchResults;
 }
 
 export function getSearchResultsLength<TSearchResults extends SearchResults>(

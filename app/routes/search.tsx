@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   Form,
   useLoaderData,
@@ -61,6 +61,12 @@ clientLoader.hydrate = true;
 export default function Search() {
   const { query, articles, courses, projects, resultsCount } =
     useLoaderData<typeof clientLoader>();
+
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, [ref]);
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -130,6 +136,7 @@ export default function Search() {
         action="/search"
       >
         <Input
+          ref={ref}
           key={query}
           type="text"
           name={queryParamName}
