@@ -7,28 +7,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  type LinksFunction,
 } from "react-router";
 
 import "./styles.css";
 import NotFound from "./components/not-found";
 import { Button } from "./components/ui/button";
 import LayoutComponent from "./components/layout";
-
-export const links: LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: "/static/fonts/inter/font.css",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "preload prefetch",
-    href: "/static/fonts/inter/font.woff2",
-    as: "font",
-    type: "font/woff2",
-    crossOrigin: "anonymous",
-  },
-];
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -37,6 +21,18 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+        <link
+          rel="stylesheet"
+          href="/static/fonts/inter/font.css"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload prefetch"
+          href="/static/fonts/inter/font.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <Meta />
         <Links />
       </head>
