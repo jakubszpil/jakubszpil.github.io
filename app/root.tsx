@@ -22,13 +22,8 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
         <link
-          rel="stylesheet"
-          href="/static/fonts/inter/font.css"
-          crossOrigin="anonymous"
-        />
-        <link
           rel="preload prefetch"
-          href="/static/fonts/inter/font.woff2"
+          href="/fonts/inter.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
