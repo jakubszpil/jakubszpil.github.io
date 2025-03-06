@@ -13,6 +13,7 @@ import { render, screen } from "@testing-library/react";
 import NavbarMenu from "../navbar-menu";
 import NavbarLink from "../navbar-link";
 import SearchButton from "../search-button";
+import ThemeSwitcher from "../theme-switcher";
 
 vi.mock("react-router", async (importOriginal) => {
   const actual = await importOriginal<typeof import("react-router")>();
@@ -23,10 +24,12 @@ vi.mock("react-router", async (importOriginal) => {
 });
 
 vi.mock("../search-button");
+vi.mock("../theme-switcher");
 
 describe("<NavbarMenu />", () => {
   let MockedLink: MockInstance;
   let MockedSearchButton: MockInstance;
+  let MockedThemeSwitcher: MockInstance;
 
   beforeEach(() => {
     MockedLink = vi.mocked(Link).mockImplementation((props) => (
@@ -38,11 +41,16 @@ describe("<NavbarMenu />", () => {
     MockedSearchButton = vi
       .mocked(SearchButton)
       .mockImplementation(() => <div>SearchButton</div>);
+
+    MockedThemeSwitcher = vi
+      .mocked(ThemeSwitcher)
+      .mockImplementation(() => <div>ThemeSwitcher</div>);
   });
 
   afterEach(() => {
     MockedLink.mockRestore();
     MockedSearchButton.mockRestore();
+    MockedThemeSwitcher.mockRestore();
   });
 
   test("should render", async () => {
@@ -58,5 +66,7 @@ describe("<NavbarMenu />", () => {
     await screen.findAllByText(/Search/);
 
     expect(MockedSearchButton).toHaveBeenCalled();
+
+    expect(MockedThemeSwitcher).toHaveBeenCalled();
   });
 });

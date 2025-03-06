@@ -27,6 +27,9 @@ export default function Handbook() {
             <kbd>CTRL</kbd>+<kbd>k</kbd> - Przejście do wyszukiwarki
           </li>
           <li>
+            <kbd>CTRL</kbd>+<kbd>j</kbd> - Zmiana motywu
+          </li>
+          <li>
             <kbd>TAB</kbd> - Sfokusowanie następnego elementu
           </li>
           <li>

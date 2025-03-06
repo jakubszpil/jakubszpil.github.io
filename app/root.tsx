@@ -28,6 +28,7 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <script defer async src="/theme.js" />
         <Meta />
         <Links />
       </head>

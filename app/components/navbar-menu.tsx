@@ -7,6 +7,8 @@ import { Button } from "./ui/button";
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 import SearchButton from "./search-button";
+import ThemeSwitcher from "./theme-switcher";
+import { ClientOnly } from "./ui/client-only";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
@@ -39,6 +41,10 @@ export default function NavbarMenu(props: NavbarMenuProps) {
         <div className="hidden xs:flex items-center sm:gap-1">
           <Socials hideLabels={true} />
         </div>
+
+        <ClientOnly fallback={<span className="w-10 h-10"></span>}>
+          <ThemeSwitcher />
+        </ClientOnly>
 
         <Button
           size="icon"
