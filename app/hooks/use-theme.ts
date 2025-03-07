@@ -18,7 +18,6 @@ export function useTheme() {
   }, []);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
     if (resolvedTheme === ResolvedTheme.DARK) {
       document.documentElement.classList.add("dark");
     } else {
@@ -34,9 +33,8 @@ export function useTheme() {
         setThemeInternal(
           resolvedTheme === ResolvedTheme.DARK ? Theme.LIGHT : Theme.DARK
         );
-        timeout = setTimeout(
-          () => document.documentElement.classList.remove("switching-theme"),
-          0
+        setTimeout(() =>
+          document.documentElement.classList.remove("switching-theme")
         );
       }
     };
@@ -45,7 +43,6 @@ export function useTheme() {
 
     return () => {
       ac.abort();
-      clearTimeout(timeout);
     };
   }, [resolvedTheme]);
 
