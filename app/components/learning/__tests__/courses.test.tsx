@@ -40,6 +40,9 @@ describe("<Courses />", () => {
           categories: ["test", "category"],
           title: "Test course 1",
           description: "Test course description 1",
+          createdAt: "2025-03-01",
+          keywords: [],
+          resourceUrl: "",
         },
         {
           id: "2",
@@ -48,6 +51,9 @@ describe("<Courses />", () => {
           categories: ["test", "category"],
           title: "Test course 2",
           description: "Test course description 2",
+          createdAt: "2025-03-01",
+          keywords: [],
+          resourceUrl: "",
         },
       ],
     };

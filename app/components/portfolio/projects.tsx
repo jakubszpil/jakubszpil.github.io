@@ -41,12 +41,9 @@ export default function Projects(props: ProjectsProps) {
             <p className="line-clamp-3 mt-2 flex-1 text-neutral-700 font-normal dark:text-neutral-300">
               {project.description}
             </p>
-
-            {project.createdAt && (
-              <span className="text-neutral-600 text-xs dark:text-neutral-400 mb-3">
-                {getLocalizedDate(project.createdAt)}
-              </span>
-            )}
+            <span className="text-neutral-600 text-xs dark:text-neutral-400 mb-3">
+              {getLocalizedDate(project.createdAt)}
+            </span>
             <div className="flex items-center w-full">
               <Button asChild size="sm" className="no-underline">
                 <a

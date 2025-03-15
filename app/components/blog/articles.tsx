@@ -32,11 +32,9 @@ export default function Articles(props: ArticlesProps) {
             <p className="line-clamp-3 mt-2 text-neutral-700 font-normal dark:text-neutral-300">
               {article.description}
             </p>
-            {article.createdAt && (
-              <span className="text-neutral-600 text-xs dark:text-neutral-400">
-                {getLocalizedDate(article.createdAt)}
-              </span>
-            )}
+            <span className="text-neutral-600 text-xs dark:text-neutral-400">
+              {getLocalizedDate(article.createdAt)}
+            </span>
           </Link>
         </Button>
       ))}

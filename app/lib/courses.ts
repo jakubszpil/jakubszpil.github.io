@@ -4,12 +4,12 @@ export interface Course {
   id: string;
   slug: string;
   content: string;
-  resourceUrl?: string;
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  createdAt?: string;
-  categories?: string[];
+  resourceUrl: string;
+  title: string;
+  description: string;
+  keywords: string[];
+  createdAt: string;
+  categories: string[];
 }
 
 const courses = import.meta.glob<string>("../content/courses/*.md", {
