@@ -32,11 +32,9 @@ export default function Courses(props: CoursesProps) {
             <p className="line-clamp-3 mt-2 text-neutral-700 font-normal dark:text-neutral-300">
               {course.description}
             </p>
-            {course.createdAt && (
-              <span className="text-neutral-600 text-xs dark:text-neutral-400">
-                {getLocalizedDate(course.createdAt)}
-              </span>
-            )}
+            <span className="text-neutral-600 text-xs dark:text-neutral-400">
+              {getLocalizedDate(course.createdAt)}
+            </span>
           </Link>
         </Button>
       ))}

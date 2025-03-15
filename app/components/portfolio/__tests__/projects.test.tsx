@@ -18,6 +18,9 @@ describe("<Projects />", () => {
           title: "Test project 1",
           description: "Test project description 1",
           status: ProjectStatus.COMPLETED,
+          createdAt: "2025-03-01",
+          keywords: [],
+          resourceUrl: "",
         },
         {
           id: "2",
@@ -27,6 +30,9 @@ describe("<Projects />", () => {
           title: "Test project 2",
           description: "Test project description 2",
           status: ProjectStatus.COMPLETED,
+          createdAt: "2025-03-01",
+          keywords: [],
+          resourceUrl: "",
         },
       ],
     };

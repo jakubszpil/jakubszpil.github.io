@@ -11,12 +11,12 @@ export interface Project {
   slug: string;
   content: string;
   status: ProjectStatus;
-  resourceUrl?: string;
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  createdAt?: string;
-  technologies?: string[];
+  resourceUrl: string;
+  title: string;
+  description: string;
+  keywords: string[];
+  createdAt: string;
+  technologies: string[];
 }
 
 const projects = import.meta.glob<string>("../content/projects/*.md", {

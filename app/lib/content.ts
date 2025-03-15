@@ -46,13 +46,12 @@ export const processContent = async (content: string) => {
 export interface ContentResource {
   id: string;
   slug: string;
-  content?: string;
-  resourceUrl?: string;
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  categories?: string[];
-  createdAt?: string;
+  content: string;
+  resourceUrl: string;
+  title: string;
+  description: string;
+  keywords: string[];
+  createdAt: string;
 }
 
 export const parseMarkdownFile = async <T extends ContentResource>(

@@ -67,8 +67,9 @@ export function validateSearhQuery(requestUrl: string) {
     const sourceUrl = new URL(requestUrl);
     const url = new URL(query);
 
-    if (sourceUrl.origin === url.origin)
-      throw redirect(createPath(url).replace("#/", ""));
+    if (sourceUrl.origin === url.origin) {
+      throw redirect(createPath(url));
+    }
   }
 
   return query;

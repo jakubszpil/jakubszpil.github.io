@@ -40,6 +40,9 @@ describe("<Articles />", () => {
           categories: ["test", "category"],
           title: "Test article 1",
           description: "Test article description 1",
+          createdAt: "2025-03-01",
+          keywords: [],
+          resourceUrl: "",
         },
         {
           id: "2",
@@ -48,6 +51,9 @@ describe("<Articles />", () => {
           categories: ["test", "category"],
           title: "Test article 2",
           description: "Test article description 2",
+          createdAt: "2025-03-01",
+          keywords: [],
+          resourceUrl: "",
         },
       ],
     };
