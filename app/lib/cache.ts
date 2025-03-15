@@ -1,38 +1,53 @@
-import localforage from "localforage";
+export class Cache {
+  private readonly timestamp = Number(import.meta.env.TIMESTAMP);
+  private readonly storage = localStorage;
 
-const timestamp = Number(import.meta.env.TIMESTAMP);
+  setItem<T>(name: string, value: T) {
+    return this.storage.setItem(
+      name,
+      JSON.stringify({
+        timestamp: this.timestamp,
+        value,
+      })
+    );
+  }
 
-const cache = localforage.createInstance({
-  name: `jsapp.cache`,
-  version: import.meta.env.TIMESTAMP,
-  driver: localforage.INDEXEDDB,
-});
+  getItem<T>(name: string): T | null {
+    const value = this.storage.getItem(name);
+    if (!value) return null;
+    const item = JSON.parse(value);
+    if (!item) return null;
+    if (item.timestamp !== this.timestamp) return null;
+    return item.value;
+  }
 
-const saveItem = async <T>(name: string, value: T) => {
-  return await cache.setItem(name, { timestamp, value });
-};
+  static instance: Cache;
 
-const getItem = async <T>(name: string) => {
-  const item = await cache.getItem<{ timestamp: number; value: T }>(name);
-  if (!item) return null;
-  if (item.timestamp !== timestamp) return null;
-  return item.value;
-};
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new Cache();
+    }
+    return this.instance;
+  }
+}
 
 export async function cacheServerLoader<T>(
   requestUrl: string,
   serverLoader: () => Promise<T>
 ): Promise<T> {
   const url = new URL(requestUrl);
-  const key = url.pathname;
+  const key =
+    url.pathname.split("/").filter(Boolean).join(".index.") || "index";
 
-  const cached = await getItem<T>(key);
+  const cached = Cache.getInstance().getItem<T>(key);
 
   if (cached !== null) {
     return cached;
   }
 
   const promise = await serverLoader();
-  await saveItem(key, promise);
+
+  Cache.getInstance().setItem<T>(key, promise);
+
   return promise;
 }
