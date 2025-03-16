@@ -39,6 +39,5 @@ export function getResolvedTheme(theme: Theme): ResolvedTheme {
 }
 
 export function setTheme(theme: Theme) {
-  console.log(theme);
   localStorage.setItem("theme", theme);
 }
