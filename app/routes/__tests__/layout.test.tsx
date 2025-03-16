@@ -1,3 +1,4 @@
+import { render, screen } from "@testing-library/react";
 import {
   afterEach,
   beforeEach,
@@ -7,21 +8,23 @@ import {
   vi,
   type MockInstance,
 } from "vitest";
-import Navbar from "../navbar";
-import NavbarMenu from "../navbar-menu";
-import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
-import Footer from "../footer";
-import FooterLink, { type FooterLinkProps } from "../footer-link";
-import BusyIndicator from "../busy-indicator";
-import { render, screen } from "@testing-library/react";
-import Layout from "../layout";
 
-vi.mock("../navbar");
-vi.mock("../navbar-menu");
-vi.mock("../navbar-link");
-vi.mock("../footer");
-vi.mock("../footer-link");
-vi.mock("../busy-indicator");
+import Navbar from "@/components/navbar";
+import NavbarMenu from "@/components/navbar-menu";
+import NavbarLink, { type NavbarLinkProps } from "@/components/navbar-link";
+import Footer from "@/components/footer";
+import FooterLink, { type FooterLinkProps } from "@/components/footer-link";
+import BusyIndicator from "@/components/busy-indicator";
+
+import Layout from "../layout";
+import { createRoutesStub } from "react-router";
+
+vi.mock("@/components/navbar");
+vi.mock("@/components/navbar-menu");
+vi.mock("@/components/navbar-link");
+vi.mock("@/components/footer");
+vi.mock("@/components/footer-link");
+vi.mock("@/components/busy-indicator");
 
 describe("<Layout />", () => {
   let MockedNavbar: MockInstance;
@@ -77,9 +80,16 @@ describe("<Layout />", () => {
   });
 
   test("should render components", async () => {
-    render(<Layout>Example content</Layout>);
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: Layout,
+      },
+    ]);
 
-    await screen.findByText(/Example content/);
+    render(<Stub initialEntries={["/"]} />);
+
+    await screen.findByText(/jakubszpil/);
 
     expect(MockedNavbar).toHaveBeenCalled();
 
