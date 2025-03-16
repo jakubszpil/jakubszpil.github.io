@@ -1,4 +1,10 @@
-import { useCallback, useRef, useState, type ReactElement } from "react";
+import {
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  type ReactElement,
+} from "react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
@@ -27,14 +33,24 @@ export default function NavbarMenu(props: NavbarMenuProps) {
     setShow((prev) => !prev);
   }, []);
 
+  const desktopLinks = useMemo(
+    () =>
+      props.children.map((child) => <NavbarLink {...child.props} key={v4()} />),
+    [props.children.length]
+  );
+
+  const mobileLinks = useMemo(
+    () =>
+      props.children.map((child) => (
+        <NavbarLink {...child.props} key={v4()} size="lg" onClick={closeMenu} />
+      )),
+    [props.children.length]
+  );
+
   return (
     <>
       <div className="flex flex-1 justify-end items-center sm:gap-1">
-        <nav className="hidden items-center lg:flex">
-          {props.children.map((child) => (
-            <NavbarLink {...child.props} key={v4()} />
-          ))}
-        </nav>
+        <nav className="hidden items-center lg:flex">{desktopLinks}</nav>
 
         <SearchButton />
 
@@ -69,14 +85,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
 
       <Transition show={show}>
         <nav className="flex flex-col gap-1 justify-center items-center fixed inset-0 dark bg-background text-foreground z-40 lg:hidden transition-[transform,opacity,visibility] duration-150 data-[closed]:opacity-0 data-[closed]:invisible data-[enter]:translate-y-0 data-[enter]:data-[closed]:translate-y-10">
-          {props.children.map((child) => (
-            <NavbarLink
-              {...child.props}
-              key={v4()}
-              size="lg"
-              onClick={closeMenu}
-            />
-          ))}
+          {mobileLinks}
 
           <div className="flex absolute bottom-20 gap-3 xs:hidden">
             <Socials hideLabels={true} />
