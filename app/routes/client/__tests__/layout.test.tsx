@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { createRoutesStub } from "react-router";
 import {
   afterEach,
   beforeEach,
@@ -17,7 +18,6 @@ import FooterLink, { type FooterLinkProps } from "@/components/footer-link";
 import BusyIndicator from "@/components/busy-indicator";
 
 import Layout from "../layout";
-import { createRoutesStub } from "react-router";
 
 vi.mock("@/components/navbar");
 vi.mock("@/components/navbar-menu");
