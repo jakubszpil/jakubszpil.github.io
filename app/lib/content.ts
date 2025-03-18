@@ -10,6 +10,7 @@ import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { v4 } from "uuid";
+import invariant from "tiny-invariant";
 
 export const processContent = async (content: string) => {
   const processor = unified()
@@ -69,3 +70,55 @@ export const parseMarkdownFile = async <T extends ContentResource>(
     resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`,
   } as T;
 };
+
+export function minifyContentResource<T extends ContentResource>(resource: T) {
+  resource.content = "";
+  return resource;
+}
+
+async function mapContentResourceEntries<T extends ContentResource>(
+  files: Record<string, string>,
+  minify: boolean
+): Promise<T[]> {
+  const entries = Object.entries(files).map(async ([key, file]) => {
+    const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
+    const keyWithoutSlug = key.slice(0, key.lastIndexOf("/"));
+    const resourceType = keyWithoutSlug.slice(
+      keyWithoutSlug.lastIndexOf("/") + 1
+    );
+    const resource = await parseMarkdownFile<T>(file, slug, resourceType);
+
+    if (minify) {
+      return minifyContentResource(resource);
+    }
+
+    return resource;
+  });
+
+  return Promise.all(entries);
+}
+
+export async function parseContentResources<T extends ContentResource>(
+  files: Record<string, string>,
+  filters?: {
+    limit?: number;
+    minify?: boolean;
+  }
+): Promise<T[]> {
+  const content = await mapContentResourceEntries<T>(
+    files,
+    filters?.minify ?? true
+  );
+
+  return content
+    .sort((first, second) => {
+      invariant(first.createdAt);
+      invariant(second.createdAt);
+
+      const firstCreationTime = new Date(first.createdAt).getTime();
+      const secondCreationTime = new Date(second.createdAt).getTime();
+
+      return secondCreationTime - firstCreationTime;
+    })
+    .slice(0, filters?.limit ?? content.length);
+}
