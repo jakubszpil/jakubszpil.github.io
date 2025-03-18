@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# jakubszpil.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for [Jakub Szpil's](https://github.com/jakubszpil) personal portfolio website, showcasing his projects and skills.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To build and run this project locally, you'll need:
 
-## Expanding the ESLint configuration
+- **Node.js**: JavaScript runtime environment.
+- **npm**: Node package manager (comes with Node.js).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the repository**:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+   ```bash
+   git clone https://github.com/jakubszpil/jakubszpil.github.io.git
+   ```
+
+2. **Navigate to the project directory**:
+
+   ```bash
+   cd jakubszpil.github.io
+   ```
+
+3. **Install the dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+## Running the Application
+
+#### To start the development server:
+
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This will launch the website locally, allowing you to view and test it in your browser at the url http://localhost:5173/.
+
+#### To build application:
+
+```bash
+npm run build
+```
+
+This will build production version of the application to folder: /dist/client
+
+#### To run tests of the application:
+
+```bash
+npm run test
+```
+
+This will run all unit tests associated with
