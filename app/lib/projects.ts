@@ -1,7 +1,14 @@
 import { parseContentResources, type ContentResource } from "./content";
 
+export enum ProjectStatus {
+  IDLE = "IDLE",
+  IN_PROGRESS = "IN_PROGRESS",
+  COMPLETED = "COMPLETED",
+}
+
 export interface Project extends ContentResource {
   technologies: string[];
+  status: ProjectStatus;
 }
 
 const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
