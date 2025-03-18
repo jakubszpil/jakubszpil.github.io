@@ -12,7 +12,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
         <link
           rel="preload prefetch"
-          href="/fonts/inter.woff2"
+          href="/static/fonts/inter.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
