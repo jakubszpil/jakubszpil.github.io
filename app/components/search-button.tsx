@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router";
 
 import { Button } from "./ui/button";
 
+const state = { focus: true };
+
 export default function SearchButton() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,7 +17,7 @@ export default function SearchButton() {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         if (location.pathname !== "/search") {
-          navigate("/search");
+          navigate("/search", { state });
         }
       }
     };
@@ -34,7 +36,7 @@ export default function SearchButton() {
       aria-label="Szukaj"
       title="Szukaj (CTRL+K)"
     >
-      <Link prefetch="intent" to="/search">
+      <Link prefetch="intent" to="/search" state={state}>
         <span className="sr-only">Szukaj</span>
         <IconSearch className="h-6" />
       </Link>

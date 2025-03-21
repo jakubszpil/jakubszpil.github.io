@@ -1,9 +1,4 @@
-import {
-  Await,
-  data,
-  useLoaderData,
-  type LoaderFunctionArgs,
-} from "react-router";
+import { Await, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "@/components/learning/categories";
 import { EditResource } from "@/components/ui/edit-resource";
@@ -13,7 +8,7 @@ import { getCourse } from "@/lib/courses";
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = getCourse(slug!);
 
-  return data(course);
+  return course;
 }
 
 export default function CourseDetails() {

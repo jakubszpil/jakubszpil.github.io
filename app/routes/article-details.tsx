@@ -1,9 +1,4 @@
-import {
-  Await,
-  data,
-  useLoaderData,
-  type LoaderFunctionArgs,
-} from "react-router";
+import { Await, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "@/components/blog/categories";
 import { EditResource } from "@/components/ui/edit-resource";
@@ -13,7 +8,7 @@ import { getArticle } from "@/lib/articles";
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = getArticle(slug!);
 
-  return data(article);
+  return article;
 }
 
 export default function ArticleDetails() {

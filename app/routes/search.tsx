@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from "react";
 import {
   Await,
-  data,
   Form,
   useLoaderData,
+  useLocation,
   type ClientLoaderFunctionArgs,
 } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
@@ -46,75 +46,85 @@ export async function clientLoader({
 
   const results = response.then((results) => {
     const searchResults = getSearchResults(results, query);
-    const resultsCount = getSearchResultsLength(searchResults);
+    const count = getSearchResultsLength(searchResults);
 
     return {
       ...searchResults,
-      resultsCount,
+      count,
     };
   });
 
-  return data({
+  return {
     results,
     query,
-  });
+  };
 }
 
 clientLoader.hydrate = true;
 
 export default function Search() {
   const { query, results } = useLoaderData<typeof clientLoader>();
-
   const ref = useRef<HTMLInputElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
-    ref.current?.focus();
-  }, [ref]);
+    if (location.state?.focus) {
+      ref.current?.focus();
+    }
+  }, [ref, location.state]);
 
   const renderResults = useCallback(
-    (
-      resultsCount: number | undefined,
-      query: string | null,
-      articles: Article[],
-      courses: Course[],
-      projects: Project[]
-    ) => {
+    (results: {
+      count: number;
+      articles: Article[];
+      courses: Course[];
+      projects: Project[];
+    }) => {
       if (!query) {
         return null;
       }
 
-      if (!resultsCount) {
+      if (!results.count) {
         return <h2>Brak wyników wyszukiwania dla zapytania: {query}</h2>;
       }
 
       return (
         <>
-          <h2>Wyniki wyszukiwania ({resultsCount})</h2>
+          <h2>Wyniki wyszukiwania ({results.count})</h2>
 
-          {articles.length > 0 && (
+          {results.articles.length > 0 && (
             <section>
-              <h3>Artykuły ({articles.length})</h3>
-              <Articles className="px-0 !grid-cols-1" articles={articles} />
+              <h3>Artykuły ({results.articles.length})</h3>
+              <Articles
+                className="px-0 !grid-cols-1"
+                articles={results.articles}
+              />
             </section>
           )}
 
-          {courses.length > 0 && (
+          {results.courses.length > 0 && (
             <section>
-              <h3>Kursy ({courses.length})</h3>
-              <Courses className="px-0 !grid-cols-1" courses={courses} />
+              <h3>Kursy ({results.courses.length})</h3>
+              <Courses
+                className="px-0 !grid-cols-1"
+                courses={results.courses}
+              />
             </section>
           )}
 
-          {projects.length > 0 && (
+          {results.projects.length > 0 && (
             <section>
-              <h3>Projekty ({projects.length})</h3>
-              <Projects className="px-0 !grid-cols-1" projects={projects} />
+              <h3>Projekty ({results.projects.length})</h3>
+              <Projects
+                className="px-0 !grid-cols-1"
+                projects={results.projects}
+              />
             </section>
           )}
         </>
       );
     },
-    []
+    [query, ref]
   );
 
   return (
@@ -124,7 +134,7 @@ export default function Search() {
           <Seo
             title={
               query
-                ? `(${results?.resultsCount}) Rezultaty wyszukiwania dla ${query}`
+                ? `(${results.count}) Rezultaty wyszukiwania dla ${query}`
                 : "Szukaj"
             }
           />
@@ -170,15 +180,7 @@ export default function Search() {
             </Button>
           </Form>
 
-          <div className="container pt-0">
-            {renderResults(
-              results?.resultsCount,
-              query,
-              results?.articles,
-              results?.courses,
-              results?.projects
-            )}
-          </div>
+          <div className="container pt-0">{renderResults(results)}</div>
         </section>
       )}
     </Await>
