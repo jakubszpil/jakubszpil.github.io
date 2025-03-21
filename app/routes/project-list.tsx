@@ -1,4 +1,5 @@
 import {
+  Await,
   useLoaderData,
   type LoaderFunctionArgs,
   type ShouldRevalidateFunctionArgs,
@@ -24,24 +25,18 @@ export function shouldRevalidate({
 }
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
-  const technologies = await getProjectsTechnologies();
+  const technologies = getProjectsTechnologies();
 
   if (technology) {
-    if (!technologies.includes(technology))
-      throw new Response(null, {
-        status: 404,
-        statusText: "Nie znaleziono",
-      });
-
     return {
       technology,
       technologies,
-      projects: await getProjectsByTechnology(technology),
+      projects: getProjectsByTechnology(technology),
     };
   }
 
   return {
-    projects: await getProjects(),
+    projects: getProjects(),
     technologies,
     technology,
   };
@@ -59,12 +54,18 @@ export default function ProjectList() {
         description="Projekty frontendowe wykonane przeze mnie w wolnym czasie obrazujące dotychczasowe zdobyte doświadczenie i umiejętności"
       />
 
-      <header className="prose container">
-        <h1>{title ?? "Portfolio"}</h1>
-        <Technologies showAllTechnology technologies={technologies} />
-      </header>
+      <Await resolve={technologies}>
+        {(technologies) => (
+          <header className="prose container">
+            <h1>{title ?? "Portfolio"}</h1>
+            <Technologies showAllTechnology technologies={technologies} />
+          </header>
+        )}
+      </Await>
 
-      <Projects key={technology} projects={projects} />
+      <Await resolve={projects}>
+        {(projects) => <Projects key={technology} projects={projects} />}
+      </Await>
     </>
   );
 }
