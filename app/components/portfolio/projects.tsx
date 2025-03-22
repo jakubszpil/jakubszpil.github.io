@@ -41,18 +41,23 @@ export default function Projects(props: ProjectsProps) {
             <p className="line-clamp-3 mt-2 flex-1 text-neutral-700 font-normal dark:text-neutral-300">
               {project.description}
             </p>
-            <span className="text-neutral-600 text-xs dark:text-neutral-400 mb-3">
-              {getLocalizedDate(project.createdAt)}
-            </span>
-            <div className="flex items-center w-full">
-              <Button asChild size="sm" className="no-underline">
+            <div className="flex items-center justify-between w-full">
+              <span className="text-neutral-600 text-xs dark:text-neutral-400">
+                {getLocalizedDate(project.createdAt)}
+              </span>
+              <Button
+                variant="link"
+                asChild
+                size="sm"
+                className="underline p-0"
+              >
                 <a
                   data-testid="link"
                   href={`https://github.com/jakubszpil/${project.slug}`}
                   target="_blank"
                 >
                   <IconBrandGithub className="w-5 h-5 mr-2" />
-                  Otwórz repozytorium
+                  Otwórz GitHub
                 </a>
               </Button>
             </div>
