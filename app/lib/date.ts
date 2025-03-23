@@ -12,8 +12,14 @@ export function getCurrentYear() {
 
 export function getDifferenceInYears(startDate: Date): number {
   const currentDate = new Date();
-  const date = new Date(currentDate.getTime() - startDate.getTime());
-  const fullYear = date.getUTCFullYear();
 
-  return Math.abs(fullYear - 1970);
+  if (isNaN(startDate.getTime())) {
+    throw new Error("Invalid startDate date format");
+  }
+
+  const diffInMilliseconds = currentDate.getTime() - startDate.getTime();
+  const diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+  const diffInYears = diffInDays / 365;
+
+  return Math.round(diffInYears * 2) / 2;
 }
