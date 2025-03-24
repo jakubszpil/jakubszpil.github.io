@@ -26,15 +26,14 @@ import {
 } from "@/lib/search";
 
 export async function loader() {
-  const articles = await getArticles({ minify: false });
-  const courses = await getCourses({ minify: false });
-  const projects = await getProjects({ minify: false });
-
-  return {
-    articles,
-    courses,
-    projects,
+  const resolve = async () => {
+    const articles = await getArticles({ minify: false });
+    const courses = await getCourses({ minify: false });
+    const projects = await getProjects({ minify: false });
+    return { articles, courses, projects };
   };
+
+  return resolve();
 }
 
 export async function clientLoader({
