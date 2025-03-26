@@ -5,7 +5,7 @@ import {
   useState,
   type ReactElement,
 } from "react";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconSunMoon, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
@@ -58,7 +58,15 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           <Socials hideLabels={true} />
         </div>
 
-        <ClientOnly fallback={<span className="w-10 h-10"></span>}>
+        <ClientOnly
+          fallback={
+            <div className="w-10 h-10 inline-flex justify-center items-center">
+              <Button title="Zmień motyw" size="icon" variant="ghost">
+                <IconSunMoon />
+              </Button>
+            </div>
+          }
+        >
           <ThemeSwitcher />
         </ClientOnly>
 
