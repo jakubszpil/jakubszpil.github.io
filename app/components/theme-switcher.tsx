@@ -2,12 +2,11 @@ import {
   IconDeviceDesktop,
   IconMoonStars,
   IconSun,
-  type Icon,
+  IconSunMoon,
 } from "@tabler/icons-react";
-import { useMemo } from "react";
 
 import { useTheme } from "@/hooks/use-theme";
-import { ResolvedTheme, Theme } from "@/lib/theme";
+import { Theme } from "@/lib/theme";
 
 import {
   DropdownMenu,
@@ -18,15 +17,8 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 
-const icons: Record<ResolvedTheme, Icon> = {
-  [ResolvedTheme.LIGHT]: IconSun,
-  [ResolvedTheme.DARK]: IconMoonStars,
-};
-
 export default function ThemeSwitcher() {
-  const { resolvedTheme, setTheme } = useTheme();
-
-  const Icon = useMemo(() => icons[resolvedTheme], [resolvedTheme]);
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu
@@ -37,7 +29,7 @@ export default function ThemeSwitcher() {
     >
       <DropdownMenuTrigger asChild>
         <Button title="Zmień motyw" size="icon" variant="ghost">
-          <Icon />
+          <IconSunMoon />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

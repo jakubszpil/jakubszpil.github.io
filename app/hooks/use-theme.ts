@@ -7,10 +7,19 @@ import {
   setTheme,
   Theme,
 } from "@/lib/theme";
+import { useHydrated } from "./use-hydrated";
 
 export function useTheme() {
-  const [value, setValue] = useState(getTheme());
-  const resolvedTheme = useMemo(() => getResolvedTheme(value), [value]);
+  const hydrated = useHydrated();
+
+  const [value, setValue] = useState<Theme | null>(
+    hydrated ? getTheme() : null
+  );
+
+  const resolvedTheme = useMemo(
+    () => (value ? getResolvedTheme(value) : null),
+    [value]
+  );
 
   const setThemeInternal = useCallback((theme: Theme) => {
     setValue(theme);
@@ -18,10 +27,16 @@ export function useTheme() {
   }, []);
 
   useEffect(() => {
-    if (resolvedTheme === ResolvedTheme.DARK) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    switch (resolvedTheme) {
+      case ResolvedTheme.DARK: {
+        document.documentElement.classList.add("dark");
+        break;
+      }
+
+      case ResolvedTheme.LIGHT: {
+        document.documentElement.classList.remove("dark");
+        break;
+      }
     }
 
     const ac = new AbortController();
