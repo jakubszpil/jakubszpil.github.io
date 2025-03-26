@@ -5,7 +5,7 @@ import {
   useState,
   type ReactElement,
 } from "react";
-import { IconMenu2, IconSunMoon, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
@@ -14,7 +14,6 @@ import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 import SearchButton from "./search-button";
 import ThemeSwitcher from "./theme-switcher";
-import { ClientOnly } from "./ui/client-only";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
@@ -58,17 +57,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           <Socials hideLabels={true} />
         </div>
 
-        <ClientOnly
-          fallback={
-            <div className="w-10 h-10 inline-flex justify-center items-center">
-              <Button title="Zmień motyw" size="icon" variant="ghost">
-                <IconSunMoon />
-              </Button>
-            </div>
-          }
-        >
-          <ThemeSwitcher />
-        </ClientOnly>
+        <ThemeSwitcher />
 
         <Button
           size="icon"
