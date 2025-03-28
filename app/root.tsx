@@ -12,9 +12,9 @@ export function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
         <link
           rel="preload prefetch"
-          href="/static/fonts/inter.woff2"
+          href="/static/fonts/geist.ttf"
           as="font"
-          type="font/woff2"
+          type="font/ttf"
           crossOrigin="anonymous"
         />
         <script defer async src="/theme.js" />
