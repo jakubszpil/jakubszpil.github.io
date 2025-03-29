@@ -8,11 +8,11 @@ import { getCourse } from "@/lib/courses";
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = getCourse(slug!);
 
-  return course;
+  return { course };
 }
 
 export default function CourseDetails() {
-  const course = useLoaderData<typeof loader>();
+  const { course } = useLoaderData<typeof loader>();
 
   return (
     <Await resolve={course}>
