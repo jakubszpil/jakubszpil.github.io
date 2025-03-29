@@ -3,6 +3,8 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./styles.css";
 
+const timestamp = import.meta.env.TIMESTAMP;
+
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="pl">
@@ -17,7 +19,10 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <script defer async src="/theme.js" />
+        <script>{`globalThis.timestamp = ${timestamp}`}</script>
+        <script defer async type="module" src="/prefetch.js" />
+        <script defer async type="module" src="/fetch.js" />
+        <script defer async type="module" src="/theme.js" />
         <Meta />
         <Links />
       </head>
