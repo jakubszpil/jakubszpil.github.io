@@ -29,7 +29,19 @@ function createRequest(requestInput, requestInit) {
   return new Request(url, init);
 }
 
-globalThis.fetch = (input, init) => {
+const cache = new Map();
+
+globalThis.fetch = async (input, init) => {
   const request = createRequest(input, init);
-  return _fetch(request);
+
+  if (cache.has(request.url)) {
+    const response = cache.get(request.url);
+    return response.clone();
+  }
+
+  const response = await _fetch(request);
+
+  cache.set(request.url, response);
+
+  return response.clone();
 };
