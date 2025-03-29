@@ -17,7 +17,6 @@ import { Seo } from "@/components/ui/seo";
 import { getArticles, type Article } from "@/lib/articles";
 import { getCourses, type Course } from "@/lib/courses";
 import { getProjects, type Project } from "@/lib/projects";
-import { cacheServerLoader } from "@/lib/cache";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -33,25 +32,29 @@ export async function loader() {
     return { articles, courses, projects };
   };
 
-  return resolve();
+  return {
+    results: resolve(),
+  };
 }
 
 export async function clientLoader({
   request,
   serverLoader,
 }: ClientLoaderFunctionArgs) {
-  const response = cacheServerLoader(request.url, serverLoader<typeof loader>);
+  const response = serverLoader<typeof loader>();
   const query = validateSearhQuery(request.url);
 
-  const results = response.then((results) => {
-    const searchResults = getSearchResults(results, query);
-    const count = getSearchResultsLength(searchResults);
+  const results = response
+    .then(({ results }) => results)
+    .then((results) => {
+      const searchResults = getSearchResults(results, query);
+      const count = getSearchResultsLength(searchResults);
 
-    return {
-      ...searchResults,
-      count,
-    };
-  });
+      return {
+        ...searchResults,
+        count,
+      };
+    });
 
   return {
     results,

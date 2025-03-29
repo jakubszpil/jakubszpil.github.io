@@ -8,11 +8,11 @@ import { getArticle } from "@/lib/articles";
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = getArticle(slug!);
 
-  return article;
+  return { article };
 }
 
 export default function ArticleDetails() {
-  const article = useLoaderData<typeof loader>();
+  const { article } = useLoaderData<typeof loader>();
 
   return (
     <Await resolve={article}>
