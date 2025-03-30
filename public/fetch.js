@@ -1,4 +1,5 @@
 const _fetch = globalThis.fetch;
+const _createElement = globalThis.document.createElement;
 const _timestamp = globalThis.timestamp;
 
 function createRequestUrl(requestInput) {
@@ -44,4 +45,26 @@ globalThis.fetch = async (input, init) => {
   cache.set(request.url, response);
 
   return response.clone();
+};
+
+globalThis.document.createElement = (tag, options) => {
+  const element = _createElement.bind(document)(tag, options);
+
+  if (element instanceof HTMLLinkElement) {
+    const setAttribute = element.setAttribute;
+
+    element.setAttribute = (key, value) => {
+      if (element.rel === "prefetch" && key === "href") {
+        const url = `${value}?timestamp=${_timestamp}`;
+        if (cache.has(new URL(`${location.origin}${url}`).toString())) return;
+        setAttribute.call(element, key, url);
+        return;
+      }
+
+      setAttribute.call(element, key, value);
+      return;
+    };
+  }
+
+  return element;
 };

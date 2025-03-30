@@ -1,7 +1,9 @@
+import { useCallback } from "react";
 import {
   isRouteErrorResponse,
   Link,
   Outlet,
+  useLocation,
   useRouteError,
 } from "react-router";
 
@@ -48,32 +50,49 @@ export default function Layout() {
 
 export function ErrorBoundary() {
   const error = useRouteError();
+  const location = useLocation();
 
-  if (isRouteErrorResponse(error)) {
-    if (error.status === 404) {
-      return <NotFound />;
+  const renderError = useCallback(() => {
+    if (isRouteErrorResponse(error)) {
+      if (error.status === 404) {
+        return <NotFound />;
+      }
+
+      return (
+        <>
+          <h1>
+            {error.status}: {error.statusText}
+          </h1>
+          <p>{error.data}</p>
+          <Button asChild className="no-underline" variant="outline" size="sm">
+            <Link prefetch="intent" to="/">
+              Powrót do strony głównej
+            </Link>
+          </Button>
+        </>
+      );
     }
 
-    return (
-      <header className="container prose">
-        <h1>
-          {error.status}: {error.statusText}
-        </h1>
-        <p>{error.data}</p>
-        <Button asChild className="no-underline" variant="outline" size="sm">
-          <Link prefetch="intent" to="/">
-            Powrót do strony głównej
-          </Link>
-        </Button>
-      </header>
-    );
-  }
+    console.error(error);
 
-  console.error(error);
+    if (error instanceof Error) {
+      return (
+        <>
+          <h1>
+            {error.name}: {error.message}
+          </h1>
+          <pre>{error.stack}</pre>
+          <Button asChild className="no-underline" variant="outline" size="sm">
+            <Link prefetch="intent" replace to={location.pathname}>
+              Odśwież stronę
+            </Link>
+          </Button>
+        </>
+      );
+    }
 
-  return (
-    <header className="container prose">
-      <h1>Wystąpił nieoczekiwany błąd</h1>
-    </header>
-  );
+    return <h1>Wystąpił nieoczekiwany błąd</h1>;
+  }, [error]);
+
+  return <header className="container prose mt-36">{renderError()}</header>;
 }
