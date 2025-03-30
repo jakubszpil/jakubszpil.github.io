@@ -25,6 +25,7 @@ function createRequest(requestInput, requestInit) {
   const url = createRequestUrl(requestInput);
   const init = createRequestInit(requestInit);
 
+  url.search = "";
   url.searchParams.set("timestamp", _timestamp);
 
   return new Request(url, init);
