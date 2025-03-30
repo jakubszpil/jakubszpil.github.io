@@ -1,6 +1,19 @@
 const _fetch = globalThis.fetch;
 const _createElement = globalThis.document.createElement;
 const _timestamp = globalThis.timestamp;
+const _storedTimestamp = localStorage.getItem("timestamp");
+
+if (Number(_timestamp) !== Number(_storedTimestamp)) {
+  if (_storedTimestamp) {
+    if (await window.caches.has(_storedTimestamp)) {
+      await window.caches.delete(_storedTimestamp);
+    }
+  }
+
+  localStorage.setItem("timestamp", _timestamp);
+}
+
+const cache = await window.caches.open(_timestamp);
 
 function createRequestUrl(requestInput) {
   if (requestInput instanceof URL) {
@@ -31,19 +44,18 @@ function createRequest(requestInput, requestInit) {
   return new Request(url, init);
 }
 
-const cache = new Map();
-
 globalThis.fetch = async (input, init) => {
   const request = createRequest(input, init);
 
-  if (cache.has(request.url)) {
-    const response = cache.get(request.url);
-    return response.clone();
+  const cached = await cache.match(request);
+
+  if (cached) {
+    return cached.clone();
   }
 
   const response = await _fetch(request);
 
-  cache.set(request.url, response);
+  await cache.put(request, response.clone());
 
   return response.clone();
 };
@@ -54,11 +66,15 @@ globalThis.document.createElement = (tag, options) => {
   if (element instanceof HTMLLinkElement) {
     const setAttribute = element.setAttribute;
 
-    element.setAttribute = (key, value) => {
+    element.setAttribute = async (key, value) => {
       if (element.rel === "prefetch" && key === "href") {
-        const url = `${value}?timestamp=${_timestamp}`;
-        if (cache.has(new URL(`${location.origin}${url}`).toString())) return;
-        setAttribute.call(element, key, url);
+        const pathname = `${value}?timestamp=${_timestamp}`;
+
+        const url = new URL(`${location.origin}${pathname}`);
+
+        const matched = await cache.match(new Request(url));
+
+        if (!matched) setAttribute.call(element, key, pathname);
         return;
       }
 
