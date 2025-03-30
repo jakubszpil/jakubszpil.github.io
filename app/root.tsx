@@ -19,10 +19,9 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
+        <script async type="module" src="/theme.js" />
         <script>{`globalThis.timestamp = ${timestamp}`}</script>
-        <script defer async type="module" src="/prefetch.js" />
-        <script defer async type="module" src="/fetch.js" />
-        <script defer async type="module" src="/theme.js" />
+        <script type="module" src="/fetch.js" />
         <Meta />
         <Links />
       </head>
