@@ -1,7 +1,5 @@
 const theme = localStorage.getItem("theme");
 
-document.documentElement.classList.add("switching-theme");
-
 switch (theme) {
   case "DARK": {
     document.documentElement.classList.add("dark");
@@ -33,4 +31,4 @@ switch (theme) {
 
 setTimeout(() => {
   document.documentElement.classList.remove("switching-theme");
-}, 0);
+}, 50);
