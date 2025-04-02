@@ -31,4 +31,4 @@ switch (theme) {
 
 setTimeout(() => {
   document.documentElement.classList.remove("switching-theme");
-}, 50);
+}, 100);

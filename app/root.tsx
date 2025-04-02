@@ -19,7 +19,8 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <script async type="module" src="/theme.js" />
+        {/* @ts-ignore */}
+        <script async type="module" src="/theme.js" fetchpriority="high" />
         <script>{`globalThis.timestamp = ${timestamp}`}</script>
         <script type="module" src="/fetch.js" />
         <Meta />
