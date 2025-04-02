@@ -12,6 +12,11 @@ export default function About() {
         description="Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi."
       />
       <h1>O mnie</h1>
+      <img
+        src="/static/images/me.webp"
+        alt="Moja facjata"
+        className="rounded-lg aspect-square w-full xs:w-5/12 sm:!w-1/2 md:!w-1/3 xl:!w-1/4 mt-0 xs:ml-2 float-right object-cover"
+      />
       <p>
         Cześć! Nazywam się Kuba i jestem frontend developerem z {years}-letnim
         doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych
@@ -46,7 +51,6 @@ export default function About() {
         Zapraszam do kontaktu, jeśli szukasz doświadczonego frontend developera,
         który z pasją i zaangażowaniem podejdzie do Twojego projektu.
       </p>
-
       <nav className="flex items-center gap-1">
         <Socials variant="outline" />
       </nav>
