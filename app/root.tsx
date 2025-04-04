@@ -3,8 +3,6 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./styles.css";
 
-const timestamp = import.meta.env.TIMESTAMP;
-
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="pl" className="switching-theme">
@@ -21,7 +19,7 @@ export function Layout({ children }: { children: ReactNode }) {
         />
         {/* @ts-ignore */}
         <script async type="module" src="/theme.js" fetchpriority="high" />
-        <script>{`globalThis.timestamp = ${timestamp}`}</script>
+        <script>{`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}</script>
         <script type="module" src="/fetch.js" />
         <Meta />
         <Links />
