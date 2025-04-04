@@ -16,11 +16,7 @@ export function isTheme(value: unknown): value is Theme {
 export function isDarkThemeFromClassName(): boolean {
   const className = document.documentElement.className;
 
-  if (className.includes("dark")) {
-    return true;
-  }
-
-  return false;
+  return className.includes("dark");
 }
 
 export function getTheme(): Theme {
