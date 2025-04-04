@@ -13,25 +13,19 @@ export function isTheme(value: unknown): value is Theme {
   return Object.values(Theme).includes(value as Theme);
 }
 
-export function getThemeFromClassName(): Theme | null {
+export function isDarkThemeFromClassName(): boolean {
   const className = document.documentElement.className;
 
   if (className.includes("dark")) {
-    return Theme.DARK;
+    return true;
   }
 
-  if (className.includes("light")) {
-    return Theme.LIGHT;
-  }
-
-  return null;
+  return false;
 }
 
 export function getTheme(): Theme {
-  const themeFromClassName = getThemeFromClassName();
-
-  if (themeFromClassName) {
-    return themeFromClassName;
+  if (isDarkThemeFromClassName()) {
+    return Theme.DARK;
   }
 
   const value = localStorage.getItem("theme");
