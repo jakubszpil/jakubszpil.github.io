@@ -45,6 +45,12 @@ function createRequest(requestInput, requestInit) {
 }
 
 globalThis.fetch = async (input, init) => {
+  const requestUrl = createRequestUrl(input);
+
+  if (requestUrl.origin !== location.origin) {
+    return _fetch(input, init);
+  }
+
   const request = createRequest(input, init);
 
   const cached = await cache.match(request);
