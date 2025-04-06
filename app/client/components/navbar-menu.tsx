@@ -9,7 +9,7 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "~/shared/components/ui/button";
 
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";

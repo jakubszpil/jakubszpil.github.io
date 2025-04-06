@@ -1,7 +1,7 @@
 import { Await, Link, useLoaderData } from "react-router";
 
-import { Button } from "@/shared/components/ui/button";
-import { Seo } from "@/shared/components/ui/seo";
+import { Button } from "~/shared/components/ui/button";
+import { Seo } from "~/shared/components/ui/seo";
 
 import Articles from "../components/blog/articles";
 import Courses from "../components/learning/courses";

@@ -1,5 +1,5 @@
-import { Seo } from "@/shared/components/ui/seo";
-import { getDifferenceInYears } from "@/shared/lib/date";
+import { Seo } from "~/shared/components/ui/seo";
+import { getDifferenceInYears } from "~/shared/lib/date";
 
 import Socials from "../components/socials";
 

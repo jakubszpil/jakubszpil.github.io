@@ -1,8 +1,8 @@
 import { v4 } from "uuid";
 
-import { config } from "@/shared/lib/config";
+import { config } from "~/shared/lib/config";
 
-import { Button, type ButtonProps } from "@/shared/components/ui/button";
+import { Button, type ButtonProps } from "~/shared/components/ui/button";
 
 export interface SocialsProps {
   hideLabels?: boolean;

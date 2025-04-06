@@ -10,7 +10,7 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { Seo, type SeoProps } from "@/shared/components/ui/seo";
+import { Seo, type SeoProps } from "~/shared/components/ui/seo";
 
 import Categories, {
   type CategoriesProps,
@@ -21,7 +21,7 @@ import EditResource, {
 import { getArticle, type Article } from "../../lib/articles";
 import ArticleDetails, { loader } from "../article-details";
 
-vi.mock("@/shared/components/ui/seo");
+vi.mock("~/shared/components/ui/seo");
 vi.mock("../../components/blog/categories");
 vi.mock("../../components/edit-resource");
 vi.mock("../../lib/articles");

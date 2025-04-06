@@ -9,7 +9,7 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { getCurrentYear } from "@/shared/lib/date";
+import { getCurrentYear } from "~/shared/lib/date";
 
 import Footer from "../footer";
 import FooterLink from "../footer-link";
@@ -22,7 +22,7 @@ vi.mock("react-router", async (importOriginal) => {
   };
 });
 
-vi.mock("@/shared/lib/date");
+vi.mock("~/shared/lib/date");
 
 describe("<Footer />", () => {
   let MockedLink: MockInstance;

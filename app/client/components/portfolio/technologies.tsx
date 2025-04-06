@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { Link } from "react-router";
 
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "~/shared/components/ui/button";
 
 export interface TechnologiesProps {
   technologies: string[];

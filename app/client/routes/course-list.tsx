@@ -5,8 +5,8 @@ import {
   type ShouldRevalidateFunctionArgs,
 } from "react-router";
 
-import { Seo } from "@/shared/components/ui/seo";
-import { capitalize } from "@/shared/lib/string";
+import { Seo } from "~/shared/components/ui/seo";
+import { capitalize } from "~/shared/lib/string";
 
 import Categories from "../components/learning/categories";
 import Courses from "../components/learning/courses";

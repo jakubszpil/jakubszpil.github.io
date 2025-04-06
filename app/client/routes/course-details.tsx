@@ -1,6 +1,6 @@
 import { Await, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Seo } from "@/shared/components/ui/seo";
+import { Seo } from "~/shared/components/ui/seo";
 
 import Categories from "../components/learning/categories";
 import EditResource from "../components/edit-resource";

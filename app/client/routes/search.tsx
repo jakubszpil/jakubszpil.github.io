@@ -8,9 +8,9 @@ import {
 } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
-import { Button } from "@/shared/components/ui/button";
-import { Input } from "@/shared/components/ui/input";
-import { Seo } from "@/shared/components/ui/seo";
+import { Button } from "~/shared/components/ui/button";
+import { Input } from "~/shared/components/ui/input";
+import { Seo } from "~/shared/components/ui/seo";
 
 import Articles from "../components/blog/articles";
 import Courses from "../components/learning/courses";

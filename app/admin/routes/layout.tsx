@@ -4,8 +4,8 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/shared/components/ui/sidebar";
-import { Separator } from "@/shared/components/ui/separator";
+} from "~/shared/components/ui/sidebar";
+import { Separator } from "~/shared/components/ui/separator";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,8 +13,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/shared/components/ui/breadcrumb";
-import { ClientOnly } from "@/shared/components/ui/client-only";
+} from "~/shared/components/ui/breadcrumb";
+import { ClientOnly } from "~/shared/components/ui/client-only";
 
 import { AppSidebar } from "../components/app-sidebar";
 

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router";
 
-import { Button } from "@/shared/components/ui/button";
-import { Seo } from "@/shared/components/ui/seo";
+import { Button } from "~/shared/components/ui/button";
+import { Seo } from "~/shared/components/ui/seo";
 
 export default function NotFound() {
   const location = useLocation();

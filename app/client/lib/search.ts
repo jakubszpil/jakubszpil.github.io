@@ -1,6 +1,6 @@
 import { createPath, redirect } from "react-router";
 
-import { isValidUrl } from "@/shared/lib/url";
+import { isValidUrl } from "~/shared/lib/url";
 
 export type SearchResults = Record<string, unknown[]>;
 

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
-import { getLocalizedDate } from "@/shared/lib/date";
-import { Button, type ButtonProps } from "@/shared/components/ui/button";
+import { getLocalizedDate } from "~/shared/lib/date";
+import { Button, type ButtonProps } from "~/shared/components/ui/button";
 
 import type { Course } from "../../lib/courses";
 

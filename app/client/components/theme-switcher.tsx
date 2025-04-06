@@ -5,16 +5,16 @@ import {
   IconSunMoon,
 } from "@tabler/icons-react";
 
-import { useTheme } from "@/shared/hooks/use-theme";
-import { Theme } from "@/shared/lib/theme";
+import { useTheme } from "~/shared/hooks/use-theme";
+import { Theme } from "~/shared/lib/theme";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/shared/components/ui/dropdown-menu";
-import { Button } from "@/shared/components/ui/button";
+} from "~/shared/components/ui/dropdown-menu";
+import { Button } from "~/shared/components/ui/button";
 
 export default function ThemeSwitcher() {
   const { setTheme } = useTheme();

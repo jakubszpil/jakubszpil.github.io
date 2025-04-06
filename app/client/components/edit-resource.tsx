@@ -1,4 +1,4 @@
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "~/shared/components/ui/button";
 
 export interface EditResourceProps {
   resourceUrl: string | undefined;

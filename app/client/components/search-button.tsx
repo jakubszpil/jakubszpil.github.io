@@ -2,7 +2,7 @@ import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "~/shared/components/ui/button";
 
 const state = { focus: true };
 

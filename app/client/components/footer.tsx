@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 import { Link } from "react-router";
 
-import { getCurrentYear } from "@/shared/lib/date";
-import { Button } from "@/shared/components/ui/button";
+import { getCurrentYear } from "~/shared/lib/date";
+import { Button } from "~/shared/components/ui/button";
 
 import type { FooterLinkProps } from "./footer-link";
 
