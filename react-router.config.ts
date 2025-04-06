@@ -1,8 +1,14 @@
 import type { Config } from "@react-router/dev/config";
 
-import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
-import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
-import { getProjectsTechnologies } from "./app/lib/projects";
+import {
+  getArticlesCategories,
+  getArticlesSlugs,
+} from "./app/client/lib/articles";
+import {
+  getCoursesCategories,
+  getCoursesSlugs,
+} from "./app/client/lib/courses";
+import { getProjectsTechnologies } from "./app/client/lib/projects";
 
 export default {
   ssr: false,
