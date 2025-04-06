@@ -20,6 +20,10 @@ import NotFound from "../components/not-found";
 export default function Layout() {
   return (
     <>
+      {/* @ts-ignore */}
+      <script async type="module" src="/theme.js" fetchPriority="high" />
+      <script>{`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}</script>
+      <script async type="module" src="/fetch.js" />
       <Navbar>
         <NavbarLink className="font-bold" to="/">
           jakubszpil
