@@ -6,41 +6,41 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-  route("", "routes/layout.tsx", [
-    index("routes/home.tsx"),
+  route("", "client/routes/layout.tsx", [
+    index("client/routes/home.tsx"),
     ...prefix("blog", [
-      index("routes/article-list.tsx", {
+      index("client/routes/article-list.tsx", {
         id: "article-list",
       }),
-      route("kategorie/:category", "routes/article-list.tsx", {
+      route("kategorie/:category", "client/routes/article-list.tsx", {
         id: "article-list-with-category",
       }),
-      route(":slug", "routes/article-details.tsx", {
+      route(":slug", "client/routes/article-details.tsx", {
         id: "article-details",
       }),
     ]),
     ...prefix("learning", [
-      index("routes/course-list.tsx", {
+      index("client/routes/course-list.tsx", {
         id: "course-list",
       }),
-      route("kategorie/:category", "routes/course-list.tsx", {
+      route("kategorie/:category", "client/routes/course-list.tsx", {
         id: "course-list-with-category",
       }),
-      route(":slug", "routes/course-details.tsx", {
+      route(":slug", "client/routes/course-details.tsx", {
         id: "course-details",
       }),
     ]),
     ...prefix("portfolio", [
-      index("routes/project-list.tsx", {
+      index("client/routes/project-list.tsx", {
         id: "project-list",
       }),
-      route("technologie/:technology", "routes/project-list.tsx", {
+      route("technologie/:technology", "client/routes/project-list.tsx", {
         id: "project-list-with-technology",
       }),
     ]),
-    route("search", "routes/search.tsx"),
-    route("handbook", "routes/handbook.tsx"),
-    route("me", "routes/about.tsx"),
-    route("*", "routes/not-found.tsx"),
+    route("search", "client/routes/search.tsx"),
+    route("handbook", "client/routes/handbook.tsx"),
+    route("me", "client/routes/about.tsx"),
+    route("*", "client/routes/not-found.tsx"),
   ]),
 ] satisfies RouteConfig;
