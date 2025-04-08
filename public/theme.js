@@ -1,3 +1,5 @@
+document.documentElement.classList.add("switching-theme");
+
 const theme = localStorage.getItem("theme");
 
 switch (theme) {

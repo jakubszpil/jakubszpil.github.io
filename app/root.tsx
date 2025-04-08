@@ -3,9 +3,15 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./styles.css";
 
+declare module "react" {
+  interface ScriptHTMLAttributes<T> extends HTMLAttributes<T> {
+    fetchPriority?: HTMLScriptElement["fetchPriority"];
+  }
+}
+
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pl" className="switching-theme">
+    <html lang="pl">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,7 +23,6 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        {/* @ts-ignore */}
         <script async type="module" src="/theme.js" fetchPriority="high" />
         <script>{`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}</script>
         <script type="module" src="/fetch.js" />
