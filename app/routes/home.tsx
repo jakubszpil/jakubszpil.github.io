@@ -41,7 +41,9 @@ export default function Home() {
       />
 
       <header className="container prose">
-        <h1 className="mt-8">Cześć, jestem Kuba! 🙋‍♂️</h1>
+        <h1 className="mt-8">
+          Cześć, <br className="sm:hidden" /> jestem Kuba! 🙋‍♂️
+        </h1>
         <p className="max-w-2xl">
           Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o
           tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz
