@@ -7,14 +7,13 @@ import {
   setTheme,
   Theme,
 } from "@/lib/theme";
+
 import { useHydrated } from "./use-hydrated";
 
 export function useTheme() {
   const hydrated = useHydrated();
 
-  const [value, setValue] = useState<Theme | null>(
-    hydrated ? getTheme() : null
-  );
+  const [value, setValue] = useState<Theme | null>(null);
 
   const resolvedTheme = useMemo(
     () => (value ? getResolvedTheme(value) : null),
@@ -25,6 +24,12 @@ export function useTheme() {
     setValue(theme);
     setTheme(theme);
   }, []);
+
+  useEffect(() => {
+    if (hydrated) {
+      setValue(getTheme());
+    }
+  }, [hydrated]);
 
   useEffect(() => {
     switch (resolvedTheme) {
