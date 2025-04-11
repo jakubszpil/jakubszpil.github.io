@@ -3,11 +3,11 @@ import { hydrateRoot } from "react-dom/client";
 import { HydratedRouter } from "react-router/dom";
 
 import { injectTheme } from "./lib/theme";
-import { injecFetchCache } from "./lib/fetch";
+import { injectFetchCache } from "./lib/fetch";
 
 startTransition(async () => {
   await injectTheme();
-  await injecFetchCache();
+  await injectFetchCache();
 
   hydrateRoot(
     document,

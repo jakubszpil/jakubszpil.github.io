@@ -34,7 +34,7 @@ function createRequest(
   return new Request(url, init);
 }
 
-export async function injecFetchCache() {
+export async function injectFetchCache() {
   if (Number(_timestamp) !== Number(_storedTimestamp)) {
     if (_storedTimestamp) {
       if (await window.caches.has(_storedTimestamp)) {
