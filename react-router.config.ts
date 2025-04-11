@@ -11,6 +11,7 @@ export default {
     unstable_viteEnvironmentApi: true,
     unstable_optimizeDeps: true,
     unstable_splitRouteModules: true,
+    unstable_subResourceIntegrity: true,
   },
   async prerender({ getStaticPaths }) {
     const blogArticles = await getArticlesSlugs();
