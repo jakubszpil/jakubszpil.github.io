@@ -23,9 +23,6 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <script async type="module" src="/theme.js" fetchPriority="high" />
-        <script>{`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}</script>
-        <script type="module" src="/fetch.js" />
         <Meta />
         <Links />
       </head>
