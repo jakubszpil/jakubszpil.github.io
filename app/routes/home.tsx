@@ -1,4 +1,4 @@
-import { Await, Link, useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 import Articles from "@/components/blog/articles";
 import Courses from "@/components/learning/courses";
@@ -10,9 +10,9 @@ import { getCourses } from "@/lib/courses";
 import { getProjects } from "@/lib/projects";
 
 export async function loader() {
-  const articles = getArticles({ limit: 3 });
-  const courses = getCourses({ limit: 3 });
-  const projects = getProjects({ limit: 3 });
+  const articles = await getArticles({ limit: 3 });
+  const courses = await getCourses({ limit: 3 });
+  const projects = await getProjects({ limit: 3 });
 
   return {
     articles,
@@ -78,9 +78,7 @@ export default function Home() {
             frontend developmentu!
           </p>
         </header>
-        <Await resolve={data.articles}>
-          {(articles) => <Articles variant="outline" articles={articles} />}
-        </Await>
+        <Articles variant="outline" articles={data.articles} />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
             <Link prefetch="intent" to="/blog">
@@ -99,9 +97,7 @@ export default function Home() {
             oraz aplikacje internetowe.
           </p>
         </header>
-        <Await resolve={data.courses}>
-          {(courses) => <Courses variant="outline" courses={courses} />}
-        </Await>
+        <Courses variant="outline" courses={data.courses} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
             <Link prefetch="intent" to="/learning">
@@ -120,9 +116,7 @@ export default function Home() {
             potrafię!
           </p>
         </header>
-        <Await resolve={data.projects}>
-          {(projects) => <Projects variant="outline" projects={projects} />}
-        </Await>
+        <Projects variant="outline" projects={data.projects} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
             <Link prefetch="intent" to="/portfolio">

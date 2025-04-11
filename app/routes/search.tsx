@@ -25,16 +25,10 @@ import {
 } from "@/lib/search";
 
 export async function loader() {
-  const resolve = async () => {
-    const articles = await getArticles({ minify: false });
-    const courses = await getCourses({ minify: false });
-    const projects = await getProjects({ minify: false });
-    return { articles, courses, projects };
-  };
-
-  return {
-    results: resolve(),
-  };
+  const articles = await getArticles({ minify: false });
+  const courses = await getCourses({ minify: false });
+  const projects = await getProjects({ minify: false });
+  return { articles, courses, projects };
 }
 
 export async function clientLoader({
@@ -44,17 +38,15 @@ export async function clientLoader({
   const response = serverLoader<typeof loader>();
   const query = validateSearhQuery(request.url);
 
-  const results = response
-    .then(({ results }) => results)
-    .then((results) => {
-      const searchResults = getSearchResults(results, query);
-      const count = getSearchResultsLength(searchResults);
+  const results = response.then((results) => {
+    const searchResults = getSearchResults(results, query);
+    const count = getSearchResultsLength(searchResults);
 
-      return {
-        ...searchResults,
-        count,
-      };
-    });
+    return {
+      ...searchResults,
+      count,
+    };
+  });
 
   return {
     results,

@@ -1,5 +1,4 @@
 import {
-  Await,
   useLoaderData,
   type LoaderFunctionArgs,
   type ShouldRevalidateFunctionArgs,
@@ -25,18 +24,18 @@ export function shouldRevalidate({
 }
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
-  const categories = getArticlesCategories();
+  const categories = await getArticlesCategories();
 
   if (category) {
     return {
-      articles: getArticlesByCategory(category),
+      articles: await getArticlesByCategory(category),
       categories,
       category,
     };
   }
 
   return {
-    articles: getArticles(),
+    articles: await getArticles(),
     categories,
     category,
   };
@@ -54,18 +53,12 @@ export default function ArticleList() {
         description="Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych."
       />
 
-      <Await resolve={categories}>
-        {(categories) => (
-          <header className="prose container">
-            <h1>{title ?? "Artykuły"}</h1>
-            <Categories showAllCategory categories={categories} />
-          </header>
-        )}
-      </Await>
+      <header className="prose container">
+        <h1>{title ?? "Artykuły"}</h1>
+        <Categories showAllCategory categories={categories} />
+      </header>
 
-      <Await resolve={articles}>
-        {(articles) => <Articles articles={articles} />}
-      </Await>
+      <Articles articles={articles} />
     </>
   );
 }

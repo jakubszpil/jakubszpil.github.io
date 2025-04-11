@@ -25,18 +25,18 @@ export function shouldRevalidate({
 }
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
-  const technologies = getProjectsTechnologies();
+  const technologies = await getProjectsTechnologies();
 
   if (technology) {
     return {
       technology,
       technologies,
-      projects: getProjectsByTechnology(technology),
+      projects: await getProjectsByTechnology(technology),
     };
   }
 
   return {
-    projects: getProjects(),
+    projects: await getProjects(),
     technologies,
     technology,
   };
@@ -54,18 +54,12 @@ export default function ProjectList() {
         description="Projekty frontendowe wykonane przeze mnie w wolnym czasie obrazujące dotychczasowe zdobyte doświadczenie i umiejętności"
       />
 
-      <Await resolve={technologies}>
-        {(technologies) => (
-          <header className="prose container">
-            <h1>{title ?? "Portfolio"}</h1>
-            <Technologies showAllTechnology technologies={technologies} />
-          </header>
-        )}
-      </Await>
+      <header className="prose container">
+        <h1>{title ?? "Portfolio"}</h1>
+        <Technologies showAllTechnology technologies={technologies} />
+      </header>
 
-      <Await resolve={projects}>
-        {(projects) => <Projects key={technology} projects={projects} />}
-      </Await>
+      <Projects key={technology} projects={projects} />
     </>
   );
 }

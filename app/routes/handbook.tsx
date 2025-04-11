@@ -41,10 +41,6 @@ export default function Handbook() {
           <li>
             <kbd>ALT</kbd>+<kbd>&larr;</kbd> - Przejście do poprzedniej strony
           </li>
-          <li>
-            <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>H</kbd> - Przejście do listy
-            komend
-          </li>
         </ul>
       </section>
     </>

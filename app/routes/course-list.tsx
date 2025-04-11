@@ -1,5 +1,4 @@
 import {
-  Await,
   useLoaderData,
   type LoaderFunctionArgs,
   type ShouldRevalidateFunctionArgs,
@@ -25,18 +24,18 @@ export function shouldRevalidate({
 }
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
-  const categories = getCoursesCategories();
+  const categories = await getCoursesCategories();
 
   if (category) {
     return {
       category,
       categories,
-      courses: getCoursesByCategory(category),
+      courses: await getCoursesByCategory(category),
     };
   }
 
   return {
-    courses: getCourses(),
+    courses: await getCourses(),
     categories,
     category,
   };
@@ -54,18 +53,12 @@ export default function CourseList() {
         description="Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe."
       />
 
-      <Await resolve={categories}>
-        {(categories) => (
-          <header className="prose container">
-            <h1>{title ?? "Learning"}</h1>
-            <Categories showAllCategory categories={categories} />
-          </header>
-        )}
-      </Await>
+      <header className="prose container">
+        <h1>{title ?? "Learning"}</h1>
+        <Categories showAllCategory categories={categories} />
+      </header>
 
-      <Await resolve={courses}>
-        {(courses) => <Courses key={category} courses={courses} />}
-      </Await>
+      <Courses key={category} courses={courses} />
     </>
   );
 }
