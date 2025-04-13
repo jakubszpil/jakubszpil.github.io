@@ -1,14 +1,30 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
+  appendDarkThemeClassName,
+  finalizeThemeSwitching,
   getResolvedTheme,
   getTheme,
+  initializeThemeSwitching,
+  removeDarkThemeClassName,
   ResolvedTheme,
   setTheme,
   Theme,
 } from "@/lib/theme";
 
 import { useHydrated } from "./use-hydrated";
+
+export function handleSystemThemeChange({ matches }: MediaQueryListEvent) {
+  initializeThemeSwitching();
+
+  if (matches) {
+    appendDarkThemeClassName();
+  } else {
+    removeDarkThemeClassName();
+  }
+
+  setTimeout(() => finalizeThemeSwitching());
+}
 
 export function useTheme() {
   const hydrated = useHydrated();
@@ -32,14 +48,31 @@ export function useTheme() {
   }, [hydrated]);
 
   useEffect(() => {
+    if (value !== Theme.SYSTEM) {
+      return;
+    }
+
+    const abortController = new AbortController();
+    const watcher = window.matchMedia("(prefers-color-scheme: dark)");
+
+    watcher.addEventListener("change", handleSystemThemeChange, {
+      signal: abortController.signal,
+    });
+
+    return () => {
+      abortController.abort();
+    };
+  }, [value]);
+
+  useEffect(() => {
     switch (resolvedTheme) {
       case ResolvedTheme.DARK: {
-        document.documentElement.classList.add("dark");
+        appendDarkThemeClassName();
         break;
       }
 
       case ResolvedTheme.LIGHT: {
-        document.documentElement.classList.remove("dark");
+        removeDarkThemeClassName();
         break;
       }
     }
@@ -49,13 +82,11 @@ export function useTheme() {
     const down = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "j") {
         e.preventDefault();
-        document.documentElement.classList.add("switching-theme");
+        initializeThemeSwitching();
         setThemeInternal(
           resolvedTheme === ResolvedTheme.DARK ? Theme.LIGHT : Theme.DARK
         );
-        setTimeout(() =>
-          document.documentElement.classList.remove("switching-theme")
-        );
+        setTimeout(() => finalizeThemeSwitching());
       }
     };
 

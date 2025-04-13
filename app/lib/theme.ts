@@ -51,3 +51,19 @@ export function getResolvedTheme(theme: Theme): ResolvedTheme {
 export function setTheme(theme: Theme) {
   localStorage.setItem("theme", theme);
 }
+
+export function removeDarkThemeClassName() {
+  document.documentElement.classList.remove("dark");
+}
+
+export function appendDarkThemeClassName() {
+  document.documentElement.classList.add("dark");
+}
+
+export function initializeThemeSwitching() {
+  document.documentElement.classList.add("switching-theme");
+}
+
+export function finalizeThemeSwitching() {
+  document.documentElement.classList.remove("switching-theme");
+}
