@@ -12,20 +12,20 @@ import {
 
 import Categories, {
   type CategoriesProps,
-} from "@/components/learning/categories";
+} from "~/components/learning/categories";
 import {
   EditResource,
   type EditResourceProps,
-} from "@/components/ui/edit-resource";
-import { Seo, type SeoProps } from "@/components/ui/seo";
-import { getCourse, type Course } from "@/lib/courses";
+} from "~/components/ui/edit-resource";
+import { Seo, type SeoProps } from "~/components/ui/seo";
+import { getCourse, type Course } from "~/lib/courses";
 
 import CourseDetails, { loader } from "../course-details";
 
-vi.mock("@/components/learning/categories");
-vi.mock("@/components/ui/edit-resource");
-vi.mock("@/components/ui/seo");
-vi.mock("@/lib/courses");
+vi.mock("~/components/learning/categories");
+vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/ui/seo");
+vi.mock("~/lib/courses");
 
 describe("<CourseDetails />", () => {
   let MockedCategories: MockInstance;

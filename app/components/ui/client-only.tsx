@@ -1,4 +1,4 @@
-import { useHydrated } from "@/hooks/use-hydrated";
+import { useHydrated } from "~/hooks/use-hydrated";
 import type { ReactNode } from "react";
 
 export interface ClientOnlyProps {

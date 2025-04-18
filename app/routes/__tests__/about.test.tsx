@@ -9,16 +9,16 @@ import {
   afterEach,
 } from "vitest";
 
-import { Seo } from "@/components/ui/seo";
-import Socials from "@/components/socials";
-import { getDifferenceInYears } from "@/lib/date";
+import { Seo } from "~/components/ui/seo";
+import Socials from "~/components/socials";
+import { getDifferenceInYears } from "~/lib/date";
 
 import About from "../about";
 
-vi.mock("@/components/ui/seo");
-vi.mock("@/components/socials");
+vi.mock("~/components/ui/seo");
+vi.mock("~/components/socials");
 
-vi.mock("@/lib/date", async (importOriginal) => ({
+vi.mock("~/lib/date", async (importOriginal) => ({
   ...(await importOriginal()),
   getDifferenceInYears: vi.fn(),
 }));

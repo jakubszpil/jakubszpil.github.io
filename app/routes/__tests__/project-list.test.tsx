@@ -10,25 +10,25 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Projects, { type ProjectsProps } from "@/components/portfolio/projects";
+import Projects, { type ProjectsProps } from "~/components/portfolio/projects";
 import Technologies, {
   type TechnologiesProps,
-} from "@/components/portfolio/technologies";
-import { Seo, type SeoProps } from "@/components/ui/seo";
+} from "~/components/portfolio/technologies";
+import { Seo, type SeoProps } from "~/components/ui/seo";
 import {
   getProjects,
   getProjectsByTechnology,
   getProjectsTechnologies,
   ProjectStatus,
   type Project,
-} from "@/lib/projects";
+} from "~/lib/projects";
 
 import ProjectList, { loader } from "../project-list";
 
-vi.mock("@/components/portfolio/projects");
-vi.mock("@/components/portfolio/technologies");
-vi.mock("@/components/ui/seo");
-vi.mock("@/lib/projects");
+vi.mock("~/components/portfolio/projects");
+vi.mock("~/components/portfolio/technologies");
+vi.mock("~/components/ui/seo");
+vi.mock("~/lib/projects");
 
 describe("<ProjectList />", () => {
   let MockedProjects: MockInstance;

@@ -10,7 +10,7 @@ import {
   ResolvedTheme,
   setTheme,
   Theme,
-} from "@/lib/theme";
+} from "~/lib/theme";
 
 import { useHydrated } from "./use-hydrated";
 

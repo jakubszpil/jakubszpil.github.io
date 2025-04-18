@@ -10,24 +10,24 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Courses, { type CoursesProps } from "@/components/learning/courses";
+import Courses, { type CoursesProps } from "~/components/learning/courses";
 import Categories, {
   type CategoriesProps,
-} from "@/components/learning/categories";
-import { Seo, type SeoProps } from "@/components/ui/seo";
+} from "~/components/learning/categories";
+import { Seo, type SeoProps } from "~/components/ui/seo";
 import {
   getCourses,
   getCoursesByCategory,
   getCoursesCategories,
   type Course,
-} from "@/lib/courses";
+} from "~/lib/courses";
 
 import CourseList, { loader } from "../course-list";
 
-vi.mock("@/components/learning/courses");
-vi.mock("@/components/learning/categories");
-vi.mock("@/components/ui/seo");
-vi.mock("@/lib/courses");
+vi.mock("~/components/learning/courses");
+vi.mock("~/components/learning/categories");
+vi.mock("~/components/ui/seo");
+vi.mock("~/lib/courses");
 
 describe("<CourseList />", () => {
   let MockedCourses: MockInstance;
