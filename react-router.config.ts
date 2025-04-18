@@ -1,4 +1,6 @@
 import type { Config } from "@react-router/dev/config";
+import { join } from "node:path";
+import { readdir, rename } from "node:fs/promises";
 
 import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
 import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
@@ -12,6 +14,19 @@ export default {
     unstable_optimizeDeps: true,
     unstable_splitRouteModules: true,
     unstable_subResourceIntegrity: true,
+  },
+  async buildEnd({ reactRouterConfig }) {
+    const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
+
+    const files = await readdir(__clientDirname, { recursive: true });
+
+    for (const file of files) {
+      if (file.includes("index.html") && file !== "index.html") {
+        const path = join(__clientDirname, file);
+        const targetPath = `${join(path, "..")}.html`;
+        await rename(path, targetPath);
+      }
+    }
   },
   async prerender({ getStaticPaths }) {
     const blogArticles = await getArticlesSlugs();
