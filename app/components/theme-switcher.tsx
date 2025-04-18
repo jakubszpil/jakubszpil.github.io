@@ -5,8 +5,8 @@ import {
   IconSunMoon,
 } from "@tabler/icons-react";
 
-import { useTheme } from "@/hooks/use-theme";
-import { Theme } from "@/lib/theme";
+import { useTheme } from "~/hooks/use-theme";
+import { Theme } from "~/lib/theme";
 
 import {
   DropdownMenu,

@@ -10,20 +10,20 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, { type CategoriesProps } from "@/components/blog/categories";
+import Categories, { type CategoriesProps } from "~/components/blog/categories";
 import {
   EditResource,
   type EditResourceProps,
-} from "@/components/ui/edit-resource";
-import { Seo, type SeoProps } from "@/components/ui/seo";
-import { getArticle, type Article } from "@/lib/articles";
+} from "~/components/ui/edit-resource";
+import { Seo, type SeoProps } from "~/components/ui/seo";
+import { getArticle, type Article } from "~/lib/articles";
 
 import ArticleDetails, { loader } from "../article-details";
 
-vi.mock("@/components/blog/categories");
-vi.mock("@/components/ui/edit-resource");
-vi.mock("@/components/ui/seo");
-vi.mock("@/lib/articles");
+vi.mock("~/components/blog/categories");
+vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/ui/seo");
+vi.mock("~/lib/articles");
 
 describe("<ArticleDetails />", () => {
   let MockedCategories: MockInstance;

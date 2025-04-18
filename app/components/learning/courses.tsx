@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
-import type { Course } from "@/lib/courses";
-import { getLocalizedDate } from "@/lib/date";
+import type { Course } from "~/lib/courses";
+import { getLocalizedDate } from "~/lib/date";
 
 import { Button, type ButtonProps } from "../ui/button";
 
