@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "postbuild": "node ./tools/postbuild.mjs",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
