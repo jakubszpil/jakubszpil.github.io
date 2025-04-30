@@ -1,8 +1,8 @@
 ---
 title: Szczepienie kodu, czyli jak Typescript radzi sobie z Dependency Injection
 description: "Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami. W TypeScript, DI można zaimplementować na kilka sposobów, w tym za funkcji wstrzykujących, które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów."
-keywords: [typescript, wzorce, javascript]
-categories: [typescript, wzorce]
+keywords: [typescript, wzorce projektowe, javascript]
+categories: [typescript, wzorce-projektowe]
 createdAt: 2024-06-20
 ---
 

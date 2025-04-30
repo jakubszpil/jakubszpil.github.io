@@ -13,7 +13,7 @@ import {
   getProjectsByTechnology,
   getProjectsTechnologies,
 } from "~/lib/projects";
-import { capitalize } from "~/lib/string";
+import { capitalize, retrieveSpaceInString } from "~/lib/string";
 
 export function shouldRevalidate({
   currentParams,
@@ -45,7 +45,9 @@ export async function loader({ params: { technology } }: LoaderFunctionArgs) {
 export default function ProjectList() {
   const { projects, technologies, technology } = useLoaderData<typeof loader>();
 
-  const title = technology ? capitalize(technology) : undefined;
+  const title = technology
+    ? capitalize(retrieveSpaceInString(technology))
+    : undefined;
 
   return (
     <>

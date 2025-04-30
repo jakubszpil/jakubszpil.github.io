@@ -12,7 +12,7 @@ import {
   getArticlesByCategory,
   getArticlesCategories,
 } from "~/lib/articles";
-import { capitalize } from "~/lib/string";
+import { capitalize, retrieveSpaceInString } from "~/lib/string";
 
 export function shouldRevalidate({
   currentParams,
@@ -44,7 +44,9 @@ export async function loader({ params: { category } }: LoaderFunctionArgs) {
 export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();
 
-  const title = category ? capitalize(category) : undefined;
+  const title = category
+    ? capitalize(retrieveSpaceInString(category))
+    : undefined;
 
   return (
     <>
