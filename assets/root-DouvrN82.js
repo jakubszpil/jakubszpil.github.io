@@ -29,4 +29,4 @@ import{w as a}from"./with-props-D-pfRKlo.js";import{j as e}from"./jsx-runtime-D_
                 localStorage.removeItem("theme");
               }
             }
-          `)}),e.jsx("script",{children:r(`globalThis.timestamp = ${1745958565943}`)}),e.jsx("script",{type:"module",src:"/fetch.js"}),e.jsx(o,{}),e.jsx(n,{})]}),e.jsxs("body",{style:{WebkitTapHighlightColor:"transparent"},children:[t,e.jsx(c,{getKey:s=>Object.values(s).filter(Boolean).join(".")}),e.jsx(i,{})]})]})}const u=a(function(){return e.jsx(l,{})});export{p as Layout,u as default};
+          `)}),e.jsx("script",{children:r(`globalThis.timestamp = ${1746014266397}`)}),e.jsx("script",{type:"module",src:"/fetch.js"}),e.jsx(o,{}),e.jsx(n,{})]}),e.jsxs("body",{style:{WebkitTapHighlightColor:"transparent"},children:[t,e.jsx(c,{getKey:s=>Object.values(s).filter(Boolean).join(".")}),e.jsx(i,{})]})]})}const u=a(function(){return e.jsx(l,{})});export{p as Layout,u as default};
