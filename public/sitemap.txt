@@ -9,7 +9,7 @@ https://jakubszpil.github.io/blog/deployment-github-actions
 https://jakubszpil.github.io/blog/kategorie/devops
 https://jakubszpil.github.io/blog/kategorie/ci
 https://jakubszpil.github.io/blog/kategorie/typescript
-https://jakubszpil.github.io/blog/kategorie/wzorce
+https://jakubszpil.github.io/blog/kategorie/wzorce-projektowe
 https://jakubszpil.github.io/learning
 https://jakubszpil.github.io/learning/kategorie/wprowadzenie
 https://jakubszpil.github.io/learning/kategorie/html
