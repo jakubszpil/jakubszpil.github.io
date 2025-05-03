@@ -1,22 +1,9 @@
-import {
-  useLoaderData,
-  type LoaderFunctionArgs,
-  type ShouldRevalidateFunctionArgs,
-} from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/blog/categories";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
-
-export function shouldRevalidate({
-  currentParams,
-  nextParams,
-}: ShouldRevalidateFunctionArgs) {
-  const currentSlug = currentParams.slug;
-  const nextSlug = nextParams.slug;
-  return currentSlug !== nextSlug;
-}
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug!);

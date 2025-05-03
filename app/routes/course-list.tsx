@@ -1,8 +1,4 @@
-import {
-  useLoaderData,
-  type LoaderFunctionArgs,
-  type ShouldRevalidateFunctionArgs,
-} from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/learning/categories";
 import Courses from "~/components/learning/courses";
@@ -13,15 +9,6 @@ import {
   getCoursesCategories,
 } from "~/lib/courses";
 import { capitalize, retrieveSpaceInString } from "~/lib/string";
-
-export function shouldRevalidate({
-  currentParams,
-  nextParams,
-}: ShouldRevalidateFunctionArgs) {
-  const currentCategory = currentParams.category;
-  const nextCategory = nextParams.category;
-  return currentCategory !== nextCategory;
-}
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   const categories = await getCoursesCategories();

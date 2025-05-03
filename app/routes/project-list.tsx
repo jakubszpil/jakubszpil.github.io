@@ -1,9 +1,4 @@
-import {
-  Await,
-  useLoaderData,
-  type LoaderFunctionArgs,
-  type ShouldRevalidateFunctionArgs,
-} from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Technologies from "~/components/portfolio/technologies";
 import Projects from "~/components/portfolio/projects";
@@ -14,15 +9,6 @@ import {
   getProjectsTechnologies,
 } from "~/lib/projects";
 import { capitalize, retrieveSpaceInString } from "~/lib/string";
-
-export function shouldRevalidate({
-  currentParams,
-  nextParams,
-}: ShouldRevalidateFunctionArgs) {
-  const currentTechnology = currentParams.technology;
-  const nextTechnology = nextParams.technology;
-  return currentTechnology !== nextTechnology;
-}
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   const technologies = await getProjectsTechnologies();
