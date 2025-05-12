@@ -9,6 +9,7 @@ import { getProjectsTechnologies } from "./app/lib/projects";
 export default {
   ssr: false,
   buildDirectory: "dist",
+  routeDiscovery: { mode: "initial" },
   future: {
     unstable_viteEnvironmentApi: true,
     unstable_optimizeDeps: true,
