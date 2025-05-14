@@ -2,7 +2,11 @@ import { Transition } from "@headlessui/react";
 import { IconLoader } from "@tabler/icons-react";
 import { useNavigation } from "react-router";
 
-export default function BusyIndicator() {
+export interface BusyIndicatorProps {
+  showImmediately?: boolean;
+}
+
+export default function BusyIndicator(props: BusyIndicatorProps) {
   const navigation = useNavigation();
   const isPending = Boolean(navigation.location);
 
@@ -14,7 +18,7 @@ export default function BusyIndicator() {
     <Transition
       show
       appear
-      enter="delay-75"
+      enter={!props.showImmediately ? "delay-75" : undefined}
       enterFrom="opacity-0"
       enterTo="opacity-100"
     >
