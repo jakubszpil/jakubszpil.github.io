@@ -114,7 +114,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           {mobileLinks}
 
           <div className="h-8 flex justify-center items-center absolute bottom-40">
-            <BusyIndicator showImmediately={true} />
+            <BusyIndicator />
           </div>
 
           <div className="flex absolute bottom-20 gap-3 xs:hidden">
