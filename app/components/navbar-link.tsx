@@ -6,7 +6,7 @@ import { Button, type ButtonProps } from "./ui/button";
 export interface NavbarLinkProps {
   to: string;
   children: ReactNode;
-  onClick?: () => void;
+  onClick?: ButtonProps["onClick"];
   className?: string;
   variant?: ButtonProps["variant"];
   size?: ButtonProps["size"];
