@@ -50,6 +50,7 @@ export async function clientLoader({
 
   return {
     results,
+    initialResults: response,
     query,
   };
 }
@@ -57,7 +58,8 @@ export async function clientLoader({
 clientLoader.hydrate = true;
 
 export default function Search() {
-  const { query, results } = useLoaderData<typeof clientLoader>();
+  const { query, results, initialResults } =
+    useLoaderData<typeof clientLoader>();
   const ref = useRef<HTMLInputElement>(null);
   const location = useLocation();
 
@@ -121,6 +123,17 @@ export default function Search() {
     [query, ref]
   );
 
+  const renderDatalistOptions = useCallback(
+    <T extends { title: string; id: string }>(label: string, items: T[]) => {
+      return items?.map((item) => (
+        <option key={`datalist-item-${item.id}`} value={item.title}>
+          {label}
+        </option>
+      ));
+    },
+    []
+  );
+
   return (
     <Await resolve={results}>
       {(results) => (
@@ -160,13 +173,24 @@ export default function Search() {
             <Input
               ref={ref}
               key={query}
-              type="text"
+              type="search"
               name={queryParamName}
               placeholder="Treść zapytania"
               defaultValue={query ?? ""}
               required
               className="flex-1 relative"
+              list="search-datalist"
             />
+
+            <Await resolve={initialResults}>
+              {(data) => (
+                <datalist id="search-datalist">
+                  {renderDatalistOptions("📝 Artykuł", data?.articles)}
+                  {renderDatalistOptions("🏫 Kurs", data?.courses)}
+                  {renderDatalistOptions("🛠️ Projekt", data?.projects)}
+                </datalist>
+              )}
+            </Await>
 
             <Button type="submit">
               <IconSearch className="h-5 w-5 mr-1" />
