@@ -1,4 +1,4 @@
-import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{a as s,w as y}from"./chunk-D4RADZKF-RZTUKYdk.js";/**
+import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{a as s,w as y}from"./chunk-DQRVZFIR-Da76HV04.js";/**
  * @license @tabler/icons-react v3.17.0 - MIT
  *
  * This source code is licensed under the MIT license.
