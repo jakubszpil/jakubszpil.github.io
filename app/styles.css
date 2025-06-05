@@ -212,6 +212,12 @@ code.hljs {
 .prose details summary > * {
   @apply hover:cursor-pointer select-none;
 }
+
 .prose details summary {
   @apply w-max;
+}
+
+.prose ul a,
+.prose ol a {
+  @apply !no-underline text-inherit hover:!underline hover:text-[var(--tw-prose-links)] dark:hover:text-[var(--tw-prose-invert-links)];
 }

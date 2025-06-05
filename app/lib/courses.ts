@@ -1,7 +1,15 @@
 import { parseContentResources, type ContentResource } from "./content";
 
-export interface Course extends ContentResource {
-  categories: string[];
+export abstract class Course implements ContentResource {
+  abstract id: string;
+  abstract slug: string;
+  abstract content: string;
+  abstract resourceUrl: string;
+  abstract title: string;
+  abstract description: string;
+  abstract keywords: string[];
+  abstract createdAt: string;
+  abstract categories: string[];
 }
 
 const CONTENT = import.meta.glob<string>("../content/courses/*.md", {

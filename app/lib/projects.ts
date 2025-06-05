@@ -6,9 +6,17 @@ export enum ProjectStatus {
   COMPLETED = "COMPLETED",
 }
 
-export interface Project extends ContentResource {
-  technologies: string[];
-  status: ProjectStatus;
+export abstract class Project implements ContentResource {
+  abstract id: string;
+  abstract slug: string;
+  abstract content: string;
+  abstract resourceUrl: string;
+  abstract title: string;
+  abstract description: string;
+  abstract keywords: string[];
+  abstract createdAt: string;
+  abstract technologies: string[];
+  abstract status: ProjectStatus;
 }
 
 const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
