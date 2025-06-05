@@ -28,7 +28,7 @@ export default function CourseDetails() {
       </header>
 
       <article
-        className="prose container"
+        className="prose container prose-emerald"
         dangerouslySetInnerHTML={{ __html: course.content }}
       />
 

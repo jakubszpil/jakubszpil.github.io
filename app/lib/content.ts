@@ -12,6 +12,14 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { v4 } from "uuid";
 import invariant from "tiny-invariant";
 
+function getAnchorContentBasedOnLevel(level: number): string {
+  let content = "";
+  for (let i = 0; i < level; i++) {
+    content += ">";
+  }
+  return content;
+}
+
 export const processContent = async (content: string) => {
   const processor = unified()
     .use(remarkParse)
@@ -23,18 +31,23 @@ export const processContent = async (content: string) => {
     .use(rehypeAutolinkHeadings, {
       properties: {
         className:
-          "mr-1.5 no-underline hover:underline focus-visible:underline",
+          "mr-2 no-underline hover:underline focus-visible:underline select-none",
       },
       headingProperties: {
-        className: "scroll-mt-20 lg:scroll-mt-4",
+        className: "scroll-mt-20 lg:scroll-mt-10",
       },
       behavior: "prepend",
-      content: [
-        {
-          type: "raw",
-          value: "#",
-        },
-      ],
+      content: (element) => {
+        const tag = element.tagName;
+        const level = parseInt(tag[tag.length - 1], 10);
+
+        return [
+          {
+            type: "raw",
+            value: getAnchorContentBasedOnLevel(level),
+          },
+        ];
+      },
     })
     .use(rehypeHighlight)
     .use(rehypeStringify);
@@ -44,15 +57,15 @@ export const processContent = async (content: string) => {
   return results.toString();
 };
 
-export interface ContentResource {
-  id: string;
-  slug: string;
-  content: string;
-  resourceUrl: string;
-  title: string;
-  description: string;
-  keywords: string[];
-  createdAt: string;
+export abstract class ContentResource {
+  abstract id: string;
+  abstract slug: string;
+  abstract content: string;
+  abstract resourceUrl: string;
+  abstract title: string;
+  abstract description: string;
+  abstract keywords: string[];
+  abstract createdAt: string;
 }
 
 export const parseMarkdownFile = async <T extends ContentResource>(
