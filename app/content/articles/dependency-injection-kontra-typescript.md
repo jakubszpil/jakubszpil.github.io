@@ -6,23 +6,44 @@ categories: [typescript, wzorce-projektowe]
 createdAt: 2024-06-20
 ---
 
-Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami.
+Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Pozwala on na oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności oraz ułatwia zarządzanie zależnościami w projekcie.
 
-W TypeScript, DI można zaimplementować na kilka sposobów, w tym za funkcji wstrzykujących, które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów.
+W TypeScript DI można zaimplementować na różne sposoby, m.in. za pomocą funkcji wstrzykujących, kontenerów IoC oraz dekoratorów. Poniżej znajdziesz szczegółowe omówienie praktycznych sposobów implementacji DI w TypeScript wraz z przykładami.
 
-## Spis Treści
+---
 
-1. Podstawy Dependency Injection
-2. Prosty przykład DI
-3. Wstrzykiwanie zależności za pomocą funkcji wstrzykującej
+## Spis treści
 
-## 1. Podstawy Dependency Injection
+1. [Czym jest Dependency Injection?](#czym-jest-dependency-injection)
+2. [Zalety stosowania DI](#zalety-stosowania-di)
+3. [Podstawowy przykład Dependency Injection](#podstawowy-przykład-dependency-injection)
+4. [Wstrzykiwanie zależności przy pomocy funkcji](#wstrzykiwanie-zależności-przy-pomocy-funkcji)
+5. [Kontener IoC i automatyzacja DI](#kontener-ioc-i-automatyzacja-di)
+6. [Testowanie z wykorzystaniem DI](#testowanie-z-wykorzystaniem-di)
+7. [Podsumowanie](#podsumowanie)
 
-W Dependency Injection chodzi o przekazywanie zależności do obiektu zamiast tworzenia ich bezpośrednio wewnątrz obiektu. Dzięki temu można łatwo wymieniać zależności, co ułatwia testowanie i modyfikowanie kodu.
+---
 
-## 2. Prosty przykład DI
+## Czym jest Dependency Injection?
 
-Rozważmy prosty przykład, w którym klasa `UserService` potrzebuje instancji `UserRepository`:
+**Dependency Injection** polega na przekazywaniu obiektów zależnych (tzw. zależności) do obiektu zamiast tworzenia ich bezpośrednio w jego wnętrzu. Dzięki temu możemy łatwo podmieniać zależności – np. na ich mocki podczas testowania – bez zmian w logice biznesowej.
+
+DI zwiększa elastyczność kodu, ułatwia jego testowanie oraz pozwala na lepszą separację odpowiedzialności.
+
+---
+
+## Zalety stosowania DI
+
+- **Łatwiejsze testowanie** – zależności można zamieniać na mocki.
+- **Lepsza modularność** – klasy nie są silnie powiązane z konkretnymi implementacjami.
+- **Łatwiejsze zarządzanie zależnościami** – zmiany w zależnościach nie wymagają modyfikacji całego kodu.
+- **Wspieranie zasad SOLID** – w szczególności zasad odwrócenia zależności (Dependency Inversion Principle).
+
+---
+
+## Podstawowy przykład Dependency Injection
+
+Rozważmy prosty scenariusz, w którym klasa `UserService` korzysta z `UserRepository`:
 
 ```typescript
 class UserRepository {
@@ -49,26 +70,25 @@ const userService = new UserService(userRepository);
 console.log(userService.getUserName(1)); // User 1
 ```
 
-W powyższym przykładzie `UserRepository` jest wstrzykiwany do `UserService` przez konstruktor.
+**Wyjaśnienie:**  
+W tym przykładzie `UserRepository` jest wstrzykiwany do `UserService` poprzez konstruktor. Dzięki temu możemy łatwo podmienić repozytorium np. w testach jednostkowych.
 
-## 3. Wstrzykiwanie zależności za pomocą funkcji wstrzykującej
+---
 
-Aby lepiej zarządzać zależnościami, możemy użyć kontenera IoC. Przykład poniżej pokazuje, jak można to zrobić przy użyciu prostego kontenera DI:
+## Wstrzykiwanie zależności przy pomocy funkcji
+
+W większych aplikacjach zarządzanie zależnościami ręcznie może być uciążliwe. Możemy zastosować funkcję `inject`, która będzie przechowywać i dostarczać instancje klas (prostą wersję kontenera IoC):
 
 ```typescript
 const dependencies: Map<string, any> = new Map();
 
 function inject<T>(dependency: new () => T): T {
   if (dependencies.has(dependency.name)) {
-    const dep = dependencies.get(dependency.name);
-    if (dep) {
-      return dep;
-    }
+    return dependencies.get(dependency.name);
   }
-
   const dep = new dependency();
   dependencies.set(dependency.name, dep);
-  return dependencies.get(dependency.name);
+  return dep;
 }
 
 class UserRepository {
@@ -92,10 +112,88 @@ const extendedUserService = inject(ExtendedUserService);
 console.log(extendedUserService.getUserName(1)); // User 1
 ```
 
-W tym przykładzie używamy funkcji do rejestrowania i rozwiązywania zależności.
-Funkcja inject przyjmuje, jako generyczny argument, zależność, którą na podstawie statycznej nazwy zapisuje i przechowuje, dzięki czemu potem mamy dostęp do wspólnej instancji tej zależności.
-Takie podejście pozwala na łatwe rozszerzanie klas, nie potrzebujemy pamiętać o zależnościach w konstruktorze klasy
+**Wyjaśnienie:**
+
+- Funkcja `inject` rejestruje i przechowuje instancje klas, zapewniając singleton dla każdej z nich.
+- Dzięki temu nie musimy przekazywać zależności przez konstruktor.
+- Klasy można łatwo rozszerzać, a zależności są zarządzane centralnie.
+
+---
+
+## Kontener IoC i automatyzacja DI
+
+W rozbudowanych projektach warto rozważyć użycie gotowych rozwiązań, np. [InversifyJS](https://inversify.io/), które pozwalają korzystać z dekoratorów i automatycznie rozwiązywać zależności.
+
+Przykład z użyciem InversifyJS:
+
+```typescript
+import "reflect-metadata";
+import { injectable, inject, Container } from "inversify";
+
+@injectable()
+class UserRepository {
+  getUser(userId: number): string {
+    return `User ${userId}`;
+  }
+}
+
+@injectable()
+class UserService {
+  constructor(@inject(UserRepository) private userRepository: UserRepository) {}
+
+  getUserName(userId: number): string {
+    return this.userRepository.getUser(userId);
+  }
+}
+
+const container = new Container();
+container.bind(UserRepository).toSelf();
+container.bind(UserService).toSelf();
+
+const userService = container.get(UserService);
+console.log(userService.getUserName(1)); // User 1
+```
+
+**Zalety takiego podejścia:**
+
+- Automatyczna rejestracja i rozwiązywanie zależności.
+- Wsparcie dla różnych zakresów życia obiektu (singleton, transient).
+- Możliwość wstrzykiwania zależności przez dekoratory.
+
+---
+
+## Testowanie z wykorzystaniem DI
+
+Dzięki zastosowaniu DI możemy łatwo podmieniać implementacje zależności, np. na mocki lub stuby podczas testów jednostkowych:
+
+```typescript
+class MockUserRepository {
+  getUser(userId: number): string {
+    return "Mock User";
+  }
+}
+
+const mockRepo = new MockUserRepository();
+const userService = new UserService(mockRepo);
+
+console.log(userService.getUserName(1)); // Mock User
+```
+
+**Korzyści:**
+
+- Testy są niezależne od rzeczywistej implementacji zależności.
+- Można łatwo symulować różne scenariusze.
+
+---
 
 ## Podsumowanie
 
-Dependency Injection w TypeScript to potężna technika, która może znacznie ułatwić zarządzanie zależnościami i poprawić testowalność oraz modularność kodu. Przedstawione powyżej przykłady pokazują różne podejścia do implementacji DI, w tym bezpośrednie wstrzykiwanie przez konstruktor, korzystanie z funkcji wstrzykujących, używanie dekoratorów. Dzięki tym technikom można tworzyć bardziej elastyczne i łatwe w utrzymaniu aplikacje.
+Dependency Injection w TypeScript to potężny sposób na zwiększenie elastyczności, testowalności i modularności kodu. Najprostsze podejście to ręczne wstrzykiwanie zależności przez konstruktor, jednak w miarę wzrostu projektu warto pomyśleć o własnym kontenerze IoC lub sięgnąć po gotowe biblioteki jak InversifyJS. DI pozwala na lepszą separację odpowiedzialności i sprawia, że kod jest łatwiejszy w utrzymaniu i testowaniu.
+
+---
+
+**Dalsza lektura:**
+
+- [InversifyJS Documentation](https://github.com/inversify/InversifyJS)
+- [Dependency Injection w TypeScript – Angular](https://angular.dev/guide/di)
+- [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)

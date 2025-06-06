@@ -6,23 +6,42 @@ categories: [typescript, wzorce-projektowe]
 createdAt: 2024-06-20
 ---
 
-Signal to koncepcja pochodząca z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzania stanem aplikacji. W TypeScript, dzięki silnemu typowaniu, można zaimplementować sygnały w sposób bezpieczny i efektywny.
+Signal to koncepcja znana z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzanie stanem aplikacji. Dzięki silnemu typowaniu TypeScript, sygnały można zaimplementować w sposób bezpieczny, czytelny i efektywny.
+
+---
+
+## Spis treści
+
+1. [Czym jest Signal?](#czym-jest-signal)
+2. [Korzyści z używania Signal](#korzyści-z-używania-signal)
+3. [Prosta implementacja Signal w TypeScript](#prosta-implementacja-signal-w-typescript)
+4. [Zaawansowana implementacja Signal z typowaniem](#zaawansowana-implementacja-signal-z-typowaniem)
+5. [Praktyczne zastosowania sygnałów](#praktyczne-zastosowania-sygnałów)
+6. [Podsumowanie](#podsumowanie)
+
+---
 
 ## Czym jest Signal?
 
-Signal (sygnał) jest obiektem, który reprezentuje strumień danych, który może być obserwowany i reagować na zmiany tych danych. W kontekście frontendu, sygnały mogą być używane do reagowania na zdarzenia użytkownika, zmiany stanu aplikacji, czy asynchroniczne operacje, takie jak żądania sieciowe.
+**Signal** (sygnał) to obiekt reprezentujący strumień danych, który może być obserwowany i reagować na ich zmiany. Sygnały świetnie sprawdzają się w aplikacjach frontendowych, gdzie mogą służyć do reagowania na:
+
+- zdarzenia użytkownika,
+- zmiany stanu aplikacji,
+- asynchroniczne operacje (np. żądania sieciowe).
+
+---
 
 ## Korzyści z używania Signal
 
-1. **Reaktywność:** Umożliwiają budowanie aplikacji, które automatycznie reagują na zmiany danych.
-2. **Czytelność:** Poprawiają czytelność kodu poprzez eliminację złożonych zależności i ręcznego zarządzania stanem.
-3. **Modularność:** Ułatwiają zarządzanie stanem w skomplikowanych aplikacjach poprzez oddzielenie logiki zarządzania stanem od komponentów.
+- **Reaktywność:** Automatyczne reagowanie na zmiany danych w aplikacji.
+- **Czytelność:** Eliminacja złożonych zależności i ręcznego zarządzania stanem.
+- **Modularność:** Oddzielenie logiki zarządzania stanem od komponentów, co ułatwia rozwój i utrzymanie kodu.
 
-## Implementacja Signal w TypeScript
+---
 
-### Przykład 1: Prosty Signal
+## Prosta implementacja Signal w TypeScript
 
-Poniżej przedstawiono prostą implementację sygnału w TypeScript:
+Poniższy przykład przedstawia bazową implementację sygnału:
 
 ```typescript
 type Listener<T> = (value: T) => void;
@@ -53,11 +72,14 @@ numberSignal.subscribe((value) => {
 numberSignal.emit(42); // Output: Received value: 42
 ```
 
-W tym przykładzie zdefiniowano klasę `Signal`, która umożliwia subskrybowanie, usuwanie subskrypcji oraz emitowanie wartości do wszystkich subskrybentów.
+**Opis:**  
+Klasa `Signal` pozwala na subskrybowanie funkcji-odbiorców, ich usuwanie oraz emitowanie wartości do wszystkich subskrybentów.
 
-### Przykład 2: Zaawansowany Signal z Typowaniem
+---
 
-Poniższy przykład przedstawia bardziej zaawansowaną implementację sygnału z wykorzystaniem typów generycznych:
+## Zaawansowana implementacja Signal z typowaniem
+
+W większych aplikacjach warto zastosować typy generyczne i kolekcje, które zapobiegają wielokrotnemu dodawaniu tego samego subskrybenta:
 
 ```typescript
 type Listener<T> = (value: T) => void;
@@ -95,8 +117,41 @@ userSignal.subscribe((user) => {
 userSignal.emit({ name: "John Doe", age: 30 }); // Output: User: John Doe, Age: 30
 ```
 
-W tym przykładzie `Signal` używa `Set` do przechowywania subskrybentów, co zapobiega wielokrotnemu dodawaniu tego samego subskrybenta. Zastosowanie typów generycznych pozwala na tworzenie sygnałów obsługujących dowolne typy danych.
+**Opis:**  
+Dzięki użyciu `Set`, każdy subskrybent pojawia się tylko raz. Typy generyczne umożliwiają tworzenie sygnałów dla różnych typów danych.
 
-## Zakończenie
+---
 
-Signal w TypeScript to potężne narzędzie do budowania reaktywnych aplikacji, które mogą automatycznie reagować na zmiany stanu. Dzięki silnemu typowaniu TypeScript, implementacja sygnałów jest bezpieczna i efektywna, co przyczynia się do tworzenia bardziej zrozumiałych i łatwiejszych w utrzymaniu kodów. Implementując sygnały, możemy znacząco uprościć zarządzanie stanem w naszych aplikacjach i poprawić ich architekturę.
+## Praktyczne zastosowania sygnałów
+
+Sygnały są szeroko stosowane m.in. w:
+
+- zarządzaniu stanem komponentów w frameworkach frontendowych (np. Angular Signals, SolidJS Signals),
+- reagowaniu na zmiany danych w czasie rzeczywistym (np. WebSocket, API),
+- obsłudze zdarzeń pomiędzy niezależnymi modułami (np. event bus).
+
+**Przykład:**
+
+```typescript
+// Sygnał do powiadamiania o zmianie zalogowanego użytkownika
+const authSignal = new Signal<User | null>();
+
+authSignal.subscribe((user) => {
+  if (user) {
+    console.log("Zalogowano użytkownika:", user.name);
+  } else {
+    console.log("Wylogowano użytkownika");
+  }
+});
+
+// Logowanie użytkownika
+authSignal.emit({ name: "Anna", age: 25 });
+// Wylogowanie użytkownika
+authSignal.emit(null);
+```
+
+---
+
+## Podsumowanie
+
+Signal w TypeScript to skuteczny sposób na budowę reaktywnych aplikacji i automatyczne reagowanie na zmiany stanu. Silne typowanie pozwala uniknąć wielu błędów i sprawia, że kod jest zrozumiały oraz łatwy w utrzymaniu. Implementując sygnały, możesz znacząco uprościć zarządzanie stanem i poprawić architekturę swoich aplikacji.
