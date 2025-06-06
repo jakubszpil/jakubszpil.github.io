@@ -6,15 +6,41 @@ categories: [wprowadzenie, css, html]
 createdAt: 2024-06-30
 ---
 
+## Spis treści
+
+1. [Czym jest BEM?](#czym-jest-bem)
+2. [Struktura BEM](#struktura-bem)
+   - [Blok](#blok)
+   - [Element](#element)
+   - [Modyfikator](#modyfikator)
+3. [Przykład kodu w BEM](#przykład)
+4. [Zasady BEM](#zasady-bem)
+5. [Przykłady](#przykłady)
+   - [Formularz logowania](#formularz-logowania)
+6. [Zadania do wykonania](#zadania-do-wykonania)
+   - [Zadanie 1 – Karta produktu](#zadanie-1)
+   - [Zadanie 2 – Nawigacja](#zadanie-2)
+   - [Zadanie 3 – Artykuł](#zadanie-3)
+
+---
+
 ## Czym jest BEM?
 
-BEM (Block, Element, Modifier) to metodyka nazewnictwa klas CSS, która pomaga tworzyć komponenty interfejsu użytkownika w sposób modularny i łatwy do utrzymania. BEM dzieli interfejs na bloki, elementy i modyfikatory, co pozwala na lepszą organizację kodu CSS.
+**BEM** (ang. _Block, Element, Modifier_) to popularna metodyka nazewnictwa klas CSS, która ułatwia tworzenie modularnych, powtarzalnych i łatwych do utrzymania komponentów interfejsu użytkownika. Dzięki wyraźnemu podziałowi na bloki, elementy i modyfikatory, kod CSS staje się bardziej przewidywalny, przejrzysty oraz mniej podatny na konflikty stylów.
+
+Główne założenia BEM:
+
+- Każdy komponent traktujemy jako niezależny blok (np. `button`, `form`).
+- Blok może zawierać elementy, które nie mają sensu poza jego kontekstem (np. `button__icon`).
+- Blok i element mogą przyjmować różne warianty dzięki modyfikatorom (np. `button--primary`, `button__icon--small`).
+
+---
 
 ## Struktura BEM
 
 ### Blok
 
-Blok jest samodzielnym komponentem, który może istnieć niezależnie. Może to być przycisk, nagłówek, formularz itp. Blok jest reprezentowany przez klasę główną.
+Blok to główny, niezależny komponent interfejsu (np. przycisk, formularz, menu). Otrzymuje unikalną klasę bez dodatkowych znaków.
 
 ```html
 <div class="block">Treść bloku</div>
@@ -22,7 +48,7 @@ Blok jest samodzielnym komponentem, który może istnieć niezależnie. Może to
 
 ### Element
 
-Element jest częścią bloku, która nie może istnieć bez niego. Elementy są reprezentowane przez klasę bloku, po której następuje podwójny podkreślnik (`__`).
+Element to część bloku, która nie istnieje samodzielnie. W nazwie klasy po nazwie bloku dodajemy podwójny podkreślnik `__` i nazwę elementu.
 
 ```html
 <div class="block">
@@ -32,7 +58,7 @@ Element jest częścią bloku, która nie może istnieć bez niego. Elementy są
 
 ### Modyfikator
 
-Modyfikator zmienia wygląd lub zachowanie bloku lub elementu. Modyfikatory są reprezentowane przez pojedynczy podkreślnik (`_`).
+Modyfikator określa wariant lub stan bloku albo elementu, np. kolor, rozmiar, aktywność. W nazwie klasy po bloku lub elemencie dodajemy podwójny myślnik `--` i nazwę modyfikatora.
 
 ```html
 <div class="block block--modifier">Treść zmodyfikowanego bloku</div>
@@ -41,9 +67,13 @@ Modyfikator zmienia wygląd lub zachowanie bloku lub elementu. Modyfikatory są 
 </div>
 ```
 
+---
+
 ## Przykład
 
-Przykładowy kod HTML z zastosowaniem BEM:
+Komponent przycisku z elementem tekstowym i modyfikatorem:
+
+**HTML:**
 
 ```html
 <div class="button button--primary">
@@ -51,7 +81,7 @@ Przykładowy kod HTML z zastosowaniem BEM:
 </div>
 ```
 
-Odpowiadający kod CSS:
+**CSS:**
 
 ```css
 .button {
@@ -70,17 +100,23 @@ Odpowiadający kod CSS:
 }
 ```
 
+---
+
 ## Zasady BEM
 
-1. **Nazwa bloku:** Powinna być krótka i jednoznaczna, opisująca funkcję lub zawartość komponentu.
-2. **Nazwa elementu:** Powinna jasno określać, co robi element w kontekście bloku.
-3. **Nazwa modyfikatora:** Powinna opisywać, jak zmienia się blok lub element.
+1. **Nazwa bloku:** Powinna być krótka, jednoznaczna i opisywać funkcję komponentu (np. `form`, `menu`, `header`).
+2. **Nazwa elementu:** Opisuje część bloku w kontekście tego bloku (np. `form__input`, `menu__item`).
+3. **Nazwa modyfikatora:** Informuje o dodatkowym stanie lub wariancie (np. `form--login`, `button--disabled`, `menu__item--active`).
+4. **Unikaj zagnieżdżania:** Każdy element odnosi się zawsze do swojego bloku, nie do innych elementów.
+5. **Jasna struktura:** Każdy komponent i jego warianty są łatwe do odnalezienia i przetestowania.
+
+---
 
 ## Przykłady
 
 ### Formularz logowania
 
-HTML:
+**HTML:**
 
 ```html
 <form class="form form--login">
@@ -96,7 +132,7 @@ HTML:
 </form>
 ```
 
-CSS:
+**CSS:**
 
 ```css
 .form {
@@ -140,9 +176,11 @@ CSS:
 }
 ```
 
-### Zadania do wykonania
+---
 
-#### Zadanie 1
+## Zadania do wykonania
+
+### Zadanie 1 – Karta produktu
 
 Utwórz komponent karty produktu (`product-card`) z elementami dla tytułu (`product-card__title`), opisu (`product-card__description`) i ceny (`product-card__price`). Dodaj modyfikator dla karty wyróżnionej (`product-card--featured`).
 
@@ -150,8 +188,8 @@ Utwórz komponent karty produktu (`product-card`) z elementami dla tytułu (`pro
   <summary>
     <span>Pokaż rozwiązanie</span>
   </summary>
-  
-HTML:
+
+**HTML:**
 
 ```html
 <div class="product-card product-card--featured">
@@ -161,7 +199,7 @@ HTML:
 </div>
 ```
 
-CSS:
+**CSS:**
 
 ```css
 .product-card {
@@ -193,7 +231,9 @@ CSS:
 
 </details>
 
-#### Zadanie 2
+---
+
+### Zadanie 2 – Nawigacja
 
 Stwórz nawigację (`nav`) z elementami dla pozycji nawigacji (`nav__item`) i linków (`nav__link`). Dodaj modyfikator dla aktywnego linku (`nav__link--active`).
 
@@ -201,7 +241,8 @@ Stwórz nawigację (`nav`) z elementami dla pozycji nawigacji (`nav__item`) i li
   <summary>
     <span>Pokaż rozwiązanie</span>
   </summary>
-  HTML:
+
+**HTML:**
 
 ```html
 <nav class="nav">
@@ -215,7 +256,7 @@ Stwórz nawigację (`nav`) z elementami dla pozycji nawigacji (`nav__item`) i li
 </nav>
 ```
 
-CSS:
+**CSS:**
 
 ```css
 .nav {
@@ -241,7 +282,9 @@ CSS:
 
 </details>
 
-#### Zadanie 3
+---
+
+### Zadanie 3 – Artykuł
 
 Utwórz sekcję artykułu (`article`) z elementami dla nagłówka (`article__header`), treści (`article__content`) i stopki (`article__footer`). Dodaj modyfikator dla nagłówka z obrazkiem (`article__header--with-image`).
 
@@ -249,7 +292,8 @@ Utwórz sekcję artykułu (`article`) z elementami dla nagłówka (`article__hea
   <summary>
     <span>Pokaż rozwiązanie</span>
   </summary>
-  HTML:
+
+**HTML:**
 
 ```html
 <article class="article">
@@ -266,7 +310,7 @@ Utwórz sekcję artykułu (`article`) z elementami dla nagłówka (`article__hea
 </article>
 ```
 
-CSS:
+**CSS:**
 
 ```css
 .article {
@@ -297,4 +341,6 @@ CSS:
 
 </details>
 
-To tyle na temat podstaw metodyki BEM! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej modularne i łatwe do utrzymania style CSS.
+---
+
+To wszystko na temat podstaw metodyki BEM! Zachęcam do dalszego eksperymentowania, stosowania BEM w praktyce i pogłębiania wiedzy, aby tworzyć modularne, skalowalne i łatwe do utrzymania arkusze stylów CSS.
