@@ -6,68 +6,106 @@ categories: [wprowadzenie, javascript]
 createdAt: 2024-06-30
 ---
 
-JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.
+## Spis treści
+
+1. [Czym jest JavaScript?](#czym-jest-javascript)
+2. [Zmienne](#zmienne)
+3. [Typy danych](#typy-danych)
+4. [Operatory](#operatory)
+5. [Struktury kontrolne](#struktury-kontrolne)
+   - [Instrukcja if](#instrukcja-if)
+   - [Pętla for](#petla-for)
+   - [Pętla while](#petla-while)
+6. [Funkcje](#funkcje)
+   - [Deklaracja funkcji](#deklaracja-funkcji)
+   - [Funkcje strzałkowe](#funkcje-strzalkowe)
+7. [Obiekty](#obiekty)
+8. [Tablice](#tablice)
+9. [Zadania do wykonania](#zadania-do-wykonania)
+   - [Zadanie 1](#zadanie-1)
+   - [Zadanie 2](#zadanie-2)
+   - [Zadanie 3](#zadanie-3)
+   - [Zadanie 4](#zadanie-4)
+
+---
+
+## Czym jest JavaScript?
+
+**JavaScript** to język programowania, który umożliwia tworzenie dynamicznych i interaktywnych stron internetowych. Jest wykorzystywany zarówno po stronie klienta (w przeglądarce), jak i na serwerze (np. z użyciem Node.js). JavaScript pozwala na reagowanie na akcje użytkownika, manipulowanie elementami HTML, obsługę zdarzeń, walidację formularzy i wiele innych operacji.
+
+---
 
 ## Zmienne
 
-Zmienne w JavaScript mogą być deklarowane za pomocą `var`, `let` i `const`.
+Zmienne służą do przechowywania danych w programie. W JavaScript zmienne można deklarować za pomocą `var`, `let` lub `const`:
 
-### Przykłady:
+- `var` – starsza forma, o zasięgu funkcyjnym.
+- `let` – zalecana do zmiennych, których wartość się zmienia (zasięg blokowy).
+- `const` – do stałych, których wartość nie ulega zmianie.
 
 ```javascript
-var x = 5; // Deklaracja zmiennej za pomocą var
-let y = 10; // Deklaracja zmiennej za pomocą let
-const z = 15; // Deklaracja stałej za pomocą const
+var x = 5; // Zmienna var
+let y = 10; // Zmienna let
+const z = 15; // Stała const
 ```
+
+---
 
 ## Typy danych
 
-JavaScript obsługuje różne typy danych, w tym liczby, łańcuchy znaków (string), boolean, obiekty i tablice.
+JavaScript obsługuje różne typy danych:
 
-### Przykłady:
+- **Number** (liczby): całkowite i zmiennoprzecinkowe
+- **String** (łańcuchy znaków)
+- **Boolean** (wartości logiczne: true/false)
+- **Object** (obiekty)
+- **Array** (tablice)
+- **Undefined**, **Null**
 
 ```javascript
-let liczba = 42; // Typ danych: Number
-let tekst = "Hello, World!"; // Typ danych: String
-let prawda = true; // Typ danych: Boolean
-let obiekt = { imie: "Jan", wiek: 30 }; // Typ danych: Object
-let tablica = [1, 2, 3, 4, 5]; // Typ danych: Array
+let liczba = 42; // Number
+let tekst = "Hello, World!"; // String
+let prawda = true; // Boolean
+let obiekt = { imie: "Jan", wiek: 30 }; // Object
+let tablica = [1, 2, 3, 4, 5]; // Array
 ```
+
+---
 
 ## Operatory
 
-Operatory w JavaScript obejmują arytmetyczne, porównania, logiczne i przypisania.
-
-### Przykłady:
+Operatory służą do wykonywania działań na danych.
 
 ```javascript
-// Operatory arytmetyczne
-let suma = 10 + 5; // Dodawanie
-let roznica = 10 - 5; // Odejmowanie
-let iloczyn = 10 * 5; // Mnożenie
-let iloraz = 10 / 5; // Dzielenie
+// Arytmetyczne
+let suma = 10 + 5;
+let roznica = 10 - 5;
+let iloczyn = 10 * 5;
+let iloraz = 10 / 5;
 
-// Operatory porównania
+// Porównania
 let rowne = 10 == 10; // Porównanie wartości
 let identyczne = 10 === 10; // Porównanie wartości i typu
 let nierowne = 10 != 5; // Nierówność
 
-// Operatory logiczne
-let iOperator = true && false; // Operator logiczny AND
-let lubOperator = true || false; // Operator logiczny OR
-let nieOperator = !true; // Operator logiczny NOT
+// Logiczne
+let iOperator = true && false; // AND
+let lubOperator = true || false; // OR
+let nieOperator = !true; // NOT
 
-// Operatory przypisania
+// Przypisania
 let a = 10;
 a += 5; // Dodanie i przypisanie
 a -= 5; // Odejmowanie i przypisanie
 ```
 
+---
+
 ## Struktury kontrolne
 
-### Instrukcja warunkowa `if`
+### Instrukcja if
 
-Instrukcja `if` służy do wykonywania kodu warunkowo.
+Pozwala wykonywać kod warunkowo.
 
 ```javascript
 let wiek = 18;
@@ -79,9 +117,9 @@ if (wiek >= 18) {
 }
 ```
 
-### Pętla `for`
+### Pętla for
 
-Pętla `for` służy do wykonywania kodu wielokrotnie.
+Wielokrotne wykonywanie fragmentu kodu.
 
 ```javascript
 for (let i = 0; i < 5; i++) {
@@ -89,9 +127,9 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-### Pętla `while`
+### Pętla while
 
-Pętla `while` służy do wykonywania kodu, dopóki warunek jest prawdziwy.
+Wykonuje kod dopóki warunek jest prawdziwy.
 
 ```javascript
 let i = 0;
@@ -102,9 +140,11 @@ while (i < 5) {
 }
 ```
 
+---
+
 ## Funkcje
 
-Funkcje pozwalają na grupowanie kodu, który może być wykonywany wielokrotnie.
+Funkcje umożliwiają grupowanie kodu do wielokrotnego użycia.
 
 ### Deklaracja funkcji
 
@@ -119,7 +159,7 @@ console.log(wynik); // 15
 
 ### Funkcje strzałkowe
 
-Funkcje strzałkowe to krótszy zapis funkcji.
+Skrócony zapis funkcji.
 
 ```javascript
 const dodaj = (a, b) => a + b;
@@ -127,11 +167,11 @@ let wynik = dodaj(5, 10);
 console.log(wynik); // 15
 ```
 
+---
+
 ## Obiekty
 
-Obiekty pozwalają na grupowanie powiązanych wartości i funkcji.
-
-### Tworzenie obiektu
+Obiekty służą do grupowania powiązanych danych i funkcji.
 
 ```javascript
 let osoba = {
@@ -145,22 +185,24 @@ let osoba = {
 console.log(osoba.przedstawSie()); // Cześć, mam na imię Jan i mam 30 lat.
 ```
 
+---
+
 ## Tablice
 
-Tablice to struktury danych, które przechowują listę elementów.
-
-### Tworzenie i manipulacja tablicami
+Tablice przechowują listę wartości.
 
 ```javascript
 let liczby = [1, 2, 3, 4, 5];
 console.log(liczby[0]); // 1
 
-liczby.push(6); // Dodanie elementu na końcu tablicy
+liczby.push(6); // Dodanie elementu na końcu
 console.log(liczby); // [1, 2, 3, 4, 5, 6]
 
-liczby.pop(); // Usunięcie ostatniego elementu z tablicy
+liczby.pop(); // Usunięcie ostatniego elementu
 console.log(liczby); // [1, 2, 3, 4, 5]
 ```
+
+---
 
 ## Zadania do wykonania
 
@@ -184,9 +226,11 @@ console.log(wynik); // 50
 
 </details>
 
+---
+
 ### Zadanie 2
 
-Utwórz obiekt reprezentujący książkę z atrybutami `tytul`, `autor` i `rok`. Następnie dodaj metodę, która zwraca opis książki.
+Utwórz obiekt reprezentujący książkę z atrybutami `tytul`, `autor` i `rok`. Dodaj metodę, która zwraca opis książki.
 
 <details>
   <summary>
@@ -207,6 +251,8 @@ console.log(ksiazka.opis()); // W pustyni i w puszczy to książka napisana prze
 ```
 
 </details>
+
+---
 
 ### Zadanie 3
 
@@ -234,9 +280,11 @@ console.log(znajdzNajwieksza(liczby)); // 5
 
 </details>
 
+---
+
 ### Zadanie 4
 
-Utwórz tablicę, która zawiera kilka imion. Następnie użyj pętli `for`, aby wyświetlić każde imię w konsoli.
+Utwórz tablicę z kilkoma imionami. Następnie za pomocą pętli `for` wyświetl każde imię w konsoli.
 
 <details>
   <summary>
@@ -257,4 +305,6 @@ for (let i = 0; i < imiona.length; i++) {
 
 </details>
 
-To tyle na temat podstaw JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.
+---
+
+To wszystko na temat podstaw JavaScript! Zachęcam do dalszego eksperymentowania, tworzenia własnych funkcji, obiektów i aplikacji oraz zgłębiania bardziej zaawansowanych tematów języka JavaScript.

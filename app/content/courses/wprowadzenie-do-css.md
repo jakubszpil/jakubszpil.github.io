@@ -6,13 +6,41 @@ categories: [wprowadzenie, css]
 createdAt: 2024-06-30
 ---
 
-CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.
+## Spis treści
+
+1. [Czym jest CSS?](#czym-jest-css)
+2. [Sposoby załączania CSS do HTML](#sposoby-załączania-css-do-html)
+   - [Inline CSS](#inline-css)
+   - [Internal CSS](#internal-css)
+   - [External CSS](#external-css)
+3. [Podstawowe selektory CSS](#podstawowe-selektory-css)
+   - [Selektory elementów](#selektory-elementow)
+   - [Selektory klas](#selektory-klas)
+   - [Selektory identyfikatorów](#selektory-identyfikatorow)
+4. [Podstawowe właściwości CSS](#podstawowe-wlasciwosci-css)
+   - [Kolory](#kolory)
+   - [Tło](#tlo)
+   - [Marginesy i wypełnienia](#marginesy-i-wypelnienia)
+   - [Ramki](#ramki)
+5. [Zadania do wykonania](#zadania-do-wykonania)
+   - [Zadanie 1](#zadanie-1)
+   - [Zadanie 2](#zadanie-2)
+   - [Zadanie 3](#zadanie-3)
+   - [Zadanie 4](#zadanie-4)
+
+---
+
+## Czym jest CSS?
+
+**CSS** (Cascading Style Sheets, Kaskadowe Arkusze Stylów) to język służący do opisywania wyglądu i formatu dokumentu HTML. Dzięki CSS możesz oddzielić strukturę strony (HTML) od jej prezentacji (wyglądu i stylu). Pozwala to tworzyć estetyczne, przejrzyste i łatwe do utrzymania strony internetowe. CSS umożliwia m.in. definiowanie kolorów, czcionek, układów, odstępów, ramek, tła czy efektów specjalnych.
+
+---
 
 ## Sposoby załączania CSS do HTML
 
 ### Inline CSS
 
-Inline CSS jest stosowany bezpośrednio w atrybucie `style` elementu HTML.
+Stylowanie pojedynczych elementów bezpośrednio w atrybucie `style` w kodzie HTML.
 
 ```html
 <!DOCTYPE html>
@@ -28,9 +56,11 @@ Inline CSS jest stosowany bezpośrednio w atrybucie `style` elementu HTML.
 </html>
 ```
 
+_Stosuj wyłącznie do bardzo prostych i pojedynczych przypadków._
+
 ### Internal CSS
 
-Internal CSS jest umieszczony w sekcji `<head>` dokumentu HTML, wewnątrz elementu `<style>`.
+Umieszczanie stylów wewnątrz dokumentu HTML, w sekcji `<head>`, za pomocą tagu `<style>`.
 
 ```html
 <!DOCTYPE html>
@@ -51,9 +81,11 @@ Internal CSS jest umieszczony w sekcji `<head>` dokumentu HTML, wewnątrz elemen
 </html>
 ```
 
+_Dobre do małych stron lub prototypów._
+
 ### External CSS
 
-External CSS jest zapisany w osobnym pliku z rozszerzeniem `.css` i dołączony do dokumentu HTML za pomocą elementu `<link>`.
+Tworzenie osobnego pliku `.css` i dołączanie go do strony za pomocą tagu `<link>`. To najbardziej zalecana metoda.
 
 ```html
 <!-- index.html -->
@@ -78,11 +110,15 @@ h1 {
 }
 ```
 
+_Umożliwia łatwą aktualizację stylów i ponowne ich wykorzystanie na wielu stronach._
+
+---
+
 ## Podstawowe selektory CSS
 
 ### Selektory elementów
 
-Selektor elementu stosuje style do wszystkich elementów danego typu.
+Najprostszy selektor – wybiera wszystkie elementy danego typu (np. wszystkie nagłówki `<h1>`).
 
 ```css
 h1 {
@@ -92,7 +128,7 @@ h1 {
 
 ### Selektory klas
 
-Selektor klasy stosuje style do elementów, które mają określoną klasę.
+Selektor, który styluje elementy z określoną klasą. Klas można używać wielokrotnie na różnych elementach.
 
 ```html
 <h1 class="naglowek">Witaj, świecie!</h1>
@@ -106,7 +142,7 @@ Selektor klasy stosuje style do elementów, które mają określoną klasę.
 
 ### Selektory identyfikatorów
 
-Selektor identyfikatora stosuje style do elementu z określonym identyfikatorem.
+Selektor, który styluje element z unikalnym identyfikatorem (`id`).
 
 ```html
 <h1 id="naglowek-glowny">Witaj, świecie!</h1>
@@ -118,11 +154,15 @@ Selektor identyfikatora stosuje style do elementu z określonym identyfikatorem.
 }
 ```
 
+_Identyfikator (`id`) powinien być unikalny na stronie._
+
+---
+
 ## Podstawowe właściwości CSS
 
 ### Kolory
 
-Kolory można definiować za pomocą nazw kolorów, wartości szesnastkowych, RGB lub HSL.
+Definiowanie kolorów może odbywać się na kilka sposobów: nazwy, wartości szesnastkowe, RGB, czy HSL.
 
 ```css
 h1 {
@@ -135,7 +175,7 @@ h1 {
 
 ### Tło
 
-Właściwości tła pozwalają na ustawienie koloru tła, obrazka tła, powtarzania obrazka tła, pozycji obrazka tła itp.
+Możesz ustawić kolor tła, obrazek, powtarzanie, pozycję i rozmiar.
 
 ```css
 body {
@@ -149,18 +189,18 @@ body {
 
 ### Marginesy i wypełnienia
 
-Marginesy (`margin`) i wypełnienia (`padding`) pozwalają na kontrolowanie odstępów wokół elementów.
+Marginesy (`margin`) określają odstęp na zewnątrz elementu, a wypełnienia (`padding`) – wewnątrz.
 
 ```css
 p {
-  margin: 20px; /* Margines wokół elementu */
-  padding: 10px; /* Wypełnienie wewnątrz elementu */
+  margin: 20px; /* Odstęp na zewnątrz */
+  padding: 10px; /* Odstęp wewnątrz */
 }
 ```
 
 ### Ramki
 
-Właściwości ramek pozwalają na dodanie obramowania wokół elementów.
+Dzięki właściwościom ramek możesz dodać obramowanie oraz zaokrąglić jego rogi.
 
 ```css
 div {
@@ -168,6 +208,8 @@ div {
   border-radius: 10px; /* Zaokrąglone rogi */
 }
 ```
+
+---
 
 ## Zadania do wykonania
 
@@ -205,6 +247,8 @@ Stwórz stronę HTML z elementem `<h1>`, który ma kolor czerwony przy użyciu E
 
 </details>
 
+---
+
 ### Zadanie 2
 
 Utwórz paragraf (`<p>`), który ma zielone tło, 20 pikseli wypełnienia i zaokrąglone rogi o promieniu 10 pikseli.
@@ -241,6 +285,8 @@ Utwórz paragraf (`<p>`), który ma zielone tło, 20 pikseli wypełnienia i zaok
 
 </details>
 
+---
+
 ### Zadanie 3
 
 Stwórz div, który ma niebieską ramkę o grubości 2 pikseli, a wewnątrz niego umieść tekst "To jest div".
@@ -274,6 +320,8 @@ Stwórz div, który ma niebieską ramkę o grubości 2 pikseli, a wewnątrz nieg
 ```
 
 </details>
+
+---
 
 ### Zadanie 4
 
@@ -319,4 +367,6 @@ Utwórz stronę HTML z trzema nagłówkami (`<h1>`, `<h2>`, `<h3>`) o różnych 
 
 </details>
 
-To tyle na temat podstaw CSS! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i estetyczne strony internetowe.
+---
+
+To tyle na temat podstaw CSS! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć coraz bardziej zaawansowane i estetyczne strony internetowe.

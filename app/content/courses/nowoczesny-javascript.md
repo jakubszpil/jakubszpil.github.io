@@ -6,139 +6,256 @@ categories: [wprowadzenie, javascript]
 createdAt: 2024-06-30
 ---
 
-JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.
+JavaScript to wszechstronny język programowania, kluczowy dla współczesnych aplikacji webowych i nie tylko. Wraz z pojawieniem się standardu ES6 (ECMAScript 2015) oraz kolejnych aktualizacji, JS stał się bardziej ekspresyjny, bezpieczny i wygodny w użyciu. W tym przewodniku poznasz najważniejsze zagadnienia nowoczesnego JavaScriptu, które pozwolą Ci pisać czytelny, skuteczny i łatwo rozwijalny kod.
 
-## Zmienne: `let` i `const`
+## Spis treści
 
-W nowoczesnym JavaScript zmienne są definiowane za pomocą `let` i `const` zamiast `var`.
+1. [Zmienne: `let`, `const` i zakresy blokowe](#zmienne-let-const-i-zakresy-blokowe)
+2. [Funkcje strzałkowe i ich zastosowania](#funkcje-strzałkowe-i-ich-zastosowania)
+3. [Szablony stringów (Template Literals)](#szablony-stringów-template-literals)
+4. [Destrukturyzacja tablic i obiektów](#destrukturyzacja-tablic-i-obiektów)
+5. [Spread i rest operator (`...`)](#spread-i-rest-operator-)
+6. [Promise API i obsługa asynchroniczności](#promise-api-i-obsługa-asynchroniczności)
+7. [Async/await – nowoczesna obsługa kodu asynchronicznego](#asyncawait--nowoczesna-obsługa-kodu-asynchronicznego)
+8. [Zadania do wykonania](#zadania-do-wykonania)
 
-- `let` pozwala na deklarację zmiennych, które mogą być zmieniane.
-- `const` pozwala na deklarację zmiennych, które są stałe i nie mogą być zmieniane.
+---
 
-### Przykłady:
+## Zmienne: `let`, `const` i zakresy blokowe
 
-```javascript
-let zmienna = "To jest zmienna";
-zmienna = "Zmieniona wartość";
+### Zakres blokowy (`block scope`)
 
-const stala = "To jest stała";
-// stala = 'Zmieniona wartość'; // Spowoduje błąd
-```
-
-## Funkcje strzałkowe
-
-Funkcje strzałkowe to skrócony zapis funkcji, który również pozwala na lepsze zrozumienie kontekstu `this`.
-
-### Przykład:
+W przeciwieństwie do starszego `var`, deklaracje `let` i `const` są ograniczone do bloku, w którym zostały zadeklarowane (czyli do najbliższych `{ ... }`). Dzięki temu unikasz tzw. „przecieków zmiennych” (variable hoisting) i niezamierzonych nadpisań.
 
 ```javascript
-// Standardowa funkcja
-function dodaj(a, b) {
-  return a + b;
+if (true) {
+  let x = 5;
+  const y = 10;
+  console.log(x); // 5
 }
-
-// Funkcja strzałkowa
-const dodaj = (a, b) => a + b;
+// console.log(x); // ReferenceError
 ```
+
+### Różnice między `let`, `const` i `var`
+
+- `let` – pozwala na modyfikację wartości, ale nie na ponowną deklarację w tym samym bloku.
+- `const` – wymaga przypisania wartości przy deklaracji i nie pozwala na jej zmianę (dotyczy to referencji, niekoniecznie zawartości – patrz poniżej).
+- `var` – ma zakres funkcyjny (function scope), podlega hoistingowi, co może prowadzić do nieprzewidzianych rezultatów.
+
+```javascript
+const tablica = [1, 2, 3];
+tablica.push(4); // Dozwolone! Zmieniamy zawartość, nie referencję.
+// tablica = [1, 2]; // Błąd! Przypisanie nowej referencji jest niedozwolone.
+```
+
+---
+
+## Funkcje strzałkowe i ich zastosowania
+
+### Składnia funkcji strzałkowej
+
+- Szybszy zapis (szczególnie dla funkcji jedno-liniowych).
+- Automatyczne wiązanie `this` do kontekstu, w którym funkcja została zadeklarowana.
+- Brak własnego obiektu `arguments` oraz brak możliwości użycia jako konstruktor.
+
+```javascript
+const dodaj = (a, b) => a + b;
+const powitanie = (imie) => `Cześć, ${imie}!`;
+```
+
+### Funkcje strzałkowe a kontekst `this`
+
+Funkcje strzałkowe nie mają własnego `this`, przez co bardzo dobrze sprawdzają się w metodach, callbackach czy w obsłudze zdarzeń, gdzie chcemy korzystać z kontekstu obiektu nadrzędnego.
+
+```javascript
+function Timer() {
+  this.sekundy = 0;
+  setInterval(() => {
+    this.sekundy++;
+    console.log(this.sekundy);
+  }, 1000);
+}
+new Timer(); // this.sekundy będzie poprawnie zwiększane
+```
+
+---
 
 ## Szablony stringów (Template Literals)
 
-Szablony stringów umożliwiają interpolację zmiennych i wyrażenia w łańcuchach znaków za pomocą backticków (`` ` ``).
+### Interpolacja i wielolinijkowość
 
-### Przykład:
-
-```javascript
-const name = "Jan";
-const greeting = `Cześć, ${name}! Jak się masz?`;
-console.log(greeting); // "Cześć, Jan! Jak się masz?"
-```
-
-## Destrukturyzacja
-
-Destrukturyzacja pozwala na wyodrębnienie wartości z tablic lub obiektów i przypisanie ich do zmiennych.
-
-### Przykład z tablicą:
+Szablony stringów pozwalają na interpolację zmiennych i wyrażeń oraz łatwe tworzenie tekstów wielolinijkowych, co jest szczególnie przydatne np. przy generowaniu HTML-a lub komunikatów:
 
 ```javascript
-const liczby = [1, 2, 3];
-const [jeden, dwa, trzy] = liczby;
-console.log(jeden, dwa, trzy); // 1 2 3
+const imie = "Ola";
+const wiek = 25;
+const info = `Mam na imię ${imie} i mam ${wiek} lat.`;
+console.log(info);
+
+const html = `
+<div>
+  <h1>${imie}</h1>
+  <p>Wiek: ${wiek}</p>
+</div>
+`;
 ```
 
-### Przykład z obiektem:
+### Dodatkowe możliwości
+
+Szablony stringów wspierają także tzw. tagowane szablony (`tagged templates`), które pozwalają na zaawansowaną manipulację tekstem (np. do tłumaczeń, walidacji, formatowania).
 
 ```javascript
-const osoba = { imie: "Jan", wiek: 30 };
-const { imie, wiek } = osoba;
-console.log(imie, wiek); // Jan 30
+function upper(strings, ...values) {
+  return strings[0] + values.map((v) => v.toUpperCase()).join("");
+}
+const imie = "Ania";
+console.log(upper`Cześć, ${imie}!`); // Cześć, ANIA!
 ```
 
-## Spread operator (`...`)
+---
 
-Spread operator pozwala na rozwinięcie elementów tablicy lub obiektu.
+## Destrukturyzacja tablic i obiektów
 
-### Przykład z tablicą:
+### Destrukturyzacja tablic
+
+Pozwala na szybkie przypisanie wartości z tablicy do zmiennych:
 
 ```javascript
-const liczby = [1, 2, 3];
-const wiecejLiczb = [...liczby, 4, 5, 6];
-console.log(wiecejLiczb); // [1, 2, 3, 4, 5, 6]
+const [pierwszy, drugi, trzeci = 0] = [10, 20];
+console.log(pierwszy, drugi, trzeci); // 10 20 0 (wartość domyślna)
 ```
 
-### Przykład z obiektem:
+Można pomijać niektóre elementy lub korzystać z reszty:
 
 ```javascript
-const osoba = { imie: "Jan", wiek: 30 };
-const nowaOsoba = { ...osoba, miasto: "Warszawa" };
-console.log(nowaOsoba); // { imie: 'Jan', wiek: 30, miasto: 'Warszawa' }
+const [a, , b, ...reszta] = [1, 2, 3, 4, 5];
+console.log(a, b, reszta); // 1 3 [4, 5]
 ```
 
-## Promisy
+### Destrukturyzacja obiektów
 
-Promisy są używane do obsługi operacji asynchronicznych.
+Do zmiennych przypisywane są wartości na podstawie nazw kluczy:
 
-### Przykład:
+```javascript
+const osoba = { imie: "Jan", wiek: 30, kraj: "PL" };
+const { wiek, imie, miasto = "nieznane" } = osoba;
+console.log(imie, wiek, miasto); // Jan 30 nieznane
+```
+
+Można zmieniać nazwy zmiennych:
+
+```javascript
+const { imie: name, wiek: age } = osoba;
+console.log(name, age); // Jan 30
+```
+
+---
+
+## Spread i rest operator (`...`)
+
+### Spread operator
+
+Pozwala na rozwinięcie (skopiowanie) elementów tablicy lub właściwości obiektu:
+
+```javascript
+const tablica = [1, 2, 3];
+const nowaTablica = [...tablica, 4, 5]; // [1, 2, 3, 4, 5]
+
+const obiekt = { a: 1, b: 2 };
+const nowyObiekt = { ...obiekt, c: 3 }; // { a: 1, b: 2, c: 3 }
+```
+
+### Rest operator
+
+Pozwala na zbieranie wielu wartości w jedną tablicę (lub obiekt):
+
+```javascript
+function suma(...liczby) {
+  return liczby.reduce((a, b) => a + b, 0);
+}
+console.log(suma(1, 2, 3, 4)); // 10
+
+const { a, ...reszta } = { a: 1, b: 2, c: 3 };
+console.log(reszta); // { b: 2, c: 3 }
+```
+
+---
+
+## Promise API i obsługa asynchroniczności
+
+### Czym jest Promise?
+
+Promise reprezentuje operację asynchroniczną, która może zakończyć się sukcesem (`resolve`) lub błędem (`reject`). Stany: _pending_ → _fulfilled_ lub _rejected_.
 
 ```javascript
 const obietnica = new Promise((resolve, reject) => {
-  const sukces = true;
-
-  if (sukces) {
-    resolve("Operacja zakończona sukcesem!");
-  } else {
-    reject("Operacja zakończona niepowodzeniem.");
-  }
+  setTimeout(() => {
+    const sukces = Math.random() > 0.5;
+    if (sukces) resolve("Sukces!");
+    else reject("Błąd!");
+  }, 1000);
 });
 
 obietnica
-  .then((result) => console.log(result))
+  .then((wynik) => console.log(wynik))
+  .catch((błąd) => console.error(błąd))
+  .finally(() => console.log("Gotowe!"));
+```
+
+### Łańcuchy Promise
+
+Możesz łączyć wiele operacji asynchronicznych w łańcuch:
+
+```javascript
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then((response) => response.json())
+  .then((user) => console.log(user))
   .catch((error) => console.log(error));
 ```
 
-## Async/Await
+---
 
-Async/Await to składnia, która upraszcza pracę z promisami i sprawia, że kod asynchroniczny wygląda jak kod synchroniczny.
+## Async/await – nowoczesna obsługa kodu asynchronicznego
 
-### Przykład:
+### Uproszczenie pracy z Promise
+
+Słowa kluczowe `async` i `await` pozwalają pisać kod asynchroniczny w stylu synchronicznym, co znacząco poprawia czytelność i obsługę błędów.
 
 ```javascript
-const asyncFunction = async () => {
+async function pobierzDane() {
   try {
-    const result = await obietnica;
-    console.log(result);
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts/1"
+    );
+    const post = await response.json();
+    console.log(post);
   } catch (error) {
-    console.log(error);
+    console.error("Błąd:", error);
   }
-};
-
-asyncFunction();
+}
+pobierzDane();
 ```
+
+### Zwracanie wartości i obsługa błędów
+
+Wartość zwrócona przez funkcję oznaczoną `async` jest automatycznie opakowana w Promise.
+
+```javascript
+async function zwrocLiczbe() {
+  return 42;
+}
+zwrocLiczbe().then((val) => console.log(val)); // 42
+```
+
+Obsługa błędów działa z użyciem standardowego `try...catch`.
+
+---
 
 ## Zadania do wykonania
 
 ### Zadanie 1
 
-Napisz funkcję strzałkową, która przyjmuje dwa argumenty i zwraca ich sumę.
+Napisz funkcję strzałkową, która przyjmuje dowolną liczbę argumentów i zwraca ich sumę.
 
 <details>
   <summary>
@@ -146,15 +263,17 @@ Napisz funkcję strzałkową, która przyjmuje dwa argumenty i zwraca ich sumę.
   </summary>
 
 ```javascript
-const dodaj = (a, b) => a + b;
-console.log(dodaj(2, 3)); // 5
+const suma = (...args) => args.reduce((a, b) => a + b, 0);
+console.log(suma(1, 2, 3)); // 6
 ```
 
 </details>
+
+---
 
 ### Zadanie 2
 
-Utwórz obiekt reprezentujący samochód, z atrybutami `marka`, `model` i `rok`. Następnie użyj destrukturyzacji, aby wyodrębnić te wartości i wyświetlić je w konsoli.
+Utwórz obiekt reprezentujący użytkownika z kluczami: `imie`, `email`, `aktywny`. Następnie użyj destrukturyzacji, by wyodrębnić te wartości i wyświetlić je w konsoli.
 
 <details>
   <summary>
@@ -162,16 +281,18 @@ Utwórz obiekt reprezentujący samochód, z atrybutami `marka`, `model` i `rok`.
   </summary>
 
 ```javascript
-const samochod = { marka: "Toyota", model: "Corolla", rok: 2020 };
-const { marka, model, rok } = samochod;
-console.log(marka, model, rok); // Toyota Corolla 2020
+const user = { imie: "Ewa", email: "ewa@example.com", aktywny: true };
+const { imie, email, aktywny } = user;
+console.log(imie, email, aktywny); // Ewa ewa@example.com true
 ```
 
 </details>
+
+---
 
 ### Zadanie 3
 
-Stwórz tablicę liczb od 1 do 5. Następnie użyj operatora spread, aby dodać liczby 6 i 7 do tej tablicy.
+Stwórz tablicę imion, a następnie utwórz nową tablicę ze wszystkimi tymi imionami plus dodatkowym imieniem na końcu (wykorzystaj spread).
 
 <details>
   <summary>
@@ -179,18 +300,18 @@ Stwórz tablicę liczb od 1 do 5. Następnie użyj operatora spread, aby dodać 
   </summary>
 
 ```javascript
-const liczby = [1, 2, 3, 4, 5];
-
-const wiecejLiczb = [...liczby, 6, 7];
-
-console.log(wiecejLiczb); // [1, 2, 3, 4, 5, 6, 7]
+const imiona = ["Anna", "Bartek"];
+const wiecejImion = [...imiona, "Celina"];
+console.log(wiecejImion); // ["Anna", "Bartek", "Celina"]
 ```
 
 </details>
 
+---
+
 ### Zadanie 4
 
-Napisz funkcję asynchroniczną, która używa promisów do symulacji opóźnienia (np. za pomocą `setTimeout`). Funkcja powinna zwracać wynik po 2 sekundach.
+Napisz funkcję asynchroniczną, która symuluje pobieranie danych z serwera (z użyciem `setTimeout` i Promise) i po 2 sekundach wyświetla wynik.
 
 <details>
   <summary>
@@ -198,12 +319,13 @@ Napisz funkcję asynchroniczną, która używa promisów do symulacji opóźnien
   </summary>
 
 ```javascript
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const pobierzDane = () =>
+  new Promise((resolve) => setTimeout(() => resolve("Dane pobrane!"), 2000));
 
 const asyncFunction = async () => {
-  console.log("Czekam 2 sekundy...");
-  await delay(2000);
-  console.log("2 sekundy minęły!");
+  console.log("Pobieram dane...");
+  const dane = await pobierzDane();
+  console.log(dane);
 };
 
 asyncFunction();
@@ -211,4 +333,6 @@ asyncFunction();
 
 </details>
 
-To tyle na temat podstaw nowoczesnego JavaScript! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej zaawansowane i interaktywne aplikacje.
+---
+
+To tylko początek przygody z nowoczesnym JavaScriptem! Zachęcam do dalszego zgłębiania m.in. takich zagadnień jak: klasy ES6, moduły, funkcje wyższego rzędu, obsługa błędów, praca z API, a także frameworków opartych na JS (React, Vue, Svelte).

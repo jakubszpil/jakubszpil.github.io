@@ -6,13 +6,35 @@ categories: [wprowadzenie, html]
 createdAt: 2024-06-30
 ---
 
+## Spis treści
+
+1. [Co to jest HTML?](#co-to-jest-html)
+2. [Podstawowa struktura dokumentu HTML](#podstawowa-struktura-dokumentu-html)
+   - [Wyjaśnienie struktury](#wyjasnienie-struktury)
+3. [Podstawowe elementy HTML](#podstawowe-elementy-html)
+   - [Nagłówki](#naglowki)
+   - [Akapity](#akapity)
+   - [Linki](#linki)
+   - [Obrazy](#obrazy)
+   - [Listy](#listy)
+4. [Formularze](#formulare)
+5. [Zadania do wykonania](#zadania-do-wykonania)
+   - [Zadanie 1](#zadanie-1)
+   - [Zadanie 2](#zadanie-2)
+   - [Zadanie 3](#zadanie-3)
+   - [Zadanie 4](#zadanie-4)
+
+---
+
 ## Co to jest HTML?
 
-HTML (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. HTML używa elementów, które definiują różne części dokumentu, takie jak nagłówki, akapity, linki, obrazy, i wiele innych.
+**HTML** (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. Pozwala oznaczać nagłówki, akapity, listy, obrazy, linki i wiele innych elementów. Dzięki niemu przeglądarka wie, jak wyświetlić i zinterpretować treść strony.
+
+---
 
 ## Podstawowa struktura dokumentu HTML
 
-Każdy dokument HTML ma określoną strukturę, która składa się z kilku kluczowych elementów:
+Każdy dokument HTML posiada określoną strukturę i kilka kluczowych sekcji:
 
 ```html
 <!DOCTYPE html>
@@ -31,19 +53,21 @@ Każdy dokument HTML ma określoną strukturę, która składa się z kilku kluc
 
 ### Wyjaśnienie struktury
 
-- `<!DOCTYPE html>`: Deklaracja typu dokumentu określająca, że dokument jest w HTML5.
-- `<html>`: Korzeń dokumentu HTML.
-- `<head>`: Zawiera meta informacje o dokumencie, takie jak kodowanie znaków i tytuł strony.
-- `<meta charset="UTF-8">`: Określa kodowanie znaków dokumentu.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Zapewnia poprawne wyświetlanie na urządzeniach mobilnych.
-- `<title>`: Tytuł strony wyświetlany na karcie przeglądarki.
-- `<body>`: Zawiera treść strony, która jest widoczna dla użytkownika.
+- `<!DOCTYPE html>` – Deklaracja typu dokumentu, sygnalizuje przeglądarce użycie HTML5.
+- `<html>` – Korzeń dokumentu HTML, obejmuje całą zawartość strony.
+- `<head>` – Sekcja z informacjami o stronie (meta dane, tytuł, ustawienia kodowania).
+- `<meta charset="UTF-8">` – Określa kodowanie znaków na UTF-8 (umożliwia użycie polskich znaków).
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">` – Umożliwia responsywność na urządzeniach mobilnych.
+- `<title>` – Tytuł strony wyświetlany na karcie przeglądarki.
+- `<body>` – Zawiera właściwą treść strony widoczną dla użytkownika.
+
+---
 
 ## Podstawowe elementy HTML
 
 ### Nagłówki
 
-HTML posiada sześć poziomów nagłówków, od `<h1>` do `<h6>`, gdzie `<h1>` jest najważniejszym nagłówkiem, a `<h6>` najmniej ważnym.
+Sześć poziomów nagłówków – od najważniejszego `<h1>`, do najmniej ważnego `<h6>`. Używaj ich do hierarchizacji treści.
 
 ```html
 <h1>Najważniejszy nagłówek</h1>
@@ -53,7 +77,7 @@ HTML posiada sześć poziomów nagłówków, od `<h1>` do `<h6>`, gdzie `<h1>` j
 
 ### Akapity
 
-Akapity są tworzone za pomocą elementu `<p>`.
+Akapity tekstu oznacza się elementem `<p>`:
 
 ```html
 <p>To jest akapit tekstu.</p>
@@ -61,7 +85,7 @@ Akapity są tworzone za pomocą elementu `<p>`.
 
 ### Linki
 
-Linki są tworzone za pomocą elementu `<a>`, który zawiera atrybut `href` określający adres URL.
+Tworzenie odnośników do innych stron lub zasobów za pomocą `<a href="...">`:
 
 ```html
 <a href="https://www.example.com">Kliknij tutaj, aby przejść do Example</a>
@@ -69,7 +93,7 @@ Linki są tworzone za pomocą elementu `<a>`, który zawiera atrybut `href` okre
 
 ### Obrazy
 
-Obrazy są dodawane za pomocą elementu `<img>`, który zawiera atrybut `src` wskazujący na źródło obrazu oraz `alt` opisujący obraz.
+Wstawianie obrazów za pomocą `<img>`, z atrybutami `src` (adres obrazka) i `alt` (opis alternatywny):
 
 ```html
 <img src="obrazek.jpg" alt="Opis obrazka" />
@@ -77,7 +101,7 @@ Obrazy są dodawane za pomocą elementu `<img>`, który zawiera atrybut `src` ws
 
 ### Listy
 
-Listy nieuporządkowane (`<ul>`) i uporządkowane (`<ol>`) zawierają elementy listy (`<li>`).
+Tworzenie list nieuporządkowanych `<ul>` i uporządkowanych `<ol>`, z elementami `<li>`:
 
 ```html
 <ul>
@@ -93,9 +117,11 @@ Listy nieuporządkowane (`<ul>`) i uporządkowane (`<ol>`) zawierają elementy l
 </ol>
 ```
 
+---
+
 ## Formularze
 
-Formularze są tworzone za pomocą elementu `<form>`, który zawiera różne elementy wejściowe, takie jak pola tekstowe (`<input>`), pola wyboru (`<input type="checkbox">`), przyciski radio (`<input type="radio">`), i przyciski (`<button>`).
+Formularze umożliwiają zbieranie danych od użytkowników. Składają się z różnych pól wejściowych (input), przycisków i etykiet.
 
 ```html
 <form action="/submit-form" method="post">
@@ -104,6 +130,14 @@ Formularze są tworzone za pomocą elementu `<form>`, który zawiera różne ele
   <input type="submit" value="Wyślij" />
 </form>
 ```
+
+- `action` – adres, pod który zostaną wysłane dane formularza.
+- `method` – metoda wysyłki (zazwyczaj `post` lub `get`).
+- `<label>` – etykieta powiązana z polem formularza.
+- `<input type="text">` – pole tekstowe.
+- `<input type="submit">` – przycisk wysyłający dane.
+
+---
 
 ## Zadania do wykonania
 
@@ -138,6 +172,8 @@ Utwórz stronę HTML, która zawiera:
 
 </details>
 
+---
+
 ### Zadanie 2
 
 Utwórz stronę HTML, która zawiera:
@@ -165,6 +201,8 @@ Utwórz stronę HTML, która zawiera:
 ```
 
 </details>
+
+---
 
 ### Zadanie 3
 
@@ -204,6 +242,8 @@ Utwórz stronę HTML, która zawiera:
 ```
 
 </details>
+
+---
 
 ### Zadanie 4
 
@@ -250,4 +290,6 @@ Utwórz formularz HTML, który zawiera:
 
 </details>
 
-To tyle na temat podstaw HTML! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu, aby tworzyć bardziej złożone i interaktywne strony internetowe.
+---
+
+To wszystko na temat podstaw HTML! Zachęcam do dalszego eksperymentowania, poznawania nowych elementów i tworzenia coraz bardziej złożonych oraz interaktywnych stron internetowych.

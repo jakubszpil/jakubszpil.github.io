@@ -6,13 +6,32 @@ categories: [wprowadzenie, html]
 createdAt: 2024-06-30
 ---
 
+## Spis treści
+
+1. [Wprowadzenie](#wprowadzenie)
+2. [Struktura DOM](#struktura-dom)
+3. [Podstawowe operacje na DOM](#podstawowe-operacje-na-dom)
+   - [Wybieranie elementów](#wybieranie-elementow)
+   - [Manipulacja elementami](#manipulacja-elementami)
+4. [Zadania do wykonania](#zadania-do-wykonania)
+   - [Zadanie 1](#zadanie-1)
+   - [Zadanie 2](#zadanie-2)
+   - [Zadanie 3](#zadanie-3)
+   - [Zadanie 4](#zadanie-4)
+
+---
+
 ## Wprowadzenie
 
-DOM (Document Object Model) to interfejs programistyczny dla dokumentów HTML i XML. Umożliwia dynamiczne manipulowanie strukturą, stylem i treścią dokumentów. DOM reprezentuje dokument jako drzewo obiektów, gdzie każdy element, atrybut i tekst w dokumencie jest węzłem drzewa.
+**DOM** (Document Object Model) to interfejs programistyczny, który pozwala na dynamiczne manipulowanie strukturą, stylem i treścią dokumentów HTML oraz XML. DOM przedstawia dokument jako drzewo obiektów, gdzie każdy element, atrybut czy fragment tekstu jest węzłem. Dzięki temu możemy programistycznie odczytywać, modyfikować, dodawać i usuwać dowolne fragmenty dokumentu w czasie rzeczywistym za pomocą JavaScript.
+
+---
 
 ## Struktura DOM
 
-DOM przedstawia dokument HTML jako drzewo hierarchiczne:
+DOM reprezentuje dokument HTML jako strukturę drzewiastą, gdzie każdy element jest węzłem połączonym z innymi w hierarchii rodzic-dziecko.
+
+Przykładowy dokument HTML:
 
 ```html
 <!DOCTYPE html>
@@ -27,7 +46,7 @@ DOM przedstawia dokument HTML jako drzewo hierarchiczne:
 </html>
 ```
 
-Powyższy dokument HTML jest reprezentowany w DOM jako:
+W DOM taki dokument zostanie odwzorowany jako:
 
 ```
 #document
@@ -51,15 +70,17 @@ Powyższy dokument HTML jest reprezentowany w DOM jako:
                     +-- "To jest akapit."
 ```
 
+---
+
 ## Podstawowe operacje na DOM
 
-DOM udostępnia wiele metod do manipulacji dokumentem. Oto kilka przykładów:
+DOM udostępnia wiele metod do pobierania, modyfikowania i usuwania elementów. Oto najczęściej używane:
 
 ### Wybieranie elementów
 
 #### `getElementById`
 
-Wybiera element na podstawie jego identyfikatora (ID):
+Pozwala pobrać element o konkretnym atrybucie `id`:
 
 ```html
 <p id="myParagraph">To jest akapit.</p>
@@ -72,7 +93,7 @@ Wybiera element na podstawie jego identyfikatora (ID):
 
 #### `getElementsByClassName`
 
-Wybiera wszystkie elementy z określoną klasą:
+Zwraca kolekcję wszystkich elementów z określoną klasą:
 
 ```html
 <p class="myClass">Akapit 1</p>
@@ -86,7 +107,7 @@ Wybiera wszystkie elementy z określoną klasą:
 
 #### `querySelector` i `querySelectorAll`
 
-Wybiera elementy za pomocą selektorów CSS:
+Umożliwiają wybieranie elementów za pomocą selektorów CSS:
 
 ```html
 <p class="myClass">Akapit 1</p>
@@ -101,9 +122,13 @@ Wybiera elementy za pomocą selektorów CSS:
 </script>
 ```
 
+---
+
 ### Manipulacja elementami
 
 #### Zmiana tekstu
+
+Zmiana tekstu wewnątrz elementu:
 
 ```html
 <p id="myParagraph">To jest akapit.</p>
@@ -116,6 +141,8 @@ Wybiera elementy za pomocą selektorów CSS:
 
 #### Zmiana atrybutów
 
+Zmiana dowolnych atrybutów HTML (np. obrazka):
+
 ```html
 <img id="myImage" src="image.jpg" alt="Obrazek" />
 
@@ -127,6 +154,8 @@ Wybiera elementy za pomocą selektorów CSS:
 ```
 
 #### Dodawanie elementów
+
+Tworzenie i dodawanie nowych elementów do strony:
 
 ```html
 <ul id="myList">
@@ -143,6 +172,8 @@ Wybiera elementy za pomocą selektorów CSS:
 
 #### Usuwanie elementów
 
+Usuwanie elementu z drzewa DOM:
+
 ```html
 <p id="myParagraph">To jest akapit.</p>
 
@@ -152,11 +183,13 @@ Wybiera elementy za pomocą selektorów CSS:
 </script>
 ```
 
+---
+
 ## Zadania do wykonania
 
 ### Zadanie 1
 
-Napisz kod HTML z listą (`ul`) i trzema elementami (`li`). Następnie za pomocą JavaScript dodaj czwarty element do listy.
+Stwórz stronę HTML z listą (`ul`) i trzema elementami (`li`). Następnie za pomocą JavaScript dodaj czwarty element do listy.
 
 <details>
   <summary>
@@ -188,6 +221,8 @@ Napisz kod HTML z listą (`ul`) i trzema elementami (`li`). Następnie za pomoc�
 ```
 
 </details>
+
+---
 
 ### Zadanie 2
 
@@ -223,6 +258,8 @@ Utwórz formularz z polem tekstowym i przyciskiem. Po kliknięciu przycisku zmie
 
 </details>
 
+---
+
 ### Zadanie 3
 
 Napisz kod HTML z obrazkiem. Za pomocą JavaScript zmień źródło obrazka na nowe po kliknięciu na niego.
@@ -253,6 +290,8 @@ Napisz kod HTML z obrazkiem. Za pomocą JavaScript zmień źródło obrazka na n
 ```
 
 </details>
+
+---
 
 ### Zadanie 4
 
@@ -287,4 +326,6 @@ Utwórz stronę HTML z trzema akapitami. Użyj JavaScript, aby zmienić kolor te
 
 </details>
 
-To tyle na temat podstaw DOM! Zachęcam do dalszego eksperymentowania i zgłębiania tego tematu.
+---
+
+To tyle na temat podstaw DOM! Zachęcam do dalszego eksperymentowania, praktycznego wykorzystywania JavaScript do manipulacji DOM oraz zgłębiania bardziej zaawansowanych możliwości tej technologii.
