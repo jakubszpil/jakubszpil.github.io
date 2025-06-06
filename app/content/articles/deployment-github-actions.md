@@ -6,19 +6,43 @@ categories: [devops, ci]
 createdAt: 2025-03-15
 ---
 
+GitHub Actions to potężne narzędzie do automatyzacji procesów CI/CD. W tym artykule na przykładzie aplikacji React pokażę, jak w prosty sposób skonfigurować automatyczne wdrażanie na GitHub Pages z wykorzystaniem GitHub Actions.
+
+---
+
+## Spis treści
+
+1. [Wprowadzenie](#wprowadzenie)
+2. [Wymagania wstępne](#wymagania-wstępne)
+3. [Tworzenie aplikacji React](#tworzenie-aplikacji-react)
+4. [Konfiguracja workflow GitHub Actions](#konfiguracja-workflow-github-actions)
+   - [Przykładowy plik deploy.yml](#przykładowy-plik-deployyml)
+   - [Omówienie kroków workflow](#omówienie-kroków-workflow)
+5. [Konfiguracja GitHub Pages](#konfiguracja-github-pages)
+6. [Podsumowanie](#podsumowanie)
+7. [Bonus: Pełny przykład w repozytorium](#bonus-pełny-przykład-w-repozytorium)
+
+---
+
 ## Wprowadzenie
 
-GitHub Actions to potężne narzędzie do automatyzacji procesów CI/CD. W tym artykule pokażę Ci, na przykładznie aplikacji reactowej, jak w prosty sposób wdrożyć aplikację na GitHub Pages przy użyciu GitHub Actions.
+GitHub Actions umożliwia automatyzację procesów związanych z budowaniem, testowaniem i wdrażaniem aplikacji. Dzięki temu możesz wdrażać swoją aplikację na GitHub Pages lub inny hosting jednym commitem – bez ręcznego wykonywania deployu.
+
+---
 
 ## Wymagania wstępne
 
-- Konto na GitHubie
-- Zainstalowany Node.js i npm
-- Aplikacja React utworzona przy pomocy `create-react-router`
+Przed rozpoczęciem upewnij się, że posiadasz:
 
-## Tworzenie aplikacji
+- Konto na GitHubie,
+- Zainstalowany Node.js oraz npm,
+- Aplikację React utworzoną przez `create-react-app` lub `create-react-router` (w przykładzie użyto tego drugiego).
 
-Jeśli nie masz jeszcze aplikacji, możesz utworzyć ją w następujący sposób:
+---
+
+## Tworzenie aplikacji React
+
+Nie masz jeszcze projektu? Oto jak szybko utworzyć aplikację React:
 
 ```sh
 npx create-react-router@latest my-app
@@ -27,26 +51,25 @@ git init
 git remote add origin https://github.com/twoj-user/twoj-repo.git
 ```
 
-## Konfiguracja pliku workflow
+> **Uwaga:** Zmień `twoj-user` i `twoj-repo` na nazwę swojego użytkownika i repozytorium na GitHubie.
 
-W repozytorium GitHub utwórz folder `.github/workflows`, a w nim plik `deploy.yml`.
+---
 
-### Treść pliku `deploy.yml`
+## Konfiguracja workflow GitHub Actions
+
+Aby wdrożyć aplikację na GitHub Pages automatycznie, utwórz w repozytorium folder `.github/workflows`, a w nim plik `deploy.yml`.
+
+### Przykładowy plik deploy.yml
 
 ```yaml
-# Nazwa pipeline'a - będzie się ona wyświetlać podczas trwającej akcji
 name: Deploy React App to GitHub Pages
 
-# Triggery - ten pipeline będzie się triggerował za każdym razem gdy:
-# - wystąpi push do brancha `main`
-# - powstanie pull_request
 on:
   pull_request:
   push:
     branches:
       - main
 
-# Permissiony - ustawienie to jest konieczne, by skrypt od deployowania aplikacji poprawnie działał
 permissions:
   contents: write
 
@@ -54,45 +77,56 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout'owanie repozytorium by mieć do kodu źródłowego
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Instalowanie zależności potrzebnych projektowi
       - name: Install dependencies
         run: npm install
 
-      # Budowanie aplikacji
       - name: Build project
         run: npm run build
 
-      # Opcjonalnie - testowanie aplikacji
       # - name: Test project
       #   run: npm run test
 
       - name: Deploy to GitHub Pages
-        # przydatny skrypt do deployowania aplikacji na wskazany branch
-        # dokumentacja: https://github.com/JamesIves/github-pages-deploy-action
         uses: JamesIves/github-pages-deploy-action@v4
-        # Warunek ten sprawia, że deployowanie aplikacji będzie miało miejsce jedynie w przypadku pusha do brancha `main`
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
-          # Nazwa brancha, z którego serwis GitHub Pages korzysta do deployowania aplikacji na środowisko
           branch: gh-pages
-          # Nazwa folderu ze zbudowaną aplikacją w wersji produkcyjnej
           folder: build
 ```
 
+### Omówienie kroków workflow
+
+- **Trigger**: Workflow uruchamia się na każdy `push` do brancha `main` oraz przy `pull_request`.
+- **Uprawnienia**: `permissions: contents: write` jest niezbędne do wykonania zapisu na branchu z GitHub Pages.
+- **Kroki:**
+  1. **Checkout repo** – pobranie kodu źródłowego.
+  2. **Install dependencies** – instalacja zależności npm.
+  3. **Build project** – budowanie aplikacji produkcyjnej.
+  4. _(Opcjonalnie)_ **Test project** – uruchomienie testów jednostkowych.
+  5. **Deploy to GitHub Pages** – automatyczny deploy do gałęzi `gh-pages` przy użyciu [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action).
+
+---
+
 ## Konfiguracja GitHub Pages
 
-1. Wejdź w ustawienia repozytorium (`Settings` → `Pages`).
-2. W sekcji "Build and deployment" ustaw "Source" na `GitHub Actions`.
-3. Po zatwierdzeniu zmian aplikacja zostanie automatycznie wdrożona.
+Aby GitHub Pages korzystało ze zdeployowanej aplikacji:
+
+1. Wejdź w ustawienia repozytorium: **Settings** → **Pages**.
+2. W sekcji **Build and deployment** ustaw **Source** na `GitHub Actions`.
+3. Zapisz zmiany. Od teraz każda zmiana na branchu `main` uruchomi automatyczny deploy.
+
+---
 
 ## Podsumowanie
 
-Dzięki GitHub Actions możesz w pełni zautomatyzować deployment'u aplikacji React. Wystarczy commit na branchu `main`, a aplikacja zostanie automatycznie wdrożona na GitHub Pages.
+GitHub Actions pozwala w pełni zautomatyzować proces wdrażania aplikacji React na GitHub Pages. Wystarczy commit na branchu `main`, a całość zostanie zbudowana i opublikowana bez Twojej ingerencji.
 
-## Bonus
+---
 
-Chcesz zobaczyć jak ja to mam zaimplementowane? [Zajrzyj tutaj](https://github.com/jakubszpil/jakubszpil.github.io/blob/main/.github/workflows/deploy.yml)
+## Bonus: Pełny przykład w repozytorium
+
+Chcesz zobaczyć kompletną konfigurację w praktyce?  
+[Zajrzyj tutaj](https://github.com/jakubszpil/jakubszpil.github.io/blob/main/.github/workflows/deploy.yml)
