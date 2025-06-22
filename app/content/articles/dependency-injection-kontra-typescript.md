@@ -1,14 +1,14 @@
 ---
 title: Szczepienie kodu, czyli jak Typescript radzi sobie z Dependency Injection
 description: "Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Umożliwia to oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności i łatwiejszego zarządzania zależnościami. W TypeScript, DI można zaimplementować na kilka sposobów, w tym za funkcji wstrzykujących, które są odpowiedzialne za tworzenie i wstrzykiwanie zależności. Przyjrzyjmy się, jak można zaimplementować DI w TypeScript z wykorzystaniem prostych przykładów."
-keywords: [typescript, wzorce projektowe, javascript]
+keywords: [typescript, wzorce projektowe, javascript, blog]
 categories: [typescript, wzorce-projektowe]
 createdAt: 2024-06-20
 ---
 
-Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Pozwala on na oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności oraz ułatwia zarządzanie zależnościami w projekcie.
+Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia modularności i testowalności kodu. Pozwala on na oddzielenie tworzenia obiektów od ich używania, co prowadzi do lepszej separacji odpowiedzialności oraz ułatwia zarządzanie zależnościami w projekcie. 🔗
 
-W TypeScript DI można zaimplementować na różne sposoby, m.in. za pomocą funkcji wstrzykujących, kontenerów IoC oraz dekoratorów. Poniżej znajdziesz szczegółowe omówienie praktycznych sposobów implementacji DI w TypeScript wraz z przykładami.
+W TypeScript DI można zaimplementować na różne sposoby, m.in. za pomocą funkcji wstrzykujących, kontenerów IoC oraz dekoratorów. Poniżej znajdziesz szczegółowe omówienie praktycznych sposobów implementacji DI w TypeScript wraz z przykładami i wskazówkami.
 
 ---
 
@@ -28,16 +28,17 @@ W TypeScript DI można zaimplementować na różne sposoby, m.in. za pomocą fun
 
 **Dependency Injection** polega na przekazywaniu obiektów zależnych (tzw. zależności) do obiektu zamiast tworzenia ich bezpośrednio w jego wnętrzu. Dzięki temu możemy łatwo podmieniać zależności – np. na ich mocki podczas testowania – bez zmian w logice biznesowej.
 
-DI zwiększa elastyczność kodu, ułatwia jego testowanie oraz pozwala na lepszą separację odpowiedzialności.
+DI zwiększa elastyczność kodu, ułatwia jego testowanie oraz pozwala na lepszą separację odpowiedzialności. Dzięki temu Twój kod staje się bardziej modularny, przejrzysty i łatwy w utrzymaniu. 💡
 
 ---
 
 ## Zalety stosowania DI
 
-- **Łatwiejsze testowanie** – zależności można zamieniać na mocki.
+- **Łatwiejsze testowanie** – zależności można zamieniać na mocki lub stuby w testach jednostkowych.
 - **Lepsza modularność** – klasy nie są silnie powiązane z konkretnymi implementacjami.
 - **Łatwiejsze zarządzanie zależnościami** – zmiany w zależnościach nie wymagają modyfikacji całego kodu.
-- **Wspieranie zasad SOLID** – w szczególności zasad odwrócenia zależności (Dependency Inversion Principle).
+- **Wspieranie zasad SOLID** – zwłaszcza zasady odwrócenia zależności (Dependency Inversion Principle).
+- **Zwiększona elastyczność** – łatwo rozszerzać i modyfikować funkcjonalność bez naruszania istniejących klas.
 
 ---
 
@@ -71,13 +72,13 @@ console.log(userService.getUserName(1)); // User 1
 ```
 
 **Wyjaśnienie:**  
-W tym przykładzie `UserRepository` jest wstrzykiwany do `UserService` poprzez konstruktor. Dzięki temu możemy łatwo podmienić repozytorium np. w testach jednostkowych.
+W tym przykładzie `UserRepository` jest wstrzykiwany do `UserService` poprzez konstruktor. Dzięki temu możemy łatwo podmienić repozytorium np. w testach jednostkowych lub zamienić na inną implementację.
 
 ---
 
 ## Wstrzykiwanie zależności przy pomocy funkcji
 
-W większych aplikacjach zarządzanie zależnościami ręcznie może być uciążliwe. Możemy zastosować funkcję `inject`, która będzie przechowywać i dostarczać instancje klas (prostą wersję kontenera IoC):
+W większych aplikacjach zarządzanie zależnościami ręcznie może być uciążliwe. Możemy zastosować funkcję `inject`, która będzie przechowywać i dostarczać instancje klas (prosta wersja kontenera IoC):
 
 ```typescript
 const dependencies: Map<string, any> = new Map();
@@ -115,8 +116,8 @@ console.log(extendedUserService.getUserName(1)); // User 1
 **Wyjaśnienie:**
 
 - Funkcja `inject` rejestruje i przechowuje instancje klas, zapewniając singleton dla każdej z nich.
-- Dzięki temu nie musimy przekazywać zależności przez konstruktor.
-- Klasy można łatwo rozszerzać, a zależności są zarządzane centralnie.
+- Nie musisz przekazywać zależności przez konstruktor – są pobierane automatycznie.
+- Klasy można łatwo rozszerzać, a zależności są zarządzane centralnie – to duże ułatwienie w dużych projektach. 🛠️
 
 ---
 
@@ -159,6 +160,7 @@ console.log(userService.getUserName(1)); // User 1
 - Automatyczna rejestracja i rozwiązywanie zależności.
 - Wsparcie dla różnych zakresów życia obiektu (singleton, transient).
 - Możliwość wstrzykiwania zależności przez dekoratory.
+- Łatwiejsze zarządzanie rozbudowaną strukturą aplikacji.
 
 ---
 
@@ -182,7 +184,8 @@ console.log(userService.getUserName(1)); // Mock User
 **Korzyści:**
 
 - Testy są niezależne od rzeczywistej implementacji zależności.
-- Można łatwo symulować różne scenariusze.
+- Można łatwo symulować różne scenariusze i przypadki brzegowe.
+- Utrzymanie i rozwijanie testów staje się prostsze.
 
 ---
 
@@ -192,7 +195,7 @@ Dependency Injection w TypeScript to potężny sposób na zwiększenie elastyczn
 
 ---
 
-**Dalsza lektura:**
+**Dalsza lektura:** 📚
 
 - [InversifyJS Documentation](https://github.com/inversify/InversifyJS)
 - [Dependency Injection w TypeScript – Angular](https://angular.dev/guide/di)

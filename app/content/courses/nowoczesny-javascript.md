@@ -1,7 +1,7 @@
 ---
 title: Renesans w JS, czyli nowoczesny JavaScript
 description: JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.
-keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend]
+keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend, learning]
 categories: [wprowadzenie, javascript]
 createdAt: 2024-06-30
 ---

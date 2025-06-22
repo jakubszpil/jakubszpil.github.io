@@ -1,7 +1,7 @@
 ---
 title: "Signalizacja, czyli koncept Signals w Typescript"
 description: "Signal to koncepcja pochodząca z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzania stanem aplikacji. W TypeScript, dzięki silnemu typowaniu, można zaimplementować sygnały w sposób bezpieczny i efektywny."
-keywords: [typescript, wzorce projektowe, signals]
+keywords: [typescript, wzorce projektowe, signals, blog]
 categories: [typescript, wzorce-projektowe]
 createdAt: 2024-06-20
 ---
