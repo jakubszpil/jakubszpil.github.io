@@ -9,14 +9,14 @@ keywords:
     typescript,
     frontend,
     framework,
-    kurs,
     architektura,
+    blog,
   ]
 categories: [typescript]
 createdAt: 2025-06-22
 ---
 
-Dowiedz się, jak zbudować własny, minimalistyczny system reaktywny inspirowany Signal API – od koncepcji po gotowy kod.
+Dowiedz się, jak zbudować własny, minimalistyczny system reaktywny inspirowany Signal API – od koncepcji po gotowy kod. Ten artykuł przeprowadzi Cię krok po kroku przez założenia architektury, implementację, przykłady użycia i pomysły na dalszy rozwój. 🚦
 
 ## Spis treści
 
@@ -31,32 +31,35 @@ Dowiedz się, jak zbudować własny, minimalistyczny system reaktywny inspirowan
 
 ## Czym jest Signal API?
 
-**Signal API** to nowoczesny sposób zarządzania stanem i propagowania zmian w aplikacjach frontendowych. Sygnał (Signal) to po prostu wartość, która jest obserwowalna – każda zmiana tej wartości automatycznie powiadamia powiązane fragmenty kodu, które mogą na nią zareagować (np. przerysować UI).
+**Signal API** to nowoczesny sposób zarządzania stanem i propagowania zmian w aplikacjach frontendowych. Sygnał (Signal) to po prostu wartość, która jest obserwowalna – każda zmiana tej wartości automatycznie powiadamia powiązane fragmenty kodu, które mogą na nią zareagować (np. przerysować UI). Dzięki temu nie musisz ręcznie pilnować subskrypcji i aktualizacji — system robi to za Ciebie w sposób wydajny i przewidywalny.
 
 ---
 
 ## Po co nam sygnały?
 
-- Eliminują ręczną obsługę subskrypcji i odświeżania
-- Upraszczają zarządzanie stanem i zależnościami
+- Eliminują ręczną obsługę subskrypcji i odświeżania 🔄
+- Upraszczają zarządzanie stanem i zależnościami w aplikacji
 - Pozwalają na budowę bardzo wydajnych i przewidywalnych interfejsów
+- Zwiększają czytelność i modularność kodu
 
-Mechanika sygnałów leży u podstaw takich rozwiązań jak SolidJS Signals, Preact Signals czy reactivity system w Vue.js.
+Mechanika sygnałów leży u podstaw takich rozwiązań jak SolidJS Signals, Preact Signals czy system reaktywności w Vue.js.
 
 ---
 
 ## Podstawowe założenia architektury
 
 1. **Signal**: funkcja przechowująca wartość i listę „tasków” (efektów) zależnych od tej wartości.
-2. **effect**: funkcja, która wykona zadanie, reagując na zmiany sygnału.
+2. **effect**: funkcja, która wykona zadanie reagując automatycznie na zmiany sygnału.
 3. **computed**: sygnał zależny, obliczany na podstawie innych sygnałów.
 4. **Task i AbortSignal**: pozwalają bezpiecznie anulować zadania, gdy są już niepotrzebne.
+
+Cel: zachować prostotę implementacji i zrozumienie działania reaktywności od podstaw.
 
 ---
 
 ## Implementacja Signal API
 
-Poniżej znajdziesz kompletny kod implementacji minimalistycznego Signal API – w całości TypeScript, gotowy do użycia i dalszej rozbudowy!
+Poniżej znajdziesz kompletny kod minimalistycznego Signal API – całość w TypeScript, gotowa do użycia i dalszej rozbudowy! 🛠️
 
 ```typescript
 interface Task {
@@ -143,7 +146,7 @@ export const computed = <T>(setup: () => T): Signal<T> => setup;
 
 ## Prosty przykład użycia
 
-Zobacz, jak można wykorzystać własny system sygnałów w praktyce:
+Zobacz, jak można wykorzystać własny system sygnałów w praktyce: 👇
 
 ```typescript
 import { signal, effect } from "./lib";
@@ -190,7 +193,7 @@ state.update((prev) => ({
 
 ### computed
 
-Obliczanie wartości zależnej od innych sygnałów jest bardzo proste:
+Obliczanie wartości zależnej od innych sygnałów jest bardzo proste i pozwala na deklaratywność podobną do nowoczesnych frameworków:
 
 ```typescript
 import { signal, effect, computed } from "./lib";
@@ -212,8 +215,9 @@ b.set(20); // Suma: 30
 ## Co dalej? Inspiracje i rozwijanie własnego frameworka
 
 - Dodaj obsługę efektów czyszczących (cleanup) i anulowanie subskrypcji
-- Przenieś sygnały na poziom UI (np. zaktualizuj DOM bezpośrednio po zmianie wartości)
+- Przenieś sygnały bezpośrednio na poziom UI (np. automatyczna aktualizacja DOM)
 - Zintegruj z React, Vue lub własnym mini-frameworkiem
 - Zainspiruj się kodem SolidJS, Preact Signals i systemem reaktywnym Vue
+- Przetestuj własne pomysły na optymalizację i rozbudowę systemu
 
-> Minimalizm daje moc! Teraz możesz zrozumieć, jak działają sygnały pod maską i rozbudować swój własny system reaktywności według potrzeb.
+> Minimalizm daje moc! Dzięki prostej implementacji możesz zrozumieć, jak działają sygnały pod maską i stworzyć swój własny system reaktywności dostosowany do potrzeb. 💡

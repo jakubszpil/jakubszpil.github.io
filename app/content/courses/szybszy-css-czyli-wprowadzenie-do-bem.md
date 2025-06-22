@@ -1,7 +1,7 @@
 ---
 title: Wprowadzenie do metodyki BEM
 description: Czym jest BEM? BEM (Block, Element, Modifier) to metodyka nazewnictwa klas CSS, która pomaga tworzyć komponenty interfejsu użytkownika w sposób modularny i łatwy do utrzymania. BEM dzieli interfejs na bloki, elementy i modyfikatory, co pozwala na lepszą organizację kodu CSS.
-keywords: [kurs, css, bem, metodyka, metodyki, stylowanie, html]
+keywords: [kurs, css, bem, metodyka, metodyki, stylowanie, html, learning]
 categories: [wprowadzenie, css, html]
 createdAt: 2024-06-30
 ---

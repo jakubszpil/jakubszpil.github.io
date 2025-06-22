@@ -1,12 +1,17 @@
 ---
 title: "Pierwsze kroki z TypeScript w React – praktyczne podstawy"
 description: "Zrozum podstawy TypeScript w środowisku React – prostym językiem i na praktycznych przykładach."
-keywords: [typescript, react, frontend, nauka, komponenty, props, state, kurs]
+keywords:
+  [typescript, react, frontend, nauka, komponenty, props, state, kurs, learning]
 categories: [typescript, react]
 createdAt: 2025-06-22
 ---
 
-Poznaj, czym jest TypeScript i jak zacząć używać go w projektach React. Prosto, na przykładach, z zadaniami do samodzielnego wykonania!
+Poznaj, czym jest TypeScript i jak zacząć używać go w projektach React. Prosto, na przykładach, z zadaniami do samodzielnego wykonania! 🚀
+
+Ten przewodnik przeprowadzi Cię przez najważniejsze zagadnienia, pokazując nie tylko kod, ale też wyjaśniając pojęcia, praktyczne zastosowania i dobre praktyki. Na końcu znajdziesz ćwiczenia z rozwiązaniami.
+
+---
 
 ## Spis treści
 
@@ -16,7 +21,8 @@ Poznaj, czym jest TypeScript i jak zacząć używać go w projektach React. Pros
 4. [Props i typowanie propsów](#props-i-typowanie-propsów)
 5. [Typowanie stanu (useState)](#typowanie-stanu-usestate)
 6. [Typowanie referencji (useRef)](#typowanie-referencji-useref)
-7. [Zadania do wykonania](#zadania-do-wykonania)
+7. [Przydatne narzędzia i wskazówki](#przydatne-narzędzia-i-wskazówki)
+8. [Zadania do wykonania](#zadania-do-wykonania)
    - [Zadanie 1: Prosty komponent powitalny](#zadanie-1-prosty-komponent-powitalny)
    - [Zadanie 2: Typowanie tablicy liczb](#zadanie-2-typowanie-tablicy-liczb)
    - [Zadanie 3: Komponent z typowanymi propsami i zdarzeniem](#zadanie-3-komponent-z-typowanymi-propsami-i-zdarzeniem)
@@ -27,13 +33,21 @@ Poznaj, czym jest TypeScript i jak zacząć używać go w projektach React. Pros
 
 ## Dlaczego warto używać TypeScript w React?
 
-TypeScript to nadzbiór JavaScriptu, który dodaje typowanie. Dzięki niemu:
+TypeScript to nadzbiór JavaScriptu, który dodaje typowanie statyczne. Oznacza to, że już podczas pisania kodu wykryjesz wiele potencjalnych błędów, zanim uruchomisz aplikację.
 
-- szybciej wyłapiesz błędy w kodzie,
-- łatwiej pracuje się w zespole (lepsza czytelność i przewidywalność kodu),
-- możesz korzystać z podpowiedzi edytora (intellisense).
+**Korzyści z używania TypeScript w React:**
 
-**W React TypeScript pozwala bezpieczniej przekazywać dane do komponentów i lepiej zarządzać stanem aplikacji.**
+- 🛡️ Większe bezpieczeństwo i przewidywalność kodu – typy pozwalają szybciej wyłapywać literówki i błędy logiczne.
+- 👩‍💻 Intuicyjna praca w zespole – kod jest czytelniejszy, a podpowiedzi edytora (IntelliSense) pomagają szybciej pisać i rozumieć cudzy kod.
+- 🔄 Łatwiejsze refaktoryzacje – zmiany w typach wymuszają aktualizację powiązanych miejsc w aplikacji.
+- ✅ Lepsze dokumentowanie kodu – typy jasno określają, jakie dane są przekazywane do komponentów i funkcji.
+
+**W React TypeScript szczególnie pomaga:**
+
+- w typowaniu propsów przekazywanych do komponentów,
+- w typowaniu stanu (useState, useReducer),
+- przy pracy z refami (useRef),
+- podczas pracy z zewnętrznymi bibliotekami i API.
 
 ---
 
@@ -49,7 +63,7 @@ let numbers: number[] = [1, 2, 3];
 let person: { name: string; age: number } = { name: "Jan", age: 30 };
 ```
 
-Możesz także definiować własne typy i interfejsy:
+Możesz też definiować własne typy i interfejsy, co ułatwia wielokrotne użycie i czytelność kodu:
 
 ```ts
 type User = {
@@ -63,6 +77,9 @@ interface Product {
 }
 ```
 
+**Praktyczna wskazówka:**  
+Jeśli korzystasz z API lub masz złożone obiekty, zawsze warto dodać własny typ lub interfejs!
+
 ---
 
 ## Tworzenie komponentów funkcyjnych z typami
@@ -75,11 +92,14 @@ function HelloWorld() {
 }
 ```
 
+Jeśli nie korzystasz z propsów, nie musisz nic dodatkowego typować.  
+W przypadku komponentów z propsami – zobacz niżej.
+
 ---
 
 ## Props i typowanie propsów
 
-Dodając propsy, warto od razu je typować:
+Propsy to dane przekazywane do komponentów. W TypeScript opisujesz je za pomocą interfejsu lub typu:
 
 ```tsx
 interface WelcomeProps {
@@ -91,13 +111,17 @@ function Welcome(props: WelcomeProps) {
 }
 ```
 
-**Dzięki temu edytor podpowie, jakie dane możesz przekazać do komponentu.**
+**Zalety typowania propsów:**
+
+- Edytor podpowiada, jakie dane można przekazać,
+- Szybko znajdziesz literówki lub brakujące właściwości,
+- Czytelna dokumentacja komponentu.
 
 ---
 
 ## Typowanie stanu (useState)
 
-Możesz określić typ przechowywanego stanu:
+Możesz jasno określić, jaki typ danych przechowuje Twój stan:
 
 ```tsx
 import { useState } from "react";
@@ -115,12 +139,17 @@ function Counter() {
 }
 ```
 
+**Wskazówka:**  
+Przy bardziej złożonych stanach (np. obiekty, tablice) – zawsze warto podać typ, nawet jeśli TypeScript potrafi go wywnioskować!
+
+---
+
 ## Typowanie referencji (useRef)
 
-Możesz określić typ przechowywanego stanu:
+Referencje pozwalają odwoływać się bezpośrednio do elementów DOM lub innych wartości:
 
 ```tsx
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 
 function Counter() {
   const ref = useRef<HTMLButtonElement>(null);
@@ -134,12 +163,25 @@ function Counter() {
       <button onClick={handleClick}>
         Kliknij aby sfokusować drugi przycisk
       </button>
-
       <button ref={ref}>Drugi przycisk</button>
     </div>
   );
 }
 ```
+
+**Dzięki typowaniu** masz pewność, do jakiego typu elementu się odwołujesz (np. `HTMLButtonElement`).
+
+---
+
+## Przydatne narzędzia i wskazówki
+
+- **TSX** – pliki z rozszerzeniem `.tsx` pozwalają używać JSX z TypeScriptem.
+- **TypeScript Playground** – https://www.typescriptlang.org/play – świetny do testowania kodu na żywo.
+- **Oficjalna dokumentacja React + TypeScript**: https://react.dev/learn/typescript
+- **Polecenie tworzące nowy projekt React + TS:**
+  ```bash
+  npm init vite@latest my-app -- --template react-ts
+  ```
 
 ---
 
@@ -276,5 +318,3 @@ const UserList = () => (
 ```
 
 </details>
-
----
