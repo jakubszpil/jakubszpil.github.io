@@ -33,7 +33,8 @@ TypeScript to coraz popularniejszy język programowania, który rozszerza możli
 9. [TypeScript w projektach open-source i pracy zespołowej](#typescript-w-projektach-open-source-i-pracy-zespołowej)
 10. [Gdzie znaleźć deklaracje typów do bibliotek JS?](#gdzie-znaleźć-deklaracje-typów-do-bibliotek-js)
 11. [Gdzie szukać pomocy?](#gdzie-szukać-pomocy)
-12. [Podsumowanie](#podsumowanie)
+12. [Zadania praktyczne](#zadania-praktyczne)
+13. [Podsumowanie](#podsumowanie)
 
 ---
 
@@ -360,8 +361,124 @@ Dodatkowo na GitHubie znajdziesz mnóstwo przykładowych projektów opartych o T
 
 ---
 
+## Zadania praktyczne
+
+Oto zadania, dzięki którym lepiej zrozumiesz podstawy TypeScript. Sprawdź się i rozwijaj swoje umiejętności!
+
+---
+
+### Zadanie 1: Typowanie zmiennych
+
+Zadeklaruj trzy zmienne: liczbę, tekst oraz wartość logiczną – każda powinna być odpowiednio otagowana typem.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```typescript
+let liczba: number = 10;
+let tekst: string = "Witaj TypeScript!";
+let aktywny: boolean = true;
+```
+
+</details>
+
+---
+
+### Zadanie 2: Funkcja z typowanymi argumentami
+
+Napisz funkcję `dodaj`, która przyjmuje dwa argumenty typu `number` i zwraca ich sumę. Nie zapomnij o typach!
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```typescript
+function dodaj(a: number, b: number): number {
+  return a + b;
+}
+```
+
+</details>
+
+---
+
+### Zadanie 3: Interfejs i obiekt
+
+Zdefiniuj interfejs `Samochod` z polami `marka` (string) oraz `rok` (number). Następnie utwórz obiekt typu `Samochod`.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```typescript
+interface Samochod {
+  marka: string;
+  rok: number;
+}
+
+const auto: Samochod = {
+  marka: "Toyota",
+  rok: 2020,
+};
+```
+
+</details>
+
+---
+
+### Zadanie 4: Alias typu i unia typów
+
+Zdefiniuj alias typu `ID` jako `string` lub `number`. Następnie zadeklaruj zmienną `userId` i przypisz jej liczbę.
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```typescript
+type ID = string | number;
+let userId: ID = 123;
+```
+
+</details>
+
+---
+
+### Zadanie 5: Klasa i dziedziczenie
+
+Stwórz klasę `Zwierze` z polem `nazwa` (string) oraz metodą `wydajDzwiek`. Następnie utwórz klasę `Kot` dziedziczącą po `Zwierze` i nadpisz metodę, aby wypisywała "Miau!".
+
+<details>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
+
+```typescript
+class Zwierze {
+  constructor(public nazwa: string) {}
+  wydajDzwiek() {
+    console.log("Dźwięk!");
+  }
+}
+
+class Kot extends Zwierze {
+  wydajDzwiek() {
+    console.log("Miau!");
+  }
+}
+
+const mruczek = new Kot("Mruczek");
+mruczek.wydajDzwiek(); // Miau!
+```
+
+</details>
+
+---
+
 ## Podsumowanie
 
 TypeScript to świetne narzędzie dla każdego, kto chce pisać nowoczesny, bezpieczny i skalowalny kod JavaScript. Dzięki statycznemu typowaniu, lepszej czytelności i wsparciu dla narzędzi deweloperskich praca z nim staje się łatwiejsza i przyjemniejsza. Jeśli jeszcze nie próbowałeś – spróbuj! 👨🏻‍💻👩🏼‍💻
-
-Masz pytania? Śmiało pisz do mnie lub zostaw komentarz!
