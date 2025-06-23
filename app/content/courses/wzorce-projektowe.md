@@ -551,4 +551,4 @@ processor.process(75);
 ---
 
 To dopiero początek! Każdy z tych wzorców ma swoje warianty, rozbudowane zastosowania i pułapki, których warto unikać.  
-Jeśli chcesz dowiedzieć się więcej albo masz pytania — napisz w komentarzu! 💬
+
