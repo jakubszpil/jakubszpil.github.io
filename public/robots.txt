@@ -1,4 +1,1 @@
-User-agent: *
-Disallow:
-
 Sitemap: https://jakubszpil.github.io/sitemap.txt

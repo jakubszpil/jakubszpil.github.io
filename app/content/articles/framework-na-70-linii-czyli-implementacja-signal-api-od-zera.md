@@ -1,6 +1,6 @@
 ---
-title: "Framework na 80 linii, czyli implementacja Signal API od zera"
-description: "Dowiedz się, jak zaimplementować minimalistyczny system reaktywny (Signal API) w JavaScript/TypeScript w mniej niż 80 liniach kodu. Praktyczny przewodnik krok po kroku."
+title: "Framework na 70 linii, czyli implementacja Signal API od zera"
+description: "Dowiedz się, jak zaimplementować minimalistyczny system reaktywny (Signal API) w JavaScript/TypeScript w mniej niż 70 liniach kodu. Praktyczny przewodnik krok po kroku."
 keywords:
   [
     signal,
@@ -62,26 +62,20 @@ Cel: zachować prostotę implementacji i zrozumienie działania reaktywności od
 Poniżej znajdziesz kompletny kod minimalistycznego Signal API – całość w TypeScript, gotowa do użycia i dalszej rozbudowy! 🛠️
 
 ```typescript
-interface Task {
-  (abortSignal: AbortSignal): void;
-}
+type Task = (abortSignal: AbortSignal) => void;
 
-interface Signal<T> {
-  (): T;
-}
+type Signal<T> = () => T;
 
-interface WritableSignal<T> extends Signal<T> {
+type WritableSignal<T> = Signal<T> & {
   set(value: T): void;
   update(fn: (value: T) => T): void;
-}
+};
 
 let currentTask: Task | null = null;
 let currentAbortController: AbortController | null = null;
 
 function runTask(task: Task) {
-  if (currentAbortController) {
-    currentAbortController.abort();
-  }
+  if (currentAbortController) currentAbortController.abort();
   currentAbortController = new AbortController();
   task(currentAbortController.signal);
 }
@@ -94,30 +88,26 @@ export function effect(task: Task): void {
 
 export function signal<T>(setupOrValue: T | (() => T)): WritableSignal<T> {
   let tasks: Set<Task> = new Set();
-  let currentValue: T;
-  let currentValueSnapshot: string;
-  let previousInitialValue: T;
-  let previousInitialValueSnapshot: string;
+  let value: T;
+  let valueSnapshot: string;
+  let previousValueSnapshot: string;
 
   function callSetupOrValue() {
-    if (setupOrValue instanceof Function) {
-      return setupOrValue();
-    }
+    if (setupOrValue instanceof Function) return setupOrValue();
     return setupOrValue;
   }
 
   function getValue() {
-    const currentInitialValue = callSetupOrValue();
-    const currentInitialValueSnapshot = JSON.stringify(currentInitialValue);
+    const currentValue = callSetupOrValue();
+    const currentValueSnapshot = JSON.stringify(currentValue);
 
-    if (currentInitialValueSnapshot !== previousInitialValueSnapshot) {
-      previousInitialValueSnapshot = currentInitialValueSnapshot;
-      previousInitialValue = currentInitialValue;
-      currentValue = currentInitialValue;
-      currentValueSnapshot = JSON.stringify(currentInitialValue);
+    if (currentValueSnapshot !== previousValueSnapshot) {
+      previousValueSnapshot = currentValueSnapshot;
+      value = currentValue;
+      valueSnapshot = currentValueSnapshot;
     }
 
-    return currentValue;
+    return value;
   }
 
   const signal: WritableSignal<T> = () => {
@@ -125,10 +115,11 @@ export function signal<T>(setupOrValue: T | (() => T)): WritableSignal<T> {
     return getValue();
   };
 
-  function updateValue(value: T): void {
-    if (currentValueSnapshot === JSON.stringify(value)) return;
-    currentValue = value;
-    currentValueSnapshot = JSON.stringify(value);
+  function updateValue(payload: T): void {
+    const payloadSnapshot = JSON.stringify(payload);
+    if (valueSnapshot === payloadSnapshot) return;
+    value = payload;
+    valueSnapshot = payloadSnapshot;
     tasks.forEach((task) => runTask(task));
   }
 
