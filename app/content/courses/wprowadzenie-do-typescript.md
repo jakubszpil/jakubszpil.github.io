@@ -1,9 +1,9 @@
 ---
 title: "Wprowadzenie do TypeScript"
 description: "Dowiedz się czym jest TypeScript, jak zacząć z niego korzystać i dlaczego warto go używać w swoich projektach. Przystępny przewodnik dla początkujących z przykładami i praktycznymi wskazówkami."
-keywords: ["TypeScript", "JavaScript", "programowanie", "frontend", "typowanie"]
-categories: ["wprowadzenie", "typescript"]
-createdAt: "2025-06-23"
+keywords: [typescript, javascript, programowanie, frontend, typowanie, learning]
+categories: [wprowadzenie, typescript]
+createdAt: 2025-06-23
 ---
 
 TypeScript to coraz popularniejszy język programowania, który rozszerza możliwości jakie daje JavaScript. Jeżeli pracowałeś już z JavaScript, na pewno docenisz dodatkowe bezpieczeństwo i wygodę, które oferuje TypeScript! 🚀

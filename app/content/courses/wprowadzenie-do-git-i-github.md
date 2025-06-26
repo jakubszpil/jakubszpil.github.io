@@ -15,8 +15,8 @@ keywords:
     "GitHub Pages",
     "learning",
   ]
-categories: ["git", "devops"]
-createdAt: "2025-06-05"
+categories: [git, devops]
+createdAt: 2025-06-05
 ---
 
 Ten kurs to szybki i przystępny przewodnik po podstawach pracy z Gitem i GitHubem. Nauczysz się, czym jest kontrola wersji, poznasz kluczowe komendy oraz dowiesz się, jak pracować zespołowo nad kodem i publikować swoje projekty w internecie. 🚀
