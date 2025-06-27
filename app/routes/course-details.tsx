@@ -1,6 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/learning/categories";
+import Quiz from "~/components/quiz";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getCourse } from "~/lib/courses";
@@ -31,6 +32,8 @@ export default function CourseDetails() {
         className="prose container prose-emerald"
         dangerouslySetInnerHTML={{ __html: course.content }}
       />
+
+      {course.quiz && <Quiz quiz={course.quiz} />}
 
       <EditResource resourceUrl={course.resourceUrl} />
     </>

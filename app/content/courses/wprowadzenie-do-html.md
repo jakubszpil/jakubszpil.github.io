@@ -4,6 +4,53 @@ description: Co to jest HTML? HTML (HyperText Markup Language) to podstawowy ję
 keywords: [kurs, html, dom, struktura, wprowadzenie, learning]
 categories: [wprowadzenie, html]
 createdAt: 2024-06-30
+quiz:
+  title: "Quiz: Podstawy HTML"
+  questions:
+    - question: "Co oznacza skrót HTML?"
+      options:
+        - "Home Tool Markup Language"
+        - "Hyperlink Text Management Language"
+        - "HyperText Markup Language"
+        - "HyperTool Marked Language"
+      answer: 2
+      explanation: "HTML to HyperText Markup Language – język znaczników hipertekstowych."
+
+    - question: "Który znacznik służy do tworzenia akapitu?"
+      options:
+        - "<h1>"
+        - "<p>"
+        - "<a>"
+        - "<li>"
+      answer: 1
+      explanation: "<p> służy do oznaczania akapitów tekstu."
+
+    - question: "Jak poprawnie dodać obrazek do strony?"
+      options:
+        - '<img src="obrazek.jpg" alt="Opis" />'
+        - '<image src="obrazek.jpg">'
+        - '<picture href="obrazek.jpg">'
+        - '<src img="obrazek.jpg">'
+      answer: 0
+      explanation: 'Poprawny sposób to <img src="adres" alt="opis" />.'
+
+    - question: "Który element tworzy nieuporządkowaną listę?"
+      options:
+        - "<ol>"
+        - "<li>"
+        - "<dl>"
+        - "<ul>"
+      answer: 3
+      explanation: "<ul> to lista nieuporządkowana, <ol> – uporządkowana."
+
+    - question: "Za co odpowiada atrybut 'action' w tagu <form>?"
+      options:
+        - "Włącza walidację formularza"
+        - "Określa adres, pod który zostaną przesłane dane formularza"
+        - "Definiuje typ przesyłanych danych"
+        - "Dodaje pole tekstowe"
+      answer: 1
+      explanation: "Atrybut action określa adres, pod który zostaną wysłane dane formularza."
 ---
 
 ## Spis treści

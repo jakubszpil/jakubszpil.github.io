@@ -4,6 +4,53 @@ description: "Dowiedz się czym jest TypeScript, jak zacząć z niego korzystać
 keywords: [typescript, javascript, programowanie, frontend, typowanie, learning]
 categories: [wprowadzenie, typescript]
 createdAt: 2025-06-23
+quiz:
+  title: "Quiz: Podstawy TypeScript"
+  questions:
+    - question: "Czym jest TypeScript?"
+      options:
+        - "Frameworkiem CSS"
+        - "Rozszerzeniem JavaScriptu o typowanie statyczne"
+        - "Językiem bazującym na Pythonie"
+        - "Systemem szablonów HTML"
+      answer: 1
+      explanation: "TypeScript rozszerza JavaScript o typowanie statyczne i inne narzędzia dla programistów."
+
+    - question: "Jakie rozszerzenie mają pliki natywne TypeScript?"
+      options:
+        - ".cts"
+        - ".ts"
+        - ".js"
+        - ".json"
+      answer: 1
+      explanation: "Standardowe pliki TypeScript mają rozszerzenie `.ts`. Natomiast w React używamy też `.tsx`."
+
+    - question: "Które z poniższych typowań zmiennej jest poprawne w TypeScript?"
+      options:
+        - "let liczba = number 10;"
+        - "var liczba: num = 10;"
+        - "let liczba: number = 10;"
+        - "let liczba: 10 = number;"
+      answer: 2
+      explanation: "Poprawna składnia to let liczba: number = 10;"
+
+    - question: "Czym różni się TypeScript od JavaScript?"
+      options:
+        - "TypeScript ma statyczne typowanie, JavaScript nie"
+        - "TypeScript działa tylko w przeglądarce"
+        - "TypeScript nie obsługuje klas"
+        - "JavaScript nie pozwala na funkcje"
+      answer: 0
+      explanation: "Najważniejsza różnica to typowanie statyczne i kompilacja do JS."
+
+    - question: "Jak zainstalować TypeScript globalnie przez npm?"
+      options:
+        - "npm install typescript"
+        - "npm get typescript"
+        - "npm add global typescript"
+        - "npm install -g typescript"
+      answer: 3
+      explanation: "Polecenie npm install -g typescript instaluje TypeScript globalnie."
 ---
 
 TypeScript to coraz popularniejszy język programowania, który rozszerza możliwości jakie daje JavaScript. Jeżeli pracowałeś już z JavaScript, na pewno docenisz dodatkowe bezpieczeństwo i wygodę, które oferuje TypeScript! 🚀

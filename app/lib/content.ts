@@ -57,6 +57,18 @@ export const processContent = async (content: string) => {
   return results.toString();
 };
 
+export abstract class ContentQuiz {
+  abstract title: string;
+  abstract questions: ContentQuizQuestion[];
+}
+
+export abstract class ContentQuizQuestion {
+  abstract question: string;
+  abstract options: string[];
+  abstract answer: number;
+  abstract explanation?: string;
+}
+
 export abstract class ContentResource {
   abstract id: string;
   abstract slug: string;
@@ -66,7 +78,29 @@ export abstract class ContentResource {
   abstract description: string;
   abstract keywords: string[];
   abstract createdAt: string;
+  abstract quiz?: ContentQuiz;
 }
+
+export const parseQuiz = async (
+  resource: any
+): Promise<ContentQuiz | undefined> => {
+  const quiz: ContentQuiz | undefined = resource?.quiz;
+  if (!quiz) return undefined;
+
+  const questions = await Promise.all(
+    quiz.questions.map(async (question) => {
+      return {
+        ...question,
+        question: await processContent(question.question),
+      };
+    })
+  );
+
+  return {
+    ...quiz,
+    questions,
+  };
+};
 
 export const parseMarkdownFile = async <T extends ContentResource>(
   file: string,
@@ -75,12 +109,15 @@ export const parseMarkdownFile = async <T extends ContentResource>(
 ): Promise<T> => {
   const { data, content } = matter(file);
 
+  const quiz = await parseQuiz(data);
+
   return {
     ...data,
     id: v4(),
     slug,
     content: await processContent(content),
     resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`,
+    quiz,
   } as T;
 };
 

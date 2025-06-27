@@ -4,6 +4,53 @@ description: Semantyczny HTML polega na używaniu elementów HTML, które jednoz
 keywords: [html, semantyka, seo, dostępność, learning]
 categories: [html, seo]
 createdAt: 2024-07-05
+quiz:
+  title: "Quiz: Semantyczny HTML"
+  questions:
+    - question: "Który element HTML najlepiej nadaje się do oznaczenia głównej treści strony?"
+      options:
+        - "<section>"
+        - "<aside>"
+        - "<main>"
+        - "<header>"
+      answer: 2
+      explanation: "Element <main> służy do oznaczenia głównej, unikatowej treści dokumentu."
+
+    - question: "Do czego służy element `<nav>`?"
+      options:
+        - "Do oznaczania artykułu"
+        - "Do grupowania linków nawigacyjnych na stronie"
+        - "Do wyświetlania stopki strony"
+        - "Do osadzania obrazka z podpisem"
+      answer: 1
+      explanation: "Element <nav> grupuje linki prowadzące do różnych części witryny lub innych stron."
+
+    - question: "Gdzie możesz legalnie umieścić element `<footer>`?"
+      options:
+        - "Tylko na początku strony"
+        - "Tylko w <main>"
+        - "Wyłącznie w <aside>"
+        - "Na końcu całej strony lub na końcu sekcji/artykułu"
+      answer: 3
+      explanation: "<footer> może być użyty zarówno dla całej strony, jak i dla poszczególnych sekcji czy artykułów."
+
+    - question: "Który element HTML semantyczny najlepiej nadaje się na poboczny panel z reklamami lub linkami powiązanymi?"
+      options:
+        - "<figure>"
+        - "<mark>"
+        - "<aside>"
+        - "<time>"
+      answer: 2
+      explanation: "<aside> przeznaczony jest na treści poboczne, niezwiązane bezpośrednio z główną osią tematyczną."
+
+    - question: "Jakiego atrybutu użyjesz z `<time>`, by data była czytelna dla maszyn?"
+      options:
+        - "date"
+        - "datetime"
+        - "machine"
+        - "format"
+      answer: 1
+      explanation: "Atrybut datetime pozwala maszynom poprawnie interpretować podaną datę/czas."
 ---
 
 ## Spis treści

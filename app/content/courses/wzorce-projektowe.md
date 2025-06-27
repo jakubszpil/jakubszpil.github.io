@@ -14,6 +14,53 @@ keywords:
   ]
 categories: [wzorce-projektowe, typescript]
 createdAt: 2025-06-22
+quiz:
+  title: "Quiz: Wzorce projektowe"
+  questions:
+    - question: "Do której grupy należy wzorzec Singleton?"
+      options:
+        - "Strukturalne"
+        - "Behawioralne"
+        - "Kreacyjne"
+        - "Funkcyjne"
+      answer: 2
+      explanation: "Singleton to wzorzec kreacyjny – dotyczy sposobu tworzenia obiektów."
+
+    - question: "Który wzorzec umożliwia zamianę jednego interfejsu na inny, by umożliwić współpracę niekompatybilnych klas?"
+      options:
+        - "Observer"
+        - "Adapter"
+        - "Facade"
+        - "Builder"
+      answer: 1
+      explanation: "Adapter tłumaczy jeden interfejs na inny."
+
+    - question: "Który wzorzec pozwala powiadamiać wiele obiektów o zmianie stanu bez ścisłego powiązania?"
+      options:
+        - "Strategy"
+        - "Factory"
+        - "Facade"
+        - "Observer"
+      answer: 3
+      explanation: "Observer służy do powiadamiania wielu obiektów o zmianie stanu."
+
+    - question: "Co umożliwia wzorzec Strategy?"
+      options:
+        - "Dynamiczną zmianę algorytmu działania programu"
+        - "Tworzenie jednej instancji klasy"
+        - "Uproszczenie złożonego interfejsu"
+        - "Budowanie złożonych obiektów krok po kroku"
+      answer: 0
+      explanation: "Strategy pozwala dynamicznie zmieniać algorytm działania programu."
+
+    - question: "Który wzorzec stosujesz, by uprościć korzystanie z kilku skomplikowanych systemów przez jeden prosty interfejs?"
+      options:
+        - "Adapter"
+        - "Facade"
+        - "Builder"
+        - "Singleton"
+      answer: 1
+      explanation: "Facade upraszcza złożone systemy przez prosty interfejs."
 ---
 
 Poznaj praktyczne zastosowania najważniejszych wzorców projektowych — prosto, przystępnie, z przykładami w TypeScript oraz z zadaniami do samodzielnego wykonania! 🏗️🚀
@@ -550,5 +597,4 @@ processor.process(75);
 
 ---
 
-To dopiero początek! Każdy z tych wzorców ma swoje warianty, rozbudowane zastosowania i pułapki, których warto unikać.  
-
+To dopiero początek! Każdy z tych wzorców ma swoje warianty, rozbudowane zastosowania i pułapki, których warto unikać.
