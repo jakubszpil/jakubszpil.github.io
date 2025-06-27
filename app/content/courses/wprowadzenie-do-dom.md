@@ -34,7 +34,7 @@ quiz:
       answer: 0
       explanation: "document.getElementById pobiera element o podanym id."
 
-    - question: "Jak za pomocą DOM dodać nowy element do listy ul?"
+    - question: "Jak za pomocą DOM dodać nowy element do listy `ul`?"
       options:
         - "Użyć innerHTML na ul"
         - "Zmienić atrybut src"
@@ -43,7 +43,7 @@ quiz:
       answer: 2
       explanation: "Tworzymy element createElement i dołączamy przez appendChild."
 
-    - question: "Co umożliwia metoda querySelectorAll?"
+    - question: "Co umożliwia metoda `querySelectorAll?`"
       options:
         - "Zmianę tekstu elementu"
         - "Wybór wielu elementów za pomocą selektora CSS"

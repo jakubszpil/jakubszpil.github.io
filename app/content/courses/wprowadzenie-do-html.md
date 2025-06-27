@@ -43,7 +43,7 @@ quiz:
       answer: 3
       explanation: "<ul> to lista nieuporządkowana, <ol> – uporządkowana."
 
-    - question: "Za co odpowiada atrybut 'action' w tagu <form>?"
+    - question: "Za co odpowiada atrybut 'action' w tagu `<form>`?"
       options:
         - "Włącza walidację formularza"
         - "Określa adres, pod który zostaną przesłane dane formularza"

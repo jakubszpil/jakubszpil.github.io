@@ -81,7 +81,7 @@ export default function Quiz({ quiz }: QuizProps) {
               variant="outline"
               key={idx}
               className={classNames(
-                "w-full text-left inline-flex justify-start transition-none",
+                "w-full text-left inline-flex justify-start transition-none text-wrap !min-h-min py-1.5",
                 showAnswer && opt === answer
                   ? "!bg-green-400 dark:!bg-green-800"
                   : selected === opt && showAnswer && opt !== answer
