@@ -81,13 +81,15 @@ export default function Quiz({ quiz }: QuizProps) {
               variant="outline"
               key={idx}
               className={classNames(
-                "w-full text-left inline-flex justify-start",
+                "w-full text-left inline-flex justify-start transition-none",
                 showAnswer && opt === answer
                   ? "!bg-green-400 dark:!bg-green-800"
                   : selected === opt && showAnswer && opt !== answer
                   ? "!bg-red-400 dark:!bg-red-800"
                   : undefined,
-                showAnswer ? "cursor-default" : "cursor-pointer"
+                showAnswer
+                  ? "cursor-default hover:!bg-inherit hover:!text-inherit"
+                  : "cursor-pointer"
               )}
               onClick={() => handleOptionClick(opt)}
             >
