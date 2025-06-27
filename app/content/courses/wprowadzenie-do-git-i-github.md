@@ -17,6 +17,53 @@ keywords:
   ]
 categories: [git, devops]
 createdAt: 2025-06-05
+quiz:
+  title: "Quiz: Podstawy Git i GitHub"
+  questions:
+    - question: "Co oznacza skrót VCS?"
+      options:
+        - "Virtual Clone Service"
+        - "Version Control System"
+        - "Verified Commit Syntax"
+        - "Versioned Coding System"
+      answer: 1
+      explanation: "VCS to Version Control System, czyli system kontroli wersji."
+
+    - question: "Co robi polecenie 'git clone'?"
+      options:
+        - "Tworzy nową gałąź"
+        - "Pobiera całe repozytorium zdalne na lokalny komputer"
+        - "Łączy zmiany z innego repozytorium"
+        - "Zatwierdza zmiany do historii"
+      answer: 1
+      explanation: "'git clone' kopiuje całe repozytorium wraz z historią na Twój komputer."
+
+    - question: "Czym jest commit w Gicie?"
+      options:
+        - "Nowa gałąź"
+        - "Zdalne repozytorium"
+        - "Automatyczne pobieranie zmian"
+        - "Zapis zmian w repozytorium z opisem"
+      answer: 3
+      explanation: "Commit to zapis zmian, który trafia do historii projektu i ma komentarz."
+
+    - question: "Jak nazywa się prośba o połączenie zmian na GitHubie?"
+      options:
+        - "Merge commit"
+        - "Pull request"
+        - "Push request"
+        - "Branch request"
+      answer: 1
+      explanation: "Pull request to prośba o połączenie zmian z inną gałęzią."
+
+    - question: "Która platforma NIE jest alternatywą dla GitHub?"
+      options:
+        - "GitLab"
+        - "Bitbucket"
+        - "Stack Overflow"
+        - "Azure DevOps"
+      answer: 2
+      explanation: "Stack Overflow to portal Q&A, nie platforma hostingu repozytoriów."
 ---
 
 Ten kurs to szybki i przystępny przewodnik po podstawach pracy z Gitem i GitHubem. Nauczysz się, czym jest kontrola wersji, poznasz kluczowe komendy oraz dowiesz się, jak pracować zespołowo nad kodem i publikować swoje projekty w internecie. 🚀

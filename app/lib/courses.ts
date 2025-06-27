@@ -1,4 +1,8 @@
-import { parseContentResources, type ContentResource } from "./content";
+import {
+  parseContentResources,
+  type ContentQuiz,
+  type ContentResource,
+} from "./content";
 
 export abstract class Course implements ContentResource {
   abstract id: string;
@@ -10,6 +14,7 @@ export abstract class Course implements ContentResource {
   abstract keywords: string[];
   abstract createdAt: string;
   abstract categories: string[];
+  abstract quiz?: ContentQuiz;
 }
 
 const CONTENT = import.meta.glob<string>("../content/courses/*.md", {

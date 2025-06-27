@@ -4,6 +4,53 @@ description: Czym jest DOM? DOM (Document Object Model) to interfejs programisty
 keywords: [kurs, html, dom, struktura, wprowadzenie, learning]
 categories: [wprowadzenie, html]
 createdAt: 2024-06-30
+quiz:
+  title: "Quiz: Podstawy DOM"
+  questions:
+    - question: "Co oznacza skrót DOM w kontekście stron internetowych?"
+      options:
+        - "Data Oriented Module"
+        - "Document Option Method"
+        - "Dynamic Output Mapper"
+        - "Document Object Model"
+      answer: 3
+      explanation: "DOM to Document Object Model – model obiektowy dokumentu HTML lub XML."
+
+    - question: "Jaką strukturę prezentuje DOM?"
+      options:
+        - "Drzewiastą (hierarchiczną)"
+        - "Tablicową"
+        - "Listową"
+        - "Płaską"
+      answer: 0
+      explanation: "DOM przedstawia dokument jako drzewo obiektów (węzłów)."
+
+    - question: "Która metoda pozwala pobrać element o określonym identyfikatorze?"
+      options:
+        - "document.getElementById"
+        - "document.querySelectorAll"
+        - "document.getElementsByClassName"
+        - "document.createElement"
+      answer: 0
+      explanation: "document.getElementById pobiera element o podanym id."
+
+    - question: "Jak za pomocą DOM dodać nowy element do listy ul?"
+      options:
+        - "Użyć innerHTML na ul"
+        - "Zmienić atrybut src"
+        - "Utworzyć element przez createElement i dołączyć przez appendChild"
+        - "Użyć metody getElementsByTagName"
+      answer: 2
+      explanation: "Tworzymy element createElement i dołączamy przez appendChild."
+
+    - question: "Co umożliwia metoda querySelectorAll?"
+      options:
+        - "Zmianę tekstu elementu"
+        - "Wybór wielu elementów za pomocą selektora CSS"
+        - "Usunięcie elementu"
+        - "Zmianę atrybutu id"
+      answer: 1
+      explanation: "querySelectorAll wybiera wszystkie pasujące elementy zgodnie z selektorem CSS."
 ---
 
 ## Spis treści

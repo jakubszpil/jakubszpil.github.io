@@ -4,6 +4,53 @@ description: Czym jest BEM? BEM (Block, Element, Modifier) to metodyka nazewnict
 keywords: [kurs, css, bem, metodyka, metodyki, stylowanie, html, learning]
 categories: [wprowadzenie, css, html]
 createdAt: 2024-06-30
+quiz:
+  title: "Quiz: Podstawy metodyki BEM"
+  questions:
+    - question: "Co oznaczają skróty BEM w kontekście CSS?"
+      options:
+        - "Basic, Element, Main"
+        - "Block, Example, Method"
+        - "Block, Element, Modifier"
+        - "Base, Extension, Model"
+      answer: 2
+      explanation: "BEM to skrót od Block, Element, Modifier."
+
+    - question: "Jaką klasę powinien mieć element będący częścią bloku 'menu' według BEM?"
+      options:
+        - "menu__item"
+        - "menu-item"
+        - "item__menu"
+        - "menu--item"
+      answer: 0
+      explanation: "Element w BEM zapisujemy jako blok__element, np. ```menu__item```."
+
+    - question: "W jaki sposób w BEM zapisuje się modyfikator bloku 'button'?"
+      options:
+        - "button__primary"
+        - "button--primary"
+        - "button-primary"
+        - "button:primary"
+      answer: 1
+      explanation: "Modyfikator zapisujemy jako blok--modyfikator, np. button--primary."
+
+    - question: "Które z poniższych NIE jest zgodne z zasadami BEM?"
+      options:
+        - "form__input--active"
+        - "form__group"
+        - "form--login"
+        - "form__input__label"
+      answer: 3
+      explanation: "form__input__label łamie zasadę: nie zagnieżdżamy elementów w elementach."
+
+    - question: "Dlaczego warto stosować BEM?"
+      options:
+        - "Bo wymusza używanie tylko jednego pliku CSS"
+        - "Bo jest wymagane przez wszystkie przeglądarki"
+        - "Bo ułatwia modularność i unikanie konfliktów nazw klas"
+        - "Bo pozwala pisać CSS wyłącznie w JavaScript"
+      answer: 2
+      explanation: "BEM zwiększa modularność, czytelność i pomaga unikać konfliktów w nazwach klas."
 ---
 
 ## Spis treści

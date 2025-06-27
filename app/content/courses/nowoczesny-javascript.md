@@ -4,6 +4,55 @@ description: JavaScript jest językiem programowania, który jest powszechnie st
 keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend, learning]
 categories: [wprowadzenie, javascript]
 createdAt: 2024-06-30
+
+# 📝 Quiz
+quiz:
+  title: "Quiz: Podstawy nowoczesnego JavaScript"
+  questions:
+    - question: "Jaką główną różnicę między `let` a `var` podkreśla się w nowoczesnym JavaScript?"
+      options:
+        - "Obie są identyczne"
+        - "`let` nie pozwala na przyjmowanie wartości domyślnej"
+        - "Zakres blokowy (`block scope`) w `let`"
+        - "`var` nie istnieje w nowoczesnym JS"
+      answer: 2
+      explanation: "`let` posiada zakres blokowy, podczas gdy `var` ma zakres funkcyjny."
+
+    - question: "Co zwróci poniższy kod?\n\n```javascript\nconst arr = [1, 2, 3];\nconst [a, , b] = arr;\nconsole.log(a, b);\n```"
+      options:
+        - "1 2"
+        - "2 3"
+        - "undefined 3"
+        - "1 3"
+      answer: 3
+      explanation: "Drugi element jest pomijany. Wynik to 1 i 3."
+
+    - question: "Co robi operator spread (`...`)?"
+      options:
+        - "Tworzy nowy Promise"
+        - "Rozwija elementy tablicy lub właściwości obiektu"
+        - "Deklaruje zmienną stałą"
+        - "Łączy Promise'y"
+      answer: 1
+      explanation: "Spread operator służy do rozwijania/skopiowania elementów tablicy lub obiektu."
+
+    - question: "Czym różni się funkcja strzałkowa od zwykłej funkcji pod względem `this`?"
+      options:
+        - "Funkcja strzałkowa tworzy nowy kontekst `this`"
+        - "Nie ma różnicy"
+        - "Funkcje strzałkowe nie działają w JS"
+        - "Funkcja strzałkowa nie ma własnego `this`"
+      answer: 3
+      explanation: "Funkcje strzałkowe nie posiadają własnego `this` — dziedziczą go z otoczenia."
+
+    - question: "Jaką wartość zwróci poniższy kod?\n\n```javascript\nasync function test() { return 5; }\ntest().then(console.log);\n```"
+      options:
+        - "5"
+        - "Promise {<fulfilled>: 5}"
+        - "undefined"
+        - "Błąd"
+      answer: 0
+      explanation: "Funkcja async zawsze zwraca Promise, ale `then` wypisze wartość 5."
 ---
 
 JavaScript to wszechstronny język programowania, kluczowy dla współczesnych aplikacji webowych i nie tylko. Wraz z pojawieniem się standardu ES6 (ECMAScript 2015) oraz kolejnych aktualizacji, JS stał się bardziej ekspresyjny, bezpieczny i wygodny w użyciu. W tym przewodniku poznasz najważniejsze zagadnienia nowoczesnego JavaScriptu, które pozwolą Ci pisać czytelny, skuteczny i łatwo rozwijalny kod.

@@ -4,6 +4,53 @@ description: CSS (Cascading Style Sheets) to język służący do opisywania wyg
 keywords: [css, html, kurs, wprowadzenie, przewodnik, web, frontend, learning]
 categories: [wprowadzenie, css]
 createdAt: 2024-06-30
+quiz:
+  title: "Quiz: Podstawy CSS"
+  questions:
+    - question: "Co oznacza skrót CSS?"
+      options:
+        - "Creative Style Syntax"
+        - "Coded Style System"
+        - "Cascading Style Sheets"
+        - "Cascaded Sheet System"
+      answer: 2
+      explanation: "CSS to Cascading Style Sheets, czyli kaskadowe arkusze stylów."
+
+    - question: "Który sposób załączania stylów CSS do strony jest najbardziej zalecany dla większych projektów?"
+      options:
+        - "Inline CSS"
+        - "Internal CSS"
+        - "JavaScript"
+        - "External CSS (zewnętrzny plik .css)"
+      answer: 3
+      explanation: "External CSS pozwala na lepszą organizację i ponowne wykorzystanie stylów."
+
+    - question: "Jak wygląda selektor klasy w CSS?"
+      options:
+        - ".nazwa-klasy"
+        - "#nazwa-klasy"
+        - "nazwa-klasy"
+        - "*nazwa-klasy"
+      answer: 0
+      explanation: "Selektor klasy zapisujemy z kropką, np. .header."
+
+    - question: "Jak ustawić kolor tła elementu na żółty?"
+      options:
+        - "color: yellow;"
+        - "background: yellow-text;"
+        - "background-color: yellow;"
+        - "border-color: yellow;"
+      answer: 2
+      explanation: "Do ustawienia koloru tła służy background-color."
+
+    - question: "Za co odpowiada właściwość 'border-radius'?"
+      options:
+        - "Zmiana koloru ramki"
+        - "Zaokrąglenie rogów elementu"
+        - "Zmiana rozmiaru czcionki"
+        - "Ustawienie tła obrazkowego"
+      answer: 1
+      explanation: "border-radius pozwala na zaokrąglenie rogów elementu."
 ---
 
 ## Spis treści

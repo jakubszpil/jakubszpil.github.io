@@ -5,6 +5,53 @@ keywords:
   [typescript, react, frontend, nauka, komponenty, props, state, kurs, learning]
 categories: [typescript, react]
 createdAt: 2025-06-22
+quiz:
+  title: "Quiz: TypeScript w React – podstawy"
+  questions:
+    - question: "Które zdanie najlepiej opisuje główną zaletę TypeScript w projektach React?"
+      options:
+        - "Pozwala na typowanie propsów i stanu, zwiększając bezpieczeństwo kodu."
+        - "Generuje automatycznie dokumentację komponentów."
+        - "Zamienia kod na czysty CSS."
+        - "Eliminuje konieczność używania npm."
+      answer: 0
+      explanation: "Największą zaletą jest wprowadzenie typów w propsach, stanie i API komponentów."
+
+    - question: "Jak poprawnie zadeklarować stan liczbowy w komponencie funkcyjnym z użyciem useState?"
+      options:
+        - "const [count, setCount] = useState(0: number);"
+        - "let count = useState(0);"
+        - "const [count, setCount] = useState<string>(0);"
+        - "const [count, setCount] = useState<number>(0);"
+      answer: 3
+      explanation: "Poprawna składnia to useState<number>(0)."
+
+    - question: "Jak opisać typ propsów w komponencie funkcyjnym?"
+      options:
+        - "Nie trzeba typować propsów w TS."
+        - "Przez interface lub type i przekazać go do propsów funkcji."
+        - "Tylko poprzez klasę."
+        - "Wyłącznie przez any."
+      answer: 1
+      explanation: "Propsy typujemy przez interface lub type i używamy ich w definicji funkcji."
+
+    - question: "Który kod prawidłowo typuje referencję do przycisku?"
+      options:
+        - "const ref = useRef(null);"
+        - "const ref = useRef<Button>(null);"
+        - "const ref = useRef<HTMLDivElement>(null);"
+        - "const ref = useRef<HTMLButtonElement>(null);"
+      answer: 3
+      explanation: "Poprawny typ dla referencji do buttona to HTMLButtonElement."
+
+    - question: "Co wyświetli poniższy komponent?\n\n```tsx\ntype WelcomeProps = { name: string };\nconst Welcome = ({ name }: WelcomeProps) => <p>Cześć, {name}!</p>;\n```\nJeśli wywołasz `<Welcome name=\"Ala\" />`"
+      options:
+        - "Witaj, Ala!"
+        - "undefined"
+        - "Cześć, Ala!"
+        - "Błąd kompilacji"
+      answer: 2
+      explanation: "Komponent wyświetli 'Cześć, Ala!'."
 ---
 
 Chcesz pisać nowoczesne aplikacje i mieć pewność, że Twój kod jest czysty, bezpieczny i przyszłościowy? 🚀 TypeScript w połączeniu z React to duet, który pokochasz od pierwszego projektu! Ten przewodnik przeprowadzi Cię krok po kroku przez najważniejsze podstawy – bez zbędnych teorii, za to z praktycznymi przykładami i zadaniami, które pomogą Ci naprawdę zrozumieć temat.

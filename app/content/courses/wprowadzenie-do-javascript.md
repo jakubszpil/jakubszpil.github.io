@@ -4,6 +4,53 @@ description: JavaScript jest językiem programowania, który jest powszechnie st
 keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend, learning]
 categories: [wprowadzenie, javascript]
 createdAt: 2024-06-30
+quiz:
+  title: "Quiz: Podstawy JavaScript"
+  questions:
+    - question: "Które słowo kluczowe powinieneś użyć do zadeklarowania stałej wartości w JavaScript?"
+      options:
+        - "let"
+        - "var"
+        - "const"
+        - "static"
+      answer: 2
+      explanation: "Stałe deklarujemy za pomocą const."
+
+    - question: "Jakie typy danych NIE występują w JavaScript?"
+      options:
+        - "Number"
+        - "String"
+        - "Character"
+        - "Boolean"
+      answer: 2
+      explanation: "Typ 'Character' nie istnieje w JavaScript."
+
+    - question: "Jak wygląda przykładowa funkcja strzałkowa, która zwraca sumę dwóch liczb?"
+      options:
+        - "const suma = (a, b) => a + b;"
+        - "function suma(a, b) { return a + b; }"
+        - "let suma = add(a, b);"
+        - "sum(a, b) => a + b;"
+      answer: 0
+      explanation: "Funkcja strzałkowa: const suma = (a, b) => a + b;"
+
+    - question: "Jak uzyskać długość tablicy w JavaScript?"
+      options:
+        - "array.length"
+        - "length(array)"
+        - "array.size()"
+        - "array.count"
+      answer: 0
+      explanation: "array.length zwraca długość tablicy."
+
+    - question: "Co wypisze poniższy kod?\n\n```javascript\nlet x = 10;\nif (x > 5) { console.log('OK'); } else { console.log('NIE'); }\n```"
+      options:
+        - "NIE"
+        - "undefined"
+        - "5"
+        - "OK"
+      answer: 3
+      explanation: "Ponieważ 10 > 5, warunek jest prawdziwy i wypisze 'OK'."
 ---
 
 ## Spis treści
