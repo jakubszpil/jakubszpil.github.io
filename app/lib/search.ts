@@ -1,8 +1,15 @@
 import { createPath, redirect } from "react-router";
 
 import { isValidUrl } from "./url";
+import type { Article } from "./articles";
+import type { Course } from "./courses";
+import type { Project } from "./projects";
 
-export type SearchResults = Record<string, unknown[]>;
+export type SearchResults = {
+  articles: Article[];
+  courses: Course[];
+  projects: Project[];
+};
 
 export const queryParamName = "query";
 
