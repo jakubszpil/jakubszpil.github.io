@@ -51,6 +51,7 @@ export default function Quiz({ quiz }: QuizProps) {
           Wynik: {score} / {questions.length}
         </p>
         <Button
+          size="sm"
           onClick={() => {
             setCurrent(0);
             setSelected(null);
@@ -76,6 +77,7 @@ export default function Quiz({ quiz }: QuizProps) {
         <div className="grid grid-flow-row gap-3">
           {options.map((opt, idx) => (
             <Button
+              size="sm"
               variant="outline"
               key={idx}
               className={classNames(
@@ -106,7 +108,7 @@ export default function Quiz({ quiz }: QuizProps) {
             {question.explanation && (
               <blockquote className="my-3">{question.explanation}</blockquote>
             )}
-            <Button onClick={handleNext}>
+            <Button size="sm" onClick={handleNext}>
               {current + 1 < questions.length
                 ? "Następne pytanie"
                 : "Zakończ quiz"}
