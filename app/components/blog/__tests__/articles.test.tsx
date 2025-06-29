@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { Link, type LinkProps } from "react-router";
 import {
   afterEach,
   beforeEach,
@@ -10,26 +9,26 @@ import {
   type MockInstance,
 } from "vitest";
 
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "../../ui/link-with-prefetch";
 import Articles, { type ArticlesProps } from "../articles";
 
-vi.mock("react-router", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("react-router")>();
-  return {
-    ...actual,
-    Link: vi.fn(),
-  };
-});
+vi.mock("../../ui/link-with-prefetch");
 
 describe("<Articles />", () => {
-  let MockedLink: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance;
   let MockedArticlesProps: ArticlesProps;
 
   beforeEach(() => {
-    MockedLink = vi.mocked(Link).mockImplementation((props) => (
-      <a href={String(props.to)} data-testid="link">
-        {props.children}
-      </a>
-    ));
+    MockedLinkWithPrefetch = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <a href={String(props.to)} data-testid="link">
+          {props.children}
+        </a>
+      ));
 
     MockedArticlesProps = {
       articles: [
@@ -60,27 +59,27 @@ describe("<Articles />", () => {
   });
 
   afterEach(() => {
-    MockedLink.mockRestore();
+    MockedLinkWithPrefetch.mockRestore();
   });
 
   test("should render", async () => {
     render(<Articles {...MockedArticlesProps} />);
 
     await waitFor(() => {
-      expect(MockedLink).toHaveBeenNthCalledWith(
+      expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
         1,
         expect.objectContaining({
           to: "/blog/test-1",
-        } satisfies LinkProps),
+        } satisfies LinkWithPrefetchProps),
         undefined
       );
     });
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/blog/test-2",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 

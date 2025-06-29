@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router";
 
 import { Button } from "./ui/button";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
 export interface FooterLinkProps {
   to: string;
@@ -11,9 +11,7 @@ export interface FooterLinkProps {
 export default function FooterLink(props: FooterLinkProps) {
   return (
     <Button asChild variant="link" size="sm">
-      <Link prefetch="intent" to={props.to}>
-        {props.children}
-      </Link>
+      <LinkWithPrefetch to={props.to}>{props.children}</LinkWithPrefetch>
     </Button>
   );
 }

@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { Link, type LinkProps } from "react-router";
 import {
   afterEach,
   beforeEach,
@@ -10,26 +9,26 @@ import {
   type MockInstance,
 } from "vitest";
 
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "../../ui/link-with-prefetch";
 import Courses, { type CoursesProps } from "../courses";
 
-vi.mock("react-router", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("react-router")>();
-  return {
-    ...actual,
-    Link: vi.fn(),
-  };
-});
+vi.mock("../../ui/link-with-prefetch");
 
 describe("<Courses />", () => {
-  let MockedLink: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance;
   let MockedCoursesProps: CoursesProps;
 
   beforeEach(() => {
-    MockedLink = vi.mocked(Link).mockImplementation((props) => (
-      <a href={String(props.to)} data-testid="link">
-        {props.children}
-      </a>
-    ));
+    MockedLinkWithPrefetch = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <a href={String(props.to)} data-testid="link">
+          {props.children}
+        </a>
+      ));
 
     MockedCoursesProps = {
       courses: [
@@ -60,27 +59,27 @@ describe("<Courses />", () => {
   });
 
   afterEach(() => {
-    MockedLink.mockRestore();
+    MockedLinkWithPrefetch.mockRestore();
   });
 
   test("should render", async () => {
     render(<Courses {...MockedCoursesProps} />);
 
     await waitFor(() => {
-      expect(MockedLink).toHaveBeenNthCalledWith(
+      expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
         1,
         expect.objectContaining({
           to: "/learning/test-1",
-        } satisfies LinkProps),
+        } satisfies LinkWithPrefetchProps),
         undefined
       );
     });
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/learning/test-2",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 

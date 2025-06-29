@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Link, type LinkProps } from "react-router";
+
 import {
   afterEach,
   beforeEach,
@@ -10,26 +10,26 @@ import {
   type MockInstance,
 } from "vitest";
 
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "../../ui/link-with-prefetch";
 import Technologies, { type TechnologiesProps } from "../technologies";
 
-vi.mock("react-router", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("react-router")>();
-  return {
-    ...actual,
-    Link: vi.fn(),
-  };
-});
+vi.mock("../../ui/link-with-prefetch");
 
 describe("<Technologies />", () => {
-  let MockedLink: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance;
   let MockedTechnologiesProps: TechnologiesProps;
 
   beforeEach(() => {
-    MockedLink = vi.mocked(Link).mockImplementation((props) => (
-      <a href={String(props.to)} data-testid="link">
-        {props.children}
-      </a>
-    ));
+    MockedLinkWithPrefetch = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <a href={String(props.to)} data-testid="link">
+          {props.children}
+        </a>
+      ));
 
     MockedTechnologiesProps = {
       technologies: ["test", "example"],
@@ -37,7 +37,7 @@ describe("<Technologies />", () => {
   });
 
   afterEach(() => {
-    MockedLink.mockRestore();
+    MockedLinkWithPrefetch.mockRestore();
   });
 
   test("given showAllTechnology=false expect to render only given technologies", () => {
@@ -45,19 +45,19 @@ describe("<Technologies />", () => {
       <Technologies {...MockedTechnologiesProps} showAllTechnology={false} />
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
         to: "/portfolio/technologie/test",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/portfolio/technologie/example",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
   });
@@ -67,27 +67,27 @@ describe("<Technologies />", () => {
       <Technologies {...MockedTechnologiesProps} showAllTechnology={true} />
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
         to: "/portfolio",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/portfolio/technologie/test",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       3,
       expect.objectContaining({
         to: "/portfolio/technologie/example",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
   });

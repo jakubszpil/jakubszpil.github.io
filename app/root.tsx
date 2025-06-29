@@ -26,6 +26,7 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
+        <link rel="modulepreload" href="/fetch.js" />
         <script>
           {injectScript(`
             const theme = localStorage.getItem("theme");

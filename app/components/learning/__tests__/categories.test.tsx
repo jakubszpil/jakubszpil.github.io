@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Link, type LinkProps } from "react-router";
+
 import {
   afterEach,
   beforeEach,
@@ -10,26 +10,26 @@ import {
   type MockInstance,
 } from "vitest";
 
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "../../ui/link-with-prefetch";
 import Categories, { type CategoriesProps } from "../categories";
 
-vi.mock("react-router", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("react-router")>();
-  return {
-    ...actual,
-    Link: vi.fn(),
-  };
-});
+vi.mock("../../ui/link-with-prefetch");
 
 describe("<Categories />", () => {
-  let MockedLink: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance;
   let MockedCategoriesProps: CategoriesProps;
 
   beforeEach(() => {
-    MockedLink = vi.mocked(Link).mockImplementation((props) => (
-      <a href={String(props.to)} data-testid="link">
-        {props.children}
-      </a>
-    ));
+    MockedLinkWithPrefetch = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <a href={String(props.to)} data-testid="link">
+          {props.children}
+        </a>
+      ));
 
     MockedCategoriesProps = {
       categories: ["test", "example"],
@@ -37,25 +37,25 @@ describe("<Categories />", () => {
   });
 
   afterEach(() => {
-    MockedLink.mockRestore();
+    MockedLinkWithPrefetch.mockRestore();
   });
 
   test("given showAllCategory=false expect to render only given categories", () => {
     render(<Categories {...MockedCategoriesProps} showAllCategory={false} />);
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
         to: "/learning/kategorie/test",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/learning/kategorie/example",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
   });
@@ -63,27 +63,27 @@ describe("<Categories />", () => {
   test("given showAllCategory=true expect to render all-category link with given categories", () => {
     render(<Categories {...MockedCategoriesProps} showAllCategory={true} />);
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
         to: "/learning",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/learning/kategorie/test",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       3,
       expect.objectContaining({
         to: "/learning/kategorie/example",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
   });
