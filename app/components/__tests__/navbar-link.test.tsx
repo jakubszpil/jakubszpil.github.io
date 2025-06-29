@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { Link } from "react-router";
 import {
   afterEach,
   beforeEach,
@@ -11,25 +10,22 @@ import {
 } from "vitest";
 
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
+import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 
-vi.mock("react-router", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("react-router")>();
-  return {
-    ...actual,
-    Link: vi.fn(),
-  };
-});
+vi.mock("../ui/link-with-prefetch");
 
 describe("<NavbarLink />", () => {
-  let MockedLink: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance;
   let MockedNavbarLinkProps: NavbarLinkProps;
 
   beforeEach(() => {
-    MockedLink = vi.mocked(Link).mockImplementation((props) => (
-      <a href={String(props.to)} data-testid="link">
-        {props.children}
-      </a>
-    ));
+    MockedLinkWithPrefetch = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <a href={String(props.to)} data-testid="link">
+          {props.children}
+        </a>
+      ));
 
     MockedNavbarLinkProps = {
       children: "some text",
@@ -38,7 +34,7 @@ describe("<NavbarLink />", () => {
   });
 
   afterEach(() => {
-    MockedLink.mockRestore();
+    MockedLinkWithPrefetch.mockRestore();
   });
 
   test("should render", async () => {

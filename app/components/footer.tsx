@@ -1,9 +1,9 @@
 import type { ReactElement } from "react";
-import { Link } from "react-router";
 
 import { getCurrentYear } from "~/lib/date";
 
 import { Button } from "./ui/button";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 import type { FooterLinkProps } from "./footer-link";
 
 export interface FooterProps {
@@ -17,9 +17,7 @@ export default function Footer(props: FooterProps) {
         <p className="xl:text-sm">
           &copy; {getCurrentYear()}
           <Button asChild variant="link" size="sm">
-            <Link prefetch="intent" to="/">
-              jakubszpil
-            </Link>
+            <LinkWithPrefetch to="/">jakubszpil</LinkWithPrefetch>
           </Button>
         </p>
 

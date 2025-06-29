@@ -1,9 +1,10 @@
-import { Link, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
 import Articles from "~/components/blog/articles";
 import Courses from "~/components/learning/courses";
 import Projects from "~/components/portfolio/projects";
 import { Button } from "~/components/ui/button";
+import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
 import { getCourses } from "~/lib/courses";
@@ -53,14 +54,12 @@ export default function Home() {
         </p>
         <nav className="grid grid-flow-row sm:grid-flow-col sm:w-max gap-2">
           <Button size="sm" asChild className="!no-underline">
-            <Link prefetch="intent" to="/blog">
+            <LinkWithPrefetch to="/blog">
               📝 Najnowsze artykuły
-            </Link>
+            </LinkWithPrefetch>
           </Button>
           <Button size="sm" variant="outline" asChild className="!no-underline">
-            <Link prefetch="intent" to="/learning">
-              🏫 Lista kursów
-            </Link>
+            <LinkWithPrefetch to="/learning">🏫 Lista kursów</LinkWithPrefetch>
           </Button>
         </nav>
       </header>
@@ -81,9 +80,9 @@ export default function Home() {
         <Articles variant="outline" articles={data.articles} />
         <nav className="container pt-0">
           <Button asChild size="sm" className="!no-underline">
-            <Link prefetch="intent" to="/blog">
+            <LinkWithPrefetch to="/blog">
               Zobacz wszystkie artykuły
-            </Link>
+            </LinkWithPrefetch>
           </Button>
         </nav>
       </section>
@@ -100,9 +99,9 @@ export default function Home() {
         <Courses variant="outline" courses={data.courses} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
-            <Link prefetch="intent" to="/learning">
+            <LinkWithPrefetch to="/learning">
               Zobacz wszystkie kursy
-            </Link>
+            </LinkWithPrefetch>
           </Button>
         </nav>
       </section>
@@ -119,9 +118,9 @@ export default function Home() {
         <Projects variant="outline" projects={data.projects} />
         <nav className="container pt-0 pb-12">
           <Button asChild size="sm" className="!no-underline">
-            <Link prefetch="intent" to="/portfolio">
+            <LinkWithPrefetch to="/portfolio">
               Zobacz wszystkie projekty
-            </Link>
+            </LinkWithPrefetch>
           </Button>
         </nav>
       </section>

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Link, useLocation, type LinkProps, type Location } from "react-router";
+import { useLocation, type Location } from "react-router";
 import {
   afterEach,
   beforeEach,
@@ -10,21 +10,26 @@ import {
   type MockInstance,
 } from "vitest";
 
+import {
+  LinkWithPrefetch,
+  type LinkWithPrefetchProps,
+} from "../ui/link-with-prefetch";
 import NotFound from "../not-found";
 
 vi.mock("react-router", async (importOriginal) => {
   const actual = await importOriginal<typeof import("react-router")>();
   return {
     ...actual,
-    Link: vi.fn(),
     useLocation: vi.fn(),
   };
 });
 
+vi.mock("../ui/link-with-prefetch");
+
 describe("<NotFound />", () => {
   let MockedLocation: Location<unknown>;
   let mockedUseLocation: MockInstance;
-  let MockedLink: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance;
 
   beforeEach(() => {
     MockedLocation = {
@@ -39,16 +44,18 @@ describe("<NotFound />", () => {
       .mocked(useLocation)
       .mockImplementation(() => MockedLocation);
 
-    MockedLink = vi.mocked(Link).mockImplementation((props) => (
-      <a href={String(props.to)} data-testid="link">
-        {props.children}
-      </a>
-    ));
+    MockedLinkWithPrefetch = vi
+      .mocked(LinkWithPrefetch)
+      .mockImplementation((props) => (
+        <a href={String(props.to)} data-testid="link">
+          {props.children}
+        </a>
+      ));
   });
 
   afterEach(() => {
     mockedUseLocation.mockRestore();
-    MockedLink.mockRestore();
+    MockedLinkWithPrefetch.mockRestore();
   });
 
   test("should render", async () => {
@@ -64,34 +71,34 @@ describe("<NotFound />", () => {
     screen.getByText("Link może być nieaktualny.");
     screen.getByText("Co możesz teraz zrobić?");
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
         to: MockedLocation.pathname,
         children: "🤔 Sprawdź adres URL",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
     screen.getByText("- Upewnij się, że wpisany adres jest poprawny.");
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
         to: "/",
         children: "🏠 Przejdź do strony głównej",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 
     screen.getByText("- Kliknij tutaj aby wrócić na stronę główną.");
 
-    expect(MockedLink).toHaveBeenNthCalledWith(
+    expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       3,
       expect.objectContaining({
         to: "/search",
         children: "🔍 Szukaj",
-      } satisfies LinkProps),
+      } satisfies LinkWithPrefetchProps),
       undefined
     );
 

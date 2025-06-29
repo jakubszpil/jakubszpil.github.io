@@ -1,5 +1,6 @@
 import { useLocation } from "react-router";
 
+import { usePrefetch } from "~/hooks/use-prefetch";
 import { config } from "~/lib/config";
 
 export interface SeoMeta {
@@ -17,6 +18,8 @@ export interface SeoProps {
 
 export const Seo = (props: SeoProps) => {
   const { pathname } = useLocation();
+
+  usePrefetch("/search.data");
 
   const title = props.title
     ? config.meta.titleTemplate.replace("%s", props.title)

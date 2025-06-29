@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import {
   isRouteErrorResponse,
-  Link,
   Outlet,
   useLocation,
   useRouteError,
@@ -15,6 +14,7 @@ import Footer from "~/components/footer";
 import FooterLink from "~/components/footer-link";
 import BusyIndicator from "~/components/busy-indicator";
 import NotFound from "~/components/not-found";
+import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 
 export default function Layout() {
   return (
@@ -65,9 +65,7 @@ export function ErrorBoundary() {
           </h1>
           <p>{error.data}</p>
           <Button asChild className="no-underline" variant="outline" size="sm">
-            <Link prefetch="intent" to="/">
-              Powrót do strony głównej
-            </Link>
+            <LinkWithPrefetch to="/">Powrót do strony głównej</LinkWithPrefetch>
           </Button>
         </>
       );
@@ -83,9 +81,9 @@ export function ErrorBoundary() {
           </h1>
           <pre>{error.stack}</pre>
           <Button asChild className="no-underline" variant="outline" size="sm">
-            <Link prefetch="intent" replace to={location.pathname}>
+            <LinkWithPrefetch replace to={location.pathname}>
               Odśwież stronę
-            </Link>
+            </LinkWithPrefetch>
           </Button>
         </>
       );

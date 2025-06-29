@@ -14,6 +14,7 @@ if (Number(_timestamp) !== Number(_storedTimestamp)) {
 }
 
 const cache = await window.caches.open(_timestamp);
+const prefetchCache = new Set();
 
 function createRequestUrl(requestInput) {
   if (requestInput instanceof URL) {
@@ -80,7 +81,16 @@ globalThis.document.createElement = (tag, options) => {
 
         const matched = await cache.match(new Request(url));
 
-        if (!matched) setAttribute.call(element, key, pathname);
+        if (!matched) {
+          if (!prefetchCache.has(url.href)) {
+            setAttribute.call(element, key, pathname);
+            function addEntry() {
+              prefetchCache.add(url.href);
+              element.removeEventListener("load", addEntry);
+            }
+            element.addEventListener("load", addEntry);
+          }
+        }
         return;
       }
 
