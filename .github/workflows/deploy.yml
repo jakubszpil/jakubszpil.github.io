@@ -28,6 +28,10 @@ jobs:
         run: |
           npm ci
 
+      - name: Check types 🛠️
+        run: |
+          npm run typecheck
+
       - name: Test 🔧
         run: |
           npm run test:ci

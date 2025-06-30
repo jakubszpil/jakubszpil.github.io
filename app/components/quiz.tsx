@@ -1,11 +1,31 @@
 import { useCallback, useState } from "react";
 import classNames from "classnames";
 
-import type { ContentQuiz } from "~/lib/content";
 import { Button } from "./ui/button";
+
+import { shuffleArray } from "~/lib/array";
+import type { ContentQuiz, ContentQuizQuestion } from "~/lib/content";
 
 interface QuizProps {
   quiz: ContentQuiz;
+}
+
+function shuffleQuestion(question: ContentQuizQuestion): ContentQuizQuestion {
+  const option = question.options[question.answer];
+  const options = shuffleArray(question.options);
+  const answer = options.indexOf(option);
+
+  return {
+    ...question,
+    options,
+    answer,
+  };
+}
+
+function shuffleQuestions(quiz: ContentQuiz): ContentQuizQuestion[] {
+  const [question, ...questions] = quiz.questions;
+
+  return [question, ...shuffleArray(questions).map(shuffleQuestion)];
 }
 
 export default function Quiz({ quiz }: QuizProps) {
@@ -15,7 +35,7 @@ export default function Quiz({ quiz }: QuizProps) {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const questions = quiz.questions;
+  const [questions, setQuestions] = useState(() => shuffleQuestions(quiz));
 
   const question = questions[current];
 
@@ -58,6 +78,7 @@ export default function Quiz({ quiz }: QuizProps) {
             setShowAnswer(false);
             setScore(0);
             setFinished(false);
+            setQuestions(shuffleQuestions(quiz));
           }}
         >
           Rozwiąż ponownie

@@ -12,6 +12,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { v4 } from "uuid";
 import invariant from "tiny-invariant";
 
+import { shuffleArray } from "./array";
+
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";
   for (let i = 0; i < level; i++) {
@@ -89,9 +91,15 @@ export const parseQuiz = async (
 
   const questions = await Promise.all(
     quiz.questions.map(async (question) => {
+      const answer = question.options[question.answer];
+      const options = shuffleArray(question.options);
+      const index = options.indexOf(answer);
+
       return {
         ...question,
         question: await processContent(question.question),
+        answer: index,
+        options,
       };
     })
   );
