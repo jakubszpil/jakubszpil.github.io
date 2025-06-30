@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
 import classNames from "classnames";
+import { useCallback, useState } from "react";
 
 import { Button } from "./ui/button";
 
@@ -88,19 +88,19 @@ export default function Quiz({ quiz }: QuizProps) {
   }
 
   return (
-    <div className="container prose scroll-mt-20" id="quiz">
+    <div className="container prose">
       <h2>{quiz.title}</h2>
       <div>
-        <strong>
+        <h4>
           Pytanie {current + 1} z {questions.length}
-        </strong>
-        <p dangerouslySetInnerHTML={{ __html: question.question }}></p>
+        </h4>
+        <div dangerouslySetInnerHTML={{ __html: question.question }}></div>
         <div className="grid grid-flow-row gap-3">
-          {options.map((opt, idx) => (
+          {options.map((opt) => (
             <Button
               size="sm"
               variant="outline"
-              key={idx}
+              key={opt}
               className={classNames(
                 "w-full text-left inline-flex justify-start transition-none text-wrap !min-h-min py-1.5",
                 showAnswer
