@@ -15,7 +15,7 @@ export interface SeoProps {
   description?: string;
   keywords?: string[];
   type?: string;
-  publishedTime?: string | Date;
+  publishedTime?: Date;
 }
 
 export const Seo = (props: SeoProps) => {
@@ -46,11 +46,7 @@ export const Seo = (props: SeoProps) => {
       {props.publishedTime && (
         <meta
           property="article:published_time"
-          content={
-            props.publishedTime instanceof Date
-              ? props.publishedTime.toISOString()
-              : props.publishedTime
-          }
+          content={props.publishedTime.toISOString()}
         />
       )}
 

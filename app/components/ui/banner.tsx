@@ -2,7 +2,7 @@ import { getLocalizedDate } from "~/lib/date";
 
 export interface BannerProps {
   readingTime: string;
-  createdAt: string | Date;
+  createdAt: Date;
 }
 
 export function Banner(props: BannerProps) {

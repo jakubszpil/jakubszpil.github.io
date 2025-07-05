@@ -14,7 +14,7 @@ export abstract class Project implements ContentResource {
   abstract title: string;
   abstract description: string;
   abstract keywords: string[];
-  abstract createdAt: Date | string;
+  abstract createdAt: Date;
   abstract technologies: string[];
   abstract readingTime: string;
   abstract status: ProjectStatus;

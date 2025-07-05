@@ -1,9 +1,9 @@
-export function getLocalizedDate(date: string | Date) {
+export function getLocalizedDate(date: Date) {
   return new Intl.DateTimeFormat("pl-PL", {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(new Date(date));
+  }).format(date);
 }
 
 export function getCurrentYear() {

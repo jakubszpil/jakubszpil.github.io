@@ -53,8 +53,9 @@ describe("<ArticleList />", () => {
         description: "Test description 1",
         keywords: ["test", "example"],
         categories: ["test"],
-        createdAt: "2025-03-17",
+        createdAt: new Date("2025-03-17"),
         resourceUrl: "https://example.com",
+        readingTime: "3 minuty",
       },
       {
         id: "2",
@@ -64,8 +65,9 @@ describe("<ArticleList />", () => {
         description: "Test description 2",
         keywords: ["example"],
         categories: ["test", "example"],
-        createdAt: "2025-03-17",
+        createdAt: new Date("2025-03-17"),
         resourceUrl: "https://example.com",
+        readingTime: "3 minuty",
       },
     ];
 

@@ -13,6 +13,7 @@ import {
 import Categories, {
   type CategoriesProps,
 } from "~/components/learning/categories";
+import { Banner, type BannerProps } from "~/components/ui/banner";
 import {
   EditResource,
   type EditResourceProps,
@@ -24,6 +25,7 @@ import CourseDetails, { loader } from "../course-details";
 
 vi.mock("~/components/learning/categories");
 vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/courses");
 
@@ -31,6 +33,7 @@ describe("<CourseDetails />", () => {
   let MockedCategories: MockInstance;
   let MockedEditResource: MockInstance;
   let MockedSeo: MockInstance;
+  let MockedBanner: MockInstance;
 
   let MockedCourse: Course;
   let MockedGetCourse: MockInstance;
@@ -39,6 +42,7 @@ describe("<CourseDetails />", () => {
     MockedCategories = vi.mocked(Categories);
     MockedEditResource = vi.mocked(EditResource);
     MockedSeo = vi.mocked(Seo);
+    MockedBanner = vi.mocked(Banner);
 
     MockedCourse = {
       id: "123",
@@ -48,8 +52,9 @@ describe("<CourseDetails />", () => {
       description: "Test description",
       keywords: ["test", "example"],
       categories: ["test", "example"],
-      createdAt: "2025-03-17",
       resourceUrl: "https://example.com",
+      createdAt: new Date("2025-03-17"),
+      readingTime: "3 minuty",
     };
 
     MockedGetCourse = vi
@@ -61,6 +66,7 @@ describe("<CourseDetails />", () => {
     MockedCategories.mockRestore();
     MockedEditResource.mockRestore();
     MockedSeo.mockRestore();
+    MockedBanner.mockRestore();
     MockedGetCourse.mockRestore();
   });
 
@@ -90,6 +96,8 @@ describe("<CourseDetails />", () => {
         title: MockedCourse.title,
         description: MockedCourse.description,
         keywords: MockedCourse.keywords,
+        publishedTime: MockedCourse.createdAt,
+        type: "article",
       } satisfies SeoProps,
       undefined
     );
@@ -105,6 +113,14 @@ describe("<CourseDetails />", () => {
       {
         resourceUrl: MockedCourse.resourceUrl,
       } satisfies EditResourceProps,
+      undefined
+    );
+
+    expect(MockedBanner).toHaveBeenCalledWith(
+      {
+        createdAt: MockedCourse.createdAt,
+        readingTime: MockedCourse.readingTime,
+      } satisfies BannerProps,
       undefined
     );
   });
