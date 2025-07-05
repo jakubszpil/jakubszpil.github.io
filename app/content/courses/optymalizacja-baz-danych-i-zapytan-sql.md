@@ -197,7 +197,9 @@ EXPLAIN SELECT * FROM Pracownik WHERE nazwisko = 'Kowalski';
 Stwórz indeks na kolumnie "email" w tabeli "Uzytkownicy".
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 CREATE INDEX idx_email ON Uzytkownicy(email);
@@ -216,7 +218,9 @@ SELECT * FROM Produkty WHERE nazwa = 'Laptop';
 ```
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 EXPLAIN SELECT * FROM Produkty WHERE nazwa = 'Laptop';
@@ -237,7 +241,9 @@ SELECT * FROM Zamowienie WHERE YEAR(data_zamowienia) = 2025;
 Jak je poprawić, by lepiej wykorzystać indeks na kolumnie data_zamowienia?
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT * FROM Zamowienie WHERE data_zamowienia >= '2025-01-01' AND data_zamowienia < '2026-01-01';
@@ -252,7 +258,9 @@ SELECT * FROM Zamowienie WHERE data_zamowienia >= '2025-01-01' AND data_zamowien
 Wyjaśnij, dlaczego zbyt wiele indeksów może negatywnie wpłynąć na wydajność bazy.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 Każdy INSERT, UPDATE lub DELETE wymaga aktualizacji wszystkich indeksów, co spowalnia operacje modyfikujące dane.
 
@@ -265,7 +273,9 @@ Każdy INSERT, UPDATE lub DELETE wymaga aktualizacji wszystkich indeksów, co sp
 Podaj przykład sytuacji, kiedy warto zastosować denormalizację.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 Gdy bardzo często wyświetlamy raporty sprzedaży, możemy przechowywać sumę sprzedaży w tabeli, zamiast za każdym razem ją wyliczać.
 

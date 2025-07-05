@@ -420,7 +420,9 @@ SELECT * FROM Klienci_aktywni;
 Pobierz imię klienta oraz datę każdego jego zamówienia.
 
 <details>
-  <summary>Pokaż rozwiązanie i wyjaśnienie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT Klient.imie, Zamowienie.data
@@ -440,7 +442,9 @@ INNER JOIN Zamowienie ON Klient.id = Zamowienie.klient_id;
 Wyświetl liczbę zamówień złożonych przez każdego klienta.
 
 <details>
-  <summary>Pokaż rozwiązanie i wyjaśnienie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT Klient.imie, COUNT(Zamowienie.id) AS liczba_zamowien
@@ -461,7 +465,9 @@ GROUP BY Klient.imie;
 Wyświetl produkty zamówione przez klientów z miasta "Warszawa".
 
 <details>
-  <summary>Pokaż rozwiązanie i wyjaśnienie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT Produkt.nazwa
@@ -484,7 +490,9 @@ WHERE Klient.miasto = 'Warszawa';
 Wyświetl imiona osób będących zarówno klientami, jak i pracownikami.
 
 <details>
-  <summary>Pokaż rozwiązanie i wyjaśnienie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT imie FROM Klient
@@ -504,7 +512,9 @@ INTERSECT zwraca tylko te imiona, które są jednocześnie w obu tabelach.
 Stwórz widok prezentujący tylko klientów, którzy mają więcej niż 2 zamówienia.
 
 <details>
-  <summary>Pokaż rozwiązanie i wyjaśnienie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 CREATE VIEW Klienci_czesto_zamawiajacy AS
@@ -527,7 +537,9 @@ Widok zawiera tylko tych klientów, którzy mają więcej niż dwa zamówienia (
 Wyświetl imię i status pełnoletności każdego klienta (pełnoletni/niepełnoletni), imię wypisz wielkimi literami.
 
 <details>
-  <summary>Pokaż rozwiązanie i wyjaśnienie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT UPPER(imie) AS imie,

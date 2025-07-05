@@ -374,7 +374,9 @@ CREATE TABLE Zamowienia (
 Wyświetl wszystkie dane z tabeli "Uzytkownicy".
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT * FROM Uzytkownicy;
@@ -389,7 +391,9 @@ SELECT * FROM Uzytkownicy;
 Dodaj nowego użytkownika o imieniu "Anna", nazwisku "Nowak" i wieku 25.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 INSERT INTO Uzytkownicy (imie, nazwisko, wiek) VALUES ('Anna', 'Nowak', 25);
@@ -404,7 +408,9 @@ INSERT INTO Uzytkownicy (imie, nazwisko, wiek) VALUES ('Anna', 'Nowak', 25);
 Wyświetl imiona i nazwiska użytkowników, którzy mają więcej niż 18 lat.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT imie, nazwisko FROM Uzytkownicy WHERE wiek > 18;
@@ -419,7 +425,9 @@ SELECT imie, nazwisko FROM Uzytkownicy WHERE wiek > 18;
 Zmień wiek użytkownika "Anna Nowak" na 26.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 UPDATE Uzytkownicy SET wiek = 26 WHERE imie = 'Anna' AND nazwisko = 'Nowak';
@@ -434,7 +442,9 @@ UPDATE Uzytkownicy SET wiek = 26 WHERE imie = 'Anna' AND nazwisko = 'Nowak';
 Usuń wszystkich użytkowników o wieku poniżej 18 lat.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 DELETE FROM Uzytkownicy WHERE wiek < 18;
@@ -449,7 +459,9 @@ DELETE FROM Uzytkownicy WHERE wiek < 18;
 Utwórz tabelę "Produkty" z polami: id (liczba całkowita, klucz podstawowy), nazwa (tekst), cena (liczba zmiennoprzecinkowa).
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 CREATE TABLE Produkty (
@@ -468,7 +480,9 @@ CREATE TABLE Produkty (
 Utwórz tabelę "Zamowienia" zawierającą klucz obcy do "Produktów".
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 CREATE TABLE Zamowienia (
@@ -488,7 +502,9 @@ CREATE TABLE Zamowienia (
 Wyświetl 5 najstarszych użytkowników (imie, nazwisko, wiek).
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT imie, nazwisko, wiek FROM Uzytkownicy ORDER BY wiek DESC LIMIT 5;
@@ -503,7 +519,9 @@ SELECT imie, nazwisko, wiek FROM Uzytkownicy ORDER BY wiek DESC LIMIT 5;
 Wyświetl wszystkich użytkowników z miasta "Warszawa" w wieku powyżej 18 lat.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 SELECT * FROM Uzytkownicy WHERE miasto = 'Warszawa' AND wiek > 18;

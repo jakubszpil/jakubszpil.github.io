@@ -300,7 +300,9 @@ Tabela Zakup: (id_klienta, id_produktu)
 W sklepie internetowym mamy: Klienta, Zamówienie, Produkt. Zidentyfikuj encje, ich atrybuty i relacje.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 Encje:
 
@@ -321,7 +323,9 @@ Relacje:
 Narysuj (lub opisz tekstowo) diagram ERD dla powyższego sklepu.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```
 [Klient] 1---N [Zamówienie] N---M [Produkt]
@@ -349,7 +353,9 @@ Masz tabelę:
 Podziel ją na znormalizowane tabele.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 Tabela Klient: (id, imie, adres, miasto)  
 Tabela Produkt: (id, nazwa_produktu, cena)  
@@ -364,7 +370,9 @@ Tabela Zakup: (id_klienta, id_produktu)
 Opisz, czym różni się relacja jeden-do-wielu od wiele-do-wielu i podaj przykład.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 Jeden-do-wielu: jeden klient może mieć wiele zamówień, ale każde zamówienie należy do jednego klienta.  
 Wiele-do-wielu: jeden student może być zapisany na wiele kursów i jeden kurs może mieć wielu studentów.
@@ -378,7 +386,9 @@ Wiele-do-wielu: jeden student może być zapisany na wiele kursów i jeden kurs 
 Podaj przykład tabeli z powielaniem danych oraz jej poprawnej wersji po normalizacji.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 **Zły projekt:**
 
