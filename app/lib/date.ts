@@ -1,4 +1,4 @@
-export function getLocalizedDate(date: string) {
+export function getLocalizedDate(date: string | Date) {
   return new Intl.DateTimeFormat("pl-PL", {
     day: "numeric",
     month: "long",

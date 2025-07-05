@@ -42,6 +42,7 @@ describe("<Courses />", () => {
           createdAt: "2025-03-01",
           keywords: [],
           resourceUrl: "",
+          readingTime: "1 minuta",
         },
         {
           id: "2",
@@ -53,6 +54,7 @@ describe("<Courses />", () => {
           createdAt: "2025-03-01",
           keywords: [],
           resourceUrl: "",
+          readingTime: "1 minuta",
         },
       ],
     };

@@ -3,6 +3,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
 import remarkGfm from "remark-gfm";
+import remarkReadingTime from "remark-reading-time";
 import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
@@ -27,6 +28,7 @@ export const processContent = async (content: string) => {
     .use(remarkParse)
     .use(remarkHtml)
     .use(remarkGfm)
+    .use(remarkReadingTime, { name: "readingTime" })
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeSlug)
@@ -56,7 +58,14 @@ export const processContent = async (content: string) => {
 
   const results = await processor.process(content);
 
-  return results.toString();
+  const readingTime = results.data.readingTime as {
+    text: string;
+    minutes: number;
+    time: number;
+    words: number;
+  };
+
+  return [results.toString(), readingTime.time] as const;
 };
 
 export abstract class ContentQuiz {
@@ -79,7 +88,8 @@ export abstract class ContentResource {
   abstract title: string;
   abstract description: string;
   abstract keywords: string[];
-  abstract createdAt: string;
+  abstract createdAt: Date | string;
+  abstract readingTime: string;
   abstract quiz?: ContentQuiz;
 }
 
@@ -94,10 +104,11 @@ export const parseQuiz = async (
       const answer = question.options[question.answer];
       const options = shuffleArray(question.options);
       const index = options.indexOf(answer);
+      const [content] = await processContent(question.question);
 
       return {
         ...question,
-        question: await processContent(question.question),
+        question: content,
         answer: index,
         options,
       };
@@ -119,13 +130,27 @@ export const parseMarkdownFile = async <T extends ContentResource>(
 
   const quiz = await parseQuiz(data);
 
+  const [fileContent, readingTime] = await processContent(content);
+
+  // Zamiana liczby minut na labelkę w języku polskim
+  const minutes = Math.round(readingTime / 60000);
+  let readingTimeAsText = "";
+  if (minutes === 1) {
+    readingTimeAsText = "1 minuta";
+  } else if (minutes >= 2 && minutes <= 4) {
+    readingTimeAsText = `${minutes} minuty`;
+  } else {
+    readingTimeAsText = `${minutes} minut`;
+  }
+
   return {
     ...data,
     id: v4(),
     slug,
-    content: await processContent(content),
+    content: fileContent,
     resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`,
     quiz,
+    readingTime: readingTimeAsText,
   } as T;
 };
 

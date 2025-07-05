@@ -11,6 +11,7 @@ export interface ArticlesProps {
 }
 
 export default function Articles(props: ArticlesProps) {
+  console.log(props.articles);
   return (
     <section
       className={`container pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 ${

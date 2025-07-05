@@ -12,8 +12,9 @@ export abstract class Course implements ContentResource {
   abstract title: string;
   abstract description: string;
   abstract keywords: string[];
-  abstract createdAt: string;
+  abstract createdAt: Date | string;
   abstract categories: string[];
+  abstract readingTime: string;
   abstract quiz?: ContentQuiz;
 }
 

@@ -8,7 +8,8 @@ export abstract class Article implements ContentResource {
   abstract title: string;
   abstract description: string;
   abstract keywords: string[];
-  abstract createdAt: string;
+  abstract createdAt: Date | string;
+  abstract readingTime: string;
   abstract categories: string[];
 }
 

@@ -1,6 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/blog/categories";
+import { Banner } from "~/components/ui/banner";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
@@ -20,10 +21,16 @@ export default function ArticleDetails() {
         title={article.title}
         description={article.description}
         keywords={article.keywords}
+        publishedTime={article.createdAt}
+        type="article"
       />
 
       <header className="prose container">
-        <h1>{article.title}</h1>
+        <h1 className="mb-5">{article.title}</h1>
+        <Banner
+          createdAt={article.createdAt}
+          readingTime={article.readingTime}
+        />
         <Categories categories={article.categories} />
       </header>
 

@@ -21,6 +21,7 @@ describe("<Projects />", () => {
           createdAt: "2025-03-01",
           keywords: [],
           resourceUrl: "",
+          readingTime: "1 minuta",
         },
         {
           id: "2",
@@ -33,6 +34,7 @@ describe("<Projects />", () => {
           createdAt: "2025-03-01",
           keywords: [],
           resourceUrl: "",
+          readingTime: "1 minuta",
         },
       ],
     };
