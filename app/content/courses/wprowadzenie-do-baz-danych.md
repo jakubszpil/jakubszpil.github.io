@@ -1,484 +1,286 @@
 ---
-title: "Wprowadzenie do SQL"
-description: "Dowiedz się czym jest SQL, do czego służy, poznaj podstawowe polecenia i naucz się wykonywać pierwsze zapytania do bazy danych. Kurs praktyczny dla początkujących z wyjaśnieniami i przykładami."
+title: "Wprowadzenie do baz danych"
+description: "Poznaj podstawowe pojęcia i koncepcje związane z bazami danych. Dowiedz się czym są bazy danych, jakie są ich rodzaje, gdzie są stosowane i dlaczego są kluczowe w informatyce. Kurs teoretyczny dla początkujących."
 keywords:
-  [
-    sql,
-    baza danych,
-    zapytania,
-    select,
-    insert,
-    update,
-    delete,
-    wprowadzenie,
-    praktyka,
-    learning,
-  ]
-categories: [wprowadzenie, sql, bazy-danych]
+  [bazy danych, teoria, relacyjne, noSQL, wprowadzenie, podstawy, learning]
+categories: [wprowadzenie, bazy-danych]
 createdAt: 2025-07-05
 quiz:
-  title: "Quiz: Podstawy SQL"
+  title: "Quiz: Podstawy baz danych (teoria)"
   questions:
-    - question: "Czym jest SQL?"
+    - question: "Czym jest baza danych?"
       options:
+        - "Gra komputerowa"
+        - "Zorganizowany zbiór danych przechowywany i zarządzany komputerowo"
         - "System operacyjny"
-        - "Język programowania ogólnego przeznaczenia"
-        - "Język zapytań do relacyjnych baz danych"
-        - "Edytor tekstów"
+        - "Język programowania"
+      answer: 1
+      explanation: "Baza danych to uporządkowany, zarządzany komputerowo zbiór informacji."
+
+    - question: "Który z poniższych jest przykładem systemu zarządzania bazą danych (DBMS)?"
+      options:
+        - "Photoshop"
+        - "MySQL"
+        - "Excel"
+        - "Apache"
+      answer: 1
+      explanation: "MySQL to popularny system zarządzania relacyjną bazą danych."
+
+    - question: "Dlaczego bazy danych są ważne w informatyce?"
+      options:
+        - "Ponieważ umożliwiają efektywne przechowywanie i wyszukiwanie dużych ilości danych"
+        - "Są podstawą do tworzenia gier komputerowych"
+        - "Pozwalają programować w języku Java"
+        - "Nie mają większego znaczenia"
+      answer: 0
+      explanation: "Bazy danych umożliwiają skuteczne zarządzanie informacją w wielu zastosowaniach."
+
+    - question: "Czym charakteryzuje się relacyjna baza danych?"
+      options:
+        - "Dane przechowywane są w tabelach powiązanych relacjami"
+        - "Dane przechowywane są tylko w plikach tekstowych"
+        - "Relacyjne bazy danych nie istnieją"
+        - "Służą tylko do grafiki komputerowej"
+      answer: 0
+      explanation: "Relacyjne bazy danych przechowują dane w tabelach i umożliwiają powiązania pomiędzy nimi."
+
+    - question: "Które z poniższych NIE jest przykładem bazy NoSQL?"
+      options:
+        - "MongoDB"
+        - "Redis"
+        - "PostgreSQL"
+        - "Cassandra"
       answer: 2
-      explanation: "SQL (Structured Query Language) to język zapytań używany do komunikacji z relacyjnymi bazami danych."
+      explanation: "PostgreSQL to relacyjny system bazodanowy, a nie NoSQL."
 
-    - question: "Jakie polecenie służy do pobierania danych z bazy?"
+    - question: "Do czego służy język SQL?"
       options:
-        - "FETCH"
-        - "SELECT"
-        - "REMOVE"
-        - "GET"
+        - "Do modyfikowania zdjęć"
+        - "Do tworzenia i zarządzania danymi w relacyjnych bazach danych"
+        - "Do projektowania stron internetowych"
+        - "Do analizy grafiki 3D"
       answer: 1
-      explanation: "SELECT służy do pobierania (wybierania) danych z bazy."
+      explanation: "SQL służy do tworzenia, zarządzania i wyszukiwania danych w relacyjnych bazach danych."
 
-    - question: "Które polecenie służy do wstawiania nowych rekordów?"
+    - question: "Czym jest tabela w relacyjnej bazie danych?"
       options:
-        - "UPDATE"
-        - "INSERT"
-        - "APPEND"
-        - "ADD"
+        - "Zbiornikiem na obrazy"
+        - "Zbiorem rekordów o tej samej strukturze, przypominającym arkusz kalkulacyjny"
+        - "Językiem programowania"
+        - "Rodzajem klucza"
       answer: 1
-      explanation: "INSERT INTO pozwala dodać nowe rekordy do tabeli."
+      explanation: "Tabela to zbiór rekordów (wierszy) o tej samej strukturze."
 
-    - question: "Jak usunąć dane z tabeli?"
+    - question: "Czym jest rekord (wiersz) w bazie danych?"
       options:
-        - "REMOVE"
-        - "DROP"
-        - "DELETE"
-        - "ERASE"
+        - "Jednym polem w tabeli"
+        - "Pojedynczym wpisem, np. informacjami o jednym obiekcie"
+        - "Całą tabelą"
+        - "Typem kolumny"
+      answer: 1
+      explanation: "Rekord to pojedynczy wpis w tabeli, np. dane jednego klienta."
+
+    - question: "Czym jest kolumna w bazie danych?"
+      options:
+        - "Jednym wpisem w tabeli"
+        - "Rodzajem klucza"
+        - "Pole opisujące cechę wszystkich rekordów w tabeli"
+        - "Systemem operacyjnym"
       answer: 2
-      explanation: "DELETE służy do usuwania rekordów z tabeli."
+      explanation: "Kolumna to jedno pole w tabeli, opisujące daną cechę wszystkich rekordów."
 
-    - question: "Co oznacza WHERE w poleceniach SQL?"
+    - question: "Wskaż przykład relacyjnej bazy danych:"
       options:
-        - "Tworzy nową tabelę"
-        - "Określa warunek, który muszą spełnić wybrane rekordy"
-        - "Zmienia nazwę bazy danych"
-        - "Sortuje dane"
+        - "MongoDB"
+        - "MySQL"
+        - "Redis"
+        - "Cassandra"
       answer: 1
-      explanation: "WHERE zawęża operację do rekordów spełniających wskazany warunek."
+      explanation: "MySQL to relacyjny system bazodanowy."
 
-    - question: "Co zrobi polecenie: SELECT * FROM Uzytkownicy WHERE wiek > 18?"
+    - question: "Wskaż przykład nierelacyjnej bazy danych (NoSQL):"
       options:
-        - "Usunie użytkowników starszych niż 18 lat"
-        - "Wyświetli wszystkich użytkowników starszych niż 18 lat"
-        - "Doda użytkowników starszych niż 18 lat"
-        - "Zaktualizuje wiek użytkowników"
-      answer: 1
-      explanation: "Wyświetli wszystkie rekordy, gdzie wiek jest większy niż 18."
+        - "PostgreSQL"
+        - "Oracle"
+        - "MongoDB"
+        - "SQLite"
+      answer: 2
+      explanation: "MongoDB to dokumentowa baza NoSQL."
 
-    - question: "Czym jest klucz podstawowy (PRIMARY KEY) w tabeli?"
+    - question: "Podaj przykład zastosowania bazy danych w codziennym życiu:"
       options:
-        - "Kolumna przechowująca wyłącznie tekst"
-        - "Kolumna, która jednoznacznie identyfikuje każdy rekord w tabeli"
-        - "Specjalny typ zapytania"
-        - "Pole, które zawsze musi być puste"
-      answer: 1
-      explanation: "Klucz podstawowy to unikalny identyfikator rekordu w tabeli."
-
-    - question: "Jaka jest różnica między DELETE a DROP?"
-      options:
-        - "DELETE usuwa rekordy z tabeli, DROP usuwa całą tabelę"
-        - "DELETE tworzy kopię zapasową, DROP ją przywraca"
-        - "DELETE sortuje dane, DROP je filtruje"
-        - "Nie ma różnicy"
+        - "Przechowywanie danych klientów w sklepie internetowym"
+        - "Rysowanie grafiki komputerowej"
+        - "Pisanie wierszy"
+        - "Tworzenie muzyki"
       answer: 0
-      explanation: "DELETE usuwa pojedyncze rekordy, DROP usuwa całą tabelę lub bazę danych."
+      explanation: "Przechowywanie danych klientów to jedno z typowych zastosowań baz danych."
 
-    - question: "Jak posortować wyniki według kolumny 'nazwisko' rosnąco?"
+    - question: "Dlaczego tworzenie kopii zapasowej bazy danych jest ważne?"
       options:
-        - "ORDER BY nazwisko ASC"
-        - "SORT nazwisko"
-        - "GROUP BY nazwisko"
-        - "SELECT nazwisko"
+        - "Backup chroni dane przed utratą w razie awarii, ataku lub przypadkowego usunięcia"
+        - "Backup zwiększa prędkość działania bazy"
+        - "Backup służy do szyfrowania obrazków"
+        - "Backup umożliwia programowanie w JavaScript"
       answer: 0
-      explanation: "ORDER BY nazwisko ASC sortuje rosnąco po kolumnie nazwisko."
+      explanation: "Kopie zapasowe chronią dane przed utratą."
 
-    - question: "Jak ograniczyć liczbę zwracanych wyników do 10?"
+    - question: "Które z poniższych NIE jest cechą bazy relacyjnej?"
       options:
-        - "LIMIT 10"
-        - "TOP 10"
-        - "MAX 10"
-        - "RANGE 10"
-      answer: 0
-      explanation: "LIMIT 10 ogranicza liczbę wyników do 10 (np. w MySQL, PostgreSQL)."
+        - "Przechowywanie danych w tabelach"
+        - "Możliwość definiowania relacji między danymi"
+        - "Przechowywanie danych w dokumentach JSON"
+        - "Unikalne identyfikowanie rekordów kluczem podstawowym"
+      answer: 2
+      explanation: "Przechowywanie danych w dokumentach JSON to cecha baz NoSQL (np. MongoDB)."
 ---
 
-SQL (Structured Query Language) to język, który pozwala komunikować się z relacyjnymi bazami danych. Dzięki SQL możesz pobierać, dodawać, zmieniać i usuwać dane, a także zarządzać strukturą bazy. To jedno z najważniejszych narzędzi każdego, kto pracuje z danymi!
+Bazy danych są nieodłączną częścią współczesnej informatyki. Przechowują, organizują i umożliwiają szybki dostęp do ogromnych ilości informacji – od danych klientów w sklepach internetowych, przez posty w mediach społecznościowych, aż po dane telemetryczne z urządzeń IoT. Nawet jeśli nie widzisz ich na co dzień, korzystasz z nich niemal w każdej aplikacji! 🗃️
 
 ## Spis treści
 
-1. [Czym jest SQL?](#czym-jest-sql)
-2. [Do czego służy SQL?](#do-czego-służy-sql)
-3. [Typowe zastosowania SQL](#typowe-zastosowania-sql)
-4. [Podstawowe elementy składni SQL](#podstawowe-elementy-składni-sql)
-5. [Podstawowe polecenia SQL](#podstawowe-polecenia-sql)
-   - [SELECT](#select)
-   - [INSERT](#insert)
-   - [UPDATE](#update)
-   - [DELETE](#delete)
-6. [Warunki i filtrowanie danych (WHERE)](#warunki-i-filtrowanie-danych-where)
-7. [Sortowanie wyników (ORDER BY)](#sortowanie-wyników-order-by)
-8. [Ograniczanie wyników (LIMIT)](#ograniczanie-wyników-limit)
-9. [Tworzenie i modyfikacja tabel](#tworzenie-i-modyfikacja-tabel)
-10. [Klucze i relacje](#klucze-i-relacje)
-11. [Dobre praktyki w SQL](#dobre-praktyki-w-sql)
-12. [Praktyczne zadania](#praktyczne-zadania)
-13. [Podsumowanie](#podsumowanie)
+1. [Co to jest baza danych?](#co-to-jest-baza-danych)
+2. [Dlaczego korzystamy z baz danych?](#dlaczego-korzystamy-z-baz-danych)
+3. [Systemy zarządzania bazą danych (DBMS)](#systemy-zarządzania-bazą-danych-dbms)
+4. [Rodzaje baz danych](#rodzaje-baz-danych)
+   - [Relacyjne bazy danych](#relacyjne-bazy-danych)
+   - [NoSQL](#nosql)
+   - [Inne rodzaje baz danych](#inne-rodzaje-baz-danych)
+5. [Podstawowe pojęcia: tabele, rekordy, kolumny](#podstawowe-pojęcia-tabele-rekordy-kolumny)
+6. [Co to jest SQL i do czego służy?](#co-to-jest-sql-i-do-czego-służy)
+7. [Gdzie stosuje się bazy danych?](#gdzie-stosuje-się-bazy-danych)
+8. [Bezpieczeństwo i kopie zapasowe](#bezpieczeństwo-i-kopie-zapasowe)
+9. [Popularne systemy bazodanowe](#popularne-systemy-bazodanowe)
+10. [Gdzie szukać pomocy i materiałów?](#gdzie-szukać-pomocy-i-materiałów)
+11. [Podsumowanie](#podsumowanie)
 
 ---
 
-## Czym jest SQL?
+## Co to jest baza danych?
 
-SQL (Structured Query Language) to standardowy język zapytań służący do pracy z relacyjnymi bazami danych (np. MySQL, PostgreSQL, SQLite, Oracle). Pozwala na:
-
-- pobieranie danych (wyszukiwanie, filtrowanie, sortowanie),
-- dodawanie i edycję informacji,
-- usuwanie danych,
-- zarządzanie strukturą bazy (tworzenie i modyfikacja tabel).
-
-Jest wykorzystywany na całym świecie przez programistów, analityków, administratorów baz danych i naukowców danych.
+Baza danych to zorganizowany zbiór informacji przechowywany komputerowo. Pozwala na efektywne gromadzenie, przetwarzanie, wyszukiwanie i zarządzanie danymi. Może to być lista klientów, produktów, zamówień, ale też ogromne zbiory informacji o użytkownikach serwisów społecznościowych czy transakcjach bankowych.
 
 ---
 
-## Do czego służy SQL?
+## Dlaczego korzystamy z baz danych?
 
-- **Pobieranie danych** – m.in. wyświetlanie listy klientów, produktów, zamówień.
-- **Wyszukiwanie i filtrowanie** – np. znajdź wszystkich użytkowników powyżej 18 lat.
-- **Dodawanie nowych danych** – np. rejestracja nowego klienta.
-- **Aktualizacja danych** – np. zmiana adresu e-mail lub stanu zamówienia.
-- **Usuwanie danych** – np. usunięcie nieaktualnych rekordów.
-- **Tworzenie i zmienianie struktury** – zakładanie nowych tabel, dodawanie kolumn.
-
----
-
-## Typowe zastosowania SQL
-
-- Systemy sklepów internetowych
-- Systemy bankowości i finansów
-- Zarządzanie zasobami przedsiębiorstw (ERP)
-- Aplikacje społecznościowe
-- Analiza i raportowanie danych (Business Intelligence, Data Science)
-- Systemy rejestracji użytkowników i ich autoryzacja
+- **Bezpieczeństwo i integralność danych** – bazy danych minimalizują ryzyko utraty danych i dbają o ich poprawność.
+- **Wydajność** – umożliwiają szybkie wyszukiwanie i operacje na dużych zbiorach informacji.
+- **Organizacja** – pozwalają poukładać dane w logiczne struktury.
+- **Skalowalność** – obsługują rosnącą ilość danych i użytkowników.
+- **Współbieżność** – wielu użytkowników może pracować z tymi samymi danymi w tym samym czasie.
 
 ---
 
-## Podstawowe elementy składni SQL
+## Systemy zarządzania bazą danych (DBMS)
 
-- SQL nie rozróżnia wielkości liter (SELECT, select, Select są równoważne), ale zwykle używa się wielkich liter dla poleceń.
-- Każde polecenie kończy się średnikiem (`;`).
-- Nazwy tabel i kolumn są podawane bez cudzysłowów (chyba, że zawierają znaki specjalne).
-- Łańcuchy znaków (teksty) zapisujemy w pojedynczych apostrofach, np. `'Jan'`.
+DBMS (Database Management System) to specjalne oprogramowanie, które umożliwia łatwe tworzenie, przechowywanie i zarządzanie bazami danych. DBMS odpowiada m.in. za:
 
----
-
-## Podstawowe polecenia SQL
-
-### SELECT
-
-Pobiera dane z bazy. Najważniejsze i najczęściej używane polecenie.
-
-```sql
-SELECT * FROM Uzytkownicy;
-```
-
-Wyświetli wszystkie kolumny i rekordy z tabeli Uzytkownicy.
-
-Możesz wybrać tylko wybrane kolumny:
-
-```sql
-SELECT imie, nazwisko FROM Uzytkownicy;
-```
+- przechowywanie i organizację danych,
+- kontrolę dostępu i uprawnień,
+- zapewnienie spójności i integralności danych,
+- obsługę wielu użytkowników jednocześnie,
+- wykonywanie kopii zapasowych i odzyskiwanie danych.
 
 ---
 
-### INSERT
+## Rodzaje baz danych
 
-Dodaje nowe rekordy do tabeli.
+### Relacyjne bazy danych
 
-```sql
-INSERT INTO Uzytkownicy (imie, nazwisko, wiek) VALUES ('Jan', 'Kowalski', 30);
-```
+Najpopularniejszy typ baz. Dane są zorganizowane w **tabelach** (wiersze i kolumny), a relacje między tabelami pozwalają na powiązanie danych z różnych zbiorów. Stosowane są tam, gdzie ważna jest struktura i spójność danych – np. bankowość, e-commerce, systemy ERP.
 
----
+### NoSQL
 
-### UPDATE
+Bazy nierelacyjne, zaprojektowane do przechowywania dużych, zróżnicowanych i często nieustrukturyzowanych danych. Zamiast tabel, wykorzystują inne struktury: dokumenty (np. JSON), pary klucz-wartość, grafy czy szerokie kolumny. Sprawdzają się np. w mediach społecznościowych, IoT, big data.
 
-Zmienia dane w istniejących rekordach.
+### Inne rodzaje baz danych
 
-```sql
-UPDATE Uzytkownicy SET wiek = 31 WHERE imie = 'Jan' AND nazwisko = 'Kowalski';
-```
-
-**Uwaga:** Bez WHERE zaktualizujesz wszystkie rekordy!
+- **Bazy obiektowe** – przechowują dane jako obiekty, podobnie jak w programowaniu obiektowym.
+- **Bazy grafowe** – idealne do przechowywania sieci powiązań, np. relacje między użytkownikami.
+- **Bazy czasowe (time-series)** – zoptymalizowane do przechowywania danych zmieniających się w czasie, np. pomiarów sensorów.
 
 ---
 
-### DELETE
+## Podstawowe pojęcia: tabele, rekordy, kolumny
 
-Usuwa rekordy z tabeli.
+W relacyjnych bazach danych dane są przechowywane w strukturze tabelarycznej. Oto najważniejsze pojęcia:
 
-```sql
-DELETE FROM Uzytkownicy WHERE wiek < 18;
-```
+- **Tabela** – zbiór rekordów (wierszy) o tej samej strukturze. Tabela przypomina arkusz kalkulacyjny, gdzie każdy wiersz to inny obiekt, a każda kolumna opisuje konkretną cechę tych obiektów.
+- **Rekord (wiersz)** – pojedynczy wpis w tabeli, czyli komplet informacji o jednym obiekcie (np. jeden klient).
+- **Kolumna** – jedno pole o określonym typie danych, np. imię, nazwisko, wiek. Każda kolumna opisuje jedną cechę wszystkich rekordów w tabeli.
 
-**Uwaga:** Bez WHERE usunie wszystkie rekordy w tabeli!
+**Przykład:**
 
----
+| id  | imie | nazwisko | wiek |
+| --- | ---- | -------- | ---- |
+| 1   | Jan  | Kowalski | 30   |
+| 2   | Anna | Nowak    | 25   |
 
-## Warunki i filtrowanie danych (WHERE)
+W powyższej tabeli:
 
-Pozwala określić, które rekordy mają być wybrane, zmienione lub usunięte.
-
-```sql
-SELECT * FROM Uzytkownicy WHERE wiek > 18;
-```
-
-Porównywanie tekstów:
-
-```sql
-SELECT * FROM Uzytkownicy WHERE imie = 'Anna';
-```
-
-Łączenie warunków:
-
-```sql
-SELECT * FROM Uzytkownicy WHERE wiek > 18 AND miasto = 'Warszawa';
-```
+- Każdy wiersz to rekord (informacje o jednej osobie),
+- Kolumny to cechy (id, imie, nazwisko, wiek),
+- Całość to tabela (np. "Użytkownicy").
 
 ---
 
-## Sortowanie wyników (ORDER BY)
+## Co to jest SQL i do czego służy?
 
-Sortuje wyniki według wybranej kolumny.
+**SQL** (Structured Query Language) to specjalny język służący do komunikacji z relacyjnymi bazami danych. Umożliwia:
 
-```sql
-SELECT * FROM Uzytkownicy ORDER BY nazwisko ASC;
-```
+- definiowanie struktury bazy (np. tworzenie tabel),
+- wprowadzanie i modyfikowanie danych,
+- wyszukiwanie i filtrowanie informacji,
+- zarządzanie użytkownikami i uprawnieniami.
 
-`ASC` – rosnąco (domyślnie), `DESC` – malejąco
+SQL jest standardem w pracy z relacyjnymi bazami danych – znajomość podstawowych pojęć i poleceń SQL jest niezbędna dla każdego, kto chce pracować z danymi.
 
----
-
-## Ograniczanie wyników (LIMIT)
-
-Ogranicza liczbę zwracanych rekordów.
-
-```sql
-SELECT * FROM Uzytkownicy LIMIT 10;
-```
-
-W niektórych bazach (np. MS SQL) zamiast LIMIT używa się `TOP`.
+> **Uwaga:** W tym kursie nie będziemy omawiać składni SQL – temu poświęcony będzie osobny kurs.
 
 ---
 
-## Tworzenie i modyfikacja tabel
+## Gdzie stosuje się bazy danych?
 
-Tworzenie nowej tabeli:
-
-```sql
-CREATE TABLE Produkty (
-  id INT PRIMARY KEY,
-  nazwa VARCHAR(100),
-  cena DECIMAL(10,2)
-);
-```
-
-Dodawanie kolumny:
-
-```sql
-ALTER TABLE Produkty ADD COLUMN opis TEXT;
-```
-
-Usuwanie tabeli:
-
-```sql
-DROP TABLE Produkty;
-```
+- Sklepy internetowe (produkty, zamówienia, klienci)
+- Media społecznościowe (profile, posty, relacje)
+- Systemy rejestracji (szkoły, uczelnie, konferencje)
+- Zarządzanie magazynem, finansami, logistyką
+- Systemy bankowe, medyczne, rządowe
+- Przechowywanie danych telemetrycznych, analitycznych, IoT
 
 ---
 
-## Klucze i relacje
+## Bezpieczeństwo i kopie zapasowe
 
-- **Klucz podstawowy (PRIMARY KEY)** – unikalnie identyfikuje każdy rekord w tabeli (np. id).
-- **Klucz obcy (FOREIGN KEY)** – wskazuje na powiązany rekord w innej tabeli, umożliwia powiązania między danymi.
-
-Przykład relacji:
-
-```sql
-CREATE TABLE Zamowienia (
-  id INT PRIMARY KEY,
-  id_produktu INT,
-  ilosc INT,
-  FOREIGN KEY (id_produktu) REFERENCES Produkty(id)
-);
-```
+- **Uprawnienia i autoryzacja** – kontrola dostępu do danych.
+- **Kopie zapasowe** – regularne tworzenie backupów na wypadek awarii.
+- **Szyfrowanie** – ochrona danych przed nieautoryzowanym dostępem.
+- **Integracja z systemami monitoringu i logowania operacji.**
 
 ---
 
-## Dobre praktyki w SQL
+## Popularne systemy bazodanowe
 
-- Zawsze używaj klauzuli WHERE, jeśli chcesz zmieniać lub usuwać tylko wybrane rekordy.
-- Używaj nazw tabel i kolumn, które jasno opisują przechowywane dane.
-- Regularnie twórz kopie zapasowe bazy.
-- Testuj zapytania SELECT przed wykonaniem UPDATE lub DELETE.
-- Unikaj gwiazdki (\*) w SELECT w dużych projektach – wybieraj konkretne kolumny.
-- Dokumentuj nietypowe zapytania i modyfikacje struktury bazy.
-
----
-
-## Praktyczne zadania
-
-### Zadanie 1: Pobieranie danych
-
-Wyświetl wszystkie dane z tabeli "Uzytkownicy".
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-SELECT * FROM Uzytkownicy;
-```
-
-</details>
+- **MySQL** – popularny, darmowy, relacyjny DBMS.
+- **PostgreSQL** – zaawansowany, relacyjny, open-source.
+- **Oracle Database** – komercyjny, relacyjny, szeroko stosowany w korporacjach.
+- **MongoDB** – dokumentowa baza NoSQL.
+- **Redis** – szybka baza klucz-wartość (NoSQL).
+- **SQLite** – lekka baza do aplikacji lokalnych.
+- **Neo4j** – grafowa baza danych.
 
 ---
 
-### Zadanie 2: Wstawianie nowych rekordów
+## Gdzie szukać pomocy i materiałów?
 
-Dodaj nowego użytkownika o imieniu "Anna", nazwisku "Nowak" i wieku 25.
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-INSERT INTO Uzytkownicy (imie, nazwisko, wiek) VALUES ('Anna', 'Nowak', 25);
-```
-
-</details>
-
----
-
-### Zadanie 3: Filtrowanie danych
-
-Wyświetl imiona i nazwiska użytkowników, którzy mają więcej niż 18 lat.
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-SELECT imie, nazwisko FROM Uzytkownicy WHERE wiek > 18;
-```
-
-</details>
-
----
-
-### Zadanie 4: Aktualizacja danych
-
-Zmień wiek użytkownika "Anna Nowak" na 26.
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-UPDATE Uzytkownicy SET wiek = 26 WHERE imie = 'Anna' AND nazwisko = 'Nowak';
-```
-
-</details>
-
----
-
-### Zadanie 5: Usuwanie danych
-
-Usuń wszystkich użytkowników o wieku poniżej 18 lat.
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-DELETE FROM Uzytkownicy WHERE wiek < 18;
-```
-
-</details>
-
----
-
-### Zadanie 6: Tworzenie tabeli
-
-Utwórz tabelę "Produkty" z polami: id (liczba całkowita, klucz podstawowy), nazwa (tekst), cena (liczba zmiennoprzecinkowa).
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-CREATE TABLE Produkty (
-  id INT PRIMARY KEY,
-  nazwa VARCHAR(100),
-  cena DECIMAL(10,2)
-);
-```
-
-</details>
-
----
-
-### Zadanie 7: Relacja między tabelami
-
-Utwórz tabelę "Zamowienia" zawierającą klucz obcy do "Produktów".
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-CREATE TABLE Zamowienia (
-  id INT PRIMARY KEY,
-  id_produktu INT,
-  ilosc INT,
-  FOREIGN KEY (id_produktu) REFERENCES Produkty(id)
-);
-```
-
-</details>
-
----
-
-### Zadanie 8: Sortowanie i ograniczanie wyników
-
-Wyświetl 5 najstarszych użytkowników (imie, nazwisko, wiek).
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-SELECT imie, nazwisko, wiek FROM Uzytkownicy ORDER BY wiek DESC LIMIT 5;
-```
-
-</details>
-
----
-
-### Zadanie 9: Łączenie warunków
-
-Wyświetl wszystkich użytkowników z miasta "Warszawa" w wieku powyżej 18 lat.
-
-<details>
-  <summary>Pokaż rozwiązanie</summary>
-
-```sql
-SELECT * FROM Uzytkownicy WHERE miasto = 'Warszawa' AND wiek > 18;
-```
-
-</details>
+- Kursy online (np. Udemy, Coursera, YouTube)
+- Dokumentacje oficjalne systemów DBMS (np. MySQL, PostgreSQL, MongoDB)
+- Społeczności: Stack Overflow, grupy na Discord/Slack, fora tematyczne
+- Książki: "Bazy danych. Systemy rozproszone" – A. Silberschatz, "Bazy danych. Wprowadzenie" – J. Date
 
 ---
 
 ## Podsumowanie
 
-SQL to potężne i uniwersalne narzędzie do pracy z danymi w relacyjnych bazach danych. Pozwala efektywnie pobierać, modyfikować i zarządzać informacją. Warto poznać zarówno podstawy, jak i bardziej zaawansowane możliwości tego języka – to inwestycja, która przyda się w niemal każdej dziedzinie IT!
+Bazy danych to podstawa współczesnych systemów informatycznych, pozwalająca na skuteczne i bezpieczne zarządzanie informacją. Znajomość ich rodzajów, pojęć i zastosowań jest kluczowa dla każdego, kto chce rozpocząć przygodę z IT, programowaniem lub analizą danych. Kolejnym krokiem może być nauka praktycznego wykorzystania baz danych i języków zapytań!
