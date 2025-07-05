@@ -4,7 +4,7 @@ description: "Poznaj podstawowe pojęcia i koncepcje związane z bazami danych. 
 keywords:
   [bazy danych, teoria, relacyjne, noSQL, wprowadzenie, podstawy, learning]
 categories: [wprowadzenie, bazy-danych]
-createdAt: 2025-07-05
+createdAt: 2025-07-03
 quiz:
   title: "Quiz: Podstawy baz danych (teoria)"
   questions:

@@ -15,7 +15,7 @@ keywords:
     learning,
   ]
 categories: [wprowadzenie, sql, bazy-danych]
-createdAt: 2025-07-05
+createdAt: 2025-07-04
 quiz:
   title: "Quiz: Podstawy SQL"
   questions:
