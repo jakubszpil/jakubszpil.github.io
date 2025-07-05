@@ -2,6 +2,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/learning/categories";
 import Quiz from "~/components/quiz";
+import { Banner } from "~/components/ui/banner";
 import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getCourse } from "~/lib/courses";
@@ -21,10 +22,17 @@ export default function CourseDetails() {
         title={course.title}
         description={course.description}
         keywords={course.keywords}
+        publishedTime={course.createdAt}
+        type="article"
       />
 
       <header className="prose container">
-        <h1>{course.title}</h1>
+        <h1 className="mb-5">{course.title}</h1>
+        <Banner
+          className="my-6"
+          createdAt={course.createdAt}
+          readingTime={course.readingTime}
+        />
         <Categories categories={course.categories} />
       </header>
 

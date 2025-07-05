@@ -1,6 +1,6 @@
 import type { Course } from "~/lib/courses";
-import { getLocalizedDate } from "~/lib/date";
 
+import { Banner } from "../ui/banner";
 import { Button, type ButtonProps } from "../ui/button";
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 
@@ -31,9 +31,11 @@ export default function Courses(props: CoursesProps) {
             <p className="line-clamp-3 mt-2 text-neutral-700 font-normal dark:text-neutral-300">
               {course.description}
             </p>
-            <span className="text-neutral-600 text-xs dark:text-neutral-400">
-              {getLocalizedDate(course.createdAt)}
-            </span>
+            <Banner
+              className="!text-xs !text-neutral-500 dark:!text-neutral-400 !mb-0"
+              createdAt={course.createdAt}
+              readingTime={course.readingTime}
+            />
           </LinkWithPrefetch>
         </Button>
       ))}

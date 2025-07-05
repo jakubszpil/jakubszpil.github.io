@@ -1,10 +1,10 @@
-import classNames from "classnames";
 import { useCallback, useState } from "react";
 
 import { Button } from "./ui/button";
 
 import { shuffleArray } from "~/lib/array";
 import type { ContentQuiz, ContentQuizQuestion } from "~/lib/content";
+import { cn } from "~/lib/utils";
 
 interface QuizProps {
   quiz: ContentQuiz;
@@ -101,7 +101,7 @@ export default function Quiz({ quiz }: QuizProps) {
               size="sm"
               variant="outline"
               key={opt}
-              className={classNames(
+              className={cn(
                 "w-full text-left inline-flex justify-start transition-none text-wrap !min-h-min py-1.5",
                 showAnswer
                   ? "cursor-default hover:!text-inherit"

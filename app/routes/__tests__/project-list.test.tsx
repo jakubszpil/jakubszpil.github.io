@@ -56,9 +56,10 @@ describe("<ProjectList />", () => {
         description: "Test description 1",
         keywords: ["test", "example"],
         technologies: ["test"],
-        createdAt: "2025-03-17",
+        createdAt: new Date("2025-03-17"),
         resourceUrl: "https://example.com",
         status: ProjectStatus.COMPLETED,
+        readingTime: "0 minut",
       },
       {
         id: "2",
@@ -68,9 +69,10 @@ describe("<ProjectList />", () => {
         description: "Test description 2",
         keywords: ["example"],
         technologies: ["test", "example"],
-        createdAt: "2025-03-17",
+        createdAt: new Date("2025-03-17"),
         resourceUrl: "https://example.com",
         status: ProjectStatus.COMPLETED,
+        readingTime: "0 minut",
       },
     ];
 

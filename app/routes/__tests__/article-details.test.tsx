@@ -11,6 +11,7 @@ import {
 } from "vitest";
 
 import Categories, { type CategoriesProps } from "~/components/blog/categories";
+import { Banner, type BannerProps } from "~/components/ui/banner";
 import {
   EditResource,
   type EditResourceProps,
@@ -22,6 +23,7 @@ import ArticleDetails, { loader } from "../article-details";
 
 vi.mock("~/components/blog/categories");
 vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/articles");
 
@@ -29,6 +31,7 @@ describe("<ArticleDetails />", () => {
   let MockedCategories: MockInstance;
   let MockedEditResource: MockInstance;
   let MockedSeo: MockInstance;
+  let MockedBanner: MockInstance;
 
   let MockedArticle: Article;
   let MockedGetArticle: MockInstance;
@@ -37,6 +40,7 @@ describe("<ArticleDetails />", () => {
     MockedCategories = vi.mocked(Categories);
     MockedEditResource = vi.mocked(EditResource);
     MockedSeo = vi.mocked(Seo);
+    MockedBanner = vi.mocked(Banner);
 
     MockedArticle = {
       id: "123",
@@ -46,8 +50,9 @@ describe("<ArticleDetails />", () => {
       description: "Test description",
       keywords: ["test", "example"],
       categories: ["test", "example"],
-      createdAt: "2025-03-17",
+      createdAt: new Date("2025-03-17"),
       resourceUrl: "https://example.com",
+      readingTime: "3 minuty",
     };
 
     MockedGetArticle = vi
@@ -59,6 +64,7 @@ describe("<ArticleDetails />", () => {
     MockedCategories.mockRestore();
     MockedEditResource.mockRestore();
     MockedSeo.mockRestore();
+    MockedBanner.mockRestore();
     MockedGetArticle.mockRestore();
   });
 
@@ -88,6 +94,8 @@ describe("<ArticleDetails />", () => {
         title: MockedArticle.title,
         description: MockedArticle.description,
         keywords: MockedArticle.keywords,
+        publishedTime: MockedArticle.createdAt,
+        type: "article",
       } satisfies SeoProps,
       undefined
     );
@@ -103,6 +111,15 @@ describe("<ArticleDetails />", () => {
       {
         resourceUrl: MockedArticle.resourceUrl,
       } satisfies EditResourceProps,
+      undefined
+    );
+
+    expect(MockedBanner).toHaveBeenCalledWith(
+      {
+        createdAt: MockedArticle.createdAt,
+        readingTime: MockedArticle.readingTime,
+        className: "my-6",
+      } satisfies BannerProps,
       undefined
     );
   });

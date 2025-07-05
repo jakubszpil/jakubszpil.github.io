@@ -14,6 +14,8 @@ export interface SeoProps {
   title?: string;
   description?: string;
   keywords?: string[];
+  type?: string;
+  publishedTime?: Date;
 }
 
 export const Seo = (props: SeoProps) => {
@@ -41,7 +43,14 @@ export const Seo = (props: SeoProps) => {
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
 
-      <meta property="og:type" content="website" />
+      {props.publishedTime && (
+        <meta
+          property="article:published_time"
+          content={props.publishedTime.toISOString()}
+        />
+      )}
+
+      <meta property="og:type" content={props.type ?? "website"} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
