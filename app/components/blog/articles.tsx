@@ -1,6 +1,6 @@
 import type { Article } from "~/lib/articles";
-import { getLocalizedDate } from "~/lib/date";
 
+import { Banner } from "../ui/banner";
 import { Button, type ButtonProps } from "../ui/button";
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 
@@ -11,7 +11,6 @@ export interface ArticlesProps {
 }
 
 export default function Articles(props: ArticlesProps) {
-  console.log(props.articles);
   return (
     <section
       className={`container pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 ${
@@ -32,9 +31,11 @@ export default function Articles(props: ArticlesProps) {
             <p className="line-clamp-3 mt-2 text-neutral-700 font-normal dark:text-neutral-300">
               {article.description}
             </p>
-            <span className="text-neutral-600 text-xs dark:text-neutral-400">
-              {getLocalizedDate(article.createdAt)}
-            </span>
+            <Banner
+              className="!text-xs !text-neutral-500 dark:!text-neutral-400 !mb-0"
+              createdAt={article.createdAt}
+              readingTime={article.readingTime}
+            />
           </LinkWithPrefetch>
         </Button>
       ))}

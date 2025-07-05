@@ -28,7 +28,11 @@ export default function CourseDetails() {
 
       <header className="prose container">
         <h1 className="mb-5">{course.title}</h1>
-        <Banner createdAt={course.createdAt} readingTime={course.readingTime} />
+        <Banner
+          className="my-6"
+          createdAt={course.createdAt}
+          readingTime={course.readingTime}
+        />
         <Categories categories={course.categories} />
       </header>
 

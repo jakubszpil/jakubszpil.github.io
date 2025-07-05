@@ -28,6 +28,7 @@ export default function ArticleDetails() {
       <header className="prose container">
         <h1 className="mb-5">{article.title}</h1>
         <Banner
+          className="my-6"
           createdAt={article.createdAt}
           readingTime={article.readingTime}
         />
