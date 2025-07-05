@@ -326,7 +326,9 @@ query = "SELECT * FROM Uzytkownicy WHERE login = '" + login + "';"
 ```
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 **Bezpieczne rozwiązanie (przykład w Pythonie z parametryzacją):**
 
@@ -346,7 +348,9 @@ Parametryzacja przekazuje dane osobno od zapytania – nawet jeśli użytkownik 
 Zaproponuj sposób nadania tylko niezbędnych uprawnień użytkownikowi aplikacyjnemu w MySQL.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```sql
 GRANT SELECT, INSERT, UPDATE ON baza.* TO 'app_user'@'localhost' IDENTIFIED BY 'silnehaslo';
@@ -364,7 +368,9 @@ Użytkownik nie może kasować ani zmieniać struktury bazy – tylko podstawowe
 Wypisz polecenie do stworzenia backupu bazy "sklep" w MySQL oraz opisz, gdzie bezpiecznie go przechować.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 ```bash
 mysqldump -u user -p sklep > sklep_backup.sql
@@ -382,7 +388,9 @@ Backup najlepiej przechowywać na zaszyfrowanym dysku w innej lokalizacji niż p
 Opisz, jakie informacje warto logować w bazie w celach bezpieczeństwa.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 - Logi logowania i wylogowania użytkowników
 - Próby nieautoryzowanego dostępu
@@ -399,7 +407,9 @@ Takie logi pozwalają wykryć ataki, nadużycia i szybciej reagować na incydent
 Podaj dwa przykłady zastosowania szyfrowania w bazie danych.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 - Szyfrowanie połączenia klient-serwer (SSL/TLS), np. `mysql --ssl-mode=REQUIRED`
 - Szyfrowanie danych na dysku (np. TDE – Transparent Data Encryption w MS SQL, MariaDB)
@@ -414,7 +424,9 @@ Szyfrowanie chroni przed kradzieżą danych podczas transmisji i fizycznego dost
 Podaj przykład sprawdzania poprawności adresu e-mail przed zapisaniem do bazy.
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 **W Pythonie:**
 
@@ -436,7 +448,9 @@ Akceptujemy tylko dane zgodne z ustalonym wzorcem – minimalizujemy ryzyko wstr
 Jak ograniczyć dostęp do bazy tylko z określonych adresów IP?
 
 <details>
-  <summary>Pokaż rozwiązanie</summary>
+  <summary>
+    <span>Pokaż rozwiązanie</span>
+  </summary>
 
 - W MySQL przy tworzeniu użytkownika określ w host: `'app_user'@'192.168.1.100'`
 - Skonfiguruj firewall (iptables, security group w chmurze), by akceptował ruch tylko z zaufanych adresów.
