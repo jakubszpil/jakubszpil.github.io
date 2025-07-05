@@ -1,9 +1,9 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 
 import type { Project, ProjectStatus } from "~/lib/projects";
-import { getLocalizedDate } from "~/lib/date";
 
 import { Button, type ButtonProps } from "../ui/button";
+import { CreationDate } from "../ui/creation-date";
 
 export interface ProjectsProps {
   projects: Project[];
@@ -42,9 +42,10 @@ export default function Projects(props: ProjectsProps) {
               {project.description}
             </p>
             <div className="flex items-center justify-between w-full">
-              <span className="text-neutral-600 text-xs dark:text-neutral-400">
-                {getLocalizedDate(project.createdAt)}
-              </span>
+              <CreationDate
+                date={project.createdAt}
+                className="text-neutral-600 text-xs dark:text-neutral-400"
+              />
               <Button
                 variant="link"
                 asChild

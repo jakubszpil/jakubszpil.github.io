@@ -1,4 +1,5 @@
-import { getLocalizedDate } from "~/lib/date";
+import { CreationDate } from "./creation-date";
+
 import { cn } from "~/lib/utils";
 
 export interface BannerProps {
@@ -10,11 +11,7 @@ export interface BannerProps {
 export function Banner(props: BannerProps) {
   return (
     <div className={cn("text-xs sm:text-sm mb-2", props.className)}>
-      <div className="inline-block" title="Data opublikowania">
-        <span className="mr-0.5">📆</span>
-        <span className="hidden">Data opublikowania:</span>
-        <time>{getLocalizedDate(props.createdAt)}</time>
-      </div>
+      <CreationDate date={props.createdAt} />
       <span className="ml-2 mr-1">/</span>
       <div
         className="inline-block sm:inline"

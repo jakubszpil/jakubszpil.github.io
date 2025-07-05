@@ -120,6 +120,7 @@ describe("<CourseDetails />", () => {
       {
         createdAt: MockedCourse.createdAt,
         readingTime: MockedCourse.readingTime,
+        className: "my-6",
       } satisfies BannerProps,
       undefined
     );
