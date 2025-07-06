@@ -66,6 +66,8 @@ quiz:
       explanation: "Wartość `x` wynosi 10. Warunek `x > 5` (czyli `10 > 5`) jest prawdziwy, dlatego wykonany zostanie blok kodu wewnątrz `if`, który wypisze w konsoli tekst 'OK'."
 ---
 
+Witaj w ekscytującym świecie **JavaScript (JS)**! 🚀 Ten kurs to Twój przewodnik po fundamentach jednego z najważniejszych języków programowania w sieci. Niezależnie od tego, czy chcesz tworzyć interaktywne strony, czy budować zaawansowane aplikacje, JavaScript to klucz do sukcesu. Przygotuj się na solidną dawkę wiedzy i praktyki! ✨
+
 ## Spis treści
 
 1.  [Czym jest JavaScript i dlaczego jest tak ważny?](#czym-jest-javascript-i-dlaczego-jest-tak-ważny)
@@ -92,26 +94,26 @@ quiz:
 
 ## Czym jest JavaScript i dlaczego jest tak ważny?
 
-Witaj w fascynującym świecie **JavaScript (JS)**! To język programowania, który jest niezwykle popularny i stanowi fundament większości dynamicznych i interaktywnych stron internetowych, które odwiedzasz każdego dnia. Wyobraź sobie stronę internetową, która nie tylko wyświetla tekst i obrazy, ale także reaguje na Twoje kliknięcia, przewijanie czy wprowadzanie danych w formularzach – to właśnie zasługa JavaScriptu!
+Witaj w fascynującym świecie **JavaScript (JS)**! To język programowania, który jest niezwykle popularny i stanowi fundament większości dynamicznych i interaktywnych stron internetowych, które odwiedzasz każdego dnia. Wyobraź sobie stronę internetową, która nie tylko wyświetla tekst i obrazy, ale także reaguje na Twoje kliknięcia, przewijanie czy wprowadzanie danych w formularzach – to właśnie zasługa JavaScriptu! 🌐
 
 ### Gdzie spotkasz JavaScript?
 
 - **W przeglądarce (po stronie klienta):** To jego główne zastosowanie. JavaScript pozwala na:
-  - **Animacje:** Sprawia, że elementy na stronie poruszają się, zanikają lub pojawiają.
-  - **Interaktywne formularze:** Sprawdza, czy dane wpisane w formularzu są poprawne, zanim zostaną wysłane.
-  - **Galerie zdjęć:** Umożliwia płynne przechodzenie między zdjęciami.
-  - **Mapy interaktywne:** Pozwala na przybliżanie, oddalanie i przesuwanie map.
-  - **Gry przeglądarkowe:** Wiele prostych gier jest w całości napisanych w JS.
-- **Na serwerze (po stronie serwera):** Dzięki technologiom takim jak **Node.js**, JavaScript może być używany do budowania potężnych aplikacji serwerowych, które obsługują logikę biznesową, bazy danych i komunikację z klientem. Oznacza to, że możesz używać tego samego języka do tworzenia zarówno frontendu (tego, co widzisz w przeglądarce), jak i backendu (logiki działającej na serwerze) aplikacji!
-- **Aplikacje mobilne i desktopowe:** Istnieją również frameworki (zestawy narzędzi), takie jak React Native czy Electron, które pozwalają pisać aplikacje mobilne i desktopowe przy użyciu JavaScriptu.
+  - **Animacje:** Sprawia, że elementy na stronie poruszają się, zanikają lub pojawiają. ✨
+  - **Interaktywne formularze:** Sprawdza, czy dane wpisane w formularzu są poprawne, zanim zostaną wysłane. ✅
+  - **Galerie zdjęć:** Umożliwia płynne przechodzenie między zdjęciami. 🏞️
+  - **Mapy interaktywne:** Pozwala na przybliżanie, oddalanie i przesuwanie map. 🗺️
+  - **Gry przeglądarkowe:** Wiele prostych gier jest w całości napisanych w JS. 🎮
+- **Na serwerze (po stronie serwera):** Dzięki technologiom takim jak **Node.js**, JavaScript może być używany do budowania potężnych aplikacji serwerowych, które obsługują logikę biznesową, bazy danych i komunikację z klientem. Oznacza to, że możesz używać tego samego języka do tworzenia zarówno frontendu (tego, co widzisz w przeglądarce), jak i backendu (logiki działającej na serwerze) aplikacji! 💻
+- **Aplikacje mobilne i desktopowe:** Istnieją również frameworki (zestawy narzędzi), takie jak React Native czy Electron, które pozwalają pisać aplikacje mobilne i desktopowe przy użyciu JavaScriptu. 📱🖥️
 
-W tym kursie skupimy się głównie na podstawach JavaScriptu w kontekście przeglądarek internetowych, ponieważ to doskonały punkt wyjścia dla każdego początkującego. Przygotuj się na to, że nauka JavaScriptu otworzy Ci drzwi do tworzenia niesamowitych rzeczy w internecie!
+W tym kursie skupimy się głównie na podstawach JavaScriptu w kontekście przeglądarek internetowych, ponieważ to doskonały punkt wyjścia dla każdego początkującego. Przygotuj się na to, że nauka JavaScriptu otworzy Ci drzwi do tworzenia niesamowitych rzeczy w internecie! 🚀
 
 ---
 
 ## Zmienne: Szafki na Twoje Dane
 
-Wyobraź sobie, że piszesz list, w którym musisz wiele razy powtórzyć swoje imię. Zamiast za każdym razem pisać "Jan", możesz użyć zmiennej "MojeImię" i włożyć do niej wartość "Jan". Później, jeśli zechcesz zmienić imię na "Krzysztof", zmienisz je tylko w jednym miejscu – w zmiennej!
+Wyobraź sobie, że piszesz list, w którym musisz wiele razy powtórzyć swoje imię. Zamiast za każdym razem pisać "Jan", możesz użyć zmiennej "MojeImię" i włożyć do niej wartość "Jan". Później, jeśli zechcesz zmienić imię na "Krzysztof", zmienisz je tylko w jednym miejscu – w zmiennej! 📦
 
 W programowaniu **zmienne** to takie "pudełka" lub "szafki", w których możemy przechowywać różne dane (liczby, tekst, prawda/fałsz itp.). Te dane mogą się zmieniać w trakcie działania programu.
 
@@ -119,7 +121,7 @@ W JavaScript zmienne deklarujemy, czyli tworzymy, za pomocą trzech słów klucz
 
 - `var`: To najstarszy sposób deklarowania zmiennych w JavaScript. Zmienne zadeklarowane za pomocą `var` mają zasięg **funkcyjny**, co oznacza, że są dostępne w całej funkcji, w której zostały zadeklarowane. Obecnie rzadziej używany w nowym kodzie ze względu na pewne potencjalne problemy (np. możliwość redeklaracji tej samej zmiennej).
 - `let`: To nowocześniejszy sposób deklarowania zmiennych, wprowadzony w standardzie ES6 (ECMAScript 2015). Zmienne zadeklarowane za pomocą `let` mają zasięg **blokowy**. Oznacza to, że są dostępne tylko w bloku kodu (np. wewnątrz `if`, `for`, `{}`) w którym zostały zadeklarowane. Jest to **zalecany** sposób deklarowania zmiennych, których wartość **będzie się zmieniać**.
-- `const`: Również wprowadzony w ES6, podobnie jak `let`, ma zasięg **blokowy**. Kluczowa różnica polega na tym, że `const` służy do deklarowania **stałych**, czyli wartości, które **nie powinny się zmieniać** po ich pierwszym przypisaniu. Jeśli spróbujesz zmienić wartość stałej, JavaScript zwróci błąd. Jest to świetne do danych, które mają być niezmienne w całym programie.
+- `const`: Również wprowadzony w ES6, podobnie jak `let`, ma zasięg **blokowy**. Kluczowa różnica polega na tym, że `const` służy do deklarowania **stałych**, czyli wartości, które **nie powinny się zmieniać** po ich pierwszym przypisaniu. Jeśli spróbujesz zmienić wartość stałej, JavaScript zwróci błąd. Jest to świetne do danych, które mają być niezmienne w całym programie. 🔒
 
 <!-- end list -->
 
@@ -146,34 +148,34 @@ console.log(imieUzytkownika); // Wypisze: Katarzyna
 const PI = 3.14159;
 console.log(PI); // Wypisze: 3.14159
 
-// PRÓBA ZMIANY Wartości const - spowoduje błąd!
+// PRÓBA ZMIANY Wartości const - spowoduje błąd! ❌
 // PI = 3.14; // To spowodowałoby błąd w konsoli: "TypeError: Assignment to constant variable."
 ```
 
-**Wskazówka dla początkujących:** Na początku staraj się używać `const` zawsze, gdy tylko możesz. Jeśli wiesz, że wartość danej zmiennej będzie się zmieniać, wtedy użyj `let`. Unikaj `var` w nowym kodzie, chyba że musisz pracować ze starszymi systemami.
+**Wskazówka dla początkujących:** Na początku staraj się używać `const` zawsze, gdy tylko możesz. Jeśli wiesz, że wartość danej zmiennej będzie się zmieniać, wtedy użyj `let`. Unikaj `var` w nowym kodzie, chyba że musisz pracować ze starszymi systemami. 👍
 
 ---
 
 ## Typy Danych: Co JavaScript potrafi przechowywać?
 
-Zmienne mogą przechowywać różne rodzaje informacji. W programowaniu te rodzaje informacji nazywamy **typami danych**. JavaScript, podobnie jak inne języki, ma kilka podstawowych typów danych, które pozwalają mu rozumieć i przetwarzać różne rodzaje wartości:
+Zmienne mogą przechowywać różne rodzaje informacji. W programowaniu te rodzaje informacji nazywamy **typami danych**. JavaScript, podobnie jak inne języki, ma kilka podstawowych typów danych, które pozwalają mu rozumieć i przetwarzać różne rodzaje wartości: 💾
 
 - **Number (Liczby):** Ten typ służy do przechowywania zarówno liczb całkowitych (np. `5`, `-100`), jak i liczb zmiennoprzecinkowych (ułamkowych, np. `3.14`, `0.5`). W JavaScript nie ma rozróżnienia na liczby całkowite i zmiennoprzecinkowe – wszystkie są typu `Number`.
   ```javascript
   let calkowita = 123; // Liczba całkowita
   let zmiennoprzecinkowa = 3.14; // Liczba zmiennoprzecinkowa
   ```
-- **String (Łańcuchy Znaków / Tekst):** Służy do przechowywania tekstu. Tekst w JavaScript zawsze musi być ujęty w cudzysłowy pojedyncze (`'`) lub podwójne (`"`).
+- **String (Łańcuchy Znaków / Tekst):** Służy do przechowywania tekstu. Tekst w JavaScript zawsze musi być ujęty w cudzysłowy pojedyncze (`'`) lub podwójne (`"`). 💬
   ```javascript
   let imie = "Ala"; // Łańcuch znaków w podwójnych cudzysłowach
   let wiadomosc = "Cześć, świecie!"; // Łańcuch znaków w pojedynczych cudzysłowach
   ```
-- **Boolean (Wartości Logiczne):** Ten typ może przyjmować tylko dwie wartości: `true` (prawda) lub `false` (fałsz). Jest to niezwykle przydatne do podejmowania decyzji w kodzie (np. "jeśli jest `true`, zrób to, w przeciwnym razie zrób coś innego").
+- **Boolean (Wartości Logiczne):** Ten typ może przyjmować tylko dwie wartości: `true` (prawda) lub `false` (fałsz). Jest to niezwykle przydatne do podejmowania decyzji w kodzie (np. "jeśli jest `true`, zrób to, w przeciwnym razie zrób coś innego"). ✅❌
   ```javascript
   let czyPadaDeszcz = true; // Wartość logiczna: prawda
   let czyJestWieczor = false; // Wartość logiczna: fałsz
   ```
-- **Object (Obiekty):** Obiekty to bardziej złożone struktury, które pozwalają grupować ze sobą powiązane dane. Możesz myśleć o nich jak o "encyklopedii", gdzie każda strona ma swoją nazwę (klucz) i treść (wartość). Obiekty będziemy omawiać szerzej w dalszej części kursu.
+- **Object (Obiekty):** Obiekty to bardziej złożone struktury, które pozwalają grupować ze sobą powiązane dane. Możesz myśleć o nich jak o "encyklopedii", gdzie każda strona ma swoją nazwę (klucz) i treść (wartość). Obiekty będziemy omawiać szerzej w dalszej części kursu. 📚
   ```javascript
   let osoba = {
     imie: "Jan",
@@ -181,34 +183,34 @@ Zmienne mogą przechowywać różne rodzaje informacji. W programowaniu te rodza
     miasto: "Warszawa",
   }; // Obiekt reprezentujący osobę
   ```
-- **Array (Tablice):** Tablice to specjalny rodzaj obiektu, który służy do przechowywania uporządkowanej listy wartości. Możesz myśleć o nich jak o "liście zakupów" lub "szeregu szuflad", gdzie każda szuflada ma swój numer (indeks) i przechowuje jedną wartość. Tablice również omówimy szczegółowo później.
+- **Array (Tablice):** Tablice to specjalny rodzaj obiektu, który służy do przechowywania uporządkowanej listy wartości. Możesz myśleć o nich jak o "liście zakupów" lub "szeregu szuflad", gdzie każda szuflada ma swój numer (indeks) i przechowuje jedną wartość. Tablice również omówimy szczegółowo później. 🛒
   ```javascript
   let kolory = ["czerwony", "niebieski", "zielony"]; // Tablica kolorów
   ```
-- **Undefined:** Ten typ oznacza, że zmienna została zadeklarowana, ale **nie przypisano jej jeszcze żadnej wartości**. JavaScript domyślnie przypisuje `undefined` nowym zmiennym.
+- **Undefined:** Ten typ oznacza, że zmienna została zadeklarowana, ale **nie przypisano jej jeszcze żadnej wartości**. JavaScript domyślnie przypisuje `undefined` nowym zmiennym. ❓
   ```javascript
   let zmiennaBezWartosci;
   console.log(zmiennaBezWartosci); // Wypisze: undefined
   ```
-- **Null:** Ten typ oznacza celowy **brak wartości**. Programista sam przypisuje `null`, aby wskazać, że dana zmienna (lub obiekt) nie przechowuje obecnie żadnej wartości.
+- **Null:** Ten typ oznacza celowy **brak wartości**. Programista sam przypisuje `null`, aby wskazać, że dana zmienna (lub obiekt) nie przechowuje obecnie żadnej wartości. 🚫
   ```javascript
   let brakDanych = null;
   console.log(brakDanych); // Wypisze: null
   ```
 
-Zrozumienie tych podstawowych typów danych jest kluczowe, ponieważ będą one fundamentem wszystkich operacji, które będziesz wykonywać w JavaScript.
+Zrozumienie tych podstawowych typów danych jest kluczowe, ponieważ będą one fundamentem wszystkich operacji, które będziesz wykonywać w JavaScript. 🔑
 
 ---
 
 ## Operatory: Matematyka i Logika w Kodzie
 
-Operatory w JavaScript to specjalne symbole, które pozwalają nam wykonywać różne działania na danych. Możesz myśleć o nich jak o znakach matematycznych (`+`, `-`, `*`, `/`) lub symbolach logicznych, które pomagają porównywać wartości i podejmować decyzje.
+Operatory w JavaScript to specjalne symbole, które pozwalają nam wykonywać różne działania na danych. Możesz myśleć o nich jak o znakach matematycznych (`+`, `-`, `*`, `/`) lub symbolach logicznych, które pomagają porównywać wartości i podejmować decyzje. ➕➖✖️➗
 
 Podzielmy je na kilka głównych kategorii:
 
 ### Operatory Arytmetyczne
 
-Służą do wykonywania podstawowych operacji matematycznych:
+Służą do wykonywania podstawowych operacji matematycznych: 셈
 
 - `+` (dodawanie)
 - `-` (odejmowanie)
@@ -237,12 +239,12 @@ console.log(suma, roznica, iloczyn, iloraz, reszta, potega);
 
 ### Operatory Porównania
 
-Służą do porównywania dwóch wartości i zawsze zwracają wartość logiczną: `true` (prawda) lub `false` (fałsz).
+Służą do porównywania dwóch wartości i zawsze zwracają wartość logiczną: `true` (prawda) lub `false` (fałsz). 🤔
 
 - `==` (równe wartości) - **porównuje tylko wartości**, ignorując typy danych.
-- `===` (ściśle równe) - **porównuje zarówno wartości, jak i typy danych**. **Zalecane do używania!**
+- `===` (ściśle równe) - **porównuje zarówno wartości, jak i typy danych**. **Zalecane do używania!** 👍
 - `!=` (różne wartości) - **sprawdza, czy wartości są różne**, ignorując typy danych.
-- `!==` (ściśle różne) - **sprawdza, czy wartości lub typy danych są różne**. **Zalecane do używania!**
+- `!==` (ściśle różne) - **sprawdza, czy wartości lub typy danych są różne**. **Zalecane do używania!** 👍
 - `>` (większe niż)
 - `<` (mniejsze niż)
 - `>=` (większe lub równe)
@@ -266,7 +268,7 @@ console.log(x <= 10); // true
 
 ### Operatory Logiczne
 
-Służą do łączenia lub negowania warunków logicznych.
+Służą do łączenia lub negowania warunków logicznych. 🧠
 
 - `&&` (AND / I) - Zwraca `true`, jeśli **oba** warunki są prawdziwe.
 - `||` (OR / LUB) - Zwraca `true`, jeśli **przynajmniej jeden** warunek jest prawdziwy.
@@ -285,7 +287,7 @@ console.log(!jestPelnoletni); // false (bo jest pełnoletni, a '!' to zaneguje)
 
 ### Operatory Przypisania
 
-Służą do przypisywania wartości do zmiennych.
+Służą do przypisywania wartości do zmiennych. ➡️
 
 - `=` (przypisanie wartości)
 - `+=` (dodaj i przypisz, np. `a += 5` to to samo co `a = a + 5`)
@@ -305,13 +307,13 @@ punkty -= 20; // punkty = punkty - 20;  teraz punkty to 130
 console.log(punkty); // 130
 ```
 
-Zrozumienie operatorów jest fundamentalne, ponieważ będziesz ich używać niemal w każdym programie do wykonywania obliczeń, porównywania danych i sterowania logiką działania Twojej aplikacji.
+Zrozumienie operatorów jest fundamentalne, ponieważ będziesz ich używać niemal w każdym programie do wykonywania obliczeń, porównywania danych i sterowania logiką działania Twojej aplikacji. 🛠️
 
 ---
 
 ## Struktury Kontrolne: Podejmowanie Decyzji i Powtarzanie Zadań
 
-Struktury kontrolne to jak "drogowskazy" w Twoim kodzie. Pozwalają one na podejmowanie decyzji (czy coś zrobić, czy nie) oraz na wielokrotne powtarzanie pewnych czynności. Bez nich programy byłyby bardzo liniowe i nudne.
+Struktury kontrolne to jak "drogowskazy" w Twoim kodzie. Pozwalają one na podejmowanie decyzji (czy coś zrobić, czy nie) oraz na wielokrotne powtarzanie pewnych czynności. Bez nich programy byłyby bardzo liniowe i nudne. 🚦
 
 ### Instrukcja `if`/`else`: Rozgałęzianie Kodu
 
@@ -353,11 +355,11 @@ if (godzina < 12) {
 }
 ```
 
-Instrukcje `if` są podstawą logicznych operacji w każdym programie.
+Instrukcje `if` są podstawą logicznych operacji w każdym programie. 🧠
 
 ### Pętla `for`: Powtarzaj od Liczby do Liczby
 
-Pętla `for` jest idealna, gdy wiesz, **ile razy** chcesz powtórzyć jakąś czynność. Możesz jej użyć do iteracji (przechodzenia) przez elementy listy, wykonywania akcji określoną liczbę razy, itp.
+Pętla `for` jest idealna, gdy wiesz, **ile razy** chcesz powtórzyć jakąś czynność. Możesz jej użyć do iteracji (przechodzenia) przez elementy listy, wykonywania akcji określoną liczbę razy, itp. 🔄
 
 Struktura pętli `for` składa się z trzech części w nawiasach:
 
@@ -391,16 +393,16 @@ Jak to działa?
 
 ### Pętla `while`: Powtarzaj, Dopóki Prawda
 
-Pętla `while` (dopóki) jest używana, gdy nie wiesz dokładnie, **ile razy** pętla ma się wykonać, ale chcesz, aby wykonywała się tak długo, **jak długo dany warunek jest prawdziwy**.
+Pętla `while` (dopóki) jest używana, gdy nie wiesz dokładnie, **ile razy** pętla ma się wykonać, ale chcesz, aby wykonywała się tak długo, **jak długo dany warunek jest prawdziwy**. 🔁
 
 ```javascript
-// Przykład: Wypisz liczby dopóki i jest mniejsze niż 5
+// Przykład: Wypisz liczby dopóki j jest mniejsze niż 5
 let j = 0; // Pamiętaj o inicjalizacji zmiennej licznika PRZED pętlą!
 
 while (j < 5) {
   // Warunek jest sprawdzany na początku każdej iteracji
   console.log(j);
-  j++; // Ważne: musisz ręcznie zmienić wartość zmiennej, inaczej pętla będzie nieskończona!
+  j++; // Ważne: musisz ręcznie zmienić wartość zmiennej, inaczej pętla będzie nieskończona! ❗
 }
 /*
 Jak to działa?
@@ -414,24 +416,24 @@ Jak to działa?
 */
 ```
 
-**Ważne:** Zawsze upewnij się, że w pętli `while` masz mechanizm, który ostatecznie sprawi, że warunek stanie się fałszywy, inaczej pętla będzie działać w nieskończoność (tzw. "nieskończona pętla"), co zablokuje Twój program!
+**Ważne:** Zawsze upewnij się, że w pętli `while` masz mechanizm, który ostatecznie sprawi, że warunek stanie się fałszywy, inaczej pętla będzie działać w nieskończoność (tzw. "nieskończona pętla"), co zablokuje Twój program! 🚨
 
 ---
 
 ## Funkcje: Bloki Kodu do Wielokrotnego Użycia
 
-Funkcje to jeden z najważniejszych elementów w programowaniu. Możesz myśleć o nich jak o małych, niezależnych "maszynkach" lub "przepisach", które wykonują konkretne zadanie. Zamiast powielać ten sam kod wiele razy, możesz zamknąć go w funkcji i po prostu "wywoływać" tę funkcję, gdy jej potrzebujesz.
+Funkcje to jeden z najważniejszych elementów w programowaniu. Możesz myśleć o nich jak o małych, niezależnych "maszynkach" lub "przepisach", które wykonują konkretne zadanie. Zamiast powielać ten sam kod wiele razy, możesz zamknąć go w funkcji i po prostu "wywoływać" tę funkcję, gdy jej potrzebujesz. ⚙️
 
 ### Po co nam funkcje?
 
-- **Wielokrotne użycie kodu (reusability):** Napisz raz, używaj wiele razy.
-- **Organizacja kodu:** Dzielenie dużego programu na mniejsze, zarządzalne fragmenty.
-- **Czytelność:** Nazwy funkcji pomagają zrozumieć, co dany fragment kodu robi.
-- **Łatwość debugowania i modyfikacji:** Jeśli zmienisz coś w funkcji, zmiany te będą obowiązywać wszędzie tam, gdzie funkcja jest używana.
+- **Wielokrotne użycie kodu (reusability):** Napisz raz, używaj wiele razy. ♻️
+- **Organizacja kodu:** Dzielenie dużego programu na mniejsze, zarządzalne fragmenty. 🧩
+- **Czytelność:** Nazwy funkcji pomagają zrozumieć, co dany fragment kodu robi. 📖
+- **Łatwość debugowania i modyfikacji:** Jeśli zmienisz coś w funkcji, zmiany te będą obowiązywać wszędzie tam, gdzie funkcja jest używana. 🐛
 
 ### Deklaracja Funkcji: Klasyczny Sposób
 
-Najpopularniejszy i najstarszy sposób deklarowania funkcji używa słowa kluczowego `function`.
+Najpopularniejszy i najstarszy sposób deklarowania funkcji używa słowa kluczowego `function`. 📜
 
 ```javascript
 // Deklaracja funkcji o nazwie 'powitaj'
@@ -469,7 +471,7 @@ console.log(koncowyWynik); // Wypisze: 48
 
 ### Funkcje Strzałkowe (Arrow Functions): Nowoczesny Skrót
 
-Funkcje strzałkowe to nowszy, bardziej zwięzły sposób pisania funkcji w JavaScript, wprowadzony w ES6. Są szczególnie przydatne do krótkich, jednowierszowych funkcji.
+Funkcje strzałkowe to nowszy, bardziej zwięzły sposób pisania funkcji w JavaScript, wprowadzony w ES6. Są szczególnie przydatne do krótkich, jednowierszowych funkcji. ➡️🏹
 
 Ich składnia to: `(parametry) => { ciało funkcji }`
 
@@ -500,15 +502,15 @@ let podwojonaLiczba = podwoj(7);
 console.log(podwojonaLiczba); // Wypisze: 14
 ```
 
-Funkcje strzałkowe są bardzo popularne w nowoczesnym JavaScript i będziesz je często widzieć w przykładach kodu. Ważne jest, aby zrozumieć oba sposoby deklarowania funkcji, ponieważ spotkasz się z nimi w różnych projektach.
+Funkcje strzałkowe są bardzo popularne w nowoczesnym JavaScript i będziesz je często widzieć w przykładach kodu. Ważne jest, aby zrozumieć oba sposoby deklarowania funkcji, ponieważ spotkasz się z nimi w różnych projektach. 🎯
 
 ---
 
 ## Obiekty: Skarbnice Powiązanych Informacji
 
-Obiekty w JavaScript to potężne narzędzie do grupowania powiązanych ze sobą danych i funkcji. Pomyśl o obiekcie jak o **rzeczywistym przedmiocie lub koncepcji**, która ma swoje **właściwości** (cechy) i **zachowania** (co potrafi robić, czyli metody).
+Obiekty w JavaScript to potężne narzędzie do grupowania powiązanych ze sobą danych i funkcji. Pomyśl o obiekcie jak o **rzeczywistym przedmiocie lub koncepcji**, która ma swoje **właściwości** (cechy) i **zachowania** (co potrafi robić, czyli metody). 📦
 
-Na przykład, jeśli masz obiekt `samochod`, jego właściwościami mogą być `marka`, `model`, `rokProdukcji`, `kolor`, a zachowaniami (metodami) mogą być `uruchomSilnik()`, `zatrzymaj()`, `jedz()`.
+Na przykład, jeśli masz obiekt `samochod`, jego właściwościami mogą być `marka`, `model`, `rokProdukcji`, `kolor`, a zachowaniami (metodami) mogą być `uruchomSilnik()`, `zatrzymaj()`, `jedz()`. 🚗
 
 W JavaScript obiekty tworzymy za pomocą nawiasów klamrowych `{}`. Wewnątrz nich definiujemy **pary klucz-wartość**, gdzie:
 
@@ -562,15 +564,15 @@ osoba.zawod = "Programista";
 console.log(osoba.zawod); // Wypisze: Programista
 ```
 
-Obiekty są fundamentalnym elementem JavaScript i stanowią podstawę do tworzenia bardziej złożonych aplikacji i struktur danych.
+Obiekty są fundamentalnym elementem JavaScript i stanowią podstawę do tworzenia bardziej złożonych aplikacji i struktur danych. 🏗️
 
 ---
 
 ## Tablice: Uporządkowane Listy Danych
 
-Tablice (`Array`) w JavaScript to specjalny rodzaj obiektu, który pozwala na przechowywanie **uporządkowanej listy wartości**. Pomyśl o tablicy jak o długiej liście zakupów, gdzie każdy element ma swoje miejsce i możesz się do niego odwołać po numerze.
+Tablice (`Array`) w JavaScript to specjalny rodzaj obiektu, który pozwala na przechowywanie **uporządkowanej listy wartości**. Pomyśl o tablicy jak o długiej liście zakupów, gdzie każdy element ma swoje miejsce i możesz się do niego odwołać po numerze. 📝
 
-Każdy element w tablicy ma swój **indeks**, czyli numer pozycji. Ważne jest, aby pamiętać, że **indeksy w JavaScript zawsze zaczynają się od 0!**
+Każdy element w tablicy ma swój **indeks**, czyli numer pozycji. Ważne jest, aby pamiętać, że **indeksy w JavaScript zawsze zaczynają się od 0!** 🔢
 
 - Pierwszy element ma indeks `0`.
 - Drugi element ma indeks `1`.
@@ -595,26 +597,26 @@ liczby[1] = 25; // Zmieniamy drugi element (o indeksie 1) z 20 na 25
 console.log(liczby); // Wypisze: [10, 25, 30, 40, 50]
 
 // Dodawanie elementów do tablicy
-// `push()`: dodaje element na końcu tablicy
+// `push()`: dodaje element na końcu tablicy ➕
 liczby.push(60);
 console.log(liczby); // Wypisze: [10, 25, 30, 40, 50, 60]
 
-// `unshift()`: dodaje element na początku tablicy
+// `unshift()`: dodaje element na początku tablicy ➡️
 liczby.unshift(5);
 console.log(liczby); // Wypisze: [5, 10, 25, 30, 40, 50, 60]
 
 // Usuwanie elementów z tablicy
-// `pop()`: usuwa ostatni element z tablicy i zwraca go
+// `pop()`: usuwa ostatni element z tablicy i zwraca go 🗑️
 let usunietaLiczba = liczby.pop();
 console.log(usunietaLiczba); // Wypisze: 60
 console.log(liczby); // Wypisze: [5, 10, 25, 30, 40, 50]
 
-// `shift()`: usuwa pierwszy element z tablicy i zwraca go
+// `shift()`: usuwa pierwszy element z tablicy i zwraca go ⬅️
 let usunietaPierwszaLiczba = liczby.shift();
 console.log(usunietaPierwszaLiczba); // Wypisze: 5
 console.log(liczby); // Wypisze: [10, 25, 30, 40, 50]
 
-// Iterowanie (przechodzenie) przez elementy tablicy za pomocą pętli for
+// Iterowanie (przechodzenie) przez elementy tablicy za pomocą pętli for 🚶
 console.log("Elementy tablicy:");
 for (let i = 0; i < liczby.length; i++) {
   console.log(`Element na indeksie ${i}: ${liczby[i]}`);
@@ -629,22 +631,22 @@ Element na indeksie 4: 50
 */
 ```
 
-Tablice są niezwykle przydatne w JavaScript, ponieważ pozwalają na efektywne zarządzanie kolekcjami danych, co jest fundamentalne w większości aplikacji.
+Tablice są niezwykle przydatne w JavaScript, ponieważ pozwalają na efektywne zarządzanie kolekcjami danych, co jest fundamentalne w większości aplikacji. 📊
 
 ---
 
 ## Zadania do Wykonania: Sprawdź Swoje Umiejętności!
 
-Teraz, gdy poznałeś/aś podstawy JavaScript, czas na trochę praktyki! Pamiętaj, że nauka programowania to przede wszystkim pisanie kodu. Spróbuj samodzielnie rozwiązać poniższe zadania, zanim zajrzysz do rozwiązań. To najlepszy sposób, aby utrwalić wiedzę.
+Teraz, gdy poznałeś/aś podstawy JavaScript, czas na trochę praktyki! Pamiętaj, że nauka programowania to przede wszystkim pisanie kodu. Spróbuj samodzielnie rozwiązać poniższe zadania, zanim zajrzysz do rozwiązań. To najlepszy sposób, aby utrwalić wiedzę. Powodzenia! 🧑‍💻🌟
 
 ### Zadanie 1: Iloczyn Dwóch Liczb
 
 Napisz funkcję o nazwie `obliczIloczyn`, która przyjmuje **dwie liczby** jako argumenty (parametry) i **zwraca** ich iloczyn (czyli wynik mnożenia). Następnie wywołaj tę funkcję z dowolnymi dwoma liczbami i wypisz wynik w konsoli.
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```javascript
 // Rozwiązanie Zadania 1
@@ -672,12 +674,12 @@ Utwórz obiekt JavaScript o nazwie `mojaksiazka`, który będzie reprezentował 
 - `autor` (typu String)
 - `rokWydania` (typu Number)
 
-Dodatkowo, dodaj do tego obiektu **metodę** (funkcję w obiekcie) o nazwie `getOpis`, która **zwróci** tekst zawierający pełny opis książki, np.: "Książka 'W pustyni i w puszczy' napisana przez Henryka Sienkiewicza została wydana w roku 1911.". Następnie wywołaj tę metodę i wypisz jej wynik w konsoli.
+Dodatkowo, dodaj do tego obiektu **metodę** (funkcję w obiekcie) o nazwie `getOpis`, która **zwróci** tekst zawierający pełny opis książki, np.: "Książka 'W pustyni i w puszczy' napisana przez Henryka Sienkiewicza została wydana w roku 1911.". Następnie wywołaj tę metodę i wypisz jej wynik w konsoli. 📖
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```javascript
 // Rozwiązanie Zadania 2
@@ -703,12 +705,12 @@ console.log(mojaksiazka.getOpis());
 
 ### Zadanie 3: Największa Liczba w Tablicy
 
-Napisz funkcję o nazwie `znajdzNajwiekszaLiczbe`, która przyjmuje **tablicę liczb** jako argument i **zwraca największą liczbę** znajdującą się w tej tablicy. Użyj pętli `for` do przejrzenia wszystkich elementów tablicy.
+Napisz funkcję o nazwie `znajdzNajwiekszaLiczbe`, która przyjmuje **tablicę liczb** jako argument i **zwraca największą liczbę** znajdującą się w tej tablicy. Użyj pętli `for` do przejrzenia wszystkich elementów tablicy. 📈
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```javascript
 // Rozwiązanie Zadania 3
@@ -718,28 +720,28 @@ function znajdzNajwiekszaLiczbe(tablicaLiczb) {
     return "Tablica jest pusta!"; // Obsługa pustej tablicy
   }
 
-  let najwieksza = tablicaLiczb[0]; // Inicjujemy zmienną największa wartością pierwszego elementu
+  let najwieksza = tablicaLiczb[0]; // Zaczynamy od pierwszego elementu
 
-  // Pętla zaczyna się od drugiego elementu (indeks 1)
+  // Przechodzimy przez resztę tablicy
   for (let i = 1; i < tablicaLiczb.length; i++) {
-    // Jeśli bieżący element jest większy niż dotychczasowa największa liczba
     if (tablicaLiczb[i] > najwieksza) {
-      najwieksza = tablicaLiczb[i]; // Uaktualnij największą liczbę
+      najwieksza = tablicaLiczb[i]; // Jeśli znajdziemy większą, aktualizujemy
     }
   }
-  return najwieksza; // Zwróć znalezioną największą liczbę
+
+  return najwieksza;
 }
 
 // Przykładowe użycie funkcji
-let liczby1 = [3, 8, 1, 10, 5];
+let liczby1 = [3, 7, 2, 9, 5];
 console.log(
   `Największa liczba w [${liczby1}] to: ${znajdzNajwiekszaLiczbe(liczby1)}`
-); // Oczekiwany wynik: 10
+); // Oczekiwany wynik: 9
 
-let liczby2 = [100, 20, 50, 90];
+let liczby2 = [10, 1, 8, 4];
 console.log(
   `Największa liczba w [${liczby2}] to: ${znajdzNajwiekszaLiczbe(liczby2)}`
-); // Oczekiwany wynik: 100
+); // Oczekiwany wynik: 10
 
 let pustaTablica = [];
 console.log(
@@ -755,30 +757,45 @@ console.log(
 
 ### Zadanie 4: Wyświetlanie Imion
 
-Utwórz tablicę o nazwie `listaImion`, która będzie zawierać co najmniej **cztery różne imiona** (jako teksty, czyli Stringi). Następnie, za pomocą **pętli `for`**, przejdź przez wszystkie elementy tej tablicy i **wyświetl każde imię osobno w konsoli**.
+Napisz funkcję o nazwie `wyswietlImiona`, która przyjmuje **tablicę stringów (imion)** jako argument. Funkcja powinna **wypisać każde imię** w konsoli, poprzedzone tekstem "Witaj, ". Użyj pętli `for` lub `for...of` do iteracji. 👋
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```javascript
 // Rozwiązanie Zadania 4
-let listaImion = ["Kamil", "Ewa", "Piotr", "Zofia", "Michał"];
-
-console.log("Lista imion:");
-// Pętla for do przechodzenia przez tablicę
-for (let i = 0; i < listaImion.length; i++) {
-  console.log(listaImion[i]); // Wypisujemy element o bieżącym indeksie 'i'
+function wyswietlImiona(listaImion) {
+  console.log("--- Lista Powitań ---");
+  for (let i = 0; i < listaImion.length; i++) {
+    console.log(`Witaj, ${listaImion[i]}!`);
+  }
+  console.log("--- Koniec Listy ---");
 }
+
+// Alternatywnie, używając pętli for...of (nowocześniejsza i często czytelniejsza dla tablic)
 /*
-Oczekiwane wyjście:
-Lista imion:
-Kamil
-Ewa
-Piotr
-Zofia
-Michał
+function wyswietlImiona(listaImion) {
+  console.log("--- Lista Powitań ---");
+  for (const imie of listaImion) {
+    console.log(`Witaj, ${imie}!`);
+  }
+  console.log("--- Koniec Listy ---");
+}
+*/
+
+// Przykładowe użycie funkcji
+let imiona = ["Alicja", "Bartek", "Cezary", "Diana"];
+wyswietlImiona(imiona);
+/*
+Oczekiwany wynik w konsoli:
+--- Lista Powitań ---
+Witaj, Alicja!
+Witaj, Bartek!
+Witaj, Cezary!
+Witaj, Diana!
+--- Koniec Listy ---
 */
 ```
 
@@ -788,10 +805,26 @@ Michał
 
 ## Podsumowanie
 
-To wszystko na temat podstaw JavaScript! Gratulacje, że dotarłeś/aś tak daleko. Pamiętaj, że nauka programowania to proces ciągły. Zachęcam Cię do:
+Gratulacje! 🎉 Dotarłeś/aś do końca tego wprowadzenia do JavaScript! Nauczyłeś/aś się podstaw, które są fundamentem każdego dewelopera webowego:
 
-- **Eksperymentowania** z kodem – zmieniaj wartości, dodawaj nowe linie, zobacz, co się stanie!
-- **Tworzenia własnych funkcji, obiektów i małych aplikacji** – im więcej piszesz, tym lepiej rozumiesz.
-- **Zgłębiania bardziej zaawansowanych tematów** – to dopiero początek Twojej podróży z JavaScriptem!
+- Czym jest JavaScript i dlaczego jest tak wszechstronny.
+- Jak deklarować i używać **zmiennych** (`var`, `let`, `const`).
+- Poznałeś/aś kluczowe **typy danych** (Number, String, Boolean, Object, Array, Undefined, Null).
+- Zrozumiałeś/aś działanie **operatorów** (arytmetycznych, porównania, logicznych, przypisania).
+- Nauczyłeś/aś się sterować przepływem programu za pomocą **struktur kontrolnych** (`if`/`else`, `for`, `while`).
+- Opanowałeś/aś tworzenie i używanie **funkcji** (klasyczne i strzałkowe) do organizacji kodu.
+- Poznałeś/aś, jak pracować z **obiektami** i **tablicami** do przechowywania złożonych danych.
 
-Co jest dla Ciebie najbardziej interesujące do nauki w JavaScript po tych podstawach?
+To solidny start! Pamiętaj, że nauka programowania to ciągły proces. Nie zniechęcaj się, jeśli coś sprawia Ci trudność. Kluczem jest konsekwencja, praktyka i nieustanne eksperymentowanie z kodem. Im więcej będziesz kodować, tym lepiej będziesz rozumieć i tym swobodniej będziesz się czuć z JavaScriptem. 💪
+
+**Co dalej?**
+
+Teraz, gdy masz mocne podstawy, możesz zagłębić się w bardziej zaawansowane tematy, takie jak:
+
+- **DOM Manipulation:** Jak JavaScript "rozmawia" ze stroną HTML, by zmieniać jej zawartość, style i strukturę. 🖼️
+- **Event Handling:** Jak reagować na działania użytkownika (kliknięcia, ruchy myszy, wprowadzanie danych). 🖱️
+- **Asynchronous JavaScript:** Jak radzić sobie z operacjami, które trwają pewien czas (np. pobieranie danych z internetu). ⏳
+- **ES6+ Features:** Wiele nowszych funkcji JavaScriptu, które ułatwiają pisanie kodu. ✨
+- **Frameworks i Biblioteki:** React, Angular, Vue.js – narzędzia, które przyspieszają i ułatwiają budowanie skomplikowanych aplikacji. 🏗️
+
+Niech Twoja podróż z JavaScriptem będzie ekscytująca i pełna sukcesów! Jeśli masz jakieś pytania, śmiało pytaj! Happy coding! 🚀
