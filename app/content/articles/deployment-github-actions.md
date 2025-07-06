@@ -8,8 +8,6 @@ createdAt: 2025-03-15
 
 GitHub Actions to potężne narzędzie do automatyzacji procesów CI/CD. W tym artykule na przykładzie aplikacji React pokażę, jak w prosty sposób skonfigurować automatyczne wdrażanie na GitHub Pages z wykorzystaniem GitHub Actions.
 
----
-
 ## Spis treści
 
 1. [Wprowadzenie](#wprowadzenie)

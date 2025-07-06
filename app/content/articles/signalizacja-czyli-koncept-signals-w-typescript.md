@@ -8,8 +8,6 @@ createdAt: 2024-06-20
 
 Signal to koncepcja znana z programowania reaktywnego, której celem jest uproszczenie komunikacji między komponentami oraz zarządzanie stanem aplikacji. Dzięki silnemu typowaniu TypeScript, sygnały można zaimplementować w sposób bezpieczny, czytelny i efektywny.
 
----
-
 ## Spis treści
 
 1. [Czym jest Signal?](#czym-jest-signal)

@@ -8,8 +8,6 @@ createdAt: 2024-06-20
 
 Wzorzec projektowy Obserwator (ang. Observer) to jeden z kluczowych wzorców, szczególnie przydatny w programowaniu reaktywnym oraz w aplikacjach wymagających reagowania na zmiany stanu. TypeScript pozwala na typowaną implementację tego wzorca, co zwiększa bezpieczeństwo i czytelność kodu.
 
----
-
 ## Spis treści
 
 1. [Czym jest Wzorzec Obserwatora?](#czym-jest-wzorzec-obserwatora)
