@@ -129,9 +129,13 @@ export default function Search() {
         <h1 className="mb-0">Szukaj</h1>
         <p>Wskazówka: Obszary po których możesz szukać:</p>
         <ul>
-          <li>Artykuły: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>
-          <li>Kursy: (tytuł, opis, słowa klucz, kategorie, zawartość)</li>
-          <li>Projekty: (tytuł, opis, słowa klucz, technologie, zawartość)</li>
+          <li>
+            Artykuły: (tytuł, opis, słowa klucz, kategorie, długość czytania)
+          </li>
+          <li>
+            Kursy: (tytuł, opis, słowa klucz, kategorie, długość czytania)
+          </li>
+          <li>Projekty: (tytuł, opis, słowa klucz, technologie)</li>
         </ul>
         <p>
           Możesz też wkleić skopiowany link aby spróbować przejść do wskazanej

@@ -3,7 +3,7 @@ title: "Wprowadzenie do baz danych"
 description: "Poznaj podstawowe pojęcia i koncepcje związane z bazami danych. Dowiedz się czym są bazy danych, jakie są ich rodzaje, gdzie są stosowane i dlaczego są kluczowe w informatyce. Kurs teoretyczny dla początkujących."
 keywords:
   [bazy danych, teoria, relacyjne, noSQL, wprowadzenie, podstawy, learning]
-categories: [wprowadzenie, bazy-danych]
+categories: [bazy-danych]
 createdAt: 2025-07-03
 quiz:
   title: "Quiz: Podstawy baz danych (teoria)"

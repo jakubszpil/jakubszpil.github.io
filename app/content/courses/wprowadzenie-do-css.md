@@ -2,7 +2,7 @@
 title: Wprowadzenie do CSS
 description: CSS (Cascading Style Sheets) to język służący do opisywania wyglądu i formatu dokumentu HTML. CSS pozwala na oddzielenie treści od prezentacji, co umożliwia tworzenie estetycznych i spójnych stron internetowych. W tym kursie omówimy podstawy CSS, w tym selektory, właściwości, sposoby załączania CSS do HTML oraz JavaScript, a także przedstawimy kilka zadań do wykonania.
 keywords: [css, html, kurs, wprowadzenie, przewodnik, web, frontend, learning]
-categories: [wprowadzenie, css]
+categories: [css]
 createdAt: 2024-06-30
 quiz:
   title: "Quiz: Podstawy CSS"

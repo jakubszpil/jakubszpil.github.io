@@ -2,7 +2,7 @@
 title: Czym jest DOM?
 description: Czym jest DOM? DOM (Document Object Model) to interfejs programistyczny dla dokumentów HTML i XML. Umożliwia dynamiczne manipulowanie strukturą, stylem i treścią dokumentów. DOM reprezentuje dokument jako drzewo obiektów, gdzie każdy element, atrybut i tekst w dokumencie jest węzłem drzewa.
 keywords: [kurs, html, dom, struktura, wprowadzenie, learning]
-categories: [wprowadzenie, html]
+categories: [html]
 createdAt: 2024-06-30
 quiz:
   title: "Quiz: Podstawy DOM"

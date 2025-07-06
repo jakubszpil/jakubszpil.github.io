@@ -2,7 +2,7 @@
 title: Wprowadzenie do HTML
 description: Co to jest HTML? HTML (HyperText Markup Language) to podstawowy język wykorzystywany do tworzenia i strukturyzowania stron internetowych. HTML używa elementów, które definiują różne części dokumentu, takie jak nagłówki, akapity, linki, obrazy, i wiele innych.
 keywords: [kurs, html, dom, struktura, wprowadzenie, learning]
-categories: [wprowadzenie, html]
+categories: [html]
 createdAt: 2024-06-30
 quiz:
   title: "Quiz: Podstawy HTML"

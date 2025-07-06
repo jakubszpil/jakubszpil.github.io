@@ -8,7 +8,11 @@ import {
   getArticlesByCategory,
   getArticlesCategories,
 } from "~/lib/articles";
-import { capitalize, retrieveSpaceInString } from "~/lib/string";
+import {
+  capitalize,
+  retrieveIndividualName,
+  retrieveSpaceInString,
+} from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   const categories = await getArticlesCategories();
@@ -32,7 +36,7 @@ export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();
 
   const title = category
-    ? capitalize(retrieveSpaceInString(category))
+    ? retrieveIndividualName(capitalize(retrieveSpaceInString(category)))
     : undefined;
 
   return (
