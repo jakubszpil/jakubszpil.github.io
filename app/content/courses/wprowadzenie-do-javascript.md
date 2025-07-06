@@ -2,7 +2,7 @@
 title: Wprowadzenie do JavaScript
 description: JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W tym kursie omówimy podstawy JavaScript, w tym zmienne, typy danych, operatory, struktury kontrolne, funkcje oraz obiekty.
 keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend, learning]
-categories: [wprowadzenie, javascript]
+categories: [javascript]
 createdAt: 2024-06-30
 quiz:
   title: "Quiz: Podstawy JavaScript"

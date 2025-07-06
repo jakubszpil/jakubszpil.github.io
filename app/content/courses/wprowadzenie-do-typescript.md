@@ -2,7 +2,7 @@
 title: "Wprowadzenie do TypeScript"
 description: "Dowiedz się czym jest TypeScript, jak zacząć z niego korzystać i dlaczego warto go używać w swoich projektach. Przystępny przewodnik dla początkujących z przykładami i praktycznymi wskazówkami."
 keywords: [typescript, javascript, programowanie, frontend, typowanie, learning]
-categories: [wprowadzenie, typescript]
+categories: [typescript]
 createdAt: 2025-06-23
 quiz:
   title: "Quiz: Podstawy TypeScript"
