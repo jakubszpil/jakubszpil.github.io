@@ -24,9 +24,9 @@ import {
 } from "~/lib/search";
 
 export async function loader() {
-  const articles = await getArticles({ minify: false });
-  const courses = await getCourses({ minify: false });
-  const projects = await getProjects({ minify: false });
+  const articles = await getArticles({ minify: true });
+  const courses = await getCourses({ minify: true });
+  const projects = await getProjects({ minify: true });
   return { articles, courses, projects };
 }
 
