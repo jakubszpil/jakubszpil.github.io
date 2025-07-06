@@ -156,6 +156,7 @@ export const parseMarkdownFile = async <T extends ContentResource>(
 
 export function minifyContentResource<T extends ContentResource>(resource: T) {
   resource.content = "";
+  resource.quiz = undefined;
   return resource;
 }
 
