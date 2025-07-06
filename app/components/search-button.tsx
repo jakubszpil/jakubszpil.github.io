@@ -4,12 +4,15 @@ import { useLocation, useNavigate } from "react-router";
 
 import { Button } from "./ui/button";
 import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+import { usePrefetch } from "~/hooks/use-prefetch";
 
 const state = { focus: true };
 
 export default function SearchButton() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  usePrefetch("/search.data");
 
   useEffect(() => {
     const ac = new AbortController();
