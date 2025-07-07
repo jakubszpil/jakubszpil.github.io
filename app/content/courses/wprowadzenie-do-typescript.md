@@ -73,7 +73,7 @@ Cześć! 👋 Słyszałeś/aś kiedyś o **TypeScript**? Jeśli już trochę kod
 ## Spis treści
 
 1.  [Co to jest TypeScript i dlaczego warto go znać?](#co-to-jest-typescript-i-dlaczego-warto-go-znać)
-2.  [TypeScript vs. JavaScript: Główne Roznice (i Dlaczego to Ważne!)](#typescript-vs-javascript-główne-roznice-i-dlaczego-to-ważne)
+2.  [TypeScript vs. JavaScript: Główne Różnice](#typescript-vs-javascript-główne-różnice)
 3.  [Dlaczego każdy programista powinien korzystać z TypeScript?](#dlaczego-każdy-programista-powinien-korzystać-z-typescript)
 4.  [TypeScript od zera: Pierwsze Kroki w Kodowaniu](#typescript-od-zera-pierwsze-kroki-w-kodowaniu)
     - [Instalacja: Jak zacząć swoją przygodę?](#instalacja-jak-zacząć-swoją-przygodę)
@@ -114,7 +114,7 @@ Zapamiętaj:
 
 ---
 
-## TypeScript vs. JavaScript: Główne Roznice (i Dlaczego to Ważne!)
+## TypeScript vs. JavaScript: Główne Różnice
 
 No dobrze, wiemy już, że TypeScript to JavaScript z bajerami. Ale jakie dokładnie są te różnice i dlaczego są one tak istotne dla każdego, kto chce pisać solidny kod? 🤔
 
@@ -124,7 +124,7 @@ No dobrze, wiemy już, że TypeScript to JavaScript z bajerami. Ale jakie dokła
 | **Błędy**             | Często wychodzą dopiero w czasie działania (runtime errors) | Wykrywane już na etapie pisania kodu (compile-time errors)                          |
 | **Kompilacja**        | Nie wymaga kompilacji (jest interpretowany)                 | Wymaga **kompilacji (transpilacji)** do JavaScriptu                                 |
 | **Wsparcie narzędzi** | Dobre, ale bez pełnej wiedzy o typach                       | **Doskonałe!** Podpowiedzi, autouzupełnianie, refaktoryzacje na wyższym poziomie 🚀 |
-| **Pliki**             | `.js`                                                       | `.ts` (lub `.tsx` dla Reacta)                                                       |
+| **Pliki**             | `.js` (lub `.jsx` dla Reacta)                               | `.ts` (lub `.tsx` dla Reacta)                                                       |
 
 **Kompilacja**: To kluczowa sprawa! 🔑 Twój kod TypeScript (`.ts`) musi zostać **przetłumaczony** (technicznie to się nazywa **transpilacja**, bo to z jednego języka JavaScriptu na inną, starszą wersję JavaScriptu) na czysty JavaScript (`.js`), zanim przeglądarka albo Node.js będzie mogła go zrozumieć i uruchomić. To jak z przetłumaczeniem książki na inny język – najpierw tłumacz, potem czytaj. Kompilator TypeScripta (`tsc`) robi to błyskawicznie! ⚡️
 
