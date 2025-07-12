@@ -91,10 +91,13 @@ export default function Quiz({ quiz }: QuizProps) {
     <div className="container prose">
       <h2>{quiz.title}</h2>
       <div>
-        <h4>
+        <p className="font-bold !mb-0">
           Pytanie {current + 1} z {questions.length}
-        </h4>
-        <div dangerouslySetInnerHTML={{ __html: question.question }}></div>
+        </p>
+        <div
+          className="prose-p:mt-2"
+          dangerouslySetInnerHTML={{ __html: question.question }}
+        ></div>
         <div className="grid grid-flow-row gap-3">
           {options.map((opt) => (
             <Button

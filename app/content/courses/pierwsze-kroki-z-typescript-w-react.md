@@ -44,7 +44,7 @@ quiz:
       answer: 3
       explanation: "Poprawny typ dla referencji do buttona to HTMLButtonElement."
 
-    - question: "Co wyświetli poniższy komponent?\n\n```tsx\ntype WelcomeProps = { name: string };\nconst Welcome = ({ name }: WelcomeProps) => <p>Cześć, {name}!</p>;\n```\nJeśli wywołasz `<Welcome name=\"Ala\" />`"
+    - question: "Co wyświetli poniższy komponent?nn```tsxntype WelcomeProps = { name: string };nconst Welcome = ({ name }: WelcomeProps) => <p>Cześć, {name}!</p>;n```nJeśli wywołasz `<Welcome name='Ala' />`"
       options:
         - "Witaj, Ala!"
         - "undefined"
@@ -54,24 +54,24 @@ quiz:
       explanation: "Komponent wyświetli 'Cześć, Ala!'."
 ---
 
-Chcesz pisać nowoczesne aplikacje i mieć pewność, że Twój kod jest czysty, bezpieczny i przyszłościowy? 🚀 TypeScript w połączeniu z React to duet, który pokochasz od pierwszego projektu! Ten przewodnik przeprowadzi Cię krok po kroku przez najważniejsze podstawy – bez zbędnych teorii, za to z praktycznymi przykładami i zadaniami, które pomogą Ci naprawdę zrozumieć temat.
+Witaj w świecie **Reacta** połączonego z **TypeScriptem**! 🚀 Jeśli chcesz pisać nowoczesne aplikacje i mieć pewność, że Twój kod jest czysty, bezpieczny i przyszłościowy, to właśnie znalazłeś/aś odpowiednie narzędzie. TypeScript w połączeniu z React to duet, który pokochasz od pierwszego projektu! Ten przewodnik przeprowadzi Cię krok po kroku przez najważniejsze podstawy – bez zbędnych teorii, za to z praktycznymi przykładami i zadaniami, które pomogą Ci naprawdę zrozumieć temat. ✨
 
 ## Spis treści
 
-1. [Dlaczego warto używać TypeScript w React?](#dlaczego-warto-używać-typescript-w-react)
-2. [Podstawowe typy w TypeScript](#podstawowe-typy-w-typescript)
-3. [Tworzenie komponentów funkcyjnych z typami](#tworzenie-komponentów-funkcyjnych-z-typami)
-4. [Props i typowanie propsów](#props-i-typowanie-propsów)
-5. [Typowanie stanu (useState)](#typowanie-stanu-usestate)
-6. [Typowanie referencji (useRef)](#typowanie-referencji-useref)
-7. [Przydatne narzędzia i wskazówki](#przydatne-narzędzia-i-wskazówki)
-8. [Zadania do wykonania](#zadania-do-wykonania)
-   - [Zadanie 1: Prosty komponent powitalny](#zadanie-1-prosty-komponent-powitalny)
-   - [Zadanie 2: Typowanie tablicy liczb](#zadanie-2-typowanie-tablicy-liczb)
-   - [Zadanie 3: Komponent z typowanymi propsami i zdarzeniem](#zadanie-3-komponent-z-typowanymi-propsami-i-zdarzeniem)
-   - [Zadanie 4: Typowanie obiektu w stanie](#zadanie-4-typowanie-obiektu-w-stanie)
-   - [Zadanie 5: Lista komponentów na podstawie tablicy obiektów](#zadanie-5-lista-komponentów-na-podstawie-tablicy-obiektów)
-9. [Podsumowanie](#podsumowanie)
+1.  [Dlaczego warto używać TypeScript w React?](#dlaczego-warto-używać-typescript-w-react)
+2.  [Podstawowe typy w TypeScript](#podstawowe-typy-w-typescript)
+3.  [Tworzenie komponentów funkcyjnych z typami](#tworzenie-komponentów-funkcyjnych-z-typami)
+4.  [Props i typowanie propsów](#props-i-typowanie-propsów)
+5.  [Typowanie stanu (useState)](#typowanie-stanu-usestate)
+6.  [Typowanie referencji (useRef)](#typowanie-referencji-useref)
+7.  [Przydatne narzędzia i wskazówki](#przydatne-narzędzia-i-wskazówki)
+8.  [Zadania do wykonania](#zadania-do-wykonania)
+    - [Zadanie 1: Prosty komponent powitalny](#zadanie-1-prosty-komponent-powitalny)
+    - [Zadanie 2: Typowanie tablicy liczb](#zadanie-2-typowanie-tablicy-liczb)
+    - [Zadanie 3: Komponent z typowanymi propsami i zdarzeniem](#zadanie-3-komponent-z-typowanymi-propsami-i-zdarzeniem)
+    - [Zadanie 4: Typowanie obiektu w stanie](#zadanie-4-typowanie-obiektu-w-stanie)
+    - [Zadanie 5: Lista komponentów na podstawie tablicy obiektów](#zadanie-5-lista-komponentów-na-podstawie-tablicy-obiektów)
+9.  [Podsumowanie](#podsumowanie)
 
 ---
 
@@ -79,52 +79,64 @@ Chcesz pisać nowoczesne aplikacje i mieć pewność, że Twój kod jest czysty,
 
 TypeScript to nie tylko “lepszy JavaScript” – to Twoja tajna broń na błędy w kodzie! Dzięki niemu:
 
-- 🛡️ Kod jest bardziej przewidywalny i bezpieczniejszy – typy wykrywają literówki i błędy logiczne już podczas pisania.
-- ⚡ Praca w zespole staje się łatwiejsza – czytelny kod, lepsze podpowiedzi w edytorze (IntelliSense), szybkie ogarnianie cudzych projektów.
-- 🔄 Refaktoryzacje nie są już straszne – zmiany w typach wymuszają poprawki w całym projekcie, więc nic Ci nie umknie.
-- 📖 Typy to żywa dokumentacja – od razu wiesz, co i gdzie przekazujesz do komponentów oraz funkcji.
+- 🛡️ **Kod jest bardziej przewidywalny i bezpieczniejszy** – typy wykrywają literówki i błędy logiczne już podczas pisania. To jak posiadanie prywatnego asystenta, który sprawdza Twój kod na bieżąco!
+- ⚡ **Praca w zespole staje się łatwiejsza** – czytelny kod, lepsze podpowiedzi w edytorze (IntelliSense), szybkie ogarnianie cudzych projektów. Koniec z "zgadywaniem" jakie dane funkcja przyjmuje!
+- 🔄 **Refaktoryzacje nie są już straszne** – zmiany w typach wymuszają poprawki w całym projekcie, więc nic Ci nie umknie. TypeScript prowadzi Cię za rękę przez proces zmian.
+- 📖 **Typy to żywa dokumentacja** – od razu wiesz, co i gdzie przekazujesz do komponentów oraz funkcji. Twój kod staje się samoopisujący.
 
 W React TypeScript to must-have, jeśli chcesz:
 
-- jasno typować propsy i stan (`useState`, `useReducer`),
-- wygodnie pracować z referencjami (`useRef`),
+- jasno typować **propsy** i **stan** (`useState`, `useReducer`),
+- wygodnie pracować z **referencjami** (`useRef`),
 - bez obaw korzystać z zewnętrznych bibliotek i API.
 
 ---
 
 ## Podstawowe typy w TypeScript
 
-Najczęściej spotkasz się z:
+Najczęściej spotkasz się z podstawowymi typami, które pomogą Ci kontrolować dane w Twojej aplikacji:
 
 ```ts
-let name: string = "Ala";
-let age: number = 25;
-let isActive: boolean = true;
-let numbers: number[] = [1, 2, 3];
-let person: { name: string; age: number } = { name: "Jan", age: 30 };
+let userName: string = "Alice"; // Tekst
+let userAge: number = 25; // Liczba
+let isActive: boolean = true; // Wartość logiczna (prawda/fałsz)
+let primes: number[] = [2, 3, 5, 7]; // Tablica liczb
+let userProfile: { name: string; age: number } = { name: "John", age: 30 }; // Obiekt
+let anyValue: any = "Can be anything!"; // Typ 'any' - używaj z ostrożnością! Wyłącza sprawdzanie typów.
+let unknownValue: unknown = 123; // Typ 'unknown' - bezpieczniejsza alternatywa dla 'any', wymaga sprawdzenia typu.
+let userStatus: "active" | "inactive" = "active"; // Literał (union type) - tylko te dwie wartości są dozwolone.
 ```
 
-Chcesz być PRO? Twórz własne typy i interfejsy – kod będzie czytelniejszy i łatwiejszy do rozbudowy:
+Chcesz być PRO? Twórz własne **typy** i **interfejsy** – kod będzie czytelniejszy i łatwiejszy do rozbudowy:
 
 ```ts
+// Przykład użycia 'type'
 type User = {
   id: number;
   name: string;
+  email?: string; // Opcjonalne pole
 };
 
+// Przykład użycia 'interface'
 interface Product {
   id: number;
+  name: string;
   price: number;
+  description?: string; // Opcjonalne pole
+  onSale: boolean;
 }
 ```
 
-> 💡 **TIP:** Korzystaj z własnych typów zawsze, gdy masz złożone obiekty lub korzystasz z API!
+**`type` vs `interface`**
+Choć często używane zamiennie, istnieją pewne różnice. `interface` może być rozszerzany i implementowany przez klasy, `type` jest bardziej elastyczny do tworzenia aliasów typów złożonych (np. unii). W prostych przypadkach, takich jak definicja propsów, wybór między `type` a `interface` często sprowadza się do preferencji.
+
+> 💡 **TIP:** Korzystaj z własnych typów (`type` lub `interface`) zawsze, gdy masz złożone obiekty, struktury danych lub korzystasz z API! Ułatwi to debugowanie i utrzymanie kodu.
 
 ---
 
 ## Tworzenie komponentów funkcyjnych z typami
 
-Najprostszy komponent funkcyjny w TypeScript:
+Najprostszy komponent funkcyjny w TypeScript, który nie przyjmuje żadnych propsów, nie wymaga jawnego typowania:
 
 ```tsx
 function HelloWorld() {
@@ -132,115 +144,214 @@ function HelloWorld() {
 }
 ```
 
-Nie używasz propsów? Nie musisz nic typować!  
-Ale gdy przekazujesz dane do komponentu – patrz niżej.
+Jeśli komponent nie przyjmuje żadnych propsów, TypeScript sam to zrozumie. Jeśli jednak chcesz być super precyzyjny (i czasami jest to wymagane przez lintery lub pewne schematy projektowe), możesz użyć typu `React.FC` (Functional Component) lub `React.FunctionComponent`.
+
+```tsx
+import { FC } from "react";
+
+const SimpleComponent: FC = () => {
+  return <p>This is a simple component.</p>;
+};
+
+// lub bardziej zwięźle
+const AnotherSimpleComponent = () => {
+  return <p>Another simple component.</p>;
+};
+```
+
+Zauważ, że importujemy `FC` bezpośrednio z pakietu `react`, a nie cały obiekt `React`.
 
 ---
 
 ## Props i typowanie propsów
 
-Propsy to podstawa pracy z Reactem! W TypeScript opisujesz je przez interfejs lub typ:
+Propsy to podstawa przekazywania danych do komponentów w React! W TypeScript opisujesz je przez **interfejs** lub **typ**, a następnie wskazujesz ten typ jako argument komponentu.
 
 ```tsx
 interface WelcomeProps {
-  name: string;
+  userName: string;
+  age?: number; // Opcjonalny prop
 }
 
-function Welcome(props: WelcomeProps) {
-  return <p>Witaj, {props.name}!</p>;
+function Welcome({ userName, age }: WelcomeProps) {
+  return (
+    <p>
+      Hello, {userName}! {age && `You are ${age} years old.`} 👋
+    </p>
+  );
 }
+
+// Użycie komponentu:
+// <Welcome userName="Alice" />
+// <Welcome userName="Bob" age={30} />
 ```
 
 **Co zyskujesz?**
 
-- Edytor podpowiada, co możesz przekazać,
-- Błyskawicznie wykrywasz literówki i brakujące dane,
-- Tworzysz samodokumentujące się komponenty!
+- **IntelliSense:** Edytor podpowiada, jakie propsy są dostępne i jakiego są typu, gdy piszesz `<Welcome ...`.
+- **Wykrywanie błędów na etapie kompilacji:** Jeśli zapomnisz przekazać wymagany prop, lub przekazujesz go z niewłaściwym typem, TypeScript od razu Cię o tym poinformuje.
+- **Samodokumentujący się kod:** Definicja interfejsu propsów służy jako jasna dokumentacja dla każdego, kto używa Twojego komponentu.
 
 ---
 
 ## Typowanie stanu (useState)
 
-Chcesz jasno określić, co przechowujesz w stanie? Z TypeScriptem to proste:
+Hook `useState` pozwala komponentom funkcyjnym zarządzać ich wewnętrznym stanem. Z TypeScriptem możesz jasno określić, co przechowujesz w stanie, zwiększając tym samym bezpieczeństwo i czytelność kodu.
 
 ```tsx
 import { useState } from "react";
 
 function Counter() {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(0); // Jawnie typujemy stan jako 'number'
+  const [message, setMessage] = useState<string>("Hello"); // Jawnie typujemy stan jako 'string'
+  const [isActive, setIsActive] = useState<boolean>(false); // Jawnie typujemy stan jako 'boolean'
+
+  // Przykład złożonego stanu: obiekt
+  interface UserProfile {
+    name: string;
+    email: string;
+    isLoggedIn: boolean;
+  }
+  const [user, setUser] = useState<UserProfile>({
+    name: "John Doe",
+    email: "john@example.com",
+    isLoggedIn: false,
+  });
 
   return (
     <div>
-      <p>Licznik: {count}</p>
-      <button onClick={() => setCount((prev) => prev - 1)}>Zmniejsz</button>
-      <button onClick={() => setCount((prev) => prev + 1)}>Zwiększ</button>
+      <h3>Counter:</h3>
+      <p>Current count: {count}</p>
+      <button onClick={() => setCount((prevCount) => prevCount - 1)}>
+        Decrement
+      </button>
+      <button onClick={() => setCount((prevCount) => prevCount + 1)}>
+        Increment
+      </button>
+
+      <h3>Message:</h3>
+      <p>{message}</p>
+      <button onClick={() => setMessage("Updated message!")}>
+        Update Message
+      </button>
+
+      <h3>User Profile:</h3>
+      <p>Name: {user.name}</p>
+      <p>Email: {user.email}</p>
+      <p>Logged In: {user.isLoggedIn ? "Yes" : "No"}</p>
+      <button
+        onClick={() => setUser({ ...user, isLoggedIn: !user.isLoggedIn })}
+      >
+        Toggle Login Status
+      </button>
     </div>
   );
 }
 ```
 
-> ⭐ **Pro tip:** Przy bardziej złożonych stanach (np. obiekty, tablice) – zawsze wpisuj typ ręcznie, nawet jeśli TypeScript czasem sam się domyśli!
+> ⭐ **Pro tip:** Przy bardziej złożonych stanach (np. obiekty, tablice) – zawsze jawnie wpisuj typ. Nawet jeśli TypeScript czasem sam się domyśli (tzw. inferencja typów), jawne typowanie jest bardziej czytelne i odporne na błędy, zwłaszcza gdy stan może być początkowo `null` lub pustą tablicą.
 
 ---
 
 ## Typowanie referencji (useRef)
 
-Referencje to Twój most do DOM-u i wartości poza renderem:
+Hook `useRef` służy do tworzenia referencji do elementów DOM lub do przechowywania wartości, które mają przetrwać ponowne renderowanie komponentu, ale nie wywołują go. Z TypeScriptem musisz jawnie określić, do jakiego typu elementu lub wartości odwołuje się referencja.
 
 ```tsx
 import { useRef, useCallback } from "react";
 
-function Counter() {
-  const ref = useRef<HTMLButtonElement>(null);
+function FocusButton() {
+  // Typujemy ref jako referencję do elementu HTMLButtonElement,
+  // która może być null, zanim ref zostanie przypisany do elementu DOM.
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = useCallback(() => {
-    ref.current?.focus();
-  }, [ref]);
+    // Używamy operatora łańcuchowania opcjonalnego (?.) aby upewnić się,
+    // że buttonRef.current nie jest null przed wywołaniem focus().
+    buttonRef.current?.focus();
+  }, []); // useCallback bez zależności, ponieważ buttonRef jest stały.
+
+  // Przykład referencji do przechowywania wartości, która nie jest elementem DOM
+  const counterRef = useRef<number>(0);
+  console.log("Current value in counterRef:", counterRef.current);
+
+  const incrementCounter = () => {
+    counterRef.current += 1;
+    console.log("New value in counterRef:", counterRef.current);
+    // Zauważ, że zmiana counterRef.current nie spowoduje ponownego renderowania!
+  };
 
   return (
     <div>
-      <button onClick={handleClick}>
-        Kliknij aby sfokusować drugi przycisk
-      </button>
-      <button ref={ref}>Drugi przycisk</button>
+      <h3>Focus Button Example:</h3>
+      <button onClick={handleClick}>Click to focus the other button</button>
+      <button ref={buttonRef}>Another Button</button>
+
+      <h3>Ref for value storage:</h3>
+      <p>Check console for counterRef value. It won't update UI directly.</p>
+      <button onClick={incrementCounter}>Increment Counter in Ref</button>
     </div>
   );
 }
 ```
 
-Dzięki typowaniu masz pewność, do jakiego elementu się odwołujesz (`HTMLButtonElement`).
+Dzięki typowaniu masz pewność, do jakiego elementu się odwołujesz (`HTMLButtonElement`) i jakie ma on właściwości/metody. Typy `HTMLElement`, `HTMLDivElement`, `HTMLInputElement` itp. są wbudowane w bibliotekę DOM.
 
 ---
 
 ## Przydatne narzędzia i wskazówki
 
-- **TSX** – pliki `.tsx` pozwalają pisać JSX z typami!
-- **TypeScript Playground** – testuj kod online: https://www.typescriptlang.org/play
-- **Oficjalna dokumentacja React + TypeScript:** https://react.dev/learn/typescript
-- **Chcesz szybko wystartować?**
+- **TSX (lub JSX z TypeScriptem)** – Twoje pliki React powinny mieć rozszerzenie `.tsx` (lub `.jsx` jeśli używasz React w trybie TypeScript, ale `.tsx` jest standardem). Pozwalają one na mieszanie składni JSX z typami TypeScript!
+- **TypeScript Playground** – idealne narzędzie do szybkiego testowania kodu TypeScript online bez konfiguracji środowiska:
+  `https://www.typescriptlang.org/play`
+- **Oficjalna dokumentacja React + TypeScript:** Zawsze warto zajrzeć do źródła – dokumentacja Reacta ma dedykowaną sekcję o TypeScript:
+  `https://react.dev/learn/typescript`
+- **Chcesz szybko wystartować z nowym projektem?** Użyj Vite z szablonem React + TypeScript:
   ```bash
-  npm init vite@latest my-app -- --template react-ts
+  npm create vite@latest my-react-ts-app -- --template react-ts
   ```
+  To polecenie automatycznie skonfiguruje projekt z Vite, Reactem i TypeScriptem, gotowy do pracy od razu.
 
 ---
 
 ## Zadania do wykonania
 
+Poniższe zadania pomogą Ci utrwalić wiedzę o podstawach typowania w React z TypeScriptem. Stwórz nowy projekt React z Vite (jeśli jeszcze tego nie zrobiłeś/aś za pomocą polecenia `npm create vite@latest my-react-ts-app -- --template react-ts`), a następnie wykonaj w nim poniższe zadania, tworząc osobne komponenty w katalogu `src/components`. Pamiętaj, aby importować tylko te Hooki i funkcje, których potrzebujesz!
+
 ### Zadanie 1: Prosty komponent powitalny
 
-Stwórz komponent powitalny, który przyjmuje przez props imię użytkownika (typ string) i wyświetla komunikat "Cześć, [imię]!".
+Stwórz komponent funkcyjny `Greeting`, który przyjmuje przez props imię użytkownika (`userName` typu `string`) i wyświetla komunikat "Hello, [userName]!".
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```tsx
-type WelcomeProps = {
-  name: string;
+// src/components/Greeting.tsx
+interface GreetingProps {
+  userName: string;
+}
+
+const Greeting = ({ userName }: GreetingProps) => {
+  return <p>Hello, {userName}!</p>;
 };
 
-const Welcome = ({ name }: WelcomeProps) => <p>Cześć, {name}!</p>;
+export default Greeting;
+
+// src/App.tsx (przykładowe użycie)
+import Greeting from "./components/Greeting";
+
+function App() {
+  return (
+    <div>
+      <Greeting userName="Alice" />
+      <Greeting userName="Bob" />
+    </div>
+  );
+}
+
+export default App;
 ```
 
 </details>
@@ -249,20 +360,46 @@ const Welcome = ({ name }: WelcomeProps) => <p>Cześć, {name}!</p>;
 
 ### Zadanie 2: Typowanie tablicy liczb
 
-Zadeklaruj w komponencie tablicę liczb jako stan przy użyciu useState oraz odpowiedniego typu.
+Zadeklaruj w komponencie `NumberList` tablicę liczb jako stan przy użyciu `useState` oraz odpowiedniego typu. Wyświetl te liczby.
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```tsx
+// src/components/NumberList.tsx
 import { useState } from "react";
 
-const NumbersComponent = () => {
-  const [numbers, setNumbers] = useState<number[]>([1, 2, 3]);
-  return <div>{numbers.join(", ")}</div>;
+const NumberList = () => {
+  const [numbers, setNumbers] = useState<number[]>([10, 20, 30, 40]);
+
+  return (
+    <div>
+      <h3>Numbers:</h3>
+      <ul>
+        {numbers.map((num, index) => (
+          <li key={index}>{num}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
+
+export default NumberList;
+
+// src/App.tsx (przykładowe użycie)
+import NumberList from "./components/NumberList";
+
+function App() {
+  return (
+    <div>
+      <NumberList />
+    </div>
+  );
+}
+
+export default App;
 ```
 
 </details>
@@ -271,22 +408,42 @@ const NumbersComponent = () => {
 
 ### Zadanie 3: Komponent z typowanymi propsami i zdarzeniem
 
-Stwórz przycisk, który przyjmuje przez props funkcję onClick oraz tekst do wyświetlenia. Oba propsy odpowiednio wytypuj.
+Stwórz komponent `ClickableButton`, który przyjmuje przez props `label` (tekst do wyświetlenia na przycisku, `string`) oraz `onClick` (funkcję, która ma być wywołana po kliknięciu). Oba propsy odpowiednio wytypuj.
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```tsx
-type ButtonProps = {
+// src/components/ClickableButton.tsx
+interface ClickableButtonProps {
   label: string;
-  onClick: () => void;
+  onClick: () => void; // Funkcja, która nic nie przyjmuje i nic nie zwraca
+}
+
+const ClickableButton = ({ label, onClick }: ClickableButtonProps) => {
+  return <button onClick={onClick}>{label}</button>;
 };
 
-const CustomButton = ({ label, onClick }: ButtonProps) => (
-  <button onClick={onClick}>{label}</button>
-);
+export default ClickableButton;
+
+// src/App.tsx (przykładowe użycie)
+import ClickableButton from "./components/ClickableButton";
+
+function App() {
+  const handleButtonClick = () => {
+    alert("Button clicked!");
+  };
+
+  return (
+    <div>
+      <ClickableButton label="Click Me" onClick={handleButtonClick} />
+    </div>
+  );
+}
+
+export default App;
 ```
 
 </details>
@@ -295,30 +452,58 @@ const CustomButton = ({ label, onClick }: ButtonProps) => (
 
 ### Zadanie 4: Typowanie obiektu w stanie
 
-Zadeklaruj stan użytkownika jako obiekt z polami name (string) i age (number).
+Zadeklaruj stan użytkownika w komponencie `UserProfile` jako obiekt z polami `firstName` (string), `lastName` (string) i `age` (number). Wyświetl te informacje.
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```tsx
+// src/components/UserProfile.tsx
 import { useState } from "react";
 
-type User = {
-  name: string;
+interface User {
+  firstName: string;
+  lastName: string;
   age: number;
-};
+}
 
-const UserComponent = () => {
-  const [user, setUser] = useState<User>({ name: "Anna", age: 28 });
+const UserProfile = () => {
+  const [user, setUser] = useState<User>({
+    firstName: "Jane",
+    lastName: "Doe",
+    age: 30,
+  });
 
   return (
     <div>
-      {user.name}, wiek: {user.age}
+      <h3>User Profile:</h3>
+      <p>
+        Name: {user.firstName} {user.lastName}
+      </p>
+      <p>Age: {user.age}</p>
+      <button onClick={() => setUser({ ...user, age: user.age + 1 })}>
+        Increment Age
+      </button>
     </div>
   );
 };
+
+export default UserProfile;
+
+// src/App.tsx (przykładowe użycie)
+import UserProfile from "./components/UserProfile";
+
+function App() {
+  return (
+    <div>
+      <UserProfile />
+    </div>
+  );
+}
+
+export default App;
 ```
 
 </details>
@@ -327,33 +512,77 @@ const UserComponent = () => {
 
 ### Zadanie 5: Lista komponentów na podstawie tablicy obiektów
 
-Zadeklaruj tablicę użytkowników (name: string, id: number) i wyświetl imiona w liście.
+Zadeklaruj tablicę obiektów `Product` (z polami `id`: `number`, `name`: `string`, `price`: `number`) i wyświetl każdy produkt jako osobny element listy (`<li>`), korzystając z komponentu `ProductItem`. Pamiętaj o kluczu `key`!
 
 <details>
-  <summary>
-    <span>Pokaż rozwiązanie</span>
-  </summary>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 ```tsx
-type User = {
+// src/components/ProductItem.tsx
+interface Product {
   id: number;
   name: string;
+  price: number;
+}
+
+interface ProductItemProps {
+  product: Product;
+}
+
+const ProductItem = ({ product }: ProductItemProps) => (
+  <li>
+    {product.name} - ${product.price.toFixed(2)}
+  </li>
+);
+
+export default ProductItem;
+
+// src/components/ProductList.tsx
+import { useState } from "react";
+import ProductItem from "./ProductItem"; // Importuj komponent ProductItem
+
+interface Product {
+  // Ponownie definiujemy interfejs, lub importujemy go z pliku typów, jeśli jest globalny
+  id: number;
+  name: string;
+  price: number;
+}
+
+const ProductList = () => {
+  const [products, setProducts] = useState<Product[]>([
+    { id: 1, name: "Laptop", price: 1200 },
+    { id: 2, name: "Mouse", price: 25 },
+    { id: 3, name: "Keyboard", price: 75 },
+  ]);
+
+  return (
+    <div>
+      <h3>Our Products:</h3>
+      <ul>
+        {products.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </ul>
+    </div>
+  );
 };
 
-const users: User[] = [
-  { id: 1, name: "Kasia" },
-  { id: 2, name: "Marek" },
-];
+export default ProductList;
 
-const UserTile = (props: { user: User }) => <li>{props.user.name}</li>;
+// src/App.tsx (przykładowe użycie)
+import ProductList from "./components/ProductList";
 
-const UserList = () => (
-  <ul>
-    {users.map((user) => (
-      <UserTile key={user.id} user={user} />
-    ))}
-  </ul>
-);
+function App() {
+  return (
+    <div>
+      <ProductList />
+    </div>
+  );
+}
+
+export default App;
 ```
 
 </details>
