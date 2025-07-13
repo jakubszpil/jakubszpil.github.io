@@ -221,3 +221,7 @@ code.hljs {
 .prose ol a {
   @apply !no-underline text-inherit hover:!underline hover:text-[var(--tw-prose-links)] dark:hover:text-[var(--tw-prose-invert-links)];
 }
+
+.prose table {
+  @apply block overflow-x-auto;
+}
