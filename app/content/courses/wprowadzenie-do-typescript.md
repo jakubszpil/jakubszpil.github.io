@@ -903,15 +903,15 @@ Oto miejsca, gdzie zawsze znajdziesz wsparcie:
 
 - **Oficjalna Dokumentacja TypeScript:** To najlepsze miejsce, aby zacząć i pogłębić wiedzę. Dokumentacja jest świetnie napisana, pełna przykładów i regularnie aktualizowana.
 
-  - [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/) (anglojęzyczna, ale bardzo przystępna)
+  - [TypeScript: The starting point for learning TypeScript](https://www.typescriptlang.org/docs/) (anglojęzyczna, ale bardzo przystępna)
 
 - **TypeScript Playground Online:** To super narzędzie! Możesz w nim pisać kod TypeScript bezpośrednio w przeglądarce, zobaczyć, jak jest kompilowany do JavaScriptu i od razu sprawdzić błędy typów. Idealne do szybkich eksperymentów i testowania małych fragmentów kodu.
 
-  - [https://www.typescriptlang.org/play](https://www.typescriptlang.org/play)
+  - [TypeScript: TS Playground - An online editor for exploring TypeScript and JavaScript](https://www.typescriptlang.org/play)
 
 - **Stack Overflow:** To prawdziwa skarbnica wiedzy dla programistów! Jeśli masz konkretne pytanie lub natkniesz się na błąd, szanse są ogromne, że ktoś już miał podobny problem i rozwiązanie jest dostępne. Używaj tagu `[typescript]` w swoich pytaniach.
 
-  - [https://stackoverflow.com/questions/tagged/typescript](https://stackoverflow.com/questions/tagged/typescript)
+  - [Newest 'typescript' Questions - Stack Overflow](https://stackoverflow.com/questions/tagged/typescript)
 
 - **Społeczności na Discordzie i Forach:** Istnieje wiele aktywnych społeczności, gdzie możesz zadawać pytania i dyskutować z innymi deweloperami. Poszukaj serwerów Discord poświęconych JavaScriptowi, Node.js czy frontendowi – na pewno znajdziesz tam kanały poświęcone TypeScriptowi.
 
