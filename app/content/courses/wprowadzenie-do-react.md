@@ -122,6 +122,7 @@ W tym wprowadzeniu skupimy się na **komponentach funkcyjnych**, ponieważ są o
 ```jsx
 // Przykład prostego komponentu funkcyjnego
 function Welcome() {
+  // Komponent funkcyjny, który zwraca JSX
   return <h1>Welcome to React! 👋</h1>;
 }
 ```
@@ -143,7 +144,7 @@ const element = <h1>Hello, world!</h1>; // To jest JSX
 const element = <h1>Hello, world!</h1>;
 
 // jest transpilowany do (uproszczone):
-const element = createElement("h1", null, "Hello, world!");
+const element = React.createElement("h1", null, "Hello, world!");
 ```
 
 Dzięki JSX kod jest bardziej intuicyjny i przypomina strukturę, którą widzimy w przeglądarce. ✨
@@ -153,8 +154,6 @@ Dzięki JSX kod jest bardziej intuicyjny i przypomina strukturę, którą widzim
 **Propsy** (skrót od "properties") to sposób na przekazywanie danych z komponentu nadrzędnego (rodzica) do komponentu podrzędnego (dziecka). Działają one podobnie do atrybutów HTML i są **tylko do odczytu** – komponent podrzędny nie powinien modyfikować swoich propsów. To zapewnia jednokierunkowy przepływ danych, co ułatwia zarządzanie stanem aplikacji.
 
 ```jsx
-import { createElement } from "react"; // Importujemy createElement, ale w praktyce używamy JSX
-
 function Welcome(props) {
   // Komponent funkcyjny przyjmuje obiekt props jako argument
   return <h1>Hello, {props.name}! 👋</h1>;
@@ -164,7 +163,7 @@ function App() {
   return (
     <div>
       <Welcome name="Alice" /> {/* Przekazujemy props 'name' */}
-      <Welcome name="Bob" />
+      <Welcome name="Bob" /> {/* Kolejne użycie z innym propsem */}
     </div>
   );
 }
@@ -183,13 +182,25 @@ W komponentach funkcyjnych stan zarządzany jest za pomocą **Hooków**, w szcze
 import { useState } from "react"; // Importujemy Hook useState
 
 function Counter() {
-  const [count, setCount] = useState(0); // [current value, function to update it] = useState(initial value)
+  // Deklaracja stanu 'count' z początkową wartością 0
+  // 'count' to bieżąca wartość, 'setCount' to funkcja do jej aktualizacji
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  const decrement = () => {
+    setCount((prev) => prev - 1);
+  };
 
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
+      {/* Zwiększamy licznik */}
+      <button onClick={increment}>Increment</button>
+      {/* Zmniejszamy licznik */}
+      <button onClick={decrement}>Decrement</button>
     </div>
   );
 }
@@ -296,10 +307,13 @@ Współczesny React opiera się głównie na **komponentach funkcyjnych** i **Ho
 import { useState } from "react"; // Pamiętaj o importowaniu tylko tego, czego potrzebujesz
 
 function MyComponent() {
-  const [isOn, setIsOn] = useState(false); // Initial state: false
+  // Deklaracja stanu 'isOn' z początkową wartością 'false'
+  // 'isOn' to bieżąca wartość stanu, 'setIsOn' to funkcja do jej aktualizacji
+  const [isOn, setIsOn] = useState(false);
 
+  // Funkcja zmieniająca stan
   const toggleStatus = () => {
-    setIsOn(!isOn); // Toggle the state
+    setIsOn((prev) => !prev); // Zmieniamy stan na przeciwny
   };
 
   return (
@@ -331,20 +345,20 @@ function FetchedData() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // useEffect will run after the first render and every time
-  // any of the values in the dependency array change (here: empty array means only once)
+  // useEffect uruchomi się po pierwszym renderowaniu i za każdym razem,
+  // gdy zmieni się któraś z wartości w tablicy zależności (tutaj: pusta tablica oznacza tylko raz)
   useEffect(() => {
-    // Simulate data fetching
+    // Symulacja pobierania danych
     setTimeout(() => {
       setData("Data fetched from API! 👍");
       setLoading(false);
-    }, 2000); // After 2 seconds
+    }, 2000); // Po 2 sekundach
 
-    // Optional: cleanup function
+    // Opcjonalnie: funkcja czyszcząca (cleanup function)
     return () => {
-      console.log("Component unmounted or effect re-ran.");
+      console.log("Component odmontowany lub efekt uruchomiony ponownie.");
     };
-  }, []); // Empty dependency array means the effect runs only once (like componentDidMount)
+  }, []); // Pusta tablica zależności: efekt uruchamia się tylko raz (jak componentDidMount)
 
   if (loading) {
     return <p>Loading data... ⏳</p>;
@@ -395,6 +409,7 @@ Stwórz nowy komponent funkcyjny o nazwie `Welcome`, który:
 // src/components/Welcome.jsx
 // Stwórz nowy katalog 'components' w 'src' dla lepszej organizacji
 function Welcome(props) {
+  // Komponent wyświetlający powitanie na podstawie propsów
   return <h1>Hello, {props.name}! 👋</h1>;
 }
 
@@ -438,13 +453,15 @@ Stwórz nowy komponent funkcyjny o nazwie `Counter`, który:
 import { useState } from 'react';
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // Deklaracja stanu licznika
 
   const increment = () => {
-    setCount(prevCount => prevCount + 1); // Best practice: use functional update for state
+    // Funkcja zwiększająca licznik
+    setCount(prevCount => prevCount + 1); // Najlepsza praktyka: używaj funkcji do aktualizacji stanu
   };
 
   const decrement = () => {
+    // Funkcja zmniejszająca licznik
     setCount(prevCount => prevCount - 1);
   };
 
@@ -496,20 +513,20 @@ Stwórz nowy komponent funkcyjny o nazwie `ShoppingList`, który:
 import { useState, useEffect } from 'react';
 
 function ShoppingList() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState([]); // Stan dla listy zakupów
+  const [loading, setLoading] = useState(true); // Stan dla statusu ładowania
 
   useEffect(() => {
-    // Simulate fetching data from an API
+    // Symulacja pobierania danych z API
     setTimeout(() => {
       const fetchedItems = ['Milk 🥛', 'Bread 🍞', 'Eggs 🥚', 'Coffee ☕'];
-      setItems(fetchedItems);
-      setLoading(false);
-    }, 1500); // Simulate 1.5 seconds loading time
-  }, []); // Empty dependency array: effect runs only once after component mounts
+      setItems(fetchedItems); // Ustawienie pobranych danych
+      setLoading(false); // Zmiana statusu ładowania
+    }, 1500); // Symulacja 1.5 sekundy czasu ładowania
+  }, []); // Pusta tablica zależności: efekt uruchamia się tylko raz po zamontowaniu komponentu
 
   if (loading) {
-    return <p>Loading shopping list... ⏳</p>;
+    return <p>Loading shopping list... ⏳</p>; // Wyświetlanie komunikatu ładowania
   }
 
   return (
@@ -517,7 +534,8 @@ function ShoppingList() {
       <h2>Your Shopping List</h2>
       <ul>
         {items.map((item, index) => (
-          <li key={index}>{item}</li> // The 'key' prop is important for lists in React!
+          // Renderowanie każdego elementu listy
+          <li key={index}>{item}</li> // Prop 'key' jest ważny dla list w React!
         ))}
       </ul>
     </div>
