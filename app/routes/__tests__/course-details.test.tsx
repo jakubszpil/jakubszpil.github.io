@@ -53,7 +53,7 @@ describe("<CourseDetails />", () => {
       keywords: ["test", "example"],
       categories: ["test", "example"],
       resourceUrl: "https://example.com",
-      createdAt: new Date("2025-03-17"),
+      createdAt: "2025-03-17",
       readingTime: "3 minuty",
     };
 

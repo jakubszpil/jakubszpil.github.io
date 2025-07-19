@@ -4,7 +4,7 @@ import { cn } from "~/lib/utils";
 
 export interface BannerProps {
   readingTime: string;
-  createdAt: Date;
+  createdAt: string;
   className?: string;
 }
 
