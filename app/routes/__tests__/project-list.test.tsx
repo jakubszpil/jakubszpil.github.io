@@ -35,10 +35,9 @@ describe("<ProjectList />", () => {
   let MockedTechnologies: MockInstance;
   let MockedSeo: MockInstance;
 
-  let MOCKED_ARTICLES: Project[];
-  let MOCKED_CATEGORIES: string[];
+  let MOCKED_PROJECTS: Project[];
+  let MOCKED_TECHNOLOGIES: string[];
 
-  let MockedGetProjects: MockInstance;
   let MockedGetProjectByTechnology: MockInstance;
   let MockedGetProjectsTechnologies: MockInstance;
 
@@ -47,7 +46,7 @@ describe("<ProjectList />", () => {
     MockedTechnologies = vi.mocked(Technologies);
     MockedSeo = vi.mocked(Seo);
 
-    MOCKED_ARTICLES = [
+    MOCKED_PROJECTS = [
       {
         id: "1",
         slug: "test-example-1",
@@ -76,26 +75,21 @@ describe("<ProjectList />", () => {
       },
     ];
 
-    MOCKED_CATEGORIES = ["test", "example"];
-
-    MockedGetProjects = vi
-      .mocked(getProjects)
-      .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
+    MOCKED_TECHNOLOGIES = ["test", "example"];
 
     MockedGetProjectByTechnology = vi
       .mocked(getProjectsByTechnology)
-      .mockImplementation(() => Promise.resolve([MOCKED_ARTICLES[1]]));
+      .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
 
     MockedGetProjectsTechnologies = vi
       .mocked(getProjectsTechnologies)
-      .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
+      .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
   });
 
   afterEach(() => {
     MockedProjects.mockRestore();
     MockedTechnologies.mockRestore();
     MockedSeo.mockRestore();
-    MockedGetProjects.mockRestore();
     MockedGetProjectByTechnology.mockRestore();
   });
 
@@ -112,8 +106,7 @@ describe("<ProjectList />", () => {
 
     await screen.findByText("Portfolio");
 
-    expect(MockedGetProjects).toHaveBeenCalled();
-    expect(MockedGetProjectByTechnology).not.toHaveBeenCalled();
+    expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(undefined);
     expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
@@ -127,7 +120,7 @@ describe("<ProjectList />", () => {
 
     expect(MockedTechnologies).toHaveBeenCalledWith(
       {
-        technologies: MOCKED_CATEGORIES,
+        technologies: MOCKED_TECHNOLOGIES,
         showAllTechnology: true,
       } satisfies TechnologiesProps,
       undefined
@@ -135,14 +128,18 @@ describe("<ProjectList />", () => {
 
     expect(MockedProjects).toHaveBeenCalledWith(
       {
-        projects: MOCKED_ARTICLES,
+        projects: MOCKED_PROJECTS,
       } satisfies ProjectsProps,
       undefined
     );
   });
 
   test("should projects with technology", async () => {
-    const MOCKED_CATEGORY = "example";
+    const MOCKED_TECHNOLOGY = "example";
+
+    MockedGetProjectByTechnology.mockImplementationOnce(() =>
+      Promise.resolve([MOCKED_PROJECTS[1]])
+    );
 
     const Stub = createRoutesStub([
       {
@@ -156,7 +153,7 @@ describe("<ProjectList />", () => {
       <Stub
         initialEntries={[
           generatePath("/portfolio/kategorie/:technology", {
-            technology: MOCKED_CATEGORY,
+            technology: MOCKED_TECHNOLOGY,
           }),
         ]}
       />
@@ -164,8 +161,9 @@ describe("<ProjectList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetProjects).not.toHaveBeenCalled();
-    expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(MOCKED_CATEGORY);
+    expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(
+      MOCKED_TECHNOLOGY
+    );
     expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
@@ -179,7 +177,7 @@ describe("<ProjectList />", () => {
 
     expect(MockedTechnologies).toHaveBeenCalledWith(
       {
-        technologies: MOCKED_CATEGORIES,
+        technologies: MOCKED_TECHNOLOGIES,
         showAllTechnology: true,
       } satisfies TechnologiesProps,
       undefined
@@ -187,7 +185,7 @@ describe("<ProjectList />", () => {
 
     expect(MockedProjects).toHaveBeenCalledWith(
       {
-        projects: [MOCKED_ARTICLES[1]],
+        projects: [MOCKED_PROJECTS[1]],
       } satisfies ProjectsProps,
       undefined
     );

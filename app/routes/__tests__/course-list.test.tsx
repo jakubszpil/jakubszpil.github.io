@@ -16,7 +16,6 @@ import Categories, {
 } from "~/components/learning/categories";
 import { Seo, type SeoProps } from "~/components/ui/seo";
 import {
-  getCourses,
   getCoursesByCategory,
   getCoursesCategories,
   type Course,
@@ -34,10 +33,9 @@ describe("<CourseList />", () => {
   let MockedCategories: MockInstance;
   let MockedSeo: MockInstance;
 
-  let MOCKED_ARTICLES: Course[];
+  let MOCKED_COURSES: Course[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetCourses: MockInstance;
   let MockedGetCourseByCategory: MockInstance;
   let MockedGetCoursesCategories: MockInstance;
 
@@ -46,7 +44,7 @@ describe("<CourseList />", () => {
     MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
-    MOCKED_ARTICLES = [
+    MOCKED_COURSES = [
       {
         id: "1",
         slug: "test-example-1",
@@ -75,13 +73,9 @@ describe("<CourseList />", () => {
 
     MOCKED_CATEGORIES = ["test", "example"];
 
-    MockedGetCourses = vi
-      .mocked(getCourses)
-      .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
-
     MockedGetCourseByCategory = vi
       .mocked(getCoursesByCategory)
-      .mockImplementation(() => Promise.resolve([MOCKED_ARTICLES[1]]));
+      .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
 
     MockedGetCoursesCategories = vi
       .mocked(getCoursesCategories)
@@ -92,7 +86,6 @@ describe("<CourseList />", () => {
     MockedCourses.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
-    MockedGetCourses.mockRestore();
     MockedGetCourseByCategory.mockRestore();
   });
 
@@ -109,8 +102,7 @@ describe("<CourseList />", () => {
 
     await screen.findByText("Learning");
 
-    expect(MockedGetCourses).toHaveBeenCalled();
-    expect(MockedGetCourseByCategory).not.toHaveBeenCalled();
+    expect(MockedGetCourseByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
@@ -132,7 +124,7 @@ describe("<CourseList />", () => {
 
     expect(MockedCourses).toHaveBeenCalledWith(
       {
-        courses: MOCKED_ARTICLES,
+        courses: MOCKED_COURSES,
       } satisfies CoursesProps,
       undefined
     );
@@ -140,6 +132,10 @@ describe("<CourseList />", () => {
 
   test("should courses with category", async () => {
     const MOCKED_CATEGORY = "example";
+
+    MockedGetCourseByCategory.mockImplementationOnce(() =>
+      Promise.resolve([MOCKED_COURSES[1]])
+    );
 
     const Stub = createRoutesStub([
       {
@@ -161,7 +157,6 @@ describe("<CourseList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetCourses).not.toHaveBeenCalled();
     expect(MockedGetCourseByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
@@ -184,7 +179,7 @@ describe("<CourseList />", () => {
 
     expect(MockedCourses).toHaveBeenCalledWith(
       {
-        courses: [MOCKED_ARTICLES[1]],
+        courses: [MOCKED_COURSES[1]],
       } satisfies CoursesProps,
       undefined
     );

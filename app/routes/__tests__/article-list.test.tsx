@@ -35,7 +35,6 @@ describe("<ArticleList />", () => {
   let MOCKED_ARTICLES: Article[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetArticles: MockInstance;
   let MockedGetArticleByCategory: MockInstance;
   let MockedGetArticlesCategories: MockInstance;
 
@@ -73,13 +72,9 @@ describe("<ArticleList />", () => {
 
     MOCKED_CATEGORIES = ["test", "example"];
 
-    MockedGetArticles = vi
-      .mocked(getArticles)
-      .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
-
     MockedGetArticleByCategory = vi
       .mocked(getArticlesByCategory)
-      .mockImplementation(() => Promise.resolve([MOCKED_ARTICLES[1]]));
+      .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
 
     MockedGetArticlesCategories = vi
       .mocked(getArticlesCategories)
@@ -90,7 +85,6 @@ describe("<ArticleList />", () => {
     MockedArticles.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
-    MockedGetArticles.mockRestore();
     MockedGetArticleByCategory.mockRestore();
   });
 
@@ -107,8 +101,7 @@ describe("<ArticleList />", () => {
 
     await screen.findByText("Artykuły");
 
-    expect(MockedGetArticles).toHaveBeenCalled();
-    expect(MockedGetArticleByCategory).not.toHaveBeenCalled();
+    expect(MockedGetArticleByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
@@ -139,6 +132,10 @@ describe("<ArticleList />", () => {
   test("should articles with category", async () => {
     const MOCKED_CATEGORY = "example";
 
+    MockedGetArticleByCategory.mockImplementationOnce(() =>
+      Promise.resolve([MOCKED_ARTICLES[1]])
+    );
+
     const Stub = createRoutesStub([
       {
         path: "/blog/kategorie/:category",
@@ -159,7 +156,6 @@ describe("<ArticleList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetArticles).not.toHaveBeenCalled();
     expect(MockedGetArticleByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
 
