@@ -29,4 +29,4 @@ import{w as a,M as n,L as o,S as c,p as i,O as l}from"./chunk-EF7DTUVF-D-tBg9jn.
                 localStorage.removeItem("theme");
               }
             }
-          `)}),e.jsx("script",{children:r(`globalThis.timestamp = ${1752935308875}`)}),e.jsx("script",{type:"module",src:"/fetch.js"}),e.jsx(n,{}),e.jsx(o,{})]}),e.jsxs("body",{style:{WebkitTapHighlightColor:"transparent"},children:[t,e.jsx(c,{getKey:s=>Object.values(s).filter(Boolean).join(".")}),e.jsx(i,{})]})]})}const p=a(function(){return e.jsx(l,{})});export{h as Layout,p as default};
+          `)}),e.jsx("script",{children:r(`globalThis.timestamp = ${1752938189651}`)}),e.jsx("script",{type:"module",src:"/fetch.js"}),e.jsx(n,{}),e.jsx(o,{})]}),e.jsxs("body",{style:{WebkitTapHighlightColor:"transparent"},children:[t,e.jsx(c,{getKey:s=>Object.values(s).filter(Boolean).join(".")}),e.jsx(i,{})]})]})}const p=a(function(){return e.jsx(l,{})});export{h as Layout,p as default};
