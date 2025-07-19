@@ -24,12 +24,16 @@ const CONTENT = import.meta.glob<string>("../content/articles/*.md", {
   eager: true,
 });
 
+const CACHE: Record<string, Article[]> = {};
+
 export async function getArticles(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Article[]> {
+  const filtersKey = JSON.stringify(filters, null, 2);
+  if (filtersKey in CACHE) return CACHE[filtersKey];
   const articles = await parseContentResources<Article>(CONTENT, filters);
-
+  CACHE[filtersKey] = articles;
   return articles;
 }
 

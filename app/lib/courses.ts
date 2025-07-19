@@ -26,12 +26,16 @@ const CONTENT = import.meta.glob<string>("../content/courses/*.md", {
   eager: true,
 });
 
+const CACHE: Record<string, Course[]> = {};
+
 export async function getCourses(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Course[]> {
+  const filtersKey = JSON.stringify(filters, null, 2);
+  if (filtersKey in CACHE) return CACHE[filtersKey];
   const courses = await parseContentResources<Course>(CONTENT, filters);
-
+  CACHE[filtersKey] = courses;
   return courses;
 }
 

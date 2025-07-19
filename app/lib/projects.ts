@@ -31,12 +31,16 @@ const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
   eager: true,
 });
 
+const CACHE: Record<string, Project[]> = {};
+
 export async function getProjects(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Project[]> {
+  const filtersKey = JSON.stringify(filters, null, 2);
+  if (filtersKey in CACHE) return CACHE[filtersKey];
   const projects = await parseContentResources<Project>(CONTENT, filters);
-
+  CACHE[filtersKey] = projects;
   return projects;
 }
 
