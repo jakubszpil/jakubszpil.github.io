@@ -2,7 +2,7 @@ import { getLocalizedDate } from "~/lib/date";
 import { cn } from "~/lib/utils";
 
 export interface CreationDateProps {
-  date: Date;
+  date: string;
   className?: string;
 }
 

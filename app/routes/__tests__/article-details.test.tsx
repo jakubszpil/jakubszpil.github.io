@@ -50,7 +50,7 @@ describe("<ArticleDetails />", () => {
       description: "Test description",
       keywords: ["test", "example"],
       categories: ["test", "example"],
-      createdAt: new Date("2025-03-17"),
+      createdAt: "2025-03-17",
       resourceUrl: "https://example.com",
       readingTime: "3 minuty",
     };

@@ -1,4 +1,9 @@
-import { parseContentResources, type ContentResource } from "./content";
+import {
+  minifyContentResource,
+  parseContentResources,
+  type ContentResource,
+} from "./content";
+import type { RequiredOptional } from "./types";
 
 export enum ProjectStatus {
   IDLE = "IDLE",
@@ -9,15 +14,15 @@ export enum ProjectStatus {
 export abstract class Project implements ContentResource {
   abstract id: string;
   abstract slug: string;
-  abstract content: string;
-  abstract resourceUrl: string;
   abstract title: string;
   abstract description: string;
-  abstract keywords: string[];
-  abstract createdAt: Date;
-  abstract technologies: string[];
+  abstract createdAt: string;
   abstract readingTime: string;
   abstract status: ProjectStatus;
+  abstract categories: RequiredOptional<string[]>;
+  abstract keywords: RequiredOptional<string[]>;
+  abstract content: RequiredOptional<string>;
+  abstract resourceUrl: RequiredOptional<string>;
 }
 
 const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
@@ -26,12 +31,16 @@ const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
   eager: true,
 });
 
+const CACHE: Record<string, Project[]> = {};
+
 export async function getProjects(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Project[]> {
+  const filtersKey = JSON.stringify(filters, null, 2);
+  if (filtersKey in CACHE) return CACHE[filtersKey];
   const projects = await parseContentResources<Project>(CONTENT, filters);
-
+  CACHE[filtersKey] = projects;
   return projects;
 }
 
@@ -53,19 +62,19 @@ export async function getProject(slug: string): Promise<Project> {
 export async function getProjectsByTechnology(
   technology: string
 ): Promise<Project[]> {
-  const projects = await getProjects();
-  return projects.filter((project) =>
-    project.technologies.includes(technology)
-  );
+  const projects = await getProjects({ minify: false });
+  return projects
+    .filter((project) => project.categories?.includes(technology))
+    .map(minifyContentResource);
 }
 
 export async function getProjectsTechnologies(): Promise<string[]> {
-  const projects = await getProjects();
+  const projects = await getProjects({ minify: false });
 
   const occurrences: Record<string, number> = {};
 
   const technologies = projects.reduce<string[]>((technologies, project) => {
-    project.technologies.forEach((technology) => {
+    project.categories?.forEach((technology) => {
       if (!(technology in occurrences)) occurrences[technology] = 0;
       if (!technologies.includes(technology)) technologies.push(technology);
       occurrences[technology]++;

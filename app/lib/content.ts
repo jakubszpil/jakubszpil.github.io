@@ -14,6 +14,7 @@ import { v4 } from "uuid";
 import invariant from "tiny-invariant";
 
 import { shuffleArray } from "./array";
+import type { RequiredOptional } from "./types";
 
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";
@@ -83,13 +84,14 @@ export abstract class ContentQuizQuestion {
 export abstract class ContentResource {
   abstract id: string;
   abstract slug: string;
-  abstract content: string;
-  abstract resourceUrl: string;
   abstract title: string;
   abstract description: string;
-  abstract keywords: string[];
-  abstract createdAt: Date;
+  abstract createdAt: string;
   abstract readingTime: string;
+  abstract categories: RequiredOptional<string[]>;
+  abstract keywords: RequiredOptional<string[]>;
+  abstract content: RequiredOptional<string>;
+  abstract resourceUrl: RequiredOptional<string>;
   abstract quiz?: ContentQuiz;
 }
 
@@ -151,12 +153,16 @@ export const parseMarkdownFile = async <T extends ContentResource>(
     resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`,
     quiz,
     readingTime: readingTimeAsText,
+    createdAt: new Date(data.createdAt).toISOString(),
   } as T;
 };
 
 export function minifyContentResource<T extends ContentResource>(resource: T) {
-  resource.content = "";
-  resource.quiz = undefined;
+  delete resource["content"];
+  delete resource["quiz"];
+  delete resource["resourceUrl"];
+  delete resource["keywords"];
+  delete resource["categories"];
   return resource;
 }
 
