@@ -6,7 +6,6 @@ import {
   useRouteError,
 } from "react-router";
 
-import { Button } from "~/components/ui/button";
 import Navbar from "~/components/navbar";
 import NavbarLink from "~/components/navbar-link";
 import NavbarMenu from "~/components/navbar-menu";
@@ -14,9 +13,13 @@ import Footer from "~/components/footer";
 import FooterLink from "~/components/footer-link";
 import BusyIndicator from "~/components/busy-indicator";
 import NotFound from "~/components/not-found";
+import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
+import { useInitialLoadPrefetch } from "~/hooks/use-initial-load-prefetch";
 
 export default function Layout() {
+  useInitialLoadPrefetch();
+
   return (
     <>
       <Navbar>

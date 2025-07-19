@@ -57,10 +57,10 @@ export async function getArticlesByCategory(
 ): Promise<Article[]> {
   const articles = await getArticles({ minify: false });
 
-  if (!category) return articles;
-
   return articles
-    .filter((article) => article.categories?.includes(category))
+    .filter((article) =>
+      category ? article.categories?.includes(category) : true
+    )
     .map(minifyContentResource);
 }
 

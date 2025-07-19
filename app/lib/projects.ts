@@ -49,10 +49,10 @@ export async function getProjectsByTechnology(
 ): Promise<Project[]> {
   const projects = await getProjects({ minify: false });
 
-  if (!technology) return projects;
-
   return projects
-    .filter((project) => project.categories?.includes(technology))
+    .filter((project) =>
+      technology ? project.categories?.includes(technology) : true
+    )
     .map(minifyContentResource);
 }
 

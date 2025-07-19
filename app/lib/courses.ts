@@ -59,10 +59,10 @@ export async function getCoursesByCategory(
 ): Promise<Course[]> {
   const courses = await getCourses({ minify: false });
 
-  if (!category) return courses;
-
   return courses
-    .filter((course) => course.categories?.includes(category))
+    .filter((course) =>
+      category ? course.categories?.includes(category) : true
+    )
     .map(minifyContentResource);
 }
 
