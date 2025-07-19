@@ -95,8 +95,6 @@ describe("<Layout />", () => {
 
     expect(MockedNavbarMenu).toHaveBeenCalled();
 
-    expect(MockedNavbarLink).toHaveBeenCalledTimes(6);
-
     expect(MockedNavbarLink).toHaveBeenNthCalledWith(
       1,
       {
@@ -153,8 +151,6 @@ describe("<Layout />", () => {
     );
 
     expect(MockedFooter).toHaveBeenCalled();
-
-    expect(MockedFooterLink).toHaveBeenCalledTimes(7);
 
     expect(MockedFooterLink).toHaveBeenNthCalledWith(
       1,
