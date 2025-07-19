@@ -3,11 +3,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import Categories from "~/components/learning/categories";
 import Courses from "~/components/learning/courses";
 import { Seo } from "~/components/ui/seo";
-import {
-  getCourses,
-  getCoursesByCategory,
-  getCoursesCategories,
-} from "~/lib/courses";
+import { getCoursesByCategory, getCoursesCategories } from "~/lib/courses";
 import {
   capitalize,
   retrieveIndividualName,
@@ -15,20 +11,10 @@ import {
 } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
-  const categories = await getCoursesCategories();
-
-  if (category) {
-    return {
-      category,
-      categories,
-      courses: await getCoursesByCategory(category),
-    };
-  }
-
   return {
-    courses: await getCourses(),
-    categories,
     category,
+    categories: await getCoursesCategories(),
+    courses: await getCoursesByCategory(category),
   };
 }
 

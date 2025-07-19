@@ -31,38 +31,26 @@ const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
   eager: true,
 });
 
-const CACHE: Record<string, Project[]> = {};
-
 export async function getProjects(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Project[]> {
-  const filtersKey = JSON.stringify(filters, null, 2);
-  if (filtersKey in CACHE) return CACHE[filtersKey];
-  const projects = await parseContentResources<Project>(CONTENT, filters);
-  CACHE[filtersKey] = projects;
+  const projects = await parseContentResources<Project>(
+    "projects",
+    CONTENT,
+    filters
+  );
+
   return projects;
 }
 
-export async function getProject(slug: string): Promise<Project> {
-  const projects = await getProjects({ minify: false });
-
-  const project = projects.find((project) => project.slug === slug);
-
-  if (!project) {
-    throw new Response(null, {
-      status: 404,
-      statusText: "Nie znaleziono",
-    });
-  }
-
-  return project;
-}
-
 export async function getProjectsByTechnology(
-  technology: string
+  technology: RequiredOptional<string>
 ): Promise<Project[]> {
   const projects = await getProjects({ minify: false });
+
+  if (!technology) return projects;
+
   return projects
     .filter((project) => project.categories?.includes(technology))
     .map(minifyContentResource);

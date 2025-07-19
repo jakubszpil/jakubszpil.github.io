@@ -4,7 +4,6 @@ import Technologies from "~/components/portfolio/technologies";
 import Projects from "~/components/portfolio/projects";
 import { Seo } from "~/components/ui/seo";
 import {
-  getProjects,
   getProjectsByTechnology,
   getProjectsTechnologies,
 } from "~/lib/projects";
@@ -15,20 +14,10 @@ import {
 } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
-  const technologies = await getProjectsTechnologies();
-
-  if (technology) {
-    return {
-      technology,
-      technologies,
-      projects: await getProjectsByTechnology(technology),
-    };
-  }
-
   return {
-    projects: await getProjects(),
-    technologies,
     technology,
+    technologies: await getProjectsTechnologies(),
+    projects: await getProjectsByTechnology(technology),
   };
 }
 

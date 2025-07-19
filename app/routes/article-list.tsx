@@ -3,11 +3,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import Categories from "~/components/blog/categories";
 import Articles from "~/components/blog/articles";
 import { Seo } from "~/components/ui/seo";
-import {
-  getArticles,
-  getArticlesByCategory,
-  getArticlesCategories,
-} from "~/lib/articles";
+import { getArticlesByCategory, getArticlesCategories } from "~/lib/articles";
 import {
   capitalize,
   retrieveIndividualName,
@@ -15,19 +11,9 @@ import {
 } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
-  const categories = await getArticlesCategories();
-
-  if (category) {
-    return {
-      articles: await getArticlesByCategory(category),
-      categories,
-      category,
-    };
-  }
-
   return {
-    articles: await getArticles(),
-    categories,
+    articles: await getArticlesByCategory(category),
+    categories: await getArticlesCategories(),
     category,
   };
 }

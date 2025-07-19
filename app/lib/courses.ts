@@ -26,16 +26,16 @@ const CONTENT = import.meta.glob<string>("../content/courses/*.md", {
   eager: true,
 });
 
-const CACHE: Record<string, Course[]> = {};
-
 export async function getCourses(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Course[]> {
-  const filtersKey = JSON.stringify(filters, null, 2);
-  if (filtersKey in CACHE) return CACHE[filtersKey];
-  const courses = await parseContentResources<Course>(CONTENT, filters);
-  CACHE[filtersKey] = courses;
+  const courses = await parseContentResources<Course>(
+    "courses",
+    CONTENT,
+    filters
+  );
+
   return courses;
 }
 
@@ -55,9 +55,11 @@ export async function getCourse(slug: string): Promise<Course> {
 }
 
 export async function getCoursesByCategory(
-  category: string
+  category: RequiredOptional<string>
 ): Promise<Course[]> {
   const courses = await getCourses({ minify: false });
+
+  if (!category) return courses;
 
   return courses
     .filter((course) => course.categories?.includes(category))

@@ -24,16 +24,16 @@ const CONTENT = import.meta.glob<string>("../content/articles/*.md", {
   eager: true,
 });
 
-const CACHE: Record<string, Article[]> = {};
-
 export async function getArticles(filters?: {
   limit?: number;
   minify?: boolean;
 }): Promise<Article[]> {
-  const filtersKey = JSON.stringify(filters, null, 2);
-  if (filtersKey in CACHE) return CACHE[filtersKey];
-  const articles = await parseContentResources<Article>(CONTENT, filters);
-  CACHE[filtersKey] = articles;
+  const articles = await parseContentResources<Article>(
+    "articles",
+    CONTENT,
+    filters
+  );
+
   return articles;
 }
 
@@ -53,9 +53,11 @@ export async function getArticle(slug: string): Promise<Article> {
 }
 
 export async function getArticlesByCategory(
-  category: string
+  category: RequiredOptional<string>
 ): Promise<Article[]> {
   const articles = await getArticles({ minify: false });
+
+  if (!category) return articles;
 
   return articles
     .filter((article) => article.categories?.includes(category))

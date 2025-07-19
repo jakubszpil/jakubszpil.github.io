@@ -158,49 +158,51 @@ export const parseMarkdownFile = async <T extends ContentResource>(
 };
 
 export function minifyContentResource<T extends ContentResource>(resource: T) {
-  delete resource["content"];
-  delete resource["quiz"];
-  delete resource["resourceUrl"];
-  delete resource["keywords"];
-  delete resource["categories"];
-  return resource;
+  const copy = { ...resource };
+  delete copy["content"];
+  delete copy["quiz"];
+  delete copy["resourceUrl"];
+  delete copy["keywords"];
+  delete copy["categories"];
+  return copy;
 }
 
+const CACHE: Record<string, ContentResource[]> = {};
+
 async function mapContentResourceEntries<T extends ContentResource>(
-  files: Record<string, string>,
-  minify: boolean
+  cacheKey: string,
+  files: Record<string, string>
 ): Promise<T[]> {
+  if (cacheKey in CACHE) return CACHE[cacheKey] as T[];
+
   const entries = Object.entries(files).map(async ([key, file]) => {
     const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
     const keyWithoutSlug = key.slice(0, key.lastIndexOf("/"));
     const resourceType = keyWithoutSlug.slice(
       keyWithoutSlug.lastIndexOf("/") + 1
     );
-    const resource = await parseMarkdownFile<T>(file, slug, resourceType);
 
-    if (minify) {
-      return minifyContentResource(resource);
-    }
-
-    return resource;
+    return await parseMarkdownFile<T>(file, slug, resourceType);
   });
 
-  return Promise.all(entries);
+  const resources = await Promise.all(entries);
+
+  CACHE[cacheKey] = resources;
+
+  return resources;
 }
 
 export async function parseContentResources<T extends ContentResource>(
+  cacheKey: string,
   files: Record<string, string>,
   filters?: {
     limit?: number;
     minify?: boolean;
   }
 ): Promise<T[]> {
-  const content = await mapContentResourceEntries<T>(
-    files,
-    filters?.minify ?? true
-  );
+  const content = await mapContentResourceEntries<T>(cacheKey, files);
 
-  return content
+  const resources = content
     .sort((first, second) => {
       invariant(first.createdAt);
       invariant(second.createdAt);
@@ -211,4 +213,10 @@ export async function parseContentResources<T extends ContentResource>(
       return secondCreationTime - firstCreationTime;
     })
     .slice(0, filters?.limit ?? content.length);
+
+  if (filters?.minify ?? true) {
+    return resources.map(minifyContentResource);
+  }
+
+  return resources;
 }
