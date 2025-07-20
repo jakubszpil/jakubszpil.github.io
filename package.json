@@ -9,7 +9,8 @@
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "tsc",
     "test": "vitest run",
-    "test:ci": "vitest run --hideSkippedTests --silent --no-color"
+    "test:ci": "vitest run --hideSkippedTests --silent --no-color",
+    "deploy": "npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",

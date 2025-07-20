@@ -10,15 +10,14 @@ export function getCurrentYear() {
   return new Date().getFullYear();
 }
 
-export function getDifferenceInYears(startDate: string): number {
+export function getDifferenceInYears(startDate: Date): number {
   const currentDate = new Date();
-  const startDateAsDate = new Date(startDate);
 
-  if (isNaN(startDateAsDate.getTime())) {
+  if (isNaN(startDate.getTime())) {
     throw new Error("Invalid startDate date format");
   }
 
-  const diffInMilliseconds = currentDate.getTime() - startDateAsDate.getTime();
+  const diffInMilliseconds = currentDate.getTime() - startDate.getTime();
   const diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
   const diffInYears = diffInDays / 365;
 

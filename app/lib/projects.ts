@@ -17,12 +17,8 @@ export abstract class Project implements ContentResource {
   abstract title: string;
   abstract description: string;
   abstract createdAt: string;
-  abstract readingTime: string;
   abstract status: ProjectStatus;
-  abstract categories: RequiredOptional<string[]>;
-  abstract keywords: RequiredOptional<string[]>;
-  abstract content: RequiredOptional<string>;
-  abstract resourceUrl: RequiredOptional<string>;
+  abstract categories: string[];
 }
 
 const CONTENT = import.meta.glob<string>("../content/projects/*.md", {
@@ -72,9 +68,4 @@ export async function getProjectsTechnologies(): Promise<string[]> {
   }, []);
 
   return technologies.sort((a, b) => occurrences[b] - occurrences[a]);
-}
-
-export async function getProjectsSlugs(): Promise<string[]> {
-  const projects = await getProjects();
-  return projects.map(({ slug }) => slug);
 }

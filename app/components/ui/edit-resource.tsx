@@ -1,14 +1,10 @@
 import { Button } from "./button";
 
 export interface EditResourceProps {
-  resourceUrl: string | undefined;
+  resourceUrl: string;
 }
 
 export function EditResource(props: EditResourceProps) {
-  if (!props.resourceUrl) {
-    return null;
-  }
-
   return (
     <div className="container">
       <Button
@@ -20,7 +16,11 @@ export function EditResource(props: EditResourceProps) {
         <p>
           Widzisz jakiś błąd, bądź literówkę? Chcesz coś poprawić?
           <Button asChild variant="link">
-            <a href={props.resourceUrl} target="_blank" rel="noreferrer">
+            <a
+              href={`https://github.com/jakubszpil/jakubszpil.github.io/edit/main${props.resourceUrl}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               ✏️ Przejdź do edycji tego pliku
             </a>
           </Button>

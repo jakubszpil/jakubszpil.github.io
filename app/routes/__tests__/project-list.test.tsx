@@ -50,28 +50,20 @@ describe("<ProjectList />", () => {
       {
         id: "1",
         slug: "test-example-1",
-        content: "<p>Test content 1</p>",
         title: "Test title 1",
         description: "Test description 1",
-        keywords: ["test", "example"],
         categories: ["test"],
         createdAt: "2025-03-17",
-        resourceUrl: "https://example.com",
         status: ProjectStatus.COMPLETED,
-        readingTime: "0 minut",
       },
       {
         id: "2",
         slug: "test-example-2",
-        content: "<p>Test content 2</p>",
         title: "Test title 2",
         description: "Test description 2",
-        keywords: ["example"],
         categories: ["test", "example"],
         createdAt: "2025-03-17",
-        resourceUrl: "https://example.com",
         status: ProjectStatus.COMPLETED,
-        readingTime: "0 minut",
       },
     ];
 
