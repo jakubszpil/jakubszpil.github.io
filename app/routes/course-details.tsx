@@ -38,7 +38,7 @@ export default function CourseDetails() {
 
       <article
         className="prose container prose-emerald"
-        dangerouslySetInnerHTML={{ __html: course.content ?? "" }}
+        dangerouslySetInnerHTML={{ __html: course.content }}
       />
 
       {course.quiz && <Quiz quiz={course.quiz} />}

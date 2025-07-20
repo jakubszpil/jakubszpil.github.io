@@ -12,10 +12,10 @@ export abstract class Article implements ContentResource {
   abstract description: string;
   abstract createdAt: string;
   abstract readingTime: string;
-  abstract categories: RequiredOptional<string[]>;
-  abstract keywords: RequiredOptional<string[]>;
-  abstract content: RequiredOptional<string>;
-  abstract resourceUrl: RequiredOptional<string>;
+  abstract categories: string[];
+  abstract keywords: string[];
+  abstract content: string;
+  abstract resourceUrl: string;
 }
 
 const CONTENT = import.meta.glob<string>("../content/articles/*.md", {

@@ -37,7 +37,7 @@ export default function ArticleDetails() {
 
       <article
         className="prose container prose-emerald"
-        dangerouslySetInnerHTML={{ __html: article.content ?? "" }}
+        dangerouslySetInnerHTML={{ __html: article.content }}
       />
 
       <EditResource resourceUrl={article.resourceUrl} />

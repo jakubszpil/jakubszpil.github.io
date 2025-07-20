@@ -14,7 +14,6 @@ import { v4 } from "uuid";
 import invariant from "tiny-invariant";
 
 import { shuffleArray } from "./array";
-import type { RequiredOptional } from "./types";
 
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";
@@ -87,11 +86,11 @@ export abstract class ContentResource {
   abstract title: string;
   abstract description: string;
   abstract createdAt: string;
-  abstract readingTime: string;
-  abstract categories: RequiredOptional<string[]>;
-  abstract keywords: RequiredOptional<string[]>;
-  abstract content: RequiredOptional<string>;
-  abstract resourceUrl: RequiredOptional<string>;
+  abstract readingTime?: string;
+  abstract categories?: string[];
+  abstract keywords?: string[];
+  abstract resourceUrl?: string;
+  abstract content?: string;
   abstract quiz?: ContentQuiz;
 }
 
@@ -123,6 +122,26 @@ export const parseQuiz = async (
   };
 };
 
+function getReadingTime(readingTime: number) {
+  const minutes = Math.round(readingTime / 60000);
+  const minutesAsString = minutes.toString();
+
+  if (minutesAsString === "1") {
+    return "1 minuta";
+  }
+
+  if (
+    minutesAsString.at(-2) !== "1" &&
+    (minutesAsString.endsWith("2") ||
+      minutesAsString.endsWith("3") ||
+      minutesAsString.endsWith("4"))
+  ) {
+    return `${minutes} minuty`;
+  }
+
+  return `${minutes} minut`;
+}
+
 export const parseMarkdownFile = async <T extends ContentResource>(
   file: string,
   slug: string,
@@ -134,31 +153,21 @@ export const parseMarkdownFile = async <T extends ContentResource>(
 
   const [fileContent, readingTime] = await processContent(content);
 
-  // Zamiana liczby minut na labelkę w języku polskim
-  const minutes = Math.round(readingTime / 60000);
-  let readingTimeAsText = "";
-  if (minutes === 1) {
-    readingTimeAsText = "1 minuta";
-  } else if (minutes >= 2 && minutes <= 4) {
-    readingTimeAsText = `${minutes} minuty`;
-  } else {
-    readingTimeAsText = `${minutes} minut`;
-  }
-
   return {
     ...data,
     id: v4(),
     slug,
     content: fileContent,
-    resourceUrl: `https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`,
+    resourceUrl: `/app/content/${resourceType}/${slug}.md`,
     quiz,
-    readingTime: readingTimeAsText,
+    readingTime: getReadingTime(readingTime),
     createdAt: new Date(data.createdAt).toISOString(),
   } as T;
 };
 
 export function minifyContentResource<T extends ContentResource>(resource: T) {
   const copy = { ...resource };
+  if (!copy.content) delete copy["readingTime"];
   delete copy["content"];
   delete copy["quiz"];
   delete copy["resourceUrl"];

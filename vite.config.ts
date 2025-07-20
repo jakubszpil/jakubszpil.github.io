@@ -16,6 +16,11 @@ export default defineConfig(() => {
         plugins: [tailwindcss(), autoprefixer()],
       },
     },
+    esbuild: {
+      minifyIdentifiers: true,
+      minifySyntax: true,
+      minifyWhitespace: true,
+    },
     test: {
       include: ["app/**/*.{test,spec}.{ts,tsx}"],
       globals: true,
