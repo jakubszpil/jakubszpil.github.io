@@ -4,12 +4,10 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./styles.css";
 
 function injectScript(script: string) {
-  const result = script
+  return script
     .trim()
     .replace(/  +/g, "")
     .replace(/(\r\n|\n|\r)/gm, "");
-
-  return result;
 }
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -27,43 +25,32 @@ export function Layout({ children }: { children: ReactNode }) {
           crossOrigin="anonymous"
         />
         <link rel="modulepreload" href="/fetch.js" />
-        <script>
-          {injectScript(`
-            const theme = localStorage.getItem("theme");
+        <script
+          dangerouslySetInnerHTML={{
+            __html: injectScript(`
+              const K = "theme";
+              const D = "dark";
 
-            switch (theme) {
-              case "DARK": {
-                document.documentElement.classList.add("dark");
-                break;
-              }
+              const l = localStorage;
+              const c = document.documentElement.classList;
+              const t = l.getItem(K);
 
-              case "LIGHT": {
-                document.documentElement.classList.remove("dark");
-                break;
-              }
-
-              case "SYSTEM":
-              case null: {
+              if (t === "DARK") c.add(D);
+              else if (t === "LIGHT") c.remove(D);
+              else if (!t || t === "SYSTEM") {
                 const { matches } = window.matchMedia("(prefers-color-scheme: dark)");
-
-                if (matches) {
-                  document.documentElement.classList.add("dark");
-                } else {
-                  document.documentElement.classList.remove("dark");
-                }
-                  
-                break;
-              }
-
-              default: {
-                localStorage.removeItem("theme");
-              }
-            }
-          `)}
-        </script>
-        <script>
-          {injectScript(`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`)}
-        </script>
+                matches ? c.add(D) : c.remove(D); 
+              } else l.removeItem(K);
+          `),
+          }}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: injectScript(
+              `globalThis.timestamp = ${import.meta.env.TIMESTAMP}`
+            ),
+          }}
+        ></script>
         <script type="module" src="/fetch.js" />
         <Meta />
         <Links />
