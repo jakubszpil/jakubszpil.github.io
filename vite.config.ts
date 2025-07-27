@@ -3,6 +3,7 @@ import { reactRouter } from "@react-router/dev/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
+import babel from "vite-plugin-babel";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -10,7 +11,15 @@ export default defineConfig(() => {
     define: {
       "import.meta.env.TIMESTAMP": Date.now(),
     },
-    plugins: [!process.env.VITEST && reactRouter(), tsconfigPaths()],
+    plugins: [
+      !process.env.VITEST && reactRouter(),
+      babel({
+        babelConfig: {
+          plugins: ["babel-plugin-react-compiler"],
+        },
+      }),
+      tsconfigPaths(),
+    ],
     css: {
       postcss: {
         plugins: [tailwindcss(), autoprefixer()],
