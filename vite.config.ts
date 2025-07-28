@@ -14,6 +14,7 @@ export default defineConfig(() => {
     plugins: [
       !process.env.VITEST && reactRouter(),
       babel({
+        include: ["./app/**/*"],
         babelConfig: {
           plugins: ["babel-plugin-react-compiler"],
         },

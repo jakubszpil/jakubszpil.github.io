@@ -2,13 +2,7 @@ import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./styles.css";
-
-function injectScript(script: string) {
-  return script
-    .trim()
-    .replace(/  +/g, "")
-    .replace(/(\r\n|\n|\r)/gm, "");
-}
+import { injectScript } from "./lib/scripts";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -28,19 +22,19 @@ export function Layout({ children }: { children: ReactNode }) {
         <script
           dangerouslySetInnerHTML={{
             __html: injectScript(`
-              const K = "theme";
-              const D = "dark";
+              {
+                let K = "theme";
+                let D = "dark";
 
-              const l = localStorage;
-              const c = document.documentElement.classList;
-              const t = l.getItem(K);
+                let l = localStorage;
+                let c = document.documentElement.classList;
+                let t = l.getItem(K);
 
-              if (t === "DARK") c.add(D);
-              else if (t === "LIGHT") c.remove(D);
-              else if (!t || t === "SYSTEM") {
-                const { matches } = window.matchMedia("(prefers-color-scheme: dark)");
-                matches ? c.add(D) : c.remove(D); 
-              } else l.removeItem(K);
+                if (t === "DARK") c.add(D);
+                else if (t === "LIGHT") c.remove(D);
+                else if (!t || t === "SYSTEM") matchMedia(\`(prefers-color-scheme: $\{D\})\`) ? c.add(D) : c.remove(D);
+                else l.removeItem(K);
+              }
           `),
           }}
         ></script>
