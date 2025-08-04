@@ -23,17 +23,16 @@ export function Layout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: injectScript(`
               {
-                let K = "theme";
-                let D = "dark";
-
-                let l = localStorage;
+                let k = "theme";
+                let t = "dark";
+                let s = localStorage;
+                let v = s.getItem(k);
                 let c = document.documentElement.classList;
-                let t = l.getItem(K);
 
-                if (t === "DARK") c.add(D);
-                else if (t === "LIGHT") c.remove(D);
-                else if (!t || t === "SYSTEM") matchMedia(\`(prefers-color-scheme: '$\{D\}')\`).matches ? c.add(D) : c.remove(D);
-                else l.removeItem(K);
+                if (v === "DARK") c.add(t);
+                else if (v === "LIGHT") c.remove(t);
+                else if (!v || v === "SYSTEM") matchMedia(\`(prefers-color-scheme: $\{t\})\`).matches ? c.add(t) : c.remove(t);
+                else s.removeItem(k);
               }
           `),
           }}
