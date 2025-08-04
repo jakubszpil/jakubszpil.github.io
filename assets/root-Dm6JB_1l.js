@@ -11,4 +11,4 @@ import{w as r,M as a,L as c,S as n,p as o,O as i}from"./chunk-EF7DTUVF-Beg5q4Vi.
                 else if (!v || v === "SYSTEM") matchMedia(\`(prefers-color-scheme: \${t})\`).matches ? c.add(t) : c.remove(t);
                 else s.removeItem(k);
               }
-          `)}}),e.jsx("script",{dangerouslySetInnerHTML:{__html:l(`globalThis.timestamp = ${1754325366812}`)}}),e.jsx("script",{type:"module",src:"/fetch.js"}),e.jsx(a,{}),e.jsx(c,{})]}),e.jsxs("body",{style:{WebkitTapHighlightColor:"transparent"},children:[t,e.jsx(n,{getKey:s=>Object.values(s).filter(Boolean).join(".")}),e.jsx(o,{})]})]})}const h=r(function(){return e.jsx(i,{})});export{f as Layout,h as default};
+          `)}}),e.jsx("script",{dangerouslySetInnerHTML:{__html:l(`globalThis.timestamp = ${1754340988689}`)}}),e.jsx("script",{type:"module",src:"/fetch.js"}),e.jsx(a,{}),e.jsx(c,{})]}),e.jsxs("body",{style:{WebkitTapHighlightColor:"transparent"},children:[t,e.jsx(n,{getKey:s=>Object.values(s).filter(Boolean).join(".")}),e.jsx(o,{})]})]})}const h=r(function(){return e.jsx(i,{})});export{f as Layout,h as default};
