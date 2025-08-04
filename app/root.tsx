@@ -32,7 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
                 if (t === "DARK") c.add(D);
                 else if (t === "LIGHT") c.remove(D);
-                else if (!t || t === "SYSTEM") matchMedia(\`(prefers-color-scheme: $\{D\})\`) ? c.add(D) : c.remove(D);
+                else if (!t || t === "SYSTEM") matchMedia(\`(prefers-color-scheme: '$\{D\}')\`).matches ? c.add(D) : c.remove(D);
                 else l.removeItem(K);
               }
           `),
