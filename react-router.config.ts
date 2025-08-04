@@ -33,6 +33,10 @@ export default {
         const path = join(__clientDirname, file);
         const targetPath = `${join(path, "..")}.html`;
         await rename(path, targetPath);
+      }
+
+      if (file.includes("fetch.js")) {
+        const targetPath = join(__clientDirname, file);
         const fileContent = await readFile(targetPath, "utf-8");
         await writeFile(targetPath, minify(fileContent), "utf-8");
       }
