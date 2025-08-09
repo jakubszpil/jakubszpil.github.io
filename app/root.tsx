@@ -36,14 +36,14 @@ export function Layout({ children }: { children: ReactNode }) {
               }
           `),
           }}
-        ></script>
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: injectScript(
               `globalThis.timestamp = ${import.meta.env.TIMESTAMP}`
             ),
           }}
-        ></script>
+        />
         <script type="module" src="/fetch.js" />
         <Meta />
         <Links />
