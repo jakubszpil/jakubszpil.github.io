@@ -1,3 +1,6 @@
+import { config } from "./config";
+import { pipe } from "./pipe";
+
 export const capitalize = (value: string) =>
   value
     .toLowerCase()
@@ -12,35 +15,15 @@ export const retrieveSpaceInString = (value: string) => {
 export const retrieveIndividualName = (text?: string) => {
   const textAsLowerCase = text?.toLowerCase();
 
-  switch (textAsLowerCase) {
-    case "javascript":
-      return "JavaScript";
-
-    case "typescript":
-      return "TypeScript";
-
-    case "github":
-      return "GitHub";
-
-    case "css":
-      return "CSS";
-
-    case "sql":
-      return "SQL";
-
-    case "html":
-      return "HTML";
-
-    case "ci":
-      return "CI/CD";
-
-    case "devops":
-      return "DevOps";
-
-    case "nestjs":
-      return "NestJS";
-
-    default:
-      return text;
+  if (textAsLowerCase && textAsLowerCase in config.individualNames) {
+    return config.individualNames[
+      textAsLowerCase as keyof typeof config.individualNames
+    ];
   }
+
+  return text;
 };
+
+export const getCapitalizedIndividualName = pipe(retrieveSpaceInString)
+  .pipe(capitalize)
+  .pipe(retrieveIndividualName);

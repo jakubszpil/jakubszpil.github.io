@@ -2,6 +2,7 @@ import { useCallback } from "react";
 
 import { Button } from "../ui/button";
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import { getCapitalizedIndividualName } from "~/lib/string";
 
 export interface CategoriesProps {
   categories: string[];
@@ -16,9 +17,11 @@ export default function Categories(props: CategoriesProps) {
         asChild
         variant="secondary"
         size="sm"
-        className="!no-underline lowercase"
+        className="!no-underline"
       >
-        <LinkWithPrefetch to={href}>#{name}</LinkWithPrefetch>
+        <LinkWithPrefetch to={href}>
+          {getCapitalizedIndividualName(name)}
+        </LinkWithPrefetch>
       </Button>
     );
   }, []);

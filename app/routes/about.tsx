@@ -3,7 +3,7 @@ import Socials from "~/components/socials";
 import { getDifferenceInYears } from "~/lib/date";
 
 export default function About() {
-  const years = getDifferenceInYears(new Date(2021, 6, 1));
+  const years = getDifferenceInYears(new Date("2021-07-01"));
 
   return (
     <div className="container prose">

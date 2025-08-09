@@ -4,11 +4,7 @@ import Categories from "~/components/learning/categories";
 import Courses from "~/components/learning/courses";
 import { Seo } from "~/components/ui/seo";
 import { getCoursesByCategory, getCoursesCategories } from "~/lib/courses";
-import {
-  capitalize,
-  retrieveIndividualName,
-  retrieveSpaceInString,
-} from "~/lib/string";
+import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
@@ -21,9 +17,7 @@ export async function loader({ params: { category } }: LoaderFunctionArgs) {
 export default function CourseList() {
   const { courses, categories, category } = useLoaderData<typeof loader>();
 
-  const title = category
-    ? retrieveIndividualName(capitalize(retrieveSpaceInString(category)))
-    : undefined;
+  const title = category ? getCapitalizedIndividualName(category) : undefined;
 
   return (
     <>

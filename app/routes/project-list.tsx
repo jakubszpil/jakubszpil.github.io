@@ -7,11 +7,7 @@ import {
   getProjectsByTechnology,
   getProjectsTechnologies,
 } from "~/lib/projects";
-import {
-  capitalize,
-  retrieveIndividualName,
-  retrieveSpaceInString,
-} from "~/lib/string";
+import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {
@@ -25,7 +21,7 @@ export default function ProjectList() {
   const { projects, technologies, technology } = useLoaderData<typeof loader>();
 
   const title = technology
-    ? retrieveIndividualName(capitalize(retrieveSpaceInString(technology)))
+    ? getCapitalizedIndividualName(technology)
     : undefined;
 
   return (
