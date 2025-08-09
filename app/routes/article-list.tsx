@@ -4,11 +4,7 @@ import Categories from "~/components/blog/categories";
 import Articles from "~/components/blog/articles";
 import { Seo } from "~/components/ui/seo";
 import { getArticlesByCategory, getArticlesCategories } from "~/lib/articles";
-import {
-  capitalize,
-  retrieveIndividualName,
-  retrieveSpaceInString,
-} from "~/lib/string";
+import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
@@ -21,9 +17,7 @@ export async function loader({ params: { category } }: LoaderFunctionArgs) {
 export default function ArticleList() {
   const { articles, categories, category } = useLoaderData<typeof loader>();
 
-  const title = category
-    ? retrieveIndividualName(capitalize(retrieveSpaceInString(category)))
-    : undefined;
+  const title = category ? getCapitalizedIndividualName(category) : undefined;
 
   return (
     <>
