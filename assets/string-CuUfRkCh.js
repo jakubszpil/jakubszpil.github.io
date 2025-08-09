@@ -1,0 +1,1 @@
+import{a as r}from"./seo-DKUJsh2e.js";function n(e){const i=a=>e(a);return i.pipe=a=>n(o=>a(e(o))),i}const p=e=>e.toLowerCase().split(" ").map(i=>`${i.slice(0,1).toUpperCase()}${i.slice(1)}`).join(" "),s=e=>e.replaceAll("-"," "),t=e=>{const i=e==null?void 0:e.toLowerCase();return i&&i in r.individualNames?r.individualNames[i]:e},l=n(s).pipe(p).pipe(t);export{l as g};
