@@ -48,7 +48,7 @@ Mechanika sygnałów leży u podstaw takich rozwiązań jak SolidJS Signals, Pre
 
 ## Podstawowe założenia architektury
 
-1. **Signal**: funkcja przechowująca wartość i listę „tasków” (efektów) zależnych od tej wartości.
+1. **Signal**: funkcja przechowująca wartość i listę "tasków" (efektów) zależnych od tej wartości.
 2. **effect**: funkcja, która wykona zadanie reagując automatycznie na zmiany sygnału.
 3. **computed**: sygnał zależny, obliczany na podstawie innych sygnałów.
 4. **Task i AbortSignal**: pozwalają bezpiecznie anulować zadania, gdy są już niepotrzebne.

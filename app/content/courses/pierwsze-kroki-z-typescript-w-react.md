@@ -77,7 +77,7 @@ Witaj w świecie **Reacta** połączonego z **TypeScriptem**! 🚀 Jeśli chcesz
 
 ## Dlaczego warto używać TypeScript w React?
 
-TypeScript to nie tylko “lepszy JavaScript” - to Twoja tajna broń na błędy w kodzie! Dzięki niemu:
+TypeScript to nie tylko “lepszy JavaScript" - to Twoja tajna broń na błędy w kodzie! Dzięki niemu:
 
 - 🛡️ **Kod jest bardziej przewidywalny i bezpieczniejszy** - typy wykrywają literówki i błędy logiczne już podczas pisania. To jak posiadanie prywatnego asystenta, który sprawdza Twój kod na bieżąco!
 - ⚡ **Praca w zespole staje się łatwiejsza** - czytelny kod, lepsze podpowiedzi w edytorze (IntelliSense), szybkie ogarnianie cudzych projektów. Koniec z "zgadywaniem" jakie dane funkcja przyjmuje!

@@ -565,7 +565,7 @@ Aby pogłębić swoją wiedzę i lepiej zrozumieć wzorce projektowe, polecam na
 - **[Refactoring.guru - wzorce projektowe po polsku i angielsku](https://refactoring.guru/pl/design-patterns)**: Prawdopodobnie najlepsze źródło online z klarownymi opisami i przykładami kodu w wielu językach.
 - **[TypeScript Playground](https://www.typescriptlang.org/play)**: Idealne narzędzie do szybkiego testowania i eksperymentowania z przykładami kodu w TypeScript, bez potrzeby konfiguracji lokalnego środowiska.
 - **[Wzorce projektowe - Wikipedia](https://pl.wikipedia.org/wiki/Wzorzec_projektowy)**: Dobre źródło do ogólnego przeglądu i definicji.
-- **Książka „Wzorce projektowe. Elementy oprogramowania obiektowego” - Gamma, Helm, Johnson, Vlissides (tzw. Gang of Four)**: Klasyka, która zapoczątkowała całą dyskusję o wzorcach. Obowiązkowa lektura dla każdego, kto chce dogłębnie zrozumieć temat.
+- **Książka "Wzorce projektowe. Elementy oprogramowania obiektowego" - Gamma, Helm, Johnson, Vlissides (tzw. Gang of Four)**: Klasyka, która zapoczątkowała całą dyskusję o wzorcach. Obowiązkowa lektura dla każdego, kto chce dogłębnie zrozumieć temat.
 
 ---
 

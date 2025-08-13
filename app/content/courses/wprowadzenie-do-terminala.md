@@ -93,7 +93,7 @@ Poniżej znajdziesz **szczegółowe wyjaśnienia** - każda komenda i pojęcie j
 
 **Terminal** to program (okno), w którym wpisujesz polecenia. Jest jak czat z komputerem, ale zamiast emoji i gifów, używasz prostych komend!
 
-**Shell** (np. Bash, Zsh, PowerShell) to „tłumacz” - komputer rozumie Twoje polecenia dzięki shellowi.
+**Shell** (np. Bash, Zsh, PowerShell) to "tłumacz" - komputer rozumie Twoje polecenia dzięki shellowi.
 
 **Przykład:**  
 Wyobraź sobie, że terminal to telefon, a shell to operator, który przekazuje Twoje polecenie komputerowi.
@@ -104,7 +104,7 @@ Wyobraź sobie, że terminal to telefon, a shell to operator, który przekazuje 
 
 - **Szybkość** - wiele rzeczy zrobisz szybciej niż klikając po folderach.
 - **Automatyzacja** - możesz napisać skrypt, który powtarza czynność za Ciebie.
-- **Większa kontrola** - dostęp do narzędzi, które nie mają „okienek”.
+- **Większa kontrola** - dostęp do narzędzi, które nie mają "okienek".
 - **Przydatność w pracy programisty, administratora, a nawet zwykłego użytkownika** - terminal przyda się każdemu!
 
 ---
@@ -114,11 +114,11 @@ Wyobraź sobie, że terminal to telefon, a shell to operator, który przekazuje 
 🔹 **Linux / Mac**
 
 - Najczęściej skrót klawiszowy: `Ctrl + Alt + T`
-- Albo szukaj aplikacji o nazwie „Terminal”.
+- Albo szukaj aplikacji o nazwie "Terminal".
 
 🔹 **Windows**
 
-- Wyszukaj „cmd”, „PowerShell” lub „Windows Terminal” w menu Start.
+- Wyszukaj "cmd", "PowerShell" lub "Windows Terminal" w menu Start.
 - Możesz też zainstalować WSL (Windows Subsystem for Linux), aby mieć terminal podobny do Linuksa.
 
 ---
@@ -158,9 +158,9 @@ Każda komenda ma swoją logikę. Poniżej wyjaśnienia i przykłady.
   ```
   cd Dokumenty
   ```
-  Teraz jesteś w katalogu „Dokumenty”.
+  Teraz jesteś w katalogu "Dokumenty".
 - `cd ..`  
-  **Co robi?** Przechodzi o jeden katalog wyżej (do „rodzica”).  
+  **Co robi?** Przechodzi o jeden katalog wyżej (do "rodzica").  
   **Przykład:**
   ```
   cd ..
@@ -177,7 +177,7 @@ Każda komenda ma swoją logikę. Poniżej wyjaśnienia i przykłady.
 - `ls -a`  
   **Co robi?** Pokazuje również pliki ukryte (takie, które zaczynają się od kropki).
 - `tree`  
-  **Co robi?** Pokazuje strukturę katalogów w formie „drzewka”.  
+  **Co robi?** Pokazuje strukturę katalogów w formie "drzewka".  
   _(Może wymagać instalacji: `sudo apt install tree`)_
 
 ---
@@ -270,9 +270,9 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
 
 - **Literówki** - sprawdzaj dokładnie, co wpisujesz.
 - **Nie ten katalog** - zanim coś zrobisz, sprawdź gdzie jesteś (`pwd`).
-- **Uprawnienia** - nie wszystko można robić bez „superpraw” (`sudo`).
+- **Uprawnienia** - nie wszystko można robić bez "superpraw" (`sudo`).
 - **Usuwanie plików** - ostrożnie z `rm`! Nie ma kosza.
-- \*\*Mylenie / i \*\* - na Linux/Mac zawsze używaj „/” w ścieżkach.
+- \*\*Mylenie / i \*\* - na Linux/Mac zawsze używaj "/" w ścieżkach.
 
 ---
 
@@ -286,7 +286,7 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
   </summary>
 
 1. `ls ~` - pokazuje, co masz w katalogu domowym.
-2. `mkdir ~/nauka_terminala` - tworzy folder o nazwie „nauka_terminala”.
+2. `mkdir ~/nauka_terminala` - tworzy folder o nazwie "nauka_terminala".
 3. `cd ~/nauka_terminala` - wchodzi do tego folderu.
 4. `touch pierwszy_plik.txt` - tworzy pusty plik.
 5. `ls` - sprawdza, czy plik się pojawił.
@@ -302,7 +302,7 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
   </summary>
 
 `head -n 5 /etc/passwd`  
- _(„head” pokazuje początek pliku, „-n 5” - ile linii)_
+ _("head" pokazuje początek pliku, "-n 5" - ile linii)_
 
 </details>
 

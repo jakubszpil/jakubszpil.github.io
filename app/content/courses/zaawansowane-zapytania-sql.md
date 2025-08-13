@@ -255,7 +255,7 @@ Wyświetl tylko te miasta, w których liczba klientów jest większa niż 5.
 
 ## Podzapytania (subqueries)
 
-Podzapytanie to zapytanie SQL „wewnątrz” innego zapytania.
+Podzapytanie to zapytanie SQL "wewnątrz" innego zapytania.
 
 ---
 
@@ -395,7 +395,7 @@ Dla każdego klienta określa status na podstawie wieku.
 ## Widoki (VIEW) i ich zastosowania
 
 **Opis:**  
-Widok (VIEW) to „wirtualna tabela” będąca wynikiem zapytania. Widoki upraszczają kod, mogą ukrywać złożoność i zabezpieczać dane.
+Widok (VIEW) to "wirtualna tabela" będąca wynikiem zapytania. Widoki upraszczają kod, mogą ukrywać złożoność i zabezpieczać dane.
 
 **Tworzenie widoku:**
 

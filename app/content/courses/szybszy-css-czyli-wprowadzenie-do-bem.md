@@ -94,7 +94,7 @@ Podstawą metodyki BEM są trzy kluczowe koncepty, które określają sposób or
 
 ### Blok (Block)
 
-**Blok** to niezależny, samodzielny komponent interfejsu użytkownika. Możesz go myśleć jako o „funkcjonalnej” i „wizualnej” całości, którą można przenieść i użyć w dowolnym miejscu strony. Blok może zawierać w sobie inne bloki lub elementy.
+**Blok** to niezależny, samodzielny komponent interfejsu użytkownika. Możesz go myśleć jako o "funkcjonalnej" i "wizualnej" całości, którą można przenieść i użyć w dowolnym miejscu strony. Blok może zawierać w sobie inne bloki lub elementy.
 
 **Cechy bloku:**
 
