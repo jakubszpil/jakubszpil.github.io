@@ -42,7 +42,7 @@ export default function SearchButton() {
     >
       <LinkWithPrefetch to="/search" state={state}>
         <span className="sr-only">Szukaj</span>
-        <IconSearch className="h-6" />
+        <IconSearch className="size-6" />
       </LinkWithPrefetch>
     </Button>
   );

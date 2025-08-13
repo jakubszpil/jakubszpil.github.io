@@ -168,7 +168,7 @@ export default function Search() {
         </datalist>
 
         <Button type="submit">
-          <IconSearch className="h-5 w-5 mr-1" />
+          <IconSearch className="size-5" />
           Szukaj
         </Button>
       </Form>

@@ -31,16 +31,14 @@ export default function Projects(props: ProjectsProps) {
           key={project.id}
           asChild
           variant={props.variant ?? "outline"}
-          className="inline-flex flex-col items-start justify-start text-left h-auto w-auto !text-wrap no-underline truncate p-6 hover:!bg-inherit hover:!text-inherit"
+          className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto !text-wrap no-underline truncate p-6 hover:!bg-inherit hover:!text-inherit"
         >
           <div>
             <h2 className="line-clamp-3 text-base font-semibold !m-0">
               {project.title}
             </h2>
-            <span className="mb-2">
-              Status: {STATUS_LABELS[project.status]}
-            </span>
-            <p className="line-clamp-3 !mt-2 flex-1 text-neutral-700 font-normal dark:text-neutral-300">
+            <span className="">Status: {STATUS_LABELS[project.status]}</span>
+            <p className="line-clamp-3 mt-2 flex-1 text-neutral-700 font-normal dark:text-neutral-300">
               {project.description}
             </p>
             <div className="flex items-center justify-between w-full">

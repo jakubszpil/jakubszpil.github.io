@@ -34,7 +34,7 @@ export default function ThemeSwitcher() {
           variant="ghost"
           className="cursor-pointer"
         >
-          <IconSunMoon />
+          <IconSunMoon className="size-6" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -43,19 +43,19 @@ export default function ThemeSwitcher() {
           className="cursor-pointer"
           onClick={() => setTheme(Theme.LIGHT)}
         >
-          <IconSun className="mr-2" /> Jasny
+          <IconSun className="size-6 mr-2" /> Jasny
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
           onClick={() => setTheme(Theme.DARK)}
         >
-          <IconMoonStars className="mr-2" /> Ciemny
+          <IconMoonStars className="size-6 mr-2" /> Ciemny
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
           onClick={() => setTheme(Theme.SYSTEM)}
         >
-          <IconDeviceDesktop className="mr-2" /> System
+          <IconDeviceDesktop className="size-6 mr-2" /> System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
