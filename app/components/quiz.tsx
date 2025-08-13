@@ -105,7 +105,7 @@ export default function Quiz({ quiz }: QuizProps) {
               variant="outline"
               key={opt}
               className={cn(
-                "w-full text-left inline-flex justify-start transition-none text-wrap !min-h-min py-1.5",
+                "w-full text-left inline-flex justify-start transition-none !text-wrap !min-h-min py-1.5",
                 showAnswer
                   ? "cursor-default hover:!text-inherit"
                   : "cursor-pointer",
