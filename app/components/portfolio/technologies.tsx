@@ -17,7 +17,7 @@ export default function Technologies(props: TechnologiesProps) {
         asChild
         variant="secondary"
         size="sm"
-        className="!no-underline"
+        className="no-underline!"
       >
         <LinkWithPrefetch to={href}>
           {getCapitalizedIndividualName(name)}

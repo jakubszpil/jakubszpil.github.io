@@ -15,7 +15,7 @@ export default function Handbook() {
         ]}
       />
 
-      <section className="prose container">
+      <section className="container prose">
         <h1>Handbook</h1>
 
         <p>

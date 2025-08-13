@@ -28,7 +28,12 @@ export default function ThemeSwitcher() {
       }}
     >
       <DropdownMenuTrigger asChild>
-        <Button title="Zmień motyw" size="icon" variant="ghost">
+        <Button
+          title="Zmień motyw"
+          size="icon"
+          variant="ghost"
+          className="cursor-pointer"
+        >
           <IconSunMoon />
         </Button>
       </DropdownMenuTrigger>

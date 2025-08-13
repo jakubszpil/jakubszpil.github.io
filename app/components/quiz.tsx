@@ -91,7 +91,7 @@ export default function Quiz({ quiz }: QuizProps) {
     <div className="container prose">
       <h2>{quiz.title}</h2>
       <div>
-        <p className="font-bold !mb-0">
+        <p className="font-bold mb-0!">
           Pytanie {current + 1} z {questions.length}
         </p>
         <div
@@ -105,15 +105,15 @@ export default function Quiz({ quiz }: QuizProps) {
               variant="outline"
               key={opt}
               className={cn(
-                "w-full text-left inline-flex justify-start transition-none text-wrap !min-h-min py-1.5",
+                "w-full text-left inline-flex justify-start transition-none text-wrap min-h-min! py-1.5",
                 showAnswer
-                  ? "cursor-default hover:!text-inherit"
+                  ? "cursor-default hover:text-inherit!"
                   : "cursor-pointer",
                 showAnswer && opt === answer
-                  ? "!bg-green-400 dark:!bg-green-800"
+                  ? "bg-green-400! dark:bg-green-800!"
                   : selected === opt && showAnswer && opt !== answer
-                  ? "!bg-red-400 dark:!bg-red-800"
-                  : showAnswer && "hover:!bg-inherit"
+                  ? "bg-red-400! dark:bg-red-800!"
+                  : showAnswer && "hover:bg-inherit!"
               )}
               onClick={() => handleOptionClick(opt)}
             >

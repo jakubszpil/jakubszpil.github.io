@@ -80,7 +80,7 @@ export default function Search() {
           <section>
             <h3>Artykuły ({results.articles.length})</h3>
             <Articles
-              className="px-0 !grid-cols-1"
+              className="!p-0 !grid-cols-1"
               articles={results.articles}
             />
           </section>
@@ -89,7 +89,7 @@ export default function Search() {
         {results.courses.length > 0 && (
           <section>
             <h3>Kursy ({results.courses.length})</h3>
-            <Courses className="px-0 !grid-cols-1" courses={results.courses} />
+            <Courses className="!p-0 !grid-cols-1" courses={results.courses} />
           </section>
         )}
 
@@ -97,7 +97,7 @@ export default function Search() {
           <section>
             <h3>Projekty ({results.projects.length})</h3>
             <Projects
-              className="px-0 !grid-cols-1"
+              className="!p-0 !grid-cols-1"
               projects={results.projects}
             />
           </section>
@@ -125,7 +125,7 @@ export default function Search() {
         }
       />
 
-      <header className="container pb-0">
+      <header className="container !pb-0">
         <h1 className="mb-0">Szukaj</h1>
         <p>Wskazówka: Obszary po których możesz szukać:</p>
         <ul>
@@ -146,7 +146,7 @@ export default function Search() {
       <Form
         preventScrollReset={true}
         method="get"
-        className="container py-0 bg-background flex gap-2"
+        className="container !py-0 bg-background flex gap-2"
         action="/search"
       >
         <Input
@@ -173,7 +173,7 @@ export default function Search() {
         </Button>
       </Form>
 
-      <div className="container pt-0">{renderResults()}</div>
+      <div className="container !pt-0">{renderResults()}</div>
     </section>
   );
 }
