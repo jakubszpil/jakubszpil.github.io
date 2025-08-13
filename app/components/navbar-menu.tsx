@@ -94,7 +94,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           ref={buttonRef}
           onClick={toggleMenu}
           className={cn(
-            "inline-flex items-center cursor-pointer justify-center relative z-50 lg:hidden",
+            "inline-flex items-center justify-center relative z-50 lg:hidden",
             show && "dark"
           )}
           variant="link"
@@ -104,9 +104,9 @@ export default function NavbarMenu(props: NavbarMenuProps) {
             {show ? "Zamknij menu" : "Otwórz menu"}
           </span>
           {show ? (
-            <IconX className="text-white! h-6" />
+            <IconX className="!text-white h-6" />
           ) : (
-            <IconMenu2 className="h-6 text-black! dark:text-white!" />
+            <IconMenu2 className="h-6 !text-black dark:!text-white" />
           )}
         </Button>
       </div>
