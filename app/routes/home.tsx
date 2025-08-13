@@ -65,8 +65,8 @@ export default function Home() {
       </header>
 
       <section className="prose max-w-full bg-background">
-        <header className="container !pb-0">
-          <h2>Artykuły 📝</h2>
+        <header className="container !pt-12 !pb-0">
+          <h2 className="mt-0">Artykuły 📝</h2>
           <p>
             Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML,
             CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki
@@ -107,8 +107,8 @@ export default function Home() {
       </section>
 
       <section className="prose max-w-full bg-background">
-        <header className="container !pb-0">
-          <h2>Portfolio 🛠️</h2>
+        <header className="container !pt-12 !pb-0">
+          <h2 className="mt-0">Portfolio 🛠️</h2>
           <p>
             Oto moje portfolio frontendowe z projektami nowoczesnych stron i
             aplikacji internetowych. Sprawdź moje realizacje i zobacz, co
