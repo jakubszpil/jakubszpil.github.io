@@ -24,7 +24,7 @@ W TypeScript DI można zaimplementować na różne sposoby, m.in. za pomocą fun
 
 ## Czym jest Dependency Injection?
 
-**Dependency Injection** polega na przekazywaniu obiektów zależnych (tzw. zależności) do obiektu zamiast tworzenia ich bezpośrednio w jego wnętrzu. Dzięki temu możemy łatwo podmieniać zależności – np. na ich mocki podczas testowania – bez zmian w logice biznesowej.
+**Dependency Injection** polega na przekazywaniu obiektów zależnych (tzw. zależności) do obiektu zamiast tworzenia ich bezpośrednio w jego wnętrzu. Dzięki temu możemy łatwo podmieniać zależności - np. na ich mocki podczas testowania - bez zmian w logice biznesowej.
 
 DI zwiększa elastyczność kodu, ułatwia jego testowanie oraz pozwala na lepszą separację odpowiedzialności. Dzięki temu Twój kod staje się bardziej modularny, przejrzysty i łatwy w utrzymaniu. 💡
 
@@ -32,11 +32,11 @@ DI zwiększa elastyczność kodu, ułatwia jego testowanie oraz pozwala na lepsz
 
 ## Zalety stosowania DI
 
-- **Łatwiejsze testowanie** – zależności można zamieniać na mocki lub stuby w testach jednostkowych.
-- **Lepsza modularność** – klasy nie są silnie powiązane z konkretnymi implementacjami.
-- **Łatwiejsze zarządzanie zależnościami** – zmiany w zależnościach nie wymagają modyfikacji całego kodu.
-- **Wspieranie zasad SOLID** – zwłaszcza zasady odwrócenia zależności (Dependency Inversion Principle).
-- **Zwiększona elastyczność** – łatwo rozszerzać i modyfikować funkcjonalność bez naruszania istniejących klas.
+- **Łatwiejsze testowanie** - zależności można zamieniać na mocki lub stuby w testach jednostkowych.
+- **Lepsza modularność** - klasy nie są silnie powiązane z konkretnymi implementacjami.
+- **Łatwiejsze zarządzanie zależnościami** - zmiany w zależnościach nie wymagają modyfikacji całego kodu.
+- **Wspieranie zasad SOLID** - zwłaszcza zasady odwrócenia zależności (Dependency Inversion Principle).
+- **Zwiększona elastyczność** - łatwo rozszerzać i modyfikować funkcjonalność bez naruszania istniejących klas.
 
 ---
 
@@ -114,8 +114,8 @@ console.log(extendedUserService.getUserName(1)); // User 1
 **Wyjaśnienie:**
 
 - Funkcja `inject` rejestruje i przechowuje instancje klas, zapewniając singleton dla każdej z nich.
-- Nie musisz przekazywać zależności przez konstruktor – są pobierane automatycznie.
-- Klasy można łatwo rozszerzać, a zależności są zarządzane centralnie – to duże ułatwienie w dużych projektach. 🛠️
+- Nie musisz przekazywać zależności przez konstruktor - są pobierane automatycznie.
+- Klasy można łatwo rozszerzać, a zależności są zarządzane centralnie - to duże ułatwienie w dużych projektach. 🛠️
 
 ---
 
@@ -196,5 +196,5 @@ Dependency Injection w TypeScript to potężny sposób na zwiększenie elastyczn
 **Dalsza lektura:** 📚
 
 - [InversifyJS Documentation](https://github.com/inversify/InversifyJS)
-- [Dependency Injection w TypeScript – Angular](https://angular.dev/guide/di)
+- [Dependency Injection w TypeScript - Angular](https://angular.dev/guide/di)
 - [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)

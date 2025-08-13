@@ -103,9 +103,9 @@ Projektowanie bazy danych polega na przemyślanym zaplanowaniu, jakie informacje
 
 **Modelowanie danych** to proces odwzorowania rzeczywistości na strukturę bazy. W praktyce używamy do tego _diagramów ERD_ (Entity-Relationship Diagram), które graficznie przedstawiają encje oraz relacje między nimi.
 
-- **Encja** – np. Użytkownik, Zamówienie, Produkt.
-- **Atrybut** – cecha encji np. imię, data zamówienia, cena produktu.
-- **Relacja** – powiązanie między encjami, np. "Użytkownik składa Zamówienie".
+- **Encja** - np. Użytkownik, Zamówienie, Produkt.
+- **Atrybut** - cecha encji np. imię, data zamówienia, cena produktu.
+- **Relacja** - powiązanie między encjami, np. "Użytkownik składa Zamówienie".
 
 ### Przykład praktyczny: minidiagram ERD dla sklepu
 
@@ -238,7 +238,7 @@ Tabela `Zamowienie_Produkt` (zamowienie_id, produkt_id)
 - Każdy atrybut niebędący kluczem nie zależy od innych atrybutów niebędących kluczem.
 
 **Przykład błędu:**  
-Tabela `Klient` (id, imie, kod_pocztowy, miasto) – miasto zależy od kodu pocztowego, nie od klienta.
+Tabela `Klient` (id, imie, kod_pocztowy, miasto) - miasto zależy od kodu pocztowego, nie od klienta.
 
 **Poprawnie:**  
 Tabela `Kod_Pocztowy` (kod, miasto)  
@@ -289,7 +289,7 @@ Tabela Zakup: (id_klienta, id_produktu)
 
 - Wyobraź sobie przykładowe dane i sprawdź, czy struktura pozwala na ich przechowywanie bez powielania.
 - Zastanów się, czy łatwo będzie wyciągnąć potrzebne informacje (np. wszystkich klientów, którzy kupili dany produkt).
-- Konsultuj projekt z innymi – świeże spojrzenie może ujawnić ukryte problemy.
+- Konsultuj projekt z innymi - świeże spojrzenie może ujawnić ukryte problemy.
 
 ---
 

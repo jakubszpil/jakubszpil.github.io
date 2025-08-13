@@ -308,7 +308,7 @@ GitHub Actions to narzędzie do automatyzacji zadań takich jak testowanie, budo
 
 **Główne pojęcia:** ⚙️
 
-- **Workflow** – zestaw zadań wykonywanych automatycznie.
+- **Workflow** - zestaw zadań wykonywanych automatycznie.
 - Konfiguracja w plikach YAML w folderze `.github/workflows/`.
 
 ---
@@ -326,4 +326,4 @@ GitHub Pages umożliwia publikowanie stron internetowych lub portfolio bez konie
 
 ---
 
-To tylko wstęp – każdy z tych tematów można rozwinąć o praktyczne przykłady i ćwiczenia, które pozwolą lepiej zrozumieć narzędzia i procesy pracy z Git oraz GitHubem. Czy masz konkretne pytania dotyczące któregoś z tych aspektów, które chciałbyś/chciałabyś zgłębić? 🤔
+To tylko wstęp - każdy z tych tematów można rozwinąć o praktyczne przykłady i ćwiczenia, które pozwolą lepiej zrozumieć narzędzia i procesy pracy z Git oraz GitHubem. Czy masz konkretne pytania dotyczące któregoś z tych aspektów, które chciałbyś/chciałabyś zgłębić? 🤔

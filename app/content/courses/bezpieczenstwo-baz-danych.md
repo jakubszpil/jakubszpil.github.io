@@ -62,7 +62,7 @@ quiz:
         - "Kopia zapasowa"
         - "Rodzaj indeksu"
       answer: 0
-      explanation: "Audyt to rejestrowanie dostępu i operacji na danych – kluczowy element bezpieczeństwa."
+      explanation: "Audyt to rejestrowanie dostępu i operacji na danych - kluczowy element bezpieczeństwa."
 ---
 
 Bezpieczeństwo bazy danych to podstawa ochrony danych osobowych, firmowych i finansowych. Nawet najlepsza baza jest podatna na ataki, błędy użytkowników czy awarie sprzętu, jeśli nie zadbamy o jej zabezpieczenie. Poznaj praktyczne zasady, narzędzia i realne przykłady, które pomogą Ci zabezpieczyć Twoją bazę!
@@ -114,7 +114,7 @@ Bezpieczeństwo bazy danych to podstawa ochrony danych osobowych, firmowych i fi
 ### SQL Injection
 
 **Opis:**  
-Najpopularniejszy atak na aplikacje korzystające z baz – polega na przesłaniu złośliwego fragmentu SQL np. przez formularz. Może prowadzić do kradzieży lub usunięcia danych, modyfikacji kont czy przejęcia kontroli nad bazą.
+Najpopularniejszy atak na aplikacje korzystające z baz - polega na przesłaniu złośliwego fragmentu SQL np. przez formularz. Może prowadzić do kradzieży lub usunięcia danych, modyfikacji kont czy przejęcia kontroli nad bazą.
 
 **Przykład ataku:**  
 Załóżmy, że użytkownik podaje login, a aplikacja wykonuje zapytanie (NIEBEZPIECZNE!):
@@ -212,7 +212,7 @@ cursor.execute("SELECT * FROM Uzytkownicy WHERE login = %s;", (login,))
 
 ### Szyfrowanie "w spoczynku"
 
-- Szyfrowanie plików bazy na dysku (np. TDE – Transparent Data Encryption).
+- Szyfrowanie plików bazy na dysku (np. TDE - Transparent Data Encryption).
 - Przykład: dane na skradzionym dysku nie są czytelne bez klucza.
 
 ### Szyfrowanie "w tranzycie"
@@ -242,7 +242,7 @@ cursor.execute("SELECT * FROM Uzytkownicy WHERE login = %s;", (login,))
 
 - Przechowuj kopie poza głównym serwerem (np. inny serwer, chmura).
 - Szyfruj backupy!
-- Testuj przywracanie danych – backup bez testu = brak backupu.
+- Testuj przywracanie danych - backup bez testu = brak backupu.
 
 **Przykład backupu MySQL:**
 
@@ -337,7 +337,7 @@ cursor.execute("SELECT * FROM Uzytkownicy WHERE login = %s;", (login,))
 ```
 
 **Wyjaśnienie:**  
-Parametryzacja przekazuje dane osobno od zapytania – nawet jeśli użytkownik wpisze złośliwy kod, nie zostanie on wykonany jako SQL.
+Parametryzacja przekazuje dane osobno od zapytania - nawet jeśli użytkownik wpisze złośliwy kod, nie zostanie on wykonany jako SQL.
 
 </details>
 
@@ -357,7 +357,7 @@ GRANT SELECT, INSERT, UPDATE ON baza.* TO 'app_user'@'localhost' IDENTIFIED BY '
 ```
 
 **Wyjaśnienie:**  
-Użytkownik nie może kasować ani zmieniać struktury bazy – tylko podstawowe operacje.
+Użytkownik nie może kasować ani zmieniać struktury bazy - tylko podstawowe operacje.
 
 </details>
 
@@ -412,7 +412,7 @@ Podaj dwa przykłady zastosowania szyfrowania w bazie danych.
   </summary>
 
 - Szyfrowanie połączenia klient-serwer (SSL/TLS), np. `mysql --ssl-mode=REQUIRED`
-- Szyfrowanie danych na dysku (np. TDE – Transparent Data Encryption w MS SQL, MariaDB)
+- Szyfrowanie danych na dysku (np. TDE - Transparent Data Encryption w MS SQL, MariaDB)
 **Wyjaśnienie:**  
 Szyfrowanie chroni przed kradzieżą danych podczas transmisji i fizycznego dostępu do dysków.
 </details>
@@ -437,7 +437,7 @@ def valid_email(email):
 ```
 
 **Wyjaśnienie:**  
-Akceptujemy tylko dane zgodne z ustalonym wzorcem – minimalizujemy ryzyko wstrzyknięcia niepożądanych znaków.
+Akceptujemy tylko dane zgodne z ustalonym wzorcem - minimalizujemy ryzyko wstrzyknięcia niepożądanych znaków.
 
 </details>
 

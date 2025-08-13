@@ -1,12 +1,12 @@
 ---
-title: "Pierwsze kroki z TypeScript w React – praktyczne podstawy"
-description: "Zrozum podstawy TypeScript w środowisku React – prostym językiem i na praktycznych przykładach."
+title: "Pierwsze kroki z TypeScript w React - praktyczne podstawy"
+description: "Zrozum podstawy TypeScript w środowisku React - prostym językiem i na praktycznych przykładach."
 keywords:
   [typescript, react, frontend, nauka, komponenty, props, state, kurs, learning]
 categories: [typescript, react]
 createdAt: 2025-06-22
 quiz:
-  title: "Quiz: TypeScript w React – podstawy"
+  title: "Quiz: TypeScript w React - podstawy"
   questions:
     - question: "Które zdanie najlepiej opisuje główną zaletę TypeScript w projektach React?"
       options:
@@ -54,7 +54,7 @@ quiz:
       explanation: "Komponent wyświetli 'Cześć, Ala!'."
 ---
 
-Witaj w świecie **Reacta** połączonego z **TypeScriptem**! 🚀 Jeśli chcesz pisać nowoczesne aplikacje i mieć pewność, że Twój kod jest czysty, bezpieczny i przyszłościowy, to właśnie znalazłeś/aś odpowiednie narzędzie. TypeScript w połączeniu z React to duet, który pokochasz od pierwszego projektu! Ten przewodnik przeprowadzi Cię krok po kroku przez najważniejsze podstawy – bez zbędnych teorii, za to z praktycznymi przykładami i zadaniami, które pomogą Ci naprawdę zrozumieć temat. ✨
+Witaj w świecie **Reacta** połączonego z **TypeScriptem**! 🚀 Jeśli chcesz pisać nowoczesne aplikacje i mieć pewność, że Twój kod jest czysty, bezpieczny i przyszłościowy, to właśnie znalazłeś/aś odpowiednie narzędzie. TypeScript w połączeniu z React to duet, który pokochasz od pierwszego projektu! Ten przewodnik przeprowadzi Cię krok po kroku przez najważniejsze podstawy - bez zbędnych teorii, za to z praktycznymi przykładami i zadaniami, które pomogą Ci naprawdę zrozumieć temat. ✨
 
 ## Spis treści
 
@@ -77,12 +77,12 @@ Witaj w świecie **Reacta** połączonego z **TypeScriptem**! 🚀 Jeśli chcesz
 
 ## Dlaczego warto używać TypeScript w React?
 
-TypeScript to nie tylko “lepszy JavaScript” – to Twoja tajna broń na błędy w kodzie! Dzięki niemu:
+TypeScript to nie tylko “lepszy JavaScript” - to Twoja tajna broń na błędy w kodzie! Dzięki niemu:
 
-- 🛡️ **Kod jest bardziej przewidywalny i bezpieczniejszy** – typy wykrywają literówki i błędy logiczne już podczas pisania. To jak posiadanie prywatnego asystenta, który sprawdza Twój kod na bieżąco!
-- ⚡ **Praca w zespole staje się łatwiejsza** – czytelny kod, lepsze podpowiedzi w edytorze (IntelliSense), szybkie ogarnianie cudzych projektów. Koniec z "zgadywaniem" jakie dane funkcja przyjmuje!
-- 🔄 **Refaktoryzacje nie są już straszne** – zmiany w typach wymuszają poprawki w całym projekcie, więc nic Ci nie umknie. TypeScript prowadzi Cię za rękę przez proces zmian.
-- 📖 **Typy to żywa dokumentacja** – od razu wiesz, co i gdzie przekazujesz do komponentów oraz funkcji. Twój kod staje się samoopisujący.
+- 🛡️ **Kod jest bardziej przewidywalny i bezpieczniejszy** - typy wykrywają literówki i błędy logiczne już podczas pisania. To jak posiadanie prywatnego asystenta, który sprawdza Twój kod na bieżąco!
+- ⚡ **Praca w zespole staje się łatwiejsza** - czytelny kod, lepsze podpowiedzi w edytorze (IntelliSense), szybkie ogarnianie cudzych projektów. Koniec z "zgadywaniem" jakie dane funkcja przyjmuje!
+- 🔄 **Refaktoryzacje nie są już straszne** - zmiany w typach wymuszają poprawki w całym projekcie, więc nic Ci nie umknie. TypeScript prowadzi Cię za rękę przez proces zmian.
+- 📖 **Typy to żywa dokumentacja** - od razu wiesz, co i gdzie przekazujesz do komponentów oraz funkcji. Twój kod staje się samoopisujący.
 
 W React TypeScript to must-have, jeśli chcesz:
 
@@ -107,7 +107,7 @@ let unknownValue: unknown = 123; // Typ 'unknown' - bezpieczniejsza alternatywa 
 let userStatus: "active" | "inactive" = "active"; // Literał (union type) - tylko te dwie wartości są dozwolone.
 ```
 
-Chcesz być PRO? Twórz własne **typy** i **interfejsy** – kod będzie czytelniejszy i łatwiejszy do rozbudowy:
+Chcesz być PRO? Twórz własne **typy** i **interfejsy** - kod będzie czytelniejszy i łatwiejszy do rozbudowy:
 
 ```ts
 // Przykład użycia 'type'
@@ -249,7 +249,7 @@ function Counter() {
 }
 ```
 
-> ⭐ **Pro tip:** Przy bardziej złożonych stanach (np. obiekty, tablice) – zawsze jawnie wpisuj typ. Nawet jeśli TypeScript czasem sam się domyśli (tzw. inferencja typów), jawne typowanie jest bardziej czytelne i odporne na błędy, zwłaszcza gdy stan może być początkowo `null` lub pustą tablicą.
+> ⭐ **Pro tip:** Przy bardziej złożonych stanach (np. obiekty, tablice) - zawsze jawnie wpisuj typ. Nawet jeśli TypeScript czasem sam się domyśli (tzw. inferencja typów), jawne typowanie jest bardziej czytelne i odporne na błędy, zwłaszcza gdy stan może być początkowo `null` lub pustą tablicą.
 
 ---
 
@@ -301,10 +301,10 @@ Dzięki typowaniu masz pewność, do jakiego elementu się odwołujesz (`HTMLBut
 
 ## Przydatne narzędzia i wskazówki
 
-- **TSX (lub JSX z TypeScriptem)** – Twoje pliki React powinny mieć rozszerzenie `.tsx` (lub `.jsx` jeśli używasz React w trybie TypeScript, ale `.tsx` jest standardem). Pozwalają one na mieszanie składni JSX z typami TypeScript!
-- **TypeScript Playground** – idealne narzędzie do szybkiego testowania kodu TypeScript online bez konfiguracji środowiska:
+- **TSX (lub JSX z TypeScriptem)** - Twoje pliki React powinny mieć rozszerzenie `.tsx` (lub `.jsx` jeśli używasz React w trybie TypeScript, ale `.tsx` jest standardem). Pozwalają one na mieszanie składni JSX z typami TypeScript!
+- **TypeScript Playground** - idealne narzędzie do szybkiego testowania kodu TypeScript online bez konfiguracji środowiska:
   `https://www.typescriptlang.org/play`
-- **Oficjalna dokumentacja React + TypeScript:** Zawsze warto zajrzeć do źródła – dokumentacja Reacta ma dedykowaną sekcję o TypeScript:
+- **Oficjalna dokumentacja React + TypeScript:** Zawsze warto zajrzeć do źródła - dokumentacja Reacta ma dedykowaną sekcję o TypeScript:
   `https://react.dev/learn/typescript`
 - **Chcesz szybko wystartować z nowym projektem?** Użyj Vite z szablonem React + TypeScript:
   ```bash
@@ -591,6 +591,6 @@ export default App;
 
 ## Podsumowanie
 
-Gratulacje! 🎉 Zrobiłeś właśnie pierwszy krok w świat TypeScript + React – połączenia, które sprawia, że kod staje się bardziej przewidywalny, czytelny i po prostu przyjemniejszy w pracy. Dzięki typowaniu szybciej łapiesz błędy, a Twoje komponenty są super czytelne nie tylko dla Ciebie, ale też dla całego zespołu.
+Gratulacje! 🎉 Zrobiłeś właśnie pierwszy krok w świat TypeScript + React - połączenia, które sprawia, że kod staje się bardziej przewidywalny, czytelny i po prostu przyjemniejszy w pracy. Dzięki typowaniu szybciej łapiesz błędy, a Twoje komponenty są super czytelne nie tylko dla Ciebie, ale też dla całego zespołu.
 
 Nie bój się eksperymentować, zadawać pytań i sprawdzać rzeczy w praktyce. Każdy kod napisany z TypeScriptem to inwestycja w Twój rozwój jako programisty! 🚀

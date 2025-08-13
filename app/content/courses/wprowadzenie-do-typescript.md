@@ -29,7 +29,7 @@ quiz:
         - "Język programowania bazujący na składni Pythona, ale dla frontendu."
         - "System do tworzenia dynamicznych szablonów HTML, alternatywa dla Pug czy Handlebars."
       answer: 1
-      explanation: "Dokładnie tak! TypeScript to JavaScript na sterydach 😎 – rozszerza go o statyczne typowanie, które pomaga łapać błędy zanim kod się uruchomi, a także dostarcza mnóstwo narzędzi wspierających pisanie kodu. To prawdziwy game-changer!"
+      explanation: "Dokładnie tak! TypeScript to JavaScript na sterydach 😎 - rozszerza go o statyczne typowanie, które pomaga łapać błędy zanim kod się uruchomi, a także dostarcza mnóstwo narzędzi wspierających pisanie kodu. To prawdziwy game-changer!"
 
     - question: "Jakie rozszerzenie mają standardowe pliki z kodem TypeScript?"
       options:
@@ -104,7 +104,7 @@ Cześć! 👋 Słyszałeś/aś kiedyś o **TypeScript**? Jeśli już trochę kod
 
 Co to znaczy, że jest "nadzbiorem" JavaScriptu? To proste: każdy poprawny kod, który napiszesz w **JavaScript**, jest również poprawnym kodem **TypeScript**! 🤯 To tak, jakby TypeScript był JavaScriptem, ale z dodatkowymi supermocami.
 
-Główna z tych supermocy to **statyczne typowanie**. Czym to jest? 🤔 Normalnie w JavaScript możesz przypisać cokolwiek do zmiennej, a błędy wyjdą dopiero, gdy program się uruchomi (czasem w najmniej odpowiednim momencie! 😱). TypeScript działa inaczej – sprawdza typy danych (czyli to, czy dana zmienna to liczba, tekst, czy może coś innego) **już podczas pisania kodu**. Dzięki temu, jeśli popełnisz błąd (np. spróbujesz dodać tekst do liczby), Twój edytor kodu od razu Cię o tym poinformuje, zanim w ogóle uruchomisz program! To jak mieć osobistego asystenta, który wyłapuje literówki i pomyłki za Ciebie! ✨
+Główna z tych supermocy to **statyczne typowanie**. Czym to jest? 🤔 Normalnie w JavaScript możesz przypisać cokolwiek do zmiennej, a błędy wyjdą dopiero, gdy program się uruchomi (czasem w najmniej odpowiednim momencie! 😱). TypeScript działa inaczej - sprawdza typy danych (czyli to, czy dana zmienna to liczba, tekst, czy może coś innego) **już podczas pisania kodu**. Dzięki temu, jeśli popełnisz błąd (np. spróbujesz dodać tekst do liczby), Twój edytor kodu od razu Cię o tym poinformuje, zanim w ogóle uruchomisz program! To jak mieć osobistego asystenta, który wyłapuje literówki i pomyłki za Ciebie! ✨
 
 Zapamiętaj:
 
@@ -126,7 +126,7 @@ No dobrze, wiemy już, że TypeScript to JavaScript z bajerami. Ale jakie dokła
 | **Wsparcie narzędzi** | Dobre, ale bez pełnej wiedzy o typach                       | **Doskonałe!** Podpowiedzi, autouzupełnianie, refaktoryzacje na wyższym poziomie 🚀 |
 | **Pliki**             | `.js` (lub `.jsx` dla Reacta)                               | `.ts` (lub `.tsx` dla Reacta)                                                       |
 
-**Kompilacja**: To kluczowa sprawa! 🔑 Twój kod TypeScript (`.ts`) musi zostać **przetłumaczony** (technicznie to się nazywa **transpilacja**, bo to z jednego języka JavaScriptu na inną, starszą wersję JavaScriptu) na czysty JavaScript (`.js`), zanim przeglądarka albo Node.js będzie mogła go zrozumieć i uruchomić. To jak z przetłumaczeniem książki na inny język – najpierw tłumacz, potem czytaj. Kompilator TypeScripta (`tsc`) robi to błyskawicznie! ⚡️
+**Kompilacja**: To kluczowa sprawa! 🔑 Twój kod TypeScript (`.ts`) musi zostać **przetłumaczony** (technicznie to się nazywa **transpilacja**, bo to z jednego języka JavaScriptu na inną, starszą wersję JavaScriptu) na czysty JavaScript (`.js`), zanim przeglądarka albo Node.js będzie mogła go zrozumieć i uruchomić. To jak z przetłumaczeniem książki na inny język - najpierw tłumacz, potem czytaj. Kompilator TypeScripta (`tsc`) robi to błyskawicznie! ⚡️
 
 **Typowanie**: To serce TypeScripta! ❤️ Dzięki niemu możesz określić, jakiego typu danych spodziewasz się w danym miejscu (np. `ta zmienna zawsze będzie liczbą`, `ta funkcja zawsze zwróci tekst`). Jeśli spróbujesz przypisać coś innego, TypeScript natychmiast Cię o tym poinformuje. W JavaScript takie błędy wychodzą na jaw dopiero, gdy użytkownik kliknie coś na stronie, co może doprowadzić do nieprzewidzianych crashy. 💥 W TypeScript błędy wyłapywane są **wcześniej**, co oszczędza mnóstwo czasu na debugowanie (czyli szukanie i naprawianie błędów)! 🕵️‍♀️
 
@@ -217,7 +217,7 @@ Widzisz? Czysty JavaScript, gotowy do uruchomienia! 🤩
 
 ### Konfiguracja projektu i `tsconfig.json`
 
-W małych projektach kompilowanie pojedynczych plików to pestka. Ale w większych aplikacjach, gdzie masz wiele plików i folderów, ręczne kompilowanie każdego z osobna to katorga. 😩 Tu z pomocą przychodzi plik **`tsconfig.json`**! To plik konfiguracyjny, który mówi kompilatorowi TypeScripta, jak ma się zachować – jakie pliki kompilować, gdzie je umieścić, do jakiej wersji JavaScriptu konwertować i wiele, wiele więcej.
+W małych projektach kompilowanie pojedynczych plików to pestka. Ale w większych aplikacjach, gdzie masz wiele plików i folderów, ręczne kompilowanie każdego z osobna to katorga. 😩 Tu z pomocą przychodzi plik **`tsconfig.json`**! To plik konfiguracyjny, który mówi kompilatorowi TypeScripta, jak ma się zachować - jakie pliki kompilować, gdzie je umieścić, do jakiej wersji JavaScriptu konwertować i wiele, wiele więcej.
 
 Aby wygenerować podstawowy plik `tsconfig.json` w swoim projekcie, przejdź do głównego katalogu projektu w terminalu i wpisz:
 
@@ -225,7 +225,7 @@ Aby wygenerować podstawowy plik `tsconfig.json` w swoim projekcie, przejdź do 
 tsc --init
 ```
 
-To polecenie stworzy plik `tsconfig.json` z domyślnymi, często używanymi ustawieniami. Otwórz go w edytorze kodu – zobaczysz mnóstwo skomentowanych opcji. Na początek skupmy się na kilku kluczowych:
+To polecenie stworzy plik `tsconfig.json` z domyślnymi, często używanymi ustawieniami. Otwórz go w edytorze kodu - zobaczysz mnóstwo skomentowanych opcji. Na początek skupmy się na kilku kluczowych:
 
 ```json
 {
@@ -456,7 +456,7 @@ Interfejsy są fundamentem dla pisania czytelnego i bezpiecznego kodu, zwłaszcz
 
 Czasami potrzebujesz typów, które łączą w sobie cechy kilku innych. TypeScript oferuje świetne narzędzia do tworzenia takich "hybryd":
 
-- **Unie Typów (`|`)**: Pozwalają zmiennej przyjmować wartości jednego z kilku określonych typów. To jak znak "LUB" – zmienna może być _albo_ tym, _albo_ tym.
+- **Unie Typów (`|`)**: Pozwalają zmiennej przyjmować wartości jednego z kilku określonych typów. To jak znak "LUB" - zmienna może być _albo_ tym, _albo_ tym.
 
   ```typescript
   let id: string | number; // 'id' może być stringiem LUB liczbą
@@ -477,7 +477,7 @@ Czasami potrzebujesz typów, które łączą w sobie cechy kilku innych. TypeScr
 
   To świetnie sprawdza się w przypadku stałych wartości, np. statusów, poziomów dostępu czy właśnie kierunków.
 
-- **Typy Połączeń (Intersection Types) (`&`)**: Pozwalają połączyć ze sobą właściwości wielu typów w jeden nowy typ. To jak znak "I" – nowy typ musi mieć właściwości _zarówno_ tego, _jak i_ tego typu.
+- **Typy Połączeń (Intersection Types) (`&`)**: Pozwalają połączyć ze sobą właściwości wielu typów w jeden nowy typ. To jak znak "I" - nowy typ musi mieć właściwości _zarówno_ tego, _jak i_ tego typu.
 
   ```typescript
   interface Admin {
@@ -553,7 +553,10 @@ class Zwierze {
 class Pies extends Zwierze {
   // Słowo kluczowe 'extends' oznacza dziedziczenie
   // Konstruktor klasy potomnej
-  constructor(nazwa: string, public rasa: string) {
+  constructor(
+    nazwa: string,
+    public rasa: string
+  ) {
     super(nazwa); // 'super()' wywołuje konstruktor klasy bazowej (Zwierze)
     this.rasa = rasa;
   }
@@ -613,7 +616,7 @@ if (statusZamowienia === StatusZamowienia.W_OCZEKIWANIU) {
 }
 ```
 
-Enumy zwiększają czytelność kodu i minimalizują ryzyko literówek. Zamiast pisać `"czerwony"`, piszesz `Kolor.Czerwony` – od razu widać, że to jeden z predefiniowanych kolorów. 👍
+Enumy zwiększają czytelność kodu i minimalizują ryzyko literówek. Zamiast pisać `"czerwony"`, piszesz `Kolor.Czerwony` - od razu widać, że to jeden z predefiniowanych kolorów. 👍
 
 ### Alias typów: Nadawanie imion złożonym typom
 
@@ -902,18 +905,15 @@ Nauka programowania, zwłaszcza tak rozbudowanego języka jak TypeScript, to dł
 Oto miejsca, gdzie zawsze znajdziesz wsparcie:
 
 - **Oficjalna Dokumentacja TypeScript:** To najlepsze miejsce, aby zacząć i pogłębić wiedzę. Dokumentacja jest świetnie napisana, pełna przykładów i regularnie aktualizowana.
-
   - [TypeScript: The starting point for learning TypeScript](https://www.typescriptlang.org/docs/) (anglojęzyczna, ale bardzo przystępna)
 
 - **TypeScript Playground Online:** To super narzędzie! Możesz w nim pisać kod TypeScript bezpośrednio w przeglądarce, zobaczyć, jak jest kompilowany do JavaScriptu i od razu sprawdzić błędy typów. Idealne do szybkich eksperymentów i testowania małych fragmentów kodu.
-
   - [TypeScript: TS Playground - An online editor for exploring TypeScript and JavaScript](https://www.typescriptlang.org/play)
 
 - **Stack Overflow:** To prawdziwa skarbnica wiedzy dla programistów! Jeśli masz konkretne pytanie lub natkniesz się na błąd, szanse są ogromne, że ktoś już miał podobny problem i rozwiązanie jest dostępne. Używaj tagu `[typescript]` w swoich pytaniach.
-
   - [Newest 'typescript' Questions - Stack Overflow](https://stackoverflow.com/questions/tagged/typescript)
 
-- **Społeczności na Discordzie i Forach:** Istnieje wiele aktywnych społeczności, gdzie możesz zadawać pytania i dyskutować z innymi deweloperami. Poszukaj serwerów Discord poświęconych JavaScriptowi, Node.js czy frontendowi – na pewno znajdziesz tam kanały poświęcone TypeScriptowi.
+- **Społeczności na Discordzie i Forach:** Istnieje wiele aktywnych społeczności, gdzie możesz zadawać pytania i dyskutować z innymi deweloperami. Poszukaj serwerów Discord poświęconych JavaScriptowi, Node.js czy frontendowi - na pewno znajdziesz tam kanały poświęcone TypeScriptowi.
 
 - **GitHub:** Przeglądaj projekty open-source napisane w TypeScript! To świetny sposób, aby zobaczyć, jak inni deweloperzy używają typów w praktyce i jakie wzorce stosują. Możesz też zadawać pytania w sekcji "Issues" danego projektu.
 
@@ -925,7 +925,7 @@ Pamiętaj, że każdy kiedyś zaczynał! Nie krępuj się zadawać pytań, nawet
 
 ## Zadania Praktyczne: Ćwicz, ćwicz, ćwicz!
 
-Teoria to jedno, ale prawdziwa nauka dzieje się, gdy piszesz kod! Spróbuj samodzielnie rozwiązać poniższe zadania. Nie bój się popełniać błędów – to najlepszy sposób na naukę! Zanim zajrzysz do rozwiązań, spróbuj pogłówkować trochę sam/a. Powodzenia! 🍀
+Teoria to jedno, ale prawdziwa nauka dzieje się, gdy piszesz kod! Spróbuj samodzielnie rozwiązać poniższe zadania. Nie bój się popełniać błędów - to najlepszy sposób na naukę! Zanim zajrzysz do rozwiązań, spróbuj pogłówkować trochę sam/a. Powodzenia! 🍀
 
 ---
 
@@ -1066,7 +1066,10 @@ class Pojazd {
 }
 
 class Samochod extends Pojazd {
-  constructor(marka: string, public model: string) {
+  constructor(
+    marka: string,
+    public model: string
+  ) {
     super(marka); // Wywołanie konstruktora klasy bazowej
   }
 
@@ -1092,6 +1095,6 @@ Mega robota! Dotarłeś/aś do końca wprowadzenia do TypeScript! 🥳 Mam nadzi
 
 TypeScript to nie tylko język, to filozofia pisania kodu, która promuje bezpieczeństwo, przewidywalność i łatwość współpracy. Jeśli chcesz pisać nowoczesny, bezpieczny i skalowalny kod JavaScript, TypeScript jest Twoim sprzymierzeńcem.
 
-**Moja rada na koniec:** Zacznij używać TypeScripta w swoich małych projektach. Eksperymentuj, popełniaj błędy i ucz się na nich. Tylko w ten sposób naprawdę zrozumiesz jego moc. A jeśli masz jakieś pytania – wiesz, gdzie mnie szukać! 😉
+**Moja rada na koniec:** Zacznij używać TypeScripta w swoich małych projektach. Eksperymentuj, popełniaj błędy i ucz się na nich. Tylko w ten sposób naprawdę zrozumiesz jego moc. A jeśli masz jakieś pytania - wiesz, gdzie mnie szukać! 😉
 
 Gotowy/a na kolejne wyzwania z TypeScriptem, czy może masz już jakiś pomysł na swój pierwszy projekt z jego wykorzystaniem? Daj znać! 👇

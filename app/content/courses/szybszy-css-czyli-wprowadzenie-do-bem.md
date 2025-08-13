@@ -53,7 +53,7 @@ quiz:
       explanation: "BEM zwiększa modularność, czytelność i pomaga unikać konfliktów w nazwach klas."
 ---
 
-Witaj w świecie **BEM**! 🚀 Jeśli pracujesz nad coraz większymi i bardziej złożonymi projektami webowymi, z pewnością zauważasz, jak łatwo kod CSS może stać się chaotyczny i trudny do zarządzania. Właśnie tutaj z pomocą przychodzi **BEM** – metodyka, która wprowadza porządek i logikę do Twoich stylów, sprawiając, że są one **modułowe, skalowalne i łatwe do utrzymania**. Gotowy/a na rewolucję w sposobie pisania CSS? Zaczynamy! 💡
+Witaj w świecie **BEM**! 🚀 Jeśli pracujesz nad coraz większymi i bardziej złożonymi projektami webowymi, z pewnością zauważasz, jak łatwo kod CSS może stać się chaotyczny i trudny do zarządzania. Właśnie tutaj z pomocą przychodzi **BEM** - metodyka, która wprowadza porządek i logikę do Twoich stylów, sprawiając, że są one **modułowe, skalowalne i łatwe do utrzymania**. Gotowy/a na rewolucję w sposobie pisania CSS? Zaczynamy! 💡
 
 ## Spis treści
 

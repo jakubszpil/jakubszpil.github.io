@@ -14,7 +14,7 @@ quiz:
         - "Dynamic Output Mapper"
         - "Document Object Model"
       answer: 3
-      explanation: "DOM to Document Object Model – model obiektowy dokumentu HTML lub XML."
+      explanation: "DOM to Document Object Model - model obiektowy dokumentu HTML lub XML."
 
     - question: "Jaką strukturę prezentuje DOM?"
       options:
@@ -88,7 +88,7 @@ Witaj w świecie **DOM**! 🌐 Jeśli HTML to struktura Twojej strony, a CSS to 
 
 **DOM** (ang. **Document Object Model**, czyli Model Obiektowy Dokumentu) to **interfejs programistyczny (API)**, który pozwala na interakcję z dokumentami HTML i XML za pomocą języków skryptowych, takich jak **JavaScript**.
 
-Wyobraź sobie przeglądarkę internetową, która ładuje stronę HTML. Kiedy to się dzieje, przeglądarka nie widzi tylko surowego tekstu kodu. Zamiast tego, tworzy w pamięci **obiektową reprezentację** tego dokumentu – właśnie to jest DOM.
+Wyobraź sobie przeglądarkę internetową, która ładuje stronę HTML. Kiedy to się dzieje, przeglądarka nie widzi tylko surowego tekstu kodu. Zamiast tego, tworzy w pamięci **obiektową reprezentację** tego dokumentu - właśnie to jest DOM.
 
 DOM przedstawia cały dokument jako **strukturę drzewiastą**, gdzie każdy element HTML (jak `<p>`, `<h1>`, `<div>`), każdy atrybut (jak `href`, `src`, `id`, `class`) i każdy fragment tekstu (nawet komentarze) jest oddzielnym **węzłem (node)**. Te węzły są ze sobą powiązane relacjami rodzic-dziecko-rodzeństwo, tworząc hierarchiczne "drzewo".
 

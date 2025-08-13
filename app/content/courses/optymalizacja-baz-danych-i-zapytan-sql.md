@@ -98,11 +98,11 @@ Indeks to specjalna struktura danych (np. drzewo B-drzewiaste), która przyspies
 
 ### Rodzaje indeksów
 
-- **Indeks podstawowy (PRIMARY)** – na kluczu głównym, zawsze unikalny.
-- **Indeksy unikalne (UNIQUE)** – zapewniają unikalność wartości w kolumnie.
-- **Indeksy zwykłe** – przyspieszają wyszukiwanie, ale mogą mieć powtarzające się wartości.
-- **Indeksy złożone (wielokolumnowe)** – na kilku kolumnach jednocześnie.
-- **Indeksy pełnotekstowe** – do wyszukiwania tekstów.
+- **Indeks podstawowy (PRIMARY)** - na kluczu głównym, zawsze unikalny.
+- **Indeksy unikalne (UNIQUE)** - zapewniają unikalność wartości w kolumnie.
+- **Indeksy zwykłe** - przyspieszają wyszukiwanie, ale mogą mieć powtarzające się wartości.
+- **Indeksy złożone (wielokolumnowe)** - na kilku kolumnach jednocześnie.
+- **Indeksy pełnotekstowe** - do wyszukiwania tekstów.
 
 ### Tworzenie i usuwanie indeksów
 
@@ -112,9 +112,9 @@ Indeks to specjalna struktura danych (np. drzewo B-drzewiaste), która przyspies
 CREATE INDEX idx_nazwisko ON Pracownik(nazwisko);
 ```
 
-- `CREATE INDEX` – polecenie tworzące indeks.
-- `idx_nazwisko` – nazwa indeksu.
-- `ON Pracownik(nazwisko)` – tabela i kolumna, na której tworzony jest indeks.
+- `CREATE INDEX` - polecenie tworzące indeks.
+- `idx_nazwisko` - nazwa indeksu.
+- `ON Pracownik(nazwisko)` - tabela i kolumna, na której tworzony jest indeks.
 
 **Usuwanie indeksu:**
 
@@ -134,7 +134,7 @@ DROP INDEX idx_nazwisko ON Pracownik;
 
 ### Analiza planu wykonania (EXPLAIN)
 
-Polecenie **EXPLAIN** pokazuje, jak baza zamierza wykonać zapytanie – czy użyje indeksu, jak będzie łączyć tabele itd.
+Polecenie **EXPLAIN** pokazuje, jak baza zamierza wykonać zapytanie - czy użyje indeksu, jak będzie łączyć tabele itd.
 
 **Przykład:**
 
@@ -146,8 +146,8 @@ EXPLAIN SELECT * FROM Pracownik WHERE nazwisko = 'Kowalski';
 
 ### Unikanie typowych błędów
 
-- SELECT \* (wszystkie kolumny) – pobieraj tylko potrzebne kolumny.
-- Brak WHERE – zapytania bez warunków mogą przetwarzać całą tabelę.
+- SELECT \* (wszystkie kolumny) - pobieraj tylko potrzebne kolumny.
+- Brak WHERE - zapytania bez warunków mogą przetwarzać całą tabelę.
 - Zbyt złożone podzapytania lub zagnieżdżone JOINy bez indeksów.
 - Filtrowanie po kolumnie bez indeksu.
 
@@ -155,15 +155,15 @@ EXPLAIN SELECT * FROM Pracownik WHERE nazwisko = 'Kowalski';
 
 - Używaj WHERE, by ograniczyć liczbę przetwarzanych rekordów.
 - Łącz tabele po indeksowanych kolumnach (kluczach głównych/obcych).
-- Unikaj funkcji na kolumnach w WHERE (np. WHERE LOWER(nazwisko) = 'kowalski') – indeksy wtedy nie działają.
+- Unikaj funkcji na kolumnach w WHERE (np. WHERE LOWER(nazwisko) = 'kowalski') - indeksy wtedy nie działają.
 - Stosuj LIMIT, jeśli nie potrzebujesz wszystkich wyników.
 
 ---
 
 ## Normalizacja a denormalizacja danych
 
-- **Normalizacja** – dzielenie danych na tabele, by unikać powielania informacji i zapewnić spójność (zazwyczaj do 3NF).
-- **Denormalizacja** – celowe powielanie danych w tabelach (np. trzymanie nazwy produktu przy zamówieniu) w celu przyspieszenia odczytu danych, kosztem spójności i miejsca.
+- **Normalizacja** - dzielenie danych na tabele, by unikać powielania informacji i zapewnić spójność (zazwyczaj do 3NF).
+- **Denormalizacja** - celowe powielanie danych w tabelach (np. trzymanie nazwy produktu przy zamówieniu) w celu przyspieszenia odczytu danych, kosztem spójności i miejsca.
 
 **Kiedy warto denormalizować?**
 
@@ -174,10 +174,10 @@ EXPLAIN SELECT * FROM Pracownik WHERE nazwisko = 'Kowalski';
 
 ## Tuning bazy danych i parametry konfiguracyjne
 
-- **Cache (buforowanie)** – bazy danych posiadają wbudowane mechanizmy buforowania wyników zapytań i stron danych.
-- **Konfiguracja pamięci operacyjnej** – wielkość buforów, liczba połączeń.
-- **Partycjonowanie tabel** – dzielenie dużych tabel na mniejsze części (np. wg daty).
-- **Replikacja** – kopiowanie danych na różne serwery, by rozłożyć obciążenie.
+- **Cache (buforowanie)** - bazy danych posiadają wbudowane mechanizmy buforowania wyników zapytań i stron danych.
+- **Konfiguracja pamięci operacyjnej** - wielkość buforów, liczba połączeń.
+- **Partycjonowanie tabel** - dzielenie dużych tabel na mniejsze części (np. wg daty).
+- **Replikacja** - kopiowanie danych na różne serwery, by rozłożyć obciążenie.
 
 ---
 
@@ -285,4 +285,4 @@ Gdy bardzo często wyświetlamy raporty sprzedaży, możemy przechowywać sumę 
 
 ## Podsumowanie
 
-Optymalizacja baz danych i zapytań SQL pozwala obsługiwać większą ilość danych szybciej i taniej. Korzystaj z indeksów, analizuj plany wykonania, dbaj o strukturę bazy i monitoruj jej działanie – to klucz do sukcesu każdego większego projektu informatycznego!
+Optymalizacja baz danych i zapytań SQL pozwala obsługiwać większą ilość danych szybciej i taniej. Korzystaj z indeksów, analizuj plany wykonania, dbaj o strukturę bazy i monitoruj jej działanie - to klucz do sukcesu każdego większego projektu informatycznego!

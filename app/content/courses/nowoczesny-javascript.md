@@ -41,7 +41,7 @@ quiz:
         - "Funkcje strzałkowe nie działają w JS"
         - "Funkcja strzałkowa nie ma własnego `this`"
       answer: 3
-      explanation: "Funkcje strzałkowe nie posiadają własnego `this` — dziedziczą go z otoczenia."
+      explanation: "Funkcje strzałkowe nie posiadają własnego `this` - dziedziczą go z otoczenia."
 
     - question: "Jaką wartość zwróci poniższy kod?\n\n```javascript\nasync function test() { return 5; }\ntest().then(console.log);\n```"
       options:
@@ -53,24 +53,24 @@ quiz:
       explanation: "Funkcja async zawsze zwraca Promise, ale `then` wypisze wartość 5."
 ---
 
-Witaj w świecie **nowoczesnego JavaScriptu**! 🚀 Jeśli HTML to szkielet strony, a CSS to jej wygląd, to JavaScript jest sercem i mózgiem – sprawia, że strona ożywa, staje się interaktywna i dynamiczna. W ciągu ostatnich lat JavaScript przeszedł prawdziwy "renesans". Dzięki wprowadzeniu standardu **ES6** (ECMAScript 2015) i kolejnych aktualizacji, pisanie kodu w JS stało się znacznie przyjemniejsze, bezpieczniejsze i bardziej efektywne.
+Witaj w świecie **nowoczesnego JavaScriptu**! 🚀 Jeśli HTML to szkielet strony, a CSS to jej wygląd, to JavaScript jest sercem i mózgiem - sprawia, że strona ożywa, staje się interaktywna i dynamiczna. W ciągu ostatnich lat JavaScript przeszedł prawdziwy "renesans". Dzięki wprowadzeniu standardu **ES6** (ECMAScript 2015) i kolejnych aktualizacji, pisanie kodu w JS stało się znacznie przyjemniejsze, bezpieczniejsze i bardziej efektywne.
 
-Ten przewodnik zabierze Cię w podróż po najważniejszych nowościach, które musisz znać, aby pisać **nowoczesny JavaScript**. Nie martw się, jeśli jesteś początkujący/a – wszystko wyjaśnimy krok po kroku, z przykładami i analogiami, byś mógł/mogła od razu zastosować nową wiedzę w praktyce. Czas unowocześnić swoje umiejętności! ✨
+Ten przewodnik zabierze Cię w podróż po najważniejszych nowościach, które musisz znać, aby pisać **nowoczesny JavaScript**. Nie martw się, jeśli jesteś początkujący/a - wszystko wyjaśnimy krok po kroku, z przykładami i analogiami, byś mógł/mogła od razu zastosować nową wiedzę w praktyce. Czas unowocześnić swoje umiejętności! ✨
 
 ## Spis treści
 
-1.  [Zmienne: `let`, `const` i zakresy blokowe – pożegnanie z `var`?](#zmienne-let-const-i-zakresy-blokowe--pożegnanie-z-var)
-2.  [Funkcje strzałkowe (Arrow Functions) i ich zastosowania – krócej i czytelniej](#funkcje-strzałkowe-arrow-functions-i-ich-zastosowania--krócej-i-czytelniej)
-3.  [Szablony stringów (Template Literals) – łatwiejsza praca z tekstem](#szablony-stringów-template-literals--łatwiejsza-praca-z-tekstem)
-4.  [Destrukturyzacja tablic i obiektów – wyciągnij to, czego potrzebujesz](#destrukturyzacja-tablic-i-obiektów--wyciągnij-to-czego-potrzebujesz)
-5.  [Spread i Rest Operator (`...`) – elastyczność w manipulacji danymi](#spread-i-rest-operator---elastyczność-w-manipulacji-danymi)
-6.  [Promise API i obsługa asynchroniczności – opowiadaj historie o przyszłości](#promise-api-i-obsługa-asynchroniczności--opowiadaj-historie-o-przyszłości)
-7.  [Async/await – nowoczesna obsługa kodu asynchronicznego – pisz asynchronicznie, myśl synchronicznie](#asyncawait--nowoczesna-obsługa-kodu-asynchronicznego--pisz-asynchronicznie-myśl-synchronicznie)
+1.  [Zmienne: `let`, `const` i zakresy blokowe - pożegnanie z `var`?](#zmienne-let-const-i-zakresy-blokowe--pożegnanie-z-var)
+2.  [Funkcje strzałkowe (Arrow Functions) i ich zastosowania - krócej i czytelniej](#funkcje-strzałkowe-arrow-functions-i-ich-zastosowania--krócej-i-czytelniej)
+3.  [Szablony stringów (Template Literals) - łatwiejsza praca z tekstem](#szablony-stringów-template-literals--łatwiejsza-praca-z-tekstem)
+4.  [Destrukturyzacja tablic i obiektów - wyciągnij to, czego potrzebujesz](#destrukturyzacja-tablic-i-obiektów--wyciągnij-to-czego-potrzebujesz)
+5.  [Spread i Rest Operator (`...`) - elastyczność w manipulacji danymi](#spread-i-rest-operator---elastyczność-w-manipulacji-danymi)
+6.  [Promise API i obsługa asynchroniczności - opowiadaj historie o przyszłości](#promise-api-i-obsługa-asynchroniczności--opowiadaj-historie-o-przyszłości)
+7.  [Async/await - nowoczesna obsługa kodu asynchronicznego - pisz asynchronicznie, myśl synchronicznie](#asyncawait--nowoczesna-obsługa-kodu-asynchronicznego--pisz-asynchronicznie-myśl-synchronicznie)
 8.  [Zadania do wykonania: Sprawdź swoją wiedzę!](#zadania-do-wykonania-sprawdź-swoją-wiedzę)
 
 ---
 
-## Zmienne: `let`, `const` i zakresy blokowe – pożegnanie z `var`?
+## Zmienne: `let`, `const` i zakresy blokowe - pożegnanie z `var`?
 
 W starszych wersjach JavaScriptu zmienne deklarowaliśmy wyłącznie za pomocą słowa kluczowego `var`. Często prowadziło to do pomyłek i trudnych do wykrycia błędów. Nowoczesny JavaScript wprowadza dwa nowe sposoby deklarowania zmiennych: **`let`** i **`const`**, które znacznie poprawiają bezpieczeństwo i przewidywalność kodu.
 
@@ -97,21 +97,18 @@ Dla porównania, `var` ma **zakres funkcyjny** (function scope), co oznacza, że
 ### Różnice między `let`, `const` i `var`
 
 - **`let`**:
-
   - **Deklaruje zmienną**, której wartość może być **zmieniana** w dowolnym momencie.
   - Ma **zakres blokowy**.
   - Nie można jej ponownie zadeklarować w tym samym bloku (np. `let x = 5; let x = 10;` to błąd), ale można zmienić jej wartość (`x = 10;`).
   - Używaj `let`, gdy wiesz, że wartość zmiennej będzie się zmieniać (np. licznik w pętli).
 
 - **`const`**:
-
   - Deklaruje **stałą**, której wartość musi być **przypisana od razu** i **nie może być zmieniana** później.
   - Ma **zakres blokowy**.
   - Jeśli przypiszesz do `const` obiekt lub tablicę, nie możesz przypisać do niej _nowego_ obiektu/tablicy, ale możesz **modyfikować zawartość** tego obiektu/tablicy (np. dodawać lub usuwać elementy). `const` gwarantuje, że referencja (wskaźnik) do obiektu pozostaje taka sama, ale nie "zamraża" samego obiektu.
   - Używaj `const`, gdy wartość zmiennej nie powinna się zmieniać. To jest domyślny wybór w nowoczesnym JS, chyba że potrzebujesz `let`.
 
 - **`var`**:
-
   - **Ma zakres funkcyjny** (lub globalny, jeśli jest poza funkcją).
   - Jest podatny na **hoisting** (podnoszenie deklaracji), co oznacza, że deklaracja zmiennej jest "przenoszona" na początek zakresu, co może prowadzić do nieintuicyjnych zachowań.
   - Można go **wielokrotnie deklarować** w tym samym zakresie, co łatwo prowadzi do przypadkowych nadpisań.
@@ -136,7 +133,7 @@ console.log(osoba); // Wyświetli: { imie: "Anna", wiek: 29 }
 
 ---
 
-## Funkcje strzałkowe (Arrow Functions) i ich zastosowania – krócej i czytelniej
+## Funkcje strzałkowe (Arrow Functions) i ich zastosowania - krócej i czytelniej
 
 Funkcje strzałkowe to zwięzła alternatywa dla tradycyjnych funkcji JavaScript, która została wprowadzona w ES6. Są nie tylko krótsze, ale także rozwiązują pewien problem z kontekstem `this`, który często mylił początkujących programistów.
 
@@ -210,7 +207,7 @@ Dzięki temu funkcje strzałkowe są idealne do użycia w callbackach, metodach 
 
 ---
 
-## Szablony stringów (Template Literals) – łatwiejsza praca z tekstem
+## Szablony stringów (Template Literals) - łatwiejsza praca z tekstem
 
 Szablony stringów, wprowadzone w ES6, to potężne narzędzie do tworzenia ciągów znaków (stringów). Zastępują tradycyjne łączenie stringów za pomocą operatora `+` i oferują znacznie większą elastyczność i czytelność. Używamy ich, otaczając tekst **backtickami** (apostrofami wstecznymi) ` ` zamiast pojedynczych lub podwójnych cudzysłowów.
 
@@ -281,7 +278,7 @@ W tym przykładzie funkcja `upper` została "przypięta" do szablonu stringu i z
 
 ---
 
-## Destrukturyzacja tablic i obiektów – wyciągnij to, czego potrzebujesz
+## Destrukturyzacja tablic i obiektów - wyciągnij to, czego potrzebujesz
 
 Destrukturyzacja to potężna i bardzo często używana funkcja w nowoczesnym JavaScript. Pozwala na "rozpakowanie" wartości z tablic lub właściwości z obiektów do oddzielnych zmiennych w bardzo zwięzły i czytelny sposób. Upraszcza kod i czyni go bardziej deklaratywnym.
 
@@ -349,7 +346,7 @@ Destrukturyzacja jest szczególnie przydatna w funkcjach, gdy chcesz łatwo wyci
 
 ---
 
-## Spread i Rest Operator (`...`) – elastyczność w manipulacji danymi
+## Spread i Rest Operator (`...`) - elastyczność w manipulacji danymi
 
 Operator `...` (trzy kropki) jest jednym z najbardziej uniwersalnych i potężnych narzędzi w nowoczesnym JavaScript. Nazywany jest **operatorem spread** lub **operatorem rest**, w zależności od kontekstu, w jakim jest używany.
 
@@ -437,17 +434,17 @@ Zarówno spread, jak i rest operator są niezwykle przydatne i sprawiają, że k
 
 ---
 
-## Promise API i obsługa asynchroniczności – opowiadaj historie o przyszłości
+## Promise API i obsługa asynchroniczności - opowiadaj historie o przyszłości
 
 JavaScript jest językiem **jednowątkowym**, co oznacza, że może wykonywać tylko jedną operację w danym momencie. Jednak wiele operacji, takich jak pobieranie danych z internetu, odczyt plików, czy operacje na bazie danych, trwa pewien czas. Gdyby JavaScript musiał czekać na ich zakończenie, strona internetowa by się "zawiesiła" (nie reagowałaby na kliknięcia, przewijanie itp.).
 
 Tutaj wkracza **asynchroniczność**. Pozwala ona na rozpoczęcie operacji, a następnie przejście do kolejnych zadań, nie czekając na zakończenie tej pierwszej. Kiedy asynchroniczna operacja się zakończy, JavaScript wróci do niej i wykona dalsze kroki.
 
-Starszym sposobem obsługi asynchroniczności były **callbacki** (funkcje zwrotne), które jednak często prowadziły do tzw. "callback hell" (piekła callbacków) – zagnieżdżonego, trudnego do czytania i utrzymania kodu.
+Starszym sposobem obsługi asynchroniczności były **callbacki** (funkcje zwrotne), które jednak często prowadziły do tzw. "callback hell" (piekła callbacków) - zagnieżdżonego, trudnego do czytania i utrzymania kodu.
 
 ### Czym jest Promise?
 
-**Promise (Obietnica)** to obiekt w JavaScript, który reprezentuje ostateczne zakończenie (lub niepowodzenie) operacji asynchronicznej. Możesz myśleć o Promise jako o "przyszłej wartości". Składasz obietnicę, że w przyszłości otrzymasz wynik – albo sukces, albo błąd. 📦
+**Promise (Obietnica)** to obiekt w JavaScript, który reprezentuje ostateczne zakończenie (lub niepowodzenie) operacji asynchronicznej. Możesz myśleć o Promise jako o "przyszłej wartości". Składasz obietnicę, że w przyszłości otrzymasz wynik - albo sukces, albo błąd. 📦
 
 Promise może znajdować się w jednym z trzech stanów:
 
@@ -540,13 +537,13 @@ Promise to podstawa nowoczesnego JS w obsłudze asynchroniczności, a kolejny ro
 
 ---
 
-## Async/await – nowoczesna obsługa kodu asynchronicznego – pisz asynchronicznie, myśl synchronicznie
+## Async/await - nowoczesna obsługa kodu asynchronicznego - pisz asynchronicznie, myśl synchronicznie
 
 Mimo że Promise są ogromnym krokiem naprzód w porównaniu do callbacków, kod z długimi łańcuchami `.then().then().catch()` może wciąż być trudny do czytania. Standard ES2017 wprowadził słowa kluczowe **`async`** i **`await`**, które pozwalają pisać kod asynchroniczny w sposób, który wygląda i zachowuje się niemal identycznie jak kod synchroniczny, jednocześnie zachowując asynchroniczną naturę. To game changer! 🎮
 
 ### Uproszczenie pracy z Promise
 
-- **`async`**: Musisz oznaczyć funkcję słowem kluczowym `async`, aby móc używać w niej `await`. Funkcja `async` **zawsze zwraca Promise**, nawet jeśli zwrócisz w niej zwykłą wartość – JavaScript automatycznie opakuje ją w Promise.
+- **`async`**: Musisz oznaczyć funkcję słowem kluczowym `async`, aby móc używać w niej `await`. Funkcja `async` **zawsze zwraca Promise**, nawet jeśli zwrócisz w niej zwykłą wartość - JavaScript automatycznie opakuje ją w Promise.
 - **`await`**: Słowo kluczowe `await` może być użyte **tylko wewnątrz funkcji `async`**. Powoduje ono, że wykonanie funkcji `async` zostaje **wstrzymane**, dopóki Promise, na który czeka `await`, nie zostanie **spełniony (fulfilled)**. Kiedy Promise się spełni, `await` "rozpakowuje" jego wartość i przypisuje ją do zmiennej. Jeśli Promise zostanie odrzucony (rejected), `await` "wyrzuci" błąd, który możesz obsłużyć za pomocą `try...catch`.
 
 **Przykład użycia `async/await` (porównaj z przykładem z Promise Chaining):**
@@ -755,7 +752,7 @@ console.log(
 
 ---
 
-Gratulacje! 🎉 Dotarłeś/aś do końca kursu wprowadzającego w nowoczesny JavaScript. Masz teraz solidne podstawy do dalszego rozwoju. Pamiętaj, że kluczem jest praktyka – im więcej będziesz kodować, tym lepiej zrozumiesz te koncepcje.
+Gratulacje! 🎉 Dotarłeś/aś do końca kursu wprowadzającego w nowoczesny JavaScript. Masz teraz solidne podstawy do dalszego rozwoju. Pamiętaj, że kluczem jest praktyka - im więcej będziesz kodować, tym lepiej zrozumiesz te koncepcje.
 
 Co chciałbyś/chciałabyś zgłębić dalej? Może:
 

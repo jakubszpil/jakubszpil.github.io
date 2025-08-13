@@ -24,7 +24,7 @@ GitHub Actions to potężne narzędzie do automatyzacji procesów CI/CD. W tym a
 
 ## Wprowadzenie
 
-GitHub Actions umożliwia automatyzację procesów związanych z budowaniem, testowaniem i wdrażaniem aplikacji. Dzięki temu możesz wdrażać swoją aplikację na GitHub Pages lub inny hosting jednym commitem – bez ręcznego wykonywania deployu.
+GitHub Actions umożliwia automatyzację procesów związanych z budowaniem, testowaniem i wdrażaniem aplikacji. Dzięki temu możesz wdrażać swoją aplikację na GitHub Pages lub inny hosting jednym commitem - bez ręcznego wykonywania deployu.
 
 ---
 
@@ -100,11 +100,11 @@ jobs:
 - **Trigger**: Workflow uruchamia się na każdy `push` do brancha `main` oraz przy `pull_request`.
 - **Uprawnienia**: `permissions: contents: write` jest niezbędne do wykonania zapisu na branchu z GitHub Pages.
 - **Kroki:**
-  1. **Checkout repo** – pobranie kodu źródłowego.
-  2. **Install dependencies** – instalacja zależności npm.
-  3. **Build project** – budowanie aplikacji produkcyjnej.
-  4. _(Opcjonalnie)_ **Test project** – uruchomienie testów jednostkowych.
-  5. **Deploy to GitHub Pages** – automatyczny deploy do gałęzi `gh-pages` przy użyciu [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action).
+  1. **Checkout repo** - pobranie kodu źródłowego.
+  2. **Install dependencies** - instalacja zależności npm.
+  3. **Build project** - budowanie aplikacji produkcyjnej.
+  4. _(Opcjonalnie)_ **Test project** - uruchomienie testów jednostkowych.
+  5. **Deploy to GitHub Pages** - automatyczny deploy do gałęzi `gh-pages` przy użyciu [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action).
 
 ---
 

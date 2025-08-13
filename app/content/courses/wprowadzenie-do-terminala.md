@@ -1,6 +1,6 @@
 ---
 title: "Poczuć się jak w Matrixie, czyli wprowadzenie do terminala"
-description: "Terminal krok po kroku dla zupełnych początkujących – praktyczne wyjaśnienia, przykłady, najważniejsze komendy, tłumaczenie pojęć i typowe błędy. Naucz się korzystać z terminala bez stresu!"
+description: "Terminal krok po kroku dla zupełnych początkujących - praktyczne wyjaśnienia, przykłady, najważniejsze komendy, tłumaczenie pojęć i typowe błędy. Naucz się korzystać z terminala bez stresu!"
 keywords:
   [
     terminal,
@@ -67,7 +67,7 @@ quiz:
 
 Terminal (czyli wiersz poleceń) to okienko, w którym rozmawiasz z komputerem za pomocą komend tekstowych.  
 Dla początkujących może wydawać się tajemniczy, ale już po kilku lekcjach zobaczysz, że to bardzo potężne i wygodne narzędzie.  
-Poniżej znajdziesz **szczegółowe wyjaśnienia** – każda komenda i pojęcie jest wytłumaczona, a przykłady pokazują, jak działa terminal w praktyce.
+Poniżej znajdziesz **szczegółowe wyjaśnienia** - każda komenda i pojęcie jest wytłumaczona, a przykłady pokazują, jak działa terminal w praktyce.
 
 ## Spis treści
 
@@ -82,9 +82,9 @@ Poniżej znajdziesz **szczegółowe wyjaśnienia** – każda komenda i pojęcie
    - [Podgląd zawartości plików](#podgląd-zawartości-plików)
    - [Skróty klawiszowe i przydatne triki](#skrót-klawiszowe-i-przydatne-triki)
 6. [Jak czytać błędy i komunikaty terminala](#jak-czytać-błędy-i-komunikaty-terminala)
-7. [Pierwsze proste skrypty – automatyzacja](#pierwsze-proste-skrypty-–-automatyzacja)
+7. [Pierwsze proste skrypty - automatyzacja](#pierwsze-proste-skrypty---automatyzacja)
 8. [Najczęstsze błędy początkujących i jak ich unikać](#najczęstsze-błędy-początkujących-i-jak-ich-unikać)
-9. [Praktyczne zadania – ćwicz krok po kroku](#praktyczne-zadania-–-ćwicz-krok-po-kroku)
+9. [Praktyczne zadania - ćwicz krok po kroku](#praktyczne-zadania---ćwicz-krok-po-kroku)
 10. [Podsumowanie](#podsumowanie)
 
 ---
@@ -93,7 +93,7 @@ Poniżej znajdziesz **szczegółowe wyjaśnienia** – każda komenda i pojęcie
 
 **Terminal** to program (okno), w którym wpisujesz polecenia. Jest jak czat z komputerem, ale zamiast emoji i gifów, używasz prostych komend!
 
-**Shell** (np. Bash, Zsh, PowerShell) to „tłumacz” – komputer rozumie Twoje polecenia dzięki shellowi.
+**Shell** (np. Bash, Zsh, PowerShell) to „tłumacz” - komputer rozumie Twoje polecenia dzięki shellowi.
 
 **Przykład:**  
 Wyobraź sobie, że terminal to telefon, a shell to operator, który przekazuje Twoje polecenie komputerowi.
@@ -102,10 +102,10 @@ Wyobraź sobie, że terminal to telefon, a shell to operator, który przekazuje 
 
 ## Dlaczego warto uczyć się terminala?
 
-- **Szybkość** – wiele rzeczy zrobisz szybciej niż klikając po folderach.
-- **Automatyzacja** – możesz napisać skrypt, który powtarza czynność za Ciebie.
-- **Większa kontrola** – dostęp do narzędzi, które nie mają „okienek”.
-- **Przydatność w pracy programisty, administratora, a nawet zwykłego użytkownika** – terminal przyda się każdemu!
+- **Szybkość** - wiele rzeczy zrobisz szybciej niż klikając po folderach.
+- **Automatyzacja** - możesz napisać skrypt, który powtarza czynność za Ciebie.
+- **Większa kontrola** - dostęp do narzędzi, które nie mają „okienek”.
+- **Przydatność w pracy programisty, administratora, a nawet zwykłego użytkownika** - terminal przyda się każdemu!
 
 ---
 
@@ -129,7 +129,7 @@ Wyobraź sobie, że terminal to telefon, a shell to operator, który przekazuje 
   ```
   jakub@pc:~$
   ```
-- To jest **prompt** – miejsce, gdzie wpisujesz komendy.
+- To jest **prompt** - miejsce, gdzie wpisujesz komendy.
 - Miga kursor, czeka na Twój ruch!
 
 ---
@@ -194,7 +194,7 @@ Każda komenda ma swoją logikę. Poniżej wyjaśnienia i przykłady.
   **Co robi?** Zmienia nazwę pliku lub przenosi go.
 - `rm plik.txt`  
   **Co robi?** Usuwa plik (na zawsze!).  
-  ❗️Uwaga: nie trafia do kosza – usuwaj ostrożnie!
+  ❗️Uwaga: nie trafia do kosza - usuwaj ostrożnie!
 - `rm -r folder`  
   **Co robi?** Usuwa cały folder i wszystko, co jest w środku.
 
@@ -235,14 +235,14 @@ Każda komenda ma swoją logikę. Poniżej wyjaśnienia i przykłady.
 Nie bój się błędów!  
 Terminal grzecznie powie, co poszło nie tak:
 
-- **"No such file or directory"** – nie ma takiego pliku/katalogu. Sprawdź literówki!
-- **"Permission denied"** – brak uprawnień. Może spróbuj z `sudo` (na własną odpowiedzialność)?
-- **"Command not found"** – nie ma takiej komendy. Może się pomyliłeś?
-- **"Is a directory"** – próbujesz np. wyświetlić katalog jak plik, co nie ma sensu.
+- **"No such file or directory"** - nie ma takiego pliku/katalogu. Sprawdź literówki!
+- **"Permission denied"** - brak uprawnień. Może spróbuj z `sudo` (na własną odpowiedzialność)?
+- **"Command not found"** - nie ma takiej komendy. Może się pomyliłeś?
+- **"Is a directory"** - próbujesz np. wyświetlić katalog jak plik, co nie ma sensu.
 
 ---
 
-## Pierwsze proste skrypty – automatyzacja
+## Pierwsze proste skrypty - automatyzacja
 
 Skrypt to lista poleceń, które komputer wykona jedno po drugim.
 
@@ -268,15 +268,15 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
 
 ## Najczęstsze błędy początkujących i jak ich unikać
 
-- **Literówki** – sprawdzaj dokładnie, co wpisujesz.
-- **Nie ten katalog** – zanim coś zrobisz, sprawdź gdzie jesteś (`pwd`).
-- **Uprawnienia** – nie wszystko można robić bez „superpraw” (`sudo`).
-- **Usuwanie plików** – ostrożnie z `rm`! Nie ma kosza.
-- \*\*Mylenie / i \*\* – na Linux/Mac zawsze używaj „/” w ścieżkach.
+- **Literówki** - sprawdzaj dokładnie, co wpisujesz.
+- **Nie ten katalog** - zanim coś zrobisz, sprawdź gdzie jesteś (`pwd`).
+- **Uprawnienia** - nie wszystko można robić bez „superpraw” (`sudo`).
+- **Usuwanie plików** - ostrożnie z `rm`! Nie ma kosza.
+- \*\*Mylenie / i \*\* - na Linux/Mac zawsze używaj „/” w ścieżkach.
 
 ---
 
-## Praktyczne zadania – ćwicz krok po kroku
+## Praktyczne zadania - ćwicz krok po kroku
 
 ### Zadanie 1: Wyświetl zawartość swojego katalogu domowego, utwórz folder, przejdź do niego i utwórz pusty plik.
 
@@ -285,11 +285,11 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-1. `ls ~` – pokazuje, co masz w katalogu domowym.
-2. `mkdir ~/nauka_terminala` – tworzy folder o nazwie „nauka_terminala”.
-3. `cd ~/nauka_terminala` – wchodzi do tego folderu.
-4. `touch pierwszy_plik.txt` – tworzy pusty plik.
-5. `ls` – sprawdza, czy plik się pojawił.
+1. `ls ~` - pokazuje, co masz w katalogu domowym.
+2. `mkdir ~/nauka_terminala` - tworzy folder o nazwie „nauka_terminala”.
+3. `cd ~/nauka_terminala` - wchodzi do tego folderu.
+4. `touch pierwszy_plik.txt` - tworzy pusty plik.
+5. `ls` - sprawdza, czy plik się pojawił.
 </details>
 
 ---
@@ -302,7 +302,7 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
   </summary>
 
 `head -n 5 /etc/passwd`  
- _(„head” pokazuje początek pliku, „-n 5” – ile linii)_
+ _(„head” pokazuje początek pliku, „-n 5” - ile linii)_
 
 </details>
 
@@ -315,9 +315,9 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-1. `cp pierwszy_plik.txt kopia.txt` – tworzy kopię pliku.
-2. `mv kopia.txt nowa_nazwa.txt` – zmienia nazwę kopii.
-3. `ls` – sprawdza, czy oba pliki są w folderze.
+1. `cp pierwszy_plik.txt kopia.txt` - tworzy kopię pliku.
+2. `mv kopia.txt nowa_nazwa.txt` - zmienia nazwę kopii.
+3. `ls` - sprawdza, czy oba pliki są w folderze.
 </details>
 
 ---
@@ -346,6 +346,6 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
 
 ## Podsumowanie
 
-Terminal to nie czarna magia – to bardzo logiczne narzędzie, które pozwala szybciej i wygodniej korzystać z komputera.  
+Terminal to nie czarna magia - to bardzo logiczne narzędzie, które pozwala szybciej i wygodniej korzystać z komputera.  
 Krok po kroku, z wyjaśnieniami i praktyką, każdy może nauczyć się podstaw.  
-Nie bój się eksperymentować – komputer nie wybuchnie, a Ty zyskasz nową supermoc! 💪
+Nie bój się eksperymentować - komputer nie wybuchnie, a Ty zyskasz nową supermoc! 💪

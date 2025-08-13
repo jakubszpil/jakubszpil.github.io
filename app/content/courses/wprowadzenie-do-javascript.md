@@ -94,7 +94,7 @@ Witaj w ekscytującym świecie **JavaScript (JS)**! 🚀 Ten kurs to Twój przew
 
 ## Czym jest JavaScript i dlaczego jest tak ważny?
 
-Witaj w fascynującym świecie **JavaScript (JS)**! To język programowania, który jest niezwykle popularny i stanowi fundament większości dynamicznych i interaktywnych stron internetowych, które odwiedzasz każdego dnia. Wyobraź sobie stronę internetową, która nie tylko wyświetla tekst i obrazy, ale także reaguje na Twoje kliknięcia, przewijanie czy wprowadzanie danych w formularzach – to właśnie zasługa JavaScriptu! 🌐
+Witaj w fascynującym świecie **JavaScript (JS)**! To język programowania, który jest niezwykle popularny i stanowi fundament większości dynamicznych i interaktywnych stron internetowych, które odwiedzasz każdego dnia. Wyobraź sobie stronę internetową, która nie tylko wyświetla tekst i obrazy, ale także reaguje na Twoje kliknięcia, przewijanie czy wprowadzanie danych w formularzach - to właśnie zasługa JavaScriptu! 🌐
 
 ### Gdzie spotkasz JavaScript?
 
@@ -113,7 +113,7 @@ W tym kursie skupimy się głównie na podstawach JavaScriptu w kontekście prze
 
 ## Zmienne: Szafki na Twoje Dane
 
-Wyobraź sobie, że piszesz list, w którym musisz wiele razy powtórzyć swoje imię. Zamiast za każdym razem pisać "Jan", możesz użyć zmiennej "MojeImię" i włożyć do niej wartość "Jan". Później, jeśli zechcesz zmienić imię na "Krzysztof", zmienisz je tylko w jednym miejscu – w zmiennej! 📦
+Wyobraź sobie, że piszesz list, w którym musisz wiele razy powtórzyć swoje imię. Zamiast za każdym razem pisać "Jan", możesz użyć zmiennej "MojeImię" i włożyć do niej wartość "Jan". Później, jeśli zechcesz zmienić imię na "Krzysztof", zmienisz je tylko w jednym miejscu - w zmiennej! 📦
 
 W programowaniu **zmienne** to takie "pudełka" lub "szafki", w których możemy przechowywać różne dane (liczby, tekst, prawda/fałsz itp.). Te dane mogą się zmieniać w trakcie działania programu.
 
@@ -160,7 +160,7 @@ console.log(PI); // Wypisze: 3.14159
 
 Zmienne mogą przechowywać różne rodzaje informacji. W programowaniu te rodzaje informacji nazywamy **typami danych**. JavaScript, podobnie jak inne języki, ma kilka podstawowych typów danych, które pozwalają mu rozumieć i przetwarzać różne rodzaje wartości: 💾
 
-- **Number (Liczby):** Ten typ służy do przechowywania zarówno liczb całkowitych (np. `5`, `-100`), jak i liczb zmiennoprzecinkowych (ułamkowych, np. `3.14`, `0.5`). W JavaScript nie ma rozróżnienia na liczby całkowite i zmiennoprzecinkowe – wszystkie są typu `Number`.
+- **Number (Liczby):** Ten typ służy do przechowywania zarówno liczb całkowitych (np. `5`, `-100`), jak i liczb zmiennoprzecinkowych (ułamkowych, np. `3.14`, `0.5`). W JavaScript nie ma rozróżnienia na liczby całkowite i zmiennoprzecinkowe - wszystkie są typu `Number`.
   ```javascript
   let calkowita = 123; // Liczba całkowita
   let zmiennoprzecinkowa = 3.14; // Liczba zmiennoprzecinkowa
@@ -216,7 +216,7 @@ Służą do wykonywania podstawowych operacji matematycznych: 셈
 - `-` (odejmowanie)
 - `*` (mnożenie)
 - `/` (dzielenie)
-- `%` (reszta z dzielenia, czyli modulo – np. `10 % 3` da `1`, bo `10` podzielone przez `3` to `3` reszty `1`)
+- `%` (reszta z dzielenia, czyli modulo - np. `10 % 3` da `1`, bo `10` podzielone przez `3` to `3` reszty `1`)
 - `**` (potęgowanie - np. `2 ** 3` to `8`)
 - `++` (inkrementacja - zwiększa wartość o 1, np. `x++` to `x = x + 1`)
 - `--` (dekrementacja - zmniejsza wartość o 1, np. `x--` to `x = x - 1`)
@@ -825,6 +825,6 @@ Teraz, gdy masz mocne podstawy, możesz zagłębić się w bardziej zaawansowane
 - **Event Handling:** Jak reagować na działania użytkownika (kliknięcia, ruchy myszy, wprowadzanie danych). 🖱️
 - **Asynchronous JavaScript:** Jak radzić sobie z operacjami, które trwają pewien czas (np. pobieranie danych z internetu). ⏳
 - **ES6+ Features:** Wiele nowszych funkcji JavaScriptu, które ułatwiają pisanie kodu. ✨
-- **Frameworks i Biblioteki:** React, Angular, Vue.js – narzędzia, które przyspieszają i ułatwiają budowanie skomplikowanych aplikacji. 🏗️
+- **Frameworks i Biblioteki:** React, Angular, Vue.js - narzędzia, które przyspieszają i ułatwiają budowanie skomplikowanych aplikacji. 🏗️
 
 Niech Twoja podróż z JavaScriptem będzie ekscytująca i pełna sukcesów! Jeśli masz jakieś pytania, śmiało pytaj! Happy coding! 🚀

@@ -98,7 +98,7 @@ W tym kursie znajdziesz nie tylko przykłady, ale także szczegółowe wyjaśnie
 
 ### Czym jest JOIN i po co go używać?
 
-JOIN pozwala połączyć dane z kilku tabel w jednym zapytaniu – jest to niezbędne, jeśli chcesz łączyć informacje rozdzielone na logiczne części (np. dane klienta i jego zamówienia).  
+JOIN pozwala połączyć dane z kilku tabel w jednym zapytaniu - jest to niezbędne, jeśli chcesz łączyć informacje rozdzielone na logiczne części (np. dane klienta i jego zamówienia).  
 Bez JOIN musiałbyś pisać wiele zapytań lub duplikować dane w jednej tabeli.
 
 ---
@@ -116,8 +116,8 @@ FROM tabela1
 INNER JOIN tabela2 ON tabela1.klucz = tabela2.klucz_obcy;
 ```
 
-- `INNER JOIN` – typ złączenia.
-- `ON tabela1.klucz = tabela2.klucz_obcy` – warunek, określający, które rekordy mają być połączone.
+- `INNER JOIN` - typ złączenia.
+- `ON tabela1.klucz = tabela2.klucz_obcy` - warunek, określający, które rekordy mają być połączone.
 
 **Przykład:**
 
@@ -137,7 +137,7 @@ Pobierz imię klienta oraz datę jego zamówienia. Rekord zostanie zwrócony tyl
 #### LEFT JOIN
 
 **Opis:**  
-Zwraca wszystkie rekordy z lewej tabeli oraz dopasowania z prawej, a jeśli ich nie ma – wstawia NULL.
+Zwraca wszystkie rekordy z lewej tabeli oraz dopasowania z prawej, a jeśli ich nie ma - wstawia NULL.
 
 **Składnia:**
 
@@ -153,7 +153,7 @@ Zwraca wszystkich klientów, niezależnie czy mają zamówienia. Jeśli nie maj�
 #### RIGHT JOIN
 
 **Opis:**  
-Działa jak LEFT JOIN, ale odwrotnie – zwraca wszystkie rekordy z prawej tabeli.
+Działa jak LEFT JOIN, ale odwrotnie - zwraca wszystkie rekordy z prawej tabeli.
 
 #### FULL JOIN
 
@@ -182,7 +182,7 @@ LEFT JOIN Pracownik B ON A.przelozony_id = B.id;
 ```
 
 **Wyjaśnienie:**  
-Każdy pracownik ma przełożonego – łączymy tabelę Pracownik z samą sobą, by uzyskać imię szefa.
+Każdy pracownik ma przełożonego - łączymy tabelę Pracownik z samą sobą, by uzyskać imię szefa.
 
 ---
 
@@ -216,10 +216,10 @@ Zlicz ilu klientów pochodzi z każdego miasta.
 
 ### Funkcje agregujące
 
-- `COUNT(*)` – zlicza wszystkie rekordy w grupie.
-- `SUM(kolumna)` – suma wartości z danej kolumny.
-- `AVG(kolumna)` – średnia wartość.
-- `MIN(kolumna)` / `MAX(kolumna)` – najmniejsza/największa wartość.
+- `COUNT(*)` - zlicza wszystkie rekordy w grupie.
+- `SUM(kolumna)` - suma wartości z danej kolumny.
+- `AVG(kolumna)` - średnia wartość.
+- `MIN(kolumna)` / `MAX(kolumna)` - najmniejsza/największa wartość.
 
 **Przykład:**
 
@@ -273,7 +273,7 @@ FROM Klient;
 ```
 
 **Wyjaśnienie:**  
-Pobierz imię klienta i liczbę jego zamówień – dla każdego klienta osobno liczymy zamówienia.
+Pobierz imię klienta i liczbę jego zamówień - dla każdego klienta osobno liczymy zamówienia.
 
 ---
 
@@ -330,7 +330,7 @@ SELECT imie FROM Pracownik;
 ```
 
 **Wyjaśnienie:**  
-Pobierz listę wszystkich imion – zarówno klientów, jak i pracowników (bez powtórzeń).
+Pobierz listę wszystkich imion - zarówno klientów, jak i pracowników (bez powtórzeń).
 
 ---
 
@@ -338,11 +338,11 @@ Pobierz listę wszystkich imion – zarówno klientów, jak i pracowników (bez 
 
 ### Funkcje tekstowe
 
-- `LOWER(tekst)` – zamienia tekst na małe litery.
-- `UPPER(tekst)` – na wielkie litery.
-- `CONCAT(a, b)` – łączy teksty.
-- `SUBSTRING(tekst, start, długość)` – wycina fragment tekstu.
-- `LENGTH(tekst)` – długość tekstu.
+- `LOWER(tekst)` - zamienia tekst na małe litery.
+- `UPPER(tekst)` - na wielkie litery.
+- `CONCAT(a, b)` - łączy teksty.
+- `SUBSTRING(tekst, start, długość)` - wycina fragment tekstu.
+- `LENGTH(tekst)` - długość tekstu.
 
 **Przykład:**
 
@@ -357,9 +357,9 @@ Tworzy pełne imię i nazwisko klienta.
 
 ### Funkcje daty i czasu
 
-- `NOW()` – aktualna data i czas.
-- `DATE()` – wydobywa datę z pola daty/czasu.
-- `YEAR(data)` – wyciąga rok z daty.
+- `NOW()` - aktualna data i czas.
+- `DATE()` - wydobywa datę z pola daty/czasu.
+- `YEAR(data)` - wyciąga rok z daty.
 
 **Przykład:**
 
@@ -374,7 +374,7 @@ Wyświetla imię klienta i rok jego urodzenia.
 
 ### Funkcje warunkowe
 
-- `CASE WHEN ... THEN ... ELSE ... END` – pozwala warunkowo zmieniać wartości.
+- `CASE WHEN ... THEN ... ELSE ... END` - pozwala warunkowo zmieniać wartości.
 
 **Przykład:**
 

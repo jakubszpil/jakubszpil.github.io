@@ -61,7 +61,7 @@ quiz:
       explanation: "Propsy (properties) służą do przekazywania danych z komponentu-rodzica do komponentu-dziecka, jednokierunkowo."
 ---
 
-Witaj w świecie **Reacta**! 🚀 Jeśli chcesz tworzyć dynamiczne i interaktywne interfejsy użytkownika, to właśnie znalazłeś/aś odpowiednie narzędzie. React to potężna biblioteka JavaScript, która zmienia podejście do budowania aplikacji webowych, koncentrując się na komponentach – niezależnych, wielokrotnego użytku elementach Twojego interfejsu. Gotowy/a, by zanurzyć się w świat deklaratywnego UI i wirtualnego DOM? Zaczynajmy! ✨
+Witaj w świecie **Reacta**! 🚀 Jeśli chcesz tworzyć dynamiczne i interaktywne interfejsy użytkownika, to właśnie znalazłeś/aś odpowiednie narzędzie. React to potężna biblioteka JavaScript, która zmienia podejście do budowania aplikacji webowych, koncentrując się na komponentach - niezależnych, wielokrotnego użytku elementach Twojego interfejsu. Gotowy/a, by zanurzyć się w świat deklaratywnego UI i wirtualnego DOM? Zaczynajmy! ✨
 
 ## Spis treści
 
@@ -92,7 +92,7 @@ Witaj w świecie **Reacta**! 🚀 Jeśli chcesz tworzyć dynamiczne i interaktyw
 
 **React** (często nazywany też React.js lub ReactJS) to popularna, otwarta biblioteka JavaScript do **budowania interfejsów użytkownika (UI)**, stworzona i utrzymywana przez Meta (dawniej Facebook). ⚛️ Nie jest to pełnoprawny framework, jak np. Angular, ale skupia się wyłącznie na warstwie widoku w aplikacjach webowych i mobilnych (React Native).
 
-Jego główną filozofią jest tworzenie interfejsów z małych, **niezależnych i wielokrotnego użytku części**, zwanych **komponentami**. Dzięki temu, budowanie złożonych aplikacji staje się bardziej uporządkowane, modułowe i łatwiejsze w zarządzaniu. React stał się standardem w branży front-endu, wykorzystywanym przez tysiące firm na całym świecie, od małych startupów po gigantów technologicznych.
+Jego główną filozofią jest tworzenie interfejsów z małych, **niezależnych i wielokrotnego użytku części**, zwanych **komponentami**. Dzięki temu, budowanie złożonych aplikacji staje się bardziej uporządkowane, modułowe i łatwiejsze w zarządzaniu. React stał się standardem w branży frontendu, wykorzystywanym przez tysiące firm na całym świecie, od małych startupów po gigantów technologicznych.
 
 ---
 
@@ -101,7 +101,7 @@ Jego główną filozofią jest tworzenie interfejsów z małych, **niezależnych
 React zyskał ogromną popularność dzięki wielu korzyściom, które oferuje deweloperom:
 
 1.  **Komponentowa architektura:** Wszystko w React to komponent! 🧱 Dzięki temu możesz dzielić interfejs na małe, izolowane kawałki, które łatwo testować, rozwijać i ponownie wykorzystywać w różnych częściach aplikacji. To promuje podejście "buduj raz, używaj wszędzie".
-2.  **Deklaratywne podejście:** W React opisujesz, jak powinien wyglądać interfejs w danym stanie, a React zajmuje się resztą. Nie musisz martwić się o kroki manipulacji DOM (Document Object Model) – React zrobi to za Ciebie. To sprawia, że kod jest bardziej przewidywalny i łatwiejszy do debugowania.
+2.  **Deklaratywne podejście:** W React opisujesz, jak powinien wyglądać interfejs w danym stanie, a React zajmuje się resztą. Nie musisz martwić się o kroki manipulacji DOM (Document Object Model) - React zrobi to za Ciebie. To sprawia, że kod jest bardziej przewidywalny i łatwiejszy do debugowania.
 3.  **Wydajność dzięki Wirtualnemu DOM:** React używa **Wirtualnego DOM**, czyli lekkiej kopii prawdziwego DOM w pamięci. Kiedy stan aplikacji się zmienia, React najpierw aktualizuje Wirtualny DOM, porównuje go z poprzednim stanem i dopiero wtedy efektywnie aktualizuje tylko te fragmenty prawdziwego DOM, które faktycznie się zmieniły. To minimalizuje kosztowne operacje na DOM i sprawia, że aplikacje są szybkie. ⚡️
 4.  **Jednokierunkowy przepływ danych:** Dane w React płyną z góry na dół (od komponentów nadrzędnych do podrzędnych) poprzez tzw. **propsy**. To upraszcza debugowanie i zarządzanie stanem aplikacji, czyniąc ją bardziej przewidywalną.
 5.  **Duża społeczność i ekosystem:** React ma ogromną i aktywną społeczność deweloperów. Znajdziesz mnóstwo tutoriali, narzędzi, bibliotek pomocniczych (np. do routingu, zarządzania stanem) i wsparcia. To oznacza, że prawdopodobnie znajdziesz rozwiązanie na każdy problem, jaki napotkasz. 🤝
@@ -151,7 +151,7 @@ Dzięki JSX kod jest bardziej intuicyjny i przypomina strukturę, którą widzim
 
 ### Propsy (Properties): Przekazywanie danych
 
-**Propsy** (skrót od "properties") to sposób na przekazywanie danych z komponentu nadrzędnego (rodzica) do komponentu podrzędnego (dziecka). Działają one podobnie do atrybutów HTML i są **tylko do odczytu** – komponent podrzędny nie powinien modyfikować swoich propsów. To zapewnia jednokierunkowy przepływ danych, co ułatwia zarządzanie stanem aplikacji.
+**Propsy** (skrót od "properties") to sposób na przekazywanie danych z komponentu nadrzędnego (rodzica) do komponentu podrzędnego (dziecka). Działają one podobnie do atrybutów HTML i są **tylko do odczytu** - komponent podrzędny nie powinien modyfikować swoich propsów. To zapewnia jednokierunkowy przepływ danych, co ułatwia zarządzanie stanem aplikacji.
 
 ```jsx
 function Welcome(props) {
@@ -229,7 +229,7 @@ Nowoczesne aplikacje React rzadko są tworzone od podstaw bez żadnego narzędzi
 
 ### Dlaczego Vite?
 
-**Vite** to narzędzie do budowania front-endów, które oferuje bardzo szybkie uruchamianie serwera deweloperskiego (Dev Server) oraz błyskawiczne aktualizacje modułów (HMR - Hot Module Replacement). Dzieje się tak dzięki wykorzystaniu natywnych modułów ES w przeglądarce podczas dewelopmentu, co eliminuje potrzebę pełnej rekompilacji kodu przy każdej zmianie. Dla dewelopera oznacza to znacznie szybsze i przyjemniejsze doświadczenie. ⚡
+**Vite** to narzędzie do budowania frontendów, które oferuje bardzo szybkie uruchamianie serwera deweloperskiego (Dev Server) oraz błyskawiczne aktualizacje modułów (HMR - Hot Module Replacement). Dzieje się tak dzięki wykorzystaniu natywnych modułów ES w przeglądarce podczas dewelopmentu, co eliminuje potrzebę pełnej rekompilacji kodu przy każdej zmianie. Dla dewelopera oznacza to znacznie szybsze i przyjemniejsze doświadczenie. ⚡
 
 ### Inicjalizacja projektu
 

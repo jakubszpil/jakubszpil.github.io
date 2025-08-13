@@ -13,17 +13,11 @@ export function isTheme(value: unknown): value is Theme {
   return Object.values(Theme).includes(value as Theme);
 }
 
-export function isDarkThemeFromClassName(): boolean {
-  const className = document.documentElement.className;
-
-  return className.includes("dark");
+export function setLocalStorageTheme(theme: Theme) {
+  localStorage.setItem("theme", theme);
 }
 
-export function getTheme(): Theme {
-  if (isDarkThemeFromClassName()) {
-    return Theme.DARK;
-  }
-
+export function getLocalStorageTheme(): Theme {
   const value = localStorage.getItem("theme");
 
   if (isTheme(value)) {
@@ -35,8 +29,23 @@ export function getTheme(): Theme {
   return Theme.SYSTEM;
 }
 
-export function getResolvedTheme(theme: Theme): ResolvedTheme {
+export function isDarkThemeFromClassName(): boolean {
+  const className = document.documentElement.className;
+
+  return className.includes("dark");
+}
+
+export function getTheme(): Theme {
+  if (isDarkThemeFromClassName()) return Theme.DARK;
+
+  return getLocalStorageTheme();
+}
+
+export function getResolvedTheme(theme: Theme | null): ResolvedTheme | null {
   switch (theme) {
+    case null: {
+      return null;
+    }
     case Theme.DARK:
       return ResolvedTheme.DARK;
     case Theme.LIGHT:
@@ -46,10 +55,6 @@ export function getResolvedTheme(theme: Theme): ResolvedTheme {
       return matches ? ResolvedTheme.DARK : ResolvedTheme.LIGHT;
     }
   }
-}
-
-export function setTheme(theme: Theme) {
-  localStorage.setItem("theme", theme);
 }
 
 export function removeDarkThemeClassName() {
@@ -66,4 +71,34 @@ export function initializeThemeSwitching() {
 
 export function finalizeThemeSwitching() {
   document.documentElement.classList.remove("switching-theme");
+}
+
+export function toggleThemeClassName(resolvedTheme: ResolvedTheme | null) {
+  switch (resolvedTheme) {
+    case ResolvedTheme.DARK: {
+      appendDarkThemeClassName();
+      break;
+    }
+
+    case ResolvedTheme.LIGHT: {
+      removeDarkThemeClassName();
+      break;
+    }
+  }
+}
+
+export function performThemeChange(callback: () => void) {
+  initializeThemeSwitching();
+  callback();
+  setTimeout(() => finalizeThemeSwitching());
+}
+
+export function handleSystemThemeChange({ matches }: MediaQueryListEvent) {
+  performThemeChange(() => {
+    if (matches) {
+      appendDarkThemeClassName();
+    } else {
+      removeDarkThemeClassName();
+    }
+  });
 }

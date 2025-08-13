@@ -53,25 +53,25 @@ quiz:
       explanation: "border-radius pozwala na zaokrąglenie rogów elementu."
 ---
 
-Witaj w świecie **CSS**\! 🎨 Jeśli HTML to szkielet Twojej strony, to CSS jest niczym jej garderoba – nadaje jej styl, kolory, układ i całą estetykę. Bez CSS strony internetowe byłyby po prostu nagim tekstem bez żadnej wizualnej atrakcyjności. Ten przewodnik wprowadzi Cię w podstawy CSS, pokazując, jak sprawić, by Twoje strony wyglądały profesjonalnie i były przyjemne dla oka. Gotowy/a, by nadać styl swoim kreacjom webowym? Zaczynamy\! 🖌️
+Witaj w świecie **CSS**\! 🎨 Jeśli HTML to szkielet Twojej strony, to CSS jest niczym jej garderoba - nadaje jej styl, kolory, układ i całą estetykę. Bez CSS strony internetowe byłyby po prostu nagim tekstem bez żadnej wizualnej atrakcyjności. Ten przewodnik wprowadzi Cię w podstawy CSS, pokazując, jak sprawić, by Twoje strony wyglądały profesjonalnie i były przyjemne dla oka. Gotowy/a, by nadać styl swoim kreacjom webowym? Zaczynamy\! 🖌️
 
 ## Spis treści
 
 1.  [Czym jest CSS i dlaczego jest tak ważny?](#czym-jest-css-i-dlaczego-jest-tak-ważny)
 2.  [Jak działa CSS? Deklaracje i reguły](#jak-działa-css-deklaracje-i-reguły)
-3.  [Sposoby załączania CSS do HTML – gdzie umieścić style?](#sposoby-załączania-css-do-html--gdzie-umieścić-style)
+3.  [Sposoby załączania CSS do HTML - gdzie umieścić style?](#sposoby-załączania-css-do-html--gdzie-umieścić-style)
     - [Inline CSS (style w linii)](#inline-css-style-w-linii)
     - [Internal CSS (style wewnętrzne)](#internal-css-style-wewnętrzne)
     - [External CSS (zewnętrzny arkusz stylów)](#external-css-zewnętrzny-arkusz-stylów)
-4.  [Podstawowe selektory CSS – jak wybierać elementy do stylowania?](#podstawowe-selektory-css--jak-wybierać-elementy-do-stylowania)
+4.  [Podstawowe selektory CSS - jak wybierać elementy do stylowania?](#podstawowe-selektory-css--jak-wybierać-elementy-do-stylowania)
     - [Selektory elementów (Type Selectors)](#selektory-elementów-type-selectors)
     - [Selektory klas (Class Selectors)](#selektory-klas-class-selectors)
     - [Selektory identyfikatorów (ID Selectors)](#selektory-identyfikatorów-id-selectors)
-5.  [Podstawowe właściwości CSS – Twój zestaw narzędzi do stylizacji](#podstawowe-właściwości-css--twój-zestaw-narzędzi-do-stylizacji)
-    - [Kolory (Colors) – nadaj barwę tekstowi](#kolory-colors--nadaj-barwę-tekstowi)
-    - [Tło (Background) – pokoloruj przestrzeń](#tło-background--pokoloruj-przestrzeń)
-    - [Marginesy i wypełnienia (Margin & Padding) – kontroluj odstępy](#marginesy-i-wypełnienia-margin--padding--kontroluj-odstępy)
-    - [Ramki (Borders) – obramuj i zaokrąglaj](#ramki-borders--obramuj-i-zaokrąglaj)
+5.  [Podstawowe właściwości CSS - Twój zestaw narzędzi do stylizacji](#podstawowe-właściwości-css--twój-zestaw-narzędzi-do-stylizacji)
+    - [Kolory (Colors) - nadaj barwę tekstowi](#kolory-colors--nadaj-barwę-tekstowi)
+    - [Tło (Background) - pokoloruj przestrzeń](#tło-background--pokoloruj-przestrzeń)
+    - [Marginesy i wypełnienia (Margin & Padding) - kontroluj odstępy](#marginesy-i-wypełnienia-margin--padding--kontroluj-odstępy)
+    - [Ramki (Borders) - obramuj i zaokrąglaj](#ramki-borders--obramuj-i-zaokrąglaj)
 6.  [Zadania do wykonania: Sprawdź swoje umiejętności\!](#zadania-do-wykonania-sprawdź-swoje-umiejętności)
     - [Zadanie 1: Czerwony nagłówek](#zadanie-1-czerwony-nagłówek)
     - [Zadanie 2: Kolorowy akapit](#zadanie-2-kolorowy-akapit)
@@ -126,7 +126,7 @@ Kiedy przeglądarka napotka taką regułę, zastosuje podane style do wszystkich
 
 ---
 
-## Sposoby załączania CSS do HTML – gdzie umieścić style?
+## Sposoby załączania CSS do HTML - gdzie umieścić style?
 
 Istnieją trzy główne sposoby na połączenie stylów CSS z dokumentem HTML. Każdy z nich ma swoje zastosowanie i zalety.
 
@@ -278,7 +278,7 @@ button {
 
 ---
 
-## Podstawowe selektory CSS – jak wybierać elementy do stylowania?
+## Podstawowe selektory CSS - jak wybierać elementy do stylowania?
 
 Selektory to najważniejsza część reguł CSS. Mówią przeglądarce, **które elementy HTML** mają otrzymać konkretne style. Bez selektorów nie wiedziałbyś/wiedziałabyś, do czego przypisać dany kolor czy rozmiar czcionki.
 
@@ -398,11 +398,11 @@ Selektory ID pozwalają na stylowanie elementu z unikalnym identyfikatorem (`id`
 
 ---
 
-## Podstawowe właściwości CSS – Twój zestaw narzędzi do stylizacji
+## Podstawowe właściwości CSS - Twój zestaw narzędzi do stylizacji
 
 Poznałeś/aś, jak wybrać elementy (selektory) i gdzie umieścić style. Teraz czas na naukę **właściwości CSS**, które faktycznie zmieniają wygląd Twoich elementów. Poniżej przedstawiamy kilka najważniejszych i najczęściej używanych.
 
-### Kolory (Colors) – nadaj barwę tekstowi
+### Kolory (Colors) - nadaj barwę tekstowi
 
 Właściwość `color` służy do ustawiania **koloru tekstu** w elemencie.
 Możesz definiować kolory na kilka sposobów:
@@ -438,7 +438,7 @@ div.overlay {
 }
 ```
 
-### Tło (Background) – pokoloruj przestrzeń
+### Tło (Background) - pokoloruj przestrzeń
 
 Właściwości z prefiksem `background-` służą do stylowania tła elementów.
 
@@ -481,7 +481,7 @@ header {
 }
 ```
 
-### Marginesy i wypełnienia (Margin & Padding) – kontroluj odstępy
+### Marginesy i wypełnienia (Margin & Padding) - kontroluj odstępy
 
 Właściwości `margin` i `padding` są kluczowe do kontrolowania odstępów między elementami i wewnątrz nich. Aby to dobrze zrozumieć, wyobraź sobie każdy element HTML jako pudełko. 📦
 
@@ -494,7 +494,7 @@ Obie właściwości można ustawić dla wszystkich czterech stron elementu (gór
 
 - **Jedna wartość:** `padding: 20px;` (20px ze wszystkich stron).
 - **Dwie wartości:** `padding: 10px 20px;` (10px góra/dół, 20px lewo/prawo).
-- **Cztery wartości:** `padding: 10px 20px 30px 40px;` (góra, prawo, dół, lewo – zgodnie z ruchem wskazówek zegara).
+- **Cztery wartości:** `padding: 10px 20px 30px 40px;` (góra, prawo, dół, lewo - zgodnie z ruchem wskazówek zegara).
 - **Indywidualne właściwości:** `padding-top`, `padding-right`, `padding-bottom`, `padding-left` (analogicznie dla `margin`).
 
 <!-- end list -->
@@ -519,7 +519,7 @@ Obie właściwości można ustawić dla wszystkich czterech stron elementu (gór
 }
 ```
 
-### Ramki (Borders) – obramuj i zaokrąglaj
+### Ramki (Borders) - obramuj i zaokrąglaj
 
 Właściwości z prefiksem `border-` pozwalają na dodanie obramowania wokół elementu.
 
@@ -744,8 +744,8 @@ Brawo\! 🎉 Ukończyłeś/aś kurs podstaw CSS. Masz już solidne fundamenty, b
 
 Co dalej? Może zainteresuje Cię:
 
-- **Flexbox i Grid** – nowoczesne techniki układania elementów na stronie.
-- **Responsywny design** – jak sprawić, by strona wyglądała dobrze na każdym urządzeniu.
-- **Animacje i transformacje CSS** – dodawanie efektów wizualnych.
+- **Flexbox i Grid** - nowoczesne techniki układania elementów na stronie.
+- **Responsywny design** - jak sprawić, by strona wyglądała dobrze na każdym urządzeniu.
+- **Animacje i transformacje CSS** - dodawanie efektów wizualnych.
 
 Daj znać, co Cię interesuje\! 😊
