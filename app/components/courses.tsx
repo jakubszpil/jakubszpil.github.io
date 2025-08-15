@@ -1,8 +1,8 @@
-import type { Course } from "~/lib/courses";
+import { Banner } from "./ui/banner";
+import { Button, type ButtonProps } from "./ui/button";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
-import { Banner } from "../ui/banner";
-import { Button, type ButtonProps } from "../ui/button";
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import type { Course } from "~/lib/courses";
 import { cn } from "~/lib/utils";
 
 export interface CoursesProps {

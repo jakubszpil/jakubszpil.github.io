@@ -10,7 +10,7 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, { type CategoriesProps } from "~/components/blog/categories";
+import Categories, { type CategoriesProps } from "~/components/categories";
 import { Banner, type BannerProps } from "~/components/ui/banner";
 import {
   EditResource,
@@ -21,7 +21,7 @@ import { getArticle, type Article } from "~/lib/articles";
 
 import ArticleDetails, { loader } from "../article-details";
 
-vi.mock("~/components/blog/categories");
+vi.mock("~/components/categories");
 vi.mock("~/components/ui/edit-resource");
 vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
@@ -103,6 +103,8 @@ describe("<ArticleDetails />", () => {
     expect(MockedCategories).toHaveBeenCalledWith(
       {
         categories: MockedArticle.categories,
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
       } satisfies CategoriesProps,
       undefined
     );

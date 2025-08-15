@@ -12,14 +12,14 @@ import {
 import {
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
-} from "../../ui/link-with-prefetch";
-import Articles, { type ArticlesProps } from "../articles";
+} from "../ui/link-with-prefetch";
+import Courses, { type CoursesProps } from "../courses";
 
-vi.mock("../../ui/link-with-prefetch");
+vi.mock("../ui/link-with-prefetch");
 
-describe("<Articles />", () => {
+describe("<Courses />", () => {
   let MockedLinkWithPrefetch: MockInstance;
-  let MockedArticlesProps: ArticlesProps;
+  let MockedCoursesProps: CoursesProps;
 
   beforeEach(() => {
     MockedLinkWithPrefetch = vi
@@ -30,15 +30,15 @@ describe("<Articles />", () => {
         </a>
       ));
 
-    MockedArticlesProps = {
-      articles: [
+    MockedCoursesProps = {
+      courses: [
         {
           id: "1",
           slug: "test-1",
           content: "test content 1",
           categories: ["test", "category"],
-          title: "Test article 1",
-          description: "Test article description 1",
+          title: "Test course 1",
+          description: "Test course description 1",
           createdAt: "2025-03-17",
           readingTime: "3 minuty",
           keywords: [],
@@ -49,8 +49,8 @@ describe("<Articles />", () => {
           slug: "test-2",
           content: "test content 2",
           categories: ["test", "category"],
-          title: "Test article 2",
-          description: "Test article description 2",
+          title: "Test course 2",
+          description: "Test course description 2",
           createdAt: "2025-03-17",
           readingTime: "3 minuty",
           keywords: [],
@@ -65,13 +65,13 @@ describe("<Articles />", () => {
   });
 
   test("should render", async () => {
-    render(<Articles {...MockedArticlesProps} />);
+    render(<Courses {...MockedCoursesProps} />);
 
     await waitFor(() => {
       expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
         1,
         expect.objectContaining({
-          to: "/blog/test-1",
+          to: "/learning/test-1",
         } satisfies LinkWithPrefetchProps),
         undefined
       );
@@ -80,15 +80,15 @@ describe("<Articles />", () => {
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
-        to: "/blog/test-2",
+        to: "/learning/test-2",
       } satisfies LinkWithPrefetchProps),
       undefined
     );
 
-    screen.getByText("Test article 1");
-    screen.getByText("Test article description 1");
+    screen.getByText("Test course 1");
+    screen.getByText("Test course description 1");
 
-    screen.getByText("Test article 2");
-    screen.getByText("Test article description 2");
+    screen.getByText("Test course 2");
+    screen.getByText("Test course description 2");
   });
 });

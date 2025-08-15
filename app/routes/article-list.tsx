@@ -1,7 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Categories from "~/components/blog/categories";
-import Articles from "~/components/blog/articles";
+import Articles from "~/components/articles";
+import Categories from "~/components/categories";
 import { Seo } from "~/components/ui/seo";
 import { getArticlesByCategory, getArticlesCategories } from "~/lib/articles";
 import { getCapitalizedIndividualName } from "~/lib/string";
@@ -28,7 +28,12 @@ export default function ArticleList() {
 
       <header className="prose container">
         <h1>{title ?? "Artykuły"}</h1>
-        <Categories showAllCategory categories={categories} />
+        <Categories
+          showAllCategory
+          categories={categories}
+          baseUrl="/blog"
+          categoryPrefixUrl="/blog/kategorie"
+        />
       </header>
 
       <Articles articles={articles} />

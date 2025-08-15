@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Categories from "~/components/learning/categories";
+import Categories from "~/components/categories";
 import Quiz from "~/components/quiz";
 import { Banner } from "~/components/ui/banner";
 import { EditResource } from "~/components/ui/edit-resource";
@@ -33,7 +33,11 @@ export default function CourseDetails() {
           createdAt={course.createdAt}
           readingTime={course.readingTime}
         />
-        <Categories categories={course.categories} />
+        <Categories
+          categories={course.categories}
+          baseUrl="/learning"
+          categoryPrefixUrl="/learning/kategorie"
+        />
       </header>
 
       <article

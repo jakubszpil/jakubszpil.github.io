@@ -1,9 +1,9 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 
-import type { Project, ProjectStatus } from "~/lib/projects";
+import { Button, type ButtonProps } from "./ui/button";
+import { CreationDate } from "./ui/creation-date";
 
-import { Button, type ButtonProps } from "../ui/button";
-import { CreationDate } from "../ui/creation-date";
+import type { Project, ProjectStatus } from "~/lib/projects";
 import { cn } from "~/lib/utils";
 
 export interface ProjectsProps {

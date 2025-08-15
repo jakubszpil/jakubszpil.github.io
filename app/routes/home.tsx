@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router";
 
-import Articles from "~/components/blog/articles";
-import Courses from "~/components/learning/courses";
-import Projects from "~/components/portfolio/projects";
+import Articles from "~/components/articles";
+import Courses from "~/components/courses";
+import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";

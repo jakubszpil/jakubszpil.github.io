@@ -10,13 +10,10 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Projects, { type ProjectsProps } from "~/components/portfolio/projects";
-import Technologies, {
-  type TechnologiesProps,
-} from "~/components/portfolio/technologies";
+import Projects, { type ProjectsProps } from "~/components/projects";
+import Categories, { type CategoriesProps } from "~/components/categories";
 import { Seo, type SeoProps } from "~/components/ui/seo";
 import {
-  getProjects,
   getProjectsByTechnology,
   getProjectsTechnologies,
   ProjectStatus,
@@ -25,14 +22,14 @@ import {
 
 import ProjectList, { loader } from "../project-list";
 
-vi.mock("~/components/portfolio/projects");
-vi.mock("~/components/portfolio/technologies");
+vi.mock("~/components/projects");
+vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/projects");
 
 describe("<ProjectList />", () => {
   let MockedProjects: MockInstance;
-  let MockedTechnologies: MockInstance;
+  let MockedCategories: MockInstance;
   let MockedSeo: MockInstance;
 
   let MOCKED_PROJECTS: Project[];
@@ -43,7 +40,7 @@ describe("<ProjectList />", () => {
 
   beforeEach(() => {
     MockedProjects = vi.mocked(Projects);
-    MockedTechnologies = vi.mocked(Technologies);
+    MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
     MOCKED_PROJECTS = [
@@ -80,7 +77,7 @@ describe("<ProjectList />", () => {
 
   afterEach(() => {
     MockedProjects.mockRestore();
-    MockedTechnologies.mockRestore();
+    MockedCategories.mockRestore();
     MockedSeo.mockRestore();
     MockedGetProjectByTechnology.mockRestore();
   });
@@ -110,11 +107,13 @@ describe("<ProjectList />", () => {
       undefined
     );
 
-    expect(MockedTechnologies).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
-        technologies: MOCKED_TECHNOLOGIES,
-        showAllTechnology: true,
-      } satisfies TechnologiesProps,
+        categories: MOCKED_TECHNOLOGIES,
+        showAllCategory: true,
+        baseUrl: "/portfolio",
+        categoryPrefixUrl: "/portfolio/technologie",
+      } satisfies CategoriesProps,
       undefined
     );
 
@@ -167,11 +166,13 @@ describe("<ProjectList />", () => {
       undefined
     );
 
-    expect(MockedTechnologies).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
-        technologies: MOCKED_TECHNOLOGIES,
-        showAllTechnology: true,
-      } satisfies TechnologiesProps,
+        categories: MOCKED_TECHNOLOGIES,
+        showAllCategory: true,
+        baseUrl: "/portfolio",
+        categoryPrefixUrl: "/portfolio/technologie",
+      } satisfies CategoriesProps,
       undefined
     );
 

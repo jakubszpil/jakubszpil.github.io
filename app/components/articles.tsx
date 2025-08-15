@@ -1,8 +1,8 @@
-import type { Article } from "~/lib/articles";
+import { Banner } from "./ui/banner";
+import { Button, type ButtonProps } from "./ui/button";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
-import { Banner } from "../ui/banner";
-import { Button, type ButtonProps } from "../ui/button";
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import type { Article } from "~/lib/articles";
 import { cn } from "~/lib/utils";
 
 export interface ArticlesProps {

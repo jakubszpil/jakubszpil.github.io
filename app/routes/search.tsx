@@ -7,9 +7,9 @@ import {
 } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
-import Articles from "~/components/blog/articles";
-import Courses from "~/components/learning/courses";
-import Projects from "~/components/portfolio/projects";
+import Articles from "~/components/articles";
+import Courses from "~/components/courses";
+import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
