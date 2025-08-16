@@ -1,5 +1,6 @@
 import { IconBrandGithub } from "@tabler/icons-react";
 
+import "./__styles__/projects.css";
 import { Button, type ButtonProps } from "./ui/button";
 import { CreationDate } from "./ui/creation-date";
 
@@ -20,37 +21,28 @@ const STATUS_LABELS: Record<ProjectStatus, string> = {
 
 export default function Projects(props: ProjectsProps) {
   return (
-    <section
-      className={cn(
-        "container !pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3",
-        props.className
-      )}
-    >
+    <section className={cn("projects", props.className)}>
       {props.projects.map((project) => (
         <Button
           key={project.id}
           asChild
           variant={props.variant ?? "outline"}
-          className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto !text-wrap no-underline truncate p-6 hover:!bg-inherit hover:!text-inherit"
+          className="projects__feed"
         >
           <div>
-            <h2 className="line-clamp-3 text-base font-semibold !m-0">
-              {project.title}
-            </h2>
-            <span className="">Status: {STATUS_LABELS[project.status]}</span>
-            <p className="line-clamp-3 mt-2 flex-1 text-neutral-700 font-normal dark:text-neutral-300">
-              {project.description}
-            </p>
-            <div className="flex items-center justify-between w-full">
+            <h2 className="projects__title">{project.title}</h2>
+            <span>Status: {STATUS_LABELS[project.status]}</span>
+            <p className="projects__description">{project.description}</p>
+            <div className="projects__info">
               <CreationDate
                 date={project.createdAt}
-                className="text-neutral-600 text-xs dark:text-neutral-400"
+                className="projects__date"
               />
               <Button
                 variant="link"
                 asChild
                 size="sm"
-                className="underline p-0"
+                className="projects__link"
               >
                 <a
                   data-testid="link"

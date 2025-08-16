@@ -94,7 +94,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           ref={buttonRef}
           onClick={toggleMenu}
           className={cn(
-            "inline-flex items-center justify-center relative z-50 lg:hidden",
+            "inline-flex items-center justify-center relative z-50 lg:!hidden",
             show && "dark"
           )}
           variant="link"

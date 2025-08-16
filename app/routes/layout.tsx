@@ -24,7 +24,7 @@ export default function Layout() {
     <>
       {prefetchLink}
       <Navbar>
-        <NavbarLink className="font-bold" to="/">
+        <NavbarLink className="!font-bold" to="/">
           jakubszpil
         </NavbarLink>
         <BusyIndicator />
