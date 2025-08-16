@@ -1,8 +1,8 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
+import EditResource from "~/components/edit-resource";
 import { Banner } from "~/components/ui/banner";
-import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
 
@@ -44,7 +44,7 @@ export default function ArticleDetails() {
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
 
-      <EditResource resourceUrl={article.resourceUrl} />
+      <EditResource slug={article.slug} resourceType="articles" />
     </>
   );
 }

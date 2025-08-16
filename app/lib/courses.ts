@@ -16,7 +16,6 @@ export abstract class Course implements ContentResource {
   abstract categories: string[];
   abstract keywords: string[];
   abstract content: string;
-  abstract resourceUrl: string;
   abstract quiz?: ContentQuiz;
 }
 

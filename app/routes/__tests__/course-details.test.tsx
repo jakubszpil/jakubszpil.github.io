@@ -12,17 +12,16 @@ import {
 
 import Categories, { type CategoriesProps } from "~/components/categories";
 import { Banner, type BannerProps } from "~/components/ui/banner";
-import {
-  EditResource,
+import EditResource, {
   type EditResourceProps,
-} from "~/components/ui/edit-resource";
+} from "~/components/edit-resource";
 import { Seo, type SeoProps } from "~/components/ui/seo";
 import { getCourse, type Course } from "~/lib/courses";
 
 import CourseDetails, { loader } from "../course-details";
 
 vi.mock("~/components/categories");
-vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/edit-resource");
 vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/courses");
@@ -50,7 +49,6 @@ describe("<CourseDetails />", () => {
       description: "Test description",
       keywords: ["test", "example"],
       categories: ["test", "example"],
-      resourceUrl: "https://example.com",
       createdAt: "2025-03-17",
       readingTime: "3 minuty",
     };
@@ -111,7 +109,8 @@ describe("<CourseDetails />", () => {
 
     expect(MockedEditResource).toHaveBeenCalledWith(
       {
-        resourceUrl: MockedCourse.resourceUrl,
+        slug: MockedCourse.slug,
+        resourceType: "courses",
       } satisfies EditResourceProps,
       undefined
     );

@@ -1,9 +1,9 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
+import EditResource from "~/components/edit-resource";
 import Quiz from "~/components/quiz";
 import { Banner } from "~/components/ui/banner";
-import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getCourse } from "~/lib/courses";
 
@@ -47,7 +47,7 @@ export default function CourseDetails() {
 
       {course.quiz && <Quiz quiz={course.quiz} />}
 
-      <EditResource resourceUrl={course.resourceUrl} />
+      <EditResource slug={course.slug} resourceType="courses" />
     </>
   );
 }

@@ -23,7 +23,7 @@ function getAnchorContentBasedOnLevel(level: number): string {
   return content;
 }
 
-export const processContent = async (content: string) => {
+export async function processContent(content: string) {
   const processor = unified()
     .use(remarkParse)
     .use(remarkHtml)
@@ -59,14 +59,11 @@ export const processContent = async (content: string) => {
   const results = await processor.process(content);
 
   const readingTime = results.data.readingTime as {
-    text: string;
-    minutes: number;
     time: number;
-    words: number;
   };
 
   return [results.toString(), readingTime.time] as const;
-};
+}
 
 export abstract class ContentQuiz {
   abstract title: string;
@@ -89,14 +86,13 @@ export abstract class ContentResource {
   abstract readingTime?: string;
   abstract categories?: string[];
   abstract keywords?: string[];
-  abstract resourceUrl?: string;
   abstract content?: string;
   abstract quiz?: ContentQuiz;
 }
 
-export const parseQuiz = async (
+export async function parseQuiz(
   resource: any
-): Promise<ContentQuiz | undefined> => {
+): Promise<ContentQuiz | undefined> {
   const quiz: ContentQuiz | undefined = resource?.quiz;
   if (!quiz) return undefined;
 
@@ -120,7 +116,7 @@ export const parseQuiz = async (
     ...quiz,
     questions,
   };
-};
+}
 
 function getReadingTime(readingTime: number) {
   const minutes = Math.round(readingTime / 60000);
@@ -142,11 +138,10 @@ function getReadingTime(readingTime: number) {
   return `${minutes} minut`;
 }
 
-export const parseMarkdownFile = async <T extends ContentResource>(
+export async function parseMarkdownFile<T extends ContentResource>(
   file: string,
-  slug: string,
-  resourceType: string
-): Promise<T> => {
+  slug: string
+): Promise<T> {
   const { data, content } = matter(file);
 
   const quiz = await parseQuiz(data);
@@ -158,19 +153,17 @@ export const parseMarkdownFile = async <T extends ContentResource>(
     id: v4(),
     slug,
     content: fileContent,
-    resourceUrl: `/app/content/${resourceType}/${slug}.md`,
     quiz,
     readingTime: getReadingTime(readingTime),
     createdAt: new Date(data.createdAt).toISOString(),
   } as T;
-};
+}
 
 export function minifyContentResource<T extends ContentResource>(resource: T) {
   const copy = { ...resource };
   if (!copy.content) delete copy["readingTime"];
   delete copy["content"];
   delete copy["quiz"];
-  delete copy["resourceUrl"];
   delete copy["keywords"];
   delete copy["categories"];
   return copy;
@@ -184,15 +177,12 @@ async function mapContentResourceEntries<T extends ContentResource>(
 ): Promise<T[]> {
   if (cacheKey in CACHE) return CACHE[cacheKey] as T[];
 
-  const entries = Object.entries(files).map(async ([key, file]) => {
-    const slug = key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
-    const keyWithoutSlug = key.slice(0, key.lastIndexOf("/"));
-    const resourceType = keyWithoutSlug.slice(
-      keyWithoutSlug.lastIndexOf("/") + 1
-    );
-
-    return await parseMarkdownFile<T>(file, slug, resourceType);
-  });
+  const entries = Object.entries(files).map(([key, file]) =>
+    parseMarkdownFile<T>(
+      file,
+      key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"))
+    )
+  );
 
   const resources = await Promise.all(entries);
 

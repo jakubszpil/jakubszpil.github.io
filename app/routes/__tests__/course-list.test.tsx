@@ -53,7 +53,6 @@ describe("<CourseList />", () => {
         categories: ["test"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
-        resourceUrl: "https://example.com",
       },
       {
         id: "2",
@@ -65,7 +64,6 @@ describe("<CourseList />", () => {
         categories: ["test", "example"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
-        resourceUrl: "https://example.com",
       },
     ];
 

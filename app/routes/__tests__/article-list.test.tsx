@@ -53,7 +53,6 @@ describe("<ArticleList />", () => {
         keywords: ["test", "example"],
         categories: ["test"],
         createdAt: "2025-03-17",
-        resourceUrl: "https://example.com",
         readingTime: "3 minuty",
       },
       {
@@ -65,7 +64,6 @@ describe("<ArticleList />", () => {
         keywords: ["example"],
         categories: ["test", "example"],
         createdAt: "2025-03-17",
-        resourceUrl: "https://example.com",
         readingTime: "3 minuty",
       },
     ];
