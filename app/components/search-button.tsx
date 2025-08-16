@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 
 import { Button } from "./ui/button";
 import { LinkWithPrefetch } from "./ui/link-with-prefetch";
-import { usePrefetch } from "~/hooks/use-prefetch";
+import { usePrefetchLink } from "~/hooks/use-prefetch-link";
 
 const state = { focus: true };
 
@@ -12,7 +12,7 @@ export default function SearchButton() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  usePrefetch("/search.data");
+  const prefetchLink = usePrefetchLink("/search.data");
 
   useEffect(() => {
     const ac = new AbortController();
@@ -41,6 +41,7 @@ export default function SearchButton() {
       title="Szukaj (CTRL+K)"
     >
       <LinkWithPrefetch to="/search" state={state}>
+        {prefetchLink}
         <span className="sr-only">Szukaj</span>
         <IconSearch className="size-6" />
       </LinkWithPrefetch>

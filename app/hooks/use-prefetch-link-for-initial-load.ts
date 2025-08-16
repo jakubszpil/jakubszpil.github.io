@@ -1,10 +1,9 @@
+import { use } from "react";
 import { useMatches, UNSAFE_FrameworkContext } from "react-router";
 
-import { usePrefetch } from "./use-prefetch";
-import { use, useEffect, useState } from "react";
+import { usePrefetchLink } from "./use-prefetch-link";
 
-export function useInitialLoadPrefetch() {
-  const [mounted, setMounted] = useState(false);
+export function usePrefetchLinkForInitialLoad() {
   const matches = useMatches();
   const context = use(UNSAFE_FrameworkContext);
 
@@ -14,9 +13,7 @@ export function useInitialLoadPrefetch() {
 
   const route = match ? routes[match.id] : undefined;
 
-  const resource = mounted
-    ? undefined
-    : match
+  const resource = match
     ? route
       ? route.hasLoader
         ? match.pathname === "/"
@@ -26,11 +23,5 @@ export function useInitialLoadPrefetch() {
       : undefined
     : undefined;
 
-  usePrefetch(resource);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  return;
+  return usePrefetchLink(resource);
 }
