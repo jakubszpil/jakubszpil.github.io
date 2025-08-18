@@ -135,7 +135,7 @@ quiz:
       explanation: "Przechowywanie danych w dokumentach JSON to cecha baz NoSQL (np. MongoDB)."
 ---
 
-Bazy danych są nieodłączną częścią współczesnej informatyki. Przechowują, organizują i umożliwiają szybki dostęp do ogromnych ilości informacji – od danych klientów w sklepach internetowych, przez posty w mediach społecznościowych, aż po dane telemetryczne z urządzeń IoT. Nawet jeśli nie widzisz ich na co dzień, korzystasz z nich niemal w każdej aplikacji! 🗃️
+Bazy danych są nieodłączną częścią współczesnej informatyki. Przechowują, organizują i umożliwiają szybki dostęp do ogromnych ilości informacji - od danych klientów w sklepach internetowych, przez posty w mediach społecznościowych, aż po dane telemetryczne z urządzeń IoT. Nawet jeśli nie widzisz ich na co dzień, korzystasz z nich niemal w każdej aplikacji! 🗃️
 
 ## Spis treści
 
@@ -164,11 +164,11 @@ Baza danych to zorganizowany zbiór informacji przechowywany komputerowo. Pozwal
 
 ## Dlaczego korzystamy z baz danych?
 
-- **Bezpieczeństwo i integralność danych** – bazy danych minimalizują ryzyko utraty danych i dbają o ich poprawność.
-- **Wydajność** – umożliwiają szybkie wyszukiwanie i operacje na dużych zbiorach informacji.
-- **Organizacja** – pozwalają poukładać dane w logiczne struktury.
-- **Skalowalność** – obsługują rosnącą ilość danych i użytkowników.
-- **Współbieżność** – wielu użytkowników może pracować z tymi samymi danymi w tym samym czasie.
+- **Bezpieczeństwo i integralność danych** - bazy danych minimalizują ryzyko utraty danych i dbają o ich poprawność.
+- **Wydajność** - umożliwiają szybkie wyszukiwanie i operacje na dużych zbiorach informacji.
+- **Organizacja** - pozwalają poukładać dane w logiczne struktury.
+- **Skalowalność** - obsługują rosnącą ilość danych i użytkowników.
+- **Współbieżność** - wielu użytkowników może pracować z tymi samymi danymi w tym samym czasie.
 
 ---
 
@@ -188,7 +188,7 @@ DBMS (Database Management System) to specjalne oprogramowanie, które umożliwia
 
 ### Relacyjne bazy danych
 
-Najpopularniejszy typ baz. Dane są zorganizowane w **tabelach** (wiersze i kolumny), a relacje między tabelami pozwalają na powiązanie danych z różnych zbiorów. Stosowane są tam, gdzie ważna jest struktura i spójność danych – np. bankowość, e-commerce, systemy ERP.
+Najpopularniejszy typ baz. Dane są zorganizowane w **tabelach** (wiersze i kolumny), a relacje między tabelami pozwalają na powiązanie danych z różnych zbiorów. Stosowane są tam, gdzie ważna jest struktura i spójność danych - np. bankowość, e-commerce, systemy ERP.
 
 ### NoSQL
 
@@ -196,9 +196,9 @@ Bazy nierelacyjne, zaprojektowane do przechowywania dużych, zróżnicowanych i 
 
 ### Inne rodzaje baz danych
 
-- **Bazy obiektowe** – przechowują dane jako obiekty, podobnie jak w programowaniu obiektowym.
-- **Bazy grafowe** – idealne do przechowywania sieci powiązań, np. relacje między użytkownikami.
-- **Bazy czasowe (time-series)** – zoptymalizowane do przechowywania danych zmieniających się w czasie, np. pomiarów sensorów.
+- **Bazy obiektowe** - przechowują dane jako obiekty, podobnie jak w programowaniu obiektowym.
+- **Bazy grafowe** - idealne do przechowywania sieci powiązań, np. relacje między użytkownikami.
+- **Bazy czasowe (time-series)** - zoptymalizowane do przechowywania danych zmieniających się w czasie, np. pomiarów sensorów.
 
 ---
 
@@ -206,9 +206,9 @@ Bazy nierelacyjne, zaprojektowane do przechowywania dużych, zróżnicowanych i 
 
 W relacyjnych bazach danych dane są przechowywane w strukturze tabelarycznej. Oto najważniejsze pojęcia:
 
-- **Tabela** – zbiór rekordów (wierszy) o tej samej strukturze. Tabela przypomina arkusz kalkulacyjny, gdzie każdy wiersz to inny obiekt, a każda kolumna opisuje konkretną cechę tych obiektów.
-- **Rekord (wiersz)** – pojedynczy wpis w tabeli, czyli komplet informacji o jednym obiekcie (np. jeden klient).
-- **Kolumna** – jedno pole o określonym typie danych, np. imię, nazwisko, wiek. Każda kolumna opisuje jedną cechę wszystkich rekordów w tabeli.
+- **Tabela** - zbiór rekordów (wierszy) o tej samej strukturze. Tabela przypomina arkusz kalkulacyjny, gdzie każdy wiersz to inny obiekt, a każda kolumna opisuje konkretną cechę tych obiektów.
+- **Rekord (wiersz)** - pojedynczy wpis w tabeli, czyli komplet informacji o jednym obiekcie (np. jeden klient).
+- **Kolumna** - jedno pole o określonym typie danych, np. imię, nazwisko, wiek. Każda kolumna opisuje jedną cechę wszystkich rekordów w tabeli.
 
 **Przykład:**
 
@@ -234,9 +234,9 @@ W powyższej tabeli:
 - wyszukiwanie i filtrowanie informacji,
 - zarządzanie użytkownikami i uprawnieniami.
 
-SQL jest standardem w pracy z relacyjnymi bazami danych – znajomość podstawowych pojęć i poleceń SQL jest niezbędna dla każdego, kto chce pracować z danymi.
+SQL jest standardem w pracy z relacyjnymi bazami danych - znajomość podstawowych pojęć i poleceń SQL jest niezbędna dla każdego, kto chce pracować z danymi.
 
-> **Uwaga:** W tym kursie nie będziemy omawiać składni SQL – temu poświęcony będzie osobny kurs.
+> **Uwaga:** W tym kursie nie będziemy omawiać składni SQL - temu poświęcony będzie osobny kurs.
 
 ---
 
@@ -253,22 +253,22 @@ SQL jest standardem w pracy z relacyjnymi bazami danych – znajomość podstawo
 
 ## Bezpieczeństwo i kopie zapasowe
 
-- **Uprawnienia i autoryzacja** – kontrola dostępu do danych.
-- **Kopie zapasowe** – regularne tworzenie backupów na wypadek awarii.
-- **Szyfrowanie** – ochrona danych przed nieautoryzowanym dostępem.
+- **Uprawnienia i autoryzacja** - kontrola dostępu do danych.
+- **Kopie zapasowe** - regularne tworzenie backupów na wypadek awarii.
+- **Szyfrowanie** - ochrona danych przed nieautoryzowanym dostępem.
 - **Integracja z systemami monitoringu i logowania operacji.**
 
 ---
 
 ## Popularne systemy bazodanowe
 
-- **MySQL** – popularny, darmowy, relacyjny DBMS.
-- **PostgreSQL** – zaawansowany, relacyjny, open-source.
-- **Oracle Database** – komercyjny, relacyjny, szeroko stosowany w korporacjach.
-- **MongoDB** – dokumentowa baza NoSQL.
-- **Redis** – szybka baza klucz-wartość (NoSQL).
-- **SQLite** – lekka baza do aplikacji lokalnych.
-- **Neo4j** – grafowa baza danych.
+- **MySQL** - popularny, darmowy, relacyjny DBMS.
+- **PostgreSQL** - zaawansowany, relacyjny, open-source.
+- **Oracle Database** - komercyjny, relacyjny, szeroko stosowany w korporacjach.
+- **MongoDB** - dokumentowa baza NoSQL.
+- **Redis** - szybka baza klucz-wartość (NoSQL).
+- **SQLite** - lekka baza do aplikacji lokalnych.
+- **Neo4j** - grafowa baza danych.
 
 ---
 
@@ -277,7 +277,7 @@ SQL jest standardem w pracy z relacyjnymi bazami danych – znajomość podstawo
 - Kursy online (np. Udemy, Coursera, YouTube)
 - Dokumentacje oficjalne systemów DBMS (np. MySQL, PostgreSQL, MongoDB)
 - Społeczności: Stack Overflow, grupy na Discord/Slack, fora tematyczne
-- Książki: "Bazy danych. Systemy rozproszone" – A. Silberschatz, "Bazy danych. Wprowadzenie" – J. Date
+- Książki: "Bazy danych. Systemy rozproszone" - A. Silberschatz, "Bazy danych. Wprowadzenie" - J. Date
 
 ---
 

@@ -53,7 +53,7 @@ quiz:
       explanation: "BEM zwiększa modularność, czytelność i pomaga unikać konfliktów w nazwach klas."
 ---
 
-Witaj w świecie **BEM**! 🚀 Jeśli pracujesz nad coraz większymi i bardziej złożonymi projektami webowymi, z pewnością zauważasz, jak łatwo kod CSS może stać się chaotyczny i trudny do zarządzania. Właśnie tutaj z pomocą przychodzi **BEM** – metodyka, która wprowadza porządek i logikę do Twoich stylów, sprawiając, że są one **modułowe, skalowalne i łatwe do utrzymania**. Gotowy/a na rewolucję w sposobie pisania CSS? Zaczynamy! 💡
+Witaj w świecie **BEM**! 🚀 Jeśli pracujesz nad coraz większymi i bardziej złożonymi projektami webowymi, z pewnością zauważasz, jak łatwo kod CSS może stać się chaotyczny i trudny do zarządzania. Właśnie tutaj z pomocą przychodzi **BEM** - metodyka, która wprowadza porządek i logikę do Twoich stylów, sprawiając, że są one **modułowe, skalowalne i łatwe do utrzymania**. Gotowy/a na rewolucję w sposobie pisania CSS? Zaczynamy! 💡
 
 ## Spis treści
 
@@ -94,7 +94,7 @@ Podstawą metodyki BEM są trzy kluczowe koncepty, które określają sposób or
 
 ### Blok (Block)
 
-**Blok** to niezależny, samodzielny komponent interfejsu użytkownika. Możesz go myśleć jako o „funkcjonalnej” i „wizualnej” całości, którą można przenieść i użyć w dowolnym miejscu strony. Blok może zawierać w sobie inne bloki lub elementy.
+**Blok** to niezależny, samodzielny komponent interfejsu użytkownika. Możesz go myśleć jako o "funkcjonalnej" i "wizualnej" całości, którą można przenieść i użyć w dowolnym miejscu strony. Blok może zawierać w sobie inne bloki lub elementy.
 
 **Cechy bloku:**
 

@@ -1,7 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Technologies from "~/components/portfolio/technologies";
-import Projects from "~/components/portfolio/projects";
+import Categories from "~/components/categories";
+import Projects from "~/components/projects";
 import { Seo } from "~/components/ui/seo";
 import {
   getProjectsByTechnology,
@@ -33,7 +33,12 @@ export default function ProjectList() {
 
       <header className="prose container">
         <h1>{title ?? "Portfolio"}</h1>
-        <Technologies showAllTechnology technologies={technologies} />
+        <Categories
+          showAllCategory
+          categories={technologies}
+          baseUrl="/portfolio"
+          categoryPrefixUrl="/portfolio/technologie"
+        />
       </header>
 
       <Projects key={technology} projects={projects} />

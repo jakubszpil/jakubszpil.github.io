@@ -1,54 +1,36 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
-  appendDarkThemeClassName,
-  finalizeThemeSwitching,
   getResolvedTheme,
   getTheme,
-  initializeThemeSwitching,
-  removeDarkThemeClassName,
+  handleSystemThemeChange,
+  performThemeChange,
   ResolvedTheme,
-  setTheme,
+  setLocalStorageTheme,
   Theme,
+  toggleThemeClassName,
 } from "~/lib/theme";
 
 import { useHydrated } from "./use-hydrated";
 
-export function handleSystemThemeChange({ matches }: MediaQueryListEvent) {
-  initializeThemeSwitching();
-
-  if (matches) {
-    appendDarkThemeClassName();
-  } else {
-    removeDarkThemeClassName();
-  }
-
-  setTimeout(() => finalizeThemeSwitching());
-}
-
 export function useTheme() {
   const hydrated = useHydrated();
 
-  const [value, setValue] = useState<Theme | null>(null);
+  const [theme, setTheme] = useState<Theme | null>(null);
 
-  const resolvedTheme = useMemo(
-    () => (value ? getResolvedTheme(value) : null),
-    [value]
-  );
+  const resolvedTheme = useMemo(() => getResolvedTheme(theme), [theme]);
 
   const setThemeInternal = useCallback((theme: Theme) => {
-    setValue(theme);
     setTheme(theme);
+    setLocalStorageTheme(theme);
   }, []);
 
   useEffect(() => {
-    if (hydrated) {
-      setValue(getTheme());
-    }
+    if (hydrated) setTheme(getTheme());
   }, [hydrated]);
 
   useEffect(() => {
-    if (value !== Theme.SYSTEM) {
+    if (theme !== Theme.SYSTEM) {
       return;
     }
 
@@ -62,31 +44,26 @@ export function useTheme() {
     return () => {
       abortController.abort();
     };
-  }, [value]);
+  }, [theme]);
 
   useEffect(() => {
-    switch (resolvedTheme) {
-      case ResolvedTheme.DARK: {
-        appendDarkThemeClassName();
-        break;
-      }
-
-      case ResolvedTheme.LIGHT: {
-        removeDarkThemeClassName();
-        break;
-      }
-    }
+    toggleThemeClassName(resolvedTheme);
 
     const ac = new AbortController();
 
     const down = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "j") {
         e.preventDefault();
-        initializeThemeSwitching();
-        setThemeInternal(
-          resolvedTheme === ResolvedTheme.DARK ? Theme.LIGHT : Theme.DARK
-        );
-        setTimeout(() => finalizeThemeSwitching());
+
+        performThemeChange(() => {
+          setThemeInternal(
+            resolvedTheme === null
+              ? Theme.SYSTEM
+              : resolvedTheme === ResolvedTheme.DARK
+                ? Theme.LIGHT
+                : Theme.DARK
+          );
+        });
       }
     };
 
@@ -98,7 +75,7 @@ export function useTheme() {
   }, [resolvedTheme]);
 
   return {
-    theme: value,
+    theme,
     setTheme: setThemeInternal,
     resolvedTheme,
   };

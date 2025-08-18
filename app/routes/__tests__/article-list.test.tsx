@@ -10,8 +10,8 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Articles, { type ArticlesProps } from "~/components/blog/articles";
-import Categories, { type CategoriesProps } from "~/components/blog/categories";
+import Articles, { type ArticlesProps } from "~/components/articles";
+import Categories, { type CategoriesProps } from "~/components/categories";
 import { Seo, type SeoProps } from "~/components/ui/seo";
 import {
   getArticles,
@@ -22,8 +22,8 @@ import {
 
 import ArticleList, { loader } from "../article-list";
 
-vi.mock("~/components/blog/articles");
-vi.mock("~/components/blog/categories");
+vi.mock("~/components/articles");
+vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/articles");
 
@@ -53,7 +53,6 @@ describe("<ArticleList />", () => {
         keywords: ["test", "example"],
         categories: ["test"],
         createdAt: "2025-03-17",
-        resourceUrl: "https://example.com",
         readingTime: "3 minuty",
       },
       {
@@ -65,7 +64,6 @@ describe("<ArticleList />", () => {
         keywords: ["example"],
         categories: ["test", "example"],
         createdAt: "2025-03-17",
-        resourceUrl: "https://example.com",
         readingTime: "3 minuty",
       },
     ];
@@ -117,6 +115,8 @@ describe("<ArticleList />", () => {
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
       } satisfies CategoriesProps,
       undefined
     );
@@ -172,6 +172,8 @@ describe("<ArticleList />", () => {
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
       } satisfies CategoriesProps,
       undefined
     );

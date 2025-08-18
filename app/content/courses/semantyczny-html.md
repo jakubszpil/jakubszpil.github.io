@@ -81,11 +81,11 @@ Witaj w świecie Semantycznego HTML! 🌍 Jeśli tworzysz strony internetowe, to
 
 ## Co to jest Semantyczny HTML?
 
-**Semantyczny HTML** to podejście do tworzenia struktury dokumentów HTML, które polega na używaniu odpowiednich tagów (elementów) do opisania znaczenia i roli poszczególnych części strony. Zamiast używać wszędzie generycznych `<div>` lub `<span>`, stosujemy elementy, które mają wbudowane znaczenie – tak, aby przeglądarka, silniki wyszukiwarek i technologie wspomagające (np. czytniki ekranowe dla osób niewidomych) mogły łatwo zrozumieć, co reprezentuje dany fragment kodu.
+**Semantyczny HTML** to podejście do tworzenia struktury dokumentów HTML, które polega na używaniu odpowiednich tagów (elementów) do opisania znaczenia i roli poszczególnych części strony. Zamiast używać wszędzie generycznych `<div>` lub `<span>`, stosujemy elementy, które mają wbudowane znaczenie - tak, aby przeglądarka, silniki wyszukiwarek i technologie wspomagające (np. czytniki ekranowe dla osób niewidomych) mogły łatwo zrozumieć, co reprezentuje dany fragment kodu.
 
 Pomyśl o tym tak:
 
-- **HTML bez semantyki** jest jak książka, w której wszystkie rozdziały są po prostu zaznaczone pogrubionym tekstem – niby wiesz, że to rozdział, ale nie ma jasnego oznaczenia, że to _jest_ rozdział.
+- **HTML bez semantyki** jest jak książka, w której wszystkie rozdziały są po prostu zaznaczone pogrubionym tekstem - niby wiesz, że to rozdział, ale nie ma jasnego oznaczenia, że to _jest_ rozdział.
 - **HTML semantyczny** jest jak książka z wyraźnie oznaczonymi tytułami rozdziałów, spisem treści, numeracją stron i indeksami. Wszystko jest na swoim miejscu i łatwo to znaleźć.
 
 ## Dlaczego warto używać Semantycznego HTML?
@@ -277,11 +277,11 @@ Element `<address>` reprezentuje dane kontaktowe dla najbliższego `<article>` l
 
 ## Pułapki i najlepsze praktyki
 
-- **Nie używaj semantycznych tagów do stylizacji:** Elementy semantyczne mają znaczenie strukturalne i kontekstowe, a nie wizualne. Do stylizacji używaj CSS. Nie używaj `<section>` tylko dlatego, że chcesz grupować elementy do stylizacji – do tego służy `<div>`.
+- **Nie używaj semantycznych tagów do stylizacji:** Elementy semantyczne mają znaczenie strukturalne i kontekstowe, a nie wizualne. Do stylizacji używaj CSS. Nie używaj `<section>` tylko dlatego, że chcesz grupować elementy do stylizacji - do tego służy `<div>`.
 - **Nagłówki w `<section>` i `<article>`:** Każdy `<section>` i `<article>` powinien mieć swój własny nagłówek (np. `<h1>`, `<h2>` itd.), który opisuje zawartość tej sekcji/artykułu.
 - **Tylko jeden `<main>`:** Pamiętaj, że na stronę może być tylko jeden element `<main>`.
 - **Nie zmuszaj się:** Czasem `<div>` jest po prostu najlepszym wyborem. Nie próbuj na siłę stosować semantycznych tagów, jeśli nie pasują do znaczenia treści. Na przykład, do prostego grupowania elementów w celu zastosowania do nich stylów CSS, `<div>` jest idealny.
-- **HTML to struktura, CSS to wygląd:** To kluczowa zasada. HTML powinien opisywać, czym jest treść, a CSS – jak wygląda.
+- **HTML to struktura, CSS to wygląd:** To kluczowa zasada. HTML powinien opisywać, czym jest treść, a CSS - jak wygląda.
 
 ## Podsumowanie
 

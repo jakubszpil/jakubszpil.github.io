@@ -1,7 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Categories from "~/components/learning/categories";
-import Courses from "~/components/learning/courses";
+import Categories from "~/components/categories";
+import Courses from "~/components/courses";
 import { Seo } from "~/components/ui/seo";
 import { getCoursesByCategory, getCoursesCategories } from "~/lib/courses";
 import { getCapitalizedIndividualName } from "~/lib/string";
@@ -28,7 +28,12 @@ export default function CourseList() {
 
       <header className="prose container">
         <h1>{title ?? "Learning"}</h1>
-        <Categories showAllCategory categories={categories} />
+        <Categories
+          showAllCategory
+          categories={categories}
+          baseUrl="/learning"
+          categoryPrefixUrl="/learning/kategorie"
+        />
       </header>
 
       <Courses key={category} courses={courses} />

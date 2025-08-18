@@ -1,8 +1,8 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Categories from "~/components/blog/categories";
+import Categories from "~/components/categories";
+import EditResource from "~/components/edit-resource";
 import { Banner } from "~/components/ui/banner";
-import { EditResource } from "~/components/ui/edit-resource";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
 
@@ -32,7 +32,11 @@ export default function ArticleDetails() {
           createdAt={article.createdAt}
           readingTime={article.readingTime}
         />
-        <Categories categories={article.categories} />
+        <Categories
+          categories={article.categories}
+          baseUrl="/blog"
+          categoryPrefixUrl="/blog/kategorie"
+        />
       </header>
 
       <article
@@ -40,7 +44,7 @@ export default function ArticleDetails() {
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
 
-      <EditResource resourceUrl={article.resourceUrl} />
+      <EditResource slug={article.slug} resourceType="articles" />
     </>
   );
 }

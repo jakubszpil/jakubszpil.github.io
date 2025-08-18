@@ -14,7 +14,7 @@ quiz:
         - "HyperText Markup Language"
         - "HyperTool Marked Language"
       answer: 2
-      explanation: "HTML to HyperText Markup Language – język znaczników hipertekstowych."
+      explanation: "HTML to HyperText Markup Language - język znaczników hipertekstowych."
 
     - question: "Który znacznik służy do tworzenia akapitu?"
       options:
@@ -41,7 +41,7 @@ quiz:
         - "<dl>"
         - "<ul>"
       answer: 3
-      explanation: "<ul> to lista nieuporządkowana, <ol> – uporządkowana."
+      explanation: "<ul> to lista nieuporządkowana, <ol> - uporządkowana."
 
     - question: "Za co odpowiada atrybut 'action' w tagu `<form>`?"
       options:
@@ -53,7 +53,7 @@ quiz:
       explanation: "Atrybut action określa adres, pod który zostaną wysłane dane formularza."
 ---
 
-Witaj w świecie tworzenia stron internetowych! 👋 Jeśli kiedykolwiek zastanawiałeś/aś się, jak powstają strony, które codziennie przeglądasz, ten kurs jest dla Ciebie. Nauczysz się podstaw **HTML**, języka, który jest fundamentem każdej witryny. Nie musisz mieć żadnego wcześniejszego doświadczenia – wszystko wytłumaczymy krok po kroku! Gotowy/a, aby zacząć tworzyć swoje pierwsze strony? Zaczynamy! 🚀
+Witaj w świecie tworzenia stron internetowych! 👋 Jeśli kiedykolwiek zastanawiałeś/aś się, jak powstają strony, które codziennie przeglądasz, ten kurs jest dla Ciebie. Nauczysz się podstaw **HTML**, języka, który jest fundamentem każdej witryny. Nie musisz mieć żadnego wcześniejszego doświadczenia - wszystko wytłumaczymy krok po kroku! Gotowy/a, aby zacząć tworzyć swoje pierwsze strony? Zaczynamy! 🚀
 
 ## Spis treści
 
@@ -61,7 +61,7 @@ Witaj w świecie tworzenia stron internetowych! 👋 Jeśli kiedykolwiek zastana
 2.  [Jak działa HTML? Znaczniki i elementy](#jak-działa-html-znaczniki-i-elementy)
 3.  [Podstawowa struktura dokumentu HTML](#podstawowa-struktura-dokumentu-html)
     - [Wyjaśnienie struktury krok po kroku](#wyjaśnienie-struktury-krok-po-kroku)
-4.  [Podstawowe elementy HTML – Twój zestaw narzędzi](#podstawowe-elementy-html--twój-zestaw-narzędzi)
+4.  [Podstawowe elementy HTML - Twój zestaw narzędzi](#podstawowe-elementy-html--twój-zestaw-narzędzi)
     - [Nagłówki: Od najważniejszych do najmniej ważnych](#nagłówki-od-najważniejszych-do-najmniej-ważnych)
     - [Akapity: Tworzenie bloków tekstu](#akapity-tworzenie-bloków-tekstu)
     - [Linki: Łączenie stron ze sobą](#linki-łączenie-stron-ze-sobą)
@@ -79,7 +79,7 @@ Witaj w świecie tworzenia stron internetowych! 👋 Jeśli kiedykolwiek zastana
 
 ## Co to jest HTML?
 
-**HTML** to skrót od **HyperText Markup Language**, czyli **Hypertekstowy Język Znaczników**. Co to oznacza w praktyce? To język, który służy do tworzenia szkieletu i struktury każdej strony internetowej. Pomyśl o nim jak o planie architektonicznym domu – określa, gdzie będą ściany, okna, drzwi i podłogi, zanim jeszcze zajmiesz się dekoracją. 🏠
+**HTML** to skrót od **HyperText Markup Language**, czyli **Hypertekstowy Język Znaczników**. Co to oznacza w praktyce? To język, który służy do tworzenia szkieletu i struktury każdej strony internetowej. Pomyśl o nim jak o planie architektonicznym domu - określa, gdzie będą ściany, okna, drzwi i podłogi, zanim jeszcze zajmiesz się dekoracją. 🏠
 
 HTML nie jest językiem programowania (nie wykonuje skomplikowanych operacji ani obliczeń), ale językiem znaczników. Oznacza to, że używa specjalnych kodów, zwanych **znacznikami** (ang. _tags_), aby opisać różne części dokumentu. Dzięki nim przeglądarka internetowa (taka jak Chrome, Firefox czy Safari) wie, co jest nagłówkiem, co akapitem, gdzie znajduje się obrazek, a gdzie link. Bez HTML-a strony internetowe byłyby po prostu blokiem niezrozumiałego tekstu.
 
@@ -96,7 +96,7 @@ Większość znaczników występuje w parach:
 - **Znacznik otwierający:** np. `<p>`
 - **Znacznik zamykający:** np. `</p>` (z ukośnikiem!)
 
-Pomiędzy tymi dwoma znacznikami umieszczamy zawartość, którą chcemy oznaczyć. Całość – znacznik otwierający, zawartość i znacznik zamykający – tworzy **element HTML**.
+Pomiędzy tymi dwoma znacznikami umieszczamy zawartość, którą chcemy oznaczyć. Całość - znacznik otwierający, zawartość i znacznik zamykający - tworzy **element HTML**.
 
 **Przykład:**
 
@@ -144,36 +144,29 @@ Oto standardowy szablon, który zawsze będzie punktem wyjścia:
 Rozbierzmy ten kod na części, aby dokładnie zrozumieć, co oznacza każdy element:
 
 - **`<!DOCTYPE html>`**
-
   - To pierwsza linia w każdym dokumencie HTML. Mówi przeglądarce, że używasz **HTML5**, najnowszej wersji HTML. To ważne, bo pomaga przeglądarce prawidłowo renderować stronę.
 
 - **`<html lang="pl">...</html>`**
-
   - To jest **korzeń** całego dokumentu HTML. Wszystkie inne elementy strony muszą znajdować się wewnątrz tego znacznika. Atrybut `lang="pl"` informuje przeglądarkę i wyszukiwarki, że język treści na stronie to **polski**. To jest ważne dla dostępności i SEO (pozycjonowania w wyszukiwarkach).
 
 - **`<head>...</head>`**
-
-  - Sekcja `<head>` zawiera **meta dane** – informacje o stronie, które nie są widoczne bezpośrednio dla użytkownika na stronie, ale są kluczowe dla przeglądarki, wyszukiwarek i mediów społecznościowych. To tak, jakbyś przygotowywał/a brief dla kogoś, kto ma zobaczyć Twoją pracę. 📋
+  - Sekcja `<head>` zawiera **meta dane** - informacje o stronie, które nie są widoczne bezpośrednio dla użytkownika na stronie, ale są kluczowe dla przeglądarki, wyszukiwarek i mediów społecznościowych. To tak, jakbyś przygotowywał/a brief dla kogoś, kto ma zobaczyć Twoją pracę. 📋
 
   - **`<meta charset="UTF-8" />`**
-
     - Ten znacznik ustawia **kodowanie znaków** na **UTF-8**. UTF-8 to standardowe kodowanie, które obsługuje wszystkie języki świata, w tym polskie znaki (ą, ę, ć, ł, itd.). Bez tego znacznika polskie litery mogłyby wyświetlać się jako "krzaczki". 🐛
 
   - **`<meta name="viewport" content="width=device-width, initial-scale=1.0" />`**
-
     - Ten meta tag jest niezwykle ważny dla **responsywności** strony. Mówi przeglądarce na urządzeniach mobilnych (smartfonach, tabletach), aby strona była wyświetlana z odpowiednią szerokością (`width=device-width`) i początkowym skalowaniem (`initial-scale=1.0`). Dzięki temu Twoja strona będzie wyglądać dobrze zarówno na dużym ekranie komputera, jak i na małym ekranie telefonu. 📱🖥️
 
   - **`<title>Tytuł mojej wspaniałej strony</title>`**
-
     - Tekst wewnątrz znacznika `<title>` to **tytuł strony**, który pojawia się na karcie przeglądarki lub w zakładkach. Jest to również to, co widzą użytkownicy w wynikach wyszukiwania Google. Wybierz chwytliwy i opisowy tytuł! 🔖
 
 - **`<body>...</body>`**
-
-  - Sekcja `<body>` zawiera całą **widoczną treść strony** – to, co użytkownik faktycznie zobaczy w oknie przeglądarki. Wszystkie Twoje nagłówki, akapity, obrazy, linki, listy i formularze znajdą się tutaj. Pomyśl o tym jako o głównym "ciele" Twojej strony. 🖼️
+  - Sekcja `<body>` zawiera całą **widoczną treść strony** - to, co użytkownik faktycznie zobaczy w oknie przeglądarki. Wszystkie Twoje nagłówki, akapity, obrazy, linki, listy i formularze znajdą się tutaj. Pomyśl o tym jako o głównym "ciele" Twojej strony. 🖼️
 
 ---
 
-## Podstawowe elementy HTML – Twój zestaw narzędzi
+## Podstawowe elementy HTML - Twój zestaw narzędzi
 
 Teraz, gdy znasz podstawową strukturę, przejdźmy do konkretnych elementów, których będziesz używać najczęściej do tworzenia treści. To jak Twoje klocki LEGO do budowania strony! 🧱
 
@@ -218,7 +211,7 @@ Linki (`<a>`, od ang. _anchor_) to serce internetu! Pozwalają użytkownikom naw
 </p>
 ```
 
-- **`href`**: Ten atrybut jest najważniejszy – określa adres URL, na który link prowadzi.
+- **`href`**: Ten atrybut jest najważniejszy - określa adres URL, na który link prowadzi.
 - **`target="_blank"`**: Jeśli dodasz ten atrybut, link otworzy się w nowej karcie przeglądarki, co jest często przydatne, gdy nie chcesz, by użytkownik opuścił Twoją stronę.
 
 ### Obrazy: Dodawanie grafiki do strony
@@ -276,7 +269,7 @@ W obu przypadkach, każdy pojedynczy element listy jest umieszczany w znaczniku 
 
 ## Formularze: Zbieranie danych od użytkowników
 
-Formularze to interaktywne elementy, które pozwalają użytkownikom wprowadzać dane, takie jak imię, adres e-mail, hasło, czy wybierać opcje. Są podstawą każdego interaktywnego serwisu internetowego – od logowania, przez kontakt, po koszyki zakupowe. 🛒
+Formularze to interaktywne elementy, które pozwalają użytkownikom wprowadzać dane, takie jak imię, adres e-mail, hasło, czy wybierać opcje. Są podstawą każdego interaktywnego serwisu internetowego - od logowania, przez kontakt, po koszyki zakupowe. 🛒
 
 Głównym elementem jest znacznik **`<form>`**, który zawiera wszystkie pola formularza.
 
@@ -311,14 +304,12 @@ Głównym elementem jest znacznik **`<form>`**, który zawiera wszystkie pola fo
 - **`action`**: Ten atrybut w tagu `<form>` określa **adres URL**, na który zostaną wysłane dane z formularza po jego zatwierdzeniu. Zazwyczaj jest to adres skryptu na serwerze, który przetworzy te dane.
 
 - **`method`**: Określa **metodę HTTP**, jaką dane zostaną wysłane. Najczęściej używa się:
-
   - **`"post"`**: Dane są wysyłane "za kulisami" i nie są widoczne w adresie URL. Używane do przesyłania wrażliwych danych (np. haseł) lub dużych ilości danych.
   - **`"get"`**: Dane są dodawane do adresu URL. Dobre dla prostych zapytań (np. wyszukiwanie).
 
 - **`<label for="id_pola">Etykieta:</label>`**: Element `<label>` tworzy etykietę (opis) dla pola formularza. Atrybut `for` powinien mieć tę samą wartość co atrybut `id` w powiązanym polu `<input>`. Dzięki temu kliknięcie etykiety aktywuje pole, co poprawia dostępność.
 
 - **`<input type="...">`**: To najbardziej wszechstronny element formularza. Atrybut `type` definiuje rodzaj pola:
-
   - **`type="text"`**: Standardowe pole do wprowadzania krótkiego tekstu (np. imię, nazwisko).
     - `placeholder`: Tekst podpowiedzi widoczny w polu, zanim użytkownik zacznie pisać.
   - **`type="email"`**: Pole do wprowadzania adresu e-mail. Przeglądarka może sprawdzić, czy format adresu jest poprawny.
@@ -527,6 +518,6 @@ Pamiętaj o użyciu etykiet `<label>` dla każdego pola i nadaniu odpowiednich `
 
 ---
 
-To koniec Twojej pierwszej lekcji HTML! 🎉 Masz teraz solidne podstawy, aby zacząć budować swoje własne strony internetowe. Pamiętaj, że praktyka czyni mistrza – im więcej będziesz kodować, tym lepiej zrozumiesz ten język.
+To koniec Twojej pierwszej lekcji HTML! 🎉 Masz teraz solidne podstawy, aby zacząć budować swoje własne strony internetowe. Pamiętaj, że praktyka czyni mistrza - im więcej będziesz kodować, tym lepiej zrozumiesz ten język.
 
 Co chciałbyś/chciałabyś poznać dalej? Może stylowanie stron za pomocą CSS, albo interaktywność dzięki JavaScript? Daj znać! 😊

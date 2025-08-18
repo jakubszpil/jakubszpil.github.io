@@ -1,11 +1,14 @@
 import { useCallback } from "react";
 
-import { Button } from "../ui/button";
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import { Button } from "./ui/button";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export interface CategoriesProps {
   categories: string[];
+  baseUrl: string;
+  categoryPrefixUrl: string;
   showAllCategory?: boolean;
 }
 
@@ -17,7 +20,7 @@ export default function Categories(props: CategoriesProps) {
         asChild
         variant="secondary"
         size="sm"
-        className="!no-underline"
+        className="no-underline!"
       >
         <LinkWithPrefetch to={href}>
           {getCapitalizedIndividualName(name)}
@@ -28,9 +31,9 @@ export default function Categories(props: CategoriesProps) {
 
   return (
     <div className="flex items-center gap-3 flex-wrap">
-      {props.showAllCategory && renderCategory("wszystko", "/learning")}
+      {props.showAllCategory && renderCategory("wszystko", props.baseUrl)}
       {props.categories.map((name) =>
-        renderCategory(name, `/learning/kategorie/${name}`)
+        renderCategory(name, `${props.categoryPrefixUrl}/${name}`)
       )}
     </div>
   );

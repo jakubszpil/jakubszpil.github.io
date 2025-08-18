@@ -14,7 +14,7 @@ Wzorzec projektowy Obserwator (ang. Observer) to jeden z kluczowych wzorców, sz
 2. [Korzyści z używania Wzorca Obserwatora](#korzyści-z-używania-wzorca-obserwatora)
 3. [Prosta implementacja wzorca Obserwatora](#prosta-implementacja-wzorca-obserwatora)
 4. [Rozbudowana implementacja generics](#rozbudowana-implementacja-generics)
-5. [Przykład praktyczny — monitorowanie temperatury](#przykład-praktyczny--monitorowanie-temperatury)
+5. [Przykład praktyczny - monitorowanie temperatury](#przykład-praktyczny--monitorowanie-temperatury)
 6. [Podsumowanie](#podsumowanie)
 
 ---
@@ -27,9 +27,9 @@ Wzorzec Obserwatora polega na tym, że obiekt zwany obserwowanym (Subject) zarz�
 
 ## Korzyści z używania Wzorca Obserwatora
 
-- **Reaktywność** – automatyczne powiadamianie obserwatorów o zmianach.
-- **Luźne powiązania** – obserwatorzy nie muszą znać szczegółów implementacji obiektu obserwowanego.
-- **Elastyczność** – łatwość dodawania nowych obserwatorów bez modyfikacji istniejącego kodu.
+- **Reaktywność** - automatyczne powiadamianie obserwatorów o zmianach.
+- **Luźne powiązania** - obserwatorzy nie muszą znać szczegółów implementacji obiektu obserwowanego.
+- **Elastyczność** - łatwość dodawania nowych obserwatorów bez modyfikacji istniejącego kodu.
 
 ---
 
@@ -152,7 +152,7 @@ Dzięki zastosowaniu typów generycznych, wzorzec staje się bardziej elastyczny
 
 ---
 
-## Przykład praktyczny – monitorowanie temperatury
+## Przykład praktyczny - monitorowanie temperatury
 
 Aby zobaczyć praktyczne zastosowanie, oto przykład aplikacji monitorującej zmiany temperatury:
 
@@ -223,4 +223,4 @@ sensor.setTemperature(30); // Output: Setting temperature to 30
 
 ## Podsumowanie
 
-Wzorzec Obserwatora to potężne narzędzie, które pozwala reagować na zmiany stanu w sposób luźno powiązany i elastyczny. W TypeScript dzięki silnemu typowaniu implementacja staje się jeszcze bezpieczniejsza i bardziej czytelna. Pokazane powyżej przykłady prezentują zarówno podstawową, jak i zaawansowaną wersję, która wykorzystuje typy generyczne. Zachęcam do eksperymentowania z tym wzorcem w swoich projektach – pozwala on na znacząco lepsze zarządzanie zależnościami i reaktywnością aplikacji.
+Wzorzec Obserwatora to potężne narzędzie, które pozwala reagować na zmiany stanu w sposób luźno powiązany i elastyczny. W TypeScript dzięki silnemu typowaniu implementacja staje się jeszcze bezpieczniejsza i bardziej czytelna. Pokazane powyżej przykłady prezentują zarówno podstawową, jak i zaawansowaną wersję, która wykorzystuje typy generyczne. Zachęcam do eksperymentowania z tym wzorcem w swoich projektach - pozwala on na znacząco lepsze zarządzanie zależnościami i reaktywnością aplikacji.

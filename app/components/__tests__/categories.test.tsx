@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-
 import {
   afterEach,
   beforeEach,
@@ -13,14 +12,14 @@ import {
 import {
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
-} from "../../ui/link-with-prefetch";
-import Technologies, { type TechnologiesProps } from "../technologies";
+} from "../ui/link-with-prefetch";
+import Categories, { type CategoriesProps } from "../categories";
 
-vi.mock("../../ui/link-with-prefetch");
+vi.mock("../ui/link-with-prefetch");
 
-describe("<Technologies />", () => {
+describe("<Categories />", () => {
   let MockedLinkWithPrefetch: MockInstance;
-  let MockedTechnologiesProps: TechnologiesProps;
+  let MockedCategoriesProps: CategoriesProps;
 
   beforeEach(() => {
     MockedLinkWithPrefetch = vi
@@ -31,8 +30,10 @@ describe("<Technologies />", () => {
         </a>
       ));
 
-    MockedTechnologiesProps = {
-      technologies: ["test", "example"],
+    MockedCategoriesProps = {
+      categories: ["test", "example"],
+      baseUrl: "/example",
+      categoryPrefixUrl: "/example/categories",
     };
   });
 
@@ -40,15 +41,13 @@ describe("<Technologies />", () => {
     MockedLinkWithPrefetch.mockRestore();
   });
 
-  test("given showAllTechnology=false expect to render only given technologies", () => {
-    render(
-      <Technologies {...MockedTechnologiesProps} showAllTechnology={false} />
-    );
+  test("given showAllCategory=false expect to render only given categories", () => {
+    render(<Categories {...MockedCategoriesProps} showAllCategory={false} />);
 
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
-        to: "/portfolio/technologie/test",
+        to: `${MockedCategoriesProps.categoryPrefixUrl}/test`,
       } satisfies LinkWithPrefetchProps),
       undefined
     );
@@ -56,21 +55,19 @@ describe("<Technologies />", () => {
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
-        to: "/portfolio/technologie/example",
+        to: `${MockedCategoriesProps.categoryPrefixUrl}/example`,
       } satisfies LinkWithPrefetchProps),
       undefined
     );
   });
 
-  test("given showAllTechnology=true expect to render all-category link with given categories", () => {
-    render(
-      <Technologies {...MockedTechnologiesProps} showAllTechnology={true} />
-    );
+  test("given showAllCategory=true expect to render all-category link with given categories", () => {
+    render(<Categories {...MockedCategoriesProps} showAllCategory={true} />);
 
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
-        to: "/portfolio",
+        to: MockedCategoriesProps.baseUrl,
       } satisfies LinkWithPrefetchProps),
       undefined
     );
@@ -78,7 +75,7 @@ describe("<Technologies />", () => {
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       2,
       expect.objectContaining({
-        to: "/portfolio/technologie/test",
+        to: `${MockedCategoriesProps.categoryPrefixUrl}/test`,
       } satisfies LinkWithPrefetchProps),
       undefined
     );
@@ -86,7 +83,7 @@ describe("<Technologies />", () => {
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
       3,
       expect.objectContaining({
-        to: "/portfolio/technologie/example",
+        to: `${MockedCategoriesProps.categoryPrefixUrl}/example`,
       } satisfies LinkWithPrefetchProps),
       undefined
     );

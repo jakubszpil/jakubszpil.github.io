@@ -15,13 +15,14 @@ import BusyIndicator from "~/components/busy-indicator";
 import NotFound from "~/components/not-found";
 import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
-import { useInitialLoadPrefetch } from "~/hooks/use-initial-load-prefetch";
+import { usePrefetchLinkForInitialLoad } from "~/hooks/use-prefetch-link-for-initial-load";
 
 export default function Layout() {
-  useInitialLoadPrefetch();
+  const prefetchLink = usePrefetchLinkForInitialLoad();
 
   return (
     <>
+      {prefetchLink}
       <Navbar>
         <NavbarLink className="font-bold" to="/">
           jakubszpil

@@ -12,10 +12,10 @@ import {
 import {
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
-} from "../../ui/link-with-prefetch";
+} from "../ui/link-with-prefetch";
 import Courses, { type CoursesProps } from "../courses";
 
-vi.mock("../../ui/link-with-prefetch");
+vi.mock("../ui/link-with-prefetch");
 
 describe("<Courses />", () => {
   let MockedLinkWithPrefetch: MockInstance;
@@ -42,7 +42,6 @@ describe("<Courses />", () => {
           createdAt: "2025-03-17",
           readingTime: "3 minuty",
           keywords: [],
-          resourceUrl: "",
         },
         {
           id: "2",
@@ -54,7 +53,6 @@ describe("<Courses />", () => {
           createdAt: "2025-03-17",
           readingTime: "3 minuty",
           keywords: [],
-          resourceUrl: "",
         },
       ],
     };

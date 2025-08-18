@@ -16,7 +16,7 @@ categories: [typescript]
 createdAt: 2025-06-22
 ---
 
-Dowiedz się, jak zbudować własny, minimalistyczny system reaktywny inspirowany Signal API – od koncepcji po gotowy kod. Ten artykuł przeprowadzi Cię krok po kroku przez założenia architektury, implementację, przykłady użycia i pomysły na dalszy rozwój. 🚦
+Dowiedz się, jak zbudować własny, minimalistyczny system reaktywny inspirowany Signal API - od koncepcji po gotowy kod. Ten artykuł przeprowadzi Cię krok po kroku przez założenia architektury, implementację, przykłady użycia i pomysły na dalszy rozwój. 🚦
 
 ## Spis treści
 
@@ -31,7 +31,7 @@ Dowiedz się, jak zbudować własny, minimalistyczny system reaktywny inspirowan
 
 ## Czym jest Signal API?
 
-**Signal API** to nowoczesny sposób zarządzania stanem i propagowania zmian w aplikacjach frontendowych. Sygnał (Signal) to po prostu wartość, która jest obserwowalna – każda zmiana tej wartości automatycznie powiadamia powiązane fragmenty kodu, które mogą na nią zareagować (np. przerysować UI). Dzięki temu nie musisz ręcznie pilnować subskrypcji i aktualizacji — system robi to za Ciebie w sposób wydajny i przewidywalny.
+**Signal API** to nowoczesny sposób zarządzania stanem i propagowania zmian w aplikacjach frontendowych. Sygnał (Signal) to po prostu wartość, która jest obserwowalna - każda zmiana tej wartości automatycznie powiadamia powiązane fragmenty kodu, które mogą na nią zareagować (np. przerysować UI). Dzięki temu nie musisz ręcznie pilnować subskrypcji i aktualizacji - system robi to za Ciebie w sposób wydajny i przewidywalny.
 
 ---
 
@@ -48,7 +48,7 @@ Mechanika sygnałów leży u podstaw takich rozwiązań jak SolidJS Signals, Pre
 
 ## Podstawowe założenia architektury
 
-1. **Signal**: funkcja przechowująca wartość i listę „tasków” (efektów) zależnych od tej wartości.
+1. **Signal**: funkcja przechowująca wartość i listę "tasków" (efektów) zależnych od tej wartości.
 2. **effect**: funkcja, która wykona zadanie reagując automatycznie na zmiany sygnału.
 3. **computed**: sygnał zależny, obliczany na podstawie innych sygnałów.
 4. **Task i AbortSignal**: pozwalają bezpiecznie anulować zadania, gdy są już niepotrzebne.
@@ -59,7 +59,7 @@ Cel: zachować prostotę implementacji i zrozumienie działania reaktywności od
 
 ## Implementacja Signal API
 
-Poniżej znajdziesz kompletny kod minimalistycznego Signal API – całość w TypeScript, gotowa do użycia i dalszej rozbudowy! 🛠️
+Poniżej znajdziesz kompletny kod minimalistycznego Signal API - całość w TypeScript, gotowa do użycia i dalszej rozbudowy! 🛠️
 
 ```typescript
 type Task = (abortSignal: AbortSignal) => void;

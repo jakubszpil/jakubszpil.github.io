@@ -15,7 +15,6 @@ export abstract class Article implements ContentResource {
   abstract categories: string[];
   abstract keywords: string[];
   abstract content: string;
-  abstract resourceUrl: string;
 }
 
 const CONTENT = import.meta.glob<string>("../content/articles/*.md", {

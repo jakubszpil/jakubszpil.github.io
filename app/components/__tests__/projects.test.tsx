@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test } from "vitest";
 
 import Projects, { type ProjectsProps } from "../projects";
+
 import { ProjectStatus } from "~/lib/projects";
 
 describe("<Projects />", () => {

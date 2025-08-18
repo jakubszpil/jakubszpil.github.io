@@ -1,14 +1,42 @@
-@font-face {
-  font-family: "Geist";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/static/fonts/geist.ttf");
+@import "tailwindcss";
+
+@config '../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@utility container {
+  @apply !mx-auto !max-w-2xl md:!max-w-3xl lg:!max-w-4xl xl:!max-w-5xl 2xl:!max-w-6xl !p-6 !relative !w-full;
+}
+
+@utility prose {
+  @apply dark:prose-invert;
+}
+
+@layer base {
+  @font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/static/fonts/geist.ttf");
+  }
+}
 
 @layer base {
   :root {
@@ -98,16 +126,6 @@
 
   html.dark {
     color-scheme: dark;
-  }
-}
-
-@layer components {
-  .container {
-    @apply mx-auto max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl p-6 relative w-full;
-  }
-
-  .prose {
-    @apply dark:prose-invert;
   }
 }
 
@@ -219,7 +237,7 @@ code.hljs {
 
 .prose ul a,
 .prose ol a {
-  @apply !no-underline text-inherit hover:!underline hover:text-[var(--tw-prose-links)] dark:hover:text-[var(--tw-prose-invert-links)];
+  @apply !no-underline text-inherit hover:!underline hover:text-(--tw-prose-links) dark:hover:text-(--tw-prose-invert-links);
 }
 
 .prose table {

@@ -10,19 +10,18 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, { type CategoriesProps } from "~/components/blog/categories";
+import Categories, { type CategoriesProps } from "~/components/categories";
 import { Banner, type BannerProps } from "~/components/ui/banner";
-import {
-  EditResource,
+import EditResource, {
   type EditResourceProps,
-} from "~/components/ui/edit-resource";
+} from "~/components/edit-resource";
 import { Seo, type SeoProps } from "~/components/ui/seo";
 import { getArticle, type Article } from "~/lib/articles";
 
 import ArticleDetails, { loader } from "../article-details";
 
-vi.mock("~/components/blog/categories");
-vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/categories");
+vi.mock("~/components/edit-resource");
 vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/articles");
@@ -51,7 +50,6 @@ describe("<ArticleDetails />", () => {
       keywords: ["test", "example"],
       categories: ["test", "example"],
       createdAt: "2025-03-17",
-      resourceUrl: "https://example.com",
       readingTime: "3 minuty",
     };
 
@@ -103,13 +101,16 @@ describe("<ArticleDetails />", () => {
     expect(MockedCategories).toHaveBeenCalledWith(
       {
         categories: MockedArticle.categories,
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
       } satisfies CategoriesProps,
       undefined
     );
 
     expect(MockedEditResource).toHaveBeenCalledWith(
       {
-        resourceUrl: MockedArticle.resourceUrl,
+        slug: MockedArticle.slug,
+        resourceType: "articles",
       } satisfies EditResourceProps,
       undefined
     );

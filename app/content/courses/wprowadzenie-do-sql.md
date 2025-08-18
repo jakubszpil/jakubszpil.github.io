@@ -149,12 +149,12 @@ Jest wykorzystywany na całym świecie przez programistów, analityków, adminis
 
 ## Do czego służy SQL?
 
-- **Pobieranie danych** – m.in. wyświetlanie listy klientów, produktów, zamówień.
-- **Wyszukiwanie i filtrowanie** – np. znajdź wszystkich użytkowników powyżej 18 lat.
-- **Dodawanie nowych danych** – np. rejestracja nowego klienta.
-- **Aktualizacja danych** – np. zmiana adresu e-mail lub stanu zamówienia.
-- **Usuwanie danych** – np. usunięcie nieaktualnych rekordów.
-- **Tworzenie i zmienianie struktury** – zakładanie nowych tabel, dodawanie kolumn.
+- **Pobieranie danych** - m.in. wyświetlanie listy klientów, produktów, zamówień.
+- **Wyszukiwanie i filtrowanie** - np. znajdź wszystkich użytkowników powyżej 18 lat.
+- **Dodawanie nowych danych** - np. rejestracja nowego klienta.
+- **Aktualizacja danych** - np. zmiana adresu e-mail lub stanu zamówienia.
+- **Usuwanie danych** - np. usunięcie nieaktualnych rekordów.
+- **Tworzenie i zmienianie struktury** - zakładanie nowych tabel, dodawanie kolumn.
 
 ---
 
@@ -192,10 +192,10 @@ SELECT imie, nazwisko FROM Uzytkownicy WHERE wiek > 18;
 
 **Wyjaśnienie składni:**
 
-- `SELECT` – rozpoczyna zapytanie pobierające dane.
-- `imie, nazwisko` – nazwy kolumn, które chcesz pobrać (możesz użyć `*`, by pobrać wszystkie).
-- `FROM Uzytkownicy` – nazwa tabeli, z której pobierane są dane.
-- `WHERE wiek > 18` – warunek wyboru (możesz go pominąć, by pobrać wszystkie rekordy).
+- `SELECT` - rozpoczyna zapytanie pobierające dane.
+- `imie, nazwisko` - nazwy kolumn, które chcesz pobrać (możesz użyć `*`, by pobrać wszystkie).
+- `FROM Uzytkownicy` - nazwa tabeli, z której pobierane są dane.
+- `WHERE wiek > 18` - warunek wyboru (możesz go pominąć, by pobrać wszystkie rekordy).
 
 ---
 
@@ -211,10 +211,10 @@ INSERT INTO Uzytkownicy (imie, nazwisko, wiek) VALUES ('Anna', 'Nowak', 25);
 
 **Wyjaśnienie składni:**
 
-- `INSERT INTO` – rozpoczyna polecenie dodania rekordu.
-- `Uzytkownicy` – nazwa tabeli.
-- `(imie, nazwisko, wiek)` – lista kolumn, do których będą przypisane wartości.
-- `VALUES ('Anna', 'Nowak', 25)` – wartości przypisane odpowiednio do wskazanych kolumn.
+- `INSERT INTO` - rozpoczyna polecenie dodania rekordu.
+- `Uzytkownicy` - nazwa tabeli.
+- `(imie, nazwisko, wiek)` - lista kolumn, do których będą przypisane wartości.
+- `VALUES ('Anna', 'Nowak', 25)` - wartości przypisane odpowiednio do wskazanych kolumn.
 
 ---
 
@@ -230,9 +230,9 @@ UPDATE Uzytkownicy SET wiek = 26 WHERE imie = 'Anna' AND nazwisko = 'Nowak';
 
 **Wyjaśnienie składni:**
 
-- `UPDATE Uzytkownicy` – wskazanie tabeli, w której chcesz zmienić dane.
-- `SET wiek = 26` – określenie nowej wartości dla kolumny.
-- `WHERE imie = 'Anna' AND nazwisko = 'Nowak'` – warunek, które rekordy mają zostać zmienione (bardzo ważne, by nie pominąć WHERE!).
+- `UPDATE Uzytkownicy` - wskazanie tabeli, w której chcesz zmienić dane.
+- `SET wiek = 26` - określenie nowej wartości dla kolumny.
+- `WHERE imie = 'Anna' AND nazwisko = 'Nowak'` - warunek, które rekordy mają zostać zmienione (bardzo ważne, by nie pominąć WHERE!).
 
 ---
 
@@ -248,8 +248,8 @@ DELETE FROM Uzytkownicy WHERE wiek < 18;
 
 **Wyjaśnienie składni:**
 
-- `DELETE FROM Uzytkownicy` – wskazanie tabeli, z której rekordy mają być usunięte.
-- `WHERE wiek < 18` – warunek wyboru rekordów do usunięcia.
+- `DELETE FROM Uzytkownicy` - wskazanie tabeli, z której rekordy mają być usunięte.
+- `WHERE wiek < 18` - warunek wyboru rekordów do usunięcia.
 
 ---
 
@@ -263,8 +263,8 @@ DELETE FROM Uzytkownicy WHERE wiek < 18;
 SELECT * FROM Uzytkownicy WHERE miasto = 'Warszawa' AND wiek > 18;
 ```
 
-- `miasto = 'Warszawa'` – wybiera tylko rekordy, gdzie miasto to Warszawa.
-- `AND wiek > 18` – dodatkowy warunek: tylko osoby powyżej 18 roku życia.
+- `miasto = 'Warszawa'` - wybiera tylko rekordy, gdzie miasto to Warszawa.
+- `AND wiek > 18` - dodatkowy warunek: tylko osoby powyżej 18 roku życia.
 
 Możliwe operatory:
 
@@ -284,8 +284,8 @@ Możliwe operatory:
 SELECT imie, nazwisko FROM Uzytkownicy ORDER BY nazwisko ASC, imie DESC;
 ```
 
-- `ORDER BY nazwisko ASC` – posortuj alfabetycznie po nazwisku rosnąco
-- `imie DESC` – jeśli nazwiska się powtarzają, sortuj po imieniu malejąco
+- `ORDER BY nazwisko ASC` - posortuj alfabetycznie po nazwisku rosnąco
+- `imie DESC` - jeśli nazwiska się powtarzają, sortuj po imieniu malejąco
 
 ---
 
@@ -315,10 +315,10 @@ CREATE TABLE Produkty (
 );
 ```
 
-- `CREATE TABLE Produkty` – utwórz nową tabelę o nazwie Produkty.
-- `id INT PRIMARY KEY` – kolumna "id" typu liczba całkowita, klucz główny (unikalny identyfikator).
-- `nazwa VARCHAR(100)` – kolumna "nazwa" typu tekstowego o maks. długości 100 znaków.
-- `cena DECIMAL(10,2)` – kolumna "cena" typu liczba zmiennoprzecinkowa (10 cyfr, w tym 2 po przecinku).
+- `CREATE TABLE Produkty` - utwórz nową tabelę o nazwie Produkty.
+- `id INT PRIMARY KEY` - kolumna "id" typu liczba całkowita, klucz główny (unikalny identyfikator).
+- `nazwa VARCHAR(100)` - kolumna "nazwa" typu tekstowego o maks. długości 100 znaków.
+- `cena DECIMAL(10,2)` - kolumna "cena" typu liczba zmiennoprzecinkowa (10 cyfr, w tym 2 po przecinku).
 
 **Dodawanie kolumny:**
 
@@ -350,9 +350,9 @@ CREATE TABLE Zamowienia (
 );
 ```
 
-- `id` – unikalny identyfikator zamówienia.
-- `id_produktu` – odwołanie do kolumny "id" w tabeli Produkty.
-- `FOREIGN KEY...` – definiuje powiązanie (relację) między tabelami.
+- `id` - unikalny identyfikator zamówienia.
+- `id_produktu` - odwołanie do kolumny "id" w tabeli Produkty.
+- `FOREIGN KEY...` - definiuje powiązanie (relację) między tabelami.
 
 ---
 
@@ -362,7 +362,7 @@ CREATE TABLE Zamowienia (
 - Używaj czytelnych nazw tabel i kolumn.
 - Twórz kopie zapasowe bazy przed poważnymi zmianami.
 - Testuj zapytania SELECT przed wykonaniem UPDATE lub DELETE.
-- Unikaj SELECT \* w dużych projektach – wybieraj konkretne kolumny.
+- Unikaj SELECT \* w dużych projektach - wybieraj konkretne kolumny.
 - Dokumentuj nietypowe zapytania i modyfikacje struktury bazy.
 
 ---
@@ -533,4 +533,4 @@ SELECT * FROM Uzytkownicy WHERE miasto = 'Warszawa' AND wiek > 18;
 
 ## Podsumowanie
 
-SQL to potężne i uniwersalne narzędzie do pracy z danymi w relacyjnych bazach danych. Pozwala efektywnie pobierać, modyfikować i zarządzać informacją. Warto poznać zarówno podstawy, jak i bardziej zaawansowane możliwości tego języka – to inwestycja, która przyda się w niemal każdej dziedzinie IT!
+SQL to potężne i uniwersalne narzędzie do pracy z danymi w relacyjnych bazach danych. Pozwala efektywnie pobierać, modyfikować i zarządzać informacją. Warto poznać zarówno podstawy, jak i bardziej zaawansowane możliwości tego języka - to inwestycja, która przyda się w niemal każdej dziedzinie IT!

@@ -1,6 +1,6 @@
 ---
 title: "Wzorce projektowe w praktyce"
-description: "Kompleksowy przewodnik po wzorcach projektowych — od podstaw po praktyczne przykłady w kontekście frontendu i backendu."
+description: "Kompleksowy przewodnik po wzorcach projektowych - od podstaw po praktyczne przykłady w kontekście frontendu i backendu."
 keywords:
   [
     wzorce projektowe,
@@ -24,7 +24,7 @@ quiz:
         - "Kreacyjne"
         - "Funkcyjne"
       answer: 2
-      explanation: "Singleton to wzorzec kreacyjny – dotyczy sposobu tworzenia obiektów."
+      explanation: "Singleton to wzorzec kreacyjny - dotyczy sposobu tworzenia obiektów."
     - question: "Który wzorzec umożliwia zamianę jednego interfejsu na inny, by umożliwić współpracę niekompatybilnych klas?"
       options:
         - "Observer"
@@ -59,7 +59,7 @@ quiz:
       explanation: "Facade upraszcza złożone systemy przez prosty interfejs."
 ---
 
-Poznaj praktyczne zastosowania najważniejszych **wzorców projektowych** — prosto, przystępnie, z przykładami w **TypeScript** oraz z zadaniami do samodzielnego wykonania! 🏗️🚀
+Poznaj praktyczne zastosowania najważniejszych **wzorców projektowych** - prosto, przystępnie, z przykładami w **TypeScript** oraz z zadaniami do samodzielnego wykonania! 🏗️🚀
 
 Ten przewodnik to nie tylko teoria, ale również konkretne przykłady, wskazówki i gotowe rozwiązania do typowych problemów programistycznych, zarówno po stronie frontendu, jak i backendu.
 
@@ -83,14 +83,14 @@ Ten przewodnik to nie tylko teoria, ale również konkretne przykłady, wskazów
     - [Zadanie 1: Singleton w praktyce](#zadanie-1-singleton-w-praktyce)
     - [Zadanie 2: Factory dla przycisków](#zadanie-2-factory-dla-przycisków)
     - [Zadanie 3: Builder do pizzy](#zadanie-3-builder-do-pizzy)
-    - [Zadanie 4: Adapter — stare i nowe API](#zadanie-4-adapter--stare-i-nowe-api)
-    - [Zadanie 5: Strategy — wybór algorytmu płatności](#zadanie-5-strategy--wybór-algorytmu-płatności)
+    - [Zadanie 4: Adapter - stare i nowe API](#zadanie-4-adapter--stare-i-nowe-api)
+    - [Zadanie 5: Strategy - wybór algorytmu płatności](#zadanie-5-strategy--wybór-algorytmu-płatności)
 
 ---
 
 ## Czym są wzorce projektowe?
 
-**Wzorce projektowe** (Design Patterns) to sprawdzone, uniwersalne rozwiązania dla często spotykanych problemów w programowaniu. Możesz potraktować je jak gotowe "przepisy" — zamiast wymyślać wszystko od nowa, korzystasz z doświadczenia i najlepszych praktyk innych inżynierów oprogramowania. Są to abstrakcyjne koncepcje, które należy zaadaptować do konkretnego kontekstu problemu.
+**Wzorce projektowe** (Design Patterns) to sprawdzone, uniwersalne rozwiązania dla często spotykanych problemów w programowaniu. Możesz potraktować je jak gotowe "przepisy" - zamiast wymyślać wszystko od nowa, korzystasz z doświadczenia i najlepszych praktyk innych inżynierów oprogramowania. Są to abstrakcyjne koncepcje, które należy zaadaptować do konkretnego kontekstu problemu.
 
 ### Dlaczego warto ich używać?
 
@@ -105,9 +105,9 @@ Ten przewodnik to nie tylko teoria, ale również konkretne przykłady, wskazów
 
 Wzorce projektowe są klasyfikowane na podstawie ich celu i problemu, który rozwiązują. Najpopularniejszy podział pochodzi z książki "Design Patterns: Elements of Reusable Object-Oriented Software" (tzw. Gang of Four - GoF):
 
-1.  **Kreacyjne (Creational Patterns)** — dotyczą sposobów tworzenia obiektów, zapewniając elastyczność i kontrolę nad procesem instancjonowania. Przykłady: Singleton, Factory Method, Builder.
-2.  **Strukturalne (Structural Patterns)** — pokazują, jak łączyć obiekty i klasy w większe struktury, zachowując ich elastyczność i efektywność. Przykłady: Facade, Adapter.
-3.  **Behawioralne (Behavioral Patterns)** — opisują interakcje i przepływ informacji między obiektami, ułatwiając komunikację i zarządzanie złożonym zachowaniem. Przykłady: Observer, Strategy.
+1.  **Kreacyjne (Creational Patterns)** - dotyczą sposobów tworzenia obiektów, zapewniając elastyczność i kontrolę nad procesem instancjonowania. Przykłady: Singleton, Factory Method, Builder.
+2.  **Strukturalne (Structural Patterns)** - pokazują, jak łączyć obiekty i klasy w większe struktury, zachowując ich elastyczność i efektywność. Przykłady: Facade, Adapter.
+3.  **Behawioralne (Behavioral Patterns)** - opisują interakcje i przepływ informacji między obiektami, ułatwiając komunikację i zarządzanie złożonym zachowaniem. Przykłady: Observer, Strategy.
 
 Każda kategoria rozwiązuje inne typy problemów, dlatego tak ważne jest, by znać przynajmniej po jednym wzorcu z każdej grupy.
 
@@ -562,10 +562,10 @@ Wzorce projektowe nie są tylko teorią, ale są wszechobecne w realnych aplikac
 
 Aby pogłębić swoją wiedzę i lepiej zrozumieć wzorce projektowe, polecam następujące zasoby:
 
-- **[Refactoring.guru – wzorce projektowe po polsku i angielsku](https://refactoring.guru/pl/design-patterns)**: Prawdopodobnie najlepsze źródło online z klarownymi opisami i przykładami kodu w wielu językach.
+- **[Refactoring.guru - wzorce projektowe po polsku i angielsku](https://refactoring.guru/pl/design-patterns)**: Prawdopodobnie najlepsze źródło online z klarownymi opisami i przykładami kodu w wielu językach.
 - **[TypeScript Playground](https://www.typescriptlang.org/play)**: Idealne narzędzie do szybkiego testowania i eksperymentowania z przykładami kodu w TypeScript, bez potrzeby konfiguracji lokalnego środowiska.
-- **[Wzorce projektowe – Wikipedia](https://pl.wikipedia.org/wiki/Wzorzec_projektowy)**: Dobre źródło do ogólnego przeglądu i definicji.
-- **Książka „Wzorce projektowe. Elementy oprogramowania obiektowego” – Gamma, Helm, Johnson, Vlissides (tzw. Gang of Four)**: Klasyka, która zapoczątkowała całą dyskusję o wzorcach. Obowiązkowa lektura dla każdego, kto chce dogłębnie zrozumieć temat.
+- **[Wzorce projektowe - Wikipedia](https://pl.wikipedia.org/wiki/Wzorzec_projektowy)**: Dobre źródło do ogólnego przeglądu i definicji.
+- **Książka "Wzorce projektowe. Elementy oprogramowania obiektowego" - Gamma, Helm, Johnson, Vlissides (tzw. Gang of Four)**: Klasyka, która zapoczątkowała całą dyskusję o wzorcach. Obowiązkowa lektura dla każdego, kto chce dogłębnie zrozumieć temat.
 
 ---
 
@@ -747,7 +747,7 @@ console.log(customerOrder.getTotalSummary());
 
 ---
 
-### Zadanie 4: Adapter — stare i nowe API
+### Zadanie 4: Adapter - stare i nowe API
 
 Załóż, że masz starą klasę `LegacyUserService` z metodą `fetchUserById(id: string)`, która zwraca obiekt użytkownika w starym formacie (`{ uid: string; username: string }`). Chcesz korzystać z nowego interfejsu `NewUserApi` z metodą `getUser(id: string)` zwracającą nowy format (`{ id: string; name: string }`). Napisz `UserApiAdapter`.
 
@@ -810,7 +810,7 @@ console.log(newUser); // { id: "abc-123", name: "user-abc-123-legacy" }
 
 ---
 
-### Zadanie 5: Strategy — wybór algorytmu płatności
+### Zadanie 5: Strategy - wybór algorytmu płatności
 
 Zaimplementuj trzy strategie płatności: `CreditCard`, `PayPal` i `CryptoPayment` (każda wypisuje w konsoli informację o metodzie płatności i kwocie). Stwórz klasę `PaymentProcessor` (kontekst), która umożliwi wybór i zmianę strategii w trakcie działania programu.
 
