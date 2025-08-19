@@ -1,5 +1,3 @@
-import { useLoaderData } from "react-router";
-
 import Articles from "~/components/articles";
 import Courses from "~/components/courses";
 import Projects from "~/components/projects";
@@ -7,6 +5,7 @@ import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
+import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { getCourses } from "~/lib/courses";
 import { getProjects } from "~/lib/projects";
 
@@ -15,15 +14,15 @@ export async function loader() {
   const courses = await getCourses({ limit: 3 });
   const projects = await getProjects({ limit: 3 });
 
-  return {
+  return encode({
     articles,
     courses,
     projects,
-  };
+  });
 }
 
 export default function Home() {
-  const data = useLoaderData<typeof loader>();
+  const data = useDecodedLoaderData<typeof loader>();
 
   return (
     <>

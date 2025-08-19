@@ -1,19 +1,20 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
 import EditResource from "~/components/edit-resource";
 import { Banner } from "~/components/ui/banner";
 import { Seo } from "~/components/ui/seo";
 import { getArticle } from "~/lib/articles";
+import { encode, useDecodedLoaderData } from "~/lib/compress";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug!);
 
-  return article;
+  return encode(article);
 }
 
 export default function ArticleDetails() {
-  const article = useLoaderData<typeof loader>();
+  const article = useDecodedLoaderData<typeof loader>();
 
   return (
     <>

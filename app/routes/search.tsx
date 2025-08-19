@@ -14,6 +14,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
 import { getArticles } from "~/lib/articles";
+import { decode, encode } from "~/lib/compress";
 import { getCourses } from "~/lib/courses";
 import { getProjects } from "~/lib/projects";
 import {
@@ -27,7 +28,7 @@ export async function loader() {
   const articles = await getArticles({ minify: true });
   const courses = await getCourses({ minify: true });
   const projects = await getProjects({ minify: true });
-  return { articles, courses, projects };
+  return encode({ articles, courses, projects });
 }
 
 export async function clientLoader({
@@ -35,14 +36,15 @@ export async function clientLoader({
   serverLoader,
 }: ClientLoaderFunctionArgs) {
   const searchData = await serverLoader<typeof loader>();
+  const data = decode(searchData);
 
   const query = validateSearhQuery(request.url);
-  const results = getSearchResults(searchData, query);
+  const results = getSearchResults(data, query);
   const count = getSearchResultsLength(results);
 
   return {
     results,
-    initialResults: searchData,
+    initialResults: data,
     query,
     count,
   };

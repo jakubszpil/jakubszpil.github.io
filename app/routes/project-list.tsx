@@ -1,8 +1,9 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
 import Projects from "~/components/projects";
 import { Seo } from "~/components/ui/seo";
+import { encode, useDecodedLoaderData } from "~/lib/compress";
 import {
   getProjectsByTechnology,
   getProjectsTechnologies,
@@ -10,15 +11,16 @@ import {
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
-  return {
+  return encode({
     technology,
     technologies: await getProjectsTechnologies(),
     projects: await getProjectsByTechnology(technology),
-  };
+  });
 }
 
 export default function ProjectList() {
-  const { projects, technologies, technology } = useLoaderData<typeof loader>();
+  const { projects, technologies, technology } =
+    useDecodedLoaderData<typeof loader>();
 
   const title = technology
     ? getCapitalizedIndividualName(technology)
