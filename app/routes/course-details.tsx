@@ -1,20 +1,21 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
 import EditResource from "~/components/edit-resource";
 import Quiz from "~/components/quiz";
 import { Banner } from "~/components/ui/banner";
 import { Seo } from "~/components/ui/seo";
+import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { getCourse } from "~/lib/courses";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await getCourse(slug!);
 
-  return course;
+  return encode(course);
 }
 
 export default function CourseDetails() {
-  const course = useLoaderData<typeof loader>();
+  const course = useDecodedLoaderData<typeof loader>();
 
   return (
     <>

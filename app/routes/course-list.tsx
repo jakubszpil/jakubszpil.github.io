@@ -1,21 +1,23 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
 import Courses from "~/components/courses";
 import { Seo } from "~/components/ui/seo";
+import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { getCoursesByCategory, getCoursesCategories } from "~/lib/courses";
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
-  return {
+  return encode({
     category,
     categories: await getCoursesCategories(),
     courses: await getCoursesByCategory(category),
-  };
+  });
 }
 
 export default function CourseList() {
-  const { courses, categories, category } = useLoaderData<typeof loader>();
+  const { courses, categories, category } =
+    useDecodedLoaderData<typeof loader>();
 
   const title = category ? getCapitalizedIndividualName(category) : undefined;
 
