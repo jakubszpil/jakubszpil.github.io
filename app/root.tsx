@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./styles.css";
-import { injectScript } from "./lib/scripts";
+import PreloadedScript from "./components/preloaded-script";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -18,33 +18,13 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <link rel="modulepreload" href="/fetch.js" />
         <script
           dangerouslySetInnerHTML={{
-            __html: injectScript(`
-              {
-                let k = "theme";
-                let t = "dark";
-                let s = localStorage;
-                let v = s.getItem(k);
-                let c = document.documentElement.classList;
-
-                if (v === "DARK") c.add(t);
-                else if (v === "LIGHT") c.remove(t);
-                else if (!v || v === "SYSTEM") matchMedia(\`(prefers-color-scheme: $\{t\})\`).matches ? c.add(t) : c.remove(t);
-                else s.removeItem(k);
-              }
-          `),
+            __html: `globalThis.timestamp = ${import.meta.env.TIMESTAMP}`,
           }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: injectScript(
-              `globalThis.timestamp = ${import.meta.env.TIMESTAMP}`
-            ),
-          }}
-        />
-        <script type="module" src="/fetch.js" />
+        <PreloadedScript src="/theme.js" />
+        <PreloadedScript src="/fetch.js" />
         <Meta />
         <Links />
       </head>

@@ -29,7 +29,6 @@ function createRequestUrl(requestInput) {
 }
 
 function createRequestInit(requestInit) {
-  /** @type {RequestInit} */
   const init = requestInit ?? {};
   init.cache = "force-cache";
   return init;
