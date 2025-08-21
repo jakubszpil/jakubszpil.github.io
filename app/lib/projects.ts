@@ -1,8 +1,4 @@
-import {
-  minifyContentResource,
-  parseContentResources,
-  type ContentResource,
-} from "./content";
+import { minifyContentResource, parseContentResources } from "./content";
 import type { RequiredOptional } from "./types";
 
 export enum ProjectStatus {
@@ -11,14 +7,14 @@ export enum ProjectStatus {
   COMPLETED = "COMPLETED",
 }
 
-export abstract class Project implements ContentResource {
-  abstract id: string;
-  abstract slug: string;
-  abstract title: string;
-  abstract description: string;
-  abstract createdAt: string;
-  abstract status: ProjectStatus;
-  abstract categories: string[];
+export interface Project {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  status: ProjectStatus;
+  categories: string[];
 }
 
 const CONTENT = import.meta.glob<string>("../content/projects/*.md", {

@@ -2,21 +2,20 @@ import {
   minifyContentResource,
   parseContentResources,
   type ContentQuiz,
-  type ContentResource,
 } from "./content";
 import type { RequiredOptional } from "./types";
 
-export abstract class Course implements ContentResource {
-  abstract id: string;
-  abstract slug: string;
-  abstract title: string;
-  abstract description: string;
-  abstract createdAt: string;
-  abstract readingTime: string;
-  abstract categories: string[];
-  abstract keywords: string[];
-  abstract content: string;
-  abstract quiz?: ContentQuiz;
+export interface Course {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  readingTime: string;
+  categories: string[];
+  keywords: string[];
+  content: string;
+  quiz?: ContentQuiz;
 }
 
 const CONTENT = import.meta.glob<string>("../content/courses/*.md", {
