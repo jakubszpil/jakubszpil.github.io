@@ -65,29 +65,29 @@ export async function processContent(content: string) {
   return [results.toString(), readingTime.time] as const;
 }
 
-export abstract class ContentQuiz {
-  abstract title: string;
-  abstract questions: ContentQuizQuestion[];
+export interface ContentQuiz {
+  title: string;
+  questions: ContentQuizQuestion[];
 }
 
-export abstract class ContentQuizQuestion {
-  abstract question: string;
-  abstract options: string[];
-  abstract answer: number;
-  abstract explanation?: string;
+export interface ContentQuizQuestion {
+  question: string;
+  options: string[];
+  answer: number;
+  explanation?: string;
 }
 
-export abstract class ContentResource {
-  abstract id: string;
-  abstract slug: string;
-  abstract title: string;
-  abstract description: string;
-  abstract createdAt: string;
-  abstract readingTime?: string;
-  abstract categories?: string[];
-  abstract keywords?: string[];
-  abstract content?: string;
-  abstract quiz?: ContentQuiz;
+export interface ContentResource {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  readingTime?: string;
+  categories?: string[];
+  keywords?: string[];
+  content?: string;
+  quiz?: ContentQuiz;
 }
 
 export async function parseQuiz(

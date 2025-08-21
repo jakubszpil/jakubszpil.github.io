@@ -5,11 +5,11 @@ import type { Article } from "./articles";
 import type { Course } from "./courses";
 import type { Project } from "./projects";
 
-export type SearchResults = {
+export interface SearchResults {
   articles: Article[];
   courses: Course[];
   projects: Project[];
-};
+}
 
 export const queryParamName = "query";
 

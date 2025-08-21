@@ -10,12 +10,7 @@ export interface FooterLinkProps {
 
 export default function FooterLink(props: FooterLinkProps) {
   return (
-    <Button
-      asChild
-      variant="link"
-      size="sm"
-      className="!no-underline hover:!underline"
-    >
+    <Button asChild variant="link" size="sm">
       <LinkWithPrefetch to={props.to}>{props.children}</LinkWithPrefetch>
     </Button>
   );

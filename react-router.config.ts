@@ -1,16 +1,15 @@
 import type { Config } from "@react-router/dev/config";
 import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
+import { minify } from "uglify-js";
 
 import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
 import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
 import { getProjectsTechnologies } from "./app/lib/projects";
 
-function minify(content: string) {
-  return content
-    .replace(/(\r\n|\n|\r)/gm, "")
-    .replaceAll("  ", "")
-    .replaceAll(" = ", "=");
+function minifyContent(content: string) {
+  const { code } = minify({ "file.js": content }, { toplevel: true });
+  return code.replace(/\bvar\b/g, "let");
 }
 
 export default {
@@ -35,10 +34,10 @@ export default {
         await rename(path, targetPath);
       }
 
-      if (file.includes("fetch.js")) {
+      if (file.includes("fetch.js") || file.includes("theme.js")) {
         const targetPath = join(__clientDirname, file);
         const fileContent = await readFile(targetPath, "utf-8");
-        await writeFile(targetPath, minify(fileContent), "utf-8");
+        await writeFile(targetPath, minifyContent(fileContent), "utf-8");
       }
     }
   },

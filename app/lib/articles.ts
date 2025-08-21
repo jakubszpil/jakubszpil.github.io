@@ -1,20 +1,16 @@
-import {
-  minifyContentResource,
-  parseContentResources,
-  type ContentResource,
-} from "./content";
+import { minifyContentResource, parseContentResources } from "./content";
 import type { RequiredOptional } from "./types";
 
-export abstract class Article implements ContentResource {
-  abstract id: string;
-  abstract slug: string;
-  abstract title: string;
-  abstract description: string;
-  abstract createdAt: string;
-  abstract readingTime: string;
-  abstract categories: string[];
-  abstract keywords: string[];
-  abstract content: string;
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  readingTime: string;
+  categories: string[];
+  keywords: string[];
+  content: string;
 }
 
 const CONTENT = import.meta.glob<string>("../content/articles/*.md", {
