@@ -9,7 +9,7 @@ import { getProjectsTechnologies } from "./app/lib/projects";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });
-  return code;
+  return code.replace(/\bvar\b/g, "let");
 }
 
 export default {
