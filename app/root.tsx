@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import "./styles.css";
+import InlineScript from "./components/inline-script";
 import PreloadedScript from "./components/preloaded-script";
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -18,10 +19,8 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `globalThis.timestamp = ${import.meta.env.TIMESTAMP}`,
-          }}
+        <InlineScript
+          code={`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}
         />
         <PreloadedScript src="/theme.js" />
         <PreloadedScript src="/fetch.js" />
