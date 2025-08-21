@@ -33,23 +33,23 @@
 }
 
 @utility button--variant-default {
-  @apply bg-primary text-primary-foreground shadow-xs hover-available:hover:bg-primary/90 hover-unavailable:active:bg-primary/90;
+  @apply bg-primary text-primary-foreground shadow-xs hover-available:hover:bg-primary/90 hover-available:hover:active:bg-primary/80 hover-unavailable:active:bg-primary/90;
 }
 
 @utility button--variant-secondary {
-  @apply bg-secondary text-secondary-foreground shadow-xs hover-available:hover:bg-secondary/60 hover-unavailable:active:bg-secondary/60;
+  @apply bg-secondary text-secondary-foreground shadow-xs hover-available:hover:bg-secondary/60 hover-available:hover:active:bg-secondary/40 hover-unavailable:active:bg-secondary/60;
 }
 
 @utility button--variant-destructive {
-  @apply bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60;
+  @apply bg-destructive text-white shadow-xs hover-available:hover:bg-destructive/90 hover-available:hover:active:bg-destructive/80 hover-unavailable:active:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60;
 }
 
 @utility button--variant-ghost {
-  @apply hover-available:hover:bg-accent hover-available:hover:text-accent-foreground dark:hover-available:hover:bg-accent/50 hover-unavailable:active:bg-accent hover-unavailable:active:text-accent-foreground dark:hover-unavailable:active:bg-accent/50;
+  @apply hover-available:hover:bg-accent hover-available:hover:active:bg-input/80 hover-available:hover:text-accent-foreground dark:hover-available:hover:bg-accent/50 dark:hover-available:hover:active:bg-input/80 hover-unavailable:active:bg-accent hover-unavailable:active:text-accent-foreground dark:hover-unavailable:active:bg-accent/50;
 }
 
 @utility button--variant-outline {
-  @apply border bg-background shadow-xs hover-available:hover:bg-accent hover-available:hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover-available:hover:bg-input/50 hover-unavailable:active:bg-accent hover-unavailable:active:text-accent-foreground dark:hover-unavailable:active:bg-input/50;
+  @apply border bg-background shadow-xs hover-available:hover:bg-accent hover-available:hover:active:bg-input/80 hover-available:hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover-available:hover:bg-input/50 dark:hover-available:hover:active:bg-input/80 hover-unavailable:active:bg-accent hover-unavailable:active:text-accent-foreground dark:hover-unavailable:active:bg-input/50;
 }
 
 @utility button--variant-link {
