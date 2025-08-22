@@ -104,9 +104,9 @@ export default function NavbarMenu(props: NavbarMenuProps) {
             {show ? "Zamknij menu" : "Otwórz menu"}
           </span>
           {show ? (
-            <IconX className="!text-white size-6" />
+            <IconX className="text-white! size-6" />
           ) : (
-            <IconMenu2 className="size-6 !text-black dark:!text-white" />
+            <IconMenu2 className="size-6 text-black! dark:text-white!" />
           )}
         </Button>
       </div>
