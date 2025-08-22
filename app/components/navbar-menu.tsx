@@ -121,7 +121,9 @@ export default function NavbarMenu(props: NavbarMenuProps) {
           )}
         >
           {mobileLinks}
-
+          <NavbarLink size="lg" onClick={closeMenu} to="/search">
+            🔍 Szukaj
+          </NavbarLink>
           <div className="h-8 flex justify-center items-center absolute bottom-40">
             <BusyIndicator />
           </div>

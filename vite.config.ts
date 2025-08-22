@@ -21,7 +21,6 @@ export default defineConfig(() => {
       }),
       tsconfigPaths(),
     ],
-
     esbuild: {
       minifyIdentifiers: true,
       minifySyntax: true,
@@ -33,7 +32,7 @@ export default defineConfig(() => {
       watch: false,
       environment: "jsdom",
       passWithNoTests: true,
-      pool: "typescript"
+      pool: "typescript",
     },
   };
 });
