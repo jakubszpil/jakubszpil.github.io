@@ -2,20 +2,27 @@
   const _fetch = globalThis.fetch;
   const _createElement = globalThis.document.createElement;
   const _timestamp = globalThis.timestamp;
-  const _storedTimestamp = localStorage.getItem("timestamp");
+  const _key = "timestamp";
+  const _storage = localStorage;
+  const _caches = caches;
+  const _storedTimestamp = _storage.getItem(_key);
 
   if (Number(_timestamp) !== Number(_storedTimestamp)) {
     if (_storedTimestamp) {
-      if (await window.caches.has(_storedTimestamp)) {
-        await window.caches.delete(_storedTimestamp);
+      if (await _caches.has(_storedTimestamp)) {
+        await _caches.delete(_storedTimestamp);
       }
     }
 
-    localStorage.setItem("timestamp", _timestamp);
+    _storage.setItem(_key, _timestamp);
   }
 
-  const cache = await window.caches.open(_timestamp);
+  const cache = await _caches.open(_timestamp);
   const prefetchCache = new Set();
+
+  function createUrl(...data) {
+    return new URL(...data);
+  }
 
   function createRequestUrl(requestInput) {
     if (requestInput instanceof URL) {
@@ -23,10 +30,10 @@
     }
 
     if (requestInput instanceof Request) {
-      return new URL(requestInput.url);
+      return createUrl(requestInput.url);
     }
 
-    return new URL(requestInput);
+    return createUrl(requestInput);
   }
 
   function createRequestInit(requestInit) {
@@ -75,9 +82,9 @@
 
       element.setAttribute = async (key, value) => {
         if (element.rel === "prefetch" && key === "href") {
-          const pathname = `${value}?timestamp=${_timestamp}`;
+          const pathname = `${value}?${_key}=${_timestamp}`;
 
-          const url = new URL(`${location.origin}${pathname}`);
+          const url = createUrl(`${location.origin}${pathname}`);
 
           const matched = await cache.match(new Request(url));
 
