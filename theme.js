@@ -1,1 +1,0 @@
-let e="theme",a="dark",c=localStorage,r=document.documentElement.classList;switch(c.getItem(e)){case"DARK":r.add(a);break;case"LIGHT":r.remove(a);break;case"SYSTEM":case null:matchMedia("(prefers-color-scheme: dark)").matches?r.add(a):r.remove(a);break;default:c.removeItem(e)}
