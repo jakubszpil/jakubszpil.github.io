@@ -22,7 +22,7 @@ export default function Projects(props: ProjectsProps) {
   return (
     <section
       className={cn(
-        "container !pt-0 prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3",
+        "container pt-0! prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3",
         props.className
       )}
     >
@@ -31,10 +31,10 @@ export default function Projects(props: ProjectsProps) {
           key={project.id}
           asChild
           variant={props.variant ?? "outline"}
-          className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto !text-wrap no-underline truncate p-6 hover:!bg-inherit hover:!text-inherit"
+          className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6 hover:bg-inherit! hover:text-inherit!"
         >
           <div>
-            <h2 className="line-clamp-3 text-base font-semibold !m-0">
+            <h2 className="line-clamp-3 text-base font-semibold m-0!">
               {project.title}
             </h2>
             <span className="">Status: {STATUS_LABELS[project.status]}</span>

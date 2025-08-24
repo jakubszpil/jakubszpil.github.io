@@ -34,7 +34,7 @@ export default {
         await rename(path, targetPath);
       }
 
-      if (file.includes("fetch.js") || file.includes("theme.js")) {
+      if (file.includes("fetch.js")) {
         const targetPath = join(__clientDirname, file);
         const fileContent = await readFile(targetPath, "utf-8");
         await writeFile(targetPath, minifyContent(fileContent), "utf-8");

@@ -14,7 +14,7 @@ export default function EditResource(props: EditResourceProps) {
         size="lg"
         className="w-full p-10 text-wrap flex-wrap h-auto text-center gap-y-4"
       >
-        <p className="!text-wrap">
+        <p className="text-wrap!">
           Widzisz jakiś błąd, bądź literówkę? Chcesz coś poprawić?
           <Button asChild variant="link">
             <a
