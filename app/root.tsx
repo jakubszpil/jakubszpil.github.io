@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
-import "./styles.css";
+import styles from "./styles.css?url";
 import InlineScript from "./components/inline-script";
 import PreloadedScript from "./components/preloaded-script";
 
@@ -12,6 +12,8 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+        <link rel="preload" as="style" href={styles} />
+        <link rel="stylesheet" href={styles} />
         <link
           rel="preload prefetch"
           href="/static/fonts/geist.ttf"
@@ -20,8 +22,10 @@ export function Layout({ children }: { children: ReactNode }) {
           crossOrigin="anonymous"
         />
         <InlineScript
+          code={`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}
+        />
+        <InlineScript
           code={`
-            globalThis.timestamp = ${import.meta.env.TIMESTAMP};
             let k = "theme";
             let t = "dark";
             let s = localStorage;
