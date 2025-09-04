@@ -18,7 +18,9 @@ export function usePrefetchLinkForInitialLoad() {
       ? route.hasLoader
         ? match.pathname === "/"
           ? "/_root.data"
-          : `${match.pathname}.data`
+          : match.pathname.endsWith("/")
+            ? `${match.pathname.slice(0, -1)}.data`
+            : `${match.pathname}.data`
         : undefined
       : undefined
     : undefined;

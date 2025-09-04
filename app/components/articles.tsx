@@ -21,7 +21,7 @@ export default function Articles(props: ArticlesProps) {
     >
       {props.articles.map((article) => (
         <Button
-          key={article.id}
+          key={article.slug}
           asChild
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6"

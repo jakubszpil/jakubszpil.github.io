@@ -21,7 +21,7 @@ export default function Courses(props: CoursesProps) {
     >
       {props.courses.map((course) => (
         <Button
-          key={course.id}
+          key={course.slug}
           asChild
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6"

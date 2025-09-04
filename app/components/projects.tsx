@@ -28,7 +28,7 @@ export default function Projects(props: ProjectsProps) {
     >
       {props.projects.map((project) => (
         <Button
-          key={project.id}
+          key={project.slug}
           asChild
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6 hover:bg-inherit! hover:text-inherit!"

@@ -2,7 +2,6 @@ import { minifyContentResource, parseContentResources } from "./content";
 import type { RequiredOptional } from "./types";
 
 export interface Article {
-  id: string;
   slug: string;
   title: string;
   description: string;

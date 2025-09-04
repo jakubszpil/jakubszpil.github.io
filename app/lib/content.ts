@@ -78,7 +78,6 @@ export interface ContentQuizQuestion {
 }
 
 export interface ContentResource {
-  id: string;
   slug: string;
   title: string;
   description: string;
@@ -144,29 +143,35 @@ export async function parseMarkdownFile<T extends ContentResource>(
 ): Promise<T> {
   const { data, content } = matter(file);
 
-  const quiz = await parseQuiz(data);
-
   const [fileContent, readingTime] = await processContent(content);
 
-  return {
+  const resource = {
     ...data,
-    id: v4(),
     slug,
     content: fileContent,
-    quiz,
     readingTime: getReadingTime(readingTime),
     createdAt: new Date(data.createdAt).toISOString(),
   } as T;
+
+  if (data.quiz) {
+    const quiz = await parseQuiz(data);
+    resource.quiz = quiz;
+  }
+
+  return resource;
 }
 
-export function minifyContentResource<T extends ContentResource>(resource: T) {
-  const copy = { ...resource };
-  if (!copy.content) delete copy["readingTime"];
-  delete copy["content"];
-  delete copy["quiz"];
-  delete copy["keywords"];
-  delete copy["categories"];
-  return copy;
+export function minifyContentResource<T extends ContentResource>(
+  resource: T
+): T {
+  const { content, quiz, keywords, categories, ...minified } = resource;
+
+  if (!resource.content) {
+    const { readingTime, ...m } = minified;
+    return m as T;
+  }
+
+  return minified as T;
 }
 
 const CACHE: Record<string, ContentResource[]> = {};

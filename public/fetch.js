@@ -33,7 +33,7 @@
       return createUrl(requestInput.url);
     }
 
-    return createUrl(requestInput);
+    return createUrl(requestInput, location.origin);
   }
 
   function createRequestInit(requestInit) {
