@@ -109,9 +109,9 @@ export default function Search() {
   }, [results, query, count, ref]);
 
   const renderDatalistOptions = useCallback(
-    <T extends { title: string; id: string }>(label: string, items: T[]) => {
-      return items?.map((item) => (
-        <option key={`datalist-item-${item.id}`} value={item.title}>
+    <T extends { title: string }>(label: string, group: string, items: T[]) => {
+      return items?.map((item, idx) => (
+        <option key={`${group}-${idx}`} value={item.title}>
           {label}
         </option>
       ));
@@ -164,9 +164,17 @@ export default function Search() {
         />
 
         <datalist id="search-datalist">
-          {renderDatalistOptions("📝 Artykuł", initialResults?.articles)}
-          {renderDatalistOptions("🏫 Kurs", initialResults?.courses)}
-          {renderDatalistOptions("🛠️ Projekt", initialResults?.projects)}
+          {renderDatalistOptions(
+            "📝 Artykuł",
+            "articles",
+            initialResults?.articles
+          )}
+          {renderDatalistOptions("🏫 Kurs", "courses", initialResults?.courses)}
+          {renderDatalistOptions(
+            "🛠️ Projekt",
+            "projects",
+            initialResults?.projects
+          )}
         </datalist>
 
         <Button type="submit">

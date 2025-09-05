@@ -42,7 +42,6 @@ describe("<CourseDetails />", () => {
     MockedBanner = vi.mocked(Banner);
 
     MockedCourse = {
-      id: "123",
       slug: "test-example",
       content: "<p>Test content</p>",
       title: "Test title",

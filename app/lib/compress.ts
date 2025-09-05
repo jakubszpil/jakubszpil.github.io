@@ -2,7 +2,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import lz from "lz-string";
 
 type Encoded<T> = {
-  val: string;
+  v: string;
 };
 
 class KeyReplacer {
@@ -24,37 +24,37 @@ class KeyReplacer {
 }
 
 const keyReplacer = new KeyReplacer([
-  ["slug", "s"],
-  ["title", "t"],
-  ["description", "d"],
-  ["keywords", "k"],
-  ["createdAt", "cd"],
-  ["content", "cn"],
-  ["categories", "cts"],
-  ["readingTime", "rt"],
-  ["status", "st"],
-  ["quiz", "qz"],
-  ["questions", "qs"],
-  ["question", "q"],
-  ["answer", "an"],
-  ["explanation", "ex"],
-  ["options", "opt"],
-  ["articles", "as"],
-  ["courses", "cs"],
-  ["projects", "ps"],
-  ["category", "ct"],
-  ["technology", "tc"],
-  ["technologies", "tcs"],
+  ["slug", "a"],
+  ["title", "b"],
+  ["description", "c"],
+  ["keywords", "d"],
+  ["createdAt", "e"],
+  ["content", "f"],
+  ["categories", "g"],
+  ["readingTime", "h"],
+  ["status", "i"],
+  ["quiz", "j"],
+  ["questions", "k"],
+  ["question", "l"],
+  ["answer", "m"],
+  ["explanation", "n"],
+  ["options", "o"],
+  ["articles", "p"],
+  ["courses", "r"],
+  ["projects", "s"],
+  ["category", "t"],
+  ["technology", "u"],
+  ["technologies", "w"],
 ]);
 
 export function encode<T>(value: T): Encoded<T> {
   return {
-    val: lz.compress(JSON.stringify(keyReplacer.replace(value))),
+    v: lz.compress(JSON.stringify(keyReplacer.replace(value))),
   };
 }
 
 export function decode<T>(encoded: Encoded<T>): T {
-  return keyReplacer.restore(JSON.parse(lz.decompress(encoded.val)));
+  return keyReplacer.restore(JSON.parse(lz.decompress(encoded.v)));
 }
 
 type MaybeAsync<T> = T | Promise<T>;

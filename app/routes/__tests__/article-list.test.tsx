@@ -45,7 +45,6 @@ describe("<ArticleList />", () => {
 
     MOCKED_ARTICLES = [
       {
-        id: "1",
         slug: "test-example-1",
         content: "<p>Test content 1</p>",
         title: "Test title 1",
@@ -56,7 +55,6 @@ describe("<ArticleList />", () => {
         readingTime: "3 minuty",
       },
       {
-        id: "2",
         slug: "test-example-2",
         content: "<p>Test content 2</p>",
         title: "Test title 2",

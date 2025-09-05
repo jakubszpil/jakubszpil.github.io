@@ -45,7 +45,6 @@ describe("<ProjectList />", () => {
 
     MOCKED_PROJECTS = [
       {
-        id: "1",
         slug: "test-example-1",
         title: "Test title 1",
         description: "Test description 1",
@@ -54,7 +53,6 @@ describe("<ProjectList />", () => {
         status: ProjectStatus.COMPLETED,
       },
       {
-        id: "2",
         slug: "test-example-2",
         title: "Test title 2",
         description: "Test description 2",

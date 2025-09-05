@@ -12,7 +12,6 @@ describe("<Projects />", () => {
     MockedProjectsProps = {
       projects: [
         {
-          id: "1",
           slug: "test-1",
           categories: ["test", "category"],
           title: "Test project 1",
@@ -21,7 +20,6 @@ describe("<Projects />", () => {
           createdAt: "2025-03-17",
         },
         {
-          id: "2",
           slug: "test-2",
           categories: ["test", "category"],
           title: "Test project 2",

@@ -33,7 +33,6 @@ describe("<Courses />", () => {
     MockedCoursesProps = {
       courses: [
         {
-          id: "1",
           slug: "test-1",
           content: "test content 1",
           categories: ["test", "category"],
@@ -44,7 +43,6 @@ describe("<Courses />", () => {
           keywords: [],
         },
         {
-          id: "2",
           slug: "test-2",
           content: "test content 2",
           categories: ["test", "category"],
