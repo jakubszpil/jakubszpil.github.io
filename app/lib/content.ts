@@ -10,7 +10,6 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { v4 } from "uuid";
 import invariant from "tiny-invariant";
 
 import { shuffleArray } from "./array";
