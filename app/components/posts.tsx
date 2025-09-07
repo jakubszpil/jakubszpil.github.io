@@ -2,16 +2,24 @@ import { Banner } from "./ui/banner";
 import { Button, type ButtonProps } from "./ui/button";
 import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
-import type { Course } from "~/lib/courses";
 import { cn } from "~/lib/utils";
 
-export interface CoursesProps {
-  courses: Course[];
+export interface Post {
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  readingTime: string;
+}
+
+export interface PostsProps<T extends Post = Post> {
+  posts: T[];
+  pathPrefix: string;
   className?: string;
   variant?: ButtonProps["variant"];
 }
 
-export default function Courses(props: CoursesProps) {
+export default function Posts<T extends Post = Post>(props: PostsProps<T>) {
   return (
     <section
       className={cn(
@@ -19,24 +27,24 @@ export default function Courses(props: CoursesProps) {
         props.className
       )}
     >
-      {props.courses.map((course) => (
+      {props.posts.map((post) => (
         <Button
-          key={course.slug}
+          key={post.slug}
           asChild
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6"
         >
-          <LinkWithPrefetch to={`/learning/${course.slug}`}>
+          <LinkWithPrefetch to={`${props.pathPrefix}/${post.slug}`}>
             <h2 className="line-clamp-3 text-base font-semibold flex-1 m-0!">
-              {course.title}
+              {post.title}
             </h2>
             <p className="line-clamp-3 mt-2 text-neutral-700 font-normal dark:text-neutral-300">
-              {course.description}
+              {post.description}
             </p>
             <Banner
               className="text-xs! text-neutral-500 dark:text-neutral-400 mb-0"
-              createdAt={course.createdAt}
-              readingTime={course.readingTime}
+              createdAt={post.createdAt}
+              readingTime={post.readingTime}
             />
           </LinkWithPrefetch>
         </Button>

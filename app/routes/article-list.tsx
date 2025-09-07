@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs } from "react-router";
 
-import Articles from "~/components/articles";
 import Categories from "~/components/categories";
+import Posts from "~/components/posts";
 import { Seo } from "~/components/ui/seo";
 import { getArticlesByCategory, getArticlesCategories } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
@@ -38,7 +38,7 @@ export default function ArticleList() {
         />
       </header>
 
-      <Articles articles={articles} />
+      <Posts pathPrefix="/blog" posts={articles} />
     </>
   );
 }

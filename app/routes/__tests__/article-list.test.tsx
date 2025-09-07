@@ -10,11 +10,10 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Articles, { type ArticlesProps } from "~/components/articles";
 import Categories, { type CategoriesProps } from "~/components/categories";
+import Posts, { type PostsProps } from "~/components/posts";
 import { Seo, type SeoProps } from "~/components/ui/seo";
 import {
-  getArticles,
   getArticlesByCategory,
   getArticlesCategories,
   type Article,
@@ -22,13 +21,13 @@ import {
 
 import ArticleList, { loader } from "../article-list";
 
-vi.mock("~/components/articles");
+vi.mock("~/components/posts");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
 vi.mock("~/lib/articles");
 
 describe("<ArticleList />", () => {
-  let MockedArticles: MockInstance;
+  let MockedPosts: MockInstance;
   let MockedCategories: MockInstance;
   let MockedSeo: MockInstance;
 
@@ -39,7 +38,7 @@ describe("<ArticleList />", () => {
   let MockedGetArticlesCategories: MockInstance;
 
   beforeEach(() => {
-    MockedArticles = vi.mocked(Articles);
+    MockedPosts = vi.mocked(Posts);
     MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
@@ -78,7 +77,7 @@ describe("<ArticleList />", () => {
   });
 
   afterEach(() => {
-    MockedArticles.mockRestore();
+    MockedPosts.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
     MockedGetArticleByCategory.mockRestore();
@@ -119,10 +118,11 @@ describe("<ArticleList />", () => {
       undefined
     );
 
-    expect(MockedArticles).toHaveBeenCalledWith(
+    expect(MockedPosts).toHaveBeenCalledWith(
       {
-        articles: MOCKED_ARTICLES,
-      } satisfies ArticlesProps,
+        posts: MOCKED_ARTICLES,
+        pathPrefix: "/blog",
+      } satisfies PostsProps,
       undefined
     );
   });
@@ -176,10 +176,11 @@ describe("<ArticleList />", () => {
       undefined
     );
 
-    expect(MockedArticles).toHaveBeenCalledWith(
+    expect(MockedPosts).toHaveBeenCalledWith(
       {
-        articles: [MOCKED_ARTICLES[1]],
-      } satisfies ArticlesProps,
+        posts: [MOCKED_ARTICLES[1]],
+        pathPrefix: "/blog",
+      } satisfies PostsProps,
       undefined
     );
   });

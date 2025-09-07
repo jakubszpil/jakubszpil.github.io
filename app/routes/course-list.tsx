@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
-import Courses from "~/components/courses";
+import Posts from "~/components/posts";
 import { Seo } from "~/components/ui/seo";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { getCoursesByCategory, getCoursesCategories } from "~/lib/courses";
@@ -38,7 +38,7 @@ export default function CourseList() {
         />
       </header>
 
-      <Courses key={category} courses={courses} />
+      <Posts pathPrefix="/learning" posts={courses} />
     </>
   );
 }

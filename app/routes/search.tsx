@@ -7,8 +7,6 @@ import {
 } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
-import Articles from "~/components/articles";
-import Courses from "~/components/courses";
 import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -23,6 +21,7 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "~/lib/search";
+import Posts from "~/components/posts";
 
 export async function loader() {
   const articles = await getArticles({ minify: true });
@@ -81,9 +80,10 @@ export default function Search() {
         {results.articles.length > 0 && (
           <section>
             <h3>Artykuły ({results.articles.length})</h3>
-            <Articles
+            <Posts
+              pathPrefix="/blog"
               className="p-0! grid-cols-1!"
-              articles={results.articles}
+              posts={results.articles}
             />
           </section>
         )}
@@ -91,7 +91,11 @@ export default function Search() {
         {results.courses.length > 0 && (
           <section>
             <h3>Kursy ({results.courses.length})</h3>
-            <Courses className="p-0! grid-cols-1!" courses={results.courses} />
+            <Posts
+              pathPrefix="/learning"
+              className="p-0! grid-cols-1!"
+              posts={results.courses}
+            />
           </section>
         )}
 

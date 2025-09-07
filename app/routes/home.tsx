@@ -1,5 +1,4 @@
-import Articles from "~/components/articles";
-import Courses from "~/components/courses";
+import Posts from "~/components/posts";
 import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
@@ -76,7 +75,7 @@ export default function Home() {
             frontend developmentu!
           </p>
         </header>
-        <Articles variant="outline" articles={data.articles} />
+        <Posts pathPrefix="/blog" variant="outline" posts={data.articles} />
         <nav className="container pt-0!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/blog">
@@ -95,7 +94,7 @@ export default function Home() {
             oraz aplikacje internetowe.
           </p>
         </header>
-        <Courses variant="outline" courses={data.courses} />
+        <Posts pathPrefix="/learning" variant="outline" posts={data.courses} />
         <nav className="container pt-0! pb-12!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/learning">
