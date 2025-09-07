@@ -7,6 +7,7 @@ import {
 } from "react-router";
 import { IconSearch } from "@tabler/icons-react";
 
+import Posts from "~/components/posts";
 import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -21,7 +22,6 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "~/lib/search";
-import Posts from "~/components/posts";
 
 export async function loader() {
   const articles = await getArticles({ minify: true });
