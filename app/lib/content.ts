@@ -160,27 +160,9 @@ export async function parseMarkdownFile<T extends ContentResource>(
   return resource;
 }
 
-export function minifyContentResource<T extends ContentResource>(
-  resource: T
-): T {
-  const { content, quiz, keywords, categories, ...minified } = resource;
-
-  if (!resource.content) {
-    const { readingTime, ...m } = minified;
-    return m as T;
-  }
-
-  return minified as T;
-}
-
-const CACHE: Record<string, ContentResource[]> = {};
-
 async function mapContentResourceEntries<T extends ContentResource>(
-  cacheKey: string,
   files: Record<string, string>
 ): Promise<T[]> {
-  if (cacheKey in CACHE) return CACHE[cacheKey] as T[];
-
   const entries = Object.entries(files).map(([key, file]) =>
     parseMarkdownFile<T>(
       file,
@@ -188,38 +170,23 @@ async function mapContentResourceEntries<T extends ContentResource>(
     )
   );
 
-  const resources = await Promise.all(entries);
-
-  CACHE[cacheKey] = resources;
-
-  return resources;
+  return Promise.all(entries);
 }
 
 export async function parseContentResources<T extends ContentResource>(
-  cacheKey: string,
-  files: Record<string, string>,
-  filters?: {
-    limit?: number;
-    minify?: boolean;
-  }
+  files: Record<string, string>
 ): Promise<T[]> {
-  const content = await mapContentResourceEntries<T>(cacheKey, files);
+  const content = await mapContentResourceEntries<T>(files);
 
-  const resources = content
-    .sort((first, second) => {
-      invariant(first.createdAt);
-      invariant(second.createdAt);
+  const resources = content.sort((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
 
-      const firstCreationTime = new Date(first.createdAt).getTime();
-      const secondCreationTime = new Date(second.createdAt).getTime();
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
 
-      return secondCreationTime - firstCreationTime;
-    })
-    .slice(0, filters?.limit ?? content.length);
-
-  if (filters?.minify ?? true) {
-    return resources.map(minifyContentResource);
-  }
+    return secondCreationTime - firstCreationTime;
+  });
 
   return resources;
 }

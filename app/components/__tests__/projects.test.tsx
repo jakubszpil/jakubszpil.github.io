@@ -13,7 +13,6 @@ describe("<Projects />", () => {
       projects: [
         {
           slug: "test-1",
-          categories: ["test", "category"],
           title: "Test project 1",
           description: "Test project description 1",
           status: ProjectStatus.COMPLETED,
@@ -21,7 +20,6 @@ describe("<Projects />", () => {
         },
         {
           slug: "test-2",
-          categories: ["test", "category"],
           title: "Test project 2",
           description: "Test project description 2",
           status: ProjectStatus.COMPLETED,

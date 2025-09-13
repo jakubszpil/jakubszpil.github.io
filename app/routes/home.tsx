@@ -3,15 +3,15 @@ import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
-import { getArticles } from "~/lib/articles";
+import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
-import { getCourses } from "~/lib/courses";
-import { getProjects } from "~/lib/projects";
+import { CourseService } from "~/lib/courses";
+import { ProjectService } from "~/lib/projects";
 
 export async function loader() {
-  const articles = await getArticles({ limit: 3 });
-  const courses = await getCourses({ limit: 3 });
-  const projects = await getProjects({ limit: 3 });
+  const articles = await ArticleService.findAll(3);
+  const courses = await CourseService.findAll(3);
+  const projects = await ProjectService.findAll(3);
 
   return encode({
     articles,

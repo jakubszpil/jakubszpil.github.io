@@ -12,10 +12,10 @@ import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
-import { getArticles } from "~/lib/articles";
+import { ArticleService } from "~/lib/articles";
 import { decode, encode } from "~/lib/compress";
-import { getCourses } from "~/lib/courses";
-import { getProjects } from "~/lib/projects";
+import { CourseService } from "~/lib/courses";
+import { ProjectService } from "~/lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -24,9 +24,9 @@ import {
 } from "~/lib/search";
 
 export async function loader() {
-  const articles = await getArticles({ minify: true });
-  const courses = await getCourses({ minify: true });
-  const projects = await getProjects({ minify: true });
+  const articles = await ArticleService.findAll();
+  const courses = await CourseService.findAll();
+  const projects = await ProjectService.findAll();
   return encode({ articles, courses, projects });
 }
 

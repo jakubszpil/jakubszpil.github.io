@@ -4,14 +4,14 @@ import Categories from "~/components/categories";
 import Posts from "~/components/posts";
 import { Seo } from "~/components/ui/seo";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
-import { getCoursesByCategory, getCoursesCategories } from "~/lib/courses";
+import { CourseService } from "~/lib/courses";
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return encode({
     category,
-    categories: await getCoursesCategories(),
-    courses: await getCoursesByCategory(category),
+    categories: await CourseService.getCategories(),
+    courses: await CourseService.findAllByCategory(category),
   });
 }
 

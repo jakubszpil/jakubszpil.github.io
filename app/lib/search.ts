@@ -1,14 +1,10 @@
 import { createPath, redirect } from "react-router";
 
 import { isValidUrl } from "./url";
-import type { Article } from "./articles";
-import type { Course } from "./courses";
-import type { Project } from "./projects";
+import type { ContentResource } from "./content";
 
 export interface SearchResults {
-  articles: Article[];
-  courses: Course[];
-  projects: Project[];
+  [key: string]: ContentResource[];
 }
 
 export const queryParamName = "query";

@@ -13,18 +13,13 @@ import {
 import Categories, { type CategoriesProps } from "~/components/categories";
 import Posts, { type PostsProps } from "~/components/posts";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import {
-  getArticlesByCategory,
-  getArticlesCategories,
-  type Article,
-} from "~/lib/articles";
+import { ArticleService, type Article } from "~/lib/articles";
 
 import ArticleList, { loader } from "../article-list";
 
 vi.mock("~/components/posts");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/articles");
 
 describe("<ArticleList />", () => {
   let MockedPosts: MockInstance;
@@ -68,11 +63,11 @@ describe("<ArticleList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetArticleByCategory = vi
-      .mocked(getArticlesByCategory)
+      .spyOn(ArticleService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
 
     MockedGetArticlesCategories = vi
-      .mocked(getArticlesCategories)
+      .spyOn(ArticleService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 

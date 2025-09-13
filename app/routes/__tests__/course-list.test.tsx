@@ -13,18 +13,13 @@ import {
 import Categories, { type CategoriesProps } from "~/components/categories";
 import Posts, { type PostsProps } from "~/components/posts";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import {
-  getCoursesByCategory,
-  getCoursesCategories,
-  type Course,
-} from "~/lib/courses";
+import { CourseService, type Course } from "~/lib/courses";
 
 import CourseList, { loader } from "../course-list";
 
 vi.mock("~/components/courses");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/courses");
 
 describe("<CourseList />", () => {
   let MockedProps: MockInstance;
@@ -68,11 +63,11 @@ describe("<CourseList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetCourseByCategory = vi
-      .mocked(getCoursesByCategory)
+      .spyOn(CourseService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
 
     MockedGetCoursesCategories = vi
-      .mocked(getCoursesCategories)
+      .spyOn(CourseService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 

@@ -7,7 +7,7 @@ import type { Project, ProjectStatus } from "~/lib/projects";
 import { cn } from "~/lib/utils";
 
 export interface ProjectsProps {
-  projects: Project[];
+  projects: Omit<Project, "categories">[];
   className?: string;
   variant?: ButtonProps["variant"];
 }
