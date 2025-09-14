@@ -5,11 +5,11 @@ import {
   useLocation,
   type ClientLoaderFunctionArgs,
 } from "react-router";
-import { IconSearch } from "@tabler/icons-react";
 
 import Posts from "~/components/posts";
 import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
+import { IconSearch } from "~/components/ui/icons";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
 import { ArticleService } from "~/lib/articles";

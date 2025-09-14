@@ -8,12 +8,12 @@ import {
   type MouseEventHandler,
   type ReactElement,
 } from "react";
-import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
 import { Button } from "./ui/button";
 import BusyIndicator from "./busy-indicator";
+import { IconMenu2, IconX } from "./ui/icons";
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 import SearchButton from "./search-button";

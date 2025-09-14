@@ -1,4 +1,4 @@
-import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandLinkedin } from "~/components/ui/icons";
 
 export const config = {
   socials: [

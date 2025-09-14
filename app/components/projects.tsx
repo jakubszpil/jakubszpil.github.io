@@ -1,5 +1,4 @@
-import { IconBrandGithub } from "@tabler/icons-react";
-
+import { IconBrandGithub } from "./ui/icons";
 import { Button, type ButtonProps } from "./ui/button";
 import { CreationDate } from "./ui/creation-date";
 

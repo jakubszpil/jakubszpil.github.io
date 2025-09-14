@@ -19,7 +19,6 @@
     "@radix-ui/react-slot": "1.2.3",
     "@react-router/dev": "7.9.1",
     "@react-router/node": "7.9.1",
-    "@tabler/icons-react": "3.34.1",
     "class-variance-authority": "0.7.1",
     "classnames": "2.5.1",
     "clsx": "2.1.1",

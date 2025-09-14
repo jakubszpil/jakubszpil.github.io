@@ -1,10 +1,11 @@
-import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-import { Button } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 import { usePrefetchLink } from "~/hooks/use-prefetch-link";
+
+import { Button } from "./ui/button";
+import { IconSearch } from "./ui/icons";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
 const state = { focus: true };
 
