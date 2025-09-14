@@ -1,16 +1,16 @@
 import type { LoaderFunctionArgs } from "react-router";
 
-import Articles from "~/components/articles";
 import Categories from "~/components/categories";
+import Posts from "~/components/posts";
 import { Seo } from "~/components/ui/seo";
-import { getArticlesByCategory, getArticlesCategories } from "~/lib/articles";
+import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return encode({
-    articles: await getArticlesByCategory(category),
-    categories: await getArticlesCategories(),
+    articles: await ArticleService.findAllByCategory(category),
+    categories: await ArticleService.getCategories(),
     category,
   });
 }
@@ -38,7 +38,7 @@ export default function ArticleList() {
         />
       </header>
 
-      <Articles articles={articles} />
+      <Posts pathPrefix="/blog" posts={articles} />
     </>
   );
 }

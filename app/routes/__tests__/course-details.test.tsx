@@ -16,7 +16,7 @@ import EditResource, {
   type EditResourceProps,
 } from "~/components/edit-resource";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import { getCourse, type Course } from "~/lib/courses";
+import { CourseService, type Course } from "~/lib/courses";
 
 import CourseDetails, { loader } from "../course-details";
 
@@ -24,7 +24,6 @@ vi.mock("~/components/categories");
 vi.mock("~/components/edit-resource");
 vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/courses");
 
 describe("<CourseDetails />", () => {
   let MockedCategories: MockInstance;
@@ -42,7 +41,6 @@ describe("<CourseDetails />", () => {
     MockedBanner = vi.mocked(Banner);
 
     MockedCourse = {
-      id: "123",
       slug: "test-example",
       content: "<p>Test content</p>",
       title: "Test title",
@@ -54,7 +52,7 @@ describe("<CourseDetails />", () => {
     };
 
     MockedGetCourse = vi
-      .mocked(getCourse)
+      .spyOn(CourseService, "findUnique")
       .mockImplementation(() => Promise.resolve(MockedCourse));
   });
 

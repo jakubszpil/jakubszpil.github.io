@@ -3,9 +3,9 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { getArticlesCategories, getArticlesSlugs } from "./app/lib/articles";
-import { getCoursesCategories, getCoursesSlugs } from "./app/lib/courses";
-import { getProjectsTechnologies } from "./app/lib/projects";
+import { ArticleService } from "./app/lib/articles";
+import { CourseService } from "./app/lib/courses";
+import { ProjectService } from "./app/lib/projects";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });
@@ -42,13 +42,13 @@ export default {
     }
   },
   async prerender({ getStaticPaths }) {
-    const blogArticles = await getArticlesSlugs();
-    const blogCategories = await getArticlesCategories();
+    const blogArticles = await ArticleService.getSlugs();
+    const blogCategories = await ArticleService.getCategories();
 
-    const learningCourses = await getCoursesSlugs();
-    const learningCategories = await getCoursesCategories();
+    const learningCourses = await CourseService.getSlugs();
+    const learningCategories = await CourseService.getCategories();
 
-    const portfolioTechnologies = await getProjectsTechnologies();
+    const portfolioTechnologies = await ProjectService.getCategories();
 
     return [
       ...getStaticPaths(),

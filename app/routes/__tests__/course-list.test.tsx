@@ -10,24 +10,19 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Courses, { type CoursesProps } from "~/components/courses";
 import Categories, { type CategoriesProps } from "~/components/categories";
+import Posts, { type PostsProps } from "~/components/posts";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import {
-  getCoursesByCategory,
-  getCoursesCategories,
-  type Course,
-} from "~/lib/courses";
+import { CourseService, type Course } from "~/lib/courses";
 
 import CourseList, { loader } from "../course-list";
 
 vi.mock("~/components/courses");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/courses");
 
 describe("<CourseList />", () => {
-  let MockedCourses: MockInstance;
+  let MockedProps: MockInstance;
   let MockedCategories: MockInstance;
   let MockedSeo: MockInstance;
 
@@ -38,13 +33,12 @@ describe("<CourseList />", () => {
   let MockedGetCoursesCategories: MockInstance;
 
   beforeEach(() => {
-    MockedCourses = vi.mocked(Courses);
+    MockedProps = vi.mocked(Posts);
     MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
     MOCKED_COURSES = [
       {
-        id: "1",
         slug: "test-example-1",
         content: "<p>Test content 1</p>",
         title: "Test title 1",
@@ -55,7 +49,6 @@ describe("<CourseList />", () => {
         readingTime: "3 minuty",
       },
       {
-        id: "2",
         slug: "test-example-2",
         content: "<p>Test content 2</p>",
         title: "Test title 2",
@@ -70,16 +63,16 @@ describe("<CourseList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetCourseByCategory = vi
-      .mocked(getCoursesByCategory)
+      .spyOn(CourseService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
 
     MockedGetCoursesCategories = vi
-      .mocked(getCoursesCategories)
+      .spyOn(CourseService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 
   afterEach(() => {
-    MockedCourses.mockRestore();
+    MockedProps.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
     MockedGetCourseByCategory.mockRestore();
@@ -120,10 +113,11 @@ describe("<CourseList />", () => {
       undefined
     );
 
-    expect(MockedCourses).toHaveBeenCalledWith(
+    expect(MockedProps).toHaveBeenCalledWith(
       {
-        courses: MOCKED_COURSES,
-      } satisfies CoursesProps,
+        posts: MOCKED_COURSES,
+        pathPrefix: "/learning",
+      } satisfies PostsProps,
       undefined
     );
   });
@@ -177,10 +171,11 @@ describe("<CourseList />", () => {
       undefined
     );
 
-    expect(MockedCourses).toHaveBeenCalledWith(
+    expect(MockedProps).toHaveBeenCalledWith(
       {
-        courses: [MOCKED_COURSES[1]],
-      } satisfies CoursesProps,
+        posts: [MOCKED_COURSES[1]],
+        pathPrefix: "/learning",
+      } satisfies PostsProps,
       undefined
     );
   });

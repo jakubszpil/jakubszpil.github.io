@@ -1,5 +1,4 @@
-import { IconBrandGithub } from "@tabler/icons-react";
-
+import { IconBrandGithub } from "./ui/icons";
 import { Button, type ButtonProps } from "./ui/button";
 import { CreationDate } from "./ui/creation-date";
 
@@ -7,7 +6,7 @@ import type { Project, ProjectStatus } from "~/lib/projects";
 import { cn } from "~/lib/utils";
 
 export interface ProjectsProps {
-  projects: Project[];
+  projects: Omit<Project, "categories">[];
   className?: string;
   variant?: ButtonProps["variant"];
 }
@@ -28,7 +27,7 @@ export default function Projects(props: ProjectsProps) {
     >
       {props.projects.map((project) => (
         <Button
-          key={project.id}
+          key={project.slug}
           asChild
           variant={props.variant ?? "outline"}
           className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6 hover:bg-inherit! hover:text-inherit!"

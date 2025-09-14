@@ -6,10 +6,17 @@ import Quiz from "~/components/quiz";
 import { Banner } from "~/components/ui/banner";
 import { Seo } from "~/components/ui/seo";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
-import { getCourse } from "~/lib/courses";
+import { CourseService } from "~/lib/courses";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const course = await getCourse(slug!);
+  const course = await CourseService.findUnique(slug!);
+
+  if (!course) {
+    throw new Response(null, {
+      status: 404,
+      statusText: "Nie znaleziono",
+    });
+  }
 
   return encode(course);
 }

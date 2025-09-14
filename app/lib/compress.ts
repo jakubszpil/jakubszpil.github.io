@@ -2,17 +2,59 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import lz from "lz-string";
 
 type Encoded<T> = {
-  value: string;
+  v: string;
 };
+
+class KeyReplacer {
+  constructor(private pairs: Array<[string, string]>) {}
+
+  replace<T>(obj: T): T {
+    let str = JSON.stringify(obj);
+    for (const [currentKey, newKey] of this.pairs)
+      str = str.replaceAll(`"${currentKey}":`, `"${newKey}":`);
+    return JSON.parse(str);
+  }
+
+  restore<T>(obj: T): T {
+    let str = JSON.stringify(obj);
+    for (const [currentKey, newKey] of this.pairs)
+      str = str.replaceAll(`"${newKey}":`, `"${currentKey}":`);
+    return JSON.parse(str);
+  }
+}
+
+const keyReplacer = new KeyReplacer([
+  ["slug", "a"],
+  ["title", "b"],
+  ["description", "c"],
+  ["keywords", "d"],
+  ["createdAt", "e"],
+  ["content", "f"],
+  ["categories", "g"],
+  ["readingTime", "h"],
+  ["status", "i"],
+  ["quiz", "j"],
+  ["questions", "k"],
+  ["question", "l"],
+  ["answer", "m"],
+  ["explanation", "n"],
+  ["options", "o"],
+  ["articles", "p"],
+  ["courses", "r"],
+  ["projects", "s"],
+  ["category", "t"],
+  ["technology", "u"],
+  ["technologies", "w"],
+]);
 
 export function encode<T>(value: T): Encoded<T> {
   return {
-    value: lz.compressToUTF16(JSON.stringify(value)),
+    v: lz.compress(JSON.stringify(keyReplacer.replace(value))),
   };
 }
 
 export function decode<T>(encoded: Encoded<T>): T {
-  return JSON.parse(lz.decompressFromUTF16(encoded.value));
+  return keyReplacer.restore(JSON.parse(lz.decompress(encoded.v)));
 }
 
 type MaybeAsync<T> = T | Promise<T>;

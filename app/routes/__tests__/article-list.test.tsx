@@ -10,25 +10,19 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Articles, { type ArticlesProps } from "~/components/articles";
 import Categories, { type CategoriesProps } from "~/components/categories";
+import Posts, { type PostsProps } from "~/components/posts";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import {
-  getArticles,
-  getArticlesByCategory,
-  getArticlesCategories,
-  type Article,
-} from "~/lib/articles";
+import { ArticleService, type Article } from "~/lib/articles";
 
 import ArticleList, { loader } from "../article-list";
 
-vi.mock("~/components/articles");
+vi.mock("~/components/posts");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/articles");
 
 describe("<ArticleList />", () => {
-  let MockedArticles: MockInstance;
+  let MockedPosts: MockInstance;
   let MockedCategories: MockInstance;
   let MockedSeo: MockInstance;
 
@@ -39,13 +33,12 @@ describe("<ArticleList />", () => {
   let MockedGetArticlesCategories: MockInstance;
 
   beforeEach(() => {
-    MockedArticles = vi.mocked(Articles);
+    MockedPosts = vi.mocked(Posts);
     MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
     MOCKED_ARTICLES = [
       {
-        id: "1",
         slug: "test-example-1",
         content: "<p>Test content 1</p>",
         title: "Test title 1",
@@ -56,7 +49,6 @@ describe("<ArticleList />", () => {
         readingTime: "3 minuty",
       },
       {
-        id: "2",
         slug: "test-example-2",
         content: "<p>Test content 2</p>",
         title: "Test title 2",
@@ -71,16 +63,16 @@ describe("<ArticleList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetArticleByCategory = vi
-      .mocked(getArticlesByCategory)
+      .spyOn(ArticleService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
 
     MockedGetArticlesCategories = vi
-      .mocked(getArticlesCategories)
+      .spyOn(ArticleService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 
   afterEach(() => {
-    MockedArticles.mockRestore();
+    MockedPosts.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
     MockedGetArticleByCategory.mockRestore();
@@ -121,10 +113,11 @@ describe("<ArticleList />", () => {
       undefined
     );
 
-    expect(MockedArticles).toHaveBeenCalledWith(
+    expect(MockedPosts).toHaveBeenCalledWith(
       {
-        articles: MOCKED_ARTICLES,
-      } satisfies ArticlesProps,
+        posts: MOCKED_ARTICLES,
+        pathPrefix: "/blog",
+      } satisfies PostsProps,
       undefined
     );
   });
@@ -178,10 +171,11 @@ describe("<ArticleList />", () => {
       undefined
     );
 
-    expect(MockedArticles).toHaveBeenCalledWith(
+    expect(MockedPosts).toHaveBeenCalledWith(
       {
-        articles: [MOCKED_ARTICLES[1]],
-      } satisfies ArticlesProps,
+        posts: [MOCKED_ARTICLES[1]],
+        pathPrefix: "/blog",
+      } satisfies PostsProps,
       undefined
     );
   });

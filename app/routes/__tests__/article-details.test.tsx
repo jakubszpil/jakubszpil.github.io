@@ -16,7 +16,7 @@ import EditResource, {
   type EditResourceProps,
 } from "~/components/edit-resource";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import { getArticle, type Article } from "~/lib/articles";
+import { ArticleService, type Article } from "~/lib/articles";
 
 import ArticleDetails, { loader } from "../article-details";
 
@@ -24,7 +24,6 @@ vi.mock("~/components/categories");
 vi.mock("~/components/edit-resource");
 vi.mock("~/components/ui/banner");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/articles");
 
 describe("<ArticleDetails />", () => {
   let MockedCategories: MockInstance;
@@ -42,7 +41,6 @@ describe("<ArticleDetails />", () => {
     MockedBanner = vi.mocked(Banner);
 
     MockedArticle = {
-      id: "123",
       slug: "test-example",
       content: "<p>Test content</p>",
       title: "Test title",
@@ -54,7 +52,7 @@ describe("<ArticleDetails />", () => {
     };
 
     MockedGetArticle = vi
-      .mocked(getArticle)
+      .spyOn(ArticleService, "findUnique")
       .mockImplementation(() => Promise.resolve(MockedArticle));
   });
 

@@ -1,13 +1,7 @@
-import {
-  IconDeviceDesktop,
-  IconMoonStars,
-  IconSun,
-  IconSunMoon,
-} from "@tabler/icons-react";
-
 import { useTheme } from "~/hooks/use-theme";
 import { Theme } from "~/lib/theme";
 
+import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +9,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
+import {
+  IconDeviceDesktop,
+  IconMoonStars,
+  IconSun,
+  IconSunMoon,
+} from "./ui/icons";
 
 export default function ThemeSwitcher() {
   const { setTheme } = useTheme();

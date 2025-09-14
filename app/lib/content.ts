@@ -10,7 +10,6 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { v4 } from "uuid";
 import invariant from "tiny-invariant";
 
 import { shuffleArray } from "./array";
@@ -78,7 +77,6 @@ export interface ContentQuizQuestion {
 }
 
 export interface ContentResource {
-  id: string;
   slug: string;
   title: string;
   description: string;
@@ -144,39 +142,27 @@ export async function parseMarkdownFile<T extends ContentResource>(
 ): Promise<T> {
   const { data, content } = matter(file);
 
-  const quiz = await parseQuiz(data);
-
   const [fileContent, readingTime] = await processContent(content);
 
-  return {
+  const resource = {
     ...data,
-    id: v4(),
     slug,
     content: fileContent,
-    quiz,
     readingTime: getReadingTime(readingTime),
     createdAt: new Date(data.createdAt).toISOString(),
   } as T;
-}
 
-export function minifyContentResource<T extends ContentResource>(resource: T) {
-  const copy = { ...resource };
-  if (!copy.content) delete copy["readingTime"];
-  delete copy["content"];
-  delete copy["quiz"];
-  delete copy["keywords"];
-  delete copy["categories"];
-  return copy;
-}
+  if (data.quiz) {
+    const quiz = await parseQuiz(data);
+    resource.quiz = quiz;
+  }
 
-const CACHE: Record<string, ContentResource[]> = {};
+  return resource;
+}
 
 async function mapContentResourceEntries<T extends ContentResource>(
-  cacheKey: string,
   files: Record<string, string>
 ): Promise<T[]> {
-  if (cacheKey in CACHE) return CACHE[cacheKey] as T[];
-
   const entries = Object.entries(files).map(([key, file]) =>
     parseMarkdownFile<T>(
       file,
@@ -184,38 +170,23 @@ async function mapContentResourceEntries<T extends ContentResource>(
     )
   );
 
-  const resources = await Promise.all(entries);
-
-  CACHE[cacheKey] = resources;
-
-  return resources;
+  return Promise.all(entries);
 }
 
 export async function parseContentResources<T extends ContentResource>(
-  cacheKey: string,
-  files: Record<string, string>,
-  filters?: {
-    limit?: number;
-    minify?: boolean;
-  }
+  files: Record<string, string>
 ): Promise<T[]> {
-  const content = await mapContentResourceEntries<T>(cacheKey, files);
+  const content = await mapContentResourceEntries<T>(files);
 
-  const resources = content
-    .sort((first, second) => {
-      invariant(first.createdAt);
-      invariant(second.createdAt);
+  const resources = content.sort((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
 
-      const firstCreationTime = new Date(first.createdAt).getTime();
-      const secondCreationTime = new Date(second.createdAt).getTime();
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
 
-      return secondCreationTime - firstCreationTime;
-    })
-    .slice(0, filters?.limit ?? content.length);
-
-  if (filters?.minify ?? true) {
-    return resources.map(minifyContentResource);
-  }
+    return secondCreationTime - firstCreationTime;
+  });
 
   return resources;
 }

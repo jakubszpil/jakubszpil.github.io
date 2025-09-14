@@ -4,17 +4,14 @@ import Categories from "~/components/categories";
 import Projects from "~/components/projects";
 import { Seo } from "~/components/ui/seo";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
-import {
-  getProjectsByTechnology,
-  getProjectsTechnologies,
-} from "~/lib/projects";
+import { ProjectService } from "~/lib/projects";
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return encode({
     technology,
-    technologies: await getProjectsTechnologies(),
-    projects: await getProjectsByTechnology(technology),
+    technologies: await ProjectService.getCategories(),
+    projects: await ProjectService.findAllByCategory(technology),
   });
 }
 

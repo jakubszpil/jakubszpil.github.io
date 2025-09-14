@@ -4,11 +4,18 @@ import Categories from "~/components/categories";
 import EditResource from "~/components/edit-resource";
 import { Banner } from "~/components/ui/banner";
 import { Seo } from "~/components/ui/seo";
-import { getArticle } from "~/lib/articles";
+import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const article = await getArticle(slug!);
+  const article = await ArticleService.findUnique(slug!);
+
+  if (!article) {
+    throw new Response(null, {
+      status: 404,
+      statusText: "Nie znaleziono",
+    });
+  }
 
   return encode(article);
 }

@@ -5,18 +5,17 @@ import {
   useLocation,
   type ClientLoaderFunctionArgs,
 } from "react-router";
-import { IconSearch } from "@tabler/icons-react";
 
-import Articles from "~/components/articles";
-import Courses from "~/components/courses";
+import Posts from "~/components/posts";
 import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
+import { IconSearch } from "~/components/ui/icons";
 import { Input } from "~/components/ui/input";
 import { Seo } from "~/components/ui/seo";
-import { getArticles } from "~/lib/articles";
+import { ArticleService } from "~/lib/articles";
 import { decode, encode } from "~/lib/compress";
-import { getCourses } from "~/lib/courses";
-import { getProjects } from "~/lib/projects";
+import { CourseService } from "~/lib/courses";
+import { ProjectService } from "~/lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -25,9 +24,9 @@ import {
 } from "~/lib/search";
 
 export async function loader() {
-  const articles = await getArticles({ minify: true });
-  const courses = await getCourses({ minify: true });
-  const projects = await getProjects({ minify: true });
+  const articles = await ArticleService.findAll();
+  const courses = await CourseService.findAll();
+  const projects = await ProjectService.findAll();
   return encode({ articles, courses, projects });
 }
 
@@ -81,9 +80,10 @@ export default function Search() {
         {results.articles.length > 0 && (
           <section>
             <h3>Artykuły ({results.articles.length})</h3>
-            <Articles
+            <Posts
+              pathPrefix="/blog"
               className="p-0! grid-cols-1!"
-              articles={results.articles}
+              posts={results.articles}
             />
           </section>
         )}
@@ -91,7 +91,11 @@ export default function Search() {
         {results.courses.length > 0 && (
           <section>
             <h3>Kursy ({results.courses.length})</h3>
-            <Courses className="p-0! grid-cols-1!" courses={results.courses} />
+            <Posts
+              pathPrefix="/learning"
+              className="p-0! grid-cols-1!"
+              posts={results.courses}
+            />
           </section>
         )}
 
@@ -109,9 +113,9 @@ export default function Search() {
   }, [results, query, count, ref]);
 
   const renderDatalistOptions = useCallback(
-    <T extends { title: string; id: string }>(label: string, items: T[]) => {
-      return items?.map((item) => (
-        <option key={`datalist-item-${item.id}`} value={item.title}>
+    <T extends { title: string }>(label: string, group: string, items: T[]) => {
+      return items?.map((item, idx) => (
+        <option key={`${group}-${idx}`} value={item.title}>
           {label}
         </option>
       ));
@@ -164,9 +168,17 @@ export default function Search() {
         />
 
         <datalist id="search-datalist">
-          {renderDatalistOptions("📝 Artykuł", initialResults?.articles)}
-          {renderDatalistOptions("🏫 Kurs", initialResults?.courses)}
-          {renderDatalistOptions("🛠️ Projekt", initialResults?.projects)}
+          {renderDatalistOptions(
+            "📝 Artykuł",
+            "articles",
+            initialResults?.articles
+          )}
+          {renderDatalistOptions("🏫 Kurs", "courses", initialResults?.courses)}
+          {renderDatalistOptions(
+            "🛠️ Projekt",
+            "projects",
+            initialResults?.projects
+          )}
         </datalist>
 
         <Button type="submit">

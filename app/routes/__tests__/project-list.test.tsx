@@ -13,19 +13,13 @@ import {
 import Projects, { type ProjectsProps } from "~/components/projects";
 import Categories, { type CategoriesProps } from "~/components/categories";
 import { Seo, type SeoProps } from "~/components/ui/seo";
-import {
-  getProjectsByTechnology,
-  getProjectsTechnologies,
-  ProjectStatus,
-  type Project,
-} from "~/lib/projects";
+import { ProjectService, ProjectStatus, type Project } from "~/lib/projects";
 
 import ProjectList, { loader } from "../project-list";
 
 vi.mock("~/components/projects");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
-vi.mock("~/lib/projects");
 
 describe("<ProjectList />", () => {
   let MockedProjects: MockInstance;
@@ -45,7 +39,6 @@ describe("<ProjectList />", () => {
 
     MOCKED_PROJECTS = [
       {
-        id: "1",
         slug: "test-example-1",
         title: "Test title 1",
         description: "Test description 1",
@@ -54,7 +47,6 @@ describe("<ProjectList />", () => {
         status: ProjectStatus.COMPLETED,
       },
       {
-        id: "2",
         slug: "test-example-2",
         title: "Test title 2",
         description: "Test description 2",
@@ -67,11 +59,11 @@ describe("<ProjectList />", () => {
     MOCKED_TECHNOLOGIES = ["test", "example"];
 
     MockedGetProjectByTechnology = vi
-      .mocked(getProjectsByTechnology)
+      .spyOn(ProjectService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
 
     MockedGetProjectsTechnologies = vi
-      .mocked(getProjectsTechnologies)
+      .spyOn(ProjectService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
   });
 

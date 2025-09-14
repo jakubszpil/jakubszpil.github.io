@@ -1,6 +1,7 @@
 import { Transition } from "@headlessui/react";
-import { IconLoader } from "@tabler/icons-react";
 import { useNavigation } from "react-router";
+
+import { IconLoader } from "./ui/icons";
 
 export default function BusyIndicator() {
   const navigation = useNavigation();

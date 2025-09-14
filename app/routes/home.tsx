@@ -1,18 +1,17 @@
-import Articles from "~/components/articles";
-import Courses from "~/components/courses";
+import Posts from "~/components/posts";
 import Projects from "~/components/projects";
 import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { Seo } from "~/components/ui/seo";
-import { getArticles } from "~/lib/articles";
+import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
-import { getCourses } from "~/lib/courses";
-import { getProjects } from "~/lib/projects";
+import { CourseService } from "~/lib/courses";
+import { ProjectService } from "~/lib/projects";
 
 export async function loader() {
-  const articles = await getArticles({ limit: 3 });
-  const courses = await getCourses({ limit: 3 });
-  const projects = await getProjects({ limit: 3 });
+  const articles = await ArticleService.findAll(3);
+  const courses = await CourseService.findAll(3);
+  const projects = await ProjectService.findAll(3);
 
   return encode({
     articles,
@@ -76,7 +75,7 @@ export default function Home() {
             frontend developmentu!
           </p>
         </header>
-        <Articles variant="outline" articles={data.articles} />
+        <Posts pathPrefix="/blog" variant="outline" posts={data.articles} />
         <nav className="container pt-0!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/blog">
@@ -95,7 +94,7 @@ export default function Home() {
             oraz aplikacje internetowe.
           </p>
         </header>
-        <Courses variant="outline" courses={data.courses} />
+        <Posts pathPrefix="/learning" variant="outline" posts={data.courses} />
         <nav className="container pt-0! pb-12!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/learning">
