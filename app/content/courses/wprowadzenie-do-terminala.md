@@ -272,7 +272,7 @@ _To świetne do automatycznego kopiowania plików, porządkowania katalogów i w
 - **Nie ten katalog** - zanim coś zrobisz, sprawdź gdzie jesteś (`pwd`).
 - **Uprawnienia** - nie wszystko można robić bez "superpraw" (`sudo`).
 - **Usuwanie plików** - ostrożnie z `rm`! Nie ma kosza.
-- \*\*Mylenie / i \*\* - na Linux/Mac zawsze używaj "/" w ścieżkach.
+- **Mylenie / i \\** - na Linux/Mac zawsze używaj "/" w ścieżkach.
 
 ---
 

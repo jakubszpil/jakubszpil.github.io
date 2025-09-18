@@ -571,10 +571,10 @@ Czas na praktykę\! Rozwiąż te zadania, aby utrwalić to, czego się nauczyłe
 
 Stwórz stronę HTML z nagłówkiem `<h1>`. Nadaj mu kolor **czerwony** za pomocą **External CSS**, używając selektora klasy.
 
-\<details\>
-\<summary\>
-\<span\>Pokaż rozwiązanie\</span\>
-\</summary\>
+<details>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 **`index.html`:**
 
@@ -602,7 +602,7 @@ Stwórz stronę HTML z nagłówkiem `<h1>`. Nadaj mu kolor **czerwony** za pomoc
 }
 ```
 
-\</details\>
+</details>
 
 ---
 
@@ -610,10 +610,10 @@ Stwórz stronę HTML z nagłówkiem `<h1>`. Nadaj mu kolor **czerwony** za pomoc
 
 Utwórz na nowej stronie HTML akapit (`<p>`). Nadaj mu **zielone tło**, **20 pikseli wypełnienia** (`padding`) ze wszystkich stron oraz **zaokrąglone rogi** o promieniu **10 pikseli**. Użyj selektora klasy w External CSS.
 
-\<details\>
-\<summary\>
-\<span\>Pokaż rozwiązanie\</span\>
-\</summary\>
+<details>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 **`index.html`:**
 
@@ -646,7 +646,7 @@ Utwórz na nowej stronie HTML akapit (`<p>`). Nadaj mu **zielone tło**, **20 pi
 }
 ```
 
-\</details\>
+</details>
 
 ---
 
@@ -654,10 +654,10 @@ Utwórz na nowej stronie HTML akapit (`<p>`). Nadaj mu **zielone tło**, **20 pi
 
 Stwórz na nowej stronie HTML element `<div>`. Wewnątrz niego umieść tekst "To jest div z ramką.". Nadaj mu **niebieską ramkę** o grubości **2 pikseli** i stylu `solid` (ciągła linia). Użyj selektora elementu dla `div` w External CSS.
 
-\<details\>
-\<summary\>
-\<span\>Pokaż rozwiązanie\</span\>
-\</summary\>
+<details>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 **`index.html`:**
 
@@ -687,7 +687,7 @@ div {
 }
 ```
 
-\</details\>
+</details>
 
 ---
 
@@ -695,10 +695,10 @@ div {
 
 Utwórz stronę HTML z trzema nagłówkami: `<h1>`, `<h2>` i `<h3>`. Każdemu nagłówkowi nadaj inną klasę (np. `pierwszy-kolor`, `drugi-kolor`, `trzeci-kolor`) i za pomocą External CSS ustaw dla nich odpowiednio kolory: **zielony**, **pomarańczowy** i **fioletowy**.
 
-\<details\>
-\<summary\>
-\<span\>Pokaż rozwiązanie\</span\>
-\</summary\>
+<details>
+<summary>
+<span>Pokaż rozwiązanie</span>
+</summary>
 
 **`index.html`:**
 
@@ -736,7 +736,7 @@ Utwórz stronę HTML z trzema nagłówkami: `<h1>`, `<h2>` i `<h3>`. Każdemu na
 }
 ```
 
-\</details\>
+</details>
 
 ---
 
