@@ -32,7 +32,7 @@ export default defineConfig(() => {
       watch: false,
       environment: "jsdom",
       passWithNoTests: true,
-      pool: "typescript",
+      pool: "threads",
     },
   };
 });

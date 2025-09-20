@@ -17,7 +17,7 @@ import { CourseService, type Course } from "~/lib/courses";
 
 import CourseList, { loader } from "../course-list";
 
-vi.mock("~/components/courses");
+vi.mock("~/components/posts");
 vi.mock("~/components/categories");
 vi.mock("~/components/ui/seo");
 
