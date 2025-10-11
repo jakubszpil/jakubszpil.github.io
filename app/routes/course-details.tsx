@@ -9,7 +9,7 @@ import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { CourseService } from "~/lib/courses";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const course = await CourseService.findUnique(slug!);
+  const course = await CourseService.findUnique(slug);
 
   if (!course) {
     throw new Response(null, {
