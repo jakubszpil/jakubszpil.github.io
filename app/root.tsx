@@ -16,7 +16,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <link rel="stylesheet" href={styles} />
         <link
           rel="preload prefetch"
-          href="/static/fonts/geist.ttf"
+          href="/fonts/geist.ttf"
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"

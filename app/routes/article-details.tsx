@@ -8,7 +8,7 @@ import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const article = await ArticleService.findUnique(slug!);
+  const article = await ArticleService.findUnique(slug);
 
   if (!article) {
     throw new Response(null, {

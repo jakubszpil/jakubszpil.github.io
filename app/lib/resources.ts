@@ -35,7 +35,7 @@ export function ResourceService<T extends ContentResource>(
         .map(this.minifyResource);
     }
 
-    static async findUnique(slug: string): Promise<T | undefined> {
+    static async findUnique(slug: string | undefined): Promise<T | undefined> {
       const resources = await this.resources;
 
       return resources.find((resource) => resource.slug === slug);
