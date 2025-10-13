@@ -5,8 +5,6 @@ import {
   type ComponentPropsWithoutRef,
 } from "react";
 
-import { cn } from "~/lib/utils";
-
 type IconNode = [elementName: SVGElementType, attrs: Record<string, string>][];
 
 export interface IconProps
@@ -66,7 +64,7 @@ const createReactComponent = <T extends keyof typeof defaultAttributes>(
           ...props,
           width: size,
           height: size,
-          className: cn(`tabler-icon`, `tabler-icon-${iconName}`, className),
+          className: className,
           ...(type === "filled"
             ? {
                 fill: color,
@@ -220,3 +218,16 @@ export const IconSunMoon = createReactComponent(
     ["path", { d: "M3 21l18 -18", key: "svg-5" }],
   ]
 );
+
+export const Icons = {
+  ["search"]: IconSearch,
+  ["brand-linkedin"]: IconBrandLinkedin,
+  ["brand-github"]: IconBrandGithub,
+  ["loader"]: IconLoader,
+  ["menu-2"]: IconMenu2,
+  ["x"]: IconX,
+  ["device-desktop"]: IconDeviceDesktop,
+  ["moon-stars"]: IconMoonStars,
+  ["sun"]: IconSun,
+  ["sun-moon"]: IconSunMoon,
+};
