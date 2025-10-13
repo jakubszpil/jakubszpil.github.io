@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Button, type ButtonProps } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+import LinkWithPrefetch from "./link-with-prefetch";
 
 export interface NavbarLinkProps {
   to: string;

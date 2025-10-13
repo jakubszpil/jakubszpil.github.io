@@ -5,7 +5,7 @@ import { usePrefetchLink } from "~/hooks/use-prefetch-link";
 
 import { Button } from "./ui/button";
 import { IconSearch } from "./ui/icons";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+import LinkWithPrefetch from "./link-with-prefetch";
 
 const state = { focus: true };
 

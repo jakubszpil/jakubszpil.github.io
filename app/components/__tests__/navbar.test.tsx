@@ -8,14 +8,14 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import LinkWithPrefetch from "../link-with-prefetch";
 import Navbar from "../navbar";
 import NavbarLink from "../navbar-link";
 
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../link-with-prefetch");
 
 describe("<Navbar />", () => {
-  let MockedLinkWithPrefetch: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
 
   beforeEach(() => {
     MockedLinkWithPrefetch = vi

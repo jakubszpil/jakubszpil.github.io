@@ -1,8 +1,8 @@
 import { useLocation } from "react-router";
 
 import { Button } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
-import { Seo } from "./ui/seo";
+import LinkWithPrefetch from "./link-with-prefetch";
+import Seo from "./seo";
 
 export default function NotFound() {
   const location = useLocation();

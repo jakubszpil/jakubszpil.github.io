@@ -20,7 +20,6 @@ export default {
     unstable_viteEnvironmentApi: true,
     unstable_optimizeDeps: true,
     unstable_splitRouteModules: true,
-    unstable_subResourceIntegrity: true,
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");

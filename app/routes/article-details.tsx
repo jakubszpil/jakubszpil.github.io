@@ -2,8 +2,8 @@ import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
 import EditResource from "~/components/edit-resource";
+import Seo from "~/components/seo";
 import { Banner } from "~/components/ui/banner";
-import { Seo } from "~/components/ui/seo";
 import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
 

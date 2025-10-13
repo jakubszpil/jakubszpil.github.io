@@ -12,28 +12,32 @@ import {
 
 import Categories, { type CategoriesProps } from "~/components/categories";
 import Posts, { type PostsProps } from "~/components/posts";
-import { Seo, type SeoProps } from "~/components/ui/seo";
+import Seo, { type SeoProps } from "~/components/seo";
 import { CourseService, type Course } from "~/lib/courses";
 
 import CourseList, { loader } from "../course-list";
 
 vi.mock("~/components/posts");
 vi.mock("~/components/categories");
-vi.mock("~/components/ui/seo");
+vi.mock("~/components/seo");
 
 describe("<CourseList />", () => {
-  let MockedProps: MockInstance;
-  let MockedCategories: MockInstance;
-  let MockedSeo: MockInstance;
+  let MockedPosts: MockInstance<typeof Posts>;
+  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_COURSES: Course[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetCourseByCategory: MockInstance;
-  let MockedGetCoursesCategories: MockInstance;
+  let MockedGetCourseByCategory: MockInstance<
+    typeof CourseService.findAllByCategory
+  >;
+  let MockedGetCoursesCategories: MockInstance<
+    typeof CourseService.getCategories
+  >;
 
   beforeEach(() => {
-    MockedProps = vi.mocked(Posts);
+    MockedPosts = vi.mocked(Posts);
     MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
@@ -72,7 +76,7 @@ describe("<CourseList />", () => {
   });
 
   afterEach(() => {
-    MockedProps.mockRestore();
+    MockedPosts.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
     MockedGetCourseByCategory.mockRestore();
@@ -113,7 +117,7 @@ describe("<CourseList />", () => {
       undefined
     );
 
-    expect(MockedProps).toHaveBeenCalledWith(
+    expect(MockedPosts).toHaveBeenCalledWith(
       {
         posts: MOCKED_COURSES,
         pathPrefix: "/learning",
@@ -171,7 +175,7 @@ describe("<CourseList />", () => {
       undefined
     );
 
-    expect(MockedProps).toHaveBeenCalledWith(
+    expect(MockedPosts).toHaveBeenCalledWith(
       {
         posts: [MOCKED_COURSES[1]],
         pathPrefix: "/learning",

@@ -1,16 +1,14 @@
-import { IconBrandGithub, IconBrandLinkedin } from "~/components/ui/icons";
-
 export const config = {
   socials: [
     {
       href: "https://www.linkedin.com/in/jakubszpil/",
       label: "LinkedIn",
-      icon: IconBrandLinkedin,
+      icon: "brand-linkedin",
     },
     {
       href: "https://github.com/jakubszpil/",
       label: "GitHub",
-      icon: IconBrandGithub,
+      icon: "brand-github",
     },
   ],
   meta: {
@@ -30,4 +28,4 @@ export const config = {
     devops: "DevOps",
     nestjs: "NestJS",
   },
-};
+} as const;

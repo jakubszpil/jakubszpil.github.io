@@ -1,4 +1,4 @@
-import { Seo } from "~/components/ui/seo";
+import Seo from "~/components/seo";
 import Socials from "~/components/socials";
 import { getDifferenceInYears } from "~/lib/date";
 

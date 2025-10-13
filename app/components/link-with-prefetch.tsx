@@ -16,7 +16,7 @@ export function useLinkWithPrefetch(props: LinkWithPrefetchProps) {
   return prefetch;
 }
 
-export function LinkWithPrefetch(props: LinkWithPrefetchProps) {
+export default function LinkWithPrefetch(props: LinkWithPrefetchProps) {
   const prefetch = useLinkWithPrefetch(props);
 
   return <Link {...props} prefetch={prefetch} />;

@@ -27,12 +27,12 @@ vi.mock("~/components/footer-link");
 vi.mock("~/components/busy-indicator");
 
 describe("<Layout />", () => {
-  let MockedNavbar: MockInstance;
-  let MockedNavbarMenu: MockInstance;
-  let MockedNavbarLink: MockInstance;
-  let MockedFooter: MockInstance;
-  let MockedFooterLink: MockInstance;
-  let MockedBusyIndicator: MockInstance;
+  let MockedNavbar: MockInstance<typeof Navbar>;
+  let MockedNavbarMenu: MockInstance<typeof NavbarMenu>;
+  let MockedNavbarLink: MockInstance<typeof NavbarLink>;
+  let MockedFooter: MockInstance<typeof Footer>;
+  let MockedFooterLink: MockInstance<typeof FooterLink>;
+  let MockedBusyIndicator: MockInstance<typeof BusyIndicator>;
 
   beforeEach(() => {
     MockedNavbar = vi

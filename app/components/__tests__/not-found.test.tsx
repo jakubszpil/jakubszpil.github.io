@@ -10,10 +10,9 @@ import {
   type MockInstance,
 } from "vitest";
 
-import {
-  LinkWithPrefetch,
+import LinkWithPrefetch, {
   type LinkWithPrefetchProps,
-} from "../ui/link-with-prefetch";
+} from "../link-with-prefetch";
 import NotFound from "../not-found";
 
 vi.mock("react-router", async (importOriginal) => {
@@ -24,12 +23,12 @@ vi.mock("react-router", async (importOriginal) => {
   };
 });
 
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../link-with-prefetch");
 
 describe("<NotFound />", () => {
   let MockedLocation: Location<unknown>;
-  let mockedUseLocation: MockInstance;
-  let MockedLinkWithPrefetch: MockInstance;
+  let mockedUseLocation: MockInstance<typeof useLocation>;
+  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
 
   beforeEach(() => {
     MockedLocation = {

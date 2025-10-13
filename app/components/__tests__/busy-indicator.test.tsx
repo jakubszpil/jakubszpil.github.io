@@ -22,7 +22,7 @@ vi.mock("react-router", async (importOriginal) => {
 
 describe("<BusyIndicator />", () => {
   let mockedNavigation: Navigation;
-  let mockedUseNavigation: MockInstance;
+  let mockedUseNavigation: MockInstance<typeof useNavigation>;
 
   beforeEach(() => {
     mockedNavigation = {
@@ -46,10 +46,11 @@ describe("<BusyIndicator />", () => {
   });
 
   test("should not show spinner when navigation is idle", async () => {
-    mockedUseNavigation.mockImplementationOnce(() => ({
-      ...mockedNavigation,
-      location: undefined,
-    }));
+    mockedUseNavigation.mockImplementationOnce(() => {
+      const navigation = { ...mockedNavigation };
+      navigation.location = undefined;
+      return navigation;
+    });
 
     render(<BusyIndicator />);
 
@@ -59,10 +60,17 @@ describe("<BusyIndicator />", () => {
   });
 
   test("should show spinner when navigation is pending", async () => {
-    mockedUseNavigation.mockImplementationOnce(() => ({
-      ...mockedNavigation,
-      location: {},
-    }));
+    mockedUseNavigation.mockImplementationOnce(() => {
+      const navigation = { ...mockedNavigation };
+      navigation.location = {
+        hash: "xxx",
+        key: "123",
+        pathname: "/",
+        search: "",
+        state: {},
+      };
+      return navigation;
+    });
 
     render(<BusyIndicator />);
 

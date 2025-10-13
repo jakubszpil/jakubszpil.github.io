@@ -8,10 +8,10 @@ import {
 
 import Posts from "~/components/posts";
 import Projects from "~/components/projects";
+import Seo from "~/components/seo";
 import { Button } from "~/components/ui/button";
 import { IconSearch } from "~/components/ui/icons";
 import { Input } from "~/components/ui/input";
-import { Seo } from "~/components/ui/seo";
 import { ArticleService } from "~/lib/articles";
 import { decode, encode } from "~/lib/compress";
 import { CourseService } from "~/lib/courses";

@@ -9,16 +9,15 @@ import {
   type MockInstance,
 } from "vitest";
 
-import {
-  LinkWithPrefetch,
+import LinkWithPrefetch, {
   type LinkWithPrefetchProps,
-} from "../ui/link-with-prefetch";
+} from "../link-with-prefetch";
 import Posts, { type PostsProps } from "../posts";
 
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../link-with-prefetch");
 
 describe("<Posts />", () => {
-  let MockedLinkWithPrefetch: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
   let MockedPostsProps: PostsProps;
 
   beforeEach(() => {

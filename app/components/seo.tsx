@@ -17,7 +17,7 @@ export interface SeoProps {
   publishedTime?: string;
 }
 
-export const Seo = (props: SeoProps) => {
+export default function Seo(props: SeoProps) {
   const { pathname } = useLocation();
 
   const title = props.title
@@ -55,4 +55,4 @@ export const Seo = (props: SeoProps) => {
       <meta property="twitter:description" content={description} />
     </>
   );
-};
+}

@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs } from "react-router";
 
 import Categories from "~/components/categories";
 import Posts from "~/components/posts";
-import { Seo } from "~/components/ui/seo";
+import Seo from "~/components/seo";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
 import { CourseService } from "~/lib/courses";
 import { getCapitalizedIndividualName } from "~/lib/string";

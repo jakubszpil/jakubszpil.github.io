@@ -15,24 +15,24 @@ import { Banner, type BannerProps } from "~/components/ui/banner";
 import EditResource, {
   type EditResourceProps,
 } from "~/components/edit-resource";
-import { Seo, type SeoProps } from "~/components/ui/seo";
+import Seo, { type SeoProps } from "~/components/seo";
 import { ArticleService, type Article } from "~/lib/articles";
 
 import ArticleDetails, { loader } from "../article-details";
 
 vi.mock("~/components/categories");
 vi.mock("~/components/edit-resource");
+vi.mock("~/components/seo");
 vi.mock("~/components/ui/banner");
-vi.mock("~/components/ui/seo");
 
 describe("<ArticleDetails />", () => {
-  let MockedCategories: MockInstance;
-  let MockedEditResource: MockInstance;
-  let MockedSeo: MockInstance;
-  let MockedBanner: MockInstance;
+  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedEditResource: MockInstance<typeof EditResource>;
+  let MockedSeo: MockInstance<typeof Seo>;
+  let MockedBanner: MockInstance<typeof Banner>;
 
   let MockedArticle: Article;
-  let MockedGetArticle: MockInstance;
+  let MockedGetArticle: MockInstance<typeof ArticleService.findUnique>;
 
   beforeEach(() => {
     MockedCategories = vi.mocked(Categories);
