@@ -12,25 +12,29 @@ import {
 
 import Categories, { type CategoriesProps } from "~/components/categories";
 import Posts, { type PostsProps } from "~/components/posts";
-import { Seo, type SeoProps } from "~/components/ui/seo";
+import Seo, { type SeoProps } from "~/components/seo";
 import { ArticleService, type Article } from "~/lib/articles";
 
 import ArticleList, { loader } from "../article-list";
 
 vi.mock("~/components/posts");
 vi.mock("~/components/categories");
-vi.mock("~/components/ui/seo");
+vi.mock("~/components/seo");
 
 describe("<ArticleList />", () => {
-  let MockedPosts: MockInstance;
-  let MockedCategories: MockInstance;
-  let MockedSeo: MockInstance;
+  let MockedPosts: MockInstance<typeof Posts>;
+  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_ARTICLES: Article[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetArticleByCategory: MockInstance;
-  let MockedGetArticlesCategories: MockInstance;
+  let MockedGetArticleByCategory: MockInstance<
+    typeof ArticleService.findAllByCategory
+  >;
+  let MockedGetArticlesCategories: MockInstance<
+    typeof ArticleService.getCategories
+  >;
 
   beforeEach(() => {
     MockedPosts = vi.mocked(Posts);

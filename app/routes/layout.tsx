@@ -13,8 +13,8 @@ import Footer from "~/components/footer";
 import FooterLink from "~/components/footer-link";
 import BusyIndicator from "~/components/busy-indicator";
 import NotFound from "~/components/not-found";
+import LinkWithPrefetch from "~/components/link-with-prefetch";
 import { Button } from "~/components/ui/button";
-import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { usePrefetchLinkForInitialLoad } from "~/hooks/use-prefetch-link-for-initial-load";
 
 export default function Layout() {

@@ -12,25 +12,29 @@ import {
 
 import Projects, { type ProjectsProps } from "~/components/projects";
 import Categories, { type CategoriesProps } from "~/components/categories";
-import { Seo, type SeoProps } from "~/components/ui/seo";
+import Seo, { type SeoProps } from "~/components/seo";
 import { ProjectService, ProjectStatus, type Project } from "~/lib/projects";
 
 import ProjectList, { loader } from "../project-list";
 
 vi.mock("~/components/projects");
 vi.mock("~/components/categories");
-vi.mock("~/components/ui/seo");
+vi.mock("~/components/seo");
 
 describe("<ProjectList />", () => {
-  let MockedProjects: MockInstance;
-  let MockedCategories: MockInstance;
-  let MockedSeo: MockInstance;
+  let MockedProjects: MockInstance<typeof Projects>;
+  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_PROJECTS: Project[];
   let MOCKED_TECHNOLOGIES: string[];
 
-  let MockedGetProjectByTechnology: MockInstance;
-  let MockedGetProjectsTechnologies: MockInstance;
+  let MockedGetProjectByTechnology: MockInstance<
+    typeof ProjectService.findAllByCategory
+  >;
+  let MockedGetProjectsTechnologies: MockInstance<
+    typeof ProjectService.getCategories
+  >;
 
   beforeEach(() => {
     MockedProjects = vi.mocked(Projects);

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import { Button } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+import LinkWithPrefetch from "./link-with-prefetch";
 
 import { getCapitalizedIndividualName } from "~/lib/string";
 

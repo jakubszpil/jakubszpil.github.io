@@ -12,14 +12,14 @@ import { getCurrentYear } from "~/lib/date";
 
 import Footer from "../footer";
 import FooterLink from "../footer-link";
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import LinkWithPrefetch from "../link-with-prefetch";
 
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../link-with-prefetch");
 vi.mock("~/lib/date");
 
 describe("<Footer />", () => {
-  let MockedLinkWithPrefetch: MockInstance;
-  let mockedGetCurrentYear: MockInstance;
+  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
+  let mockedGetCurrentYear: MockInstance<typeof getCurrentYear>;
 
   beforeEach(() => {
     MockedLinkWithPrefetch = vi

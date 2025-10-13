@@ -1,10 +1,10 @@
+import LinkWithPrefetch from "~/components/link-with-prefetch";
 import Posts from "~/components/posts";
 import Projects from "~/components/projects";
+import Seo from "~/components/seo";
 import { Button } from "~/components/ui/button";
-import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
-import { Seo } from "~/components/ui/seo";
-import { ArticleService } from "~/lib/articles";
 import { encode, useDecodedLoaderData } from "~/lib/compress";
+import { ArticleService } from "~/lib/articles";
 import { CourseService } from "~/lib/courses";
 import { ProjectService } from "~/lib/projects";
 

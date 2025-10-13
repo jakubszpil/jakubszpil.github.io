@@ -1,6 +1,6 @@
 import { Banner } from "./ui/banner";
 import { Button, type ButtonProps } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+import LinkWithPrefetch from "./link-with-prefetch";
 
 import { cn } from "~/lib/utils";
 

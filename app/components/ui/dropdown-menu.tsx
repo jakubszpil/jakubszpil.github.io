@@ -10,11 +10,11 @@ import type { ComponentProps } from "react";
 
 import { cn } from "~/lib/utils";
 
-function DropdownMenu({ ...props }: ComponentProps<typeof Root>) {
+function DropdownMenu(props: ComponentProps<typeof Root>) {
   return <Root data-slot="dropdown-menu" {...props} />;
 }
 
-function DropdownMenuTrigger({ ...props }: ComponentProps<typeof Trigger>) {
+function DropdownMenuTrigger(props: ComponentProps<typeof Trigger>) {
   return <Trigger data-slot="dropdown-menu-trigger" {...props} />;
 }
 

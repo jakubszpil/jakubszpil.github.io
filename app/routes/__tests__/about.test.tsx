@@ -9,13 +9,13 @@ import {
   afterEach,
 } from "vitest";
 
-import { Seo } from "~/components/ui/seo";
+import Seo from "~/components/seo";
 import Socials from "~/components/socials";
 import { getDifferenceInYears } from "~/lib/date";
 
 import About from "../about";
 
-vi.mock("~/components/ui/seo");
+vi.mock("~/components/seo");
 vi.mock("~/components/socials");
 
 vi.mock("~/lib/date", async (importOriginal) => ({
@@ -24,9 +24,9 @@ vi.mock("~/lib/date", async (importOriginal) => ({
 }));
 
 describe("<About />", () => {
-  let MockedSeo: MockInstance;
-  let MockedSocials: MockInstance;
-  let MockedGetDifferenceInYears: MockInstance;
+  let MockedSeo: MockInstance<typeof Seo>;
+  let MockedSocials: MockInstance<typeof Socials>;
+  let MockedGetDifferenceInYears: MockInstance<typeof getDifferenceInYears>;
 
   beforeEach(() => {
     MockedSeo = vi.mocked(Seo);
