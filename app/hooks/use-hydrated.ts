@@ -1,20 +1,13 @@
-import { use, useSyncExternalStore } from "react";
-import { UNSAFE_DataRouterStateContext } from "react-router";
+import { useSyncExternalStore } from "react";
 
 function subscribe() {
   return () => {};
 }
 
 export function useHydrated() {
-  const context = use(UNSAFE_DataRouterStateContext);
-
-  const isClient = useSyncExternalStore(
+  return useSyncExternalStore(
     subscribe,
     () => true,
     () => false
   );
-
-  const initialized = context?.initialized ?? false;
-
-  return isClient && initialized;
 }
