@@ -43,7 +43,7 @@
     "@types/uglify-js": "3.17.5",
     "@types/uuid": "10.0.0",
     "@vitejs/plugin-react": "5.0.2",
-    "babel-plugin-react-compiler": "19.1.0-rc.3",
+    "babel-plugin-react-compiler": "1.0.0",
     "cssnano": "7.1.1",
     "gray-matter": "4.0.3",
     "jsdom": "26.1.0",
