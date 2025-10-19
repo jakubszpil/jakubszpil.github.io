@@ -37,7 +37,7 @@ export async function processContent(content: string) {
           "mr-2 no-underline hover:underline focus-visible:underline select-none",
       },
       headingProperties: {
-        className: "scroll-mt-20 lg:scroll-mt-10",
+        className: "scroll-mt-20",
       },
       behavior: "prepend",
       content: (element) => {
