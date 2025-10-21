@@ -11,7 +11,11 @@ export default defineConfig(() => {
       "import.meta.env.TIMESTAMP": Date.now(),
     },
     plugins: [
-      tailwindcss(),
+      tailwindcss({
+        optimize: {
+          minify: true,
+        },
+      }),
       !process.env.VITEST && reactRouter(),
       babel({
         include: ["./app/**/*"],
