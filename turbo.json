@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "!.react-router/**"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "test": {},
+    "test:ci": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    }
+  }
+}
