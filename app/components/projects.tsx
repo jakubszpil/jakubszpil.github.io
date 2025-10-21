@@ -49,7 +49,7 @@ export default function Projects(props: ProjectsProps) {
                 variant="link"
                 asChild
                 size="sm"
-                className="underline p-0"
+                className="underline p-0! h-auto"
               >
                 <a
                   data-testid="link"
@@ -57,7 +57,7 @@ export default function Projects(props: ProjectsProps) {
                   target="_blank"
                 >
                   <IconBrandGithub className="w-5 h-5 mr-2" />
-                  Otwórz GitHub
+                  GitHub
                 </a>
               </Button>
             </div>
