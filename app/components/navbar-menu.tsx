@@ -112,14 +112,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
       </div>
 
       <Transition show={show}>
-        <nav
-          className={cn(
-            "flex flex-col gap-1 justify-center items-center fixed inset-0 dark bg-background text-foreground z-40 lg:hidden",
-            "transition-all duration-150",
-            "data-closed:opacity-0 data-closed:invisible",
-            "data-enter:translate-y-0 data-enter:data-closed:translate-y-10"
-          )}
-        >
+        <nav className="flex flex-col gap-1 justify-center items-center fixed inset-0 dark bg-background text-foreground z-40 lg:hidden transition-all duration-150 data-closed:opacity-0 data-closed:invisible data-enter:translate-y-0 data-enter:data-closed:translate-y-10">
           {mobileLinks}
           <NavbarLink size="lg" onClick={closeMenu} to="/search">
             🔍 Szukaj
