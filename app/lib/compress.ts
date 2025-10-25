@@ -1,5 +1,10 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import lz from "lz-string";
+import { useMemo } from "react";
+import {
+  useLoaderData,
+  type ClientLoaderFunctionArgs,
+  type LoaderFunctionArgs,
+} from "react-router";
 
 type Encoded<T> = {
   v: string;
@@ -59,18 +64,22 @@ export function decode<T>(encoded: Encoded<T>): T {
 
 type MaybeAsync<T> = T | Promise<T>;
 
-type DecodedLoaderData<
-  T extends (args: LoaderFunctionArgs) => MaybeAsync<unknown>,
-> = T extends (args: LoaderFunctionArgs) => MaybeAsync<infer X>
-  ? X extends Encoded<infer Y>
-    ? Y
-    : X
-  : unknown;
+type Loader<T> =
+  | ((args: ClientLoaderFunctionArgs) => MaybeAsync<T>)
+  | ((args: LoaderFunctionArgs) => MaybeAsync<T>);
+
+type DecodedLoaderData<T extends Loader<unknown>> =
+  T extends Loader<infer X> ? (X extends Encoded<infer Y> ? Y : X) : unknown;
 
 export function useDecodedLoaderData<
-  T extends (args: LoaderFunctionArgs) => MaybeAsync<unknown>,
+  T extends Loader<unknown>,
 >(): DecodedLoaderData<T> {
   const loaderData = useLoaderData();
-  const data = decode<DecodedLoaderData<T>>(loaderData);
+
+  const data = useMemo(
+    () => decode<DecodedLoaderData<T>>(loaderData),
+    [loaderData]
+  );
+
   return data;
 }

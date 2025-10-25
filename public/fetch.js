@@ -17,8 +17,30 @@
     _storage.setItem(_key, _timestamp);
   }
 
+  class PrefetchCache {
+    key = "prefetch-cache";
+    entries = new Set(JSON.parse(sessionStorage.getItem(this.key) || "[]"));
+
+    constructor() {
+      window.addEventListener("beforeunload", () => {
+        sessionStorage.setItem(
+          this.key,
+          JSON.stringify([...this.entries.values()])
+        );
+      });
+    }
+
+    has(url) {
+      return this.entries.has(url);
+    }
+
+    add(url) {
+      this.entries.add(url);
+    }
+  }
+
   const cache = await _caches.open(_timestamp);
-  const prefetchCache = new Set();
+  const prefetchCache = new PrefetchCache();
 
   function createUrl(...data) {
     return new URL(...data);
@@ -86,17 +108,17 @@
 
           const url = createUrl(`${location.origin}${pathname}`);
 
+          if (prefetchCache.has(url.href)) return;
+
           const matched = await cache.match(new Request(url));
 
           if (!matched) {
-            if (!prefetchCache.has(url.href)) {
-              setAttribute.call(element, key, pathname);
-              function addEntry() {
-                prefetchCache.add(url.href);
-                element.removeEventListener("load", addEntry);
-              }
-              element.addEventListener("load", addEntry);
+            setAttribute.call(element, key, pathname);
+            function addEntry() {
+              prefetchCache.add(url.href);
+              element.removeEventListener("load", addEntry);
             }
+            element.addEventListener("load", addEntry);
           }
           return;
         }
