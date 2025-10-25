@@ -19,9 +19,18 @@
 
   class PrefetchCache {
     key = "prefetch-cache";
+
     entries = new Set(JSON.parse(sessionStorage.getItem(this.key) || "[]"));
 
-    constructor() {
+    constructor(cache) {
+      const keys = cache.keys();
+
+      keys.then((keys) => {
+        keys.forEach((request) => {
+          this.entries.add(request.url);
+        });
+      });
+
       window.addEventListener("beforeunload", () => {
         sessionStorage.setItem(
           this.key,
@@ -40,7 +49,7 @@
   }
 
   const cache = await _caches.open(_timestamp);
-  const prefetchCache = new PrefetchCache();
+  const prefetchCache = new PrefetchCache(cache);
 
   function createUrl(...data) {
     return new URL(...data);

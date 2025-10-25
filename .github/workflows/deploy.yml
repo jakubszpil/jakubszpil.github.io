@@ -17,14 +17,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Cache turbo build setup
-        uses: actions/cache@v4
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
-
       - name: Setup Node 🔧
         uses: actions/setup-node@v4
         with:
@@ -38,15 +30,15 @@ jobs:
 
       - name: Check types 🛠️
         run: |
-          npx turbo check-types
+          npm run check-types
 
       - name: Test 🔧
         run: |
-          npx turbo test:ci
+          npm run test:ci
 
       - name: Build 🔧
         run: |
-          npx turbo build
+          npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
