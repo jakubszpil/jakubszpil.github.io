@@ -1,0 +1,1 @@
+import{w as o}from"./chunk-OIYGIGL5-Rdhby1S0.js";import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{N as r}from"./not-found-BbFjFHzP.js";import"./button-BMGgmMxT.js";import"./link-with-prefetch-DYt-PuIQ.js";import"./seo-Do91G143.js";const e=o(function(){return t.jsx(r,{})});export{e as default};
