@@ -9,17 +9,14 @@ import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return encode({
-    category,
     categories: await CourseService.getCategories(),
     courses: await CourseService.findAllByCategory(category),
+    title: category ? getCapitalizedIndividualName(category) : undefined,
   });
 }
 
 export default function CourseList() {
-  const { courses, categories, category } =
-    useDecodedLoaderData<typeof loader>();
-
-  const title = category ? getCapitalizedIndividualName(category) : undefined;
+  const { courses, categories, title } = useDecodedLoaderData<typeof loader>();
 
   return (
     <>

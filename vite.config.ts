@@ -29,6 +29,9 @@ export default defineConfig(() => {
       minifyIdentifiers: true,
       minifySyntax: true,
       minifyWhitespace: true,
+      treeShaking: true,
+      keepNames: false,
+      ignoreAnnotations: true,
     },
     test: {
       include: ["app/**/*.{test,spec}.{ts,tsx}"],

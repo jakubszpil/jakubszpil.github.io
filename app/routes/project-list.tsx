@@ -9,19 +9,15 @@ import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return encode({
-    technology,
+    title: technology ? getCapitalizedIndividualName(technology) : undefined,
     technologies: await ProjectService.getCategories(),
     projects: await ProjectService.findAllByCategory(technology),
   });
 }
 
 export default function ProjectList() {
-  const { projects, technologies, technology } =
+  const { projects, technologies, title } =
     useDecodedLoaderData<typeof loader>();
-
-  const title = technology
-    ? getCapitalizedIndividualName(technology)
-    : undefined;
 
   return (
     <>
@@ -40,7 +36,7 @@ export default function ProjectList() {
         />
       </header>
 
-      <Projects key={technology} projects={projects} />
+      <Projects projects={projects} />
     </>
   );
 }

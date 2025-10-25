@@ -17,7 +17,5 @@ export function useLinkWithPrefetch(props: LinkWithPrefetchProps) {
 }
 
 export default function LinkWithPrefetch(props: LinkWithPrefetchProps) {
-  const prefetch = useLinkWithPrefetch(props);
-
-  return <Link {...props} prefetch={prefetch} />;
+  return <Link {...props} prefetch="viewport" />;
 }

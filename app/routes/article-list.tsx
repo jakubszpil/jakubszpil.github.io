@@ -11,15 +11,12 @@ export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return encode({
     articles: await ArticleService.findAllByCategory(category),
     categories: await ArticleService.getCategories(),
-    category,
+    title: category ? getCapitalizedIndividualName(category) : undefined,
   });
 }
 
 export default function ArticleList() {
-  const { articles, categories, category } =
-    useDecodedLoaderData<typeof loader>();
-
-  const title = category ? getCapitalizedIndividualName(category) : undefined;
+  const { articles, categories, title } = useDecodedLoaderData<typeof loader>();
 
   return (
     <>
