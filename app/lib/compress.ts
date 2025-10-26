@@ -6,60 +6,14 @@ import {
   type LoaderFunctionArgs,
 } from "react-router";
 
-type Encoded<T> = {
-  v: string;
-};
-
-class KeyReplacer {
-  constructor(private pairs: Array<[string, string]>) {}
-
-  replace<T>(obj: T): T {
-    let str = JSON.stringify(obj);
-    for (const [currentKey, newKey] of this.pairs)
-      str = str.replaceAll(`"${currentKey}":`, `"${newKey}":`);
-    return JSON.parse(str);
-  }
-
-  restore<T>(obj: T): T {
-    let str = JSON.stringify(obj);
-    for (const [currentKey, newKey] of this.pairs)
-      str = str.replaceAll(`"${newKey}":`, `"${currentKey}":`);
-    return JSON.parse(str);
-  }
-}
-
-const keyReplacer = new KeyReplacer([
-  ["slug", "a"],
-  ["title", "b"],
-  ["description", "c"],
-  ["keywords", "d"],
-  ["createdAt", "e"],
-  ["content", "f"],
-  ["categories", "g"],
-  ["readingTime", "h"],
-  ["status", "i"],
-  ["quiz", "j"],
-  ["questions", "k"],
-  ["question", "l"],
-  ["answer", "m"],
-  ["explanation", "n"],
-  ["options", "o"],
-  ["articles", "p"],
-  ["courses", "r"],
-  ["projects", "s"],
-  ["category", "t"],
-  ["technology", "u"],
-  ["technologies", "w"],
-]);
+type Encoded<T> = string & { sourceType?: T };
 
 export function encode<T>(value: T): Encoded<T> {
-  return {
-    v: lz.compress(JSON.stringify(keyReplacer.replace(value))),
-  };
+  return lz.compress(JSON.stringify(value));
 }
 
 export function decode<T>(encoded: Encoded<T>): T {
-  return keyReplacer.restore(JSON.parse(lz.decompress(encoded.v)));
+  return JSON.parse(lz.decompress(encoded));
 }
 
 type MaybeAsync<T> = T | Promise<T>;
