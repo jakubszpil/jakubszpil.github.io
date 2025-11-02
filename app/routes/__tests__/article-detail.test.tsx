@@ -18,7 +18,7 @@ import EditResource, {
 import Seo, { type SeoProps } from "~/components/seo";
 import { ArticleService, type Article } from "~/lib/articles";
 
-import ArticleDetails, { loader } from "../article-details";
+import ArticleDetails, { loader } from "../article-detail";
 
 vi.mock("~/components/categories");
 vi.mock("~/components/edit-resource");
