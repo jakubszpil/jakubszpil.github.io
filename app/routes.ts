@@ -15,8 +15,8 @@ export default [
       route("kategorie/:category", "routes/article-list.tsx", {
         id: "article-list-with-category",
       }),
-      route(":slug", "routes/article-details.tsx", {
-        id: "article-details",
+      route(":slug", "routes/article-detail.tsx", {
+        id: "article-detail",
       }),
     ]),
     ...prefix("learning", [
@@ -26,8 +26,8 @@ export default [
       route("kategorie/:category", "routes/course-list.tsx", {
         id: "course-list-with-category",
       }),
-      route(":slug", "routes/course-details.tsx", {
-        id: "course-details",
+      route(":slug", "routes/course-detail.tsx", {
+        id: "course-detail",
       }),
     ]),
     ...prefix("portfolio", [

@@ -18,7 +18,7 @@ import EditResource, {
 import Seo, { type SeoProps } from "~/components/seo";
 import { CourseService, type Course } from "~/lib/courses";
 
-import CourseDetails, { loader } from "../course-details";
+import CourseDetails, { loader } from "../course-detail";
 
 vi.mock("~/components/categories");
 vi.mock("~/components/edit-resource");
