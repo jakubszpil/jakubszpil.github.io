@@ -1,0 +1,1 @@
+function e(e){return new Intl.DateTimeFormat(`pl-PL`,{day:`numeric`,month:`long`,year:`numeric`}).format(new Date(e))}function t(){return new Date().getFullYear()}function n(e){let t=new Date;if(isNaN(e.getTime()))throw Error(`Invalid startDate date format`);let n=(t.getTime()-e.getTime())/(1e3*60*60*24)/365;return Math.round(n*2)/2}export{n,e as r,t};
