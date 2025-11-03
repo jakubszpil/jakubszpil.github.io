@@ -1,0 +1,1 @@
+async function e(){throw new Response(null,{status:404})}export{e as t};

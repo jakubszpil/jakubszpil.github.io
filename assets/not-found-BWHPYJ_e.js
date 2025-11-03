@@ -1,1 +1,0 @@
-import{B as e,I as t}from"./chunk-UIGDSWPH-XXRUyP2C.js";import{t as n}from"./jsx-runtime-D2lAb9Ep.js";import"./button-SURomX6t.js";import"./link-with-prefetch-DMrxODUQ.js";import"./seo-BKuj57JR.js";import{t as r}from"./not-found-CmD6K-LH.js";var i=e(n()),a=t(function(){return(0,i.jsx)(r,{})});export{a as default};
