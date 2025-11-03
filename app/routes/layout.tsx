@@ -1,10 +1,4 @@
-import { useCallback } from "react";
-import {
-  isRouteErrorResponse,
-  Outlet,
-  useLocation,
-  useRouteError,
-} from "react-router";
+import { Outlet, useLocation, useRouteError } from "react-router";
 
 import Navbar from "~/components/navbar";
 import NavbarLink from "~/components/navbar-link";
@@ -12,13 +6,18 @@ import NavbarMenu from "~/components/navbar-menu";
 import Footer from "~/components/footer";
 import FooterLink from "~/components/footer-link";
 import BusyIndicator from "~/components/busy-indicator";
-import NotFound from "~/components/not-found";
 import LinkWithPrefetch from "~/components/link-with-prefetch";
 import { Button } from "~/components/ui/button";
 import { usePrefetchLinkForInitialLoad } from "~/hooks/use-prefetch-link-for-initial-load";
+import { useHydrated } from "~/hooks/use-hydrated";
+import { isRouteErrorResponse } from "~/lib/routing";
 
 export default function Layout() {
   const prefetchLink = usePrefetchLinkForInitialLoad();
+  const hydrated = useHydrated();
+  const location = useLocation();
+
+  if (location.pathname === "/404" && !hydrated) return null;
 
   return (
     <>
@@ -54,47 +53,27 @@ export default function Layout() {
 
 export function ErrorBoundary() {
   const error = useRouteError();
-  const location = useLocation();
 
-  const renderError = useCallback(() => {
-    if (isRouteErrorResponse(error)) {
-      if (error.status === 404) {
-        return <NotFound />;
-      }
-
-      return (
-        <>
-          <h1>
-            {error.status}: {error.statusText}
-          </h1>
-          <p>{error.data}</p>
-          <Button asChild className="no-underline" variant="outline" size="sm">
+  const renderError = (title: string) => {
+    return (
+      <div className="bg-background">
+        <div className="prose container min-h-dvh text-center justify-center items-center flex flex-col">
+          <h1>{title}</h1>
+          <Button asChild size="sm" className="no-underline">
             <LinkWithPrefetch to="/">Powrót do strony głównej</LinkWithPrefetch>
           </Button>
-        </>
-      );
-    }
+        </div>
+      </div>
+    );
+  };
 
-    console.error(error);
+  if (isRouteErrorResponse(error)) {
+    return renderError(`${error.status}: ${error.statusText}`);
+  }
 
-    if (error instanceof Error) {
-      return (
-        <>
-          <h1>
-            {error.name}: {error.message}
-          </h1>
-          <pre>{error.stack}</pre>
-          <Button asChild className="no-underline" variant="outline" size="sm">
-            <LinkWithPrefetch replace to={location.pathname}>
-              Odśwież stronę
-            </LinkWithPrefetch>
-          </Button>
-        </>
-      );
-    }
+  if (error instanceof Error) {
+    return renderError(`${error.name}: ${error.message}`);
+  }
 
-    return <h1>Wystąpił nieoczekiwany błąd</h1>;
-  }, [error]);
-
-  return <header className="container prose mt-36">{renderError()}</header>;
+  return renderError("Oops... Wystąpił błąd");
 }

@@ -1,5 +1,9 @@
-import NotFound from "~/components/not-found";
+export async function clientLoader() {
+  throw new Response(null, {
+    status: 404,
+  });
+}
 
-export default function NotFoundPage() {
-  return <NotFound />;
+export default function NotFound() {
+  return null;
 }
