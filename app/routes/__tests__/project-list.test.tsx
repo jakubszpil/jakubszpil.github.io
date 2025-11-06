@@ -10,16 +10,19 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Projects, { type ProjectsProps } from "~/components/projects";
-import Categories, { type CategoriesProps } from "~/components/categories";
-import Seo, { type SeoProps } from "~/components/seo";
-import { ProjectService, ProjectStatus, type Project } from "~/lib/projects";
-
+import Projects, { type ProjectsProps } from "../../components/projects";
+import Categories, { type CategoriesProps } from "../../components/categories";
+import Seo, { type SeoProps } from "../../components/seo";
+import {
+  ProjectService,
+  ProjectStatus,
+  type Project,
+} from "../../lib/projects";
 import ProjectList, { loader } from "../project-list";
 
-vi.mock("~/components/projects");
-vi.mock("~/components/categories");
-vi.mock("~/components/seo");
+vi.mock("../../components/projects");
+vi.mock("../../components/categories");
+vi.mock("../../components/seo");
 
 describe("<ProjectList />", () => {
   let MockedProjects: MockInstance<typeof Projects>;

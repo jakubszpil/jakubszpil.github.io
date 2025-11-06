@@ -1,11 +1,11 @@
 import type { LoaderFunctionArgs } from "react-router";
 
-import Categories from "~/components/categories";
-import Projects from "~/components/projects";
-import Seo from "~/components/seo";
-import { encode, useDecodedLoaderData } from "~/lib/compress";
-import { ProjectService } from "~/lib/projects";
-import { getCapitalizedIndividualName } from "~/lib/string";
+import Categories from "../components/categories";
+import Projects from "../components/projects";
+import Seo from "../components/seo";
+import { encode, useDecodedLoaderData } from "../lib/compress";
+import { ProjectService } from "../lib/projects";
+import { getCapitalizedIndividualName } from "../lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return encode({

@@ -15,9 +15,7 @@
     "jsx": "react-jsx",
     "rootDirs": ["."],
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["./app/*"]
-    },
+    "paths": {},
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,

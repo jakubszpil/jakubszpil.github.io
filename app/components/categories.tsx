@@ -1,9 +1,8 @@
 import { useCallback } from "react";
 
+import { getCapitalizedIndividualName } from "../lib/string";
 import { Button } from "./ui/button";
 import LinkWithPrefetch from "./link-with-prefetch";
-
-import { getCapitalizedIndividualName } from "~/lib/string";
 
 export interface CategoriesProps {
   categories: string[];

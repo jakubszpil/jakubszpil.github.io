@@ -9,8 +9,7 @@ import {
   setLocalStorageTheme,
   Theme,
   toggleThemeClassName,
-} from "~/lib/theme";
-
+} from "../lib/theme";
 import { useHydrated } from "./use-hydrated";
 
 export function useTheme() {

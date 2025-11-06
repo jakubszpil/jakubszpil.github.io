@@ -10,16 +10,15 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, { type CategoriesProps } from "~/components/categories";
-import Posts, { type PostsProps } from "~/components/posts";
-import Seo, { type SeoProps } from "~/components/seo";
-import { CourseService, type Course } from "~/lib/courses";
-
+import Categories, { type CategoriesProps } from "../../components/categories";
+import Posts, { type PostsProps } from "../../components/posts";
+import Seo, { type SeoProps } from "../../components/seo";
+import { CourseService, type Course } from "../../lib/courses";
 import CourseList, { loader } from "../course-list";
 
-vi.mock("~/components/posts");
-vi.mock("~/components/categories");
-vi.mock("~/components/seo");
+vi.mock("../../components/posts");
+vi.mock("../../components/categories");
+vi.mock("../../components/seo");
 
 describe("<CourseList />", () => {
   let MockedPosts: MockInstance<typeof Posts>;

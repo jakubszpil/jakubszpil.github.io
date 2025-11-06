@@ -11,6 +11,7 @@ import {
 import { Transition } from "@headlessui/react";
 import { v4 } from "uuid";
 
+import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import BusyIndicator from "./busy-indicator";
 import { IconMenu2, IconX } from "./ui/icons";
@@ -18,7 +19,6 @@ import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 import SearchButton from "./search-button";
 import ThemeSwitcher from "./theme-switcher";
-import { cn } from "~/lib/utils";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];

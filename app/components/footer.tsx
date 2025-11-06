@@ -1,7 +1,6 @@
 import type { ReactElement } from "react";
 
-import { getCurrentYear } from "~/lib/date";
-
+import { getCurrentYear } from "../lib/date";
 import FooterLink, { type FooterLinkProps } from "./footer-link";
 
 export interface FooterProps {

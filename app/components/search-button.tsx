@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-import { usePrefetchLink } from "~/hooks/use-prefetch-link";
-
+import { usePrefetchLink } from "../hooks/use-prefetch-link";
 import { Button } from "./ui/button";
 import { IconSearch } from "./ui/icons";
 import LinkWithPrefetch from "./link-with-prefetch";

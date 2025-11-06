@@ -1,12 +1,12 @@
-import LinkWithPrefetch from "~/components/link-with-prefetch";
-import Posts from "~/components/posts";
-import Projects from "~/components/projects";
-import Seo from "~/components/seo";
-import { Button } from "~/components/ui/button";
-import { encode, useDecodedLoaderData } from "~/lib/compress";
-import { ArticleService } from "~/lib/articles";
-import { CourseService } from "~/lib/courses";
-import { ProjectService } from "~/lib/projects";
+import LinkWithPrefetch from "../components/link-with-prefetch";
+import Posts from "../components/posts";
+import Projects from "../components/projects";
+import Seo from "../components/seo";
+import { Button } from "../components/ui/button";
+import { encode, useDecodedLoaderData } from "../lib/compress";
+import { ArticleService } from "../lib/articles";
+import { CourseService } from "../lib/courses";
+import { ProjectService } from "../lib/projects";
 
 export async function loader() {
   const articles = await ArticleService.findAll(3);

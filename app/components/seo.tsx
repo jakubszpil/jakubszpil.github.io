@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 
-import { config } from "~/lib/config";
+import { config } from "../lib/config";
 
 export interface SeoMeta {
   title?: string;

@@ -1,10 +1,9 @@
 import { useCallback, useState } from "react";
 
+import { shuffleArray } from "../lib/array";
+import type { ContentQuiz, ContentQuizQuestion } from "../lib/content";
+import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
-
-import { shuffleArray } from "~/lib/array";
-import type { ContentQuiz, ContentQuizQuestion } from "~/lib/content";
-import { cn } from "~/lib/utils";
 
 interface QuizProps {
   quiz: ContentQuiz;
