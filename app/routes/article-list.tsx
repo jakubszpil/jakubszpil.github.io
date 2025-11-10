@@ -1,22 +1,21 @@
-import type { LoaderFunctionArgs } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "../components/categories";
 import Posts from "../components/posts";
 import Seo from "../components/seo";
 import { ArticleService } from "../lib/articles";
-import { encode, useDecodedLoaderData } from "../lib/compress";
 import { getCapitalizedIndividualName } from "../lib/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
-  return encode({
+  return {
     articles: await ArticleService.findAllByCategory(category),
     categories: await ArticleService.getCategories(),
     title: category ? getCapitalizedIndividualName(category) : undefined,
-  });
+  };
 }
 
 export default function ArticleList() {
-  const { articles, categories, title } = useDecodedLoaderData<typeof loader>();
+  const { articles, categories, title } = useLoaderData<typeof loader>();
 
   return (
     <>

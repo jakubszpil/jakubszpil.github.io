@@ -1,11 +1,10 @@
-import type { LoaderFunctionArgs } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "../components/categories";
 import EditResource from "../components/edit-resource";
 import Seo from "../components/seo";
 import { Banner } from "../components/ui/banner";
 import { ArticleService } from "../lib/articles";
-import { encode, useDecodedLoaderData } from "../lib/compress";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await ArticleService.findUnique(slug);
@@ -17,11 +16,11 @@ export async function loader({ params: { slug } }: LoaderFunctionArgs) {
     });
   }
 
-  return encode(article);
+  return article;
 }
 
 export default function ArticleDetails() {
-  const article = useDecodedLoaderData<typeof loader>();
+  const article = useLoaderData<typeof loader>();
 
   return (
     <>

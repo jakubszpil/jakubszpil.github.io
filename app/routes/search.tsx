@@ -13,7 +13,6 @@ import { Button } from "../components/ui/button";
 import { IconSearch } from "../components/ui/icons";
 import { Input } from "../components/ui/input";
 import { ArticleService } from "../lib/articles";
-import { decode, encode } from "../lib/compress";
 import { CourseService } from "../lib/courses";
 import { ProjectService } from "../lib/projects";
 import {
@@ -27,15 +26,14 @@ export async function loader() {
   const articles = await ArticleService.findAll();
   const courses = await CourseService.findAll();
   const projects = await ProjectService.findAll();
-  return encode({ articles, courses, projects });
+  return { articles, courses, projects };
 }
 
 export async function clientLoader({
   request,
   serverLoader,
 }: ClientLoaderFunctionArgs) {
-  const searchData = await serverLoader<typeof loader>();
-  const data = decode(searchData);
+  const data = await serverLoader<typeof loader>();
 
   const query = validateSearhQuery(request.url);
   const results = getSearchResults(data, query);

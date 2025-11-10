@@ -1,23 +1,21 @@
-import type { LoaderFunctionArgs } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import Categories from "../components/categories";
 import Projects from "../components/projects";
 import Seo from "../components/seo";
-import { encode, useDecodedLoaderData } from "../lib/compress";
 import { ProjectService } from "../lib/projects";
 import { getCapitalizedIndividualName } from "../lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
-  return encode({
+  return {
     title: technology ? getCapitalizedIndividualName(technology) : undefined,
     technologies: await ProjectService.getCategories(),
     projects: await ProjectService.findAllByCategory(technology),
-  });
+  };
 }
 
 export default function ProjectList() {
-  const { projects, technologies, title } =
-    useDecodedLoaderData<typeof loader>();
+  const { projects, technologies, title } = useLoaderData<typeof loader>();
 
   return (
     <>

@@ -13,8 +13,6 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "rootDirs": ["."],
-    "baseUrl": ".",
     "paths": {},
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
