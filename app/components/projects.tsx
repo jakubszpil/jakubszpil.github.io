@@ -1,7 +1,6 @@
+import CreationDate from "./creation-date";
 import { IconBrandGithub } from "./ui/icons";
 import { Button, type ButtonProps } from "./ui/button";
-import { CreationDate } from "./ui/creation-date";
-
 import type { Project, ProjectStatus } from "../lib/projects";
 import { cn } from "../lib/utils";
 

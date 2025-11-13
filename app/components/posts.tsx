@@ -1,7 +1,7 @@
-import { cn } from "../lib/utils";
-import { Banner } from "./ui/banner";
-import { Button, type ButtonProps } from "./ui/button";
+import Banner from "./banner";
 import LinkWithPrefetch from "./link-with-prefetch";
+import { Button, type ButtonProps } from "./ui/button";
+import { cn } from "../lib/utils";
 
 export interface Post {
   slug: string;

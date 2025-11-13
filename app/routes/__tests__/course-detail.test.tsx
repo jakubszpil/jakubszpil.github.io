@@ -11,7 +11,7 @@ import {
 } from "vitest";
 
 import Categories, { type CategoriesProps } from "../../components/categories";
-import { Banner, type BannerProps } from "../../components/ui/banner";
+import Banner, { type BannerProps } from "../../components/banner";
 import EditResource, {
   type EditResourceProps,
 } from "../../components/edit-resource";
@@ -22,7 +22,7 @@ import CourseDetails, { loader } from "../course-detail";
 vi.mock("../../components/categories");
 vi.mock("../../components/edit-resource");
 vi.mock("../../components/seo");
-vi.mock("../../components/ui/banner");
+vi.mock("../../components/banner");
 
 describe("<CourseDetails />", () => {
   let MockedCategories: MockInstance<typeof Categories>;

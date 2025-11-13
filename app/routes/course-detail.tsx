@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
+import Banner from "../components/banner";
 import Categories from "../components/categories";
 import EditResource from "../components/edit-resource";
 import Quiz from "../components/quiz";
 import Seo from "../components/seo";
-import { Banner } from "../components/ui/banner";
 import { CourseService } from "../lib/courses";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
