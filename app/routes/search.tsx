@@ -4,6 +4,7 @@ import {
   useLoaderData,
   useLocation,
   type ClientLoaderFunctionArgs,
+  type Location,
 } from "react-router";
 
 import Posts from "../components/posts";
@@ -33,15 +34,15 @@ export async function clientLoader({
   request,
   serverLoader,
 }: ClientLoaderFunctionArgs) {
-  const data = await serverLoader<typeof loader>();
+  const initialResults = await serverLoader<typeof loader>();
 
   const query = validateSearhQuery(request.url);
-  const results = getSearchResults(data, query);
+  const results = getSearchResults(initialResults, query);
   const count = getSearchResultsLength(results);
 
   return {
     results,
-    initialResults: data,
+    initialResults,
     query,
     count,
   };
@@ -54,12 +55,10 @@ export default function Search() {
     useLoaderData<typeof clientLoader>();
 
   const ref = useRef<HTMLInputElement>(null);
-  const location = useLocation();
+  const location = useLocation() as Location<{ focus: boolean } | undefined>;
 
   useEffect(() => {
-    if (location.state?.focus) {
-      ref.current?.focus();
-    }
+    if (location.state?.focus) ref.current?.focus();
   }, [ref, location.state]);
 
   const renderResults = useCallback(() => {

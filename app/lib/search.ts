@@ -1,22 +1,17 @@
 import { createPath, redirect } from "react-router";
 
 import { isValidUrl } from "./url";
-import type { ContentResource } from "./content";
-
-export interface SearchResults {
-  [key: string]: ContentResource[];
-}
 
 export const queryParamName = "query";
 
-const searchResultsCache = new Map<string, SearchResults>();
+const searchResultsCache = new Map<string, unknown>();
 
-export function getSearchResults<TSearchResults extends SearchResults>(
-  results: TSearchResults,
+export function getSearchResults<T extends Record<string, unknown[]>>(
+  results: T,
   query: string | null
-): TSearchResults {
+): T {
   if (query && searchResultsCache.has(query)) {
-    return searchResultsCache.get(query) as TSearchResults;
+    return searchResultsCache.get(query) as T;
   }
 
   const checkIfMatchesQuery = (i: unknown): boolean =>
@@ -29,7 +24,7 @@ export function getSearchResults<TSearchResults extends SearchResults>(
       key,
       results.filter(checkIfMatchesQuery),
     ])
-  ) as TSearchResults;
+  ) as T;
 
   if (query) {
     searchResultsCache.set(query, searchResults);
@@ -38,8 +33,8 @@ export function getSearchResults<TSearchResults extends SearchResults>(
   return searchResults;
 }
 
-export function getSearchResultsLength<TSearchResults extends SearchResults>(
-  searchResults: TSearchResults
+export function getSearchResultsLength<T extends Record<string, unknown[]>>(
+  searchResults: T
 ): number {
   return Object.values(searchResults).reduce<number>(
     (count, { length }) => count + length,

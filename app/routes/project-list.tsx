@@ -8,7 +8,7 @@ import { getCapitalizedIndividualName } from "../lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {
-    title: technology ? getCapitalizedIndividualName(technology) : undefined,
+    title: technology && getCapitalizedIndividualName(technology),
     technologies: await ProjectService.getCategories(),
     projects: await ProjectService.findAllByCategory(technology),
   };

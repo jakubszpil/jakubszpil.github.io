@@ -10,7 +10,7 @@ export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
     categories: await CourseService.getCategories(),
     courses: await CourseService.findAllByCategory(category),
-    title: category ? getCapitalizedIndividualName(category) : undefined,
+    title: category && getCapitalizedIndividualName(category),
   };
 }
 
