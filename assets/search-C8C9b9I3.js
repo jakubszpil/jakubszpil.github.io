@@ -1,1 +1,0 @@
-import"./chunk-UIGDSWPH-DHsZB6vt.js";import{t as e}from"./search-D1cd530Q.js";export{e as clientLoader};

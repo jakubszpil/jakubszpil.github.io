@@ -1,1 +1,0 @@
-import{B as e,R as t,i as n}from"./chunk-UIGDSWPH-DHsZB6vt.js";import{t as r}from"./jsx-runtime-D7G0p6rK.js";t();var i=e(r());function a(e){return(0,i.jsx)(n,{...e,prefetch:`viewport`})}export{a as t};
