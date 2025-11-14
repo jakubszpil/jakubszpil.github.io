@@ -1,4 +1,4 @@
-import { v4 } from "uuid";
+import { useId } from "react";
 
 import { config } from "../lib/config";
 import { Button, type ButtonProps } from "./ui/button";
@@ -10,12 +10,14 @@ export interface SocialsProps {
 }
 
 export default function Socials(props: SocialsProps) {
-  return config.socials.map((social) => {
+  const id = useId();
+
+  return config.socials.map((social, index) => {
     const Icon = Icons[social.icon];
 
     return (
       <Button
-        key={v4()}
+        key={`${id}-${index}`}
         asChild
         size={props.hideLabels ? "icon" : "sm"}
         variant={props.variant ?? "ghost"}

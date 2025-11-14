@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import {
   startTransition,
   useCallback,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -9,7 +10,6 @@ import {
   type ReactElement,
 } from "react";
 import { Transition } from "@headlessui/react";
-import { v4 } from "uuid";
 
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
@@ -28,6 +28,9 @@ export default function NavbarMenu(props: NavbarMenuProps) {
   const [show, setShow] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
+
+  const desktopLinkId = useId();
+  const mobileLinkId = useId();
 
   const handleNavigate: MouseEventHandler<HTMLButtonElement> = useCallback(
     async (event) => {
@@ -64,16 +67,23 @@ export default function NavbarMenu(props: NavbarMenuProps) {
 
   const desktopLinks = useMemo(
     () =>
-      props.children.map((child) => <NavbarLink {...child.props} key={v4()} />),
-    [props.children.length]
+      props.children.map((child, index) => (
+        <NavbarLink {...child.props} key={`${desktopLinkId}-${index}`} />
+      )),
+    [props.children.length, desktopLinkId]
   );
 
   const mobileLinks = useMemo(
     () =>
-      props.children.map((child) => (
-        <NavbarLink {...child.props} key={v4()} size="lg" onClick={closeMenu} />
+      props.children.map((child, index) => (
+        <NavbarLink
+          {...child.props}
+          key={`${mobileLinkId}-${index}`}
+          size="lg"
+          onClick={closeMenu}
+        />
       )),
-    [props.children.length, closeMenu]
+    [props.children.length, mobileLinkId, closeMenu]
   );
 
   return (
