@@ -1,0 +1,1 @@
+import"./chunk-4WY6JWTD-Dl-7X7EE.js";import{t as e}from"./search-CZ5Obznl.js";export{e as clientLoader};
