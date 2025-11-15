@@ -1,7 +1,7 @@
 {
   const _fetch = globalThis.fetch;
   const _createElement = globalThis.document.createElement;
-  const _timestamp = globalThis.timestamp;
+  const _timestamp = globalThis.document.documentElement.dataset.timestamp;
   const _key = "timestamp";
   const _storage = localStorage;
   const _caches = caches;

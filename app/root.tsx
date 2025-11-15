@@ -7,7 +7,7 @@ import PreloadedScript from "./components/preloaded-script";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pl">
+    <html lang="pl" data-timestamp={import.meta.env.TIMESTAMP}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,9 +20,6 @@ export function Layout({ children }: { children: ReactNode }) {
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
-        />
-        <InlineScript
-          code={`globalThis.timestamp = ${import.meta.env.TIMESTAMP}`}
         />
         <InlineScript
           code={`
