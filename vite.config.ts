@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig, type UserConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
