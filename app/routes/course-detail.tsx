@@ -20,7 +20,7 @@ export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   return course;
 }
 
-export default function CourseDetails() {
+export default function CourseDetail() {
   const course = useLoaderData<typeof loader>();
 
   return (

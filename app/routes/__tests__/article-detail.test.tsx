@@ -17,14 +17,14 @@ import EditResource, {
 } from "../../components/edit-resource";
 import Seo, { type SeoProps } from "../../components/seo";
 import { ArticleService, type Article } from "../../lib/articles";
-import ArticleDetails, { loader } from "../article-detail";
+import ArticleDetail, { loader } from "../article-detail";
 
 vi.mock("../../components/categories");
 vi.mock("../../components/edit-resource");
 vi.mock("../../components/seo");
 vi.mock("../../components/banner");
 
-describe("<ArticleDetails />", () => {
+describe("<ArticleDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;
   let MockedEditResource: MockInstance<typeof EditResource>;
   let MockedSeo: MockInstance<typeof Seo>;
@@ -67,7 +67,7 @@ describe("<ArticleDetails />", () => {
     const Stub = createRoutesStub([
       {
         path: "/blog/:slug",
-        Component: ArticleDetails,
+        Component: ArticleDetail,
         loader,
       },
     ]);

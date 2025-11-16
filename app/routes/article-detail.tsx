@@ -19,7 +19,7 @@ export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   return article;
 }
 
-export default function ArticleDetails() {
+export default function ArticleDetail() {
   const article = useLoaderData<typeof loader>();
 
   return (
