@@ -22,7 +22,7 @@ export default function Posts<T extends Post = Post>(props: PostsProps<T>) {
   return (
     <section
       className={cn(
-        "container pt-0! prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3",
+        "container pt-0! prose grid gap-3 grid-cols-fill",
         props.className
       )}
     >

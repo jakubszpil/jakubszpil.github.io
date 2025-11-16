@@ -20,7 +20,7 @@ export default function Projects(props: ProjectsProps) {
   return (
     <section
       className={cn(
-        "container pt-0! prose grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3",
+        "container pt-0! prose grid gap-3 grid-cols-fill",
         props.className
       )}
     >
@@ -29,7 +29,7 @@ export default function Projects(props: ProjectsProps) {
           key={project.slug}
           asChild
           variant={props.variant ?? "outline"}
-          className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6 hover:bg-inherit! hover:text-inherit!"
+          className="inline-flex flex-col items-start cursor-default justify-start text-left h-auto w-auto text-wrap! no-underline truncate p-6 hover:bg-background dark:hover:bg-input/30! hover:text-inherit!"
         >
           <div>
             <h2 className="line-clamp-3 text-base font-semibold m-0!">

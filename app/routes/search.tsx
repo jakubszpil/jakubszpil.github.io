@@ -74,37 +74,39 @@ export default function Search() {
       <>
         <h2>Wyniki wyszukiwania ({count})</h2>
 
-        {results.articles.length > 0 && (
-          <section>
-            <h3>Artykuły ({results.articles.length})</h3>
-            <Posts
-              pathPrefix="/blog"
-              className="p-0! grid-cols-1!"
-              posts={results.articles}
-            />
-          </section>
-        )}
+        <div className="grid grid-cols-1">
+          {results.articles.length > 0 && (
+            <section>
+              <h3>Artykuły ({results.articles.length})</h3>
+              <Posts
+                pathPrefix="/blog"
+                className="p-0 grid-cols-subgrid"
+                posts={results.articles}
+              />
+            </section>
+          )}
 
-        {results.courses.length > 0 && (
-          <section>
-            <h3>Kursy ({results.courses.length})</h3>
-            <Posts
-              pathPrefix="/learning"
-              className="p-0! grid-cols-1!"
-              posts={results.courses}
-            />
-          </section>
-        )}
+          {results.courses.length > 0 && (
+            <section>
+              <h3>Kursy ({results.courses.length})</h3>
+              <Posts
+                pathPrefix="/learning"
+                className="p-0 grid-cols-subgrid"
+                posts={results.courses}
+              />
+            </section>
+          )}
 
-        {results.projects.length > 0 && (
-          <section>
-            <h3>Projekty ({results.projects.length})</h3>
-            <Projects
-              className="p-0! grid-cols-1!"
-              projects={results.projects}
-            />
-          </section>
-        )}
+          {results.projects.length > 0 && (
+            <section>
+              <h3>Projekty ({results.projects.length})</h3>
+              <Projects
+                className="p-0 grid-cols-subgrid"
+                projects={results.projects}
+              />
+            </section>
+          )}
+        </div>
       </>
     );
   }, [results, query, count, ref]);
