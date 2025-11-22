@@ -6,13 +6,13 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "!.react-router/**"]
     },
-    "check-types": {
-      "dependsOn": ["^check-types"]
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
     },
     "start": {
       "persistent": true,
       "cache": false,
-      "dependsOn": ["check-types", "build"]
+      "dependsOn": ["typecheck", "build"]
     },
     "test": {},
     "test:ci": {
