@@ -83,8 +83,8 @@ Ten przewodnik to nie tylko teoria, ale również konkretne przykłady, wskazów
     - [Zadanie 1: Singleton w praktyce](#zadanie-1-singleton-w-praktyce)
     - [Zadanie 2: Factory dla przycisków](#zadanie-2-factory-dla-przycisków)
     - [Zadanie 3: Builder do pizzy](#zadanie-3-builder-do-pizzy)
-    - [Zadanie 4: Adapter - stare i nowe API](#zadanie-4-adapter--stare-i-nowe-api)
-    - [Zadanie 5: Strategy - wybór algorytmu płatności](#zadanie-5-strategy--wybór-algorytmu-płatności)
+    - [Zadanie 4: Adapter - stare i nowe API](#zadanie-4-adapter---stare-i-nowe-api)
+    - [Zadanie 5: Strategy - wybór algorytmu płatności](#zadanie-5-strategy---wybór-algorytmu-płatności)
 
 ---
 

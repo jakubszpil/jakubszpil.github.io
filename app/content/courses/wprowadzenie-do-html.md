@@ -61,7 +61,7 @@ Witaj w świecie tworzenia stron internetowych! 👋 Jeśli kiedykolwiek zastana
 2.  [Jak działa HTML? Znaczniki i elementy](#jak-działa-html-znaczniki-i-elementy)
 3.  [Podstawowa struktura dokumentu HTML](#podstawowa-struktura-dokumentu-html)
     - [Wyjaśnienie struktury krok po kroku](#wyjaśnienie-struktury-krok-po-kroku)
-4.  [Podstawowe elementy HTML - Twój zestaw narzędzi](#podstawowe-elementy-html--twój-zestaw-narzędzi)
+4.  [Podstawowe elementy HTML - Twój zestaw narzędzi](#podstawowe-elementy-html---twój-zestaw-narzędzi)
     - [Nagłówki: Od najważniejszych do najmniej ważnych](#nagłówki-od-najważniejszych-do-najmniej-ważnych)
     - [Akapity: Tworzenie bloków tekstu](#akapity-tworzenie-bloków-tekstu)
     - [Linki: Łączenie stron ze sobą](#linki-łączenie-stron-ze-sobą)

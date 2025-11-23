@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   getResolvedTheme,
   getTheme,
   handleSystemThemeChange,
+  mapResolvedThemeIntoTheme,
   performThemeChange,
-  ResolvedTheme,
   setLocalStorageTheme,
   Theme,
   toggleThemeClassName,
@@ -15,18 +15,18 @@ import { useHydrated } from "./use-hydrated";
 export function useTheme() {
   const hydrated = useHydrated();
 
-  const [theme, setTheme] = useState<Theme | null>(null);
+  const initialTheme = useMemo(() => {
+    if (hydrated) return getTheme();
+    return null;
+  }, [hydrated]);
+
+  const [theme, setTheme] = useState<Theme | null>(initialTheme);
 
   const resolvedTheme = useMemo(() => getResolvedTheme(theme), [theme]);
 
-  const setThemeInternal = useCallback((theme: Theme) => {
-    setTheme(theme);
-    setLocalStorageTheme(theme);
-  }, []);
-
   useEffect(() => {
-    if (hydrated) setTheme(getTheme());
-  }, [hydrated]);
+    if (theme) setLocalStorageTheme(theme);
+  }, [theme]);
 
   useEffect(() => {
     if (theme !== Theme.SYSTEM) {
@@ -48,34 +48,30 @@ export function useTheme() {
   useEffect(() => {
     toggleThemeClassName(resolvedTheme);
 
-    const ac = new AbortController();
+    const abortController = new AbortController();
 
     const down = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "j") {
         e.preventDefault();
 
         performThemeChange(() => {
-          setThemeInternal(
-            resolvedTheme === null
-              ? Theme.SYSTEM
-              : resolvedTheme === ResolvedTheme.DARK
-                ? Theme.LIGHT
-                : Theme.DARK
-          );
+          setTheme(mapResolvedThemeIntoTheme(resolvedTheme));
         });
       }
     };
 
-    document.addEventListener("keydown", down, { signal: ac.signal });
+    document.addEventListener("keydown", down, {
+      signal: abortController.signal,
+    });
 
     return () => {
-      ac.abort();
+      abortController.abort();
     };
   }, [resolvedTheme]);
 
   return {
     theme,
-    setTheme: setThemeInternal,
+    setTheme,
     resolvedTheme,
   };
 }

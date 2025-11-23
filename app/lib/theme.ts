@@ -102,3 +102,21 @@ export function handleSystemThemeChange({ matches }: MediaQueryListEvent) {
     }
   });
 }
+
+export function mapResolvedThemeIntoTheme(
+  resolvedTheme: ResolvedTheme | null
+): Theme {
+  switch (resolvedTheme) {
+    case null: {
+      return Theme.SYSTEM;
+    }
+
+    case ResolvedTheme.LIGHT: {
+      return Theme.LIGHT;
+    }
+
+    case ResolvedTheme.DARK: {
+      return Theme.DARK;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useRouteError } from "react-router";
+import { Outlet, useRouteError } from "react-router";
 
 import Navbar from "../components/navbar";
 import NavbarLink from "../components/navbar-link";
@@ -9,15 +9,10 @@ import BusyIndicator from "../components/busy-indicator";
 import LinkWithPrefetch from "../components/link-with-prefetch";
 import { Button } from "../components/ui/button";
 import { usePrefetchLinkForInitialLoad } from "../hooks/use-prefetch-link-for-initial-load";
-import { useHydrated } from "../hooks/use-hydrated";
 import { isRouteErrorResponse } from "../lib/routing";
 
 export default function Layout() {
   const prefetchLink = usePrefetchLinkForInitialLoad();
-  const hydrated = useHydrated();
-  const location = useLocation();
-
-  if (location.pathname === "/404" && !hydrated) return null;
 
   return (
     <>

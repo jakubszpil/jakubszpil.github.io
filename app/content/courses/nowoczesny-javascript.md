@@ -59,13 +59,13 @@ Ten przewodnik zabierze Cię w podróż po najważniejszych nowościach, które 
 
 ## Spis treści
 
-1.  [Zmienne: `let`, `const` i zakresy blokowe - pożegnanie z `var`?](#zmienne-let-const-i-zakresy-blokowe--pożegnanie-z-var)
-2.  [Funkcje strzałkowe (Arrow Functions) i ich zastosowania - krócej i czytelniej](#funkcje-strzałkowe-arrow-functions-i-ich-zastosowania--krócej-i-czytelniej)
-3.  [Szablony stringów (Template Literals) - łatwiejsza praca z tekstem](#szablony-stringów-template-literals--łatwiejsza-praca-z-tekstem)
-4.  [Destrukturyzacja tablic i obiektów - wyciągnij to, czego potrzebujesz](#destrukturyzacja-tablic-i-obiektów--wyciągnij-to-czego-potrzebujesz)
-5.  [Spread i Rest Operator (`...`) - elastyczność w manipulacji danymi](#spread-i-rest-operator---elastyczność-w-manipulacji-danymi)
-6.  [Promise API i obsługa asynchroniczności - opowiadaj historie o przyszłości](#promise-api-i-obsługa-asynchroniczności--opowiadaj-historie-o-przyszłości)
-7.  [Async/await - nowoczesna obsługa kodu asynchronicznego - pisz asynchronicznie, myśl synchronicznie](#asyncawait--nowoczesna-obsługa-kodu-asynchronicznego--pisz-asynchronicznie-myśl-synchronicznie)
+1.  [Zmienne: `let`, `const` i zakresy blokowe - pożegnanie z `var`?](#zmienne-let-const-i-zakresy-blokowe---pożegnanie-z-var)
+2.  [Funkcje strzałkowe (Arrow Functions) i ich zastosowania - krócej i czytelniej](#funkcje-strzałkowe-arrow-functions-i-ich-zastosowania---krócej-i-czytelniej)
+3.  [Szablony stringów (Template Literals) - łatwiejsza praca z tekstem](#szablony-stringów-template-literals---łatwiejsza-praca-z-tekstem)
+4.  [Destrukturyzacja tablic i obiektów - wyciągnij to, czego potrzebujesz](#destrukturyzacja-tablic-i-obiektów---wyciągnij-to-czego-potrzebujesz)
+5.  [Spread i Rest Operator (`...`) - elastyczność w manipulacji danymi](#spread-i-rest-operator----elastyczność-w-manipulacji-danymi)
+6.  [Promise API i obsługa asynchroniczności - opowiadaj historie o przyszłości](#promise-api-i-obsługa-asynchroniczności---opowiadaj-historie-o-przyszłości)
+7.  [Async/await - nowoczesna obsługa kodu asynchronicznego - pisz asynchronicznie, myśl synchronicznie](#asyncawait---nowoczesna-obsługa-kodu-asynchronicznego---pisz-asynchronicznie-myśl-synchronicznie)
 8.  [Zadania do wykonania: Sprawdź swoją wiedzę!](#zadania-do-wykonania-sprawdź-swoją-wiedzę)
 
 ---

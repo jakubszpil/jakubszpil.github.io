@@ -14,7 +14,7 @@ Wzorzec projektowy Obserwator (ang. Observer) to jeden z kluczowych wzorców, sz
 2. [Korzyści z używania Wzorca Obserwatora](#korzyści-z-używania-wzorca-obserwatora)
 3. [Prosta implementacja wzorca Obserwatora](#prosta-implementacja-wzorca-obserwatora)
 4. [Rozbudowana implementacja generics](#rozbudowana-implementacja-generics)
-5. [Przykład praktyczny - monitorowanie temperatury](#przykład-praktyczny--monitorowanie-temperatury)
+5. [Przykład praktyczny - monitorowanie temperatury](#przykład-praktyczny---monitorowanie-temperatury)
 6. [Podsumowanie](#podsumowanie)
 
 ---

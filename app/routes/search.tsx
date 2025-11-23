@@ -162,7 +162,7 @@ export default function Search() {
           placeholder="Treść zapytania"
           defaultValue={query ?? ""}
           required
-          className="flex-1 relative"
+          className="flex-1 relative text-sm"
           list="search-datalist"
         />
 
