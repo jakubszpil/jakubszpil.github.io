@@ -13,7 +13,6 @@ import Seo from "../../components/seo";
 import { Button } from "../../components/ui/button";
 import { IconSearch } from "../../components/ui/icons";
 import { Input } from "../../components/ui/input";
-import { ArticleService } from "../../lib/articles";
 import { CourseService } from "../../lib/courses";
 import { ProjectService } from "../../lib/projects";
 import {
@@ -22,6 +21,9 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "../../lib/search";
+
+import { ArticleService } from "../../modules/articles/data-access/article-service";
+import { ArticleCards } from "../../modules/articles/ui/article-cards";
 
 export async function loader() {
   const articles = await ArticleService.findAll();
@@ -78,10 +80,9 @@ export default function Search() {
           {results.articles.length > 0 && (
             <section>
               <h3>Artykuły ({results.articles.length})</h3>
-              <Posts
-                pathPrefix="/blog"
+              <ArticleCards
                 className="p-0 grid-cols-subgrid"
-                posts={results.articles}
+                articles={results.articles}
               />
             </section>
           )}

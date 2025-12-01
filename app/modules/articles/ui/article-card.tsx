@@ -1,7 +1,7 @@
 import Banner from "../../../components/banner";
 import LinkWithPrefetch from "../../../components/link-with-prefetch";
 import { Button, type ButtonProps } from "../../../components/ui/button";
-import type { Article } from "../../../lib/articles";
+import type { Article } from "../data-access/article";
 
 export interface ArticleCardProps {
   article: Pick<

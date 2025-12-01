@@ -1,6 +1,6 @@
 import type { ButtonProps } from "../../../components/ui/button";
-import type { Article } from "../../../lib/articles";
 import { cn } from "../../../lib/utils";
+import type { Article } from "../data-access/article";
 import { ArticleCard } from "./article-card";
 
 export interface ArticleCardsProps {
