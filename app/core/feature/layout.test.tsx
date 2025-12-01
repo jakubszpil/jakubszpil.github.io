@@ -16,7 +16,7 @@ import NavbarLink, { type NavbarLinkProps } from "../../components/navbar-link";
 import Footer from "../../components/footer";
 import FooterLink, { type FooterLinkProps } from "../../components/footer-link";
 import BusyIndicator from "../../components/busy-indicator";
-import Layout from "../layout";
+import Layout from "./layout";
 
 vi.mock("../../components/navbar");
 vi.mock("../../components/navbar-menu");

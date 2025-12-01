@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Categories from "../components/categories";
-import Posts from "../components/posts";
-import Seo from "../components/seo";
-import { ArticleService } from "../lib/articles";
-import { getCapitalizedIndividualName } from "../lib/string";
+import Seo from "../../../components/seo";
+import { getCapitalizedIndividualName } from "../../../lib/string";
+import { ArticleService } from "../data-access/article-service";
+import { ArticleCards } from "../ui/article-cards";
+import { ArticleCategories } from "../ui/article-categories";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
@@ -26,15 +26,10 @@ export default function ArticleList() {
 
       <header className="prose container">
         <h1>{title ?? "Artykuły"}</h1>
-        <Categories
-          showAllCategory
-          categories={categories}
-          baseUrl="/blog"
-          categoryPrefixUrl="/blog/kategorie"
-        />
+        <ArticleCategories showAllCategory categories={categories} />
       </header>
 
-      <Posts pathPrefix="/blog" posts={articles} />
+      <ArticleCards articles={articles} />
     </>
   );
 }

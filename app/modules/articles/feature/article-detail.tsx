@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Banner from "../components/banner";
-import Categories from "../components/categories";
-import EditResource from "../components/edit-resource";
-import Seo from "../components/seo";
-import { ArticleService } from "../lib/articles";
+import Banner from "../../../components/banner";
+import EditResource from "../../../components/edit-resource";
+import Seo from "../../../components/seo";
+import { ArticleService } from "../data-access/article-service";
+import { ArticleCategories } from "../ui/article-categories";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await ArticleService.findUnique(slug);
@@ -39,11 +39,7 @@ export default function ArticleDetail() {
           createdAt={article.createdAt}
           readingTime={article.readingTime}
         />
-        <Categories
-          categories={article.categories}
-          baseUrl="/blog"
-          categoryPrefixUrl="/blog/kategorie"
-        />
+        <ArticleCategories categories={article.categories} />
       </header>
 
       <article

@@ -10,29 +10,31 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, { type CategoriesProps } from "../../components/categories";
-import Posts, { type PostsProps } from "../../components/posts";
-import Seo, { type SeoProps } from "../../components/seo";
-import { ArticleService, type Article } from "../../lib/articles";
-import ArticleList, { loader } from "../article-list";
+import Categories, {
+  type CategoriesProps,
+} from "../../../../components/categories";
+import Posts, { type PostsProps } from "../../../../components/posts";
+import Seo, { type SeoProps } from "../../../../components/seo";
+import { CourseService, type Course } from "../../../../lib/courses";
+import CourseList, { loader } from "../course-list";
 
-vi.mock("../../components/posts");
-vi.mock("../../components/categories");
-vi.mock("../../components/seo");
+vi.mock("../../../../components/posts");
+vi.mock("../../../../components/categories");
+vi.mock("../../../../components/seo");
 
-describe("<ArticleList />", () => {
+describe("<CourseList />", () => {
   let MockedPosts: MockInstance<typeof Posts>;
   let MockedCategories: MockInstance<typeof Categories>;
   let MockedSeo: MockInstance<typeof Seo>;
 
-  let MOCKED_ARTICLES: Article[];
+  let MOCKED_COURSES: Course[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetArticleByCategory: MockInstance<
-    typeof ArticleService.findAllByCategory
+  let MockedGetCourseByCategory: MockInstance<
+    typeof CourseService.findAllByCategory
   >;
-  let MockedGetArticlesCategories: MockInstance<
-    typeof ArticleService.getCategories
+  let MockedGetCoursesCategories: MockInstance<
+    typeof CourseService.getCategories
   >;
 
   beforeEach(() => {
@@ -40,7 +42,7 @@ describe("<ArticleList />", () => {
     MockedCategories = vi.mocked(Categories);
     MockedSeo = vi.mocked(Seo);
 
-    MOCKED_ARTICLES = [
+    MOCKED_COURSES = [
       {
         slug: "test-example-1",
         content: "<p>Test content 1</p>",
@@ -65,12 +67,12 @@ describe("<ArticleList />", () => {
 
     MOCKED_CATEGORIES = ["test", "example"];
 
-    MockedGetArticleByCategory = vi
-      .spyOn(ArticleService, "findAllByCategory")
-      .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
+    MockedGetCourseByCategory = vi
+      .spyOn(CourseService, "findAllByCategory")
+      .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
 
-    MockedGetArticlesCategories = vi
-      .spyOn(ArticleService, "getCategories")
+    MockedGetCoursesCategories = vi
+      .spyOn(CourseService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 
@@ -78,30 +80,30 @@ describe("<ArticleList />", () => {
     MockedPosts.mockRestore();
     MockedCategories.mockRestore();
     MockedSeo.mockRestore();
-    MockedGetArticleByCategory.mockRestore();
+    MockedGetCourseByCategory.mockRestore();
   });
 
-  test("should articles without category", async () => {
+  test("should courses without category", async () => {
     const Stub = createRoutesStub([
       {
-        path: "/blog",
-        Component: ArticleList,
+        path: "/learning",
+        Component: CourseList,
         loader,
       },
     ]);
 
-    render(<Stub initialEntries={[generatePath("/blog")]} />);
+    render(<Stub initialEntries={[generatePath("/learning")]} />);
 
-    await screen.findByText("Artykuły");
+    await screen.findByText("Learning");
 
-    expect(MockedGetArticleByCategory).toHaveBeenCalledWith(undefined);
-    expect(MockedGetArticlesCategories).toHaveBeenCalled();
+    expect(MockedGetCourseByCategory).toHaveBeenCalledWith(undefined);
+    expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
       {
-        title: "Artykuły",
+        title: "Learning",
         description:
-          "Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych.",
+          "Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe.",
       } satisfies SeoProps,
       undefined
     );
@@ -110,32 +112,32 @@ describe("<ArticleList />", () => {
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-        baseUrl: "/blog",
-        categoryPrefixUrl: "/blog/kategorie",
+        baseUrl: "/learning",
+        categoryPrefixUrl: "/learning/kategorie",
       } satisfies CategoriesProps,
       undefined
     );
 
     expect(MockedPosts).toHaveBeenCalledWith(
       {
-        posts: MOCKED_ARTICLES,
-        pathPrefix: "/blog",
+        posts: MOCKED_COURSES,
+        pathPrefix: "/learning",
       } satisfies PostsProps,
       undefined
     );
   });
 
-  test("should articles with category", async () => {
+  test("should courses with category", async () => {
     const MOCKED_CATEGORY = "example";
 
-    MockedGetArticleByCategory.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_ARTICLES[1]])
+    MockedGetCourseByCategory.mockImplementationOnce(() =>
+      Promise.resolve([MOCKED_COURSES[1]])
     );
 
     const Stub = createRoutesStub([
       {
-        path: "/blog/kategorie/:category",
-        Component: ArticleList,
+        path: "/learning/kategorie/:category",
+        Component: CourseList,
         loader,
       },
     ]);
@@ -143,7 +145,7 @@ describe("<ArticleList />", () => {
     render(
       <Stub
         initialEntries={[
-          generatePath("/blog/kategorie/:category", {
+          generatePath("/learning/kategorie/:category", {
             category: MOCKED_CATEGORY,
           }),
         ]}
@@ -152,14 +154,14 @@ describe("<ArticleList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetArticleByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
-    expect(MockedGetArticlesCategories).toHaveBeenCalled();
+    expect(MockedGetCourseByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
+    expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
       {
-        title: "Artykuły / Example",
+        title: "Learning / Example",
         description:
-          "Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych.",
+          "Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe.",
       } satisfies SeoProps,
       undefined
     );
@@ -168,16 +170,16 @@ describe("<ArticleList />", () => {
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-        baseUrl: "/blog",
-        categoryPrefixUrl: "/blog/kategorie",
+        baseUrl: "/learning",
+        categoryPrefixUrl: "/learning/kategorie",
       } satisfies CategoriesProps,
       undefined
     );
 
     expect(MockedPosts).toHaveBeenCalledWith(
       {
-        posts: [MOCKED_ARTICLES[1]],
-        pathPrefix: "/blog",
+        posts: [MOCKED_COURSES[1]],
+        pathPrefix: "/learning",
       } satisfies PostsProps,
       undefined
     );

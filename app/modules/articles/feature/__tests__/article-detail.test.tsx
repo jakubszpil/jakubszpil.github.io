@@ -10,22 +10,26 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, { type CategoriesProps } from "../../components/categories";
-import Banner, { type BannerProps } from "../../components/banner";
+import Banner, { type BannerProps } from "../../../../components/banner";
 import EditResource, {
   type EditResourceProps,
-} from "../../components/edit-resource";
-import Seo, { type SeoProps } from "../../components/seo";
-import { ArticleService, type Article } from "../../lib/articles";
+} from "../../../../components/edit-resource";
+import Seo, { type SeoProps } from "../../../../components/seo";
 import ArticleDetail, { loader } from "../article-detail";
+import type { Article } from "../../data-access/article";
+import { ArticleService } from "../../data-access/article-service";
+import {
+  ArticleCategories,
+  type ArticleCategoriesProps,
+} from "../../ui/article-categories";
 
-vi.mock("../../components/categories");
-vi.mock("../../components/edit-resource");
-vi.mock("../../components/seo");
-vi.mock("../../components/banner");
+vi.mock("../../../../components/edit-resource");
+vi.mock("../../../../components/seo");
+vi.mock("../../../../components/banner");
+vi.mock("../../ui/article-categories");
 
 describe("<ArticleDetail />", () => {
-  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedArticleCategories: MockInstance<typeof ArticleCategories>;
   let MockedEditResource: MockInstance<typeof EditResource>;
   let MockedSeo: MockInstance<typeof Seo>;
   let MockedBanner: MockInstance<typeof Banner>;
@@ -34,7 +38,7 @@ describe("<ArticleDetail />", () => {
   let MockedGetArticle: MockInstance<typeof ArticleService.findUnique>;
 
   beforeEach(() => {
-    MockedCategories = vi.mocked(Categories);
+    MockedArticleCategories = vi.mocked(ArticleCategories);
     MockedEditResource = vi.mocked(EditResource);
     MockedSeo = vi.mocked(Seo);
     MockedBanner = vi.mocked(Banner);
@@ -56,7 +60,7 @@ describe("<ArticleDetail />", () => {
   });
 
   afterEach(() => {
-    MockedCategories.mockRestore();
+    MockedArticleCategories.mockRestore();
     MockedEditResource.mockRestore();
     MockedSeo.mockRestore();
     MockedBanner.mockRestore();
@@ -95,12 +99,10 @@ describe("<ArticleDetail />", () => {
       undefined
     );
 
-    expect(MockedCategories).toHaveBeenCalledWith(
+    expect(MockedArticleCategories).toHaveBeenCalledWith(
       {
         categories: MockedArticle.categories,
-        baseUrl: "/blog",
-        categoryPrefixUrl: "/blog/kategorie",
-      } satisfies CategoriesProps,
+      } satisfies ArticleCategoriesProps,
       undefined
     );
 

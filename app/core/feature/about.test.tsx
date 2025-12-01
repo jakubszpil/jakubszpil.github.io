@@ -12,7 +12,7 @@ import {
 import Seo from "../../components/seo";
 import Socials from "../../components/socials";
 import { getDifferenceInYears } from "../../lib/date";
-import About from "../about";
+import About from "./about";
 
 vi.mock("../../components/seo");
 vi.mock("../../components/socials");

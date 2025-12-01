@@ -1,13 +1,15 @@
 import { useLoaderData } from "react-router";
 
-import LinkWithPrefetch from "../components/link-with-prefetch";
-import Posts from "../components/posts";
-import Projects from "../components/projects";
-import Seo from "../components/seo";
-import { Button } from "../components/ui/button";
-import { ArticleService } from "../lib/articles";
-import { CourseService } from "../lib/courses";
-import { ProjectService } from "../lib/projects";
+import LinkWithPrefetch from "../../components/link-with-prefetch";
+import Posts from "../../components/posts";
+import Projects from "../../components/projects";
+import Seo from "../../components/seo";
+import { Button } from "../../components/ui/button";
+import { CourseService } from "../../lib/courses";
+import { ProjectService } from "../../lib/projects";
+
+import { ArticleCards } from "../../modules/articles/ui/article-cards";
+import { ArticleService } from "../../modules/articles/data-access/article-service";
 
 export async function loader() {
   const articles = await ArticleService.findAll(3);
@@ -76,7 +78,7 @@ export default function Home() {
             frontend developmentu!
           </p>
         </header>
-        <Posts pathPrefix="/blog" variant="outline" posts={data.articles} />
+        <ArticleCards variant="outline" articles={data.articles} />
         <nav className="container pt-0!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/blog">
