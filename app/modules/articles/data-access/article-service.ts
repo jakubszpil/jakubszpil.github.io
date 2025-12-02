@@ -1,4 +1,4 @@
-import { ResourceService } from "@packages/shared";
+import { ResourceService } from "@packages/shared/server";
 
 import type { Article } from "./article";
 
