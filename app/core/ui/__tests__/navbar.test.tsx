@@ -10,9 +10,12 @@ import { render, screen } from "@testing-library/react";
 
 import Navbar from "../navbar";
 import NavbarLink from "../navbar-link";
-import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
+import { LinkWithPrefetch } from "@packages/shared";
 
-vi.mock("../../../shared/ui/link-with-prefetch");
+vi.mock("@packages/shared", async (importActual) => ({
+  ...(await importActual()),
+  LinkWithPrefetch: vi.fn(),
+}));
 
 describe("<Navbar />", () => {
   let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;

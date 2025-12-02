@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import styles from "./styles.css?url";
-import { InlineScript } from "./shared/ui/inline-script";
-import { PreloadedScript } from "./shared/ui/preloaded-script";
+import { InlineScript, PreloadedScript } from "@packages/shared";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

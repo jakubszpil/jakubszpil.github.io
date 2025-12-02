@@ -1,7 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Seo } from "../../../shared/ui/seo";
-import { getCapitalizedIndividualName } from "../../../shared/utils/string";
+import { Seo, getCapitalizedIndividualName } from "@packages/shared";
 
 import { CourseService } from "../data-access/course-service";
 import { CourseCards } from "../ui/course-cards";

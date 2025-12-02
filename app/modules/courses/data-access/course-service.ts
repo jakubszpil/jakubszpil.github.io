@@ -1,4 +1,5 @@
-import { ResourceService } from "../../../shared/data-access/resources";
+import { ResourceService } from "@packages/shared";
+
 import type { Course } from "./course";
 
 export class CourseService extends ResourceService<Course>(

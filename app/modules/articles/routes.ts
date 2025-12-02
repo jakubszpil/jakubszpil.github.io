@@ -1,4 +1,4 @@
-import { defineRoutes } from "../../shared/utils/routing";
+import { defineRoutes } from "@packages/shared/server";
 
 export default defineRoutes(__dirname, ({ index, route }) => [
   index("feature/article-list.tsx"),

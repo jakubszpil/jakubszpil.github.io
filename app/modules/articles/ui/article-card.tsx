@@ -1,6 +1,10 @@
-import { Banner } from "../../../shared/ui/banner";
-import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
-import { Button, type ButtonProps } from "../../../shared/ui/button";
+import {
+  Banner,
+  LinkWithPrefetch,
+  Button,
+  type ButtonProps,
+} from "@packages/shared";
+
 import type { Article } from "../data-access/article";
 
 export interface ArticleCardProps {

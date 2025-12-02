@@ -13,7 +13,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "paths": {},
+    "paths": {
+      "@packages/shared": ["./app/shared/index"],
+      "@packages/shared/server": ["./app/shared/server"]
+    },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,

@@ -10,7 +10,8 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { Seo, type SeoProps } from "../../../../shared/ui/seo";
+import { Seo, type SeoProps } from "@packages/shared";
+
 import CourseList, { loader } from "../course-list";
 import type { Course } from "../../data-access/course";
 import { CourseService } from "../../data-access/course-service";
@@ -22,7 +23,10 @@ import {
 
 vi.mock("../../ui/course-cards");
 vi.mock("../../ui/course-categories");
-vi.mock("../../../../shared/ui/seo");
+vi.mock("@packages/shared", async (importActual) => ({
+  ...(await importActual()),
+  Seo: vi.fn(),
+}));
 
 describe("<CourseList />", () => {
   let MockedCourseCards: MockInstance<typeof CourseCards>;

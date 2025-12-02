@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button } from "../../shared/ui/button";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { Button, LinkWithPrefetch } from "@packages/shared";
 
 export interface FooterLinkProps {
   to: string;

@@ -1,8 +1,8 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Seo } from "../../../shared/ui/seo";
+import { Seo, getCapitalizedIndividualName } from "@packages/shared";
+
 import { ProjectService } from "../data-access/project-service";
-import { getCapitalizedIndividualName } from "../../../shared/utils/string";
 import { ProjectTechnologies } from "../ui/project-technologies";
 import { ProjectCards } from "../ui/project-cards";
 

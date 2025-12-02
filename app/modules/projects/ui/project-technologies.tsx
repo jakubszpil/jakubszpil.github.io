@@ -1,4 +1,4 @@
-import { Categories } from "../../../shared/ui/categories";
+import { Categories } from "@packages/shared";
 
 export interface ProjectTechnologiesProps {
   technologies: string[];

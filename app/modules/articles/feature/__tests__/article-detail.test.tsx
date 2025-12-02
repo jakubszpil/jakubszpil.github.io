@@ -10,12 +10,15 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { Banner, type BannerProps } from "../../../../shared/ui/banner";
 import {
+  Banner,
+  type BannerProps,
   EditResource,
   type EditResourceProps,
-} from "../../../../shared/ui/edit-resource";
-import { Seo, type SeoProps } from "../../../../shared/ui/seo";
+  Seo,
+  type SeoProps,
+} from "@packages/shared";
+
 import ArticleDetail, { loader } from "../article-detail";
 import type { Article } from "../../data-access/article";
 import { ArticleService } from "../../data-access/article-service";
@@ -24,9 +27,12 @@ import {
   type ArticleCategoriesProps,
 } from "../../ui/article-categories";
 
-vi.mock("../../../../shared/ui/edit-resource");
-vi.mock("../../../../shared/ui/seo");
-vi.mock("../../../../shared/ui/banner");
+vi.mock("@packages/shared", async (importActual) => ({
+  ...(await importActual()),
+  Banner: vi.fn(),
+  EditResource: vi.fn(),
+  Seo: vi.fn(),
+}));
 vi.mock("../../ui/article-categories");
 
 describe("<ArticleDetail />", () => {

@@ -1,8 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "../../../shared/ui/banner";
-import { EditResource } from "../../../shared/ui/edit-resource";
-import { Seo } from "../../../shared/ui/seo";
+import { Banner, EditResource, Seo } from "@packages/shared";
+
 import { ArticleService } from "../data-access/article-service";
 import { ArticleCategories } from "../ui/article-categories";
 

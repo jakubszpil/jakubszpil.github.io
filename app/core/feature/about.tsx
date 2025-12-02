@@ -1,6 +1,6 @@
+import { Seo, getDifferenceInYears } from "@packages/shared";
+
 import Socials from "../ui/socials";
-import { Seo } from "../../shared/ui/seo";
-import { getDifferenceInYears } from "../../shared/utils/date";
 
 export default function About() {
   const years = getDifferenceInYears(new Date("2021-07-01"));

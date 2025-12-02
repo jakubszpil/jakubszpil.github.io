@@ -1,4 +1,4 @@
-import { Seo } from "../../shared/ui/seo";
+import { Seo } from "@packages/shared";
 
 export default function Handbook() {
   return (

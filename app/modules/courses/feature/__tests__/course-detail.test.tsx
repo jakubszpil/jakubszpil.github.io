@@ -13,21 +13,25 @@ import {
 import {
   Categories,
   type CategoriesProps,
-} from "../../../../shared/ui/categories";
-import { Banner, type BannerProps } from "../../../../shared/ui/banner";
-import {
+  Banner,
+  type BannerProps,
   EditResource,
   type EditResourceProps,
-} from "../../../../shared/ui/edit-resource";
-import { Seo, type SeoProps } from "../../../../shared/ui/seo";
+  Seo,
+  type SeoProps,
+} from "@packages/shared";
+
 import CourseDetail, { loader } from "../course-detail";
 import type { Course } from "../../data-access/course";
 import { CourseService } from "../../data-access/course-service";
 
-vi.mock("../../../../shared/ui/categories");
-vi.mock("../../../../shared/ui/edit-resource");
-vi.mock("../../../../shared/ui/seo");
-vi.mock("../../../../shared/ui/banner");
+vi.mock("@packages/shared", async (importActual) => ({
+  ...(await importActual()),
+  Categories: vi.fn(),
+  Banner: vi.fn(),
+  EditResource: vi.fn(),
+  Seo: vi.fn(),
+}));
 
 describe("<CourseDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;

@@ -7,23 +7,20 @@ import {
   type Location,
 } from "react-router";
 
+import { Seo, Input, Button, IconSearch } from "@packages/shared";
+
 import {
   getSearchResults,
   getSearchResultsLength,
   queryParamName,
   validateSearhQuery,
 } from "../data-access/search";
-
 import { ArticleService } from "../../modules/articles/data-access/article-service";
 import { ArticleCards } from "../../modules/articles/ui/article-cards";
 import { CourseService } from "../../modules/courses/data-access/course-service";
 import { CourseCards } from "../../modules/courses/ui/course-cards";
 import { ProjectService } from "../../modules/projects/data-access/project-service";
 import { ProjectCards } from "../../modules/projects/ui/project-cards";
-import { Seo } from "../../shared/ui/seo";
-import { Input } from "../../shared/ui/input";
-import { Button } from "../../shared/ui/button";
-import { IconSearch } from "../../shared/ui/icons";
 
 export async function loader() {
   const articles = await ArticleService.findAll();

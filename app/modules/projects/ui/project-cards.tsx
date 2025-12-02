@@ -1,5 +1,5 @@
-import type { ButtonProps } from "../../../shared/ui/button";
-import { cn } from "../../../shared/utils/helpers";
+import { type ButtonProps, cn } from "@packages/shared";
+
 import type { Project } from "../data-access/project";
 import { ProjectCard } from "./project-card";
 

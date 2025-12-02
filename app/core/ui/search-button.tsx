@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-import { usePrefetchLink } from "../../shared/data-access/use-prefetch-link";
-import { Button } from "../../shared/ui/button";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
-import { IconSearch } from "../../shared/ui/icons";
+import {
+  usePrefetchLink,
+  Button,
+  LinkWithPrefetch,
+  IconSearch,
+} from "@packages/shared";
 
 const state = { focus: true };
 

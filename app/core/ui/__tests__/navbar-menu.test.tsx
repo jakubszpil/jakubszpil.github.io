@@ -9,13 +9,17 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
+import { LinkWithPrefetch } from "@packages/shared";
+
 import NavbarMenu from "../navbar-menu";
 import NavbarLink from "../navbar-link";
 import SearchButton from "../search-button";
 import ThemeSwitcher from "../theme-switcher";
-import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 
-vi.mock("../../../shared/ui/link-with-prefetch");
+vi.mock("@packages/shared", async (importActual) => ({
+  ...(await importActual()),
+  LinkWithPrefetch: vi.fn(),
+}));
 vi.mock("../search-button");
 vi.mock("../theme-switcher");
 vi.mock("react-router", async (importOriginal) => {

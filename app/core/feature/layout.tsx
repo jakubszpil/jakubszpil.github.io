@@ -1,15 +1,18 @@
 import { Outlet, useRouteError } from "react-router";
 
+import {
+  usePrefetchLinkForInitialLoad,
+  Button,
+  LinkWithPrefetch,
+  isRouteErrorResponse,
+} from "@packages/shared";
+
 import Navbar from "../ui/navbar";
 import NavbarLink from "../ui/navbar-link";
 import NavbarMenu from "../ui/navbar-menu";
 import Footer from "../ui/footer";
 import FooterLink from "../ui/footer-link";
 import BusyIndicator from "../ui/busy-indicator";
-import { usePrefetchLinkForInitialLoad } from "../../shared/data-access/use-prefetch-link-for-initial-load";
-import { Button } from "../../shared/ui/button";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
-import { isRouteErrorResponse } from "../../shared/utils/errors";
 
 export default function Layout() {
   const prefetchLink = usePrefetchLinkForInitialLoad();

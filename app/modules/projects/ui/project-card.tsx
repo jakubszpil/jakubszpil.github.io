@@ -1,7 +1,11 @@
-import { Button, type ButtonProps } from "../../../shared/ui/button";
+import {
+  Button,
+  type ButtonProps,
+  CreationDate,
+  IconBrandGithub,
+} from "@packages/shared";
+
 import type { Project, ProjectStatus } from "../data-access/project";
-import { CreationDate } from "../../../shared/ui/creation-date";
-import { IconBrandGithub } from "../../../shared/ui/icons";
 
 export interface ProjectCardProps {
   project: Pick<

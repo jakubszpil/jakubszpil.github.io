@@ -1,19 +1,18 @@
-import { useTheme } from "../data-access/use-theme";
-import { Theme } from "../utils/theme";
-import { Button } from "../../shared/ui/button";
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "../../shared/ui/dropdown-menu";
-import {
   IconDeviceDesktop,
   IconMoonStars,
   IconSun,
   IconSunMoon,
-} from "../../shared/ui/icons";
+} from "@packages/shared";
+
+import { useTheme } from "../data-access/use-theme";
+import { Theme } from "../utils/theme";
 
 export default function ThemeSwitcher() {
   const { setTheme } = useTheme();

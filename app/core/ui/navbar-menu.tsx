@@ -11,14 +11,13 @@ import {
 } from "react";
 import { Transition } from "@headlessui/react";
 
+import { Button, cn, IconMenu2, IconX } from "@packages/shared";
+
 import BusyIndicator from "./busy-indicator";
 import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
 import Socials from "./socials";
 import SearchButton from "./search-button";
 import ThemeSwitcher from "./theme-switcher";
-import { Button } from "../../shared/ui/button";
-import { cn } from "../../shared/utils/helpers";
-import { IconMenu2, IconX } from "../../shared/ui/icons";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];

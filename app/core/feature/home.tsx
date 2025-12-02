@@ -1,15 +1,13 @@
 import { useLoaderData } from "react-router";
 
-import { ProjectService } from "../../modules/projects/data-access/project-service";
+import { Seo, Button, LinkWithPrefetch } from "@packages/shared";
 
+import { ProjectService } from "../../modules/projects/data-access/project-service";
 import { ArticleCards } from "../../modules/articles/ui/article-cards";
 import { ArticleService } from "../../modules/articles/data-access/article-service";
 import { CourseCards } from "../../modules/courses/ui/course-cards";
 import { CourseService } from "../../modules/courses/data-access/course-service";
 import { ProjectCards } from "../../modules/projects/ui/project-cards";
-import { Seo } from "../../shared/ui/seo";
-import { Button } from "../../shared/ui/button";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 
 export async function loader() {
   const articles = await ArticleService.findAll(3);

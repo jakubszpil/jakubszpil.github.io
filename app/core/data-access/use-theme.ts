@@ -10,7 +10,7 @@ import {
   Theme,
   toggleThemeClassName,
 } from "../utils/theme";
-import { useHydrated } from "../../shared/data-access/use-hydrated";
+import { useHydrated } from "@packages/shared";
 
 export function useTheme() {
   const hydrated = useHydrated();
