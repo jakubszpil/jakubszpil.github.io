@@ -7,9 +7,9 @@ import coreRoutes from "./core/routes";
 
 export default [
   route("", "core/feature/layout.tsx", [
-    ...prefix("blog", articleRoutes("modules/articles")),
-    ...prefix("learning", courseRoutes("modules/courses")),
-    ...prefix("portfolio", projectRoutes("modules/projects")),
-    ...prefix("", coreRoutes("core")),
+    ...prefix("blog", articleRoutes()),
+    ...prefix("learning", courseRoutes()),
+    ...prefix("portfolio", projectRoutes()),
+    ...prefix("", coreRoutes()),
   ]),
 ] satisfies RouteConfig;
