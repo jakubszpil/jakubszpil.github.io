@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BgpLoS8-.js";import{w as t}from"./src-FAX0eCHP.js";var n=e();function r(e){return(0,n.jsx)(t,{categories:e.categories,showAllCategory:e.showAllCategory,baseUrl:`/blog`,categoryPrefixUrl:`/blog/kategorie`})}export{r as t};
