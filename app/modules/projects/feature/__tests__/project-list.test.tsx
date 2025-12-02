@@ -10,26 +10,23 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Projects, { type ProjectsProps } from "../../../../components/projects";
-import {
-  Categories,
-  type CategoriesProps,
-} from "../../../../shared/ui/categories";
 import { Seo, type SeoProps } from "../../../../shared/ui/seo";
-import {
-  ProjectService,
-  ProjectStatus,
-  type Project,
-} from "../../../../lib/projects";
 import ProjectList, { loader } from "../project-list";
+import { ProjectStatus, type Project } from "../../data-access/project";
+import { ProjectService } from "../../data-access/project-service";
+import { ProjectCards, type ProjectCardsProps } from "../../ui/project-cards";
+import {
+  ProjectTechnologies,
+  type ProjectTechnologiesProps,
+} from "../../ui/project-technologies";
 
-vi.mock("../../../../components/projects");
-vi.mock("../../../../shared/ui/categories");
+vi.mock("../../ui/project-cards");
+vi.mock("../../ui/project-technologies");
 vi.mock("../../../../shared/ui/seo");
 
 describe("<ProjectList />", () => {
-  let MockedProjects: MockInstance<typeof Projects>;
-  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedProjectCards: MockInstance<typeof ProjectCards>;
+  let MockedProjectTechnologies: MockInstance<typeof ProjectTechnologies>;
   let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_PROJECTS: Project[];
@@ -38,13 +35,13 @@ describe("<ProjectList />", () => {
   let MockedGetProjectByTechnology: MockInstance<
     typeof ProjectService.findAllByCategory
   >;
-  let MockedGetProjectsTechnologies: MockInstance<
+  let MockedGetProjectCardsTechnologies: MockInstance<
     typeof ProjectService.getCategories
   >;
 
   beforeEach(() => {
-    MockedProjects = vi.mocked(Projects);
-    MockedCategories = vi.mocked(Categories);
+    MockedProjectCards = vi.mocked(ProjectCards);
+    MockedProjectTechnologies = vi.mocked(ProjectTechnologies);
     MockedSeo = vi.mocked(Seo);
 
     MOCKED_PROJECTS = [
@@ -72,14 +69,14 @@ describe("<ProjectList />", () => {
       .spyOn(ProjectService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
 
-    MockedGetProjectsTechnologies = vi
+    MockedGetProjectCardsTechnologies = vi
       .spyOn(ProjectService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
   });
 
   afterEach(() => {
-    MockedProjects.mockRestore();
-    MockedCategories.mockRestore();
+    MockedProjectCards.mockRestore();
+    MockedProjectTechnologies.mockRestore();
     MockedSeo.mockRestore();
     MockedGetProjectByTechnology.mockRestore();
   });
@@ -98,7 +95,7 @@ describe("<ProjectList />", () => {
     await screen.findByText("Portfolio");
 
     expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(undefined);
-    expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
+    expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
       {
@@ -109,20 +106,18 @@ describe("<ProjectList />", () => {
       undefined
     );
 
-    expect(MockedCategories).toHaveBeenCalledWith(
+    expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {
-        categories: MOCKED_TECHNOLOGIES,
+        technologies: MOCKED_TECHNOLOGIES,
         showAllCategory: true,
-        baseUrl: "/portfolio",
-        categoryPrefixUrl: "/portfolio/technologie",
-      } satisfies CategoriesProps,
+      } satisfies ProjectTechnologiesProps,
       undefined
     );
 
-    expect(MockedProjects).toHaveBeenCalledWith(
+    expect(MockedProjectCards).toHaveBeenCalledWith(
       {
         projects: MOCKED_PROJECTS,
-      } satisfies ProjectsProps,
+      } satisfies ProjectCardsProps,
       undefined
     );
   });
@@ -157,7 +152,7 @@ describe("<ProjectList />", () => {
     expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(
       MOCKED_TECHNOLOGY
     );
-    expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
+    expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
 
     expect(MockedSeo).toHaveBeenCalledWith(
       {
@@ -168,20 +163,18 @@ describe("<ProjectList />", () => {
       undefined
     );
 
-    expect(MockedCategories).toHaveBeenCalledWith(
+    expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {
-        categories: MOCKED_TECHNOLOGIES,
+        technologies: MOCKED_TECHNOLOGIES,
         showAllCategory: true,
-        baseUrl: "/portfolio",
-        categoryPrefixUrl: "/portfolio/technologie",
-      } satisfies CategoriesProps,
+      } satisfies ProjectTechnologiesProps,
       undefined
     );
 
-    expect(MockedProjects).toHaveBeenCalledWith(
+    expect(MockedProjectCards).toHaveBeenCalledWith(
       {
         projects: [MOCKED_PROJECTS[1]],
-      } satisfies ProjectsProps,
+      } satisfies ProjectCardsProps,
       undefined
     );
   });

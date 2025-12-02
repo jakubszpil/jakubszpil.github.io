@@ -10,22 +10,23 @@ import {
   type MockInstance,
 } from "vitest";
 
-import {
-  Categories,
-  type CategoriesProps,
-} from "../../../../shared/ui/categories";
-import { Posts, type PostsProps } from "../../../../shared/ui/posts";
 import { Seo, type SeoProps } from "../../../../shared/ui/seo";
-import { CourseService, type Course } from "../../../../lib/courses";
 import CourseList, { loader } from "../course-list";
+import type { Course } from "../../data-access/course";
+import { CourseService } from "../../data-access/course-service";
+import { CourseCards, type CourseCardsProps } from "../../ui/course-cards";
+import {
+  CourseCategories,
+  type CourseCategoriesProps,
+} from "../../ui/course-categories";
 
-vi.mock("../../../../shared/ui/posts");
-vi.mock("../../../../shared/ui/categories");
+vi.mock("../../ui/course-cards");
+vi.mock("../../ui/course-categories");
 vi.mock("../../../../shared/ui/seo");
 
 describe("<CourseList />", () => {
-  let MockedPosts: MockInstance<typeof Posts>;
-  let MockedCategories: MockInstance<typeof Categories>;
+  let MockedCourseCards: MockInstance<typeof CourseCards>;
+  let MockedCourseCategories: MockInstance<typeof CourseCategories>;
   let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_COURSES: Course[];
@@ -39,8 +40,8 @@ describe("<CourseList />", () => {
   >;
 
   beforeEach(() => {
-    MockedPosts = vi.mocked(Posts);
-    MockedCategories = vi.mocked(Categories);
+    MockedCourseCards = vi.mocked(CourseCards);
+    MockedCourseCategories = vi.mocked(CourseCategories);
     MockedSeo = vi.mocked(Seo);
 
     MOCKED_COURSES = [
@@ -53,6 +54,10 @@ describe("<CourseList />", () => {
         categories: ["test"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
+        quiz: {
+          questions: [],
+          title: "Example Quiz",
+        },
       },
       {
         slug: "test-example-2",
@@ -63,6 +68,10 @@ describe("<CourseList />", () => {
         categories: ["test", "example"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
+        quiz: {
+          questions: [],
+          title: "Example Quiz",
+        },
       },
     ];
 
@@ -78,8 +87,8 @@ describe("<CourseList />", () => {
   });
 
   afterEach(() => {
-    MockedPosts.mockRestore();
-    MockedCategories.mockRestore();
+    MockedCourseCards.mockRestore();
+    MockedCourseCategories.mockRestore();
     MockedSeo.mockRestore();
     MockedGetCourseByCategory.mockRestore();
   });
@@ -109,21 +118,18 @@ describe("<CourseList />", () => {
       undefined
     );
 
-    expect(MockedCategories).toHaveBeenCalledWith(
+    expect(MockedCourseCategories).toHaveBeenCalledWith(
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-        baseUrl: "/learning",
-        categoryPrefixUrl: "/learning/kategorie",
-      } satisfies CategoriesProps,
+      } satisfies CourseCategoriesProps,
       undefined
     );
 
-    expect(MockedPosts).toHaveBeenCalledWith(
+    expect(MockedCourseCards).toHaveBeenCalledWith(
       {
-        posts: MOCKED_COURSES,
-        pathPrefix: "/learning",
-      } satisfies PostsProps,
+        courses: MOCKED_COURSES,
+      } satisfies CourseCardsProps,
       undefined
     );
   });
@@ -167,21 +173,18 @@ describe("<CourseList />", () => {
       undefined
     );
 
-    expect(MockedCategories).toHaveBeenCalledWith(
+    expect(MockedCourseCategories).toHaveBeenCalledWith(
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-        baseUrl: "/learning",
-        categoryPrefixUrl: "/learning/kategorie",
-      } satisfies CategoriesProps,
+      } satisfies CourseCategoriesProps,
       undefined
     );
 
-    expect(MockedPosts).toHaveBeenCalledWith(
+    expect(MockedCourseCards).toHaveBeenCalledWith(
       {
-        posts: [MOCKED_COURSES[1]],
-        pathPrefix: "/learning",
-      } satisfies PostsProps,
+        courses: [MOCKED_COURSES[1]],
+      } satisfies CourseCardsProps,
       undefined
     );
   });

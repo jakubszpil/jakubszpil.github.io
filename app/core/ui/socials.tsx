@@ -1,8 +1,8 @@
 import { useId } from "react";
 
-import { Button, type ButtonProps } from "../shared/ui/button";
-import { config } from "../shared/utils/config";
-import { Icons } from "../shared/ui/icons";
+import { Button, type ButtonProps } from "../../shared/ui/button";
+import { config } from "../../shared/utils/config";
+import { Icons } from "../../shared/ui/icons";
 
 export interface SocialsProps {
   hideLabels?: boolean;

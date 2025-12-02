@@ -1,15 +1,15 @@
 import { useLoaderData } from "react-router";
 
-import Projects from "../../components/projects";
-import { CourseService } from "../../lib/courses";
-import { ProjectService } from "../../lib/projects";
+import { ProjectService } from "../../modules/projects/data-access/project-service";
 
 import { ArticleCards } from "../../modules/articles/ui/article-cards";
 import { ArticleService } from "../../modules/articles/data-access/article-service";
+import { CourseCards } from "../../modules/courses/ui/course-cards";
+import { CourseService } from "../../modules/courses/data-access/course-service";
+import { ProjectCards } from "../../modules/projects/ui/project-cards";
 import { Seo } from "../../shared/ui/seo";
 import { Button } from "../../shared/ui/button";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
-import { Posts } from "../../shared/ui/posts";
 
 export async function loader() {
   const articles = await ArticleService.findAll(3);
@@ -97,7 +97,7 @@ export default function Home() {
             oraz aplikacje internetowe.
           </p>
         </header>
-        <Posts pathPrefix="/learning" variant="outline" posts={data.courses} />
+        <CourseCards variant="outline" courses={data.courses} />
         <nav className="container pt-0! pb-12!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/learning">
@@ -116,7 +116,7 @@ export default function Home() {
             potrafię!
           </p>
         </header>
-        <Projects variant="outline" projects={data.projects} />
+        <ProjectCards variant="outline" projects={data.projects} />
         <nav className="container pt-0! pb-12!">
           <Button asChild size="sm" className="no-underline!">
             <LinkWithPrefetch to="/portfolio">

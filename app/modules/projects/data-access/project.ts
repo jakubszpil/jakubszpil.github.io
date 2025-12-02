@@ -1,5 +1,3 @@
-import { ResourceService } from "./resources";
-
 export enum ProjectStatus {
   IDLE = "IDLE",
   IN_PROGRESS = "IN_PROGRESS",
@@ -14,11 +12,3 @@ export interface Project {
   status: ProjectStatus;
   categories: string[];
 }
-
-export class ProjectService extends ResourceService<Project>(
-  import.meta.glob<string>("../content/projects/*.md", {
-    import: "default",
-    query: "?raw",
-    eager: true,
-  })
-) {}

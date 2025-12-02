@@ -10,11 +10,11 @@ import { render, screen } from "@testing-library/react";
 
 import Footer from "../footer";
 import FooterLink from "../footer-link";
-import { getCurrentYear } from "../../shared/utils/date";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { getCurrentYear } from "../../../shared/utils/date";
+import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 
-vi.mock("../../shared/ui/link-with-prefetch");
-vi.mock("../../shared/utils/date");
+vi.mock("../../../shared/ui/link-with-prefetch");
+vi.mock("../../../shared/utils/date");
 
 describe("<Footer />", () => {
   let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;

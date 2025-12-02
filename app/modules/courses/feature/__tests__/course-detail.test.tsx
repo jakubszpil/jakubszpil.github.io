@@ -20,8 +20,9 @@ import {
   type EditResourceProps,
 } from "../../../../shared/ui/edit-resource";
 import { Seo, type SeoProps } from "../../../../shared/ui/seo";
-import { CourseService, type Course } from "../../../../lib/courses";
 import CourseDetail, { loader } from "../course-detail";
+import type { Course } from "../../data-access/course";
+import { CourseService } from "../../data-access/course-service";
 
 vi.mock("../../../../shared/ui/categories");
 vi.mock("../../../../shared/ui/edit-resource");
@@ -52,6 +53,10 @@ describe("<CourseDetail />", () => {
       categories: ["test", "example"],
       createdAt: "2025-03-17",
       readingTime: "3 minuty",
+      quiz: {
+        questions: [],
+        title: "Example Quiz",
+      },
     };
 
     MockedGetCourse = vi

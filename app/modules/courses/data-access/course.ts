@@ -1,4 +1,4 @@
-import type { ContentQuiz } from "../../../lib/content";
+import type { CourseQuiz } from "./course-quiz";
 
 export interface Course {
   slug: string;
@@ -9,5 +9,5 @@ export interface Course {
   categories: string[];
   keywords: string[];
   content: string;
-  quiz?: ContentQuiz;
+  quiz: CourseQuiz;
 }

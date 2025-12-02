@@ -10,9 +10,9 @@ import {
 } from "vitest";
 
 import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 
-vi.mock("../../shared/ui/link-with-prefetch");
+vi.mock("../../../shared/ui/link-with-prefetch");
 
 describe("<NavbarLink />", () => {
   let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;

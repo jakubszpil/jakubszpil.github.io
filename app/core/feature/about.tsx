@@ -1,4 +1,4 @@
-import Socials from "../../components/socials";
+import Socials from "../ui/socials";
 import { Seo } from "../../shared/ui/seo";
 import { getDifferenceInYears } from "../../shared/utils/date";
 

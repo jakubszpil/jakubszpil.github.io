@@ -1,11 +1,11 @@
 import { Outlet, useRouteError } from "react-router";
 
-import Navbar from "../../components/navbar";
-import NavbarLink from "../../components/navbar-link";
-import NavbarMenu from "../../components/navbar-menu";
-import Footer from "../../components/footer";
-import FooterLink from "../../components/footer-link";
-import BusyIndicator from "../../components/busy-indicator";
+import Navbar from "../ui/navbar";
+import NavbarLink from "../ui/navbar-link";
+import NavbarMenu from "../ui/navbar-menu";
+import Footer from "../ui/footer";
+import FooterLink from "../ui/footer-link";
+import BusyIndicator from "../ui/busy-indicator";
 import { usePrefetchLinkForInitialLoad } from "../../hooks/use-prefetch-link-for-initial-load";
 import { Button } from "../../shared/ui/button";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";

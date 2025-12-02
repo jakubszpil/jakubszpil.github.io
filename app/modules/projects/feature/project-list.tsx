@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Projects from "../../../components/projects";
-import { Categories } from "../../../shared/ui/categories";
 import { Seo } from "../../../shared/ui/seo";
-import { ProjectService } from "../../../lib/projects";
+import { ProjectService } from "../data-access/project-service";
 import { getCapitalizedIndividualName } from "../../../shared/utils/string";
+import { ProjectTechnologies } from "../ui/project-technologies";
+import { ProjectCards } from "../ui/project-cards";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {
@@ -26,15 +26,10 @@ export default function ProjectList() {
 
       <header className="prose container">
         <h1>{title ?? "Portfolio"}</h1>
-        <Categories
-          showAllCategory
-          categories={technologies}
-          baseUrl="/portfolio"
-          categoryPrefixUrl="/portfolio/technologie"
-        />
+        <ProjectTechnologies showAllCategory technologies={technologies} />
       </header>
 
-      <Projects projects={projects} />
+      <ProjectCards projects={projects} />
     </>
   );
 }

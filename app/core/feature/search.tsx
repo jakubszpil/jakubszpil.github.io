@@ -7,9 +7,6 @@ import {
   type Location,
 } from "react-router";
 
-import Projects from "../../components/projects";
-import { CourseService } from "../../lib/courses";
-import { ProjectService } from "../../lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -19,11 +16,14 @@ import {
 
 import { ArticleService } from "../../modules/articles/data-access/article-service";
 import { ArticleCards } from "../../modules/articles/ui/article-cards";
+import { CourseService } from "../../modules/courses/data-access/course-service";
+import { CourseCards } from "../../modules/courses/ui/course-cards";
+import { ProjectService } from "../../modules/projects/data-access/project-service";
+import { ProjectCards } from "../../modules/projects/ui/project-cards";
 import { Seo } from "../../shared/ui/seo";
 import { Input } from "../../shared/ui/input";
 import { Button } from "../../shared/ui/button";
 import { IconSearch } from "../../shared/ui/icons";
-import { Posts } from "../../shared/ui/posts";
 
 export async function loader() {
   const articles = await ArticleService.findAll();
@@ -90,10 +90,9 @@ export default function Search() {
           {results.courses.length > 0 && (
             <section>
               <h3>Kursy ({results.courses.length})</h3>
-              <Posts
-                pathPrefix="/learning"
+              <CourseCards
                 className="p-0 grid-cols-subgrid"
-                posts={results.courses}
+                courses={results.courses}
               />
             </section>
           )}
@@ -101,7 +100,7 @@ export default function Search() {
           {results.projects.length > 0 && (
             <section>
               <h3>Projekty ({results.projects.length})</h3>
-              <Projects
+              <ProjectCards
                 className="p-0 grid-cols-subgrid"
                 projects={results.projects}
               />

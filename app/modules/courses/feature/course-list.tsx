@@ -1,10 +1,11 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "../../../shared/ui/categories";
-import { Posts } from "../../../shared/ui/posts";
-import { CourseService } from "../../../lib/courses";
 import { Seo } from "../../../shared/ui/seo";
 import { getCapitalizedIndividualName } from "../../../shared/utils/string";
+
+import { CourseService } from "../data-access/course-service";
+import { CourseCards } from "../ui/course-cards";
+import { CourseCategories } from "../ui/course-categories";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
@@ -26,15 +27,10 @@ export default function CourseList() {
 
       <header className="prose container">
         <h1>{title ?? "Learning"}</h1>
-        <Categories
-          showAllCategory
-          categories={categories}
-          baseUrl="/learning"
-          categoryPrefixUrl="/learning/kategorie"
-        />
+        <CourseCategories showAllCategory categories={categories} />
       </header>
 
-      <Posts pathPrefix="/learning" posts={courses} />
+      <CourseCards courses={courses} />
     </>
   );
 }

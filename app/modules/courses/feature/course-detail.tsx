@@ -1,11 +1,11 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "../../../shared/ui/categories";
-import Quiz from "../../../components/quiz";
 import { Banner } from "../../../shared/ui/banner";
 import { EditResource } from "../../../shared/ui/edit-resource";
 import { Seo } from "../../../shared/ui/seo";
-import { CourseService } from "../../../lib/courses";
+import { CourseService } from "../data-access/course-service";
+import { CourseCategories } from "../ui/course-categories";
+import { CourseQuiz } from "../ui/course-quiz";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await CourseService.findUnique(slug);
@@ -40,11 +40,7 @@ export default function CourseDetail() {
           createdAt={course.createdAt}
           readingTime={course.readingTime}
         />
-        <Categories
-          categories={course.categories}
-          baseUrl="/learning"
-          categoryPrefixUrl="/learning/kategorie"
-        />
+        <CourseCategories categories={course.categories} />
       </header>
 
       <article
@@ -52,7 +48,7 @@ export default function CourseDetail() {
         dangerouslySetInnerHTML={{ __html: course.content }}
       />
 
-      {course.quiz && <Quiz quiz={course.quiz} />}
+      <CourseQuiz quiz={course.quiz} />
 
       <EditResource slug={course.slug} resourceType="courses" />
     </>

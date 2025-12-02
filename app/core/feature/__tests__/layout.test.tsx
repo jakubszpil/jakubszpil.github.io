@@ -10,24 +10,20 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Navbar from "../../../components/navbar";
-import NavbarMenu from "../../../components/navbar-menu";
-import NavbarLink, {
-  type NavbarLinkProps,
-} from "../../../components/navbar-link";
-import Footer from "../../../components/footer";
-import FooterLink, {
-  type FooterLinkProps,
-} from "../../../components/footer-link";
-import BusyIndicator from "../../../components/busy-indicator";
+import Navbar from "../../ui/navbar";
+import NavbarMenu from "../../ui/navbar-menu";
+import NavbarLink, { type NavbarLinkProps } from "../../ui/navbar-link";
+import Footer from "../../ui/footer";
+import FooterLink, { type FooterLinkProps } from "../../ui/footer-link";
+import BusyIndicator from "../../ui/busy-indicator";
 import Layout from "../layout";
 
-vi.mock("../../../components/navbar");
-vi.mock("../../../components/navbar-menu");
-vi.mock("../../../components/navbar-link");
-vi.mock("../../../components/footer");
-vi.mock("../../../components/footer-link");
-vi.mock("../../../components/busy-indicator");
+vi.mock("../../ui/navbar");
+vi.mock("../../ui/navbar-menu");
+vi.mock("../../ui/navbar-link");
+vi.mock("../../ui/footer");
+vi.mock("../../ui/footer-link");
+vi.mock("../../ui/busy-indicator");
 
 describe("<Layout />", () => {
   let MockedNavbar: MockInstance<typeof Navbar>;

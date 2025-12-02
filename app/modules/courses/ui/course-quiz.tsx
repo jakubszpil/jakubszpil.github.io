@@ -1,15 +1,15 @@
 import { useCallback, useState } from "react";
+import type { Course } from "../data-access/course";
+import type { CourseQuizQuestion } from "../data-access/course-quiz";
+import { shuffleArray } from "../../../shared/utils/array";
+import { Button } from "../../../shared/ui/button";
+import { cn } from "../../../shared/utils/helpers";
 
-import { shuffleArray } from "../shared/utils/array";
-import type { ContentQuiz, ContentQuizQuestion } from "../lib/content";
-import { Button } from "../shared/ui/button";
-import { cn } from "../shared/utils/helpers";
-
-interface QuizProps {
-  quiz: ContentQuiz;
+export interface CourseQuizProps {
+  quiz: Course["quiz"];
 }
 
-function shuffleQuestion(question: ContentQuizQuestion): ContentQuizQuestion {
+function shuffleQuestion(question: CourseQuizQuestion): CourseQuizQuestion {
   const option = question.options[question.answer];
   const options = shuffleArray(question.options);
   const answer = options.indexOf(option);
@@ -21,13 +21,13 @@ function shuffleQuestion(question: ContentQuizQuestion): ContentQuizQuestion {
   };
 }
 
-function shuffleQuestions(quiz: ContentQuiz): ContentQuizQuestion[] {
+function shuffleQuestions(quiz: Course["quiz"]): CourseQuizQuestion[] {
   const [question, ...questions] = quiz.questions;
 
   return [question, ...shuffleArray(questions).map(shuffleQuestion)];
 }
 
-export default function Quiz({ quiz }: QuizProps) {
+export function CourseQuiz({ quiz }: CourseQuizProps) {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -36,11 +36,11 @@ export default function Quiz({ quiz }: QuizProps) {
 
   const [questions, setQuestions] = useState(() => shuffleQuestions(quiz));
 
-  const question = questions[current];
+  const question = questions.at(current);
 
-  const answer = question.options[question.answer];
+  const answer = question?.options.at(question.answer);
 
-  const options = question.options;
+  const options = question?.options;
 
   const handleOptionClick = useCallback(
     (option: string) => {
@@ -95,10 +95,10 @@ export default function Quiz({ quiz }: QuizProps) {
         </p>
         <div
           className="prose-p:mt-2"
-          dangerouslySetInnerHTML={{ __html: question.question }}
+          dangerouslySetInnerHTML={{ __html: question?.question ?? "" }}
         ></div>
         <div className="grid grid-flow-row gap-3">
-          {options.map((opt) => (
+          {options?.map((opt) => (
             <Button
               size="sm"
               variant="outline"
@@ -127,10 +127,10 @@ export default function Quiz({ quiz }: QuizProps) {
             ) : (
               <span className="text-red-500">
                 ❌ Błędna odpowiedź. Poprawna:{" "}
-                <strong>{question.options[question.answer]}</strong>
+                <strong>{question?.options.at(question.answer)}</strong>
               </span>
             )}
-            {question.explanation && (
+            {question?.explanation && (
               <blockquote className="my-3">{question.explanation}</blockquote>
             )}
             <Button size="sm" onClick={handleNext}>
