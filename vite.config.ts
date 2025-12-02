@@ -28,7 +28,10 @@ export default defineConfig((): UserConfig => {
       tsconfigPaths(),
     ],
     test: {
-      include: ["app/**/*.{test,spec}.{ts,tsx}"],
+      include: [
+        "app/**/*.{test,spec}.{ts,tsx}",
+        "packages/**/*.{test,spec}.{ts,tsx}",
+      ],
       globals: true,
       watch: false,
       environment: "happy-dom",

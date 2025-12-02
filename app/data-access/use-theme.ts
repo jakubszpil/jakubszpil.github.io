@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
+import { useHydrated } from "@packages/shared";
+
 import {
   getResolvedTheme,
   getTheme,
@@ -10,7 +12,6 @@ import {
   Theme,
   toggleThemeClassName,
 } from "../utils/theme";
-import { useHydrated } from "@packages/shared";
 
 export function useTheme() {
   const hydrated = useHydrated();
