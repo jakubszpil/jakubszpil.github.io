@@ -1,8 +1,8 @@
 import { type RouteConfig, prefix } from "@react-router/dev/routes";
 
 import { routes as setupRoutesForArticles } from "@packages/feature-articles/server";
+import { routes as setupRoutesForCourses } from "@packages/feature-courses/server";
 
-import setupRoutesForCourses from "./modules/courses/routes";
 import setupRoutesForProjects from "./modules/projects/routes";
 import setupRoutesForCore from "./core/routes";
 

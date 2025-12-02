@@ -9,6 +9,8 @@ import {
 
 import { ArticleCards } from "@packages/feature-articles";
 import { ArticleService } from "@packages/feature-articles/server";
+import { CourseCards } from "@packages/feature-courses";
+import { CourseService } from "@packages/feature-courses/server";
 import { Seo, Input, Button, IconSearch } from "@packages/shared";
 
 import {
@@ -17,8 +19,7 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "../data-access/search";
-import { CourseService } from "../../modules/courses/data-access/course-service";
-import { CourseCards } from "../../modules/courses/ui/course-cards";
+
 import { ProjectService } from "../../modules/projects/data-access/project-service";
 import { ProjectCards } from "../../modules/projects/ui/project-cards";
 

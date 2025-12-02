@@ -2,11 +2,11 @@ import { useLoaderData } from "react-router";
 
 import { ArticleCards } from "@packages/feature-articles";
 import { ArticleService } from "@packages/feature-articles/server";
+import { CourseCards } from "@packages/feature-courses";
+import { CourseService } from "@packages/feature-courses/server";
 import { Seo, Button, LinkWithPrefetch } from "@packages/shared";
 
 import { ProjectService } from "../../modules/projects/data-access/project-service";
-import { CourseCards } from "../../modules/courses/ui/course-cards";
-import { CourseService } from "../../modules/courses/data-access/course-service";
 import { ProjectCards } from "../../modules/projects/ui/project-cards";
 
 export async function loader() {
