@@ -6,10 +6,10 @@ import NavbarMenu from "../../components/navbar-menu";
 import Footer from "../../components/footer";
 import FooterLink from "../../components/footer-link";
 import BusyIndicator from "../../components/busy-indicator";
-import LinkWithPrefetch from "../../components/link-with-prefetch";
-import { Button } from "../../components/ui/button";
 import { usePrefetchLinkForInitialLoad } from "../../hooks/use-prefetch-link-for-initial-load";
-import { isRouteErrorResponse } from "../../lib/routing";
+import { Button } from "../../shared/ui/button";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { isRouteErrorResponse } from "../../shared/utils/routing";
 
 export default function Layout() {
   const prefetchLink = usePrefetchLinkForInitialLoad();

@@ -1,5 +1,5 @@
-import CreationDate from "./creation-date";
-import { cn } from "../lib/utils";
+import { CreationDate } from "./creation-date";
+import { cn } from "../utils/helpers";
 
 export interface BannerProps {
   readingTime: string;
@@ -7,7 +7,7 @@ export interface BannerProps {
   className?: string;
 }
 
-export default function Banner(props: BannerProps) {
+export function Banner(props: BannerProps) {
   return (
     <div className={cn("text-xs sm:text-sm mb-2", props.className)}>
       <CreationDate date={props.createdAt} />

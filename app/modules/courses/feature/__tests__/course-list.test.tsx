@@ -10,17 +10,18 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, {
+import {
+  Categories,
   type CategoriesProps,
-} from "../../../../components/categories";
-import Posts, { type PostsProps } from "../../../../components/posts";
-import Seo, { type SeoProps } from "../../../../components/seo";
+} from "../../../../shared/ui/categories";
+import { Posts, type PostsProps } from "../../../../shared/ui/posts";
+import { Seo, type SeoProps } from "../../../../shared/ui/seo";
 import { CourseService, type Course } from "../../../../lib/courses";
 import CourseList, { loader } from "../course-list";
 
-vi.mock("../../../../components/posts");
-vi.mock("../../../../components/categories");
-vi.mock("../../../../components/seo");
+vi.mock("../../../../shared/ui/posts");
+vi.mock("../../../../shared/ui/categories");
+vi.mock("../../../../shared/ui/seo");
 
 describe("<CourseList />", () => {
   let MockedPosts: MockInstance<typeof Posts>;

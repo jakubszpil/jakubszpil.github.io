@@ -1,4 +1,4 @@
-import Categories from "../../../components/categories";
+import { Categories } from "../../../shared/ui/categories";
 
 export interface ArticleCategoriesProps {
   categories: string[];

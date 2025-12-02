@@ -1,7 +1,7 @@
-import Banner from "./banner";
-import LinkWithPrefetch from "./link-with-prefetch";
-import { Button, type ButtonProps } from "./ui/button";
-import { cn } from "../lib/utils";
+import { Banner } from "./banner";
+import { Button, type ButtonProps } from "./button";
+import { LinkWithPrefetch } from "./link-with-prefetch";
+import { cn } from "../utils/helpers";
 
 export interface Post {
   slug: string;
@@ -18,7 +18,7 @@ export interface PostsProps<T extends Post = Post> {
   variant?: ButtonProps["variant"];
 }
 
-export default function Posts<T extends Post = Post>(props: PostsProps<T>) {
+export function Posts<T extends Post = Post>(props: PostsProps<T>) {
   return (
     <section
       className={cn(

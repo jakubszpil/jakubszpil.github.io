@@ -10,21 +10,23 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Categories, {
+import {
+  Categories,
   type CategoriesProps,
-} from "../../../../components/categories";
-import Banner, { type BannerProps } from "../../../../components/banner";
-import EditResource, {
+} from "../../../../shared/ui/categories";
+import { Banner, type BannerProps } from "../../../../shared/ui/banner";
+import {
+  EditResource,
   type EditResourceProps,
-} from "../../../../components/edit-resource";
-import Seo, { type SeoProps } from "../../../../components/seo";
+} from "../../../../shared/ui/edit-resource";
+import { Seo, type SeoProps } from "../../../../shared/ui/seo";
 import { CourseService, type Course } from "../../../../lib/courses";
 import CourseDetail, { loader } from "../course-detail";
 
-vi.mock("../../../../components/categories");
-vi.mock("../../../../components/edit-resource");
-vi.mock("../../../../components/seo");
-vi.mock("../../../../components/banner");
+vi.mock("../../../../shared/ui/categories");
+vi.mock("../../../../shared/ui/edit-resource");
+vi.mock("../../../../shared/ui/seo");
+vi.mock("../../../../shared/ui/banner");
 
 describe("<CourseDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;

@@ -1,6 +1,6 @@
 import { createPath, redirect } from "react-router";
 
-import { isValidUrl } from "./url";
+import { isValidUrl } from "../shared/utils/url";
 
 export const queryParamName = "query";
 

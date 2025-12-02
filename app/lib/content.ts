@@ -12,7 +12,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import invariant from "tiny-invariant";
 
-import { shuffleArray } from "./array";
+import { shuffleArray } from "../shared/utils/array";
 
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";

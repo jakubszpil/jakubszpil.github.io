@@ -10,7 +10,7 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Seo, { type SeoProps } from "../../../../components/seo";
+import { Seo, type SeoProps } from "../../../../shared/ui/seo";
 import ArticleList, { loader } from "../article-list";
 import { ArticleCards, type ArticleCardsProps } from "../../ui/article-cards";
 import {
@@ -22,7 +22,7 @@ import { ArticleService } from "../../data-access/article-service";
 
 vi.mock("../../ui/article-cards");
 vi.mock("../../ui/article-categories");
-vi.mock("../../../../components/seo");
+vi.mock("../../../../shared/ui/seo");
 
 describe("<ArticleList />", () => {
   let MockedArticleCards: MockInstance<typeof ArticleCards>;

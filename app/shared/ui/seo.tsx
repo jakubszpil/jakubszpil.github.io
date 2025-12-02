@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 
-import { config } from "../lib/config";
+import { config } from "../utils/config";
 
 export interface SeoMeta {
   title?: string;
@@ -17,7 +17,7 @@ export interface SeoProps {
   publishedTime?: string;
 }
 
-export default function Seo(props: SeoProps) {
+export function Seo(props: SeoProps) {
   const { pathname } = useLocation();
 
   const title = props.title

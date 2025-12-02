@@ -1,11 +1,11 @@
-import { Button } from "./ui/button";
+import { Button } from "./button";
 
 export interface EditResourceProps {
   slug: string;
   resourceType: "articles" | "courses" | "projects";
 }
 
-export default function EditResource(props: EditResourceProps) {
+export function EditResource(props: EditResourceProps) {
   return (
     <div className="container">
       <Button

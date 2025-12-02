@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 
-import { getCapitalizedIndividualName } from "../lib/string";
-import { Button } from "./ui/button";
-import LinkWithPrefetch from "./link-with-prefetch";
+import { getCapitalizedIndividualName } from "../utils/string";
+import { Button } from "./button";
+import { LinkWithPrefetch } from "./link-with-prefetch";
 
 export interface CategoriesProps {
   categories: string[];
@@ -11,7 +11,7 @@ export interface CategoriesProps {
   showAllCategory?: boolean;
 }
 
-export default function Categories(props: CategoriesProps) {
+export function Categories(props: CategoriesProps) {
   const renderCategory = useCallback((name: string, href: string) => {
     return (
       <Button

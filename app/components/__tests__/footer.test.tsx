@@ -8,13 +8,13 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { getCurrentYear } from "../../lib/date";
 import Footer from "../footer";
 import FooterLink from "../footer-link";
-import LinkWithPrefetch from "../link-with-prefetch";
+import { getCurrentYear } from "../../shared/utils/date";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 
-vi.mock("../link-with-prefetch");
-vi.mock("../../lib/date");
+vi.mock("../../shared/ui/link-with-prefetch");
+vi.mock("../../shared/utils/date");
 
 describe("<Footer />", () => {
   let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;

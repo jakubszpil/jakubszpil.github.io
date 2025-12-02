@@ -7,12 +7,7 @@ import {
   type Location,
 } from "react-router";
 
-import Posts from "../../components/posts";
 import Projects from "../../components/projects";
-import Seo from "../../components/seo";
-import { Button } from "../../components/ui/button";
-import { IconSearch } from "../../components/ui/icons";
-import { Input } from "../../components/ui/input";
 import { CourseService } from "../../lib/courses";
 import { ProjectService } from "../../lib/projects";
 import {
@@ -24,6 +19,11 @@ import {
 
 import { ArticleService } from "../../modules/articles/data-access/article-service";
 import { ArticleCards } from "../../modules/articles/ui/article-cards";
+import { Seo } from "../../shared/ui/seo";
+import { Input } from "../../shared/ui/input";
+import { Button } from "../../shared/ui/button";
+import { IconSearch } from "../../shared/ui/icons";
+import { Posts } from "../../shared/ui/posts";
 
 export async function loader() {
   const articles = await ArticleService.findAll();

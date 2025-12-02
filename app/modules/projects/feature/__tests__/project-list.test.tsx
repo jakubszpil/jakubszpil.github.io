@@ -11,10 +11,11 @@ import {
 } from "vitest";
 
 import Projects, { type ProjectsProps } from "../../../../components/projects";
-import Categories, {
+import {
+  Categories,
   type CategoriesProps,
-} from "../../../../components/categories";
-import Seo, { type SeoProps } from "../../../../components/seo";
+} from "../../../../shared/ui/categories";
+import { Seo, type SeoProps } from "../../../../shared/ui/seo";
 import {
   ProjectService,
   ProjectStatus,
@@ -23,8 +24,8 @@ import {
 import ProjectList, { loader } from "../project-list";
 
 vi.mock("../../../../components/projects");
-vi.mock("../../../../components/categories");
-vi.mock("../../../../components/seo");
+vi.mock("../../../../shared/ui/categories");
+vi.mock("../../../../shared/ui/seo");
 
 describe("<ProjectList />", () => {
   let MockedProjects: MockInstance<typeof Projects>;

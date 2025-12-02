@@ -1,12 +1,12 @@
-import { getLocalizedDate } from "../lib/date";
-import { cn } from "../lib/utils";
+import { getLocalizedDate } from "../utils/date";
+import { cn } from "../utils/helpers";
 
 export interface CreationDateProps {
   date: string;
   className?: string;
 }
 
-export default function CreationDate(props: CreationDateProps) {
+export function CreationDate(props: CreationDateProps) {
   return (
     <div
       className={cn("inline-block", props.className)}

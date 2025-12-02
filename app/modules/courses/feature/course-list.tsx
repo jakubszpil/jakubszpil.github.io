@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Categories from "../../../components/categories";
-import Posts from "../../../components/posts";
-import Seo from "../../../components/seo";
+import { Categories } from "../../../shared/ui/categories";
+import { Posts } from "../../../shared/ui/posts";
 import { CourseService } from "../../../lib/courses";
-import { getCapitalizedIndividualName } from "../../../lib/string";
+import { Seo } from "../../../shared/ui/seo";
+import { getCapitalizedIndividualName } from "../../../shared/utils/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {

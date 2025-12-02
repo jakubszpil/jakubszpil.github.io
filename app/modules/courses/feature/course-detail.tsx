@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import Banner from "../../../components/banner";
-import Categories from "../../../components/categories";
-import EditResource from "../../../components/edit-resource";
+import { Categories } from "../../../shared/ui/categories";
 import Quiz from "../../../components/quiz";
-import Seo from "../../../components/seo";
+import { Banner } from "../../../shared/ui/banner";
+import { EditResource } from "../../../shared/ui/edit-resource";
+import { Seo } from "../../../shared/ui/seo";
 import { CourseService } from "../../../lib/courses";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {

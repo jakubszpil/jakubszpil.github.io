@@ -1,8 +1,8 @@
-import CreationDate from "./creation-date";
-import { IconBrandGithub } from "./ui/icons";
-import { Button, type ButtonProps } from "./ui/button";
 import type { Project, ProjectStatus } from "../lib/projects";
-import { cn } from "../lib/utils";
+import { Button, type ButtonProps } from "../shared/ui/button";
+import { CreationDate } from "../shared/ui/creation-date";
+import { IconBrandGithub } from "../shared/ui/icons";
+import { cn } from "../shared/utils/helpers";
 
 export interface ProjectsProps {
   projects: Omit<Project, "categories">[];

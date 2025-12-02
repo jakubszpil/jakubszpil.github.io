@@ -9,10 +9,11 @@ import {
   type MockInstance,
 } from "vitest";
 
-import LinkWithPrefetch, {
+import {
+  LinkWithPrefetch,
   type LinkWithPrefetchProps,
 } from "../link-with-prefetch";
-import Posts, { type PostsProps } from "../posts";
+import { Posts, type PostsProps } from "../posts";
 
 vi.mock("../link-with-prefetch");
 
