@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
+import { InlineScript, PreloadedScript } from "@packages/shared";
+
 import styles from "./styles.css?url";
-import { InlineScript } from "./shared/ui/inline-script";
-import { PreloadedScript } from "./shared/ui/preloaded-script";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

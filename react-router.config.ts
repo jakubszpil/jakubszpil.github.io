@@ -3,9 +3,9 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { ArticleService } from "./app/modules/articles/data-access/article-service";
-import { CourseService } from "./app/modules/courses/data-access/course-service";
-import { ProjectService } from "./app/modules/projects/data-access/project-service";
+import { ArticleService } from "@packages/feature-articles/server";
+import { CourseService } from "@packages/feature-courses/server";
+import { ProjectService } from "@packages/feature-projects/server";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });

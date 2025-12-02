@@ -1,14 +1,24 @@
-import { type RouteConfig, prefix } from "@react-router/dev/routes";
+import {
+  type RouteConfig,
+  layout,
+  prefix,
+  route,
+  index,
+} from "@react-router/dev/routes";
 
-import setupRoutesForArticles from "./modules/articles/routes";
-import setupRoutesForCourses from "./modules/courses/routes";
-import setupRoutesForProjects from "./modules/projects/routes";
-import setupRoutesForCore from "./core/routes";
+import { routes as setupRoutesForArticles } from "@packages/feature-articles/server";
+import { routes as setupRoutesForCourses } from "@packages/feature-courses/server";
+import { routes as setupRoutesForProjects } from "@packages/feature-projects/server";
 
 export default [
-  ...setupRoutesForCore(
+  layout("feature/layout.tsx", [
     ...prefix("blog", setupRoutesForArticles()),
     ...prefix("learning", setupRoutesForCourses()),
-    ...prefix("portfolio", setupRoutesForProjects())
-  ),
+    ...prefix("portfolio", setupRoutesForProjects()),
+    index("feature/home.tsx"),
+    route("search", "feature/search.tsx"),
+    route("handbook", "feature/handbook.tsx"),
+    route("me", "feature/about.tsx"),
+    route("*", "feature/not-found.tsx"),
+  ]),
 ] satisfies RouteConfig;
