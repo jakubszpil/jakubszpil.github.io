@@ -1,5 +1,5 @@
-import { useTheme } from "../../hooks/use-theme";
-import { Theme } from "../../lib/theme";
+import { useTheme } from "../data-access/use-theme";
+import { Theme } from "../utils/theme";
 import { Button } from "../../shared/ui/button";
 import {
   DropdownMenu,

@@ -12,7 +12,7 @@ import {
   getSearchResultsLength,
   queryParamName,
   validateSearhQuery,
-} from "../../lib/search";
+} from "../data-access/search";
 
 import { ArticleService } from "../../modules/articles/data-access/article-service";
 import { ArticleCards } from "../../modules/articles/ui/article-cards";

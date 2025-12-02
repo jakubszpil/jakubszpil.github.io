@@ -6,7 +6,7 @@ import NavbarMenu from "../ui/navbar-menu";
 import Footer from "../ui/footer";
 import FooterLink from "../ui/footer-link";
 import BusyIndicator from "../ui/busy-indicator";
-import { usePrefetchLinkForInitialLoad } from "../../hooks/use-prefetch-link-for-initial-load";
+import { usePrefetchLinkForInitialLoad } from "../../shared/data-access/use-prefetch-link-for-initial-load";
 import { Button } from "../../shared/ui/button";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 import { isRouteErrorResponse } from "../../shared/utils/routing";
