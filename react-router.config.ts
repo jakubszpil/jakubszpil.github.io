@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { ArticleService } from "./app/modules/articles/data-access/article-service";
+import { ArticleService } from "@packages/feature-articles/server";
 import { CourseService } from "./app/modules/courses/data-access/course-service";
 import { ProjectService } from "./app/modules/projects/data-access/project-service";
 

@@ -7,6 +7,8 @@ import {
   type Location,
 } from "react-router";
 
+import { ArticleCards } from "@packages/feature-articles";
+import { ArticleService } from "@packages/feature-articles/server";
 import { Seo, Input, Button, IconSearch } from "@packages/shared";
 
 import {
@@ -15,8 +17,6 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "../data-access/search";
-import { ArticleService } from "../../modules/articles/data-access/article-service";
-import { ArticleCards } from "../../modules/articles/ui/article-cards";
 import { CourseService } from "../../modules/courses/data-access/course-service";
 import { CourseCards } from "../../modules/courses/ui/course-cards";
 import { ProjectService } from "../../modules/projects/data-access/project-service";

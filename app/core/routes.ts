@@ -1,6 +1,6 @@
 import { defineRoutes } from "@packages/shared/server";
 
-export default defineRoutes(__dirname, ({ index, route, children }) => [
+export default defineRoutes(import.meta.url, ({ index, route, children }) => [
   route("", "feature/layout.tsx", [
     ...children(),
     index("feature/home.tsx"),

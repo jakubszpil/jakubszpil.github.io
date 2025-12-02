@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router";
 
+import { ArticleCards } from "@packages/feature-articles";
+import { ArticleService } from "@packages/feature-articles/server";
 import { Seo, Button, LinkWithPrefetch } from "@packages/shared";
 
 import { ProjectService } from "../../modules/projects/data-access/project-service";
-import { ArticleCards } from "../../modules/articles/ui/article-cards";
-import { ArticleService } from "../../modules/articles/data-access/article-service";
 import { CourseCards } from "../../modules/courses/ui/course-cards";
 import { CourseService } from "../../modules/courses/data-access/course-service";
 import { ProjectCards } from "../../modules/projects/ui/project-cards";
