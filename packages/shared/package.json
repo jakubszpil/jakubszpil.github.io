@@ -4,7 +4,8 @@
   "private": true,
   "exports": {
     ".": "./src/index.ts",
-    "./server": "./src/server.ts"
+    "./server": "./src/server.ts",
+    "./styles.css": "./src/styles.css"
   },
   "scripts": {},
   "dependencies": {

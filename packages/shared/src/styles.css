@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 0 0% 83.1%;
+}
+
+@theme inline {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --breakpoint-xs: 22rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@custom-variant hover-available {
+  @media not (hover: none) {
+    @slot;
+  }
+}
+
+@custom-variant hover-unavailable {
+  @media (hover: none) {
+    @slot;
+  }
+}
+
+@utility container {
+  @apply mx-auto max-w-full! sm:max-w-2xl! md:max-w-3xl! lg:max-w-4xl! xl:max-w-5xl! 2xl:max-w-6xl! p-6 relative w-full;
+}
+
+@utility prose {
+  @apply dark:prose-invert;
+}
+
+@utility button {
+  @apply inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[text-decoration-line,background,color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
+}
+
+@utility button--variant-default {
+  @apply bg-primary text-primary-foreground shadow-xs hover-available:hover:bg-primary/90 hover-unavailable:active:bg-primary/90;
+}
+
+@utility button--variant-secondary {
+  @apply bg-secondary text-secondary-foreground shadow-xs hover-available:hover:bg-secondary/80 hover-unavailable:active:bg-secondary/80;
+}
+
+@utility button--variant-destructive {
+  @apply bg-destructive text-white shadow-xs hover-available:hover:bg-destructive/90 hover-unavailable:active:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60;
+}
+
+@utility button--variant-ghost {
+  @apply hover-available:hover:bg-accent hover-unavailable:active:bg-accent hover-available:hover:text-accent-foreground hover-unavailable:active:text-accent-foreground dark:hover-available:hover:bg-accent/50 dark:hover-unavailable:active:bg-accent/50;
+}
+
+@utility button--variant-outline {
+  @apply border bg-background shadow-xs hover-available:hover:bg-accent hover-available:hover:text-accent-foreground hover-unavailable:active:bg-accent hover-unavailable:active:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover-available:hover:bg-input/50 dark:hover-unavailable:active:bg-input/50;
+}
+
+@utility button--variant-link {
+  @apply text-primary no-underline underline-offset-4 hover-available:hover:underline hover-unavailable:active:underline;
+}
+
+@utility button--size-default {
+  @apply h-9 px-4 py-2 has-[>svg]:px-3;
+}
+
+@utility button--size-sm {
+  @apply h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5;
+}
+
+@utility button--size-lg {
+  @apply h-10 rounded-md px-6 has-[>svg]:px-4;
+}
+
+@utility button--size-icon {
+  @apply size-9;
+}
+
+@utility grid-cols-fill {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  #root {
+    @apply h-auto relative;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground overflow-y-scroll;
+  }
+  html {
+    @apply antialiased text-sm xs:text-base;
+  }
+
+  html.switching-theme * {
+    transition: none !important;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+}
+
+@layer utilities {
+  pre {
+    @apply bg-slate-800! dark:bg-neutral-900!;
+  }
+
+  pre code.hljs {
+    @apply block overflow-x-auto p-2 md:p-4;
+  }
+
+  code.hljs {
+    @apply py-0.5 px-1;
+  }
+
+  .hljs {
+    @apply text-slate-200 bg-slate-800 dark:bg-neutral-900!;
+  }
+
+  .hljs-doctag,
+  .hljs-keyword,
+  .hljs-meta .hljs-keyword,
+  .hljs-template-tag,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-variable.language_ {
+    @apply text-rose-400;
+  }
+
+  .hljs-title,
+  .hljs-title.class_,
+  .hljs-title.class_.inherited__,
+  .hljs-title.function_ {
+    @apply text-purple-400;
+  }
+
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-operator,
+  .hljs-selector-attr,
+  .hljs-selector-class,
+  .hljs-selector-id,
+  .hljs-variable {
+    @apply text-blue-300;
+  }
+
+  .hljs-meta .hljs-string,
+  .hljs-regexp,
+  .hljs-string {
+    @apply text-blue-200;
+  }
+
+  .hljs-built_in,
+  .hljs-symbol {
+    @apply text-orange-300;
+  }
+
+  .hljs-code,
+  .hljs-comment,
+  .hljs-formula {
+    @apply text-slate-400;
+  }
+
+  .hljs-name,
+  .hljs-quote,
+  .hljs-selector-pseudo,
+  .hljs-selector-tag {
+    @apply text-green-300;
+  }
+
+  .hljs-subst {
+    @apply text-slate-300;
+  }
+
+  .hljs-section {
+    @apply text-blue-600 font-bold;
+  }
+
+  .hljs-bullet {
+    @apply text-orange-300;
+  }
+
+  .hljs-emphasis {
+    @apply text-slate-300 italic;
+  }
+
+  .hljs-strong {
+    @apply text-slate-300 font-bold;
+  }
+
+  .hljs-addition {
+    @apply text-green-200 bg-green-950;
+  }
+
+  .hljs-deletion {
+    @apply text-rose-100 bg-rose-900;
+  }
+
+  .prose details summary > * {
+    @apply hover:cursor-pointer select-none;
+  }
+
+  .prose details summary {
+    @apply w-max;
+  }
+
+  .prose ul a,
+  .prose ol a {
+    @apply no-underline! text-inherit hover:underline! hover:text-(--tw-prose-links) dark:hover:text-(--tw-prose-invert-links);
+  }
+
+  .prose table {
+    @apply block overflow-x-auto;
+  }
+}
