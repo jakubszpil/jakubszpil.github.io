@@ -6,5 +6,9 @@
     ".": "./src/index.ts",
     "./server": "./src/server.ts"
   },
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "@packages/shared": "*"
+  },
+  "devDependencies": {}
 }
