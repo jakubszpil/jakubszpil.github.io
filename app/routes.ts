@@ -1,5 +1,6 @@
 import {
   type RouteConfig,
+  layout,
   prefix,
   route,
   index,
@@ -10,7 +11,7 @@ import { routes as setupRoutesForCourses } from "@packages/feature-courses/serve
 import { routes as setupRoutesForProjects } from "@packages/feature-projects/server";
 
 export default [
-  route("", "feature/layout.tsx", [
+  layout("feature/layout.tsx", [
     ...prefix("blog", setupRoutesForArticles()),
     ...prefix("learning", setupRoutesForCourses()),
     ...prefix("portfolio", setupRoutesForProjects()),
