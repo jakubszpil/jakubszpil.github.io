@@ -5,15 +5,22 @@ import {
 } from "@react-router/dev/routes";
 import { join, relative as relativePathResolver } from "node:path";
 
+type Helpers = ReturnType<typeof relative> & {
+  children: () => RouteConfigEntry[];
+};
+
 export function defineRoutes(
   dirname: string,
-  setup: (helpers: ReturnType<typeof relative>) => RouteConfigEntry[]
+  setup: (helpers: Helpers) => RouteConfigEntry[]
 ) {
-  return () => {
+  return (...children: RouteConfigEntry[]) => {
     const path = join(
       getAppDirectory(),
       relativePathResolver(getAppDirectory(), dirname)
     );
-    return setup(relative(path));
+
+    const helpers = relative(path);
+
+    return setup({ ...helpers, children: () => children });
   };
 }
