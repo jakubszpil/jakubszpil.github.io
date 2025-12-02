@@ -4,10 +4,9 @@ import { ArticleCards } from "@packages/feature-articles";
 import { ArticleService } from "@packages/feature-articles/server";
 import { CourseCards } from "@packages/feature-courses";
 import { CourseService } from "@packages/feature-courses/server";
+import { ProjectCards } from "@packages/feature-projects";
+import { ProjectService } from "@packages/feature-projects/server";
 import { Seo, Button, LinkWithPrefetch } from "@packages/shared";
-
-import { ProjectService } from "../../modules/projects/data-access/project-service";
-import { ProjectCards } from "../../modules/projects/ui/project-cards";
 
 export async function loader() {
   const articles = await ArticleService.findAll(3);

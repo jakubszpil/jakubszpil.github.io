@@ -5,7 +5,7 @@ import { minify } from "uglify-js";
 
 import { ArticleService } from "@packages/feature-articles/server";
 import { CourseService } from "@packages/feature-courses/server";
-import { ProjectService } from "./app/modules/projects/data-access/project-service";
+import { ProjectService } from "@packages/feature-projects/server";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });
