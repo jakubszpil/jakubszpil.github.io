@@ -17,9 +17,9 @@ export default {
   buildDirectory: "dist",
   routeDiscovery: { mode: "initial" },
   future: {
-    unstable_viteEnvironmentApi: true,
+    v8_viteEnvironmentApi: true,
+    v8_splitRouteModules: "enforce",
     unstable_optimizeDeps: true,
-    unstable_splitRouteModules: true,
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
