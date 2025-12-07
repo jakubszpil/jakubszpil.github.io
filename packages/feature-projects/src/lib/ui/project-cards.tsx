@@ -1,13 +1,10 @@
 import { type ButtonProps, cn } from "@packages/shared";
 
-import type { Project } from "../data-access/project";
+import type { ProjectFeed } from "../data-access/project-feed";
 import { ProjectCard } from "./project-card";
 
 export interface ProjectCardsProps {
-  projects: Pick<
-    Project,
-    "slug" | "title" | "description" | "createdAt" | "status"
-  >[];
+  projects: ProjectFeed[];
   className?: string;
   variant?: ButtonProps["variant"];
 }

@@ -13,7 +13,8 @@ import {
 import { Seo, type SeoProps } from "@packages/shared";
 
 import ProjectList, { loader } from "../project-list";
-import { ProjectStatus, type Project } from "../../data-access/project";
+import { ProjectStatus } from "../../data-access/project";
+import type { ProjectFeed } from "../../data-access/project-feed";
 import { ProjectService } from "../../data-access/project-service";
 import { ProjectCards, type ProjectCardsProps } from "../../ui/project-cards";
 import {
@@ -33,7 +34,7 @@ describe("<ProjectList />", () => {
   let MockedProjectTechnologies: MockInstance<typeof ProjectTechnologies>;
   let MockedSeo: MockInstance<typeof Seo>;
 
-  let MOCKED_PROJECTS: Project[];
+  let MOCKED_PROJECTS: ProjectFeed[];
   let MOCKED_TECHNOLOGIES: string[];
 
   let MockedGetProjectByTechnology: MockInstance<
@@ -53,7 +54,6 @@ describe("<ProjectList />", () => {
         slug: "test-example-1",
         title: "Test title 1",
         description: "Test description 1",
-        categories: ["test"],
         createdAt: "2025-03-17",
         status: ProjectStatus.COMPLETED,
       },
@@ -61,7 +61,6 @@ describe("<ProjectList />", () => {
         slug: "test-example-2",
         title: "Test title 2",
         description: "Test description 2",
-        categories: ["test", "example"],
         createdAt: "2025-03-17",
         status: ProjectStatus.COMPLETED,
       },

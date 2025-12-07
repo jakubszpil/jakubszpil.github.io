@@ -1,13 +1,10 @@
 import { type ButtonProps, cn } from "@packages/shared";
 
-import type { Article } from "../data-access/article";
+import type { ArticleFeed } from "../data-access/article-feed";
 import { ArticleCard } from "./article-card";
 
 export interface ArticleCardsProps {
-  articles: Pick<
-    Article,
-    "slug" | "title" | "description" | "createdAt" | "readingTime"
-  >[];
+  articles: ArticleFeed[];
   className?: string;
   variant?: ButtonProps["variant"];
 }

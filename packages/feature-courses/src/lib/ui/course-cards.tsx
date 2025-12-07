@@ -1,13 +1,10 @@
 import { type ButtonProps, cn } from "@packages/shared";
 
-import type { Course } from "../data-access/course";
+import type { CourseFeed } from "../data-access/course-feed";
 import { CourseCard } from "./course-card";
 
 export interface CourseCardsProps {
-  courses: Pick<
-    Course,
-    "slug" | "title" | "description" | "createdAt" | "readingTime"
-  >[];
+  courses: CourseFeed[];
   className?: string;
   variant?: ButtonProps["variant"];
 }

@@ -5,13 +5,11 @@ import {
   IconBrandGithub,
 } from "@packages/shared";
 
-import type { Project, ProjectStatus } from "../data-access/project";
+import type { ProjectStatus } from "../data-access/project";
+import type { ProjectFeed } from "../data-access/project-feed";
 
 export interface ProjectCardProps {
-  project: Pick<
-    Project,
-    "slug" | "title" | "description" | "createdAt" | "status"
-  >;
+  project: ProjectFeed;
   variant?: ButtonProps["variant"];
 }
 

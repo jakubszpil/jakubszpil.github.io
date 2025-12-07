@@ -13,7 +13,7 @@ import {
 import { Seo, type SeoProps } from "@packages/shared";
 
 import CourseList, { loader } from "../course-list";
-import type { Course } from "../../data-access/course";
+import type { CourseFeed } from "../../data-access/course-feed";
 import { CourseService } from "../../data-access/course-service";
 import { CourseCards, type CourseCardsProps } from "../../ui/course-cards";
 import {
@@ -33,7 +33,7 @@ describe("<CourseList />", () => {
   let MockedCourseCategories: MockInstance<typeof CourseCategories>;
   let MockedSeo: MockInstance<typeof Seo>;
 
-  let MOCKED_COURSES: Course[];
+  let MOCKED_COURSES: CourseFeed[];
   let MOCKED_CATEGORIES: string[];
 
   let MockedGetCourseByCategory: MockInstance<
@@ -51,31 +51,17 @@ describe("<CourseList />", () => {
     MOCKED_COURSES = [
       {
         slug: "test-example-1",
-        content: "<p>Test content 1</p>",
         title: "Test title 1",
         description: "Test description 1",
-        keywords: ["test", "example"],
-        categories: ["test"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
-        quiz: {
-          questions: [],
-          title: "Example Quiz",
-        },
       },
       {
         slug: "test-example-2",
-        content: "<p>Test content 2</p>",
         title: "Test title 2",
         description: "Test description 2",
-        keywords: ["example"],
-        categories: ["test", "example"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
-        quiz: {
-          questions: [],
-          title: "Example Quiz",
-        },
       },
     ];
 

@@ -5,13 +5,10 @@ import {
   type ButtonProps,
 } from "@packages/shared";
 
-import type { Course } from "../data-access/course";
+import type { CourseFeed } from "../data-access/course-feed";
 
 export interface CourseCardProps {
-  course: Pick<
-    Course,
-    "slug" | "title" | "description" | "createdAt" | "readingTime"
-  >;
+  course: CourseFeed;
   variant?: ButtonProps["variant"];
 }
 

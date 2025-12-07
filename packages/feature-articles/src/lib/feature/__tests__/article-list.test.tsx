@@ -18,7 +18,7 @@ import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../../ui/article-categories";
-import type { Article } from "../../data-access/article";
+import type { ArticleFeed } from "../../data-access/article-feed";
 import { ArticleService } from "../../data-access/article-service";
 
 vi.mock("../../ui/article-cards");
@@ -33,7 +33,7 @@ describe("<ArticleList />", () => {
   let MockedArticleCategories: MockInstance<typeof ArticleCategories>;
   let MockedSeo: MockInstance<typeof Seo>;
 
-  let MOCKED_ARTICLES: Article[];
+  let MOCKED_ARTICLES: ArticleFeed[];
   let MOCKED_CATEGORIES: string[];
 
   let MockedGetArticleByCategory: MockInstance<
@@ -51,21 +51,15 @@ describe("<ArticleList />", () => {
     MOCKED_ARTICLES = [
       {
         slug: "test-example-1",
-        content: "<p>Test content 1</p>",
         title: "Test title 1",
         description: "Test description 1",
-        keywords: ["test", "example"],
-        categories: ["test"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
       },
       {
         slug: "test-example-2",
-        content: "<p>Test content 2</p>",
         title: "Test title 2",
         description: "Test description 2",
-        keywords: ["example"],
-        categories: ["test", "example"],
         createdAt: "2025-03-17",
         readingTime: "3 minuty",
       },

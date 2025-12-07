@@ -1,38 +1,36 @@
 import { parseContentResources, type ContentResource } from "./content";
 
-export function ResourceService<T extends ContentResource>(
-  files: Record<string, string>
-) {
-  type TMinified = Omit<T, "content" | "quiz" | "keywords" | "categories">;
-
+export function createResourceService<T extends ContentResource, TFeed>({
+  files,
+  parsingStrategy,
+  minifingStrategy,
+}: {
+  files: Record<string, string>;
+  parsingStrategy: (slug: string, file: string) => Promise<T>;
+  minifingStrategy: (resource: T) => TFeed;
+}) {
   return class ResourceService {
-    private static resources: Promise<T[]> = parseContentResources<T>(files);
+    private static resources: Promise<T[]> = parseContentResources<T>(
+      files,
+      parsingStrategy
+    );
 
-    private static minifyResource(resource: T): TMinified {
-      const { content, quiz, keywords, categories, ...data } = resource;
-      if (!content) {
-        const { readingTime, ...m } = data;
-        return m as TMinified;
-      }
-      return data;
-    }
-
-    static async findAll(limit?: number): Promise<TMinified[]> {
+    static async findAll(limit?: number): Promise<TFeed[]> {
       const resources = await this.resources;
 
       return resources
         .slice(0, limit ?? resources.length)
-        .map(this.minifyResource);
+        .map(minifingStrategy);
     }
 
-    static async findAllByCategory(category?: string): Promise<TMinified[]> {
+    static async findAllByCategory(category?: string): Promise<TFeed[]> {
       const resources = await this.resources;
 
       return resources
         .filter((resource) =>
           category ? resource.categories?.includes(category) : true
         )
-        .map(this.minifyResource);
+        .map(minifingStrategy);
     }
 
     static async findUnique(slug: string | undefined): Promise<T | undefined> {

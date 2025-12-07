@@ -136,9 +136,9 @@ function getReadingTime(readingTime: number) {
   return `${minutes} minut`;
 }
 
-export async function parseMarkdownFile<T extends ContentResource>(
-  file: string,
-  slug: string
+export async function defaultParsingStrategy<T extends ContentResource>(
+  slug: string,
+  file: string
 ): Promise<T> {
   const { data, content } = matter(file);
 
@@ -160,25 +160,20 @@ export async function parseMarkdownFile<T extends ContentResource>(
   return resource;
 }
 
-async function mapContentResourceEntries<T extends ContentResource>(
-  files: Record<string, string>
+export async function parseContentResources<T extends ContentResource>(
+  files: Record<string, string>,
+  parsingStrategy: (slug: string, file: string) => Promise<T>
 ): Promise<T[]> {
   const entries = Object.entries(files).map(([key, file]) =>
-    parseMarkdownFile<T>(
-      file,
-      key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"))
+    parsingStrategy(
+      key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md")),
+      file
     )
   );
 
-  return Promise.all(entries);
-}
+  const content = await Promise.all(entries);
 
-export async function parseContentResources<T extends ContentResource>(
-  files: Record<string, string>
-): Promise<T[]> {
-  const content = await mapContentResourceEntries<T>(files);
-
-  const resources = content.sort((first, second) => {
+  const resources = content.toSorted((first, second) => {
     invariant(first.createdAt);
     invariant(second.createdAt);
 
