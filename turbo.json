@@ -3,7 +3,7 @@
   "tasks": {
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "typecheck"],
       "outputs": ["dist/**", "!.react-router/**"]
     },
     "typecheck": {
@@ -14,9 +14,11 @@
       "cache": false,
       "dependsOn": ["typecheck", "build"]
     },
-    "test": {},
+    "test": {
+      "dependsOn": ["^build", "^test"]
+    },
     "test:ci": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "^test:ci"]
     },
     "dev": {
       "persistent": true,

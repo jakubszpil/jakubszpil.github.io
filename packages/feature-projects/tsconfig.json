@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compileOnSave": false,
+  "include": [],
+  "exclude": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
