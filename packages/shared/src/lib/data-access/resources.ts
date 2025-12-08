@@ -1,4 +1,9 @@
-import { parseContentResources, type ContentResource } from "./content";
+import {
+  parseContentResources,
+  type ContentResource,
+  type MinifingStrategy,
+  type ParsingStrategy,
+} from "./content";
 
 export function createResourceService<T extends ContentResource, TFeed>({
   files,
@@ -6,8 +11,8 @@ export function createResourceService<T extends ContentResource, TFeed>({
   minifingStrategy,
 }: {
   files: Record<string, string>;
-  parsingStrategy: (slug: string, file: string) => Promise<T>;
-  minifingStrategy: (resource: T) => TFeed;
+  parsingStrategy: ParsingStrategy<T>;
+  minifingStrategy: MinifingStrategy<T, TFeed>;
 }) {
   return class ResourceService {
     private static resources: Promise<T[]> = parseContentResources<T>(
@@ -20,7 +25,7 @@ export function createResourceService<T extends ContentResource, TFeed>({
 
       return resources
         .slice(0, limit ?? resources.length)
-        .map(minifingStrategy);
+        .map(minifingStrategy.minify);
     }
 
     static async findAllByCategory(category?: string): Promise<TFeed[]> {
@@ -30,7 +35,7 @@ export function createResourceService<T extends ContentResource, TFeed>({
         .filter((resource) =>
           category ? resource.categories?.includes(category) : true
         )
-        .map(minifingStrategy);
+        .map(minifingStrategy.minify);
     }
 
     static async findUnique(slug: string | undefined): Promise<T | undefined> {
