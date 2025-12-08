@@ -1,4 +1,4 @@
-import type { Project, ProjectStatus } from "./project";
+import type { ProjectStatus } from "./project";
 
 export interface ProjectFeed {
   slug: string;
@@ -6,14 +6,4 @@ export interface ProjectFeed {
   description: string;
   createdAt: string;
   status: ProjectStatus;
-}
-
-export function projectFeedMapper(project: Project): ProjectFeed {
-  return {
-    createdAt: project.createdAt,
-    description: project.description,
-    slug: project.slug,
-    status: project.status,
-    title: project.title,
-  };
 }

@@ -1,8 +1,9 @@
 import { createResourceService } from "@packages/shared/server";
 
 import type { Article } from "./article";
-import { articleFeedMapper, type ArticleFeed } from "./article-feed";
-import { articleParser } from "./article-parser";
+import type { ArticleFeed } from "./article-feed";
+import { ArticleParsingStrategy } from "./article-parsing-strategy";
+import { ArticleMinifingStrategy } from "./article-minifing-strategy";
 
 export class ArticleService extends createResourceService<Article, ArticleFeed>(
   {
@@ -11,7 +12,7 @@ export class ArticleService extends createResourceService<Article, ArticleFeed>(
       query: "?raw",
       eager: true,
     }),
-    minifingStrategy: articleFeedMapper,
-    parsingStrategy: articleParser,
+    minifingStrategy: new ArticleMinifingStrategy(),
+    parsingStrategy: new ArticleParsingStrategy(),
   }
 ) {}

@@ -32,21 +32,23 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
   };
 }
 
-export const courseParser: ParsingStrategy<Course> = async (slug, file) => {
-  const { data, content } = processFile(file);
+export class CourseParsingStrategy implements ParsingStrategy<Course> {
+  async parse(slug: string, file: string): Promise<Course> {
+    const { data, content } = processFile(file);
 
-  const [fileContent, readingTime] = await processContent(content);
+    const [fileContent, readingTime] = await processContent(content);
 
-  return {
-    ...data,
-    slug,
-    content: fileContent,
-    readingTime: getReadingTimeLabel(readingTime),
-    createdAt: new Date(data.createdAt).toISOString(),
-    quiz: await parseCourseQuiz(data.quiz),
-    categories: data.categories,
-    keywords: data.keywords,
-    description: data.description,
-    title: data.title,
-  } satisfies Course;
-};
+    return {
+      ...data,
+      slug,
+      content: fileContent,
+      readingTime: getReadingTimeLabel(readingTime),
+      createdAt: new Date(data.createdAt).toISOString(),
+      quiz: await parseCourseQuiz(data.quiz),
+      categories: data.categories,
+      keywords: data.keywords,
+      description: data.description,
+      title: data.title,
+    } satisfies Course;
+  }
+}

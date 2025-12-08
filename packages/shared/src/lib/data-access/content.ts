@@ -99,7 +99,11 @@ export function processFile(file: string) {
 }
 
 export interface ParsingStrategy<T extends ContentResource> {
-  (slug: string, file: string): Promise<T>;
+  parse(slug: string, file: string): Promise<T>;
+}
+
+export interface MinifingStrategy<T extends ContentResource, F> {
+  minify(resource: T): F;
 }
 
 export async function parseContentResources<T extends ContentResource>(
@@ -107,7 +111,7 @@ export async function parseContentResources<T extends ContentResource>(
   parsingStrategy: ParsingStrategy<T>
 ): Promise<T[]> {
   const entries = Object.entries(files).map(([key, file]) =>
-    parsingStrategy(
+    parsingStrategy.parse(
       key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md")),
       file
     )
