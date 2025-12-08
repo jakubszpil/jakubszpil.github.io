@@ -12,8 +12,6 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import invariant from "tiny-invariant";
 
-import { shuffleArray } from "../utils/array";
-
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";
   for (let i = 0; i < level; i++) {
@@ -64,18 +62,6 @@ export async function processContent(content: string) {
   return [results.toString(), readingTime.time] as const;
 }
 
-export interface ContentQuiz {
-  title: string;
-  questions: ContentQuizQuestion[];
-}
-
-export interface ContentQuizQuestion {
-  question: string;
-  options: string[];
-  answer: number;
-  explanation?: string;
-}
-
 export interface ContentResource {
   slug: string;
   title: string;
@@ -85,38 +71,9 @@ export interface ContentResource {
   categories?: string[];
   keywords?: string[];
   content?: string;
-  quiz?: ContentQuiz;
 }
 
-export async function parseQuiz(
-  resource: any
-): Promise<ContentQuiz | undefined> {
-  const quiz: ContentQuiz | undefined = resource?.quiz;
-  if (!quiz) return undefined;
-
-  const questions = await Promise.all(
-    quiz.questions.map(async (question) => {
-      const answer = question.options[question.answer];
-      const options = shuffleArray(question.options);
-      const index = options.indexOf(answer);
-      const [content] = await processContent(question.question);
-
-      return {
-        ...question,
-        question: content,
-        answer: index,
-        options,
-      };
-    })
-  );
-
-  return {
-    ...quiz,
-    questions,
-  };
-}
-
-function getReadingTime(readingTime: number) {
+export function getReadingTimeLabel(readingTime: number) {
   const minutes = Math.round(readingTime / 60000);
   const minutesAsString = minutes.toString();
 
@@ -136,33 +93,18 @@ function getReadingTime(readingTime: number) {
   return `${minutes} minut`;
 }
 
-export async function defaultParsingStrategy<T extends ContentResource>(
-  slug: string,
-  file: string
-): Promise<T> {
+export function processFile(file: string) {
   const { data, content } = matter(file);
+  return { data, content };
+}
 
-  const [fileContent, readingTime] = await processContent(content);
-
-  const resource = {
-    ...data,
-    slug,
-    content: fileContent,
-    readingTime: getReadingTime(readingTime),
-    createdAt: new Date(data.createdAt).toISOString(),
-  } as T;
-
-  if (data.quiz) {
-    const quiz = await parseQuiz(data);
-    resource.quiz = quiz;
-  }
-
-  return resource;
+export interface ParsingStrategy<T extends ContentResource> {
+  (slug: string, file: string): Promise<T>;
 }
 
 export async function parseContentResources<T extends ContentResource>(
   files: Record<string, string>,
-  parsingStrategy: (slug: string, file: string) => Promise<T>
+  parsingStrategy: ParsingStrategy<T>
 ): Promise<T[]> {
   const entries = Object.entries(files).map(([key, file]) =>
     parsingStrategy(

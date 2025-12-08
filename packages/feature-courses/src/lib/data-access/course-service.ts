@@ -1,10 +1,8 @@
-import {
-  createResourceService,
-  defaultParsingStrategy,
-} from "@packages/shared/server";
+import { createResourceService } from "@packages/shared/server";
 
 import type { Course } from "./course";
 import { courseFeedMapper, type CourseFeed } from "./course-feed";
+import { courseParser } from "./course-parser";
 
 export class CourseService extends createResourceService<Course, CourseFeed>({
   files: import.meta.glob<string>("../../../content/*.md", {
@@ -13,5 +11,5 @@ export class CourseService extends createResourceService<Course, CourseFeed>({
     eager: true,
   }),
   minifingStrategy: courseFeedMapper,
-  parsingStrategy: defaultParsingStrategy,
+  parsingStrategy: courseParser,
 }) {}

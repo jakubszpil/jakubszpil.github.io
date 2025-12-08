@@ -1,10 +1,8 @@
-import {
-  createResourceService,
-  defaultParsingStrategy,
-} from "@packages/shared/server";
+import { createResourceService } from "@packages/shared/server";
 
 import type { Project } from "./project";
 import { projectFeedMapper, type ProjectFeed } from "./project-feed";
+import { projectParser } from "./project-parser";
 
 export class ProjectService extends createResourceService<Project, ProjectFeed>(
   {
@@ -14,6 +12,6 @@ export class ProjectService extends createResourceService<Project, ProjectFeed>(
       eager: true,
     }),
     minifingStrategy: projectFeedMapper,
-    parsingStrategy: defaultParsingStrategy,
+    parsingStrategy: projectParser,
   }
 ) {}
