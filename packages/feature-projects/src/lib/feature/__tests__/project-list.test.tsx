@@ -90,6 +90,7 @@ describe("<ProjectList />", () => {
         path: "/portfolio",
         Component: ProjectList,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 
@@ -137,6 +138,7 @@ describe("<ProjectList />", () => {
         path: "/portfolio/kategorie/:technology",
         Component: ProjectList,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 

@@ -80,6 +80,7 @@ describe("<ArticleDetail />", () => {
         path: "/blog/:slug",
         Component: ArticleDetail,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 

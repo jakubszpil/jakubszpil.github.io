@@ -83,6 +83,7 @@ describe("<Layout />", () => {
       {
         path: "/",
         Component: Layout,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 

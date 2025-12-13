@@ -89,6 +89,7 @@ describe("<CourseList />", () => {
         path: "/learning",
         Component: CourseList,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 
@@ -136,6 +137,7 @@ describe("<CourseList />", () => {
         path: "/learning/kategorie/:category",
         Component: CourseList,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 
