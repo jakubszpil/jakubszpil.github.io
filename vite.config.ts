@@ -35,7 +35,6 @@ export default defineConfig((): UserConfig => {
       environment: "happy-dom",
       passWithNoTests: true,
       pool: "threads",
-      isolate: false,
       reporters: [["default", { summary: false }]],
     },
   };
