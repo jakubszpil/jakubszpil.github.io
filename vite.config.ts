@@ -13,11 +13,7 @@ export default defineConfig((): UserConfig => {
       "import.meta.env.TIMESTAMP": Date.now(),
     },
     plugins: [
-      tailwindcss({
-        optimize: {
-          minify: true,
-        },
-      }),
+      tailwindcss(),
       !process.env.VITEST && reactRouter(),
       babel({
         include: ["./app/**/*", "./packages/**/src/**/*"],
@@ -29,12 +25,14 @@ export default defineConfig((): UserConfig => {
     ],
     test: {
       include: ["app/**/*.test.{ts,tsx}", "packages/**/src/**/*.test.{ts,tsx}"],
+      setupFiles: ["./setup-tests.ts"],
       globals: true,
       watch: false,
       css: false,
       environment: "happy-dom",
       passWithNoTests: true,
       pool: "threads",
+      isolate: false,
       reporters: [["default", { summary: false }]],
     },
   };
