@@ -20,7 +20,7 @@ export default defineConfig((): UserConfig => {
       }),
       !process.env.VITEST && reactRouter(),
       babel({
-        include: ["./app/**/*"],
+        include: ["./app/**/*", "./packages/**/src/**/*"],
         babelConfig: {
           plugins: ["babel-plugin-react-compiler"],
         },
@@ -28,12 +28,14 @@ export default defineConfig((): UserConfig => {
       tsconfigPaths(),
     ],
     test: {
-      include: ["app/**/*.test.{ts,tsx}"],
+      include: ["app/**/*.test.{ts,tsx}", "packages/**/src/**/*.test.{ts,tsx}"],
       globals: true,
       watch: false,
+      css: false,
       environment: "happy-dom",
       passWithNoTests: true,
       pool: "threads",
+      reporters: [["default", { summary: false }]],
     },
   };
 });

@@ -7,11 +7,7 @@
     "./server": "./src/server.ts",
     "./styles.css": "./src/styles.css"
   },
-  "scripts": {
-    "typecheck": "tsc",
-    "test": "vitest run",
-    "test:ci": "vitest run --hideSkippedTests --silent --no-color"
-  },
+  "scripts": {},
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "2.1.16",
     "@radix-ui/react-slot": "1.2.4",

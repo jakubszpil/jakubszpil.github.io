@@ -6,11 +6,7 @@
     ".": "./src/index.ts",
     "./server": "./src/server.ts"
   },
-  "scripts": {
-    "typecheck": "tsc",
-    "test": "vitest run",
-    "test:ci": "vitest run --hideSkippedTests --silent --no-color"
-  },
+  "scripts": {},
   "dependencies": {
     "@packages/shared": "*"
   },
