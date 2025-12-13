@@ -82,6 +82,7 @@ describe("<CourseDetail />", () => {
         path: "/learning/:slug",
         Component: CourseDetail,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 

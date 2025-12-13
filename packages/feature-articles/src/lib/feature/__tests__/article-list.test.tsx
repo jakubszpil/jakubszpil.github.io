@@ -89,6 +89,7 @@ describe("<ArticleList />", () => {
         path: "/blog",
         Component: ArticleList,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 
@@ -136,6 +137,7 @@ describe("<ArticleList />", () => {
         path: "/blog/kategorie/:category",
         Component: ArticleList,
         loader,
+        HydrateFallback: () => <div></div>,
       },
     ]);
 
