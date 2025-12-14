@@ -36,6 +36,8 @@ export default defineConfig((): UserConfig => {
       passWithNoTests: true,
       pool: "threads",
       reporters: [["default", { summary: false }]],
+      setupFiles: ["./setup-tests.ts"],
+      isolate: false,
     },
   };
 });
