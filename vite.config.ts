@@ -28,7 +28,7 @@ export default defineConfig((): UserConfig => {
       tsconfigPaths(),
     ],
     test: {
-      include: ["app/**/*.test.{ts,tsx}", "packages/**/src/**/*.test.{ts,tsx}"],
+      include: ["./app/**/*.test.{ts,tsx}"],
       globals: true,
       watch: false,
       css: false,
