@@ -6,7 +6,9 @@
     ".": "./src/index.ts",
     "./server": "./src/server.ts"
   },
-  "scripts": {},
+  "scripts": {
+    "typecheck": "tsgo --noEmit -p ./tsconfig.lib.json && tsgo --noEmit -p ./tsconfig.spec.json"
+  },
   "dependencies": {
     "@packages/shared": "*"
   },

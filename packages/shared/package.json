@@ -7,7 +7,9 @@
     "./server": "./src/server.ts",
     "./styles.css": "./src/styles.css"
   },
-  "scripts": {},
+  "scripts": {
+    "typecheck": "tsgo --noEmit -p ./tsconfig.lib.json && tsgo --noEmit -p ./tsconfig.spec.json"
+  },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "2.1.16",
     "@radix-ui/react-slot": "1.2.4",

@@ -6,6 +6,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "!.react-router/**"]
     },
+    "typecheck": {
+      "cache": true
+    },
     "start": {
       "persistent": true,
       "cache": false,

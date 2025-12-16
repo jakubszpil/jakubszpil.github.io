@@ -11,7 +11,7 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "serve dist/client",
-    "typecheck": "tsgo --noEmit",
+    "typecheck": "turbo typecheck && tsgo --noEmit",
     "test": "vitest run",
     "test:ci": "vitest run --hideSkippedTests --silent --no-color",
     "deploy": "npm run typecheck && npm run test && npm run build",
