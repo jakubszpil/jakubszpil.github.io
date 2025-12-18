@@ -1,0 +1,1 @@
+import{B as e}from"./chunk-JMJ3UQ3L-KD1BVnQY.js";import{t}from"./jsx-runtime-DNH6hb19.js";import{w as n}from"./src-BPKet0v1.js";var r=e(t());function i(e){return(0,r.jsx)(n,{categories:e.categories,showAllCategory:e.showAllCategory,baseUrl:`/blog`,categoryPrefixUrl:`/blog/kategorie`})}export{i as t};
