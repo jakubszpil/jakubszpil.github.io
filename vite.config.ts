@@ -29,13 +29,24 @@ export default defineConfig((): UserConfig => {
     ],
     test: {
       include: ["app/**/*.test.{ts,tsx}", "packages/**/src/**/*.test.{ts,tsx}"],
-      globals: true,
+      setupFiles: ["./setup-tests.ts"],
+      globals: false,
       watch: false,
       css: false,
       environment: "happy-dom",
       passWithNoTests: true,
       pool: "threads",
       reporters: [["default", { summary: false }]],
+      isolate: false,
+      deps: {
+        web: {
+          transformAssets: false,
+          transformCss: false,
+        },
+      },
+      typecheck: {
+        enabled: false,
+      },
     },
   };
 });
