@@ -17,7 +17,6 @@ export default [
     ...prefix("portfolio", setupRoutesForProjects()),
     index("feature/home.tsx", { id: "home" }),
     route("search", "feature/search.tsx", { id: "search" }),
-    route("handbook", "feature/handbook.tsx", { id: "handbook" }),
     route("me", "feature/about.tsx", { id: "about" }),
     route("*", "feature/not-found.tsx", { id: "not-found" }),
   ]),

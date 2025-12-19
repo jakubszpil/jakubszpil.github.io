@@ -43,7 +43,6 @@ export default function Layout() {
         <FooterLink to="/portfolio">🛠️ Portfolio</FooterLink>
         <FooterLink to="/me">🙋‍♂️ O mnie</FooterLink>
         <FooterLink to="/search">🔍 Szukaj</FooterLink>
-        <FooterLink to="/handbook">📋 Handbook</FooterLink>
       </Footer>
     </>
   );

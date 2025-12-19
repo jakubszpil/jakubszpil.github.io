@@ -206,15 +206,6 @@ describe("<Layout />", () => {
       undefined
     );
 
-    expect(MockedFooterLink).toHaveBeenNthCalledWith(
-      7,
-      {
-        to: "/handbook",
-        children: "📋 Handbook",
-      } satisfies FooterLinkProps,
-      undefined
-    );
-
     expect(MockedBusyIndicator).toHaveBeenCalled();
   });
 });
