@@ -1,8 +1,8 @@
 {
   "include": [
-    "**/*",
-    "**/.server/**/*",
-    "**/.client/**/*",
+    "app/**/*",
+    "app/**/.server/**/*",
+    "app/**/.client/**/*",
     "react-router.config.ts"
   ],
   "exclude": ["node_modules", "dist"],
