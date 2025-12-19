@@ -45,7 +45,7 @@ export default function NavbarMenu(props: NavbarMenuProps) {
         }
       }
     },
-    []
+    [navigate]
   );
 
   const closeMenu: MouseEventHandler<HTMLButtonElement> = useCallback(

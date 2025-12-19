@@ -1,7 +1,6 @@
 import { Outlet, useRouteError } from "react-router";
 
 import {
-  usePrefetchLinkForInitialLoad,
   Button,
   LinkWithPrefetch,
   isRouteErrorResponse,
@@ -15,11 +14,8 @@ import FooterLink from "../ui/footer-link";
 import BusyIndicator from "../ui/busy-indicator";
 
 export default function Layout() {
-  const prefetchLink = usePrefetchLinkForInitialLoad();
-
   return (
     <>
-      {prefetchLink}
       <Navbar>
         <NavbarLink className="font-bold" to="/">
           jakubszpil

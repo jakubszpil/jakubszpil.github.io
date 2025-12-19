@@ -1,6 +1,5 @@
 export * from "./lib/data-access/use-hydrated";
 export * from "./lib/data-access/use-prefetch-link";
-export * from "./lib/data-access/use-prefetch-link-for-initial-load";
 
 export * from "./lib/ui/banner";
 export * from "./lib/ui/button";
