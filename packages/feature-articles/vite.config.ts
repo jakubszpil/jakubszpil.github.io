@@ -1,5 +1,3 @@
-/// <reference types="vitest/config" />
-
 import { mergeConfig, defineConfig } from "vite";
 
 import preset from "../../vite.preset";
