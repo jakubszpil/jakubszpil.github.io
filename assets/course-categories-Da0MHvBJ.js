@@ -1,0 +1,1 @@
+import{z as e}from"./chunk-JMJ3UQ3L-dDUQdLOL.js";import{t}from"./jsx-runtime-D2tNQFW-.js";import{w as n}from"./src-j7j9j4Lx.js";var r=e(t());function i(e){return(0,r.jsx)(n,{categories:e.categories,showAllCategory:e.showAllCategory,baseUrl:`/learning`,categoryPrefixUrl:`/learning/kategorie`})}export{i as t};
