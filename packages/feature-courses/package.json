@@ -6,7 +6,11 @@
     ".": "./src/index.ts",
     "./server": "./src/server.ts"
   },
-  "scripts": {},
+  "scripts": {
+    "typecheck": "tsgo --noEmit -p ./tsconfig.lib.json && tsgo --noEmit -p ./tsconfig.spec.json",
+    "test": "vitest run",
+    "test:ci": "vitest run --hideSkippedTests --silent --no-color"
+  },
   "dependencies": {
     "@packages/shared": "*"
   },

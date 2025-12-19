@@ -1,14 +1,15 @@
-/// <reference types="vitest/config" />
-
-import { defineConfig, type UserConfig } from "vite";
+import { mergeConfig, defineConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import babel from "vite-plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 
+import preset from "./vite.preset";
+
 // https://vitejs.dev/config/
-export default defineConfig((): UserConfig => {
-  return {
+export default mergeConfig(
+  preset,
+  defineConfig({
     define: {
       "import.meta.env.TIMESTAMP": Date.now(),
     },
@@ -28,25 +29,7 @@ export default defineConfig((): UserConfig => {
       tsconfigPaths(),
     ],
     test: {
-      include: ["app/**/*.test.{ts,tsx}", "packages/**/src/**/*.test.{ts,tsx}"],
-      setupFiles: ["./setup-tests.ts"],
-      globals: false,
-      watch: false,
-      css: false,
-      environment: "happy-dom",
-      passWithNoTests: true,
-      pool: "threads",
-      reporters: [["default", { summary: false }]],
-      isolate: false,
-      deps: {
-        web: {
-          transformAssets: false,
-          transformCss: false,
-        },
-      },
-      typecheck: {
-        enabled: false,
-      },
+      include: ["app/**/*.test.{ts,tsx}"],
     },
-  };
-});
+  })
+);

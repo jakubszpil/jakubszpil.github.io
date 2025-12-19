@@ -2,9 +2,14 @@
   "$schema": "https://turborepo.com/schema.json",
   "tasks": {
     "build": {
+      "cache": true,
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "!.react-router/**"]
+    },
+    "typecheck": {
+      "cache": true,
+      "dependsOn": ["^typecheck"]
     },
     "start": {
       "persistent": true,
@@ -12,9 +17,11 @@
       "dependsOn": ["build"]
     },
     "test": {
+      "cache": true,
       "dependsOn": ["^build", "^test"]
     },
     "test:ci": {
+      "cache": true,
       "dependsOn": ["^build", "^test:ci"]
     },
     "dev": {
