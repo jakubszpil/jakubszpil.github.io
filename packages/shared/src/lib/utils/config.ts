@@ -1,4 +1,5 @@
 export const config = {
+  hybridSSGEnabled: Boolean(import.meta.env.HYBRID_SSG),
   socials: [
     {
       href: "https://www.linkedin.com/in/jakubszpil/",

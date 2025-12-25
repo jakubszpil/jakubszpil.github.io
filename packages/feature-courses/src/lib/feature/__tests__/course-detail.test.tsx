@@ -17,8 +17,6 @@ import {
   type BannerProps,
   EditResource,
   type EditResourceProps,
-  Seo,
-  type SeoProps,
 } from "@packages/shared";
 
 import CourseDetail, { loader } from "../course-detail";
@@ -30,13 +28,11 @@ vi.mock("@packages/shared", async (importActual) => ({
   Categories: vi.fn(),
   Banner: vi.fn(),
   EditResource: vi.fn(),
-  Seo: vi.fn(),
 }));
 
 describe("<CourseDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;
   let MockedEditResource: MockInstance<typeof EditResource>;
-  let MockedSeo: MockInstance<typeof Seo>;
   let MockedBanner: MockInstance<typeof Banner>;
 
   let MockedCourse: Course;
@@ -45,7 +41,6 @@ describe("<CourseDetail />", () => {
   beforeEach(() => {
     MockedCategories = vi.mocked(Categories);
     MockedEditResource = vi.mocked(EditResource);
-    MockedSeo = vi.mocked(Seo);
     MockedBanner = vi.mocked(Banner);
 
     MockedCourse = {
@@ -71,7 +66,6 @@ describe("<CourseDetail />", () => {
   afterEach(() => {
     MockedCategories.mockRestore();
     MockedEditResource.mockRestore();
-    MockedSeo.mockRestore();
     MockedBanner.mockRestore();
     MockedGetCourse.mockRestore();
   });
@@ -97,17 +91,6 @@ describe("<CourseDetail />", () => {
     await screen.findByText(MockedCourse.title);
 
     expect(MockedGetCourse).toHaveBeenCalledWith(MockedCourse.slug);
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: MockedCourse.title,
-        description: MockedCourse.description,
-        keywords: MockedCourse.keywords,
-        publishedTime: MockedCourse.createdAt,
-        type: "article",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedCategories).toHaveBeenCalledWith(
       {

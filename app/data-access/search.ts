@@ -2,7 +2,7 @@ import { createPath, redirect } from "react-router";
 
 import { isValidUrl } from "@packages/shared";
 
-export const queryParamName = "query";
+export const queryParamName = "q";
 
 const searchResultsCache = new Map<string, unknown>();
 
@@ -46,10 +46,19 @@ export function validateSearhQuery(requestUrl: string) {
   const url = new URL(requestUrl);
   const query = url.searchParams.get(queryParamName);
 
+  if (query === "") {
+    url.searchParams.delete(queryParamName);
+    throw redirect(url.toString());
+  }
+
   if (query) {
-    if (query === "") {
-      url.searchParams.delete(queryParamName);
-      throw redirect(url.toString());
+    if (isValidUrl(query)) {
+      const sourceUrl = new URL(requestUrl);
+      const url = new URL(query);
+
+      if (sourceUrl.origin === url.origin) {
+        throw redirect(createPath(url));
+      }
     }
 
     const trimmed = query.trim().split(" ").filter(Boolean).join(" ");
@@ -58,15 +67,6 @@ export function validateSearhQuery(requestUrl: string) {
       if (trimmed) url.searchParams.set(queryParamName, trimmed);
       else url.searchParams.delete(queryParamName);
       throw redirect(url.toString());
-    }
-  }
-
-  if (query && isValidUrl(query)) {
-    const sourceUrl = new URL(requestUrl);
-    const url = new URL(query);
-
-    if (sourceUrl.origin === url.origin) {
-      throw redirect(createPath(url));
     }
   }
 
