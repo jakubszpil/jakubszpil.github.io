@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner, EditResource, Seo } from "@packages/shared";
+import { Banner, createMetaTags, EditResource } from "@packages/shared";
 
 import { ArticleService } from "../data-access/article-service";
 import { ArticleCategories } from "../ui/article-categories";
@@ -18,19 +18,21 @@ export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   return article;
 }
 
+export const meta = createMetaTags<typeof loader>(
+  ({ loaderData: article }) => ({
+    title: article?.title,
+    description: article?.description,
+    keywords: article?.keywords,
+    publishedTime: article?.createdAt,
+    type: "article",
+  })
+);
+
 export default function ArticleDetail() {
   const article = useLoaderData<typeof loader>();
 
   return (
     <>
-      <Seo
-        title={article.title}
-        description={article.description}
-        keywords={article.keywords}
-        publishedTime={article.createdAt}
-        type="article"
-      />
-
       <header className="prose container">
         <h1 className="mb-5">{article.title}</h1>
         <Banner

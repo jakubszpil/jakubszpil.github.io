@@ -10,8 +10,6 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { Seo, type SeoProps } from "@packages/shared";
-
 import CourseList, { loader } from "../course-list";
 import type { CourseFeed } from "../../data-access/course-feed";
 import { CourseService } from "../../data-access/course-service";
@@ -23,15 +21,10 @@ import {
 
 vi.mock("../../ui/course-cards");
 vi.mock("../../ui/course-categories");
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  Seo: vi.fn(),
-}));
 
 describe("<CourseList />", () => {
   let MockedCourseCards: MockInstance<typeof CourseCards>;
   let MockedCourseCategories: MockInstance<typeof CourseCategories>;
-  let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_COURSES: CourseFeed[];
   let MOCKED_CATEGORIES: string[];
@@ -46,7 +39,6 @@ describe("<CourseList />", () => {
   beforeEach(() => {
     MockedCourseCards = vi.mocked(CourseCards);
     MockedCourseCategories = vi.mocked(CourseCategories);
-    MockedSeo = vi.mocked(Seo);
 
     MOCKED_COURSES = [
       {
@@ -79,7 +71,6 @@ describe("<CourseList />", () => {
   afterEach(() => {
     MockedCourseCards.mockRestore();
     MockedCourseCategories.mockRestore();
-    MockedSeo.mockRestore();
     MockedGetCourseByCategory.mockRestore();
   });
 
@@ -99,15 +90,6 @@ describe("<CourseList />", () => {
 
     expect(MockedGetCourseByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: "Learning",
-        description:
-          "Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe.",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedCourseCategories).toHaveBeenCalledWith(
       {
@@ -155,15 +137,6 @@ describe("<CourseList />", () => {
 
     expect(MockedGetCourseByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: "Learning / Example",
-        description:
-          "Kursy frontendowe obejmujące HTML, CSS, JavaScript i nowoczesne frameworki. Rozwijaj swoje umiejętności i twórz nowoczesne strony oraz aplikacje internetowe.",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedCourseCategories).toHaveBeenCalledWith(
       {

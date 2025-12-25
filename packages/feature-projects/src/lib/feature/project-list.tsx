@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Seo, getCapitalizedIndividualName } from "@packages/shared";
+import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
 
 import { ProjectService } from "../data-access/project-service";
 import { ProjectTechnologies } from "../ui/project-technologies";
@@ -14,16 +14,17 @@ export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   };
 }
 
+export const meta = createMetaTags<typeof loader>(({ loaderData }) => ({
+  title: loaderData?.title ? `Portfolio / ${loaderData.title}` : "Portfolio",
+  description:
+    "Projekty frontendowe wykonane przeze mnie w wolnym czasie obrazujące dotychczasowe zdobyte doświadczenie i umiejętności",
+}));
+
 export default function ProjectList() {
   const { projects, technologies, title } = useLoaderData<typeof loader>();
 
   return (
     <>
-      <Seo
-        title={title ? `Portfolio / ${title}` : "Portfolio"}
-        description="Projekty frontendowe wykonane przeze mnie w wolnym czasie obrazujące dotychczasowe zdobyte doświadczenie i umiejętności"
-      />
-
       <header className="prose container">
         <h1>{title ?? "Portfolio"}</h1>
         <ProjectTechnologies showAllCategory technologies={technologies} />

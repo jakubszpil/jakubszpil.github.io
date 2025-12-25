@@ -10,8 +10,6 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { Seo, type SeoProps } from "@packages/shared";
-
 import ArticleList, { loader } from "../article-list";
 import { ArticleCards, type ArticleCardsProps } from "../../ui/article-cards";
 import {
@@ -23,15 +21,10 @@ import { ArticleService } from "../../data-access/article-service";
 
 vi.mock("../../ui/article-cards");
 vi.mock("../../ui/article-categories");
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  Seo: vi.fn(),
-}));
 
 describe("<ArticleList />", () => {
   let MockedArticleCards: MockInstance<typeof ArticleCards>;
   let MockedArticleCategories: MockInstance<typeof ArticleCategories>;
-  let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_ARTICLES: ArticleFeed[];
   let MOCKED_CATEGORIES: string[];
@@ -46,7 +39,6 @@ describe("<ArticleList />", () => {
   beforeEach(() => {
     MockedArticleCards = vi.mocked(ArticleCards);
     MockedArticleCategories = vi.mocked(ArticleCategories);
-    MockedSeo = vi.mocked(Seo);
 
     MOCKED_ARTICLES = [
       {
@@ -79,7 +71,6 @@ describe("<ArticleList />", () => {
   afterEach(() => {
     MockedArticleCards.mockRestore();
     MockedArticleCategories.mockRestore();
-    MockedSeo.mockRestore();
     MockedGetArticleByCategory.mockRestore();
   });
 
@@ -99,15 +90,6 @@ describe("<ArticleList />", () => {
 
     expect(MockedGetArticleByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: "Artykuły",
-        description:
-          "Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych.",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedArticleCategories).toHaveBeenCalledWith(
       {
@@ -155,15 +137,6 @@ describe("<ArticleList />", () => {
 
     expect(MockedGetArticleByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: "Artykuły / Example",
-        description:
-          "Zbiór artykułów o frontendzie, obejmujących tematy takie jak HTML, CSS, JavaScript i frameworki. Odkrywaj nowości i najlepsze praktyki w tworzeniu stron oraz aplikacji internetowych.",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedArticleCategories).toHaveBeenCalledWith(
       {

@@ -10,8 +10,6 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { Seo, type SeoProps } from "@packages/shared";
-
 import ProjectList, { loader } from "../project-list";
 import { ProjectStatus } from "../../data-access/project";
 import type { ProjectFeed } from "../../data-access/project-feed";
@@ -24,15 +22,10 @@ import {
 
 vi.mock("../../ui/project-cards");
 vi.mock("../../ui/project-technologies");
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  Seo: vi.fn(),
-}));
 
 describe("<ProjectList />", () => {
   let MockedProjectCards: MockInstance<typeof ProjectCards>;
   let MockedProjectTechnologies: MockInstance<typeof ProjectTechnologies>;
-  let MockedSeo: MockInstance<typeof Seo>;
 
   let MOCKED_PROJECTS: ProjectFeed[];
   let MOCKED_TECHNOLOGIES: string[];
@@ -47,7 +40,6 @@ describe("<ProjectList />", () => {
   beforeEach(() => {
     MockedProjectCards = vi.mocked(ProjectCards);
     MockedProjectTechnologies = vi.mocked(ProjectTechnologies);
-    MockedSeo = vi.mocked(Seo);
 
     MOCKED_PROJECTS = [
       {
@@ -80,7 +72,6 @@ describe("<ProjectList />", () => {
   afterEach(() => {
     MockedProjectCards.mockRestore();
     MockedProjectTechnologies.mockRestore();
-    MockedSeo.mockRestore();
     MockedGetProjectByTechnology.mockRestore();
   });
 
@@ -100,15 +91,6 @@ describe("<ProjectList />", () => {
 
     expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(undefined);
     expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: "Portfolio",
-        description:
-          "Projekty frontendowe wykonane przeze mnie w wolnym czasie obrazujące dotychczasowe zdobyte doświadczenie i umiejętności",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {
@@ -158,15 +140,6 @@ describe("<ProjectList />", () => {
       MOCKED_TECHNOLOGY
     );
     expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
-
-    expect(MockedSeo).toHaveBeenCalledWith(
-      {
-        title: "Portfolio / Example",
-        description:
-          "Projekty frontendowe wykonane przeze mnie w wolnym czasie obrazujące dotychczasowe zdobyte doświadczenie i umiejętności",
-      } satisfies SeoProps,
-      undefined
-    );
 
     expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {

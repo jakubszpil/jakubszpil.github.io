@@ -3,9 +3,11 @@ import { Outlet, useRouteError } from "react-router";
 import {
   Button,
   LinkWithPrefetch,
+  ScrollRestoration,
   isRouteErrorResponse,
 } from "@packages/shared";
 
+import { usePrerender } from "../data-access/use-prerender";
 import Navbar from "../ui/navbar";
 import NavbarLink from "../ui/navbar-link";
 import NavbarMenu from "../ui/navbar-menu";
@@ -14,8 +16,15 @@ import FooterLink from "../ui/footer-link";
 import BusyIndicator from "../ui/busy-indicator";
 
 export default function Layout() {
+  const prerender = usePrerender();
+
+  if (!prerender) {
+    return null;
+  }
+
   return (
     <>
+      <ScrollRestoration />
       <Navbar>
         <NavbarLink className="font-bold" to="/">
           jakubszpil

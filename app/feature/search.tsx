@@ -13,7 +13,7 @@ import { CourseCards } from "@packages/feature-courses";
 import { CourseService } from "@packages/feature-courses/server";
 import { ProjectCards } from "@packages/feature-projects";
 import { ProjectService } from "@packages/feature-projects/server";
-import { Seo, Input, Button, IconSearch } from "@packages/shared";
+import { Input, Button, IconSearch, createMetaTags } from "@packages/shared";
 
 import {
   getSearchResults,
@@ -48,6 +48,12 @@ export async function clientLoader({
 }
 
 clientLoader.hydrate = true;
+
+export const meta = createMetaTags<typeof clientLoader>(({ loaderData }) => ({
+  title: loaderData?.query
+    ? `(${loaderData.count}) Rezultaty wyszukiwania dla ${loaderData.query}`
+    : "Szukaj",
+}));
 
 export default function Search() {
   const { query, results, initialResults, count } =
@@ -121,12 +127,6 @@ export default function Search() {
 
   return (
     <section className="prose max-w-full">
-      <Seo
-        title={
-          query ? `(${count}) Rezultaty wyszukiwania dla ${query}` : "Szukaj"
-        }
-      />
-
       <header className="container pb-0!">
         <h1 className="mb-0">Szukaj</h1>
         <p>Wskazówka: Obszary po których możesz szukać:</p>

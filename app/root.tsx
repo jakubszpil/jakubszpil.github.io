@@ -1,7 +1,12 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
-import { InlineScript, PreloadedScript } from "@packages/shared";
+import {
+  getScrollRestorationKey,
+  getScrollRestorationStorageKey,
+  InlineScript,
+  PreloadedScript,
+} from "@packages/shared";
 
 import styles from "./styles.css?url";
 
@@ -44,9 +49,8 @@ export function Layout({ children }: { children: ReactNode }) {
       <body style={{ WebkitTapHighlightColor: "transparent" }}>
         {children}
         <ScrollRestoration
-          getKey={(location) =>
-            Object.values(location).filter(Boolean).join(".")
-          }
+          getKey={getScrollRestorationKey}
+          storageKey={getScrollRestorationStorageKey()}
         />
         <Scripts />
       </body>

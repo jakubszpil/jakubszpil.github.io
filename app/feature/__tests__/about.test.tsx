@@ -9,7 +9,7 @@ import {
   afterEach,
 } from "vitest";
 
-import { getDifferenceInYears, Seo } from "@packages/shared";
+import { getDifferenceInYears } from "@packages/shared";
 
 import Socials from "../../ui/socials";
 import About from "../about";
@@ -19,16 +19,13 @@ vi.mock("../../ui/socials");
 vi.mock("@packages/shared", async (importOriginal) => ({
   ...(await importOriginal()),
   getDifferenceInYears: vi.fn(),
-  Seo: vi.fn(),
 }));
 
 describe("<About />", () => {
-  let MockedSeo: MockInstance<typeof Seo>;
   let MockedSocials: MockInstance<typeof Socials>;
   let MockedGetDifferenceInYears: MockInstance<typeof getDifferenceInYears>;
 
   beforeEach(() => {
-    MockedSeo = vi.mocked(Seo);
     MockedSocials = vi.mocked(Socials);
     MockedGetDifferenceInYears = vi
       .mocked(getDifferenceInYears)
@@ -36,7 +33,6 @@ describe("<About />", () => {
   });
 
   afterEach(() => {
-    MockedSeo.mockRestore();
     MockedSocials.mockRestore();
     MockedGetDifferenceInYears.mockRestore();
   });

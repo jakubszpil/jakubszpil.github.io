@@ -1,16 +1,18 @@
-import { Seo, getDifferenceInYears } from "@packages/shared";
+import { createMetaTags, getDifferenceInYears } from "@packages/shared";
 
 import Socials from "../ui/socials";
+
+export const meta = createMetaTags(() => ({
+  title: "O mnie",
+  description:
+    "Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi.",
+}));
 
 export default function About() {
   const years = getDifferenceInYears(new Date("2021-07-01"));
 
   return (
     <div className="container prose">
-      <Seo
-        title="O mnie"
-        description="Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi."
-      />
       <h1>O mnie</h1>
       <p>
         Cześć! Nazywam się Kuba i jestem frontend developerem z {years}-letnim
