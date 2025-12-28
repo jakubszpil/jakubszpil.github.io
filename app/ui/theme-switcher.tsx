@@ -12,18 +12,16 @@ import {
 } from "@packages/shared";
 
 import { useTheme } from "../data-access/use-theme";
-import { Theme } from "../utils/theme";
+import { performThemeChange, Theme } from "../utils/theme";
 
 export default function ThemeSwitcher() {
   const { setTheme } = useTheme();
 
+  const handleThemeChange = (theme: Theme) =>
+    performThemeChange(() => setTheme(theme));
+
   return (
-    <DropdownMenu
-      onOpenChange={(value) => {
-        if (value) document.documentElement.classList.add("switching-theme");
-        else document.documentElement.classList.remove("switching-theme");
-      }}
-    >
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           title="Zmień motyw"
@@ -38,19 +36,19 @@ export default function ThemeSwitcher() {
         <DropdownMenuLabel>Wybierz motyw</DropdownMenuLabel>
         <DropdownMenuItem
           className="cursor-pointer"
-          onClick={() => setTheme(Theme.LIGHT)}
+          onClick={() => handleThemeChange(Theme.LIGHT)}
         >
           <IconSun className="size-6 mr-2" /> Jasny
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
-          onClick={() => setTheme(Theme.DARK)}
+          onClick={() => handleThemeChange(Theme.DARK)}
         >
           <IconMoonStars className="size-6 mr-2" /> Ciemny
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
-          onClick={() => setTheme(Theme.SYSTEM)}
+          onClick={() => handleThemeChange(Theme.SYSTEM)}
         >
           <IconDeviceDesktop className="size-6 mr-2" /> System
         </DropdownMenuItem>

@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 
 import { restoreScroll } from "../utils/scroll-restoration";
 
-export function ScrollRestoration() {
+export default function ScrollRestoration() {
   const location = useLocation();
 
   const restoreScrollByLocation = useEffectEvent(() => {

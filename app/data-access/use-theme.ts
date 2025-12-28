@@ -6,7 +6,7 @@ import {
   getResolvedTheme,
   getTheme,
   handleSystemThemeChange,
-  mapResolvedThemeIntoTheme,
+  toggleResolvedThemeIntoOpposite,
   performThemeChange,
   setLocalStorageTheme,
   Theme,
@@ -56,7 +56,7 @@ export function useTheme() {
         e.preventDefault();
 
         performThemeChange(() => {
-          setTheme(mapResolvedThemeIntoTheme(resolvedTheme));
+          setTheme(toggleResolvedThemeIntoOpposite(resolvedTheme));
         });
       }
     };

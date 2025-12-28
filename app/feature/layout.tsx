@@ -3,7 +3,6 @@ import { Outlet, useRouteError } from "react-router";
 import {
   Button,
   LinkWithPrefetch,
-  ScrollRestoration,
   isRouteErrorResponse,
 } from "@packages/shared";
 
@@ -14,6 +13,7 @@ import NavbarMenu from "../ui/navbar-menu";
 import Footer from "../ui/footer";
 import FooterLink from "../ui/footer-link";
 import BusyIndicator from "../ui/busy-indicator";
+import ScrollRestoration from "../ui/scroll-restoration";
 
 export default function Layout() {
   const prerender = usePrerender();

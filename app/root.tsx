@@ -1,14 +1,13 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
+import { InlineScript, PreloadedScript } from "@packages/shared";
+
+import styles from "./styles.css?url";
 import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
-  InlineScript,
-  PreloadedScript,
-} from "@packages/shared";
-
-import styles from "./styles.css?url";
+} from "./utils/scroll-restoration";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

@@ -103,7 +103,7 @@ export function handleSystemThemeChange({ matches }: MediaQueryListEvent) {
   });
 }
 
-export function mapResolvedThemeIntoTheme(
+export function toggleResolvedThemeIntoOpposite(
   resolvedTheme: ResolvedTheme | null
 ): Theme {
   switch (resolvedTheme) {
@@ -112,11 +112,11 @@ export function mapResolvedThemeIntoTheme(
     }
 
     case ResolvedTheme.LIGHT: {
-      return Theme.LIGHT;
+      return Theme.DARK;
     }
 
     case ResolvedTheme.DARK: {
-      return Theme.DARK;
+      return Theme.LIGHT;
     }
   }
 }

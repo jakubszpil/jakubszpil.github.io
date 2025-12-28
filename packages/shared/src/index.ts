@@ -12,7 +12,6 @@ export * from "./lib/ui/inline-script";
 export * from "./lib/ui/input";
 export * from "./lib/ui/link-with-prefetch";
 export * from "./lib/ui/preloaded-script";
-export * from "./lib/ui/scroll-restoration";
 
 export * from "./lib/utils/array";
 export * from "./lib/utils/config";
@@ -25,4 +24,3 @@ export * from "./lib/utils/string";
 export * from "./lib/utils/types";
 export * from "./lib/utils/url";
 export * from "./lib/utils/meta";
-export * from "./lib/utils/scroll-restoration";
