@@ -11,7 +11,7 @@ export interface NavbarLinkProps {
   size?: ButtonProps["size"];
 }
 
-export default function NavbarLink(props: NavbarLinkProps) {
+export function NavbarLink(props: NavbarLinkProps) {
   return (
     <Button
       asChild

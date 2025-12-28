@@ -10,12 +10,12 @@ import {
   type MockInstance,
 } from "vitest";
 
-import Navbar from "../../ui/navbar";
-import NavbarMenu from "../../ui/navbar-menu";
-import NavbarLink, { type NavbarLinkProps } from "../../ui/navbar-link";
-import Footer from "../../ui/footer";
-import FooterLink, { type FooterLinkProps } from "../../ui/footer-link";
-import BusyIndicator from "../../ui/busy-indicator";
+import { Navbar } from "../../ui/navbar";
+import { NavbarMenu } from "../../ui/navbar-menu";
+import { NavbarLink, type NavbarLinkProps } from "../../ui/navbar-link";
+import { Footer } from "../../ui/footer";
+import { FooterLink, type FooterLinkProps } from "../../ui/footer-link";
+import { BusyIndicator } from "../../ui/busy-indicator";
 import Layout from "../layout";
 
 vi.mock("../../ui/navbar");

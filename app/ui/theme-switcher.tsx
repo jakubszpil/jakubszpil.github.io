@@ -14,7 +14,7 @@ import {
 import { useTheme } from "../data-access/use-theme";
 import { performThemeChange, Theme } from "../utils/theme";
 
-export default function ThemeSwitcher() {
+export function ThemeSwitcher() {
   const { setTheme } = useTheme();
 
   const handleThemeChange = (theme: Theme) =>

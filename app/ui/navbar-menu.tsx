@@ -13,17 +13,17 @@ import { Transition } from "@headlessui/react";
 
 import { Button, cn, IconMenu2, IconX } from "@packages/shared";
 
-import BusyIndicator from "./busy-indicator";
-import NavbarLink, { type NavbarLinkProps } from "./navbar-link";
-import Socials from "./socials";
-import SearchButton from "./search-button";
-import ThemeSwitcher from "./theme-switcher";
+import { BusyIndicator } from "./busy-indicator";
+import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
+import { Socials } from "./socials";
+import { SearchButton } from "./search-button";
+import { ThemeSwitcher } from "./theme-switcher";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
 }
 
-export default function NavbarMenu(props: NavbarMenuProps) {
+export function NavbarMenu(props: NavbarMenuProps) {
   const [show, setShow] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();

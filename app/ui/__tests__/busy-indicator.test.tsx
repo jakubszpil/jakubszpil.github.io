@@ -10,7 +10,7 @@ import {
 } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 
-import BusyIndicator from "../busy-indicator";
+import { BusyIndicator } from "../busy-indicator";
 
 vi.mock("react-router", async (importOriginal) => {
   const rest = await importOriginal<typeof import("react-router")>();

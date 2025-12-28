@@ -10,8 +10,8 @@ import { render, screen } from "@testing-library/react";
 
 import { getCurrentYear, LinkWithPrefetch } from "@packages/shared";
 
-import Footer from "../footer";
-import FooterLink from "../footer-link";
+import { Footer } from "../footer";
+import { FooterLink } from "../footer-link";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),

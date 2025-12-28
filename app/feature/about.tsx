@@ -1,6 +1,6 @@
 import { createMetaTags, getDifferenceInYears } from "@packages/shared";
 
-import Socials from "../ui/socials";
+import { Socials } from "../ui/socials";
 
 export const meta = createMetaTags(() => ({
   title: "O mnie",

@@ -11,7 +11,7 @@ import {
 
 import { getDifferenceInYears } from "@packages/shared";
 
-import Socials from "../../ui/socials";
+import { Socials } from "../../ui/socials";
 import About from "../about";
 
 vi.mock("../../ui/socials");

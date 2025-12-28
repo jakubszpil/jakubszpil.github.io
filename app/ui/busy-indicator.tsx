@@ -3,7 +3,7 @@ import { useNavigation } from "react-router";
 
 import { IconLoader } from "@packages/shared";
 
-export default function BusyIndicator() {
+export function BusyIndicator() {
   const navigation = useNavigation();
   const isPending = Boolean(navigation.location);
 

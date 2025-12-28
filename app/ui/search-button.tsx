@@ -10,7 +10,7 @@ import {
 
 const state = { focus: true };
 
-export default function SearchButton() {
+export function SearchButton() {
   const navigate = useNavigate();
   const location = useLocation();
 

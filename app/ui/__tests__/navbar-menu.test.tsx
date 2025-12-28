@@ -11,10 +11,10 @@ import { render, screen } from "@testing-library/react";
 
 import { LinkWithPrefetch } from "@packages/shared";
 
-import NavbarMenu from "../navbar-menu";
-import NavbarLink from "../navbar-link";
-import SearchButton from "../search-button";
-import ThemeSwitcher from "../theme-switcher";
+import { NavbarMenu } from "../navbar-menu";
+import { NavbarLink } from "../navbar-link";
+import { SearchButton } from "../search-button";
+import { ThemeSwitcher } from "../theme-switcher";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),

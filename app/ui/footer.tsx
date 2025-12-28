@@ -2,13 +2,13 @@ import type { ReactElement } from "react";
 
 import { getCurrentYear } from "@packages/shared";
 
-import FooterLink, { type FooterLinkProps } from "./footer-link";
+import { FooterLink, type FooterLinkProps } from "./footer-link";
 
 export interface FooterProps {
   children: ReactElement<FooterLinkProps>[];
 }
 
-export default function Footer(props: FooterProps) {
+export function Footer(props: FooterProps) {
   return (
     <footer className="prose max-w-full border-t">
       <div className="container flex items-center gap-3 justify-start flex-wrap-reverse lg:justify-between">

@@ -11,7 +11,7 @@ import {
 
 import { LinkWithPrefetch } from "@packages/shared";
 
-import NavbarLink, { type NavbarLinkProps } from "../navbar-link";
+import { NavbarLink, type NavbarLinkProps } from "../navbar-link";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),

@@ -8,9 +8,10 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import Navbar from "../navbar";
-import NavbarLink from "../navbar-link";
 import { LinkWithPrefetch } from "@packages/shared";
+
+import { Navbar } from "../navbar";
+import { NavbarLink } from "../navbar-link";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),

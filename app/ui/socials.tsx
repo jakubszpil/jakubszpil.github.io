@@ -7,7 +7,7 @@ export interface SocialsProps {
   variant?: ButtonProps["variant"];
 }
 
-export default function Socials(props: SocialsProps) {
+export function Socials(props: SocialsProps) {
   const id = useId();
 
   return config.socials.map((social, index) => {

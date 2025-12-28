@@ -7,13 +7,13 @@ import {
 } from "@packages/shared";
 
 import { usePrerender } from "../data-access/use-prerender";
-import Navbar from "../ui/navbar";
-import NavbarLink from "../ui/navbar-link";
-import NavbarMenu from "../ui/navbar-menu";
-import Footer from "../ui/footer";
-import FooterLink from "../ui/footer-link";
-import BusyIndicator from "../ui/busy-indicator";
-import ScrollRestoration from "../ui/scroll-restoration";
+import { Navbar } from "../ui/navbar";
+import { NavbarLink } from "../ui/navbar-link";
+import { NavbarMenu } from "../ui/navbar-menu";
+import { Footer } from "../ui/footer";
+import { FooterLink } from "../ui/footer-link";
+import { BusyIndicator } from "../ui/busy-indicator";
+import { ScrollRestoration } from "../ui/scroll-restoration";
 
 export default function Layout() {
   const prerender = usePrerender();
