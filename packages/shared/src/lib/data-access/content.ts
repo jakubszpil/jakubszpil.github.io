@@ -106,18 +106,29 @@ export interface MinifingStrategy<T extends ContentResource, F> {
   minify(resource: T): F;
 }
 
-export async function parseContentResources<T extends ContentResource>(
-  files: Record<string, string>,
+export async function parseContentEntries<T extends ContentResource>(
+  entries: Record<string, () => Promise<string>>,
   parsingStrategy: ParsingStrategy<T>
-): Promise<T[]> {
-  const entries = Object.entries(files).map(([key, file]) =>
+) {
+  const content = Object.entries(entries).map(async ([key, file]) =>
     parsingStrategy.parse(
       key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md")),
-      file
+      await file()
     )
   );
 
-  const content = await Promise.all(entries);
+  return Promise.all(content);
+}
+
+export async function parseContentResources<T extends ContentResource>(
+  files: Record<string, () => Promise<string>>,
+  parsingStrategy: ParsingStrategy<T>
+): Promise<T[]> {
+  if (import.meta.env.VITEST) {
+    return [];
+  }
+
+  const content = await parseContentEntries(files, parsingStrategy);
 
   const resources = content.toSorted((first, second) => {
     invariant(first.createdAt);

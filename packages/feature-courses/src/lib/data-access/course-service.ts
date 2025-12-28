@@ -9,7 +9,6 @@ export class CourseService extends createResourceService<Course, CourseFeed>({
   files: import.meta.glob<string>("../../../content/*.md", {
     import: "default",
     query: "?raw",
-    eager: true,
   }),
   minifingStrategy: new CourseMinifingStrategy(),
   parsingStrategy: new CourseParsingStrategy(),

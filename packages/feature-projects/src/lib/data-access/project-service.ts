@@ -10,7 +10,6 @@ export class ProjectService extends createResourceService<Project, ProjectFeed>(
     files: import.meta.glob<string>("../../../content/*.md", {
       import: "default",
       query: "?raw",
-      eager: true,
     }),
     minifingStrategy: new ProjectMinifingStrategy(),
     parsingStrategy: new ProjectParsingStrategy(),

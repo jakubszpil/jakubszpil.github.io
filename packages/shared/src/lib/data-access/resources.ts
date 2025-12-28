@@ -10,7 +10,7 @@ export function createResourceService<T extends ContentResource, TFeed>({
   parsingStrategy,
   minifingStrategy,
 }: {
-  files: Record<string, string>;
+  files: Record<string, () => Promise<string>>;
   parsingStrategy: ParsingStrategy<T>;
   minifingStrategy: MinifingStrategy<T, TFeed>;
 }) {
