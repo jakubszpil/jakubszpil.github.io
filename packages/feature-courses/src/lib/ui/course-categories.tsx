@@ -5,11 +5,14 @@ export interface CourseCategoriesProps {
   showAllCategory?: boolean;
 }
 
-export function CourseCategories(props: CourseCategoriesProps) {
+export function CourseCategories({
+  categories,
+  showAllCategory,
+}: CourseCategoriesProps) {
   return (
     <Categories
-      categories={props.categories}
-      showAllCategory={props.showAllCategory}
+      categories={categories}
+      showAllCategory={showAllCategory}
       baseUrl="/learning"
       categoryPrefixUrl="/learning/kategorie"
     />

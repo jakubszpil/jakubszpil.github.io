@@ -2,14 +2,17 @@ import { Categories } from "@packages/shared";
 
 export interface ProjectTechnologiesProps {
   technologies: string[];
-  showAllCategory?: boolean;
+  showAllTechnology?: boolean;
 }
 
-export function ProjectTechnologies(props: ProjectTechnologiesProps) {
+export function ProjectTechnologies({
+  technologies,
+  showAllTechnology,
+}: ProjectTechnologiesProps) {
   return (
     <Categories
-      categories={props.technologies}
-      showAllCategory={props.showAllCategory}
+      categories={technologies}
+      showAllCategory={showAllTechnology}
       baseUrl="/portfolio"
       categoryPrefixUrl="/portfolio/technologie"
     />

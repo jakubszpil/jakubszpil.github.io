@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 import {
   startTransition,
   useCallback,
-  useId,
   useMemo,
   useRef,
   useState,
@@ -23,18 +22,14 @@ export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
 }
 
-export function NavbarMenu(props: NavbarMenuProps) {
+export function NavbarMenu({ children }: NavbarMenuProps) {
   const [show, setShow] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
 
-  const desktopLinkId = useId();
-  const mobileLinkId = useId();
-
   const handleNavigate: MouseEventHandler<HTMLButtonElement> = useCallback(
     async (event) => {
-      const target = event.currentTarget;
-      const link = target.closest("a");
+      const link = event.currentTarget.closest("a");
 
       if (link) {
         event.preventDefault();
@@ -60,35 +55,23 @@ export function NavbarMenu(props: NavbarMenuProps) {
     [handleNavigate, buttonRef.current]
   );
 
-  const toggleMenu = useCallback(() => {
-    setShow((prev) => !prev);
-  }, []);
-
-  const desktopLinks = useMemo(
-    () =>
-      props.children.map((child, index) => (
-        <NavbarLink {...child.props} key={`${desktopLinkId}-${index}`} />
-      )),
-    [props.children.length, desktopLinkId]
-  );
-
   const mobileLinks = useMemo(
     () =>
-      props.children.map((child, index) => (
+      children.map((child, index) => (
         <NavbarLink
           {...child.props}
-          key={`${mobileLinkId}-${index}`}
+          key={index}
           size="lg"
           onClick={closeMenu}
         />
       )),
-    [props.children.length, mobileLinkId, closeMenu]
+    [children, closeMenu]
   );
 
   return (
     <>
       <div className="flex flex-1 justify-end items-center sm:gap-1">
-        <nav className="hidden items-center lg:flex">{desktopLinks}</nav>
+        <nav className="hidden items-center lg:flex">{children}</nav>
 
         <SearchButton />
 
@@ -101,7 +84,7 @@ export function NavbarMenu(props: NavbarMenuProps) {
         <Button
           size="icon"
           ref={buttonRef}
-          onClick={toggleMenu}
+          onClick={() => setShow((prev) => !prev)}
           className={cn(
             "inline-flex items-center justify-center relative z-50 lg:hidden",
             show && "dark"

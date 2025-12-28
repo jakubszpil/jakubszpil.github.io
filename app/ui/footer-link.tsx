@@ -7,10 +7,10 @@ export interface FooterLinkProps {
   children: ReactNode;
 }
 
-export function FooterLink(props: FooterLinkProps) {
+export function FooterLink({ to, children }: FooterLinkProps) {
   return (
     <Button asChild variant="link" size="sm">
-      <LinkWithPrefetch to={props.to}>{props.children}</LinkWithPrefetch>
+      <LinkWithPrefetch to={to}>{children}</LinkWithPrefetch>
     </Button>
   );
 }

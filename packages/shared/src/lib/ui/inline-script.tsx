@@ -4,8 +4,6 @@ export interface InlineScriptProps {
   code: string;
 }
 
-export function InlineScript(props: InlineScriptProps) {
-  return (
-    <script dangerouslySetInnerHTML={{ __html: injectScript(props.code) }} />
-  );
+export function InlineScript({ code }: InlineScriptProps) {
+  return <script dangerouslySetInnerHTML={{ __html: injectScript(code) }} />;
 }

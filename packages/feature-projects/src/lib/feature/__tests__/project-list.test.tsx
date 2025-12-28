@@ -95,7 +95,7 @@ describe("<ProjectList />", () => {
     expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {
         technologies: MOCKED_TECHNOLOGIES,
-        showAllCategory: true,
+        showAllTechnology: true,
       } satisfies ProjectTechnologiesProps,
       undefined
     );
@@ -144,7 +144,7 @@ describe("<ProjectList />", () => {
     expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {
         technologies: MOCKED_TECHNOLOGIES,
-        showAllCategory: true,
+        showAllTechnology: true,
       } satisfies ProjectTechnologiesProps,
       undefined
     );

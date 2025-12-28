@@ -26,7 +26,7 @@ describe("<ProjectTechnologies />", () => {
 
   const MOCKED_PROPS: ProjectTechnologiesProps = {
     technologies: ["a", "b", "c", "d"],
-    showAllCategory: true,
+    showAllTechnology: true,
   };
 
   beforeEach(() => {
@@ -47,7 +47,7 @@ describe("<ProjectTechnologies />", () => {
         baseUrl: "/portfolio",
         categoryPrefixUrl: "/portfolio/technologie",
         categories: MOCKED_PROPS.technologies,
-        showAllCategory: MOCKED_PROPS.showAllCategory,
+        showAllCategory: MOCKED_PROPS.showAllTechnology,
       } satisfies CategoriesProps,
       undefined
     );

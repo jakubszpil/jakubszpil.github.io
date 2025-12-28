@@ -5,8 +5,8 @@ export interface PreloadedScriptProps {
   options?: PreloadModuleOptions;
 }
 
-export function PreloadedScript(props: PreloadedScriptProps) {
-  preloadModule(props.src, props.options);
+export function PreloadedScript({ src, options }: PreloadedScriptProps) {
+  preloadModule(src, options);
 
-  return <script type="module" src={props.src} />;
+  return <script type="module" src={src} />;
 }

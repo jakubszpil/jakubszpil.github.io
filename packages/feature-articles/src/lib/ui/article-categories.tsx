@@ -5,11 +5,14 @@ export interface ArticleCategoriesProps {
   showAllCategory?: boolean;
 }
 
-export function ArticleCategories(props: ArticleCategoriesProps) {
+export function ArticleCategories({
+  categories,
+  showAllCategory,
+}: ArticleCategoriesProps) {
   return (
     <Categories
-      categories={props.categories}
-      showAllCategory={props.showAllCategory}
+      categories={categories}
+      showAllCategory={showAllCategory}
       baseUrl="/blog"
       categoryPrefixUrl="/blog/kategorie"
     />

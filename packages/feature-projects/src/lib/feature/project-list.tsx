@@ -27,7 +27,7 @@ export default function ProjectList() {
     <>
       <header className="prose container">
         <h1>{title ?? "Portfolio"}</h1>
-        <ProjectTechnologies showAllCategory technologies={technologies} />
+        <ProjectTechnologies showAllTechnology technologies={technologies} />
       </header>
 
       <ProjectCards projects={projects} />

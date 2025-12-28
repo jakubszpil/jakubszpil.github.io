@@ -5,7 +5,7 @@ export interface EditResourceProps {
   resourceType: "articles" | "courses" | "projects";
 }
 
-export function EditResource(props: EditResourceProps) {
+export function EditResource({ slug, resourceType }: EditResourceProps) {
   return (
     <div className="container">
       <Button
@@ -18,7 +18,7 @@ export function EditResource(props: EditResourceProps) {
           Widzisz jakiś błąd, bądź literówkę? Chcesz coś poprawić?
           <Button asChild variant="link">
             <a
-              href={`https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${props.resourceType}/${props.slug}.md`}
+              href={`https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`}
               target="_blank"
               rel="noreferrer"
             >

@@ -6,15 +6,12 @@ export interface CreationDateProps {
   className?: string;
 }
 
-export function CreationDate(props: CreationDateProps) {
+export function CreationDate({ date, className }: CreationDateProps) {
   return (
-    <div
-      className={cn("inline-block", props.className)}
-      title="Data opublikowania"
-    >
+    <div className={cn("inline-block", className)} title="Data opublikowania">
       <span className="mr-0.5">📆</span>
       <span className="hidden">Data opublikowania:</span>
-      <time>{getLocalizedDate(props.date)}</time>
+      <time>{getLocalizedDate(date)}</time>
     </div>
   );
 }

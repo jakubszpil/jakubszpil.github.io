@@ -11,16 +11,23 @@ export interface NavbarLinkProps {
   size?: ButtonProps["size"];
 }
 
-export function NavbarLink(props: NavbarLinkProps) {
+export function NavbarLink({
+  className,
+  onClick,
+  variant = "ghost",
+  size = "sm",
+  to,
+  children,
+}: NavbarLinkProps) {
   return (
     <Button
       asChild
-      className={props.className}
-      onClick={props.onClick}
-      variant={props.variant ?? "ghost"}
-      size={props.size ?? "sm"}
+      className={className}
+      onClick={onClick}
+      variant={variant}
+      size={size}
     >
-      <LinkWithPrefetch to={props.to}>{props.children}</LinkWithPrefetch>
+      <LinkWithPrefetch to={to}>{children}</LinkWithPrefetch>
     </Button>
   );
 }

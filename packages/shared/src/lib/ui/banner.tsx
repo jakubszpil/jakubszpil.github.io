@@ -7,10 +7,10 @@ export interface BannerProps {
   className?: string;
 }
 
-export function Banner(props: BannerProps) {
+export function Banner({ readingTime, createdAt, className }: BannerProps) {
   return (
-    <div className={cn("text-xs sm:text-sm mb-2", props.className)}>
-      <CreationDate date={props.createdAt} />
+    <div className={cn("text-xs sm:text-sm mb-2", className)}>
+      <CreationDate date={createdAt} />
       <span className="ml-2 mr-1">/</span>
       <div
         className="inline-block sm:inline"
@@ -18,7 +18,7 @@ export function Banner(props: BannerProps) {
       >
         <span className="mr-0.5">⌛</span>
         <span className="hidden">Czas potrzebny na przeczytanie:</span>
-        {props.readingTime} czytania
+        {readingTime} czytania
       </div>
     </div>
   );
