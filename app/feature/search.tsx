@@ -56,8 +56,12 @@ export const meta = createMetaTags<typeof clientLoader>(({ loaderData }) => ({
 }));
 
 export default function Search() {
-  const { query, results, initialResults, count } =
-    useLoaderData<typeof clientLoader>();
+  const {
+    query,
+    results: { articles, courses, projects },
+    initialResults,
+    count,
+  } = useLoaderData<typeof clientLoader>();
 
   const ref = useRef<HTMLInputElement>(null);
   const location = useLocation() as Location<{ focus: boolean } | undefined>;
@@ -65,6 +69,45 @@ export default function Search() {
   useEffect(() => {
     if (location.state?.focus) ref.current?.focus();
   }, [ref, location.state]);
+
+  const renderArticles = useCallback(() => {
+    if (!articles.length) {
+      return null;
+    }
+
+    return (
+      <section>
+        <h3>Artykuły ({articles.length})</h3>
+        <ArticleCards className="p-0 grid-cols-subgrid" articles={articles} />
+      </section>
+    );
+  }, [articles]);
+
+  const renderCourses = useCallback(() => {
+    if (!courses.length) {
+      return null;
+    }
+
+    return (
+      <section>
+        <h3>Kursy ({courses.length})</h3>
+        <CourseCards className="p-0 grid-cols-subgrid" courses={courses} />
+      </section>
+    );
+  }, [courses]);
+
+  const renderProjects = useCallback(() => {
+    if (!projects.length) {
+      return null;
+    }
+
+    return (
+      <section>
+        <h3>Projekty ({projects.length})</h3>
+        <ProjectCards className="p-0 grid-cols-subgrid" projects={projects} />
+      </section>
+    );
+  }, [projects]);
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -80,39 +123,13 @@ export default function Search() {
         <h2>Wyniki wyszukiwania ({count})</h2>
 
         <div className="grid grid-cols-1">
-          {results.articles.length > 0 && (
-            <section>
-              <h3>Artykuły ({results.articles.length})</h3>
-              <ArticleCards
-                className="p-0 grid-cols-subgrid"
-                articles={results.articles}
-              />
-            </section>
-          )}
-
-          {results.courses.length > 0 && (
-            <section>
-              <h3>Kursy ({results.courses.length})</h3>
-              <CourseCards
-                className="p-0 grid-cols-subgrid"
-                courses={results.courses}
-              />
-            </section>
-          )}
-
-          {results.projects.length > 0 && (
-            <section>
-              <h3>Projekty ({results.projects.length})</h3>
-              <ProjectCards
-                className="p-0 grid-cols-subgrid"
-                projects={results.projects}
-              />
-            </section>
-          )}
+          {renderArticles()}
+          {renderCourses()}
+          {renderProjects()}
         </div>
       </>
     );
-  }, [results, query, count, ref]);
+  }, [query, count, ref, renderArticles, renderCourses, renderProjects]);
 
   const renderDatalistOptions = useCallback(
     <T extends { title: string }>(label: string, group: string, items: T[]) => {
@@ -124,6 +141,18 @@ export default function Search() {
     },
     []
   );
+
+  const renderOptions = useCallback(() => {
+    const { articles, courses, projects } = initialResults;
+
+    return (
+      <>
+        {renderDatalistOptions("📝 Artykuł", "articles", articles)}
+        {renderDatalistOptions("🏫 Kurs", "courses", courses)}
+        {renderDatalistOptions("🛠️ Projekt", "projects", projects)}
+      </>
+    );
+  }, [initialResults, renderDatalistOptions]);
 
   return (
     <section className="prose max-w-full">
@@ -163,19 +192,7 @@ export default function Search() {
           list="search-datalist"
         />
 
-        <datalist id="search-datalist">
-          {renderDatalistOptions(
-            "📝 Artykuł",
-            "articles",
-            initialResults?.articles
-          )}
-          {renderDatalistOptions("🏫 Kurs", "courses", initialResults?.courses)}
-          {renderDatalistOptions(
-            "🛠️ Projekt",
-            "projects",
-            initialResults?.projects
-          )}
-        </datalist>
+        <datalist id="search-datalist">{renderOptions()}</datalist>
 
         <Button type="submit">
           <IconSearch className="size-5" />
