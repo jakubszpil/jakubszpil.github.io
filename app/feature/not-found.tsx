@@ -1,7 +1,7 @@
+import { notFound } from "@packages/shared";
+
 export async function clientLoader() {
-  throw new Response(null, {
-    status: 404,
-  });
+  throw notFound();
 }
 
 export default function NotFound() {

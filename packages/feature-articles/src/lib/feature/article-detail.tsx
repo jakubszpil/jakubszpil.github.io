@@ -1,6 +1,11 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner, createMetaTags, EditResource } from "@packages/shared";
+import {
+  Banner,
+  createMetaTags,
+  EditResource,
+  notFound,
+} from "@packages/shared";
 
 import { ArticleService } from "../data-access/article-service";
 import { ArticleCategories } from "../ui/article-categories";
@@ -8,12 +13,7 @@ import { ArticleCategories } from "../ui/article-categories";
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await ArticleService.findUnique(slug);
 
-  if (!article) {
-    throw new Response(null, {
-      status: 404,
-      statusText: "Nie znaleziono",
-    });
-  }
+  if (!article) throw notFound();
 
   return article;
 }

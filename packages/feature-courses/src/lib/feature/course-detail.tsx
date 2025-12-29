@@ -1,6 +1,11 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner, createMetaTags, EditResource } from "@packages/shared";
+import {
+  Banner,
+  createMetaTags,
+  EditResource,
+  notFound,
+} from "@packages/shared";
 
 import { CourseService } from "../data-access/course-service";
 import { CourseCategories } from "../ui/course-categories";
@@ -9,12 +14,7 @@ import { CourseQuiz } from "../ui/course-quiz";
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await CourseService.findUnique(slug);
 
-  if (!course) {
-    throw new Response(null, {
-      status: 404,
-      statusText: "Nie znaleziono",
-    });
-  }
+  if (!course) throw notFound();
 
   return course;
 }

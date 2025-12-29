@@ -24,3 +24,4 @@ export * from "./lib/utils/string";
 export * from "./lib/utils/types";
 export * from "./lib/utils/url";
 export * from "./lib/utils/meta";
+export * from "./lib/utils/navigation";
