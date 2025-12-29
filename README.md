@@ -1,56 +1,70 @@
 # jakubszpil.github.io
 
-This repository contains the source code for [Jakub Szpil's](https://github.com/jakubszpil) personal portfolio website, showcasing his projects and skills.
+Personal portfolio website for [Jakub Szpil](https://github.com/jakubszpil)
 
-## Requirements
+## 🚀 Features
 
-To build and run this project locally, you'll need:
+- Modern React + TypeScript stack
+- Modular monorepo structure (TurboRepo)
+- Vite-powered fast builds
+- Unit tests for UI and features
+- Content-driven (articles, courses, projects)
 
-- **Node.js**: JavaScript runtime environment.
-- **npm**: Node package manager (comes with Node.js).
+## 🛠️ Requirements
 
-## Installation
+- [Node.js](https://nodejs.org/) (recommended: latest LTS)
+- npm (comes with Node.js)
 
-1. **Clone the repository**:
+## ⚡ Getting Started
 
+1. **Clone the repository**
    ```bash
    git clone https://github.com/jakubszpil/jakubszpil.github.io.git
-   ```
-
-2. **Navigate to the project directory**:
-
-   ```bash
    cd jakubszpil.github.io
    ```
-
-3. **Install the dependencies**:
-
+2. **Install dependencies**
    ```bash
    npm install
    ```
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Running the Application
-
-#### To start the development server:
-
-```bash
-npm run dev
-```
-
-This will launch the website locally, allowing you to view and test it in your browser at the url http://localhost:5173/.
-
-#### To build application:
+## 🏗️ Build for Production
 
 ```bash
 npm run build
 ```
 
-This will build production version of the application to folder: /dist/client
+Output: `/dist/client`
 
-#### To run tests of the application:
+## 🧪 Run Tests
 
 ```bash
 npm run test
 ```
 
-This will run all unit tests associated with
+Runs all unit tests for UI and features.
+
+## 📁 Monorepo Structure
+
+- `app/` – Main app, routes, UI, features
+- `packages/feature-articles/` – Articles content & logic
+- `packages/feature-courses/` – Courses content & logic
+- `packages/feature-projects/` – Projects content & logic
+- `packages/shared/` – Shared utilities
+- `public/` – Static assets
+
+## 📚 Learn More
+
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TurboRepo](https://turbo.build/)
+
+## 👤 Author
+
+**Jakub Szpil**  
+[GitHub](https://github.com/jakubszpil)
