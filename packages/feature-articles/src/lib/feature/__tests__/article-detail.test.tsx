@@ -19,7 +19,7 @@ import {
 
 import ArticleDetail, { loader } from "../article-detail";
 import type { Article } from "../../data-access/article";
-import { ArticleService } from "../../data-access/article-service";
+import { findUniqueArticle } from "../../data-access/article-service";
 import {
   ArticleCategories,
   type ArticleCategoriesProps,
@@ -30,6 +30,7 @@ vi.mock("@packages/shared", async (importActual) => ({
   Banner: vi.fn(),
   EditResource: vi.fn(),
 }));
+vi.mock("../../data-access/article-service");
 vi.mock("../../ui/article-categories");
 
 describe("<ArticleDetail />", () => {
@@ -38,7 +39,7 @@ describe("<ArticleDetail />", () => {
   let MockedBanner: MockInstance<typeof Banner>;
 
   let MockedArticle: Article;
-  let MockedGetArticle: MockInstance<typeof ArticleService.findUnique>;
+  let MockedGetArticle: MockInstance<typeof findUniqueArticle>;
 
   beforeEach(() => {
     MockedArticleCategories = vi.mocked(ArticleCategories);
@@ -57,7 +58,7 @@ describe("<ArticleDetail />", () => {
     };
 
     MockedGetArticle = vi
-      .spyOn(ArticleService, "findUnique")
+      .mocked(findUniqueArticle)
       .mockImplementation(() => Promise.resolve(MockedArticle));
   });
 

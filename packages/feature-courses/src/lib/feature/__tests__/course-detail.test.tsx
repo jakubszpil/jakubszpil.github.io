@@ -21,7 +21,7 @@ import {
 
 import CourseDetail, { loader } from "../course-detail";
 import type { Course } from "../../data-access/course";
-import { CourseService } from "../../data-access/course-service";
+import { findUniqueCourse } from "../../data-access/course-service";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),
@@ -29,6 +29,7 @@ vi.mock("@packages/shared", async (importActual) => ({
   Banner: vi.fn(),
   EditResource: vi.fn(),
 }));
+vi.mock("../../data-access/course-service");
 
 describe("<CourseDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;
@@ -36,7 +37,7 @@ describe("<CourseDetail />", () => {
   let MockedBanner: MockInstance<typeof Banner>;
 
   let MockedCourse: Course;
-  let MockedGetCourse: MockInstance<typeof CourseService.findUnique>;
+  let MockedGetCourse: MockInstance<typeof findUniqueCourse>;
 
   beforeEach(() => {
     MockedCategories = vi.mocked(Categories);
@@ -59,7 +60,7 @@ describe("<CourseDetail />", () => {
     };
 
     MockedGetCourse = vi
-      .spyOn(CourseService, "findUnique")
+      .mocked(findUniqueCourse)
       .mockImplementation(() => Promise.resolve(MockedCourse));
   });
 

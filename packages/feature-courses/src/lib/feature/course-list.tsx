@@ -2,14 +2,17 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
 
-import { CourseService } from "../data-access/course-service";
+import {
+  getCourseCategories,
+  findAllCoursesByCategory,
+} from "../data-access/course-service";
 import { CourseCards } from "../ui/course-cards";
 import { CourseCategories } from "../ui/course-categories";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
-    categories: await CourseService.getCategories(),
-    courses: await CourseService.findAllByCategory(category),
+    categories: await getCourseCategories(),
+    courses: await findAllCoursesByCategory(category),
     title: category && getCapitalizedIndividualName(category),
   };
 }

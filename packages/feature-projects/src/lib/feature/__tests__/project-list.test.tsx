@@ -13,13 +13,17 @@ import {
 import ProjectList, { loader } from "../project-list";
 import { ProjectStatus } from "../../data-access/project";
 import type { ProjectFeed } from "../../data-access/project-feed";
-import { ProjectService } from "../../data-access/project-service";
+import {
+  findAllProjectsByTechnology,
+  getProjectTechnologies,
+} from "../../data-access/project-service";
 import { ProjectCards, type ProjectCardsProps } from "../../ui/project-cards";
 import {
   ProjectTechnologies,
   type ProjectTechnologiesProps,
 } from "../../ui/project-technologies";
 
+vi.mock("../../data-access/project-service");
 vi.mock("../../ui/project-cards");
 vi.mock("../../ui/project-technologies");
 
@@ -31,10 +35,10 @@ describe("<ProjectList />", () => {
   let MOCKED_TECHNOLOGIES: string[];
 
   let MockedGetProjectByTechnology: MockInstance<
-    typeof ProjectService.findAllByCategory
+    typeof findAllProjectsByTechnology
   >;
   let MockedGetProjectCardsTechnologies: MockInstance<
-    typeof ProjectService.getCategories
+    typeof getProjectTechnologies
   >;
 
   beforeEach(() => {
@@ -61,11 +65,11 @@ describe("<ProjectList />", () => {
     MOCKED_TECHNOLOGIES = ["test", "example"];
 
     MockedGetProjectByTechnology = vi
-      .spyOn(ProjectService, "findAllByCategory")
+      .mocked(findAllProjectsByTechnology)
       .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
 
     MockedGetProjectCardsTechnologies = vi
-      .spyOn(ProjectService, "getCategories")
+      .mocked(getProjectTechnologies)
       .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
   });
 

@@ -7,11 +7,11 @@ import {
   notFound,
 } from "@packages/shared";
 
-import { ArticleService } from "../data-access/article-service";
+import { findUniqueArticle } from "../data-access/article-service";
 import { ArticleCategories } from "../ui/article-categories";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const article = await ArticleService.findUnique(slug);
+  const article = await findUniqueArticle(slug);
 
   if (!article) throw notFound();
 

@@ -3,9 +3,15 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { ArticleService } from "@packages/feature-articles/server";
-import { CourseService } from "@packages/feature-courses/server";
-import { ProjectService } from "@packages/feature-projects/server";
+import {
+  getArticleSlugs,
+  getArticleCategories,
+} from "@packages/feature-articles/server";
+import {
+  getCourseSlugs,
+  getCourseCategories,
+} from "@packages/feature-courses/server";
+import { getProjectTechnologies } from "@packages/feature-projects/server";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });
@@ -41,13 +47,13 @@ export default {
     }
   },
   async prerender({ getStaticPaths }) {
-    const blogArticles = await ArticleService.getSlugs();
-    const blogCategories = await ArticleService.getCategories();
+    const blogArticles = await getArticleSlugs();
+    const blogCategories = await getArticleCategories();
 
-    const learningCourses = await CourseService.getSlugs();
-    const learningCategories = await CourseService.getCategories();
+    const learningCourses = await getCourseSlugs();
+    const learningCategories = await getCourseCategories();
 
-    const portfolioTechnologies = await ProjectService.getCategories();
+    const portfolioTechnologies = await getProjectTechnologies();
 
     return [
       ...getStaticPaths(),
