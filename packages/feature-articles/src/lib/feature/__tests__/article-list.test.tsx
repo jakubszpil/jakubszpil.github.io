@@ -17,12 +17,8 @@ import {
   type ArticleCategoriesProps,
 } from "../../ui/article-categories";
 import type { ArticleFeed } from "../../data-access/article-feed";
-import {
-  findAllArticlesByCategory,
-  getArticleCategories,
-} from "../../data-access/article-service";
+import { ArticleService } from "../../data-access/article-service";
 
-vi.mock("../../data-access/article-service");
 vi.mock("../../ui/article-cards");
 vi.mock("../../ui/article-categories");
 
@@ -34,9 +30,11 @@ describe("<ArticleList />", () => {
   let MOCKED_CATEGORIES: string[];
 
   let MockedGetArticleByCategory: MockInstance<
-    typeof findAllArticlesByCategory
+    typeof ArticleService.findAllByCategory
   >;
-  let MockedGetArticlesCategories: MockInstance<typeof getArticleCategories>;
+  let MockedGetArticlesCategories: MockInstance<
+    typeof ArticleService.getCategories
+  >;
 
   beforeEach(() => {
     MockedArticleCards = vi.mocked(ArticleCards);
@@ -62,11 +60,11 @@ describe("<ArticleList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetArticleByCategory = vi
-      .mocked(findAllArticlesByCategory)
+      .spyOn(ArticleService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
 
     MockedGetArticlesCategories = vi
-      .mocked(getArticleCategories)
+      .spyOn(ArticleService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 

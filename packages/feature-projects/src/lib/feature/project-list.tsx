@@ -2,18 +2,15 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
 
-import {
-  getProjectTechnologies,
-  findAllProjectsByTechnology,
-} from "../data-access/project-service";
+import { ProjectService } from "../data-access/project-service";
 import { ProjectTechnologies } from "../ui/project-technologies";
 import { ProjectCards } from "../ui/project-cards";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {
     title: technology && getCapitalizedIndividualName(technology),
-    technologies: await getProjectTechnologies(),
-    projects: await findAllProjectsByTechnology(technology),
+    technologies: await ProjectService.getCategories(),
+    projects: await ProjectService.findAllByCategory(technology),
   };
 }
 

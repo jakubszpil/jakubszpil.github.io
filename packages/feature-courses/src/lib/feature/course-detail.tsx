@@ -7,12 +7,12 @@ import {
   notFound,
 } from "@packages/shared";
 
-import { findUniqueCourse } from "../data-access/course-service";
+import { CourseService } from "../data-access/course-service";
 import { CourseCategories } from "../ui/course-categories";
 import { CourseQuiz } from "../ui/course-quiz";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const course = await findUniqueCourse(slug);
+  const course = await CourseService.findUnique(slug);
 
   if (!course) throw notFound();
 

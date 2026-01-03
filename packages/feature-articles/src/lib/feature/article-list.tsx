@@ -2,17 +2,14 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
 
-import {
-  findAllArticlesByCategory,
-  getArticleCategories,
-} from "../data-access/article-service";
+import { ArticleService } from "../data-access/article-service";
 import { ArticleCards } from "../ui/article-cards";
 import { ArticleCategories } from "../ui/article-categories";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
-    articles: await findAllArticlesByCategory(category),
-    categories: await getArticleCategories(),
+    articles: await ArticleService.findAllByCategory(category),
+    categories: await ArticleService.getCategories(),
     title: category && getCapitalizedIndividualName(category),
   };
 }

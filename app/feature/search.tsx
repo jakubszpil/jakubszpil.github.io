@@ -8,11 +8,11 @@ import {
 } from "react-router";
 
 import { ArticleCards } from "@packages/feature-articles";
-import { findAllArticles } from "@packages/feature-articles/server";
+import { ArticleService } from "@packages/feature-articles/server";
 import { CourseCards } from "@packages/feature-courses";
-import { findAllCourses } from "@packages/feature-courses/server";
+import { CourseService } from "@packages/feature-courses/server";
 import { ProjectCards } from "@packages/feature-projects";
-import { findAllProjects } from "@packages/feature-projects/server";
+import { ProjectService } from "@packages/feature-projects/server";
 import { Input, Button, IconSearch, createMetaTags } from "@packages/shared";
 
 import {
@@ -23,9 +23,9 @@ import {
 } from "../data-access/search";
 
 export async function loader() {
-  const articles = await findAllArticles();
-  const courses = await findAllCourses();
-  const projects = await findAllProjects();
+  const articles = await ArticleService.findAll();
+  const courses = await CourseService.findAll();
+  const projects = await ProjectService.findAll();
   return { articles, courses, projects };
 }
 

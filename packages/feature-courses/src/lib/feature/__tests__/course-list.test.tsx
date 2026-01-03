@@ -12,17 +12,13 @@ import {
 
 import CourseList, { loader } from "../course-list";
 import type { CourseFeed } from "../../data-access/course-feed";
-import {
-  findAllCoursesByCategory,
-  getCourseCategories,
-} from "../../data-access/course-service";
+import { CourseService } from "../../data-access/course-service";
 import { CourseCards, type CourseCardsProps } from "../../ui/course-cards";
 import {
   CourseCategories,
   type CourseCategoriesProps,
 } from "../../ui/course-categories";
 
-vi.mock("../../data-access/course-service");
 vi.mock("../../ui/course-cards");
 vi.mock("../../ui/course-categories");
 
@@ -33,8 +29,12 @@ describe("<CourseList />", () => {
   let MOCKED_COURSES: CourseFeed[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetCourseByCategory: MockInstance<typeof findAllCoursesByCategory>;
-  let MockedGetCoursesCategories: MockInstance<typeof getCourseCategories>;
+  let MockedGetCourseByCategory: MockInstance<
+    typeof CourseService.findAllByCategory
+  >;
+  let MockedGetCoursesCategories: MockInstance<
+    typeof CourseService.getCategories
+  >;
 
   beforeEach(() => {
     MockedCourseCards = vi.mocked(CourseCards);
@@ -60,11 +60,11 @@ describe("<CourseList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetCourseByCategory = vi
-      .mocked(findAllCoursesByCategory)
+      .spyOn(CourseService, "findAllByCategory")
       .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
 
     MockedGetCoursesCategories = vi
-      .mocked(getCourseCategories)
+      .spyOn(CourseService, "getCategories")
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 

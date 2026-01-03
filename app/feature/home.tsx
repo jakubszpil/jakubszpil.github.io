@@ -1,17 +1,17 @@
 import { useLoaderData } from "react-router";
 
 import { ArticleCards } from "@packages/feature-articles";
-import { findAllArticles } from "@packages/feature-articles/server";
+import { ArticleService } from "@packages/feature-articles/server";
 import { CourseCards } from "@packages/feature-courses";
-import { findAllCourses } from "@packages/feature-courses/server";
+import { CourseService } from "@packages/feature-courses/server";
 import { ProjectCards } from "@packages/feature-projects";
-import { findAllProjects } from "@packages/feature-projects/server";
+import { ProjectService } from "@packages/feature-projects/server";
 import { Button, LinkWithPrefetch, createMetaTags } from "@packages/shared";
 
 export async function loader() {
-  const articles = await findAllArticles(3);
-  const courses = await findAllCourses(3);
-  const projects = await findAllProjects(3);
+  const articles = await ArticleService.findAll(3);
+  const courses = await CourseService.findAll(3);
+  const projects = await ProjectService.findAll(3);
 
   return {
     articles,
