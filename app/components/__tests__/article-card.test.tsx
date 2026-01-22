@@ -16,7 +16,7 @@ import {
   type LinkWithPrefetchProps,
 } from "@packages/shared";
 
-import type { ArticleFeed } from "../../data-access/article-feed";
+import type { ArticleFeed } from "../../lib/article-feed";
 import { ArticleCard } from "../article-card";
 
 vi.mock("@packages/shared", async (importActual) => ({
@@ -63,7 +63,7 @@ describe("<ArticleCard />", () => {
       expect.objectContaining({
         to: `/blog/${MOCKED_ARTICLE_FEED.slug}`,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
 
     expect(MockedBanner).toHaveBeenCalledWith(
@@ -71,7 +71,7 @@ describe("<ArticleCard />", () => {
         createdAt: MOCKED_ARTICLE_FEED.createdAt,
         readingTime: MOCKED_ARTICLE_FEED.readingTime,
       } satisfies BannerProps),
-      undefined
+      undefined,
     );
   });
 });

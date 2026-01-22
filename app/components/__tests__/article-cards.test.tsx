@@ -11,7 +11,7 @@ import {
 
 import { ArticleCard, type ArticleCardProps } from "../article-card";
 import { ArticleCards } from "../article-cards";
-import type { ArticleFeed } from "../../data-access/article-feed";
+import type { ArticleFeed } from "../../lib/article-feed";
 
 vi.mock("../article-card");
 
@@ -61,7 +61,7 @@ describe("<ArticleCards />", () => {
         article: MOCKED_ARTICLE_FEEDS[0],
         variant: "ghost",
       } satisfies ArticleCardProps,
-      undefined
+      undefined,
     );
 
     expect(MockedArticleCard).toHaveBeenNthCalledWith(
@@ -70,7 +70,7 @@ describe("<ArticleCards />", () => {
         article: MOCKED_ARTICLE_FEEDS[1],
         variant: "ghost",
       } satisfies ArticleCardProps,
-      undefined
+      undefined,
     );
 
     expect(MockedArticleCard).toHaveBeenNthCalledWith(
@@ -79,7 +79,7 @@ describe("<ArticleCards />", () => {
         article: MOCKED_ARTICLE_FEEDS[2],
         variant: "ghost",
       } satisfies ArticleCardProps,
-      undefined
+      undefined,
     );
   });
 });

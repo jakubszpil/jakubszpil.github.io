@@ -7,8 +7,8 @@ import {
   notFound,
 } from "@packages/shared";
 
-import { ArticleService } from "../data-access/article-service";
-import { ArticleCategories } from "../ui/article-categories";
+import { ArticleCategories } from "../components/article-categories";
+import { ArticleService } from "../lib/article-service";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await ArticleService.findUnique(slug);
@@ -25,7 +25,7 @@ export const meta = createMetaTags<typeof loader>(
     keywords: article?.keywords,
     publishedTime: article?.createdAt,
     type: "article",
-  })
+  }),
 );
 
 export default function ArticleDetail() {

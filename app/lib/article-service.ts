@@ -7,11 +7,11 @@ import { ArticleMinifingStrategy } from "./article-minifing-strategy";
 
 export class ArticleService extends createResourceService<Article, ArticleFeed>(
   {
-    files: import.meta.glob<string>("../../../content/*.md", {
+    files: import.meta.glob<string>("../../content/articles/*.md", {
       import: "default",
       query: "?raw",
     }),
     minifingStrategy: new ArticleMinifingStrategy(),
     parsingStrategy: new ArticleParsingStrategy(),
-  }
+  },
 ) {}

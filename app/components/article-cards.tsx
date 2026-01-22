@@ -1,6 +1,6 @@
 import { type ButtonProps, cn } from "@packages/shared";
 
-import type { ArticleFeed } from "../data-access/article-feed";
+import type { ArticleFeed } from "../lib/article-feed";
 import { ArticleCard } from "./article-card";
 
 export interface ArticleCardsProps {
@@ -18,7 +18,7 @@ export function ArticleCards({
     <section
       className={cn(
         "container pt-0! prose grid gap-3 grid-cols-fill",
-        className
+        className,
       )}
     >
       {articles.map((article) => (

@@ -5,7 +5,7 @@ import {
   type ButtonProps,
 } from "@packages/shared";
 
-import type { ArticleFeed } from "../data-access/article-feed";
+import type { ArticleFeed } from "../lib/article-feed";
 
 export interface ArticleCardProps {
   article: ArticleFeed;

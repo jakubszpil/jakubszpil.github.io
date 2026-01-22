@@ -11,16 +11,19 @@ import {
 } from "vitest";
 
 import ArticleList, { loader } from "../article-list";
-import { ArticleCards, type ArticleCardsProps } from "../../ui/article-cards";
+import {
+  ArticleCards,
+  type ArticleCardsProps,
+} from "../../components/article-cards";
 import {
   ArticleCategories,
   type ArticleCategoriesProps,
-} from "../../ui/article-categories";
-import type { ArticleFeed } from "../../data-access/article-feed";
-import { ArticleService } from "../../data-access/article-service";
+} from "../../components/article-categories";
+import type { ArticleFeed } from "../../lib/article-feed";
+import { ArticleService } from "../../lib/article-service";
 
-vi.mock("../../ui/article-cards");
-vi.mock("../../ui/article-categories");
+vi.mock("../../components/article-cards");
+vi.mock("../../components/article-categories");
 
 describe("<ArticleList />", () => {
   let MockedArticleCards: MockInstance<typeof ArticleCards>;
@@ -96,14 +99,14 @@ describe("<ArticleList />", () => {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
       } satisfies ArticleCategoriesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedArticleCards).toHaveBeenCalledWith(
       {
         articles: MOCKED_ARTICLES,
       } satisfies ArticleCardsProps,
-      undefined
+      undefined,
     );
   });
 
@@ -111,7 +114,7 @@ describe("<ArticleList />", () => {
     const MOCKED_CATEGORY = "example";
 
     MockedGetArticleByCategory.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_ARTICLES[1]])
+      Promise.resolve([MOCKED_ARTICLES[1]]),
     );
 
     const Stub = createRoutesStub([
@@ -130,7 +133,7 @@ describe("<ArticleList />", () => {
             category: MOCKED_CATEGORY,
           }),
         ]}
-      />
+      />,
     );
 
     await screen.findByText("Example");
@@ -143,14 +146,14 @@ describe("<ArticleList />", () => {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
       } satisfies ArticleCategoriesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedArticleCards).toHaveBeenCalledWith(
       {
         articles: [MOCKED_ARTICLES[1]],
       } satisfies ArticleCardsProps,
-      undefined
+      undefined,
     );
   });
 });

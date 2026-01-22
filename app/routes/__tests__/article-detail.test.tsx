@@ -18,19 +18,19 @@ import {
 } from "@packages/shared";
 
 import ArticleDetail, { loader } from "../article-detail";
-import type { Article } from "../../data-access/article";
-import { ArticleService } from "../../data-access/article-service";
 import {
   ArticleCategories,
   type ArticleCategoriesProps,
-} from "../../ui/article-categories";
+} from "../../components/article-categories";
+import type { Article } from "../../lib/article";
+import { ArticleService } from "../../lib/article-service";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),
   Banner: vi.fn(),
   EditResource: vi.fn(),
 }));
-vi.mock("../../ui/article-categories");
+vi.mock("../../components/article-categories");
 
 describe("<ArticleDetail />", () => {
   let MockedArticleCategories: MockInstance<typeof ArticleCategories>;
@@ -83,7 +83,7 @@ describe("<ArticleDetail />", () => {
         initialEntries={[
           generatePath("/blog/:slug", { slug: MockedArticle.slug }),
         ]}
-      />
+      />,
     );
 
     await screen.findByText(MockedArticle.title);
@@ -94,7 +94,7 @@ describe("<ArticleDetail />", () => {
       {
         categories: MockedArticle.categories,
       } satisfies ArticleCategoriesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedEditResource).toHaveBeenCalledWith(
@@ -102,7 +102,7 @@ describe("<ArticleDetail />", () => {
         slug: MockedArticle.slug,
         resourceType: "articles",
       } satisfies EditResourceProps,
-      undefined
+      undefined,
     );
 
     expect(MockedBanner).toHaveBeenCalledWith(
@@ -111,7 +111,7 @@ describe("<ArticleDetail />", () => {
         readingTime: MockedArticle.readingTime,
         className: "my-6",
       } satisfies BannerProps,
-      undefined
+      undefined,
     );
   });
 });
