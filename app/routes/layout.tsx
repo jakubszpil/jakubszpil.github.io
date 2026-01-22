@@ -6,14 +6,14 @@ import {
   isRouteErrorResponse,
 } from "@packages/shared";
 
-import { usePrerender } from "../data-access/use-prerender";
-import { Navbar } from "../ui/navbar";
-import { NavbarLink } from "../ui/navbar-link";
-import { NavbarMenu } from "../ui/navbar-menu";
-import { Footer } from "../ui/footer";
-import { FooterLink } from "../ui/footer-link";
-import { BusyIndicator } from "../ui/busy-indicator";
-import { ScrollRestoration } from "../ui/scroll-restoration";
+import { usePrerender } from "../hooks/use-prerender";
+import { Navbar } from "../components/navbar";
+import { NavbarLink } from "../components/navbar-link";
+import { NavbarMenu } from "../components/navbar-menu";
+import { Footer } from "../components/footer";
+import { FooterLink } from "../components/footer-link";
+import { BusyIndicator } from "../components/busy-indicator";
+import { ScrollRestoration } from "../components/scroll-restoration";
 
 export default function Layout() {
   const prerender = usePrerender();

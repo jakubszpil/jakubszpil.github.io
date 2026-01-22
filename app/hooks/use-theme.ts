@@ -11,7 +11,7 @@ import {
   setLocalStorageTheme,
   Theme,
   toggleThemeClassName,
-} from "../utils/theme";
+} from "../lib/theme";
 
 export function useTheme() {
   const hydrated = useHydrated();

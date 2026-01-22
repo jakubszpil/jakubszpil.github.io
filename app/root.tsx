@@ -7,7 +7,7 @@ import styles from "./styles.css?url";
 import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
-} from "./utils/scroll-restoration";
+} from "./lib/scroll-restoration";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

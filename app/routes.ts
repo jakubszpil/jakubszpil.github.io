@@ -11,13 +11,13 @@ import { routes as setupRoutesForCourses } from "@packages/feature-courses/serve
 import { routes as setupRoutesForProjects } from "@packages/feature-projects/server";
 
 export default [
-  layout("feature/layout.tsx", [
+  layout("routes/layout.tsx", [
     ...prefix("blog", setupRoutesForArticles()),
     ...prefix("learning", setupRoutesForCourses()),
     ...prefix("portfolio", setupRoutesForProjects()),
-    index("feature/home.tsx", { id: "home" }),
-    route("search", "feature/search.tsx", { id: "search" }),
-    route("me", "feature/about.tsx", { id: "about" }),
-    route("*", "feature/not-found.tsx", { id: "not-found" }),
+    index("routes/home.tsx", { id: "home" }),
+    route("search", "routes/search.tsx", { id: "search" }),
+    route("me", "routes/about.tsx", { id: "about" }),
+    route("*", "routes/not-found.tsx", { id: "not-found" }),
   ]),
 ] satisfies RouteConfig;

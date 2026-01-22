@@ -11,10 +11,10 @@ import {
 
 import { getDifferenceInYears } from "@packages/shared";
 
-import { Socials } from "../../ui/socials";
+import { Socials } from "../../components/socials";
 import About from "../about";
 
-vi.mock("../../ui/socials");
+vi.mock("../../components/socials");
 
 vi.mock("@packages/shared", async (importOriginal) => ({
   ...(await importOriginal()),
@@ -40,7 +40,7 @@ describe("<About />", () => {
   test("renders the correct description in Seo component", () => {
     render(<About />);
     screen.getByText(
-      "Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi."
+      "Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi.",
     );
   });
 

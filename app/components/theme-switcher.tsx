@@ -11,8 +11,8 @@ import {
   IconSunMoon,
 } from "@packages/shared";
 
-import { useTheme } from "../data-access/use-theme";
-import { performThemeChange, Theme } from "../utils/theme";
+import { useTheme } from "../hooks/use-theme";
+import { performThemeChange, Theme } from "../lib/theme";
 
 export function ThemeSwitcher() {
   const { setTheme } = useTheme();

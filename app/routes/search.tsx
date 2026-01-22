@@ -20,7 +20,7 @@ import {
   getSearchResultsLength,
   queryParamName,
   validateSearhQuery,
-} from "../data-access/search";
+} from "../lib/search";
 
 export async function loader() {
   const articles = await ArticleService.findAll();
@@ -139,7 +139,7 @@ export default function Search() {
         </option>
       ));
     },
-    []
+    [],
   );
 
   const renderOptions = useCallback(() => {
