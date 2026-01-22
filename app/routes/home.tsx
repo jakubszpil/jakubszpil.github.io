@@ -1,13 +1,14 @@
 import { useLoaderData } from "react-router";
 
-import { Button, LinkWithPrefetch, createMetaTags } from "@packages/shared";
-
+import { Button } from "../components/ui/button";
+import { LinkWithPrefetch } from "../components/ui/link-with-prefetch";
 import { ArticleCards } from "../components/article-cards";
 import { ArticleService } from "../lib/article-service";
 import { CourseCards } from "../components/course-cards";
 import { CourseService } from "../lib/course-service";
 import { ProjectCards } from "../components/project-cards";
 import { ProjectService } from "../lib/project-service";
+import { createMetaTags } from "../lib/meta";
 
 export async function loader() {
   const articles = await ArticleService.findAll(3);

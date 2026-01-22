@@ -10,25 +10,22 @@ import {
   type MockInstance,
 } from "vitest";
 
+import type { Course } from "../../lib/course";
+import { CourseService } from "../../lib/course-service";
 import {
   Categories,
   type CategoriesProps,
-  Banner,
-  type BannerProps,
+} from "../../components/ui/categories";
+import {
   EditResource,
   type EditResourceProps,
-} from "@packages/shared";
-
+} from "../../components/ui/edit-resource";
+import { Banner, type BannerProps } from "../../components/ui/banner";
 import CourseDetail, { loader } from "../course-detail";
-import type { Course } from "../../lib/course";
-import { CourseService } from "../../lib/course-service";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  Categories: vi.fn(),
-  Banner: vi.fn(),
-  EditResource: vi.fn(),
-}));
+vi.mock("../../components/ui/categories");
+vi.mock("../../components/ui/edit-resource");
+vi.mock("../../components/ui/banner");
 
 describe("<CourseDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;

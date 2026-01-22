@@ -10,13 +10,14 @@ import {
 } from "react";
 import { Transition } from "@headlessui/react";
 
-import { Button, cn, IconMenu2, IconX } from "@packages/shared";
-
 import { BusyIndicator } from "./busy-indicator";
 import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
 import { Socials } from "./socials";
 import { SearchButton } from "./search-button";
 import { ThemeSwitcher } from "./theme-switcher";
+import { Button } from "./ui/button";
+import { IconMenu2, IconX } from "./ui/icons";
+import { cn } from "../lib/helpers";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
@@ -40,7 +41,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
         }
       }
     },
-    [navigate]
+    [navigate],
   );
 
   const closeMenu: MouseEventHandler<HTMLButtonElement> = useCallback(
@@ -52,7 +53,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
         buttonRef.current?.focus();
       });
     },
-    [handleNavigate, buttonRef.current]
+    [handleNavigate, buttonRef.current],
   );
 
   const mobileLinks = useMemo(
@@ -65,7 +66,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
           onClick={closeMenu}
         />
       )),
-    [children, closeMenu]
+    [children, closeMenu],
   );
 
   return (
@@ -87,7 +88,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
           onClick={() => setShow((prev) => !prev)}
           className={cn(
             "inline-flex items-center justify-center relative z-50 lg:hidden",
-            show && "dark"
+            show && "dark",
           )}
           variant="link"
           aria-label={show ? "Zamknij menu" : "Otwórz menu"}

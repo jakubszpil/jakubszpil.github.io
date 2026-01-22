@@ -1,7 +1,7 @@
-import { type ButtonProps, cn } from "@packages/shared";
-
 import type { CourseFeed } from "../lib/course-feed";
+import { cn } from "../lib/helpers";
 import { CourseCard } from "./course-card";
+import type { ButtonProps } from "./ui/button";
 
 export interface CourseCardsProps {
   courses: CourseFeed[];

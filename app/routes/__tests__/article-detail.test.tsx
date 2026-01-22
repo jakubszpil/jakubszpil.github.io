@@ -10,13 +10,6 @@ import {
   type MockInstance,
 } from "vitest";
 
-import {
-  Banner,
-  type BannerProps,
-  EditResource,
-  type EditResourceProps,
-} from "@packages/shared";
-
 import ArticleDetail, { loader } from "../article-detail";
 import {
   ArticleCategories,
@@ -24,12 +17,14 @@ import {
 } from "../../components/article-categories";
 import type { Article } from "../../lib/article";
 import { ArticleService } from "../../lib/article-service";
+import {
+  EditResource,
+  type EditResourceProps,
+} from "../../components/ui/edit-resource";
+import { Banner, type BannerProps } from "../../components/ui/banner";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  Banner: vi.fn(),
-  EditResource: vi.fn(),
-}));
+vi.mock("../../components/ui/edit-resource");
+vi.mock("../../components/ui/banner");
 vi.mock("../../components/article-categories");
 
 describe("<ArticleDetail />", () => {

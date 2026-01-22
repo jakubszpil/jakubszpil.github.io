@@ -1,15 +1,12 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import {
-  Banner,
-  createMetaTags,
-  EditResource,
-  notFound,
-} from "@packages/shared";
-
-import { CourseService } from "../lib/course-service";
+import { Banner } from "../components/ui/banner";
+import { EditResource } from "../components/ui/edit-resource";
 import { CourseCategories } from "../components/course-categories";
 import { CourseQuiz } from "../components/course-quiz";
+import { CourseService } from "../lib/course-service";
+import { createMetaTags } from "../lib/meta";
+import { notFound } from "../lib/navigation";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await CourseService.findUnique(slug);

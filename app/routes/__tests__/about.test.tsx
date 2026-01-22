@@ -9,17 +9,13 @@ import {
   afterEach,
 } from "vitest";
 
-import { getDifferenceInYears } from "@packages/shared";
-
+import { getDifferenceInYears } from "../../lib/date";
 import { Socials } from "../../components/socials";
 import About from "../about";
 
 vi.mock("../../components/socials");
 
-vi.mock("@packages/shared", async (importOriginal) => ({
-  ...(await importOriginal()),
-  getDifferenceInYears: vi.fn(),
-}));
+vi.mock("../../lib/date");
 
 describe("<About />", () => {
   let MockedSocials: MockInstance<typeof Socials>;

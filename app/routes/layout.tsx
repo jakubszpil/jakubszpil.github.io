@@ -1,12 +1,7 @@
 import { Outlet, useRouteError } from "react-router";
 
-import {
-  Button,
-  LinkWithPrefetch,
-  isRouteErrorResponse,
-} from "@packages/shared";
-
-import { usePrerender } from "../hooks/use-prerender";
+import { Button } from "../components/ui/button";
+import { LinkWithPrefetch } from "../components/ui/link-with-prefetch";
 import { Navbar } from "../components/navbar";
 import { NavbarLink } from "../components/navbar-link";
 import { NavbarMenu } from "../components/navbar-menu";
@@ -14,6 +9,8 @@ import { Footer } from "../components/footer";
 import { FooterLink } from "../components/footer-link";
 import { BusyIndicator } from "../components/busy-indicator";
 import { ScrollRestoration } from "../components/scroll-restoration";
+import { usePrerender } from "../hooks/use-prerender";
+import { isRouteErrorResponse } from "../lib/errors";
 
 export default function Layout() {
   const prerender = usePrerender();

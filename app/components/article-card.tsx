@@ -1,11 +1,7 @@
-import {
-  Banner,
-  LinkWithPrefetch,
-  Button,
-  type ButtonProps,
-} from "@packages/shared";
-
 import type { ArticleFeed } from "../lib/article-feed";
+import { Banner } from "./ui/banner";
+import { Button, type ButtonProps } from "./ui/button";
+import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 
 export interface ArticleCardProps {
   article: ArticleFeed;

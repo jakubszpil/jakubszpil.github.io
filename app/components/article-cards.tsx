@@ -1,7 +1,7 @@
-import { type ButtonProps, cn } from "@packages/shared";
-
 import type { ArticleFeed } from "../lib/article-feed";
+import { cn } from "../lib/helpers";
 import { ArticleCard } from "./article-card";
+import type { ButtonProps } from "./ui/button";
 
 export interface ArticleCardsProps {
   articles: ArticleFeed[];

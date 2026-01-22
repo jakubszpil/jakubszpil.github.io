@@ -1,16 +1,17 @@
+import { Button } from "./ui/button";
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import {
   IconDeviceDesktop,
   IconMoonStars,
   IconSun,
   IconSunMoon,
-} from "@packages/shared";
-
+} from "./ui/icons";
 import { useTheme } from "../hooks/use-theme";
 import { performThemeChange, Theme } from "../lib/theme";
 

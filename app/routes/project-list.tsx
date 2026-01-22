@@ -1,10 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
-
-import { ProjectService } from "../lib/project-service";
 import { ProjectTechnologies } from "../components/project-technologies";
 import { ProjectCards } from "../components/project-cards";
+import { ProjectService } from "../lib/project-service";
+import { createMetaTags } from "../lib/meta";
+import { getCapitalizedIndividualName } from "../lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {

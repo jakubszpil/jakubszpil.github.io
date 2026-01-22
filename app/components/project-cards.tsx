@@ -1,7 +1,7 @@
-import { type ButtonProps, cn } from "@packages/shared";
-
+import { cn } from "../lib/helpers";
 import type { ProjectFeed } from "../lib/project-feed";
 import { ProjectCard } from "./project-card";
+import type { ButtonProps } from "./ui/button";
 
 export interface ProjectCardsProps {
   projects: ProjectFeed[];

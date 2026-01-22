@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
 
-import { shuffleArray, Button, cn } from "@packages/shared";
-
 import type { Course } from "../lib/course";
 import type { CourseQuizQuestion } from "../lib/course-quiz";
+import { shuffleArray } from "../lib/array";
+import { Button } from "./ui/button";
+import { cn } from "../lib/helpers";
 
 export interface CourseQuizProps {
   quiz: Course["quiz"];

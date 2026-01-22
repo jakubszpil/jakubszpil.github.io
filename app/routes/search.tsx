@@ -7,8 +7,6 @@ import {
   type Location,
 } from "react-router";
 
-import { Input, Button, IconSearch, createMetaTags } from "@packages/shared";
-
 import { ArticleCards } from "../components/article-cards";
 import { ArticleService } from "../lib/article-service";
 import { CourseCards } from "../components/course-cards";
@@ -21,6 +19,10 @@ import {
   queryParamName,
   validateSearhQuery,
 } from "../lib/search";
+import { createMetaTags } from "../lib/meta";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { IconSearch } from "../components/ui/icons";
 
 export async function loader() {
   const articles = await ArticleService.findAll();
