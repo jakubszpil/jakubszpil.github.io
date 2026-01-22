@@ -3,10 +3,57 @@ import {
   getReadingTimeLabel,
   processContent,
   processFile,
+  type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
-import type { Course } from "./course";
-import type { CourseQuiz } from "./course-quiz";
+import { createResourceService } from "./resources";
+
+export interface CourseQuiz {
+  title: string;
+  questions: CourseQuizQuestion[];
+}
+
+export interface CourseQuizQuestion {
+  question: string;
+  options: string[];
+  answer: number;
+  explanation?: string;
+}
+
+export interface CourseFeed {
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  readingTime: string;
+}
+
+export interface Course {
+  slug: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  readingTime: string;
+  categories: string[];
+  keywords: string[];
+  content: string;
+  quiz: CourseQuiz;
+}
+
+export class CourseMinifingStrategy implements MinifingStrategy<
+  Course,
+  CourseFeed
+> {
+  minify(course: Course): CourseFeed {
+    return {
+      createdAt: course.createdAt,
+      description: course.description,
+      readingTime: course.readingTime,
+      slug: course.slug,
+      title: course.title,
+    };
+  }
+}
 
 async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
   const questions = await Promise.all(
@@ -51,3 +98,12 @@ export class CourseParsingStrategy implements ParsingStrategy<Course> {
     } satisfies Course;
   }
 }
+
+export class CourseService extends createResourceService<Course, CourseFeed>({
+  files: import.meta.glob<string>("../../content/courses/*.md", {
+    import: "default",
+    query: "?raw",
+  }),
+  minifingStrategy: new CourseMinifingStrategy(),
+  parsingStrategy: new CourseParsingStrategy(),
+}) {}

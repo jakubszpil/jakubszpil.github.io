@@ -1,8 +1,8 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { CourseService } from "../lib/course-service";
 import { CourseCards } from "../components/course-cards";
 import { CourseCategories } from "../components/course-categories";
+import { CourseService } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
 import { getCapitalizedIndividualName } from "../lib/string";
 

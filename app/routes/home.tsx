@@ -3,11 +3,11 @@ import { useLoaderData } from "react-router";
 import { Button } from "../components/ui/button";
 import { LinkWithPrefetch } from "../components/ui/link-with-prefetch";
 import { ArticleCards } from "../components/article-cards";
-import { ArticleService } from "../lib/article-service";
 import { CourseCards } from "../components/course-cards";
-import { CourseService } from "../lib/course-service";
 import { ProjectCards } from "../components/project-cards";
-import { ProjectService } from "../lib/project-service";
+import { ArticleService } from "../lib/articles";
+import { CourseService } from "../lib/courses";
+import { ProjectService } from "../lib/projects";
 import { createMetaTags } from "../lib/meta";
 
 export async function loader() {

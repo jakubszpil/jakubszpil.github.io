@@ -10,9 +10,8 @@ import {
 } from "vitest";
 
 import { CreationDate, type CreationDateProps } from "../ui/creation-date";
-import type { ProjectFeed } from "../../lib/project-feed";
+import { type ProjectFeed, ProjectStatus } from "../../lib/projects";
 import { ProjectCard } from "../project-card";
-import { ProjectStatus } from "../../lib/project";
 
 vi.mock("../ui/creation-date");
 

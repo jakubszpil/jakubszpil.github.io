@@ -11,8 +11,7 @@ import {
 } from "vitest";
 
 import CourseList, { loader } from "../course-list";
-import type { CourseFeed } from "../../lib/course-feed";
-import { CourseService } from "../../lib/course-service";
+import { type CourseFeed, CourseService } from "../../lib/courses";
 import {
   CourseCards,
   type CourseCardsProps,

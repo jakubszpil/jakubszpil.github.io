@@ -1,5 +1,4 @@
-import type { ProjectStatus } from "../lib/project";
-import type { ProjectFeed } from "../lib/project-feed";
+import type { ProjectFeed, ProjectStatus } from "../lib/projects";
 import { Button, type ButtonProps } from "./ui/button";
 import { CreationDate } from "./ui/creation-date";
 import { IconBrandGithub } from "./ui/icons";

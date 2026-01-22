@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { ArticleService } from "../lib/article-service";
+import { ArticleService } from "../lib/articles";
 import { notFound } from "../lib/navigation";
 import { createMetaTags } from "../lib/meta";
 import { Banner } from "../components/ui/banner";

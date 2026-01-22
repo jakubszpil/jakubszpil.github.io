@@ -11,7 +11,7 @@ import {
 
 import { CourseCard, type CourseCardProps } from "../course-card";
 import { CourseCards } from "../course-cards";
-import type { CourseFeed } from "../../lib/course-feed";
+import type { CourseFeed } from "../../lib/courses";
 
 vi.mock("../course-card");
 

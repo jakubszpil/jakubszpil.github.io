@@ -19,8 +19,7 @@ import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../../components/article-categories";
-import type { ArticleFeed } from "../../lib/article-feed";
-import { ArticleService } from "../../lib/article-service";
+import { type ArticleFeed, ArticleService } from "../../lib/articles";
 
 vi.mock("../../components/article-cards");
 vi.mock("../../components/article-categories");

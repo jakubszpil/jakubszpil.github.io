@@ -1,4 +1,4 @@
-import { injectScript } from "../../lib/scripts";
+import { injectScript } from "../lib/scripts";
 
 export interface InlineScriptProps {
   code: string;

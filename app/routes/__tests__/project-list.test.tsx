@@ -11,9 +11,11 @@ import {
 } from "vitest";
 
 import ProjectList, { loader } from "../project-list";
-import { ProjectStatus } from "../../lib/project";
-import type { ProjectFeed } from "../../lib/project-feed";
-import { ProjectService } from "../../lib/project-service";
+import {
+  type ProjectFeed,
+  ProjectStatus,
+  ProjectService,
+} from "../../lib/projects";
 import {
   ProjectCards,
   type ProjectCardsProps,

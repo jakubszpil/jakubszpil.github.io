@@ -1,5 +1,4 @@
 import { config } from "./config";
-import { pipe } from "./pipe";
 
 export const capitalize = (value: string) =>
   value
@@ -24,6 +23,5 @@ export const retrieveIndividualName = (text?: string) => {
   return text;
 };
 
-export const getCapitalizedIndividualName = pipe(retrieveSpaceInString)
-  .pipe(capitalize)
-  .pipe(retrieveIndividualName);
+export const getCapitalizedIndividualName = (value: string) =>
+  retrieveIndividualName(capitalize(retrieveSpaceInString(value)));

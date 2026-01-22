@@ -2,7 +2,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { ArticleCards } from "../components/article-cards";
 import { ArticleCategories } from "../components/article-categories";
-import { ArticleService } from "../lib/article-service";
+import { ArticleService } from "../lib/articles";
 import { createMetaTags } from "../lib/meta";
 import { getCapitalizedIndividualName } from "../lib/string";
 

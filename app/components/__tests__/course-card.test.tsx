@@ -14,7 +14,7 @@ import {
   type LinkWithPrefetchProps,
 } from "../ui/link-with-prefetch";
 import { Banner, type BannerProps } from "../ui/banner";
-import type { CourseFeed } from "../../lib/course-feed";
+import type { CourseFeed } from "../../lib/courses";
 import { CourseCard } from "../course-card";
 
 vi.mock("../ui/link-with-prefetch");

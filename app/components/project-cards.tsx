@@ -1,5 +1,5 @@
 import { cn } from "../lib/helpers";
-import type { ProjectFeed } from "../lib/project-feed";
+import type { ProjectFeed } from "../lib/projects";
 import { ProjectCard } from "./project-card";
 import type { ButtonProps } from "./ui/button";
 

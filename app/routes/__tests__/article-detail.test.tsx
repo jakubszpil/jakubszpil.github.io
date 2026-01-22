@@ -15,8 +15,7 @@ import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../../components/article-categories";
-import type { Article } from "../../lib/article";
-import { ArticleService } from "../../lib/article-service";
+import { type Article, ArticleService } from "../../lib/articles";
 import {
   EditResource,
   type EditResourceProps,

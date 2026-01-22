@@ -1,4 +1,4 @@
-import type { ArticleFeed } from "../lib/article-feed";
+import type { ArticleFeed } from "../lib/articles";
 import { cn } from "../lib/helpers";
 import { ArticleCard } from "./article-card";
 import type { ButtonProps } from "./ui/button";

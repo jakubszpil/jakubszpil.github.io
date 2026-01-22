@@ -11,8 +11,7 @@ import {
 
 import { ProjectCard, type ProjectCardProps } from "../project-card";
 import { ProjectCards } from "../project-cards";
-import type { ProjectFeed } from "../../lib/project-feed";
-import { ProjectStatus } from "../../lib/project";
+import { type ProjectFeed, ProjectStatus } from "../../lib/projects";
 
 vi.mock("../project-card");
 

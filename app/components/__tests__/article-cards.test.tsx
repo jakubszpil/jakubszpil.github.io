@@ -11,7 +11,7 @@ import {
 
 import { ArticleCard, type ArticleCardProps } from "../article-card";
 import { ArticleCards } from "../article-cards";
-import type { ArticleFeed } from "../../lib/article-feed";
+import type { ArticleFeed } from "../../lib/articles";
 
 vi.mock("../article-card");
 

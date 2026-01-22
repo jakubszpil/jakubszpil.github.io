@@ -10,8 +10,7 @@ import {
   type MockInstance,
 } from "vitest";
 
-import type { Course } from "../../lib/course";
-import { CourseService } from "../../lib/course-service";
+import { type Course, CourseService } from "../../lib/courses";
 import {
   Categories,
   type CategoriesProps,

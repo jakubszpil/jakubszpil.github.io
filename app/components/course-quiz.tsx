@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 
-import type { Course } from "../lib/course";
-import type { CourseQuizQuestion } from "../lib/course-quiz";
+import type { Course, CourseQuizQuestion } from "../lib/courses";
 import { shuffleArray } from "../lib/array";
 import { Button } from "./ui/button";
 import { cn } from "../lib/helpers";
