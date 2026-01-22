@@ -8,9 +8,9 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "serve dist/client",
-    "typecheck": "turbo typecheck && tsgo --noEmit",
-    "test": "turbo test && vitest run",
-    "test:ci": "turbo test:ci && vitest run --hideSkippedTests --silent --no-color",
+    "typecheck": "tsgo --noEmit",
+    "test": "vitest run",
+    "test:ci": "vitest run --hideSkippedTests --silent --no-color",
     "deploy": "npm run typecheck && npm run test && npm run build",
     "clean-install": "rm -rf node_modules package-lock.json && npm install"
   },
