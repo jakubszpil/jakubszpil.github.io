@@ -38,15 +38,15 @@ jobs:
 
       - name: Check types 🛠️
         run: |
-          npm run typecheck
+          turbo typecheck
 
       - name: Test 🔧
         run: |
-          npm run test:ci
+          turbo test:ci
 
       - name: Build 🔧
         run: |
-          npm run build
+          turbo build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
