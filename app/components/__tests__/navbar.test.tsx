@@ -8,15 +8,11 @@ import {
 } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { LinkWithPrefetch } from "@packages/shared";
-
+import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 import { Navbar } from "../navbar";
 import { NavbarLink } from "../navbar-link";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  LinkWithPrefetch: vi.fn(),
-}));
+vi.mock("../ui/link-with-prefetch");
 
 describe("<Navbar />", () => {
   let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
@@ -40,7 +36,7 @@ describe("<Navbar />", () => {
       <Navbar>
         <NavbarLink to="/about">About</NavbarLink>
         <NavbarLink to="/search">Search</NavbarLink>
-      </Navbar>
+      </Navbar>,
     );
 
     await screen.findByText(/About/);

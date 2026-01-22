@@ -9,14 +9,10 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { LinkWithPrefetch } from "@packages/shared";
-
+import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 import { FooterLink, type FooterLinkProps } from "../footer-link";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  LinkWithPrefetch: vi.fn(),
-}));
+vi.mock("../ui/link-with-prefetch");
 
 describe("<FooterLink />", () => {
   let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;

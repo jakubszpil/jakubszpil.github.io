@@ -1,5 +1,5 @@
-import { getLocalizedDate } from "../utils/date";
-import { cn } from "../utils/helpers";
+import { getLocalizedDate } from "../../lib/date";
+import { cn } from "../../lib/helpers";
 
 export interface CreationDateProps {
   date: string;

@@ -10,20 +10,15 @@ import {
 } from "vitest";
 
 import {
-  Banner,
-  type BannerProps,
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
-} from "@packages/shared";
-
+} from "../ui/link-with-prefetch";
+import { Banner, type BannerProps } from "../ui/banner";
 import type { ArticleFeed } from "../../lib/article-feed";
 import { ArticleCard } from "../article-card";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  LinkWithPrefetch: vi.fn(),
-  Banner: vi.fn(),
-}));
+vi.mock("../ui/link-with-prefetch");
+vi.mock("../ui/banner");
 
 describe("<ArticleCard />", () => {
   let MockedLinkWithPrefetch: MockedFunction<typeof LinkWithPrefetch>;

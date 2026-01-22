@@ -9,16 +9,12 @@ import {
   type MockedFunction,
 } from "vitest";
 
-import { CreationDate, type CreationDateProps } from "@packages/shared";
-
+import { CreationDate, type CreationDateProps } from "../ui/creation-date";
 import type { ProjectFeed } from "../../lib/project-feed";
 import { ProjectCard } from "../project-card";
 import { ProjectStatus } from "../../lib/project";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  CreationDate: vi.fn(),
-}));
+vi.mock("../ui/creation-date");
 
 describe("<ProjectCard />", () => {
   let MockedCreationDate: MockedFunction<typeof CreationDate>;

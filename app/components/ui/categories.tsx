@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { getCapitalizedIndividualName } from "../utils/string";
+import { getCapitalizedIndividualName } from "../../lib/string";
 import { Button } from "./button";
 import { LinkWithPrefetch } from "./link-with-prefetch";
 
@@ -37,7 +37,7 @@ export function Categories({
     <div className="flex items-center gap-3 flex-wrap">
       {showAllCategory && renderCategory("wszystko", baseUrl)}
       {categories.map((name) =>
-        renderCategory(name, `${categoryPrefixUrl}/${name}`)
+        renderCategory(name, `${categoryPrefixUrl}/${name}`),
       )}
     </div>
   );

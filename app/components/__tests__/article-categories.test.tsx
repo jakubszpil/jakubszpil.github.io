@@ -9,17 +9,13 @@ import {
   type MockedFunction,
 } from "vitest";
 
-import { Categories, type CategoriesProps } from "@packages/shared";
-
+import { Categories, type CategoriesProps } from "../ui/categories";
 import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../article-categories";
 
-vi.mock("@packages/shared", async (importActual) => ({
-  ...(await importActual()),
-  Categories: vi.fn(),
-}));
+vi.mock("../ui/categories");
 
 describe("<ArticleCategories />", () => {
   let MockedCategories: MockedFunction<typeof Categories>;
@@ -49,7 +45,7 @@ describe("<ArticleCategories />", () => {
         categories: MOCKED_PROPS.categories,
         showAllCategory: MOCKED_PROPS.showAllCategory,
       } satisfies CategoriesProps,
-      undefined
+      undefined,
     );
   });
 });
