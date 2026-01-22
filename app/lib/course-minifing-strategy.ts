@@ -1,5 +1,4 @@
-import type { MinifingStrategy } from "@packages/shared/server";
-
+import type { MinifingStrategy } from "./content";
 import type { Course } from "./course";
 import type { CourseFeed } from "./course-feed";
 

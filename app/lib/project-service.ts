@@ -1,5 +1,4 @@
-import { createResourceService } from "@packages/shared/server";
-
+import { createResourceService } from "./resources";
 import type { Project } from "./project";
 import type { ProjectFeed } from "./project-feed";
 import { ProjectMinifingStrategy } from "./project-minifing-strategy";

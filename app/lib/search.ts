@@ -1,6 +1,6 @@
 import { createPath, redirect } from "react-router";
 
-import { isValidUrl } from "@packages/shared";
+import { isValidUrl } from "./url";
 
 export const queryParamName = "q";
 
@@ -8,7 +8,7 @@ const searchResultsCache = new Map<string, unknown>();
 
 export function getSearchResults<T extends Record<string, unknown[]>>(
   results: T,
-  query: string | null
+  query: string | null,
 ): T {
   if (query && searchResultsCache.has(query)) {
     return searchResultsCache.get(query) as T;
@@ -23,7 +23,7 @@ export function getSearchResults<T extends Record<string, unknown[]>>(
     Object.entries(results).map(([key, results]) => [
       key,
       results.filter(checkIfMatchesQuery),
-    ])
+    ]),
   ) as T;
 
   if (query) {
@@ -34,11 +34,11 @@ export function getSearchResults<T extends Record<string, unknown[]>>(
 }
 
 export function getSearchResultsLength<T extends Record<string, unknown[]>>(
-  searchResults: T
+  searchResults: T,
 ): number {
   return Object.values(searchResults).reduce<number>(
     (count, { length }) => count + length,
-    0
+    0,
   );
 }
 

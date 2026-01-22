@@ -1,4 +1,5 @@
-import { config, useHydrated } from "@packages/shared";
+import { config } from "../lib/config";
+import { useHydrated } from "./use-hydrated";
 
 export function usePrerender() {
   const hydrated = useHydrated();

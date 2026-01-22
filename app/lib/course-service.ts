@@ -1,5 +1,4 @@
-import { createResourceService } from "@packages/shared/server";
-
+import { createResourceService } from "./resources";
 import type { Course } from "./course";
 import type { CourseFeed } from "./course-feed";
 import { CourseParsingStrategy } from "./course-parsing-strategy";

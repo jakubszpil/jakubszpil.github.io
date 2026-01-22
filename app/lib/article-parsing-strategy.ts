@@ -1,10 +1,9 @@
 import {
-  type ParsingStrategy,
   getReadingTimeLabel,
   processContent,
   processFile,
-} from "@packages/shared/server";
-
+  type ParsingStrategy,
+} from "./content";
 import type { Article } from "./article";
 
 export class ArticleParsingStrategy implements ParsingStrategy<Article> {

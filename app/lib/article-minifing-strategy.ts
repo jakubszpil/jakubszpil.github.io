@@ -1,7 +1,6 @@
-import type { MinifingStrategy } from "@packages/shared/server";
-
 import type { Article } from "./article";
 import type { ArticleFeed } from "./article-feed";
+import type { MinifingStrategy } from "./content";
 
 export class ArticleMinifingStrategy implements MinifingStrategy<
   Article,

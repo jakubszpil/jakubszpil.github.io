@@ -1,5 +1,4 @@
-import { type ParsingStrategy, processFile } from "@packages/shared/server";
-
+import { processFile, type ParsingStrategy } from "./content";
 import type { Project } from "./project";
 
 export class ProjectParsingStrategy implements ParsingStrategy<Project> {

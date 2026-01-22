@@ -1,5 +1,4 @@
-import type { MinifingStrategy } from "@packages/shared/server";
-
+import type { MinifingStrategy } from "./content";
 import type { Project } from "./project";
 import type { ProjectFeed } from "./project-feed";
 

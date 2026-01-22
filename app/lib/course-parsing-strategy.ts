@@ -1,11 +1,10 @@
-import { shuffleArray } from "@packages/shared";
+import { shuffleArray } from "./array";
 import {
-  type ParsingStrategy,
   getReadingTimeLabel,
   processContent,
   processFile,
-} from "@packages/shared/server";
-
+  type ParsingStrategy,
+} from "./content";
 import type { Course } from "./course";
 import type { CourseQuiz } from "./course-quiz";
 
@@ -23,7 +22,7 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
         answer: index,
         options,
       };
-    })
+    }),
   );
 
   return {
