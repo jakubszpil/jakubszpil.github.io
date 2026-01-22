@@ -11,17 +11,20 @@ import {
 } from "vitest";
 
 import ProjectList, { loader } from "../project-list";
-import { ProjectStatus } from "../../data-access/project";
-import type { ProjectFeed } from "../../data-access/project-feed";
-import { ProjectService } from "../../data-access/project-service";
-import { ProjectCards, type ProjectCardsProps } from "../../ui/project-cards";
+import { ProjectStatus } from "../../lib/project";
+import type { ProjectFeed } from "../../lib/project-feed";
+import { ProjectService } from "../../lib/project-service";
+import {
+  ProjectCards,
+  type ProjectCardsProps,
+} from "../../components/project-cards";
 import {
   ProjectTechnologies,
   type ProjectTechnologiesProps,
-} from "../../ui/project-technologies";
+} from "../../components/project-technologies";
 
-vi.mock("../../ui/project-cards");
-vi.mock("../../ui/project-technologies");
+vi.mock("../../components/project-cards");
+vi.mock("../../components/project-technologies");
 
 describe("<ProjectList />", () => {
   let MockedProjectCards: MockInstance<typeof ProjectCards>;
@@ -97,14 +100,14 @@ describe("<ProjectList />", () => {
         technologies: MOCKED_TECHNOLOGIES,
         showAllTechnology: true,
       } satisfies ProjectTechnologiesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedProjectCards).toHaveBeenCalledWith(
       {
         projects: MOCKED_PROJECTS,
       } satisfies ProjectCardsProps,
-      undefined
+      undefined,
     );
   });
 
@@ -112,7 +115,7 @@ describe("<ProjectList />", () => {
     const MOCKED_TECHNOLOGY = "example";
 
     MockedGetProjectByTechnology.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_PROJECTS[1]])
+      Promise.resolve([MOCKED_PROJECTS[1]]),
     );
 
     const Stub = createRoutesStub([
@@ -131,13 +134,13 @@ describe("<ProjectList />", () => {
             technology: MOCKED_TECHNOLOGY,
           }),
         ]}
-      />
+      />,
     );
 
     await screen.findByText("Example");
 
     expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(
-      MOCKED_TECHNOLOGY
+      MOCKED_TECHNOLOGY,
     );
     expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
 
@@ -146,14 +149,14 @@ describe("<ProjectList />", () => {
         technologies: MOCKED_TECHNOLOGIES,
         showAllTechnology: true,
       } satisfies ProjectTechnologiesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedProjectCards).toHaveBeenCalledWith(
       {
         projects: [MOCKED_PROJECTS[1]],
       } satisfies ProjectCardsProps,
-      undefined
+      undefined,
     );
   });
 });

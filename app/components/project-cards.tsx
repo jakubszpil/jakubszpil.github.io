@@ -1,6 +1,6 @@
 import { type ButtonProps, cn } from "@packages/shared";
 
-import type { ProjectFeed } from "../data-access/project-feed";
+import type { ProjectFeed } from "../lib/project-feed";
 import { ProjectCard } from "./project-card";
 
 export interface ProjectCardsProps {
@@ -18,7 +18,7 @@ export function ProjectCards({
     <section
       className={cn(
         "container pt-0! prose grid gap-3 grid-cols-fill",
-        className
+        className,
       )}
     >
       {projects.map((project) => (

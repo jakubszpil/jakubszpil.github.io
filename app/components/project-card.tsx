@@ -5,8 +5,8 @@ import {
   IconBrandGithub,
 } from "@packages/shared";
 
-import type { ProjectStatus } from "../data-access/project";
-import type { ProjectFeed } from "../data-access/project-feed";
+import type { ProjectStatus } from "../lib/project";
+import type { ProjectFeed } from "../lib/project-feed";
 
 export interface ProjectCardProps {
   project: ProjectFeed;

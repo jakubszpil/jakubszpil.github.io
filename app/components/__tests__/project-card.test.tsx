@@ -11,9 +11,9 @@ import {
 
 import { CreationDate, type CreationDateProps } from "@packages/shared";
 
-import type { ProjectFeed } from "../../data-access/project-feed";
+import type { ProjectFeed } from "../../lib/project-feed";
 import { ProjectCard } from "../project-card";
-import { ProjectStatus } from "../../data-access/project";
+import { ProjectStatus } from "../../lib/project";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),
@@ -54,7 +54,7 @@ describe("<ProjectCard />", () => {
       expect.objectContaining({
         date: MOCKED_PROJECT_FEED.createdAt,
       } satisfies CreationDateProps),
-      undefined
+      undefined,
     );
   });
 });

@@ -2,9 +2,9 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
 
-import { ProjectService } from "../data-access/project-service";
-import { ProjectTechnologies } from "../ui/project-technologies";
-import { ProjectCards } from "../ui/project-cards";
+import { ProjectService } from "../lib/project-service";
+import { ProjectTechnologies } from "../components/project-technologies";
+import { ProjectCards } from "../components/project-cards";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {

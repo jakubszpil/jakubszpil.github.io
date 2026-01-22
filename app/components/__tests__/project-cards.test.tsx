@@ -11,8 +11,8 @@ import {
 
 import { ProjectCard, type ProjectCardProps } from "../project-card";
 import { ProjectCards } from "../project-cards";
-import type { ProjectFeed } from "../../data-access/project-feed";
-import { ProjectStatus } from "../../data-access/project";
+import type { ProjectFeed } from "../../lib/project-feed";
+import { ProjectStatus } from "../../lib/project";
 
 vi.mock("../project-card");
 
@@ -62,7 +62,7 @@ describe("<ProjectCards />", () => {
         project: MOCKED_PROJECT_FEEDS[0],
         variant: "ghost",
       } satisfies ProjectCardProps,
-      undefined
+      undefined,
     );
 
     expect(MockedProjectCard).toHaveBeenNthCalledWith(
@@ -71,7 +71,7 @@ describe("<ProjectCards />", () => {
         project: MOCKED_PROJECT_FEEDS[1],
         variant: "ghost",
       } satisfies ProjectCardProps,
-      undefined
+      undefined,
     );
 
     expect(MockedProjectCard).toHaveBeenNthCalledWith(
@@ -80,7 +80,7 @@ describe("<ProjectCards />", () => {
         project: MOCKED_PROJECT_FEEDS[2],
         variant: "ghost",
       } satisfies ProjectCardProps,
-      undefined
+      undefined,
     );
   });
 });
