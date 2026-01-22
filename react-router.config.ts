@@ -23,7 +23,6 @@ export default {
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
-
     const files = await readdir(__clientDirname, { recursive: true });
 
     for (const file of files) {
@@ -39,6 +38,8 @@ export default {
         await writeFile(targetPath, minifyContent(fileContent), "utf-8");
       }
     }
+
+    process.exit(0);
   },
   async prerender({ getStaticPaths }) {
     const blogArticles = await ArticleService.getSlugs();
