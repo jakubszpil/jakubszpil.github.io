@@ -2,8 +2,8 @@ import { useCallback, useState } from "react";
 
 import { shuffleArray, Button, cn } from "@packages/shared";
 
-import type { Course } from "../data-access/course";
-import type { CourseQuizQuestion } from "../data-access/course-quiz";
+import type { Course } from "../lib/course";
+import type { CourseQuizQuestion } from "../lib/course-quiz";
 
 export interface CourseQuizProps {
   quiz: Course["quiz"];
@@ -49,7 +49,7 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
       setShowAnswer(true);
       if (option === answer) setScore((s) => s + 1);
     },
-    [showAnswer, answer]
+    [showAnswer, answer],
   );
 
   const handleNext = useCallback(() => {
@@ -112,7 +112,7 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
                   ? "bg-green-400! dark:bg-green-800!"
                   : selected === opt && showAnswer && opt !== answer
                     ? "bg-red-400! dark:bg-red-800!"
-                    : showAnswer && "hover:bg-inherit!"
+                    : showAnswer && "hover:bg-inherit!",
               )}
               onClick={() => handleOptionClick(opt)}
             >

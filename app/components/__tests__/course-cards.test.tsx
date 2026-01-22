@@ -11,7 +11,7 @@ import {
 
 import { CourseCard, type CourseCardProps } from "../course-card";
 import { CourseCards } from "../course-cards";
-import type { CourseFeed } from "../../data-access/course-feed";
+import type { CourseFeed } from "../../lib/course-feed";
 
 vi.mock("../course-card");
 
@@ -61,7 +61,7 @@ describe("<CourseCards />", () => {
         course: MOCKED_COURSE_FEEDS[0],
         variant: "ghost",
       } satisfies CourseCardProps,
-      undefined
+      undefined,
     );
 
     expect(MockedCourseCard).toHaveBeenNthCalledWith(
@@ -70,7 +70,7 @@ describe("<CourseCards />", () => {
         course: MOCKED_COURSE_FEEDS[1],
         variant: "ghost",
       } satisfies CourseCardProps,
-      undefined
+      undefined,
     );
 
     expect(MockedCourseCard).toHaveBeenNthCalledWith(
@@ -79,7 +79,7 @@ describe("<CourseCards />", () => {
         course: MOCKED_COURSE_FEEDS[2],
         variant: "ghost",
       } satisfies CourseCardProps,
-      undefined
+      undefined,
     );
   });
 });

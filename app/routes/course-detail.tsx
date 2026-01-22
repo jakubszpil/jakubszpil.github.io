@@ -7,9 +7,9 @@ import {
   notFound,
 } from "@packages/shared";
 
-import { CourseService } from "../data-access/course-service";
-import { CourseCategories } from "../ui/course-categories";
-import { CourseQuiz } from "../ui/course-quiz";
+import { CourseService } from "../lib/course-service";
+import { CourseCategories } from "../components/course-categories";
+import { CourseQuiz } from "../components/course-quiz";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await CourseService.findUnique(slug);

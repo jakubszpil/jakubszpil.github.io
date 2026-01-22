@@ -2,9 +2,9 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { createMetaTags, getCapitalizedIndividualName } from "@packages/shared";
 
-import { CourseService } from "../data-access/course-service";
-import { CourseCards } from "../ui/course-cards";
-import { CourseCategories } from "../ui/course-categories";
+import { CourseService } from "../lib/course-service";
+import { CourseCards } from "../components/course-cards";
+import { CourseCategories } from "../components/course-categories";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {

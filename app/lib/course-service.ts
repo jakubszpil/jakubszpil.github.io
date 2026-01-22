@@ -6,7 +6,7 @@ import { CourseParsingStrategy } from "./course-parsing-strategy";
 import { CourseMinifingStrategy } from "./course-minifing-strategy";
 
 export class CourseService extends createResourceService<Course, CourseFeed>({
-  files: import.meta.glob<string>("../../../content/*.md", {
+  files: import.meta.glob<string>("../../content/courses/*.md", {
     import: "default",
     query: "?raw",
   }),

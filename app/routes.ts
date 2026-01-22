@@ -6,7 +6,6 @@ import {
   index,
 } from "@react-router/dev/routes";
 
-import { routes as setupRoutesForCourses } from "@packages/feature-courses/server";
 import { routes as setupRoutesForProjects } from "@packages/feature-projects/server";
 
 export default [
@@ -18,7 +17,13 @@ export default [
       }),
       route(":slug", "routes/article-detail.tsx", { id: "article-detail" }),
     ]),
-    ...prefix("learning", setupRoutesForCourses()),
+    ...prefix("learning", [
+      index("feature/course-list.tsx", { id: "course-list" }),
+      route("kategorie/:category", "feature/course-list.tsx", {
+        id: "course-list-with-category",
+      }),
+      route(":slug", "feature/course-detail.tsx", { id: "course-detail" }),
+    ]),
     ...prefix("portfolio", setupRoutesForProjects()),
     index("routes/home.tsx", { id: "home" }),
     route("search", "routes/search.tsx", { id: "search" }),

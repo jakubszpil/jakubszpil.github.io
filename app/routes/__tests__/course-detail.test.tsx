@@ -20,8 +20,8 @@ import {
 } from "@packages/shared";
 
 import CourseDetail, { loader } from "../course-detail";
-import type { Course } from "../../data-access/course";
-import { CourseService } from "../../data-access/course-service";
+import type { Course } from "../../lib/course";
+import { CourseService } from "../../lib/course-service";
 
 vi.mock("@packages/shared", async (importActual) => ({
   ...(await importActual()),
@@ -85,7 +85,7 @@ describe("<CourseDetail />", () => {
         initialEntries={[
           generatePath("/learning/:slug", { slug: MockedCourse.slug }),
         ]}
-      />
+      />,
     );
 
     await screen.findByText(MockedCourse.title);
@@ -98,7 +98,7 @@ describe("<CourseDetail />", () => {
         baseUrl: "/learning",
         categoryPrefixUrl: "/learning/kategorie",
       } satisfies CategoriesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedEditResource).toHaveBeenCalledWith(
@@ -106,7 +106,7 @@ describe("<CourseDetail />", () => {
         slug: MockedCourse.slug,
         resourceType: "courses",
       } satisfies EditResourceProps,
-      undefined
+      undefined,
     );
 
     expect(MockedBanner).toHaveBeenCalledWith(
@@ -115,7 +115,7 @@ describe("<CourseDetail />", () => {
         readingTime: MockedCourse.readingTime,
         className: "my-6",
       } satisfies BannerProps,
-      undefined
+      undefined,
     );
   });
 });

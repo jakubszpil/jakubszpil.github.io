@@ -1,6 +1,6 @@
 import { type ButtonProps, cn } from "@packages/shared";
 
-import type { CourseFeed } from "../data-access/course-feed";
+import type { CourseFeed } from "../lib/course-feed";
 import { CourseCard } from "./course-card";
 
 export interface CourseCardsProps {
@@ -14,7 +14,7 @@ export function CourseCards({ courses, className, variant }: CourseCardsProps) {
     <section
       className={cn(
         "container pt-0! prose grid gap-3 grid-cols-fill",
-        className
+        className,
       )}
     >
       {courses.map((course) => (

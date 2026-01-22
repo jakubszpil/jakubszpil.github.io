@@ -4,7 +4,7 @@ import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
 import { ArticleService } from "./app/lib/article-service";
-import { CourseService } from "@packages/feature-courses/server";
+import { CourseService } from "./app/lib/course-service";
 import { ProjectService } from "@packages/feature-projects/server";
 
 function minifyContent(content: string) {

@@ -11,16 +11,19 @@ import {
 } from "vitest";
 
 import CourseList, { loader } from "../course-list";
-import type { CourseFeed } from "../../data-access/course-feed";
-import { CourseService } from "../../data-access/course-service";
-import { CourseCards, type CourseCardsProps } from "../../ui/course-cards";
+import type { CourseFeed } from "../../lib/course-feed";
+import { CourseService } from "../../lib/course-service";
+import {
+  CourseCards,
+  type CourseCardsProps,
+} from "../../components/course-cards";
 import {
   CourseCategories,
   type CourseCategoriesProps,
-} from "../../ui/course-categories";
+} from "../../components/course-categories";
 
-vi.mock("../../ui/course-cards");
-vi.mock("../../ui/course-categories");
+vi.mock("../../components/course-cards");
+vi.mock("../../components/course-categories");
 
 describe("<CourseList />", () => {
   let MockedCourseCards: MockInstance<typeof CourseCards>;
@@ -96,14 +99,14 @@ describe("<CourseList />", () => {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
       } satisfies CourseCategoriesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedCourseCards).toHaveBeenCalledWith(
       {
         courses: MOCKED_COURSES,
       } satisfies CourseCardsProps,
-      undefined
+      undefined,
     );
   });
 
@@ -111,7 +114,7 @@ describe("<CourseList />", () => {
     const MOCKED_CATEGORY = "example";
 
     MockedGetCourseByCategory.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_COURSES[1]])
+      Promise.resolve([MOCKED_COURSES[1]]),
     );
 
     const Stub = createRoutesStub([
@@ -130,7 +133,7 @@ describe("<CourseList />", () => {
             category: MOCKED_CATEGORY,
           }),
         ]}
-      />
+      />,
     );
 
     await screen.findByText("Example");
@@ -143,14 +146,14 @@ describe("<CourseList />", () => {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
       } satisfies CourseCategoriesProps,
-      undefined
+      undefined,
     );
 
     expect(MockedCourseCards).toHaveBeenCalledWith(
       {
         courses: [MOCKED_COURSES[1]],
       } satisfies CourseCardsProps,
-      undefined
+      undefined,
     );
   });
 });

@@ -16,7 +16,7 @@ import {
   type LinkWithPrefetchProps,
 } from "@packages/shared";
 
-import type { CourseFeed } from "../../data-access/course-feed";
+import type { CourseFeed } from "../../lib/course-feed";
 import { CourseCard } from "../course-card";
 
 vi.mock("@packages/shared", async (importActual) => ({
@@ -63,7 +63,7 @@ describe("<CourseCard />", () => {
       expect.objectContaining({
         to: `/learning/${MOCKED_COURSE_FEED.slug}`,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
 
     expect(MockedBanner).toHaveBeenCalledWith(
@@ -71,7 +71,7 @@ describe("<CourseCard />", () => {
         createdAt: MOCKED_COURSE_FEED.createdAt,
         readingTime: MOCKED_COURSE_FEED.readingTime,
       } satisfies BannerProps),
-      undefined
+      undefined,
     );
   });
 });

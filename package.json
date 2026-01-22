@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@headlessui/react": "2.2.9",
-    "@packages/feature-courses": "*",
     "@packages/feature-projects": "*",
     "@packages/shared": "*",
     "@react-router/dev": "7.12.0",
