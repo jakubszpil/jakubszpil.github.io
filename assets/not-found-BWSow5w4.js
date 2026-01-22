@@ -1,0 +1,1 @@
+function e(e){return new Response(null,{status:404,statusText:e})}async function t(){throw e()}export{t};

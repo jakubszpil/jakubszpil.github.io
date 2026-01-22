@@ -1,1 +1,0 @@
-import{H as e,t}from"./jsx-runtime-DMawWLDI.js";import{T as n}from"./src-DJwQwobt.js";var r=e(t());function i({categories:e,showAllCategory:t}){return(0,r.jsx)(n,{categories:e,showAllCategory:t,baseUrl:`/blog`,categoryPrefixUrl:`/blog/kategorie`})}export{i as t};
