@@ -1,23 +1,29 @@
 import {
   type RouteConfig,
   layout,
-  prefix,
   route,
   index,
 } from "@react-router/dev/routes";
 
-import { routes as setupRoutesForArticles } from "@packages/feature-articles/server";
-import { routes as setupRoutesForCourses } from "@packages/feature-courses/server";
-import { routes as setupRoutesForProjects } from "@packages/feature-projects/server";
-
 export default [
-  layout("feature/layout.tsx", [
-    ...prefix("blog", setupRoutesForArticles()),
-    ...prefix("learning", setupRoutesForCourses()),
-    ...prefix("portfolio", setupRoutesForProjects()),
-    index("feature/home.tsx", { id: "home" }),
-    route("search", "feature/search.tsx", { id: "search" }),
-    route("me", "feature/about.tsx", { id: "about" }),
-    route("*", "feature/not-found.tsx", { id: "not-found" }),
+  layout("routes/layout.tsx", [
+    route("blog", "routes/article-list.tsx"),
+    route("blog/kategorie/:category", "routes/article-list.tsx", {
+      id: "article-list-with-category",
+    }),
+    route("blog/:slug", "routes/article-detail.tsx"),
+    route("learning", "routes/course-list.tsx"),
+    route("learning/kategorie/:category", "routes/course-list.tsx", {
+      id: "course-list-with-category",
+    }),
+    route("learning/:slug", "routes/course-detail.tsx"),
+    route("portfolio", "routes/project-list.tsx"),
+    route("portfolio/technologie/:technology", "routes/project-list.tsx", {
+      id: "project-list-with-technology",
+    }),
+    index("routes/home.tsx"),
+    route("search", "routes/search.tsx"),
+    route("me", "routes/about.tsx"),
+    route("*", "routes/not-found.tsx"),
   ]),
 ] satisfies RouteConfig;

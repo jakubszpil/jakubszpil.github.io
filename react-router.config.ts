@@ -3,9 +3,9 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { ArticleService } from "@packages/feature-articles/server";
-import { CourseService } from "@packages/feature-courses/server";
-import { ProjectService } from "@packages/feature-projects/server";
+import { ArticleService } from "./app/lib/articles";
+import { CourseService } from "./app/lib/courses";
+import { ProjectService } from "./app/lib/projects";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });
@@ -23,7 +23,6 @@ export default {
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
-
     const files = await readdir(__clientDirname, { recursive: true });
 
     for (const file of files) {
@@ -39,6 +38,8 @@ export default {
         await writeFile(targetPath, minifyContent(fileContent), "utf-8");
       }
     }
+
+    process.exit(0);
   },
   async prerender({ getStaticPaths }) {
     const blogArticles = await ArticleService.getSlugs();
