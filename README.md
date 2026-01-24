@@ -5,7 +5,6 @@ Personal portfolio website for [Jakub Szpil](https://github.com/jakubszpil)
 ## 🚀 Features
 
 - Modern React + TypeScript stack
-- Modular monorepo structure (TurboRepo)
 - Vite-powered fast builds
 - Unit tests for UI and features
 - Content-driven (articles, courses, projects)
@@ -66,7 +65,7 @@ Runs all unit tests for UI and features.
 - [Vite](https://vitejs.dev/)
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [TurboRepo](https://turbo.build/)
+- [React Router](https://reactrouter.com/)
 
 ## 👤 Author
 
