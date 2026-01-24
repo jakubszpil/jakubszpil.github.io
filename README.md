@@ -48,14 +48,18 @@ npm run test
 
 Runs all unit tests for UI and features.
 
-## 📁 Monorepo Structure
+## 📁 Project Structure
 
-- `app/` – Main app, routes, UI, features
-- `packages/feature-articles/` – Articles content & logic
-- `packages/feature-courses/` – Courses content & logic
-- `packages/feature-projects/` – Projects content & logic
-- `packages/shared/` – Shared utilities
-- `public/` – Static assets
+- `app/` – Main application
+  - `routes/` – Page routes
+  - `components/` – React components (UI, cards, navigation, etc.)
+  - `hooks/` – Custom React hooks
+  - `lib/` – Utilities & helpers (articles, courses, projects, content management)
+- `content/` – Markdown content
+  - `articles/` – Blog articles
+  - `courses/` – Educational courses
+  - `projects/` – Portfolio projects
+- `public/` – Static assets (fonts, scripts)
 
 ## 📚 Learn More
 
