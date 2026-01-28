@@ -1,10 +1,13 @@
+import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+
 import {
   processFile,
   type MinifingStrategy,
   type ParsingStrategy,
   type SlugStrategy,
 } from "./content";
-import { createResourceService } from "./resources";
 
 export enum ProjectStatus {
   IDLE = "IDLE",
@@ -18,7 +21,7 @@ export interface Project {
   description: string;
   createdAt: string;
   status: ProjectStatus;
-  categories: string[];
+  technologies: string[];
 }
 
 export interface ProjectFeed {
@@ -29,7 +32,7 @@ export interface ProjectFeed {
   status: ProjectStatus;
 }
 
-export const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
+const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
   project,
 ) => {
   return {
@@ -41,34 +44,95 @@ export const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
   };
 };
 
-export const projectParsingStrategy: ParsingStrategy<Project> = async (
-  slug,
-  file,
-) => {
+const projectParsingStrategy: ParsingStrategy<Project> = async (slug, file) => {
   const { data } = processFile(file);
 
   return {
     slug,
     createdAt: new Date(data.createdAt).toISOString(),
-    categories: data.categories,
+    technologies: data.categories,
     description: data.description,
     status: data.status,
     title: data.title,
   };
 };
 
-export const projectSlugStrategy: SlugStrategy = (key) => {
-  return key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
-};
+async function getAllProjects(): Promise<Project[]> {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const directory = join(__dirname, "../../content/projects");
 
-export class ProjectService extends createResourceService<Project, ProjectFeed>(
-  {
-    files: import.meta.glob<string>("../../content/projects/*.md", {
-      import: "default",
-      query: "?raw",
-    }),
-    minifingStrategy: projectMinifingStrategy,
-    parsingStrategy: projectParsingStrategy,
-    slugStrategy: projectSlugStrategy,
-  },
-) {}
+  const files = await readdir(directory);
+
+  const projects: Project[] = [];
+
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
+    const project = await projectParsingStrategy(slug, file);
+
+    projects.push(project);
+  }
+
+  return projects;
+}
+
+async function getProjects(limit?: number): Promise<ProjectFeed[]> {
+  const projects = await getAllProjects();
+
+  return projects
+    .map(projectMinifingStrategy)
+    .slice(0, limit ?? projects.length);
+}
+
+async function getProjectsByTechnology(
+  technology: string | undefined,
+): Promise<ProjectFeed[]> {
+  const projects = await getAllProjects();
+
+  return projects
+    .filter((project) =>
+      technology ? project.technologies.includes(technology) : true,
+    )
+    .map(projectMinifingStrategy);
+}
+
+async function getProjectTechnologies(): Promise<string[]> {
+  const projects = await getAllProjects();
+
+  const occurrences: Record<string, number> = {};
+
+  const technologies = projects.reduce<string[]>((technologies, project) => {
+    project.technologies?.forEach((technology) => {
+      if (!(technology in occurrences)) occurrences[technology] = 0;
+      if (!technologies.includes(technology)) technologies.push(technology);
+      occurrences[technology]++;
+    });
+
+    return technologies;
+  }, []);
+
+  return technologies.sort((a, b) => occurrences[b] - occurrences[a]);
+}
+
+async function getProjectSlugs(): Promise<string[]> {
+  const projects = await getAllProjects();
+
+  return projects.map((project) => project.slug);
+}
+
+async function getProject(
+  slug: string | undefined,
+): Promise<Project | undefined> {
+  const projects = await getAllProjects();
+
+  return projects.find((project) => project.slug === slug);
+}
+
+export {
+  getProjects,
+  getProjectsByTechnology,
+  getProjectTechnologies,
+  getProjectSlugs,
+  getProject,
+};

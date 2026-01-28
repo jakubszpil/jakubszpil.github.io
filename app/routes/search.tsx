@@ -16,7 +16,7 @@ import { ProjectCards } from "../components/project-cards";
 import { getArticles } from "../lib/articles";
 import { getCourses } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
-import { ProjectService } from "../lib/projects";
+import { getProjects } from "../lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -27,7 +27,7 @@ import {
 export async function loader() {
   const articles = await getArticles();
   const courses = await getCourses();
-  const projects = await ProjectService.findAll();
+  const projects = await getProjects();
   return { articles, courses, projects };
 }
 

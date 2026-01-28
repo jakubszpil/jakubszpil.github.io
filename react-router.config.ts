@@ -5,7 +5,7 @@ import { minify } from "uglify-js";
 
 import { getArticleSlugs, getArticleCategories } from "./app/lib/articles";
 import { getCourseSlugs, getCourseCategories } from "./app/lib/courses";
-import { ProjectService } from "./app/lib/projects";
+import { getProjectTechnologies } from "./app/lib/projects";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });
@@ -48,7 +48,7 @@ export default {
     const learningCourses = await getCourseSlugs();
     const learningCategories = await getCourseCategories();
 
-    const portfolioTechnologies = await ProjectService.getCategories();
+    const portfolioTechnologies = await getProjectTechnologies();
 
     return [
       ...getStaticPaths(),

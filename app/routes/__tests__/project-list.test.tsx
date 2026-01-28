@@ -14,7 +14,8 @@ import ProjectList, { loader } from "../project-list";
 import {
   type ProjectFeed,
   ProjectStatus,
-  ProjectService,
+  getProjectsByTechnology,
+  getProjectTechnologies,
 } from "../../lib/projects";
 import {
   ProjectCards,
@@ -27,6 +28,7 @@ import {
 
 vi.mock("../../components/project-cards");
 vi.mock("../../components/project-technologies");
+vi.mock("../../lib/projects");
 
 describe("<ProjectList />", () => {
   let MockedProjectCards: MockInstance<typeof ProjectCards>;
@@ -36,10 +38,10 @@ describe("<ProjectList />", () => {
   let MOCKED_TECHNOLOGIES: string[];
 
   let MockedGetProjectByTechnology: MockInstance<
-    typeof ProjectService.findAllByCategory
+    typeof getProjectsByTechnology
   >;
   let MockedGetProjectCardsTechnologies: MockInstance<
-    typeof ProjectService.getCategories
+    typeof getProjectTechnologies
   >;
 
   beforeEach(() => {
@@ -66,11 +68,11 @@ describe("<ProjectList />", () => {
     MOCKED_TECHNOLOGIES = ["test", "example"];
 
     MockedGetProjectByTechnology = vi
-      .spyOn(ProjectService, "findAllByCategory")
+      .mocked(getProjectsByTechnology)
       .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
 
     MockedGetProjectCardsTechnologies = vi
-      .spyOn(ProjectService, "getCategories")
+      .mocked(getProjectTechnologies)
       .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
   });
 
