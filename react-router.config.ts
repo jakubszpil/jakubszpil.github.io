@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { ArticleService } from "./app/lib/articles";
+import { getArticleSlugs, getArticleCategories } from "./app/lib/articles";
 import { CourseService } from "./app/lib/courses";
 import { ProjectService } from "./app/lib/projects";
 
@@ -42,8 +42,8 @@ export default {
     process.exit(0);
   },
   async prerender({ getStaticPaths }) {
-    const blogArticles = await ArticleService.getSlugs();
-    const blogCategories = await ArticleService.getCategories();
+    const blogArticles = await getArticleSlugs();
+    const blogCategories = await getArticleCategories();
 
     const learningCourses = await CourseService.getSlugs();
     const learningCategories = await CourseService.getCategories();

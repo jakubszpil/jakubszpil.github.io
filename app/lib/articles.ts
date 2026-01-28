@@ -1,12 +1,13 @@
-import { createResourceService } from "./resources";
 import {
   getReadingTimeLabel,
   processContent,
   processFile,
   type MinifingStrategy,
   type ParsingStrategy,
-  type SlugStrategy,
 } from "./content";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { readdir, readFile } from "node:fs/promises";
 
 export interface ArticleFeed {
   slug: string;
@@ -27,7 +28,7 @@ export interface Article {
   content: string;
 }
 
-export const articleMinifingStrategy: MinifingStrategy<Article, ArticleFeed> = (
+const articleMinifingStrategy: MinifingStrategy<Article, ArticleFeed> = (
   article,
 ) => {
   return {
@@ -39,10 +40,7 @@ export const articleMinifingStrategy: MinifingStrategy<Article, ArticleFeed> = (
   };
 };
 
-export const articleParsingStrategy: ParsingStrategy<Article> = async (
-  slug,
-  file,
-) => {
+const articleParsingStrategy: ParsingStrategy<Article> = async (slug, file) => {
   const { data, content } = processFile(file);
 
   const [fileContent, readingTime] = await processContent(content);
@@ -59,18 +57,82 @@ export const articleParsingStrategy: ParsingStrategy<Article> = async (
   };
 };
 
-export const articleSlugStrategy: SlugStrategy = (key) => {
-  return key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
-};
+async function getAllArticles(): Promise<Article[]> {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const directory = join(__dirname, "../../content/articles");
 
-export class ArticleService extends createResourceService<Article, ArticleFeed>(
-  {
-    files: import.meta.glob<string>("../../content/articles/*.md", {
-      import: "default",
-      query: "?raw",
-    }),
-    minifingStrategy: articleMinifingStrategy,
-    parsingStrategy: articleParsingStrategy,
-    slugStrategy: articleSlugStrategy,
-  },
-) {}
+  const files = await readdir(directory);
+
+  const articles: Article[] = [];
+
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
+    const article = await articleParsingStrategy(slug, file);
+
+    articles.push(article);
+  }
+
+  return articles;
+}
+
+async function getArticles(limit?: number): Promise<ArticleFeed[]> {
+  const articles = await getAllArticles();
+
+  return articles
+    .map(articleMinifingStrategy)
+    .slice(0, limit ?? articles.length);
+}
+
+async function getArticlesByCategory(
+  category: string | undefined,
+): Promise<ArticleFeed[]> {
+  const articles = await getAllArticles();
+
+  return articles
+    .filter((article) =>
+      category ? article.categories.includes(category) : true,
+    )
+    .map(articleMinifingStrategy);
+}
+
+async function getArticleCategories(): Promise<string[]> {
+  const articles = await getAllArticles();
+
+  const occurrences: Record<string, number> = {};
+
+  const categories = articles.reduce<string[]>((categories, article) => {
+    article.categories?.forEach((category) => {
+      if (!(category in occurrences)) occurrences[category] = 0;
+      if (!categories.includes(category)) categories.push(category);
+      occurrences[category]++;
+    });
+
+    return categories;
+  }, []);
+
+  return categories.sort((a, b) => occurrences[b] - occurrences[a]);
+}
+
+async function getArticleSlugs(): Promise<string[]> {
+  const articles = await getAllArticles();
+
+  return articles.map((article) => article.slug);
+}
+
+async function getArticle(
+  slug: string | undefined,
+): Promise<Article | undefined> {
+  const articles = await getAllArticles();
+
+  return articles.find((article) => article.slug === slug);
+}
+
+export {
+  getArticles,
+  getArticlesByCategory,
+  getArticleCategories,
+  getArticleSlugs,
+  getArticle,
+};

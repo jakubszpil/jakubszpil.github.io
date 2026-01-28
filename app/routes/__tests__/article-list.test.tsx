@@ -19,10 +19,15 @@ import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../../components/article-categories";
-import { type ArticleFeed, ArticleService } from "../../lib/articles";
+import {
+  type ArticleFeed,
+  getArticlesByCategory,
+  getArticleCategories,
+} from "../../lib/articles";
 
 vi.mock("../../components/article-cards");
 vi.mock("../../components/article-categories");
+vi.mock("../../lib/articles");
 
 describe("<ArticleList />", () => {
   let MockedArticleCards: MockInstance<typeof ArticleCards>;
@@ -31,12 +36,8 @@ describe("<ArticleList />", () => {
   let MOCKED_ARTICLES: ArticleFeed[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetArticleByCategory: MockInstance<
-    typeof ArticleService.findAllByCategory
-  >;
-  let MockedGetArticlesCategories: MockInstance<
-    typeof ArticleService.getCategories
-  >;
+  let MockedGetArticleByCategory: MockInstance<typeof getArticlesByCategory>;
+  let MockedGetArticlesCategories: MockInstance<typeof getArticleCategories>;
 
   beforeEach(() => {
     MockedArticleCards = vi.mocked(ArticleCards);
@@ -62,11 +63,11 @@ describe("<ArticleList />", () => {
     MOCKED_CATEGORIES = ["test", "example"];
 
     MockedGetArticleByCategory = vi
-      .spyOn(ArticleService, "findAllByCategory")
+      .mocked(getArticlesByCategory)
       .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
 
     MockedGetArticlesCategories = vi
-      .spyOn(ArticleService, "getCategories")
+      .mocked(getArticleCategories)
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 

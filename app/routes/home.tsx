@@ -5,13 +5,13 @@ import { LinkWithPrefetch } from "../components/ui/link-with-prefetch";
 import { ArticleCards } from "../components/article-cards";
 import { CourseCards } from "../components/course-cards";
 import { ProjectCards } from "../components/project-cards";
-import { ArticleService } from "../lib/articles";
+import { getArticles } from "../lib/articles";
 import { CourseService } from "../lib/courses";
 import { ProjectService } from "../lib/projects";
 import { createMetaTags } from "../lib/meta";
 
 export async function loader() {
-  const articles = await ArticleService.findAll(3);
+  const articles = await getArticles(3);
   const courses = await CourseService.findAll(3);
   const projects = await ProjectService.findAll(3);
 

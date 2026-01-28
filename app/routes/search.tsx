@@ -13,7 +13,7 @@ import { Input } from "../components/ui/input";
 import { ArticleCards } from "../components/article-cards";
 import { CourseCards } from "../components/course-cards";
 import { ProjectCards } from "../components/project-cards";
-import { ArticleService } from "../lib/articles";
+import { getArticles } from "../lib/articles";
 import { CourseService } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
 import { ProjectService } from "../lib/projects";
@@ -25,7 +25,7 @@ import {
 } from "../lib/search";
 
 export async function loader() {
-  const articles = await ArticleService.findAll();
+  const articles = await getArticles();
   const courses = await CourseService.findAll();
   const projects = await ProjectService.findAll();
   return { articles, courses, projects };

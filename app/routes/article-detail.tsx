@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { ArticleService } from "../lib/articles";
+import { getArticle } from "../lib/articles";
 import { notFound } from "../lib/navigation";
 import { createMetaTags } from "../lib/meta";
 import { Banner } from "../components/ui/banner";
@@ -8,7 +8,7 @@ import { EditResource } from "../components/ui/edit-resource";
 import { ArticleCategories } from "../components/article-categories";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const article = await ArticleService.findUnique(slug);
+  const article = await getArticle(slug);
 
   if (!article) throw notFound();
 
