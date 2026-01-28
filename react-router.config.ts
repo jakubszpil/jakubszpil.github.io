@@ -4,7 +4,7 @@ import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
 import { getArticleSlugs, getArticleCategories } from "./app/lib/articles";
-import { CourseService } from "./app/lib/courses";
+import { getCourseSlugs, getCourseCategories } from "./app/lib/courses";
 import { ProjectService } from "./app/lib/projects";
 
 function minifyContent(content: string) {
@@ -45,8 +45,8 @@ export default {
     const blogArticles = await getArticleSlugs();
     const blogCategories = await getArticleCategories();
 
-    const learningCourses = await CourseService.getSlugs();
-    const learningCategories = await CourseService.getCategories();
+    const learningCourses = await getCourseSlugs();
+    const learningCategories = await getCourseCategories();
 
     const portfolioTechnologies = await ProjectService.getCategories();
 

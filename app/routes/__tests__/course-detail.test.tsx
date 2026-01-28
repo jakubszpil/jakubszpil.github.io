@@ -10,7 +10,7 @@ import {
   type MockInstance,
 } from "vitest";
 
-import { type Course, CourseService } from "../../lib/courses";
+import { getCourse, type Course } from "../../lib/courses";
 import {
   Categories,
   type CategoriesProps,
@@ -25,6 +25,7 @@ import CourseDetail, { loader } from "../course-detail";
 vi.mock("../../components/ui/categories");
 vi.mock("../../components/ui/edit-resource");
 vi.mock("../../components/ui/banner");
+vi.mock("../../lib/courses");
 
 describe("<CourseDetail />", () => {
   let MockedCategories: MockInstance<typeof Categories>;
@@ -32,7 +33,7 @@ describe("<CourseDetail />", () => {
   let MockedBanner: MockInstance<typeof Banner>;
 
   let MockedCourse: Course;
-  let MockedGetCourse: MockInstance<typeof CourseService.findUnique>;
+  let MockedGetCourse: MockInstance<typeof getCourse>;
 
   beforeEach(() => {
     MockedCategories = vi.mocked(Categories);
@@ -55,7 +56,7 @@ describe("<CourseDetail />", () => {
     };
 
     MockedGetCourse = vi
-      .spyOn(CourseService, "findUnique")
+      .mocked(getCourse)
       .mockImplementation(() => Promise.resolve(MockedCourse));
   });
 

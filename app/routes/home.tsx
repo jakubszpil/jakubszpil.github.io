@@ -6,13 +6,13 @@ import { ArticleCards } from "../components/article-cards";
 import { CourseCards } from "../components/course-cards";
 import { ProjectCards } from "../components/project-cards";
 import { getArticles } from "../lib/articles";
-import { CourseService } from "../lib/courses";
+import { getCourses } from "../lib/courses";
 import { ProjectService } from "../lib/projects";
 import { createMetaTags } from "../lib/meta";
 
 export async function loader() {
   const articles = await getArticles(3);
-  const courses = await CourseService.findAll(3);
+  const courses = await getCourses(3);
   const projects = await ProjectService.findAll(3);
 
   return {

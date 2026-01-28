@@ -1,3 +1,7 @@
+import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+
 import {
   getReadingTimeLabel,
   processContent,
@@ -5,9 +9,6 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import { readdir, readFile } from "node:fs/promises";
 
 export interface ArticleFeed {
   slug: string;

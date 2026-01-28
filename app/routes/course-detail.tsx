@@ -4,12 +4,12 @@ import { Banner } from "../components/ui/banner";
 import { EditResource } from "../components/ui/edit-resource";
 import { CourseCategories } from "../components/course-categories";
 import { CourseQuiz } from "../components/course-quiz";
-import { CourseService } from "../lib/courses";
+import { getCourse } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
 import { notFound } from "../lib/navigation";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
-  const course = await CourseService.findUnique(slug);
+  const course = await getCourse(slug);
 
   if (!course) throw notFound();
 
