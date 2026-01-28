@@ -2,6 +2,7 @@ import {
   processFile,
   type MinifingStrategy,
   type ParsingStrategy,
+  type SlugStrategy,
 } from "./content";
 import { createResourceService } from "./resources";
 
@@ -28,35 +29,37 @@ export interface ProjectFeed {
   status: ProjectStatus;
 }
 
-export class ProjectMinifingStrategy implements MinifingStrategy<
-  Project,
-  ProjectFeed
-> {
-  minify(project: Project): ProjectFeed {
-    return {
-      createdAt: project.createdAt,
-      description: project.description,
-      slug: project.slug,
-      status: project.status,
-      title: project.title,
-    };
-  }
-}
+export const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
+  project,
+) => {
+  return {
+    createdAt: project.createdAt,
+    description: project.description,
+    slug: project.slug,
+    status: project.status,
+    title: project.title,
+  };
+};
 
-export class ProjectParsingStrategy implements ParsingStrategy<Project> {
-  async parse(slug: string, file: string): Promise<Project> {
-    const { data } = processFile(file);
+export const projectParsingStrategy: ParsingStrategy<Project> = async (
+  slug,
+  file,
+) => {
+  const { data } = processFile(file);
 
-    return {
-      slug,
-      createdAt: new Date(data.createdAt).toISOString(),
-      categories: data.categories,
-      description: data.description,
-      status: data.status,
-      title: data.title,
-    } satisfies Project;
-  }
-}
+  return {
+    slug,
+    createdAt: new Date(data.createdAt).toISOString(),
+    categories: data.categories,
+    description: data.description,
+    status: data.status,
+    title: data.title,
+  };
+};
+
+export const projectSlugStrategy: SlugStrategy = (key) => {
+  return key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md"));
+};
 
 export class ProjectService extends createResourceService<Project, ProjectFeed>(
   {
@@ -64,7 +67,8 @@ export class ProjectService extends createResourceService<Project, ProjectFeed>(
       import: "default",
       query: "?raw",
     }),
-    minifingStrategy: new ProjectMinifingStrategy(),
-    parsingStrategy: new ProjectParsingStrategy(),
+    minifingStrategy: projectMinifingStrategy,
+    parsingStrategy: projectParsingStrategy,
+    slugStrategy: projectSlugStrategy,
   },
 ) {}

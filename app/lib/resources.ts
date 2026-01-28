@@ -3,29 +3,33 @@ import {
   type ContentResource,
   type MinifingStrategy,
   type ParsingStrategy,
+  type SlugStrategy,
 } from "./content";
 
 export function createResourceService<T extends ContentResource, TFeed>({
   files,
   parsingStrategy,
   minifingStrategy,
+  slugStrategy,
 }: {
   files: Record<string, () => Promise<string>>;
   parsingStrategy: ParsingStrategy<T>;
   minifingStrategy: MinifingStrategy<T, TFeed>;
+  slugStrategy: SlugStrategy;
 }) {
   return class ResourceService {
-    private static resources: Promise<T[]> = parseContentResources<T>(
+    private static resources: Promise<T[]> = parseContentResources<T>({
       files,
-      parsingStrategy
-    );
+      parsingStrategy,
+      slugStrategy,
+    });
 
     static async findAll(limit?: number): Promise<TFeed[]> {
       const resources = await this.resources;
 
       return resources
         .slice(0, limit ?? resources.length)
-        .map(minifingStrategy.minify);
+        .map(minifingStrategy);
     }
 
     static async findAllByCategory(category?: string): Promise<TFeed[]> {
@@ -33,9 +37,9 @@ export function createResourceService<T extends ContentResource, TFeed>({
 
       return resources
         .filter((resource) =>
-          category ? resource.categories?.includes(category) : true
+          category ? resource.categories?.includes(category) : true,
         )
-        .map(minifingStrategy.minify);
+        .map(minifingStrategy);
     }
 
     static async findUnique(slug: string | undefined): Promise<T | undefined> {
