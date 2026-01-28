@@ -1,6 +1,7 @@
 import { dirname, join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import invariant from "tiny-invariant";
 
 import {
   getReadingTimeLabel,
@@ -75,11 +76,21 @@ async function getAllArticles(): Promise<Article[]> {
     articles.push(article);
   }
 
-  return articles;
+  return articles.toSorted((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
+
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
+
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
+const articlesAsPromise = getAllArticles();
+
 async function getArticles(limit?: number): Promise<ArticleFeed[]> {
-  const articles = await getAllArticles();
+  const articles = await articlesAsPromise;
 
   return articles
     .map(articleMinifingStrategy)
@@ -89,7 +100,7 @@ async function getArticles(limit?: number): Promise<ArticleFeed[]> {
 async function getArticlesByCategory(
   category: string | undefined,
 ): Promise<ArticleFeed[]> {
-  const articles = await getAllArticles();
+  const articles = await articlesAsPromise;
 
   return articles
     .filter((article) =>
@@ -99,7 +110,7 @@ async function getArticlesByCategory(
 }
 
 async function getArticleCategories(): Promise<string[]> {
-  const articles = await getAllArticles();
+  const articles = await articlesAsPromise;
 
   const occurrences: Record<string, number> = {};
 
@@ -117,7 +128,7 @@ async function getArticleCategories(): Promise<string[]> {
 }
 
 async function getArticleSlugs(): Promise<string[]> {
-  const articles = await getAllArticles();
+  const articles = await articlesAsPromise;
 
   return articles.map((article) => article.slug);
 }
@@ -125,7 +136,7 @@ async function getArticleSlugs(): Promise<string[]> {
 async function getArticle(
   slug: string | undefined,
 ): Promise<Article | undefined> {
-  const articles = await getAllArticles();
+  const articles = await articlesAsPromise;
 
   return articles.find((article) => article.slug === slug);
 }

@@ -10,7 +10,6 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import invariant from "tiny-invariant";
 
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";
@@ -104,56 +103,4 @@ export interface ParsingStrategy<T extends ContentResource> {
 
 export interface MinifingStrategy<T extends ContentResource, F> {
   (resource: T): F;
-}
-
-export interface SlugStrategy {
-  (key: string): string;
-}
-
-export async function parseContentEntries<T extends ContentResource>({
-  files,
-  parsingStrategy,
-  slugStrategy,
-}: {
-  files: Record<string, () => Promise<string>>;
-  parsingStrategy: ParsingStrategy<T>;
-  slugStrategy: SlugStrategy;
-}) {
-  const content = Object.entries(files).map(async ([key, file]) =>
-    parsingStrategy(slugStrategy(key), await file()),
-  );
-
-  return Promise.all(content);
-}
-
-export async function parseContentResources<T extends ContentResource>({
-  files,
-  parsingStrategy,
-  slugStrategy,
-}: {
-  files: Record<string, () => Promise<string>>;
-  parsingStrategy: ParsingStrategy<T>;
-  slugStrategy: SlugStrategy;
-}): Promise<T[]> {
-  if (import.meta.env.VITEST) {
-    return [];
-  }
-
-  const content = await parseContentEntries({
-    files,
-    parsingStrategy,
-    slugStrategy,
-  });
-
-  const resources = content.toSorted((first, second) => {
-    invariant(first.createdAt);
-    invariant(second.createdAt);
-
-    const firstCreationTime = new Date(first.createdAt).getTime();
-    const secondCreationTime = new Date(second.createdAt).getTime();
-
-    return secondCreationTime - firstCreationTime;
-  });
-
-  return resources;
 }

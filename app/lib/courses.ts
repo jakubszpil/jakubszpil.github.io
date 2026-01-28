@@ -1,6 +1,7 @@
 import { dirname, join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import invariant from "tiny-invariant";
 
 import { shuffleArray } from "./array";
 import {
@@ -114,11 +115,21 @@ async function getAllCourses(): Promise<Course[]> {
     courses.push(course);
   }
 
-  return courses;
+  return courses.toSorted((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
+
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
+
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
+const coursesAsPromise = await getAllCourses();
+
 async function getCourses(limit?: number): Promise<CourseFeed[]> {
-  const courses = await getAllCourses();
+  const courses = await coursesAsPromise;
 
   return courses.map(courseMinifingStrategy).slice(0, limit ?? courses.length);
 }
@@ -126,7 +137,7 @@ async function getCourses(limit?: number): Promise<CourseFeed[]> {
 async function getCoursesByCategory(
   category: string | undefined,
 ): Promise<CourseFeed[]> {
-  const courses = await getAllCourses();
+  const courses = await coursesAsPromise;
 
   return courses
     .filter((course) =>
@@ -136,7 +147,7 @@ async function getCoursesByCategory(
 }
 
 async function getCourseCategories(): Promise<string[]> {
-  const courses = await getAllCourses();
+  const courses = await coursesAsPromise;
 
   const occurrences: Record<string, number> = {};
 
@@ -154,7 +165,7 @@ async function getCourseCategories(): Promise<string[]> {
 }
 
 async function getCourseSlugs(): Promise<string[]> {
-  const courses = await getAllCourses();
+  const courses = await coursesAsPromise;
 
   return courses.map((course) => course.slug);
 }
@@ -162,7 +173,7 @@ async function getCourseSlugs(): Promise<string[]> {
 async function getCourse(
   slug: string | undefined,
 ): Promise<Course | undefined> {
-  const courses = await getAllCourses();
+  const courses = await coursesAsPromise;
 
   return courses.find((course) => course.slug === slug);
 }

@@ -1,12 +1,12 @@
 import { dirname, join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import invariant from "tiny-invariant";
 
 import {
   processFile,
   type MinifingStrategy,
   type ParsingStrategy,
-  type SlugStrategy,
 } from "./content";
 
 export enum ProjectStatus {
@@ -74,11 +74,21 @@ async function getAllProjects(): Promise<Project[]> {
     projects.push(project);
   }
 
-  return projects;
+  return projects.toSorted((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
+
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
+
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
+const projectsAsPromise = getAllProjects();
+
 async function getProjects(limit?: number): Promise<ProjectFeed[]> {
-  const projects = await getAllProjects();
+  const projects = await projectsAsPromise;
 
   return projects
     .map(projectMinifingStrategy)
@@ -88,7 +98,7 @@ async function getProjects(limit?: number): Promise<ProjectFeed[]> {
 async function getProjectsByTechnology(
   technology: string | undefined,
 ): Promise<ProjectFeed[]> {
-  const projects = await getAllProjects();
+  const projects = await projectsAsPromise;
 
   return projects
     .filter((project) =>
@@ -98,7 +108,7 @@ async function getProjectsByTechnology(
 }
 
 async function getProjectTechnologies(): Promise<string[]> {
-  const projects = await getAllProjects();
+  const projects = await projectsAsPromise;
 
   const occurrences: Record<string, number> = {};
 
@@ -116,7 +126,7 @@ async function getProjectTechnologies(): Promise<string[]> {
 }
 
 async function getProjectSlugs(): Promise<string[]> {
-  const projects = await getAllProjects();
+  const projects = await projectsAsPromise;
 
   return projects.map((project) => project.slug);
 }
@@ -124,7 +134,7 @@ async function getProjectSlugs(): Promise<string[]> {
 async function getProject(
   slug: string | undefined,
 ): Promise<Project | undefined> {
-  const projects = await getAllProjects();
+  const projects = await projectsAsPromise;
 
   return projects.find((project) => project.slug === slug);
 }
