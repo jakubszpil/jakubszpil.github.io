@@ -146,7 +146,7 @@ async function getCoursesByCategory(
     .map(courseMinifingStrategy);
 }
 
-async function getCourseCategories(): Promise<string[]> {
+async function getCoursesCategories(): Promise<string[]> {
   const courses = await coursesAsPromise;
 
   const occurrences: Record<string, number> = {};
@@ -164,7 +164,7 @@ async function getCourseCategories(): Promise<string[]> {
   return categories.sort((a, b) => occurrences[b] - occurrences[a]);
 }
 
-async function getCourseSlugs(): Promise<string[]> {
+async function getCoursesSlugs(): Promise<string[]> {
   const courses = await coursesAsPromise;
 
   return courses.map((course) => course.slug);
@@ -183,7 +183,7 @@ export type { CourseQuiz, CourseQuizQuestion, CourseFeed, Course };
 export {
   getCourses,
   getCoursesByCategory,
-  getCourseCategories,
-  getCourseSlugs,
+  getCoursesCategories,
+  getCoursesSlugs,
   getCourse,
 };

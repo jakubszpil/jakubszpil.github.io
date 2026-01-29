@@ -4,7 +4,7 @@ import { ProjectTechnologies } from "../components/project-technologies";
 import { ProjectCards } from "../components/project-cards";
 import { createMetaTags } from "../lib/meta";
 import {
-  getProjectTechnologies,
+  getProjectsTechnologies,
   getProjectsByTechnology,
 } from "../lib/projects";
 import { getCapitalizedIndividualName } from "../lib/string";
@@ -12,7 +12,7 @@ import { getCapitalizedIndividualName } from "../lib/string";
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {
     title: technology && getCapitalizedIndividualName(technology),
-    technologies: await getProjectTechnologies(),
+    technologies: await getProjectsTechnologies(),
     projects: await getProjectsByTechnology(technology),
   };
 }

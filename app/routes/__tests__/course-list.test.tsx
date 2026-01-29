@@ -14,7 +14,7 @@ import CourseList, { loader } from "../course-list";
 import {
   type CourseFeed,
   getCoursesByCategory,
-  getCourseCategories,
+  getCoursesCategories,
 } from "../../lib/courses";
 import {
   CourseCards,
@@ -36,8 +36,8 @@ describe("<CourseList />", () => {
   let MOCKED_COURSES: CourseFeed[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetCourseByCategory: MockInstance<typeof getCoursesByCategory>;
-  let MockedGetCoursesCategories: MockInstance<typeof getCourseCategories>;
+  let MockedGetCoursesByCategory: MockInstance<typeof getCoursesByCategory>;
+  let MockedGetCoursesCategories: MockInstance<typeof getCoursesCategories>;
 
   beforeEach(() => {
     MockedCourseCards = vi.mocked(CourseCards);
@@ -62,19 +62,20 @@ describe("<CourseList />", () => {
 
     MOCKED_CATEGORIES = ["test", "example"];
 
-    MockedGetCourseByCategory = vi
+    MockedGetCoursesByCategory = vi
       .mocked(getCoursesByCategory)
       .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
 
     MockedGetCoursesCategories = vi
-      .mocked(getCourseCategories)
+      .mocked(getCoursesCategories)
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 
   afterEach(() => {
     MockedCourseCards.mockRestore();
     MockedCourseCategories.mockRestore();
-    MockedGetCourseByCategory.mockRestore();
+    MockedGetCoursesByCategory.mockRestore();
+    MockedGetCoursesCategories.mockRestore();
   });
 
   test("should courses without category", async () => {
@@ -91,7 +92,7 @@ describe("<CourseList />", () => {
 
     await screen.findByText("Learning");
 
-    expect(MockedGetCourseByCategory).toHaveBeenCalledWith(undefined);
+    expect(MockedGetCoursesByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
     expect(MockedCourseCategories).toHaveBeenCalledWith(
@@ -113,7 +114,7 @@ describe("<CourseList />", () => {
   test("should courses with category", async () => {
     const MOCKED_CATEGORY = "example";
 
-    MockedGetCourseByCategory.mockImplementationOnce(() =>
+    MockedGetCoursesByCategory.mockImplementationOnce(() =>
       Promise.resolve([MOCKED_COURSES[1]]),
     );
 
@@ -138,7 +139,7 @@ describe("<CourseList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetCourseByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
+    expect(MockedGetCoursesByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
     expect(MockedCourseCategories).toHaveBeenCalledWith(

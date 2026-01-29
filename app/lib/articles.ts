@@ -109,7 +109,7 @@ async function getArticlesByCategory(
     .map(articleMinifingStrategy);
 }
 
-async function getArticleCategories(): Promise<string[]> {
+async function getArticlesCategories(): Promise<string[]> {
   const articles = await articlesAsPromise;
 
   const occurrences: Record<string, number> = {};
@@ -127,7 +127,7 @@ async function getArticleCategories(): Promise<string[]> {
   return categories.sort((a, b) => occurrences[b] - occurrences[a]);
 }
 
-async function getArticleSlugs(): Promise<string[]> {
+async function getArticlesSlugs(): Promise<string[]> {
   const articles = await articlesAsPromise;
 
   return articles.map((article) => article.slug);
@@ -146,7 +146,7 @@ export type { Article, ArticleFeed };
 export {
   getArticles,
   getArticlesByCategory,
-  getArticleCategories,
-  getArticleSlugs,
+  getArticlesCategories,
+  getArticlesSlugs,
   getArticle,
 };

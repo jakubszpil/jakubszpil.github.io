@@ -107,7 +107,7 @@ async function getProjectsByTechnology(
     .map(projectMinifingStrategy);
 }
 
-async function getProjectTechnologies(): Promise<string[]> {
+async function getProjectsTechnologies(): Promise<string[]> {
   const projects = await projectsAsPromise;
 
   const occurrences: Record<string, number> = {};
@@ -125,12 +125,6 @@ async function getProjectTechnologies(): Promise<string[]> {
   return technologies.sort((a, b) => occurrences[b] - occurrences[a]);
 }
 
-async function getProjectSlugs(): Promise<string[]> {
-  const projects = await projectsAsPromise;
-
-  return projects.map((project) => project.slug);
-}
-
 async function getProject(
   slug: string | undefined,
 ): Promise<Project | undefined> {
@@ -145,7 +139,6 @@ export {
   ProjectStatus,
   getProjects,
   getProjectsByTechnology,
-  getProjectTechnologies,
-  getProjectSlugs,
+  getProjectsTechnologies,
   getProject,
 };
