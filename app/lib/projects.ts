@@ -9,13 +9,13 @@ import {
   type ParsingStrategy,
 } from "./content";
 
-export enum ProjectStatus {
+enum ProjectStatus {
   IDLE = "IDLE",
   IN_PROGRESS = "IN_PROGRESS",
   COMPLETED = "COMPLETED",
 }
 
-export interface Project {
+interface Project {
   slug: string;
   title: string;
   description: string;
@@ -24,7 +24,7 @@ export interface Project {
   technologies: string[];
 }
 
-export interface ProjectFeed {
+interface ProjectFeed {
   slug: string;
   title: string;
   description: string;
@@ -139,7 +139,10 @@ async function getProject(
   return projects.find((project) => project.slug === slug);
 }
 
+export type { Project, ProjectFeed };
+
 export {
+  ProjectStatus,
   getProjects,
   getProjectsByTechnology,
   getProjectTechnologies,

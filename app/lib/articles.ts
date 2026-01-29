@@ -11,7 +11,7 @@ import {
   type ParsingStrategy,
 } from "./content";
 
-export interface ArticleFeed {
+interface ArticleFeed {
   slug: string;
   title: string;
   description: string;
@@ -19,7 +19,7 @@ export interface ArticleFeed {
   readingTime: string;
 }
 
-export interface Article {
+interface Article {
   slug: string;
   title: string;
   description: string;
@@ -140,6 +140,8 @@ async function getArticle(
 
   return articles.find((article) => article.slug === slug);
 }
+
+export type { Article, ArticleFeed };
 
 export {
   getArticles,

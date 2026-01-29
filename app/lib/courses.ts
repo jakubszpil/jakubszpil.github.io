@@ -12,19 +12,19 @@ import {
   type ParsingStrategy,
 } from "./content";
 
-export interface CourseQuiz {
+interface CourseQuiz {
   title: string;
   questions: CourseQuizQuestion[];
 }
 
-export interface CourseQuizQuestion {
+interface CourseQuizQuestion {
   question: string;
   options: string[];
   answer: number;
   explanation?: string;
 }
 
-export interface CourseFeed {
+interface CourseFeed {
   slug: string;
   title: string;
   description: string;
@@ -32,7 +32,7 @@ export interface CourseFeed {
   readingTime: string;
 }
 
-export interface Course {
+interface Course {
   slug: string;
   title: string;
   description: string;
@@ -177,6 +177,8 @@ async function getCourse(
 
   return courses.find((course) => course.slug === slug);
 }
+
+export type { CourseQuiz, CourseQuizQuestion, CourseFeed, Course };
 
 export {
   getCourses,
