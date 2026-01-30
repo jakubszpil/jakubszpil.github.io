@@ -10,7 +10,7 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
-import { promise } from "./promises";
+import { cachePromise } from "./promises";
 
 interface ArticleFeed {
   slug: string;
@@ -89,7 +89,7 @@ async function getAllArticles(): Promise<Article[]> {
 }
 
 async function getArticles(limit?: number): Promise<ArticleFeed[]> {
-  const articles = await promise(["articles"], getAllArticles);
+  const articles = await cachePromise("articles", getAllArticles);
 
   return articles
     .map(articleMinifingStrategy)
@@ -99,7 +99,7 @@ async function getArticles(limit?: number): Promise<ArticleFeed[]> {
 async function getArticlesByCategory(
   category: string | undefined,
 ): Promise<ArticleFeed[]> {
-  const articles = await promise(["articles"], getAllArticles);
+  const articles = await cachePromise("articles", getAllArticles);
 
   return articles
     .filter((article) =>
@@ -109,7 +109,7 @@ async function getArticlesByCategory(
 }
 
 async function getArticlesCategories(): Promise<string[]> {
-  const articles = await promise(["articles"], getAllArticles);
+  const articles = await cachePromise("articles", getAllArticles);
 
   const occurrences: Record<string, number> = {};
 
@@ -127,7 +127,7 @@ async function getArticlesCategories(): Promise<string[]> {
 }
 
 async function getArticlesSlugs(): Promise<string[]> {
-  const articles = await promise(["articles"], getAllArticles);
+  const articles = await cachePromise("articles", getAllArticles);
 
   return articles.map((article) => article.slug);
 }
@@ -135,7 +135,7 @@ async function getArticlesSlugs(): Promise<string[]> {
 async function getArticle(
   slug: string | undefined,
 ): Promise<Article | undefined> {
-  const articles = await promise(["articles"], getAllArticles);
+  const articles = await cachePromise("articles", getAllArticles);
 
   return articles.find((article) => article.slug === slug);
 }
