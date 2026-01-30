@@ -1,26 +1,31 @@
+import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import invariant from "tiny-invariant";
+
 import {
   processFile,
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
-import { createResourceService } from "./resources";
+import { cachePromise } from "./promises";
 
-export enum ProjectStatus {
+enum ProjectStatus {
   IDLE = "IDLE",
   IN_PROGRESS = "IN_PROGRESS",
   COMPLETED = "COMPLETED",
 }
 
-export interface Project {
+interface Project {
   slug: string;
   title: string;
   description: string;
   createdAt: string;
   status: ProjectStatus;
-  categories: string[];
+  technologies: string[];
 }
 
-export interface ProjectFeed {
+interface ProjectFeed {
   slug: string;
   title: string;
   description: string;
@@ -28,43 +33,111 @@ export interface ProjectFeed {
   status: ProjectStatus;
 }
 
-export class ProjectMinifingStrategy implements MinifingStrategy<
-  Project,
-  ProjectFeed
-> {
-  minify(project: Project): ProjectFeed {
-    return {
-      createdAt: project.createdAt,
-      description: project.description,
-      slug: project.slug,
-      status: project.status,
-      title: project.title,
-    };
+const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
+  project,
+) => {
+  return {
+    createdAt: project.createdAt,
+    description: project.description,
+    slug: project.slug,
+    status: project.status,
+    title: project.title,
+  };
+};
+
+const projectParsingStrategy: ParsingStrategy<Project> = async (slug, file) => {
+  const { data } = processFile(file);
+
+  return {
+    slug,
+    createdAt: new Date(data.createdAt).toISOString(),
+    technologies: data.categories,
+    description: data.description,
+    status: data.status,
+    title: data.title,
+  };
+};
+
+async function getAllProjects(): Promise<Project[]> {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const directory = join(__dirname, "../../content/projects");
+
+  const files = await readdir(directory);
+
+  const projects: Project[] = [];
+
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
+    const project = await projectParsingStrategy(slug, file);
+
+    projects.push(project);
   }
+
+  return projects.toSorted((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
+
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
+
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
-export class ProjectParsingStrategy implements ParsingStrategy<Project> {
-  async parse(slug: string, file: string): Promise<Project> {
-    const { data } = processFile(file);
+async function getProjects(limit?: number): Promise<ProjectFeed[]> {
+  const projects = await cachePromise("projects", getAllProjects);
 
-    return {
-      slug,
-      createdAt: new Date(data.createdAt).toISOString(),
-      categories: data.categories,
-      description: data.description,
-      status: data.status,
-      title: data.title,
-    } satisfies Project;
-  }
+  return projects
+    .slice(0, limit ?? projects.length)
+    .map(projectMinifingStrategy);
 }
 
-export class ProjectService extends createResourceService<Project, ProjectFeed>(
-  {
-    files: import.meta.glob<string>("../../content/projects/*.md", {
-      import: "default",
-      query: "?raw",
-    }),
-    minifingStrategy: new ProjectMinifingStrategy(),
-    parsingStrategy: new ProjectParsingStrategy(),
-  },
-) {}
+async function getProjectsByTechnology(
+  technology: string | undefined,
+): Promise<ProjectFeed[]> {
+  const projects = await cachePromise("projects", getAllProjects);
+
+  return projects
+    .filter((project) =>
+      technology ? project.technologies.includes(technology) : true,
+    )
+    .map(projectMinifingStrategy);
+}
+
+async function getProjectsTechnologies(): Promise<string[]> {
+  const projects = await cachePromise("projects", getAllProjects);
+
+  const occurrences: Record<string, number> = {};
+
+  const technologies = projects.reduce<string[]>((technologies, project) => {
+    project.technologies?.forEach((technology) => {
+      if (!(technology in occurrences)) occurrences[technology] = 0;
+      if (!technologies.includes(technology)) technologies.push(technology);
+      occurrences[technology]++;
+    });
+
+    return technologies;
+  }, []);
+
+  return technologies.sort((a, b) => occurrences[b] - occurrences[a]);
+}
+
+async function getProject(
+  slug: string | undefined,
+): Promise<Project | undefined> {
+  const projects = await cachePromise("projects", getAllProjects);
+
+  return projects.find((project) => project.slug === slug);
+}
+
+export type { Project, ProjectFeed };
+
+export {
+  ProjectStatus,
+  getProjects,
+  getProjectsByTechnology,
+  getProjectsTechnologies,
+  getProject,
+};

@@ -1,3 +1,8 @@
+import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import invariant from "tiny-invariant";
+
 import { shuffleArray } from "./array";
 import {
   getReadingTimeLabel,
@@ -6,21 +11,21 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
-import { createResourceService } from "./resources";
+import { cachePromise } from "./promises";
 
-export interface CourseQuiz {
+interface CourseQuiz {
   title: string;
   questions: CourseQuizQuestion[];
 }
 
-export interface CourseQuizQuestion {
+interface CourseQuizQuestion {
   question: string;
   options: string[];
   answer: number;
   explanation?: string;
 }
 
-export interface CourseFeed {
+interface CourseFeed {
   slug: string;
   title: string;
   description: string;
@@ -28,7 +33,7 @@ export interface CourseFeed {
   readingTime: string;
 }
 
-export interface Course {
+interface Course {
   slug: string;
   title: string;
   description: string;
@@ -40,20 +45,17 @@ export interface Course {
   quiz: CourseQuiz;
 }
 
-export class CourseMinifingStrategy implements MinifingStrategy<
-  Course,
-  CourseFeed
-> {
-  minify(course: Course): CourseFeed {
-    return {
-      createdAt: course.createdAt,
-      description: course.description,
-      readingTime: course.readingTime,
-      slug: course.slug,
-      title: course.title,
-    };
-  }
-}
+const courseMinifingStrategy: MinifingStrategy<Course, CourseFeed> = (
+  course,
+) => {
+  return {
+    createdAt: course.createdAt,
+    description: course.description,
+    readingTime: course.readingTime,
+    slug: course.slug,
+    title: course.title,
+  };
+};
 
 async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
   const questions = await Promise.all(
@@ -78,32 +80,109 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
   };
 }
 
-export class CourseParsingStrategy implements ParsingStrategy<Course> {
-  async parse(slug: string, file: string): Promise<Course> {
-    const { data, content } = processFile(file);
+const courseParsingStrategy: ParsingStrategy<Course> = async (slug, file) => {
+  const { data, content } = processFile(file);
 
-    const [fileContent, readingTime] = await processContent(content);
+  const [fileContent, readingTime] = await processContent(content);
 
-    return {
-      ...data,
-      slug,
-      content: fileContent,
-      readingTime: getReadingTimeLabel(readingTime),
-      createdAt: new Date(data.createdAt).toISOString(),
-      quiz: await parseCourseQuiz(data.quiz),
-      categories: data.categories,
-      keywords: data.keywords,
-      description: data.description,
-      title: data.title,
-    } satisfies Course;
+  return {
+    ...data,
+    slug,
+    content: fileContent,
+    readingTime: getReadingTimeLabel(readingTime),
+    createdAt: new Date(data.createdAt).toISOString(),
+    quiz: await parseCourseQuiz(data.quiz),
+    categories: data.categories,
+    keywords: data.keywords,
+    description: data.description,
+    title: data.title,
+  };
+};
+
+async function getAllCourses(): Promise<Course[]> {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const directory = join(__dirname, "../../content/courses");
+
+  const files = await readdir(directory);
+
+  const courses: Course[] = [];
+
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
+    const course = await courseParsingStrategy(slug, file);
+
+    courses.push(course);
   }
+
+  return courses.toSorted((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
+
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
+
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
-export class CourseService extends createResourceService<Course, CourseFeed>({
-  files: import.meta.glob<string>("../../content/courses/*.md", {
-    import: "default",
-    query: "?raw",
-  }),
-  minifingStrategy: new CourseMinifingStrategy(),
-  parsingStrategy: new CourseParsingStrategy(),
-}) {}
+async function getCourses(limit?: number): Promise<CourseFeed[]> {
+  const courses = await cachePromise("courses", getAllCourses);
+
+  return courses.slice(0, limit ?? courses.length).map(courseMinifingStrategy);
+}
+
+async function getCoursesByCategory(
+  category: string | undefined,
+): Promise<CourseFeed[]> {
+  const courses = await cachePromise("courses", getAllCourses);
+
+  return courses
+    .filter((course) =>
+      category ? course.categories.includes(category) : true,
+    )
+    .map(courseMinifingStrategy);
+}
+
+async function getCoursesCategories(): Promise<string[]> {
+  const courses = await cachePromise("courses", getAllCourses);
+
+  const occurrences: Record<string, number> = {};
+
+  const categories = courses.reduce<string[]>((categories, course) => {
+    course.categories?.forEach((category) => {
+      if (!(category in occurrences)) occurrences[category] = 0;
+      if (!categories.includes(category)) categories.push(category);
+      occurrences[category]++;
+    });
+
+    return categories;
+  }, []);
+
+  return categories.sort((a, b) => occurrences[b] - occurrences[a]);
+}
+
+async function getCoursesSlugs(): Promise<string[]> {
+  const courses = await cachePromise("courses", getAllCourses);
+
+  return courses.map((course) => course.slug);
+}
+
+async function getCourse(
+  slug: string | undefined,
+): Promise<Course | undefined> {
+  const courses = await cachePromise("courses", getAllCourses);
+
+  return courses.find((course) => course.slug === slug);
+}
+
+export type { CourseQuiz, CourseQuizQuestion, CourseFeed, Course };
+
+export {
+  getCourses,
+  getCoursesByCategory,
+  getCoursesCategories,
+  getCoursesSlugs,
+  getCourse,
+};

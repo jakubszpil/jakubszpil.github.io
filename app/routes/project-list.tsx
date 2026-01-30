@@ -3,14 +3,17 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { ProjectTechnologies } from "../components/project-technologies";
 import { ProjectCards } from "../components/project-cards";
 import { createMetaTags } from "../lib/meta";
-import { ProjectService } from "../lib/projects";
+import {
+  getProjectsTechnologies,
+  getProjectsByTechnology,
+} from "../lib/projects";
 import { getCapitalizedIndividualName } from "../lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {
     title: technology && getCapitalizedIndividualName(technology),
-    technologies: await ProjectService.getCategories(),
-    projects: await ProjectService.findAllByCategory(technology),
+    technologies: await getProjectsTechnologies(),
+    projects: await getProjectsByTechnology(technology),
   };
 }
 

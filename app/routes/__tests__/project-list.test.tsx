@@ -14,7 +14,8 @@ import ProjectList, { loader } from "../project-list";
 import {
   type ProjectFeed,
   ProjectStatus,
-  ProjectService,
+  getProjectsByTechnology,
+  getProjectsTechnologies,
 } from "../../lib/projects";
 import {
   ProjectCards,
@@ -27,6 +28,7 @@ import {
 
 vi.mock("../../components/project-cards");
 vi.mock("../../components/project-technologies");
+vi.mock("../../lib/projects");
 
 describe("<ProjectList />", () => {
   let MockedProjectCards: MockInstance<typeof ProjectCards>;
@@ -35,11 +37,11 @@ describe("<ProjectList />", () => {
   let MOCKED_PROJECTS: ProjectFeed[];
   let MOCKED_TECHNOLOGIES: string[];
 
-  let MockedGetProjectByTechnology: MockInstance<
-    typeof ProjectService.findAllByCategory
+  let MockedGetProjectsByTechnology: MockInstance<
+    typeof getProjectsByTechnology
   >;
-  let MockedGetProjectCardsTechnologies: MockInstance<
-    typeof ProjectService.getCategories
+  let MockedGetProjectsTechnologies: MockInstance<
+    typeof getProjectsTechnologies
   >;
 
   beforeEach(() => {
@@ -65,19 +67,20 @@ describe("<ProjectList />", () => {
 
     MOCKED_TECHNOLOGIES = ["test", "example"];
 
-    MockedGetProjectByTechnology = vi
-      .spyOn(ProjectService, "findAllByCategory")
+    MockedGetProjectsByTechnology = vi
+      .mocked(getProjectsByTechnology)
       .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
 
-    MockedGetProjectCardsTechnologies = vi
-      .spyOn(ProjectService, "getCategories")
+    MockedGetProjectsTechnologies = vi
+      .mocked(getProjectsTechnologies)
       .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
   });
 
   afterEach(() => {
     MockedProjectCards.mockRestore();
     MockedProjectTechnologies.mockRestore();
-    MockedGetProjectByTechnology.mockRestore();
+    MockedGetProjectsByTechnology.mockRestore();
+    MockedGetProjectsTechnologies.mockRestore();
   });
 
   test("should projects without technology", async () => {
@@ -94,8 +97,8 @@ describe("<ProjectList />", () => {
 
     await screen.findByText("Portfolio");
 
-    expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(undefined);
-    expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
+    expect(MockedGetProjectsByTechnology).toHaveBeenCalledWith(undefined);
+    expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
 
     expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {
@@ -116,7 +119,7 @@ describe("<ProjectList />", () => {
   test("should projects with technology", async () => {
     const MOCKED_TECHNOLOGY = "example";
 
-    MockedGetProjectByTechnology.mockImplementationOnce(() =>
+    MockedGetProjectsByTechnology.mockImplementationOnce(() =>
       Promise.resolve([MOCKED_PROJECTS[1]]),
     );
 
@@ -141,10 +144,10 @@ describe("<ProjectList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetProjectByTechnology).toHaveBeenCalledWith(
+    expect(MockedGetProjectsByTechnology).toHaveBeenCalledWith(
       MOCKED_TECHNOLOGY,
     );
-    expect(MockedGetProjectCardsTechnologies).toHaveBeenCalled();
+    expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
 
     expect(MockedProjectTechnologies).toHaveBeenCalledWith(
       {

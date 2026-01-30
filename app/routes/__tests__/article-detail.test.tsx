@@ -15,7 +15,7 @@ import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../../components/article-categories";
-import { type Article, ArticleService } from "../../lib/articles";
+import { type Article, getArticle } from "../../lib/articles";
 import {
   EditResource,
   type EditResourceProps,
@@ -25,6 +25,7 @@ import { Banner, type BannerProps } from "../../components/ui/banner";
 vi.mock("../../components/ui/edit-resource");
 vi.mock("../../components/ui/banner");
 vi.mock("../../components/article-categories");
+vi.mock("../../lib/articles");
 
 describe("<ArticleDetail />", () => {
   let MockedArticleCategories: MockInstance<typeof ArticleCategories>;
@@ -32,7 +33,7 @@ describe("<ArticleDetail />", () => {
   let MockedBanner: MockInstance<typeof Banner>;
 
   let MockedArticle: Article;
-  let MockedGetArticle: MockInstance<typeof ArticleService.findUnique>;
+  let MockedGetArticle: MockInstance<typeof getArticle>;
 
   beforeEach(() => {
     MockedArticleCategories = vi.mocked(ArticleCategories);
@@ -51,7 +52,7 @@ describe("<ArticleDetail />", () => {
     };
 
     MockedGetArticle = vi
-      .spyOn(ArticleService, "findUnique")
+      .mocked(getArticle)
       .mockImplementation(() => Promise.resolve(MockedArticle));
   });
 

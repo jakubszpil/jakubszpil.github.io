@@ -1,4 +1,8 @@
-import { createResourceService } from "./resources";
+import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import invariant from "tiny-invariant";
+
 import {
   getReadingTimeLabel,
   processContent,
@@ -6,8 +10,9 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
+import { cachePromise } from "./promises";
 
-export interface ArticleFeed {
+interface ArticleFeed {
   slug: string;
   title: string;
   description: string;
@@ -15,7 +20,7 @@ export interface ArticleFeed {
   readingTime: string;
 }
 
-export interface Article {
+interface Article {
   slug: string;
   title: string;
   description: string;
@@ -26,47 +31,121 @@ export interface Article {
   content: string;
 }
 
-export class ArticleMinifingStrategy implements MinifingStrategy<
-  Article,
-  ArticleFeed
-> {
-  minify(article: Article): ArticleFeed {
-    return {
-      createdAt: article.createdAt,
-      description: article.description,
-      readingTime: article.readingTime,
-      slug: article.slug,
-      title: article.title,
-    };
+const articleMinifingStrategy: MinifingStrategy<Article, ArticleFeed> = (
+  article,
+) => {
+  return {
+    createdAt: article.createdAt,
+    description: article.description,
+    readingTime: article.readingTime,
+    slug: article.slug,
+    title: article.title,
+  };
+};
+
+const articleParsingStrategy: ParsingStrategy<Article> = async (slug, file) => {
+  const { data, content } = processFile(file);
+
+  const [fileContent, readingTime] = await processContent(content);
+
+  return {
+    slug,
+    content: fileContent,
+    readingTime: getReadingTimeLabel(readingTime),
+    createdAt: new Date(data.createdAt).toISOString(),
+    categories: data.categories,
+    keywords: data.keywords,
+    description: data.description,
+    title: data.title,
+  };
+};
+
+async function getAllArticles(): Promise<Article[]> {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  const directory = join(__dirname, "../../content/articles");
+
+  const files = await readdir(directory);
+
+  const articles: Article[] = [];
+
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
+    const article = await articleParsingStrategy(slug, file);
+
+    articles.push(article);
   }
+
+  return articles.toSorted((first, second) => {
+    invariant(first.createdAt);
+    invariant(second.createdAt);
+
+    const firstCreationTime = new Date(first.createdAt).getTime();
+    const secondCreationTime = new Date(second.createdAt).getTime();
+
+    return secondCreationTime - firstCreationTime;
+  });
 }
 
-export class ArticleParsingStrategy implements ParsingStrategy<Article> {
-  async parse(slug: string, file: string): Promise<Article> {
-    const { data, content } = processFile(file);
+async function getArticles(limit?: number): Promise<ArticleFeed[]> {
+  const articles = await cachePromise("articles", getAllArticles);
 
-    const [fileContent, readingTime] = await processContent(content);
-
-    return {
-      slug,
-      content: fileContent,
-      readingTime: getReadingTimeLabel(readingTime),
-      createdAt: new Date(data.createdAt).toISOString(),
-      categories: data.categories,
-      keywords: data.keywords,
-      description: data.description,
-      title: data.title,
-    } satisfies Article;
-  }
+  return articles
+    .slice(0, limit ?? articles.length)
+    .map(articleMinifingStrategy);
 }
 
-export class ArticleService extends createResourceService<Article, ArticleFeed>(
-  {
-    files: import.meta.glob<string>("../../content/articles/*.md", {
-      import: "default",
-      query: "?raw",
-    }),
-    minifingStrategy: new ArticleMinifingStrategy(),
-    parsingStrategy: new ArticleParsingStrategy(),
-  },
-) {}
+async function getArticlesByCategory(
+  category: string | undefined,
+): Promise<ArticleFeed[]> {
+  const articles = await cachePromise("articles", getAllArticles);
+
+  return articles
+    .filter((article) =>
+      category ? article.categories.includes(category) : true,
+    )
+    .map(articleMinifingStrategy);
+}
+
+async function getArticlesCategories(): Promise<string[]> {
+  const articles = await cachePromise("articles", getAllArticles);
+
+  const occurrences: Record<string, number> = {};
+
+  const categories = articles.reduce<string[]>((categories, article) => {
+    article.categories?.forEach((category) => {
+      if (!(category in occurrences)) occurrences[category] = 0;
+      if (!categories.includes(category)) categories.push(category);
+      occurrences[category]++;
+    });
+
+    return categories;
+  }, []);
+
+  return categories.sort((a, b) => occurrences[b] - occurrences[a]);
+}
+
+async function getArticlesSlugs(): Promise<string[]> {
+  const articles = await cachePromise("articles", getAllArticles);
+
+  return articles.map((article) => article.slug);
+}
+
+async function getArticle(
+  slug: string | undefined,
+): Promise<Article | undefined> {
+  const articles = await cachePromise("articles", getAllArticles);
+
+  return articles.find((article) => article.slug === slug);
+}
+
+export type { Article, ArticleFeed };
+
+export {
+  getArticles,
+  getArticlesByCategory,
+  getArticlesCategories,
+  getArticlesSlugs,
+  getArticle,
+};

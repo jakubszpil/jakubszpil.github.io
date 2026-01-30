@@ -10,7 +10,6 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import invariant from "tiny-invariant";
 
 function getAnchorContentBasedOnLevel(level: number): string {
   let content = "";
@@ -99,46 +98,9 @@ export function processFile(file: string) {
 }
 
 export interface ParsingStrategy<T extends ContentResource> {
-  parse(slug: string, file: string): Promise<T>;
+  (slug: string, file: string): Promise<T>;
 }
 
 export interface MinifingStrategy<T extends ContentResource, F> {
-  minify(resource: T): F;
-}
-
-export async function parseContentEntries<T extends ContentResource>(
-  entries: Record<string, () => Promise<string>>,
-  parsingStrategy: ParsingStrategy<T>
-) {
-  const content = Object.entries(entries).map(async ([key, file]) =>
-    parsingStrategy.parse(
-      key.slice(key.lastIndexOf("/") + 1, key.indexOf(".md")),
-      await file()
-    )
-  );
-
-  return Promise.all(content);
-}
-
-export async function parseContentResources<T extends ContentResource>(
-  files: Record<string, () => Promise<string>>,
-  parsingStrategy: ParsingStrategy<T>
-): Promise<T[]> {
-  if (import.meta.env.VITEST) {
-    return [];
-  }
-
-  const content = await parseContentEntries(files, parsingStrategy);
-
-  const resources = content.toSorted((first, second) => {
-    invariant(first.createdAt);
-    invariant(second.createdAt);
-
-    const firstCreationTime = new Date(first.createdAt).getTime();
-    const secondCreationTime = new Date(second.createdAt).getTime();
-
-    return secondCreationTime - firstCreationTime;
-  });
-
-  return resources;
+  (resource: T): F;
 }

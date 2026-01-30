@@ -12,6 +12,11 @@ import {
 
 import ArticleList, { loader } from "../article-list";
 import {
+  type ArticleFeed,
+  getArticlesByCategory,
+  getArticlesCategories,
+} from "../../lib/articles";
+import {
   ArticleCards,
   type ArticleCardsProps,
 } from "../../components/article-cards";
@@ -19,10 +24,10 @@ import {
   ArticleCategories,
   type ArticleCategoriesProps,
 } from "../../components/article-categories";
-import { type ArticleFeed, ArticleService } from "../../lib/articles";
 
 vi.mock("../../components/article-cards");
 vi.mock("../../components/article-categories");
+vi.mock("../../lib/articles");
 
 describe("<ArticleList />", () => {
   let MockedArticleCards: MockInstance<typeof ArticleCards>;
@@ -31,12 +36,8 @@ describe("<ArticleList />", () => {
   let MOCKED_ARTICLES: ArticleFeed[];
   let MOCKED_CATEGORIES: string[];
 
-  let MockedGetArticleByCategory: MockInstance<
-    typeof ArticleService.findAllByCategory
-  >;
-  let MockedGetArticlesCategories: MockInstance<
-    typeof ArticleService.getCategories
-  >;
+  let MockedGetArticlesByCategory: MockInstance<typeof getArticlesByCategory>;
+  let MockedGetArticlesCategories: MockInstance<typeof getArticlesCategories>;
 
   beforeEach(() => {
     MockedArticleCards = vi.mocked(ArticleCards);
@@ -61,19 +62,20 @@ describe("<ArticleList />", () => {
 
     MOCKED_CATEGORIES = ["test", "example"];
 
-    MockedGetArticleByCategory = vi
-      .spyOn(ArticleService, "findAllByCategory")
+    MockedGetArticlesByCategory = vi
+      .mocked(getArticlesByCategory)
       .mockImplementation(() => Promise.resolve(MOCKED_ARTICLES));
 
     MockedGetArticlesCategories = vi
-      .spyOn(ArticleService, "getCategories")
+      .mocked(getArticlesCategories)
       .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
   });
 
   afterEach(() => {
     MockedArticleCards.mockRestore();
     MockedArticleCategories.mockRestore();
-    MockedGetArticleByCategory.mockRestore();
+    MockedGetArticlesByCategory.mockRestore();
+    MockedGetArticlesCategories.mockRestore();
   });
 
   test("should articles without category", async () => {
@@ -90,7 +92,7 @@ describe("<ArticleList />", () => {
 
     await screen.findByText("Artykuły");
 
-    expect(MockedGetArticleByCategory).toHaveBeenCalledWith(undefined);
+    expect(MockedGetArticlesByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
 
     expect(MockedArticleCategories).toHaveBeenCalledWith(
@@ -112,7 +114,7 @@ describe("<ArticleList />", () => {
   test("should articles with category", async () => {
     const MOCKED_CATEGORY = "example";
 
-    MockedGetArticleByCategory.mockImplementationOnce(() =>
+    MockedGetArticlesByCategory.mockImplementationOnce(() =>
       Promise.resolve([MOCKED_ARTICLES[1]]),
     );
 
@@ -137,7 +139,7 @@ describe("<ArticleList />", () => {
 
     await screen.findByText("Example");
 
-    expect(MockedGetArticleByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
+    expect(MockedGetArticlesByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
 
     expect(MockedArticleCategories).toHaveBeenCalledWith(
