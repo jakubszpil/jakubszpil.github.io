@@ -61,17 +61,6 @@ export async function processContent(content: string) {
   return [results.toString(), readingTime.time] as const;
 }
 
-export interface ContentResource {
-  slug: string;
-  title: string;
-  description: string;
-  createdAt: string;
-  readingTime?: string;
-  categories?: string[];
-  keywords?: string[];
-  content?: string;
-}
-
 export function getReadingTimeLabel(readingTime: number) {
   const minutes = Math.round(readingTime / 60000);
   const minutesAsString = minutes.toString();
@@ -97,10 +86,10 @@ export function processFile(file: string) {
   return { data, content };
 }
 
-export interface ParsingStrategy<T extends ContentResource> {
+export interface ParsingStrategy<T> {
   (slug: string, file: string): Promise<T>;
 }
 
-export interface MinifingStrategy<T extends ContentResource, F> {
+export interface MinifingStrategy<T, F> {
   (resource: T): F;
 }
