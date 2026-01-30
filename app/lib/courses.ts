@@ -130,7 +130,7 @@ async function getAllCourses(): Promise<Course[]> {
 async function getCourses(limit?: number): Promise<CourseFeed[]> {
   const courses = await cachePromise("courses", getAllCourses);
 
-  return courses.map(courseMinifingStrategy).slice(0, limit ?? courses.length);
+  return courses.slice(0, limit ?? courses.length).map(courseMinifingStrategy);
 }
 
 async function getCoursesByCategory(

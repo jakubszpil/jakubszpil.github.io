@@ -92,8 +92,8 @@ async function getArticles(limit?: number): Promise<ArticleFeed[]> {
   const articles = await cachePromise("articles", getAllArticles);
 
   return articles
-    .map(articleMinifingStrategy)
-    .slice(0, limit ?? articles.length);
+    .slice(0, limit ?? articles.length)
+    .map(articleMinifingStrategy);
 }
 
 async function getArticlesByCategory(

@@ -90,8 +90,8 @@ async function getProjects(limit?: number): Promise<ProjectFeed[]> {
   const projects = await cachePromise("projects", getAllProjects);
 
   return projects
-    .map(projectMinifingStrategy)
-    .slice(0, limit ?? projects.length);
+    .slice(0, limit ?? projects.length)
+    .map(projectMinifingStrategy);
 }
 
 async function getProjectsByTechnology(
