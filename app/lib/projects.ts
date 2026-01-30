@@ -8,6 +8,7 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
+import { promise } from "./promises";
 
 enum ProjectStatus {
   IDLE = "IDLE",
@@ -85,10 +86,8 @@ async function getAllProjects(): Promise<Project[]> {
   });
 }
 
-const projectsAsPromise = getAllProjects();
-
 async function getProjects(limit?: number): Promise<ProjectFeed[]> {
-  const projects = await projectsAsPromise;
+  const projects = await promise(["projects"], getAllProjects);
 
   return projects
     .map(projectMinifingStrategy)
@@ -98,7 +97,7 @@ async function getProjects(limit?: number): Promise<ProjectFeed[]> {
 async function getProjectsByTechnology(
   technology: string | undefined,
 ): Promise<ProjectFeed[]> {
-  const projects = await projectsAsPromise;
+  const projects = await promise(["projects"], getAllProjects);
 
   return projects
     .filter((project) =>
@@ -108,7 +107,7 @@ async function getProjectsByTechnology(
 }
 
 async function getProjectsTechnologies(): Promise<string[]> {
-  const projects = await projectsAsPromise;
+  const projects = await promise(["projects"], getAllProjects);
 
   const occurrences: Record<string, number> = {};
 
@@ -128,7 +127,7 @@ async function getProjectsTechnologies(): Promise<string[]> {
 async function getProject(
   slug: string | undefined,
 ): Promise<Project | undefined> {
-  const projects = await projectsAsPromise;
+  const projects = await promise(["projects"], getAllProjects);
 
   return projects.find((project) => project.slug === slug);
 }

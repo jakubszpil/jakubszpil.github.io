@@ -11,6 +11,7 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
+import { promise } from "./promises";
 
 interface CourseQuiz {
   title: string;
@@ -126,10 +127,8 @@ async function getAllCourses(): Promise<Course[]> {
   });
 }
 
-const coursesAsPromise = await getAllCourses();
-
 async function getCourses(limit?: number): Promise<CourseFeed[]> {
-  const courses = await coursesAsPromise;
+  const courses = await promise(["courses"], getAllCourses);
 
   return courses.map(courseMinifingStrategy).slice(0, limit ?? courses.length);
 }
@@ -137,7 +136,7 @@ async function getCourses(limit?: number): Promise<CourseFeed[]> {
 async function getCoursesByCategory(
   category: string | undefined,
 ): Promise<CourseFeed[]> {
-  const courses = await coursesAsPromise;
+  const courses = await promise(["courses"], getAllCourses);
 
   return courses
     .filter((course) =>
@@ -147,7 +146,7 @@ async function getCoursesByCategory(
 }
 
 async function getCoursesCategories(): Promise<string[]> {
-  const courses = await coursesAsPromise;
+  const courses = await promise(["courses"], getAllCourses);
 
   const occurrences: Record<string, number> = {};
 
@@ -165,7 +164,7 @@ async function getCoursesCategories(): Promise<string[]> {
 }
 
 async function getCoursesSlugs(): Promise<string[]> {
-  const courses = await coursesAsPromise;
+  const courses = await promise(["courses"], getAllCourses);
 
   return courses.map((course) => course.slug);
 }
@@ -173,7 +172,7 @@ async function getCoursesSlugs(): Promise<string[]> {
 async function getCourse(
   slug: string | undefined,
 ): Promise<Course | undefined> {
-  const courses = await coursesAsPromise;
+  const courses = await promise(["courses"], getAllCourses);
 
   return courses.find((course) => course.slug === slug);
 }
