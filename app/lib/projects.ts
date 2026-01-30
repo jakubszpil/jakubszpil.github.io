@@ -1,13 +1,13 @@
 import { dirname, join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import invariant from "tiny-invariant";
 
 import {
   processFile,
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
+import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
 
 enum ProjectStatus {
@@ -75,15 +75,7 @@ async function getAllProjects(): Promise<Project[]> {
     projects.push(project);
   }
 
-  return projects.toSorted((first, second) => {
-    invariant(first.createdAt);
-    invariant(second.createdAt);
-
-    const firstCreationTime = new Date(first.createdAt).getTime();
-    const secondCreationTime = new Date(second.createdAt).getTime();
-
-    return secondCreationTime - firstCreationTime;
-  });
+  return projects.toSorted(sortByCreationDate);
 }
 
 async function getProjects(limit?: number): Promise<ProjectFeed[]> {

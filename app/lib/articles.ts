@@ -1,7 +1,6 @@
 import { dirname, join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import invariant from "tiny-invariant";
 
 import {
   getReadingTimeLabel,
@@ -10,6 +9,7 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
+import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
 
 interface ArticleFeed {
@@ -77,15 +77,7 @@ async function getAllArticles(): Promise<Article[]> {
     articles.push(article);
   }
 
-  return articles.toSorted((first, second) => {
-    invariant(first.createdAt);
-    invariant(second.createdAt);
-
-    const firstCreationTime = new Date(first.createdAt).getTime();
-    const secondCreationTime = new Date(second.createdAt).getTime();
-
-    return secondCreationTime - firstCreationTime;
-  });
+  return articles.toSorted(sortByCreationDate);
 }
 
 async function getArticles(limit?: number): Promise<ArticleFeed[]> {

@@ -23,3 +23,20 @@ export function getDifferenceInYears(startDate: Date): number {
 
   return Math.round(diffInYears * 2) / 2;
 }
+
+export function sortByCreationDate(
+  first: {
+    createdAt?: string;
+  },
+  second: {
+    createdAt?: string;
+  },
+) {
+  const firstDate = first.createdAt ?? new Date();
+  const secondDate = second.createdAt ?? new Date();
+
+  const firstCreationTime = new Date(firstDate).getTime();
+  const secondCreationTime = new Date(secondDate).getTime();
+
+  return secondCreationTime - firstCreationTime;
+}

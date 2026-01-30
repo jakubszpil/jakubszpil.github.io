@@ -13,10 +13,10 @@ import { Input } from "../components/ui/input";
 import { ArticleCards } from "../components/article-cards";
 import { CourseCards } from "../components/course-cards";
 import { ProjectCards } from "../components/project-cards";
-import { getArticles } from "../lib/articles";
-import { getCourses } from "../lib/courses";
+import { getArticles, type ArticleFeed } from "../lib/articles";
+import { getCourses, type CourseFeed } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
-import { getProjects } from "../lib/projects";
+import { getProjects, type ProjectFeed } from "../lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
@@ -58,12 +58,8 @@ export const meta = createMetaTags<typeof clientLoader>(({ loaderData }) => ({
 }));
 
 export default function Search() {
-  const {
-    query,
-    results: { articles, courses, projects },
-    initialResults,
-    count,
-  } = useLoaderData<typeof clientLoader>();
+  const { query, results, initialResults, count } =
+    useLoaderData<typeof clientLoader>();
 
   const ref = useRef<HTMLInputElement>(null);
   const location = useLocation() as Location<{ focus: boolean } | undefined>;
@@ -72,7 +68,7 @@ export default function Search() {
     if (location.state?.focus) ref.current?.focus();
   }, [ref, location.state]);
 
-  const renderArticles = useCallback(() => {
+  const renderArticles = useCallback((articles: ArticleFeed[]) => {
     if (!articles.length) {
       return null;
     }
@@ -83,9 +79,9 @@ export default function Search() {
         <ArticleCards className="p-0 grid-cols-subgrid" articles={articles} />
       </section>
     );
-  }, [articles]);
+  }, []);
 
-  const renderCourses = useCallback(() => {
+  const renderCourses = useCallback((courses: CourseFeed[]) => {
     if (!courses.length) {
       return null;
     }
@@ -96,9 +92,9 @@ export default function Search() {
         <CourseCards className="p-0 grid-cols-subgrid" courses={courses} />
       </section>
     );
-  }, [courses]);
+  }, []);
 
-  const renderProjects = useCallback(() => {
+  const renderProjects = useCallback((projects: ProjectFeed[]) => {
     if (!projects.length) {
       return null;
     }
@@ -109,7 +105,7 @@ export default function Search() {
         <ProjectCards className="p-0 grid-cols-subgrid" projects={projects} />
       </section>
     );
-  }, [projects]);
+  }, []);
 
   const renderResults = useCallback(() => {
     if (!query) {
@@ -120,18 +116,20 @@ export default function Search() {
       return <h2>Brak wyników wyszukiwania dla zapytania: {query}</h2>;
     }
 
+    const { articles, courses, projects } = results;
+
     return (
       <>
         <h2>Wyniki wyszukiwania ({count})</h2>
 
         <div className="grid grid-cols-1">
-          {renderArticles()}
-          {renderCourses()}
-          {renderProjects()}
+          {renderArticles(articles)}
+          {renderCourses(courses)}
+          {renderProjects(projects)}
         </div>
       </>
     );
-  }, [query, count, ref, renderArticles, renderCourses, renderProjects]);
+  }, [query, count, results, renderArticles, renderCourses, renderProjects]);
 
   const renderDatalistOptions = useCallback(
     <T extends { title: string }>(label: string, group: string, items: T[]) => {
@@ -145,6 +143,8 @@ export default function Search() {
   );
 
   const renderOptions = useCallback(() => {
+    if (!initialResults) return null;
+
     const { articles, courses, projects } = initialResults;
 
     return (

@@ -1,7 +1,6 @@
 import { dirname, join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import invariant from "tiny-invariant";
 
 import { shuffleArray } from "./array";
 import {
@@ -11,6 +10,7 @@ import {
   type MinifingStrategy,
   type ParsingStrategy,
 } from "./content";
+import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
 
 interface CourseQuiz {
@@ -116,15 +116,7 @@ async function getAllCourses(): Promise<Course[]> {
     courses.push(course);
   }
 
-  return courses.toSorted((first, second) => {
-    invariant(first.createdAt);
-    invariant(second.createdAt);
-
-    const firstCreationTime = new Date(first.createdAt).getTime();
-    const secondCreationTime = new Date(second.createdAt).getTime();
-
-    return secondCreationTime - firstCreationTime;
-  });
+  return courses.toSorted(sortByCreationDate);
 }
 
 async function getCourses(limit?: number): Promise<CourseFeed[]> {
