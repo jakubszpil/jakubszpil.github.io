@@ -1,14 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Navbar } from "../../components/navbar";
 import { NavbarMenu } from "../../components/navbar-menu";
@@ -26,47 +18,37 @@ vi.mock("../../components/footer-link");
 vi.mock("../../components/busy-indicator");
 
 describe("<Layout />", () => {
-  let MockedNavbar: MockInstance<typeof Navbar>;
-  let MockedNavbarMenu: MockInstance<typeof NavbarMenu>;
-  let MockedNavbarLink: MockInstance<typeof NavbarLink>;
-  let MockedFooter: MockInstance<typeof Footer>;
-  let MockedFooterLink: MockInstance<typeof FooterLink>;
-  let MockedBusyIndicator: MockInstance<typeof BusyIndicator>;
+  const MockedNavbar = vi.mocked(Navbar);
+  const MockedNavbarMenu = vi.mocked(NavbarMenu);
+  const MockedNavbarLink = vi.mocked(NavbarLink);
+  const MockedFooter = vi.mocked(Footer);
+  const MockedFooterLink = vi.mocked(FooterLink);
+  const MockedBusyIndicator = vi.mocked(BusyIndicator);
 
   beforeEach(() => {
-    MockedNavbar = vi
-      .mocked(Navbar)
-      .mockImplementation((props) => (
-        <div data-testid="Navbar">{props.children}</div>
-      ));
+    MockedNavbar.mockImplementation((props) => (
+      <div data-testid="Navbar">{props.children}</div>
+    ));
 
-    MockedNavbarMenu = vi
-      .mocked(NavbarMenu)
-      .mockImplementation((props) => (
-        <div data-testid="NavbarMenu">{props.children}</div>
-      ));
+    MockedNavbarMenu.mockImplementation((props) => (
+      <div data-testid="NavbarMenu">{props.children}</div>
+    ));
 
-    MockedNavbarLink = vi
-      .mocked(NavbarLink)
-      .mockImplementation((props) => (
-        <div data-testid="NavbarLink">{props.children}</div>
-      ));
+    MockedNavbarLink.mockImplementation((props) => (
+      <div data-testid="NavbarLink">{props.children}</div>
+    ));
 
-    MockedFooter = vi
-      .mocked(Footer)
-      .mockImplementation((props) => (
-        <div data-testid="Footer">{props.children}</div>
-      ));
+    MockedFooter.mockImplementation((props) => (
+      <div data-testid="Footer">{props.children}</div>
+    ));
 
-    MockedFooterLink = vi
-      .mocked(FooterLink)
-      .mockImplementation((props) => (
-        <div data-testid="FooterLink">{props.children}</div>
-      ));
+    MockedFooterLink.mockImplementation((props) => (
+      <div data-testid="FooterLink">{props.children}</div>
+    ));
 
-    MockedBusyIndicator = vi
-      .mocked(BusyIndicator)
-      .mockImplementation(() => <div data-testid="BusyIndicator"></div>);
+    MockedBusyIndicator.mockImplementation(() => (
+      <div data-testid="BusyIndicator"></div>
+    ));
   });
 
   afterEach(() => {

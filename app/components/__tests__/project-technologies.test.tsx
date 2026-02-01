@@ -1,13 +1,5 @@
 import { render } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockedFunction,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Categories, type CategoriesProps } from "../ui/categories";
 import {
@@ -18,7 +10,7 @@ import {
 vi.mock("../ui/categories");
 
 describe("<ProjectTechnologies />", () => {
-  let MockedCategories: MockedFunction<typeof Categories>;
+  const MockedCategories = vi.mocked(Categories);
 
   const MOCKED_PROPS: ProjectTechnologiesProps = {
     technologies: ["a", "b", "c", "d"],
@@ -26,9 +18,7 @@ describe("<ProjectTechnologies />", () => {
   };
 
   beforeEach(() => {
-    MockedCategories = vi
-      .mocked(Categories)
-      .mockImplementation(() => <div>Categories</div>);
+    MockedCategories.mockImplementation(() => <div>Categories</div>);
   });
 
   afterEach(() => {

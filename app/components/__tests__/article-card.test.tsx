@@ -1,13 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockedFunction,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import {
   LinkWithPrefetch,
@@ -21,8 +13,8 @@ vi.mock("../ui/link-with-prefetch");
 vi.mock("../ui/banner");
 
 describe("<ArticleCard />", () => {
-  let MockedLinkWithPrefetch: MockedFunction<typeof LinkWithPrefetch>;
-  let MockedBanner: MockedFunction<typeof Banner>;
+  const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
+  const MockedBanner = vi.mocked(Banner);
 
   const MOCKED_ARTICLE_FEED: ArticleFeed = {
     slug: "example",
@@ -33,13 +25,11 @@ describe("<ArticleCard />", () => {
   };
 
   beforeEach(() => {
-    MockedLinkWithPrefetch = vi
-      .mocked(LinkWithPrefetch)
-      .mockImplementation(({ children }) => <>{children}</>);
+    MockedLinkWithPrefetch.mockImplementation(({ children }) => (
+      <>{children}</>
+    ));
 
-    MockedBanner = vi
-      .mocked(Banner)
-      .mockImplementation(() => <div>Banner</div>);
+    MockedBanner.mockImplementation(() => <div>Banner</div>);
   });
 
   afterEach(() => {

@@ -1,13 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
 import { render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 import { NavbarMenu } from "../navbar-menu";
@@ -27,26 +19,20 @@ vi.mock("react-router", async (importOriginal) => {
 });
 
 describe("<NavbarMenu />", () => {
-  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
-  let MockedSearchButton: MockInstance<typeof SearchButton>;
-  let MockedThemeSwitcher: MockInstance<typeof ThemeSwitcher>;
+  const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
+  const MockedSearchButton = vi.mocked(SearchButton);
+  const MockedThemeSwitcher = vi.mocked(ThemeSwitcher);
 
   beforeEach(() => {
-    MockedLinkWithPrefetch = vi
-      .mocked(LinkWithPrefetch)
-      .mockImplementation((props) => (
-        <a href={String(props.to)} data-testid="link">
-          {props.children}
-        </a>
-      ));
+    MockedLinkWithPrefetch.mockImplementation((props) => (
+      <a href={String(props.to)} data-testid="link">
+        {props.children}
+      </a>
+    ));
 
-    MockedSearchButton = vi
-      .mocked(SearchButton)
-      .mockImplementation(() => <div>SearchButton</div>);
+    MockedSearchButton.mockImplementation(() => <div>SearchButton</div>);
 
-    MockedThemeSwitcher = vi
-      .mocked(ThemeSwitcher)
-      .mockImplementation(() => <div>ThemeSwitcher</div>);
+    MockedThemeSwitcher.mockImplementation(() => <div>ThemeSwitcher</div>);
   });
 
   afterEach(() => {

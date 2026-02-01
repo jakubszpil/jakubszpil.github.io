@@ -1,31 +1,19 @@
 import { render, screen } from "@testing-library/react";
-import {
-  type MockInstance,
-  describe,
-  expect,
-  test,
-  vi,
-  beforeEach,
-  afterEach,
-} from "vitest";
+import { describe, expect, test, vi, beforeEach, afterEach } from "vitest";
 
 import { getDifferenceInYears } from "../../lib/date";
 import { Socials } from "../../components/socials";
 import About from "../about";
 
 vi.mock("../../components/socials");
-
 vi.mock("../../lib/date");
 
 describe("<About />", () => {
-  let MockedSocials: MockInstance<typeof Socials>;
-  let MockedGetDifferenceInYears: MockInstance<typeof getDifferenceInYears>;
+  const MockedSocials = vi.mocked(Socials);
+  const MockedGetDifferenceInYears = vi.mocked(getDifferenceInYears);
 
   beforeEach(() => {
-    MockedSocials = vi.mocked(Socials);
-    MockedGetDifferenceInYears = vi
-      .mocked(getDifferenceInYears)
-      .mockImplementation(() => 3);
+    MockedGetDifferenceInYears.mockImplementation(() => 3);
   });
 
   afterEach(() => {

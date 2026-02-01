@@ -1,12 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
 import { render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, test, vi } from "vitest";
 
 import { getCurrentYear } from "../../lib/date";
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
@@ -17,21 +10,17 @@ vi.mock("../../lib/date");
 vi.mock("../ui/link-with-prefetch");
 
 describe("<Footer />", () => {
-  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
-  let mockedGetCurrentYear: MockInstance<typeof getCurrentYear>;
+  const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
+  const mockedGetCurrentYear = vi.mocked(getCurrentYear);
 
   beforeEach(() => {
-    MockedLinkWithPrefetch = vi
-      .mocked(LinkWithPrefetch)
-      .mockImplementation((props) => (
-        <a href={String(props.to)} data-testid="link">
-          {props.children}
-        </a>
-      ));
+    MockedLinkWithPrefetch.mockImplementation((props) => (
+      <a href={String(props.to)} data-testid="link">
+        {props.children}
+      </a>
+    ));
 
-    mockedGetCurrentYear = vi
-      .mocked(getCurrentYear)
-      .mockImplementation(() => 2025);
+    mockedGetCurrentYear.mockImplementation(() => 2025);
   });
 
   afterEach(() => {

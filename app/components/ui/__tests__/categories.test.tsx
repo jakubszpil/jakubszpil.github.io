@@ -1,13 +1,5 @@
 import { render } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import {
   LinkWithPrefetch,
@@ -18,23 +10,20 @@ import { Categories, type CategoriesProps } from "../categories";
 vi.mock("../link-with-prefetch");
 
 describe("<Categories />", () => {
-  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
-  let MockedCategoriesProps: CategoriesProps;
+  const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
+
+  const MockedCategoriesProps: CategoriesProps = {
+    categories: ["test", "example"],
+    baseUrl: "/example",
+    categoryPrefixUrl: "/example/categories",
+  };
 
   beforeEach(() => {
-    MockedLinkWithPrefetch = vi
-      .mocked(LinkWithPrefetch)
-      .mockImplementation((props) => (
-        <a href={String(props.to)} data-testid="link">
-          {props.children}
-        </a>
-      ));
-
-    MockedCategoriesProps = {
-      categories: ["test", "example"],
-      baseUrl: "/example",
-      categoryPrefixUrl: "/example/categories",
-    };
+    MockedLinkWithPrefetch.mockImplementation((props) => (
+      <a href={String(props.to)} data-testid="link">
+        {props.children}
+      </a>
+    ));
   });
 
   afterEach(() => {
@@ -49,7 +38,7 @@ describe("<Categories />", () => {
       expect.objectContaining({
         to: `${MockedCategoriesProps.categoryPrefixUrl}/test`,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
 
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
@@ -57,7 +46,7 @@ describe("<Categories />", () => {
       expect.objectContaining({
         to: `${MockedCategoriesProps.categoryPrefixUrl}/example`,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
   });
 
@@ -69,7 +58,7 @@ describe("<Categories />", () => {
       expect.objectContaining({
         to: MockedCategoriesProps.baseUrl,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
 
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
@@ -77,7 +66,7 @@ describe("<Categories />", () => {
       expect.objectContaining({
         to: `${MockedCategoriesProps.categoryPrefixUrl}/test`,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
 
     expect(MockedLinkWithPrefetch).toHaveBeenNthCalledWith(
@@ -85,7 +74,7 @@ describe("<Categories />", () => {
       expect.objectContaining({
         to: `${MockedCategoriesProps.categoryPrefixUrl}/example`,
       } satisfies LinkWithPrefetchProps),
-      undefined
+      undefined,
     );
   });
 });

@@ -1,13 +1,5 @@
 import { useNavigation, type Navigation } from "react-router";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 
 import { BusyIndicator } from "../busy-indicator";
@@ -21,24 +13,21 @@ vi.mock("react-router", async (importOriginal) => {
 });
 
 describe("<BusyIndicator />", () => {
-  let mockedNavigation: Navigation;
-  let mockedUseNavigation: MockInstance<typeof useNavigation>;
+  const mockedUseNavigation = vi.mocked(useNavigation);
+
+  const MOCKED_NAVIGATION: Navigation = {
+    formAction: undefined,
+    formData: undefined,
+    formEncType: undefined,
+    formMethod: undefined,
+    json: undefined,
+    location: undefined,
+    state: "idle",
+    text: undefined,
+  };
 
   beforeEach(() => {
-    mockedNavigation = {
-      formAction: undefined,
-      formData: undefined,
-      formEncType: undefined,
-      formMethod: undefined,
-      json: undefined,
-      location: undefined,
-      state: "idle",
-      text: undefined,
-    };
-
-    mockedUseNavigation = vi
-      .mocked(useNavigation)
-      .mockImplementation(() => mockedNavigation);
+    mockedUseNavigation.mockImplementation(() => MOCKED_NAVIGATION);
   });
 
   afterEach(() => {
@@ -47,7 +36,7 @@ describe("<BusyIndicator />", () => {
 
   test("should not show spinner when navigation is idle", async () => {
     mockedUseNavigation.mockImplementationOnce(() => {
-      const navigation = { ...mockedNavigation };
+      const navigation = { ...MOCKED_NAVIGATION };
       navigation.location = undefined;
       return navigation;
     });
@@ -61,15 +50,17 @@ describe("<BusyIndicator />", () => {
 
   test("should show spinner when navigation is pending", async () => {
     mockedUseNavigation.mockImplementationOnce(() => {
-      const navigation = { ...mockedNavigation };
-      navigation.location = {
-        hash: "xxx",
-        key: "123",
-        pathname: "/",
-        search: "",
-        state: {},
+      return {
+        ...MOCKED_NAVIGATION,
+        state: "loading",
+        location: {
+          hash: "xxx",
+          key: "123",
+          pathname: "/",
+          search: "",
+          state: {},
+        },
       };
-      return navigation;
     });
 
     render(<BusyIndicator />);
