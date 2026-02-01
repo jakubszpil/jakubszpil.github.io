@@ -1,14 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import ProjectList, { loader } from "../project-list";
 import {
@@ -31,49 +23,38 @@ vi.mock("../../components/project-technologies");
 vi.mock("../../lib/projects");
 
 describe("<ProjectList />", () => {
-  let MockedProjectCards: MockInstance<typeof ProjectCards>;
-  let MockedProjectTechnologies: MockInstance<typeof ProjectTechnologies>;
+  const MockedProjectCards = vi.mocked(ProjectCards);
+  const MockedProjectTechnologies = vi.mocked(ProjectTechnologies);
+  const MockedGetProjectsByTechnology = vi.mocked(getProjectsByTechnology);
+  const MockedGetProjectsTechnologies = vi.mocked(getProjectsTechnologies);
 
-  let MOCKED_PROJECTS: ProjectFeed[];
-  let MOCKED_TECHNOLOGIES: string[];
+  const MOCKED_PROJECTS: ProjectFeed[] = [
+    {
+      slug: "test-example-1",
+      title: "Test title 1",
+      description: "Test description 1",
+      createdAt: "2025-03-17",
+      status: ProjectStatus.COMPLETED,
+    },
+    {
+      slug: "test-example-2",
+      title: "Test title 2",
+      description: "Test description 2",
+      createdAt: "2025-03-17",
+      status: ProjectStatus.COMPLETED,
+    },
+  ];
 
-  let MockedGetProjectsByTechnology: MockInstance<
-    typeof getProjectsByTechnology
-  >;
-  let MockedGetProjectsTechnologies: MockInstance<
-    typeof getProjectsTechnologies
-  >;
+  const MOCKED_TECHNOLOGIES: string[] = ["test", "example"];
 
   beforeEach(() => {
-    MockedProjectCards = vi.mocked(ProjectCards);
-    MockedProjectTechnologies = vi.mocked(ProjectTechnologies);
+    MockedGetProjectsByTechnology.mockImplementation(() =>
+      Promise.resolve(MOCKED_PROJECTS),
+    );
 
-    MOCKED_PROJECTS = [
-      {
-        slug: "test-example-1",
-        title: "Test title 1",
-        description: "Test description 1",
-        createdAt: "2025-03-17",
-        status: ProjectStatus.COMPLETED,
-      },
-      {
-        slug: "test-example-2",
-        title: "Test title 2",
-        description: "Test description 2",
-        createdAt: "2025-03-17",
-        status: ProjectStatus.COMPLETED,
-      },
-    ];
-
-    MOCKED_TECHNOLOGIES = ["test", "example"];
-
-    MockedGetProjectsByTechnology = vi
-      .mocked(getProjectsByTechnology)
-      .mockImplementation(() => Promise.resolve(MOCKED_PROJECTS));
-
-    MockedGetProjectsTechnologies = vi
-      .mocked(getProjectsTechnologies)
-      .mockImplementation(() => Promise.resolve(MOCKED_TECHNOLOGIES));
+    MockedGetProjectsTechnologies.mockImplementation(() =>
+      Promise.resolve(MOCKED_TECHNOLOGIES),
+    );
   });
 
   afterEach(() => {

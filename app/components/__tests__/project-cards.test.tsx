@@ -1,13 +1,5 @@
 import { render } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockedFunction,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ProjectCard, type ProjectCardProps } from "../project-card";
 import { ProjectCards } from "../project-cards";
@@ -16,7 +8,7 @@ import { type ProjectFeed, ProjectStatus } from "../../lib/projects";
 vi.mock("../project-card");
 
 describe("<ProjectCards />", () => {
-  let MockedProjectCard: MockedFunction<typeof ProjectCard>;
+  const MockedProjectCard = vi.mocked(ProjectCard);
 
   const MOCKED_PROJECT_FEEDS: ProjectFeed[] = [
     {
@@ -43,9 +35,7 @@ describe("<ProjectCards />", () => {
   ];
 
   beforeEach(() => {
-    MockedProjectCard = vi
-      .mocked(ProjectCard)
-      .mockImplementation(() => <div>ProjectCard</div>);
+    MockedProjectCard.mockImplementation(() => <div>ProjectCard</div>);
   });
 
   afterEach(() => {

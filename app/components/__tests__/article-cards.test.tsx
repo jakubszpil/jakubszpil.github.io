@@ -1,13 +1,5 @@
 import { render } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockedFunction,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ArticleCard, type ArticleCardProps } from "../article-card";
 import { ArticleCards } from "../article-cards";
@@ -16,7 +8,7 @@ import type { ArticleFeed } from "../../lib/articles";
 vi.mock("../article-card");
 
 describe("<ArticleCards />", () => {
-  let MockedArticleCard: MockedFunction<typeof ArticleCard>;
+  const MockedArticleCard = vi.mocked(ArticleCard);
 
   const MOCKED_ARTICLE_FEEDS: ArticleFeed[] = [
     {
@@ -43,9 +35,7 @@ describe("<ArticleCards />", () => {
   ];
 
   beforeEach(() => {
-    MockedArticleCard = vi
-      .mocked(ArticleCard)
-      .mockImplementation(() => <div>ArticleCard</div>);
+    MockedArticleCard.mockImplementation(() => <div>ArticleCard</div>);
   });
 
   afterEach(() => {

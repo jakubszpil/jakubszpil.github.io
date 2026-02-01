@@ -1,13 +1,5 @@
 import { render } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockedFunction,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CourseCard, type CourseCardProps } from "../course-card";
 import { CourseCards } from "../course-cards";
@@ -16,7 +8,7 @@ import type { CourseFeed } from "../../lib/courses";
 vi.mock("../course-card");
 
 describe("<CourseCards />", () => {
-  let MockedCourseCard: MockedFunction<typeof CourseCard>;
+  const MockedCourseCard = vi.mocked(CourseCard);
 
   const MOCKED_COURSE_FEEDS: CourseFeed[] = [
     {
@@ -43,9 +35,7 @@ describe("<CourseCards />", () => {
   ];
 
   beforeEach(() => {
-    MockedCourseCard = vi
-      .mocked(CourseCard)
-      .mockImplementation(() => <div>CourseCard</div>);
+    MockedCourseCard.mockImplementation(() => <div>CourseCard</div>);
   });
 
   afterEach(() => {

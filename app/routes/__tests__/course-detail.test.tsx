@@ -1,14 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { getCourse, type Course } from "../../lib/courses";
 import {
@@ -28,36 +20,28 @@ vi.mock("../../components/ui/banner");
 vi.mock("../../lib/courses");
 
 describe("<CourseDetail />", () => {
-  let MockedCategories: MockInstance<typeof Categories>;
-  let MockedEditResource: MockInstance<typeof EditResource>;
-  let MockedBanner: MockInstance<typeof Banner>;
+  const MockedCategories = vi.mocked(Categories);
+  const MockedEditResource = vi.mocked(EditResource);
+  const MockedBanner = vi.mocked(Banner);
+  const MockedGetCourse = vi.mocked(getCourse);
 
-  let MockedCourse: Course;
-  let MockedGetCourse: MockInstance<typeof getCourse>;
+  const MOCKED_COURSE: Course = {
+    slug: "test-example",
+    content: "<p>Test content</p>",
+    title: "Test title",
+    description: "Test description",
+    keywords: ["test", "example"],
+    categories: ["test", "example"],
+    createdAt: "2025-03-17",
+    readingTime: "3 minuty",
+    quiz: {
+      questions: [],
+      title: "Example Quiz",
+    },
+  };
 
   beforeEach(() => {
-    MockedCategories = vi.mocked(Categories);
-    MockedEditResource = vi.mocked(EditResource);
-    MockedBanner = vi.mocked(Banner);
-
-    MockedCourse = {
-      slug: "test-example",
-      content: "<p>Test content</p>",
-      title: "Test title",
-      description: "Test description",
-      keywords: ["test", "example"],
-      categories: ["test", "example"],
-      createdAt: "2025-03-17",
-      readingTime: "3 minuty",
-      quiz: {
-        questions: [],
-        title: "Example Quiz",
-      },
-    };
-
-    MockedGetCourse = vi
-      .mocked(getCourse)
-      .mockImplementation(() => Promise.resolve(MockedCourse));
+    MockedGetCourse.mockImplementation(() => Promise.resolve(MOCKED_COURSE));
   });
 
   afterEach(() => {
@@ -80,18 +64,18 @@ describe("<CourseDetail />", () => {
     render(
       <Stub
         initialEntries={[
-          generatePath("/learning/:slug", { slug: MockedCourse.slug }),
+          generatePath("/learning/:slug", { slug: MOCKED_COURSE.slug }),
         ]}
       />,
     );
 
-    await screen.findByText(MockedCourse.title);
+    await screen.findByText(MOCKED_COURSE.title);
 
-    expect(MockedGetCourse).toHaveBeenCalledWith(MockedCourse.slug);
+    expect(MockedGetCourse).toHaveBeenCalledWith(MOCKED_COURSE.slug);
 
     expect(MockedCategories).toHaveBeenCalledWith(
       {
-        categories: MockedCourse.categories,
+        categories: MOCKED_COURSE.categories,
         baseUrl: "/learning",
         categoryPrefixUrl: "/learning/kategorie",
       } satisfies CategoriesProps,
@@ -100,7 +84,7 @@ describe("<CourseDetail />", () => {
 
     expect(MockedEditResource).toHaveBeenCalledWith(
       {
-        slug: MockedCourse.slug,
+        slug: MOCKED_COURSE.slug,
         resourceType: "courses",
       } satisfies EditResourceProps,
       undefined,
@@ -108,8 +92,8 @@ describe("<CourseDetail />", () => {
 
     expect(MockedBanner).toHaveBeenCalledWith(
       {
-        createdAt: MockedCourse.createdAt,
-        readingTime: MockedCourse.readingTime,
+        createdAt: MOCKED_COURSE.createdAt,
+        readingTime: MOCKED_COURSE.readingTime,
         className: "my-6",
       } satisfies BannerProps,
       undefined,

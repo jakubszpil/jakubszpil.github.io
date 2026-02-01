@@ -1,14 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import ArticleDetail, { loader } from "../article-detail";
 import {
@@ -28,32 +20,24 @@ vi.mock("../../components/article-categories");
 vi.mock("../../lib/articles");
 
 describe("<ArticleDetail />", () => {
-  let MockedArticleCategories: MockInstance<typeof ArticleCategories>;
-  let MockedEditResource: MockInstance<typeof EditResource>;
-  let MockedBanner: MockInstance<typeof Banner>;
+  const MockedArticleCategories = vi.mocked(ArticleCategories);
+  const MockedEditResource = vi.mocked(EditResource);
+  const MockedBanner = vi.mocked(Banner);
+  const MockedGetArticle = vi.mocked(getArticle);
 
-  let MockedArticle: Article;
-  let MockedGetArticle: MockInstance<typeof getArticle>;
+  const MOCKED_ARTICLE: Article = {
+    slug: "test-example",
+    content: "<p>Test content</p>",
+    title: "Test title",
+    description: "Test description",
+    keywords: ["test", "example"],
+    categories: ["test", "example"],
+    createdAt: "2025-03-17",
+    readingTime: "3 minuty",
+  };
 
   beforeEach(() => {
-    MockedArticleCategories = vi.mocked(ArticleCategories);
-    MockedEditResource = vi.mocked(EditResource);
-    MockedBanner = vi.mocked(Banner);
-
-    MockedArticle = {
-      slug: "test-example",
-      content: "<p>Test content</p>",
-      title: "Test title",
-      description: "Test description",
-      keywords: ["test", "example"],
-      categories: ["test", "example"],
-      createdAt: "2025-03-17",
-      readingTime: "3 minuty",
-    };
-
-    MockedGetArticle = vi
-      .mocked(getArticle)
-      .mockImplementation(() => Promise.resolve(MockedArticle));
+    MockedGetArticle.mockImplementation(() => Promise.resolve(MOCKED_ARTICLE));
   });
 
   afterEach(() => {
@@ -76,25 +60,25 @@ describe("<ArticleDetail />", () => {
     render(
       <Stub
         initialEntries={[
-          generatePath("/blog/:slug", { slug: MockedArticle.slug }),
+          generatePath("/blog/:slug", { slug: MOCKED_ARTICLE.slug }),
         ]}
       />,
     );
 
-    await screen.findByText(MockedArticle.title);
+    await screen.findByText(MOCKED_ARTICLE.title);
 
-    expect(MockedGetArticle).toHaveBeenCalledWith(MockedArticle.slug);
+    expect(MockedGetArticle).toHaveBeenCalledWith(MOCKED_ARTICLE.slug);
 
     expect(MockedArticleCategories).toHaveBeenCalledWith(
       {
-        categories: MockedArticle.categories,
+        categories: MOCKED_ARTICLE.categories,
       } satisfies ArticleCategoriesProps,
       undefined,
     );
 
     expect(MockedEditResource).toHaveBeenCalledWith(
       {
-        slug: MockedArticle.slug,
+        slug: MOCKED_ARTICLE.slug,
         resourceType: "articles",
       } satisfies EditResourceProps,
       undefined,
@@ -102,8 +86,8 @@ describe("<ArticleDetail />", () => {
 
     expect(MockedBanner).toHaveBeenCalledWith(
       {
-        createdAt: MockedArticle.createdAt,
-        readingTime: MockedArticle.readingTime,
+        createdAt: MOCKED_ARTICLE.createdAt,
+        readingTime: MOCKED_ARTICLE.readingTime,
         className: "my-6",
       } satisfies BannerProps,
       undefined,

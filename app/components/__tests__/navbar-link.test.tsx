@@ -1,13 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 import { NavbarLink, type NavbarLinkProps } from "../navbar-link";
@@ -15,22 +7,18 @@ import { NavbarLink, type NavbarLinkProps } from "../navbar-link";
 vi.mock("../ui/link-with-prefetch");
 
 describe("<NavbarLink />", () => {
-  let MockedLinkWithPrefetch: MockInstance<typeof LinkWithPrefetch>;
-  let MockedNavbarLinkProps: NavbarLinkProps;
+  const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
+  const MockedNavbarLinkProps: NavbarLinkProps = {
+    children: "some text",
+    to: "/test",
+  };
 
   beforeEach(() => {
-    MockedLinkWithPrefetch = vi
-      .mocked(LinkWithPrefetch)
-      .mockImplementation((props) => (
-        <a href={String(props.to)} data-testid="link">
-          {props.children}
-        </a>
-      ));
-
-    MockedNavbarLinkProps = {
-      children: "some text",
-      to: "/test",
-    };
+    MockedLinkWithPrefetch.mockImplementation((props) => (
+      <a href={String(props.to)} data-testid="link">
+        {props.children}
+      </a>
+    ));
   });
 
   afterEach(() => {

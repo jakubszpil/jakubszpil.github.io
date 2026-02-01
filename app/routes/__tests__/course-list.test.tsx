@@ -1,14 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-  type MockInstance,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import CourseList, { loader } from "../course-list";
 import {
@@ -30,45 +22,38 @@ vi.mock("../../components/course-categories");
 vi.mock("../../lib/courses");
 
 describe("<CourseList />", () => {
-  let MockedCourseCards: MockInstance<typeof CourseCards>;
-  let MockedCourseCategories: MockInstance<typeof CourseCategories>;
+  const MockedCourseCards = vi.mocked(CourseCards);
+  const MockedCourseCategories = vi.mocked(CourseCategories);
+  const MockedGetCoursesByCategory = vi.mocked(getCoursesByCategory);
+  const MockedGetCoursesCategories = vi.mocked(getCoursesCategories);
 
-  let MOCKED_COURSES: CourseFeed[];
-  let MOCKED_CATEGORIES: string[];
+  const MOCKED_COURSES: CourseFeed[] = [
+    {
+      slug: "test-example-1",
+      title: "Test title 1",
+      description: "Test description 1",
+      createdAt: "2025-03-17",
+      readingTime: "3 minuty",
+    },
+    {
+      slug: "test-example-2",
+      title: "Test title 2",
+      description: "Test description 2",
+      createdAt: "2025-03-17",
+      readingTime: "3 minuty",
+    },
+  ];
 
-  let MockedGetCoursesByCategory: MockInstance<typeof getCoursesByCategory>;
-  let MockedGetCoursesCategories: MockInstance<typeof getCoursesCategories>;
+  const MOCKED_CATEGORIES: string[] = ["test", "example"];
 
   beforeEach(() => {
-    MockedCourseCards = vi.mocked(CourseCards);
-    MockedCourseCategories = vi.mocked(CourseCategories);
+    MockedGetCoursesByCategory.mockImplementation(() =>
+      Promise.resolve(MOCKED_COURSES),
+    );
 
-    MOCKED_COURSES = [
-      {
-        slug: "test-example-1",
-        title: "Test title 1",
-        description: "Test description 1",
-        createdAt: "2025-03-17",
-        readingTime: "3 minuty",
-      },
-      {
-        slug: "test-example-2",
-        title: "Test title 2",
-        description: "Test description 2",
-        createdAt: "2025-03-17",
-        readingTime: "3 minuty",
-      },
-    ];
-
-    MOCKED_CATEGORIES = ["test", "example"];
-
-    MockedGetCoursesByCategory = vi
-      .mocked(getCoursesByCategory)
-      .mockImplementation(() => Promise.resolve(MOCKED_COURSES));
-
-    MockedGetCoursesCategories = vi
-      .mocked(getCoursesCategories)
-      .mockImplementation(() => Promise.resolve(MOCKED_CATEGORIES));
+    MockedGetCoursesCategories.mockImplementation(() =>
+      Promise.resolve(MOCKED_CATEGORIES),
+    );
   });
 
   afterEach(() => {
