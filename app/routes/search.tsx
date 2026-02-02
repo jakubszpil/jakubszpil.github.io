@@ -1,18 +1,10 @@
-import { useCallback, useEffect, useRef } from "react";
-import {
-  Form,
-  useLoaderData,
-  useLocation,
-  type ClientLoaderFunctionArgs,
-  type Location,
-} from "react-router";
+import { useCallback } from "react";
+import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
 
-import { Button } from "../components/ui/button";
-import { IconSearch } from "../components/ui/icons";
-import { Input } from "../components/ui/input";
 import { ArticleCards } from "../components/article-cards";
 import { CourseCards } from "../components/course-cards";
 import { ProjectCards } from "../components/project-cards";
+import { SearchForm } from "../components/search-form";
 import { getArticles, type ArticleFeed } from "../lib/articles";
 import { getCourses, type CourseFeed } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
@@ -20,7 +12,6 @@ import { getProjects, type ProjectFeed } from "../lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
-  queryParamName,
   validateSearhQuery,
 } from "../lib/search";
 
@@ -60,13 +51,6 @@ export const meta = createMetaTags<typeof clientLoader>(({ loaderData }) => ({
 export default function Search() {
   const { query, results, initialResults, count } =
     useLoaderData<typeof clientLoader>();
-
-  const ref = useRef<HTMLInputElement>(null);
-  const location = useLocation() as Location<{ focus: boolean } | undefined>;
-
-  useEffect(() => {
-    if (location.state?.focus) ref.current?.focus();
-  }, [ref, location.state]);
 
   const renderArticles = useCallback((articles: ArticleFeed[]) => {
     if (!articles.length) {
@@ -131,31 +115,6 @@ export default function Search() {
     );
   }, [query, count, results, renderArticles, renderCourses, renderProjects]);
 
-  const renderDatalistOptions = useCallback(
-    <T extends { title: string }>(label: string, group: string, items: T[]) => {
-      return items?.map((item, idx) => (
-        <option key={`${group}-${idx}`} value={item.title}>
-          {label}
-        </option>
-      ));
-    },
-    [],
-  );
-
-  const renderOptions = useCallback(() => {
-    if (!initialResults) return null;
-
-    const { articles, courses, projects } = initialResults;
-
-    return (
-      <>
-        {renderDatalistOptions("📝 Artykuł", "articles", articles)}
-        {renderDatalistOptions("🏫 Kurs", "courses", courses)}
-        {renderDatalistOptions("🛠️ Projekt", "projects", projects)}
-      </>
-    );
-  }, [initialResults, renderDatalistOptions]);
-
   return (
     <section className="prose max-w-full">
       <header className="container pb-0!">
@@ -176,31 +135,13 @@ export default function Search() {
         </p>
       </header>
 
-      <Form
-        preventScrollReset={true}
-        method="get"
-        className="container py-0! bg-background flex gap-2"
+      <SearchForm
         action="/search"
-      >
-        <Input
-          ref={ref}
-          key={query}
-          type="search"
-          name={queryParamName}
-          placeholder="Treść zapytania"
-          defaultValue={query ?? ""}
-          required
-          className="flex-1 relative text-sm"
-          list="search-datalist"
-        />
-
-        <datalist id="search-datalist">{renderOptions()}</datalist>
-
-        <Button type="submit">
-          <IconSearch className="size-5" />
-          Szukaj
-        </Button>
-      </Form>
+        query={query}
+        articles={initialResults?.articles ?? []}
+        courses={initialResults?.courses ?? []}
+        projects={initialResults?.projects ?? []}
+      />
 
       <div className="container pt-0!">{renderResults()}</div>
     </section>
