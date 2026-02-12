@@ -1,13 +1,18 @@
 import { useId } from "react";
 
 import { Button, type ButtonProps } from "./ui/button";
+import { IconBrandGithub, IconBrandLinkedin } from "./ui/icons";
 import { config } from "../lib/config";
-import { Icons } from "./ui/icons";
 
 export interface SocialsProps {
   hideLabels?: boolean;
   variant?: ButtonProps["variant"];
 }
+
+const Icons = {
+  ["brand-linkedin"]: IconBrandLinkedin,
+  ["brand-github"]: IconBrandGithub,
+};
 
 export function Socials({ hideLabels, variant }: SocialsProps) {
   const id = useId();
