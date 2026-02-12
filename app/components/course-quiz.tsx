@@ -70,6 +70,7 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
           Wynik: {score} / {questions.length}
         </p>
         <Button
+          className="cursor-pointer"
           size="sm"
           onClick={() => {
             setCurrent(0);
@@ -133,7 +134,7 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
             {question?.explanation && (
               <blockquote className="my-3">{question.explanation}</blockquote>
             )}
-            <Button size="sm" onClick={handleNext}>
+            <Button size="sm" onClick={handleNext} className="cursor-pointer">
               {current + 1 < questions.length
                 ? "Następne pytanie"
                 : "Zakończ quiz"}

@@ -10,7 +10,12 @@ export interface FooterLinkProps {
 
 export function FooterLink({ to, children }: FooterLinkProps) {
   return (
-    <Button asChild variant="link" size="sm">
+    <Button
+      asChild
+      variant="link"
+      size="sm"
+      className="no-underline hover:underline"
+    >
       <LinkWithPrefetch to={to}>{children}</LinkWithPrefetch>
     </Button>
   );

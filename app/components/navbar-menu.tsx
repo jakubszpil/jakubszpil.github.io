@@ -87,7 +87,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
           ref={buttonRef}
           onClick={() => setShow((prev) => !prev)}
           className={cn(
-            "inline-flex items-center justify-center relative z-50 lg:hidden",
+            "inline-flex items-center justify-center relative z-50 cursor-pointer lg:hidden",
             show && "dark",
           )}
           variant="link"
