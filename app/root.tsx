@@ -25,6 +25,13 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
+        <link
+          rel="preload prefetch"
+          href="/fonts/geist-mono.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
         <InlineScript
           code={`
             let k = "theme";

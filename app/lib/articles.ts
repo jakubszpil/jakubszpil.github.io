@@ -1,6 +1,5 @@
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
 
 import {
   getReadingTimeLabel,
@@ -61,9 +60,7 @@ const articleParsingStrategy: ParsingStrategy<Article> = async (slug, file) => {
 };
 
 async function getAllArticles(): Promise<Article[]> {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  const directory = join(__dirname, "../../content/articles");
+  const directory = join(process.cwd(), "app/content/articles");
 
   const files = await readdir(directory);
 
