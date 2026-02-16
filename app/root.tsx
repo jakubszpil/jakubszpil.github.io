@@ -45,7 +45,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body style={{ WebkitTapHighlightColor: "transparent" }}>
+      <body>
         {children}
         <ScrollRestoration
           getKey={getScrollRestorationKey}

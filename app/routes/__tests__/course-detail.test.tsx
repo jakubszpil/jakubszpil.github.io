@@ -4,9 +4,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { getCourse, type Course } from "../../lib/courses";
 import {
-  Categories,
-  type CategoriesProps,
-} from "../../components/ui/categories";
+  BreadcrumbWithCategory,
+  type BreadcrumbWithCategoryProps,
+} from "../../components/breadcrumb-with-category";
 import {
   EditResource,
   type EditResourceProps,
@@ -14,13 +14,13 @@ import {
 import { Banner, type BannerProps } from "../../components/ui/banner";
 import CourseDetail, { loader } from "../course-detail";
 
-vi.mock("../../components/ui/categories");
-vi.mock("../../components/ui/edit-resource");
 vi.mock("../../components/ui/banner");
+vi.mock("../../components/ui/edit-resource");
+vi.mock("../../components/breadcrumb-with-category");
 vi.mock("../../lib/courses");
 
 describe("<CourseDetail />", () => {
-  const MockedCategories = vi.mocked(Categories);
+  const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);
   const MockedEditResource = vi.mocked(EditResource);
   const MockedBanner = vi.mocked(Banner);
   const MockedGetCourse = vi.mocked(getCourse);
@@ -31,7 +31,7 @@ describe("<CourseDetail />", () => {
     title: "Test title",
     description: "Test description",
     keywords: ["test", "example"],
-    categories: ["test", "example"],
+    category: "test",
     createdAt: "2025-03-17",
     readingTime: "3 minuty",
     quiz: {
@@ -45,7 +45,7 @@ describe("<CourseDetail />", () => {
   });
 
   afterEach(() => {
-    MockedCategories.mockRestore();
+    MockedBreadcrumbWithCategory.mockRestore();
     MockedEditResource.mockRestore();
     MockedBanner.mockRestore();
     MockedGetCourse.mockRestore();
@@ -73,12 +73,13 @@ describe("<CourseDetail />", () => {
 
     expect(MockedGetCourse).toHaveBeenCalledWith(MOCKED_COURSE.slug);
 
-    expect(MockedCategories).toHaveBeenCalledWith(
+    expect(MockedBreadcrumbWithCategory).toHaveBeenCalledWith(
       {
-        categories: MOCKED_COURSE.categories,
+        category: MOCKED_COURSE.category,
         baseUrl: "/learning",
+        baseLabel: "Learning",
         categoryPrefixUrl: "/learning/kategorie",
-      } satisfies CategoriesProps,
+      } satisfies BreadcrumbWithCategoryProps,
       undefined,
     );
 

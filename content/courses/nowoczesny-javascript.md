@@ -2,7 +2,7 @@
 title: Renesans w JS, czyli nowoczesny JavaScript
 description: JavaScript jest językiem programowania, który jest powszechnie stosowany do tworzenia dynamicznych i interaktywnych stron internetowych. W ciągu ostatnich lat JavaScript znacznie ewoluował, wprowadzając nowe funkcje i poprawiając istniejące mechanizmy. W tym kursie omówimy najważniejsze elementy nowoczesnego JavaScript, w tym ES6 i nowsze.
 keywords: [javascript, kurs, wprowadzenie, przewodnik, web, frontend, learning]
-categories: [javascript]
+category: javascript
 createdAt: 2024-06-30
 quiz:
   title: "Quiz: Podstawy nowoczesnego JavaScript"
@@ -406,7 +406,7 @@ Gdy używasz `...` do **zbierania** wielu elementów w jedną tablicę (lub wła
     // 'liczby' zbiera wszystkie przekazane argumenty w tablicę
     return liczby.reduce(
       (akumulator, aktualnaLiczba) => akumulator + aktualnaLiczba,
-      0
+      0,
     );
   }
   console.log(suma(1, 2, 3)); // Wyświetli: 6
@@ -510,7 +510,7 @@ fetch("https://jsonplaceholder.typicode.com/users/1") // Pobierz dane użytkowni
     // Drugie .then: otrzymaj sparsowane dane użytkownika
     console.log("Pobrany użytkownik:", user.name, user.email);
     return fetch(
-      `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`
+      `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`,
     ); // Pobierz posty tego użytkownika
   })
   .then((response) => {
@@ -555,11 +555,11 @@ async function pobierzDaneUzytkownikaIPosty() {
 
     // Krok 1: Pobierz dane użytkownika
     const userResponse = await fetch(
-      "https://jsonplaceholder.typicode.com/users/1"
+      "https://jsonplaceholder.typicode.com/users/1",
     );
     if (!userResponse.ok) {
       throw new Error(
-        `Błąd HTTP przy pobieraniu użytkownika! Status: ${userResponse.status}`
+        `Błąd HTTP przy pobieraniu użytkownika! Status: ${userResponse.status}`,
       );
     }
     const user = await userResponse.json(); // Poczekaj na parsowanie JSON
@@ -567,11 +567,11 @@ async function pobierzDaneUzytkownikaIPosty() {
 
     // Krok 2: Pobierz posty tego użytkownika
     const postsResponse = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`
+      `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`,
     );
     if (!postsResponse.ok) {
       throw new Error(
-        `Błąd HTTP przy pobieraniu postów! Status: ${postsResponse.status}`
+        `Błąd HTTP przy pobieraniu postów! Status: ${postsResponse.status}`,
       );
     }
     const posts = await postsResponse.json(); // Poczekaj na parsowanie JSON
@@ -644,7 +644,7 @@ Napisz **funkcję strzałkową**, która przyjmuje dowolną liczbę argumentów 
 const sumaWszystkichLiczb = (...liczby) => {
   return liczby.reduce(
     (akumulator, aktualnaLiczba) => akumulator + aktualnaLiczba,
-    0
+    0,
   );
 };
 
@@ -744,7 +744,7 @@ async function pobierzWiadomosc() {
 // Wywołaj funkcję asynchroniczną
 pobierzWiadomosc();
 console.log(
-  "Ten tekst wyświetli się natychmiast po uruchomieniu programu, zanim wiadomość zostanie pobrana."
+  "Ten tekst wyświetli się natychmiast po uruchomieniu programu, zanim wiadomość zostanie pobrana.",
 );
 ```
 

@@ -2,7 +2,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Banner } from "../components/ui/banner";
 import { EditResource } from "../components/ui/edit-resource";
-import { CourseCategories } from "../components/course-categories";
+import { BreadcrumbWithCategory } from "../components/breadcrumb-with-category";
 import { CourseQuiz } from "../components/course-quiz";
 import { getCourse } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
@@ -29,6 +29,13 @@ export default function CourseDetail() {
 
   return (
     <>
+      <BreadcrumbWithCategory
+        baseLabel="Learning"
+        baseUrl="/learning"
+        category={course.category}
+        categoryPrefixUrl="/learning/kategorie"
+      />
+
       <header className="prose container">
         <h1 className="mb-5">{course.title}</h1>
         <Banner
@@ -36,7 +43,6 @@ export default function CourseDetail() {
           createdAt={course.createdAt}
           readingTime={course.readingTime}
         />
-        <CourseCategories categories={course.categories} />
       </header>
 
       <article

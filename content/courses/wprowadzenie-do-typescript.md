@@ -17,7 +17,7 @@ keywords:
     enums,
     devtools,
   ]
-categories: [typescript]
+category: typescript
 createdAt: 2025-07-06
 quiz:
   title: "Quiz: Wprowadzenie do TypeScript - Sprawdź się! 💪"
@@ -555,7 +555,7 @@ class Pies extends Zwierze {
   // Konstruktor klasy potomnej
   constructor(
     nazwa: string,
-    public rasa: string
+    public rasa: string,
   ) {
     super(nazwa); // 'super()' wywołuje konstruktor klasy bazowej (Zwierze)
     this.rasa = rasa;
@@ -714,14 +714,14 @@ listaOsob.forEach((osoba) => {
   if (osoba.rola === "admin") {
     // W tym bloku TypeScript wie, że 'osoba' to typ 'Admin'
     console.log(
-      `Administrator: ${osoba.panelDostepu} (poziom: ${osoba.poziomUprawnien})`
+      `Administrator: ${osoba.panelDostepu} (poziom: ${osoba.poziomUprawnien})`,
     );
   } else {
     // Tutaj TypeScript wie, że 'osoba' to typ 'Uzytkownik'
     console.log(
       `Użytkownik: ${
         osoba.nazwaUzytkownika
-      } (logował się: ${osoba.ostatnieLogowanie.toLocaleDateString()})`
+      } (logował się: ${osoba.ostatnieLogowanie.toLocaleDateString()})`,
     );
   }
 });
@@ -1068,7 +1068,7 @@ class Pojazd {
 class Samochod extends Pojazd {
   constructor(
     marka: string,
-    public model: string
+    public model: string,
   ) {
     super(marka); // Wywołanie konstruktora klasy bazowej
   }
@@ -1076,7 +1076,7 @@ class Samochod extends Pojazd {
   // Nadpisanie metody jedz()
   jedz(): void {
     console.log(
-      `Samochód ${this.marka} ${this.model} jedzie z piskiem opon! 🚗💨`
+      `Samochód ${this.marka} ${this.model} jedzie z piskiem opon! 🚗💨`,
     );
   }
 }

@@ -14,7 +14,7 @@ keywords:
     wyjaśnienia,
     learning,
   ]
-categories: [terminal]
+category: terminal
 createdAt: 2025-07-05
 quiz:
   title: "Quiz: Wprowadzenie do terminala"

@@ -15,7 +15,7 @@ keywords:
     obiekty,
     tablice,
   ]
-categories: [javascript]
+category: javascript
 createdAt: 2025-07-06
 quiz:
   title: "Quiz: Wprowadzenie do JavaScript"
@@ -735,19 +735,19 @@ function znajdzNajwiekszaLiczbe(tablicaLiczb) {
 // Przykładowe użycie funkcji
 let liczby1 = [3, 7, 2, 9, 5];
 console.log(
-  `Największa liczba w [${liczby1}] to: ${znajdzNajwiekszaLiczbe(liczby1)}`
+  `Największa liczba w [${liczby1}] to: ${znajdzNajwiekszaLiczbe(liczby1)}`,
 ); // Oczekiwany wynik: 9
 
 let liczby2 = [10, 1, 8, 4];
 console.log(
-  `Największa liczba w [${liczby2}] to: ${znajdzNajwiekszaLiczbe(liczby2)}`
+  `Największa liczba w [${liczby2}] to: ${znajdzNajwiekszaLiczbe(liczby2)}`,
 ); // Oczekiwany wynik: 10
 
 let pustaTablica = [];
 console.log(
   `Największa liczba w [${pustaTablica}] to: ${znajdzNajwiekszaLiczbe(
-    pustaTablica
-  )}`
+    pustaTablica,
+  )}`,
 ); // Oczekiwany wynik: Tablica jest pusta!
 ```
 

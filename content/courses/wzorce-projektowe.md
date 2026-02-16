@@ -12,7 +12,7 @@ keywords:
     kurs,
     learning,
   ]
-categories: [wzorce-projektowe, typescript]
+category: typescript
 createdAt: 2025-06-22
 quiz:
   title: "Quiz: Wzorce projektowe"
@@ -225,7 +225,7 @@ class Pizza {
     public dough: string,
     public sauce: string,
     public toppings: string[],
-    public cheese: boolean
+    public cheese: boolean,
   ) {}
 
   describe(): string {
@@ -695,14 +695,14 @@ class Order {
   constructor(
     public pizzaDetails: string[],
     public drinks: string[],
-    public desserts: string[]
+    public desserts: string[],
   ) {}
 
   getTotalSummary(): string {
     return `Order Summary: Pizzas: [${this.pizzaDetails.join(
-      ", "
+      ", ",
     )}], Drinks: [${this.drinks.join(", ")}], Desserts: [${this.desserts.join(
-      ", "
+      ", ",
     )}]`;
   }
 }
@@ -839,7 +839,7 @@ class PayPalPayment implements PaymentStrategy {
 class CryptoPayment implements PaymentStrategy {
   pay(amount: number) {
     console.log(
-      `Payment via Cryptocurrency: ${amount} units (might fluctuate).`
+      `Payment via Cryptocurrency: ${amount} units (might fluctuate).`,
     );
   }
 }

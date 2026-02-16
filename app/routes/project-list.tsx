@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { ProjectTechnologies } from "../components/project-technologies";
+import { Categories } from "../components/ui/categories";
 import { ProjectCards } from "../components/project-cards";
 import { createMetaTags } from "../lib/meta";
 import {
@@ -30,7 +30,13 @@ export default function ProjectList() {
     <>
       <header className="prose container">
         <h1>{title ?? "Portfolio"}</h1>
-        <ProjectTechnologies showAllTechnology technologies={technologies} />
+
+        <Categories
+          categories={technologies}
+          showAllCategory={true}
+          baseUrl="/portfolio"
+          categoryPrefixUrl="/portfolio/technologie"
+        />
       </header>
 
       <ProjectCards projects={projects} />

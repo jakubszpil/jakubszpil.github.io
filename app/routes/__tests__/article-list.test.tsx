@@ -13,17 +13,17 @@ import {
   type ArticleCardsProps,
 } from "../../components/article-cards";
 import {
-  ArticleCategories,
-  type ArticleCategoriesProps,
-} from "../../components/article-categories";
+  Categories,
+  type CategoriesProps,
+} from "../../components/ui/categories";
 
 vi.mock("../../components/article-cards");
-vi.mock("../../components/article-categories");
+vi.mock("../../components/ui/categories");
 vi.mock("../../lib/articles");
 
 describe("<ArticleList />", () => {
   const MockedArticleCards = vi.mocked(ArticleCards);
-  const MockedArticleCategories = vi.mocked(ArticleCategories);
+  const MockedCategories = vi.mocked(Categories);
   const MockedGetArticlesByCategory = vi.mocked(getArticlesByCategory);
   const MockedGetArticlesCategories = vi.mocked(getArticlesCategories);
 
@@ -58,7 +58,7 @@ describe("<ArticleList />", () => {
 
   afterEach(() => {
     MockedArticleCards.mockRestore();
-    MockedArticleCategories.mockRestore();
+    MockedCategories.mockRestore();
     MockedGetArticlesByCategory.mockRestore();
     MockedGetArticlesCategories.mockRestore();
   });
@@ -80,11 +80,13 @@ describe("<ArticleList />", () => {
     expect(MockedGetArticlesByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
 
-    expect(MockedArticleCategories).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-      } satisfies ArticleCategoriesProps,
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
+      } satisfies CategoriesProps,
       undefined,
     );
 
@@ -127,11 +129,13 @@ describe("<ArticleList />", () => {
     expect(MockedGetArticlesByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetArticlesCategories).toHaveBeenCalled();
 
-    expect(MockedArticleCategories).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-      } satisfies ArticleCategoriesProps,
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
+      } satisfies CategoriesProps,
       undefined,
     );
 

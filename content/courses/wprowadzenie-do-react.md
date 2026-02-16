@@ -14,7 +14,7 @@ keywords:
     vite,
     learning,
   ]
-categories: [react, javascript]
+category: react
 createdAt: 2025-07-12
 quiz:
   title: "Quiz: Podstawy Reacta"

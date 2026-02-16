@@ -3,7 +3,7 @@ title: "Pierwsze kroki z TypeScript w React - praktyczne podstawy"
 description: "Zrozum podstawy TypeScript w środowisku React - prostym językiem i na praktycznych przykładach."
 keywords:
   [typescript, react, frontend, nauka, komponenty, props, state, kurs, learning]
-categories: [typescript, react]
+category: react
 createdAt: 2025-06-22
 quiz:
   title: "Quiz: TypeScript w React - podstawy"

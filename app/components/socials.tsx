@@ -9,7 +9,7 @@ export interface SocialsProps {
   variant?: ButtonProps["variant"];
 }
 
-const Icons = {
+const ICONS = {
   ["brand-linkedin"]: IconBrandLinkedin,
   ["brand-github"]: IconBrandGithub,
 };
@@ -18,7 +18,7 @@ export function Socials({ hideLabels, variant }: SocialsProps) {
   const id = useId();
 
   return SOCIALS.map((social, index) => {
-    const Icon = Icons[social.icon];
+    const Icon = ICONS[social.icon];
 
     return (
       <Button
@@ -31,7 +31,7 @@ export function Socials({ hideLabels, variant }: SocialsProps) {
         aria-label={social.label}
       >
         <a href={social.href} target="_blank" rel="noreferrer">
-          <Icon className="size-6" />
+          <Icon className={hideLabels ? "size-6" : "size-5"} />
           <span className={`${hideLabels ? "sr-only" : ""}`}>
             {social.label}
           </span>

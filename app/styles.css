@@ -138,6 +138,11 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@custom-variant hover (&:hover);
+@custom-variant active (&:active);
+@custom-variant focus (&:focus);
+@custom-variant focus-visible (&:focus-visible);
+
 @custom-variant hover-available {
   @media not (hover: none) {
     @slot;

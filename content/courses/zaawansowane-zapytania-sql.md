@@ -14,7 +14,7 @@ keywords:
     praktyka,
     learning,
   ]
-categories: [sql, bazy-danych]
+category: bazy-danych
 createdAt: 2025-07-05
 quiz:
   title: "Quiz: Zaawansowane zapytania SQL"

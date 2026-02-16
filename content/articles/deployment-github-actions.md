@@ -2,7 +2,7 @@
 title: "Proste deployowanie przy użyciu GitHub Actions"
 description: "Dowiedz się, jak wdrożyć dowolną aplikację za pomocą GitHub Actions w prosty i automatyczny sposób."
 keywords: [react, github actions, deployment, CI/CD, automatyzacja, blog]
-categories: [devops, ci]
+category: devops
 createdAt: 2025-03-15
 ---
 

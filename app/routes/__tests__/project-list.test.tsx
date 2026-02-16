@@ -14,17 +14,17 @@ import {
   type ProjectCardsProps,
 } from "../../components/project-cards";
 import {
-  ProjectTechnologies,
-  type ProjectTechnologiesProps,
-} from "../../components/project-technologies";
+  Categories,
+  type CategoriesProps,
+} from "../../components/ui/categories";
 
 vi.mock("../../components/project-cards");
-vi.mock("../../components/project-technologies");
+vi.mock("../../components/ui/categories");
 vi.mock("../../lib/projects");
 
 describe("<ProjectList />", () => {
   const MockedProjectCards = vi.mocked(ProjectCards);
-  const MockedProjectTechnologies = vi.mocked(ProjectTechnologies);
+  const MockedCategories = vi.mocked(Categories);
   const MockedGetProjectsByTechnology = vi.mocked(getProjectsByTechnology);
   const MockedGetProjectsTechnologies = vi.mocked(getProjectsTechnologies);
 
@@ -59,7 +59,7 @@ describe("<ProjectList />", () => {
 
   afterEach(() => {
     MockedProjectCards.mockRestore();
-    MockedProjectTechnologies.mockRestore();
+    MockedCategories.mockRestore();
     MockedGetProjectsByTechnology.mockRestore();
     MockedGetProjectsTechnologies.mockRestore();
   });
@@ -81,11 +81,13 @@ describe("<ProjectList />", () => {
     expect(MockedGetProjectsByTechnology).toHaveBeenCalledWith(undefined);
     expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
 
-    expect(MockedProjectTechnologies).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
-        technologies: MOCKED_TECHNOLOGIES,
-        showAllTechnology: true,
-      } satisfies ProjectTechnologiesProps,
+        categories: MOCKED_TECHNOLOGIES,
+        categoryPrefixUrl: "/portfolio/technologie",
+        baseUrl: "/portfolio",
+        showAllCategory: true,
+      } satisfies CategoriesProps,
       undefined,
     );
 
@@ -130,11 +132,13 @@ describe("<ProjectList />", () => {
     );
     expect(MockedGetProjectsTechnologies).toHaveBeenCalled();
 
-    expect(MockedProjectTechnologies).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
-        technologies: MOCKED_TECHNOLOGIES,
-        showAllTechnology: true,
-      } satisfies ProjectTechnologiesProps,
+        categories: MOCKED_TECHNOLOGIES,
+        categoryPrefixUrl: "/portfolio/technologie",
+        baseUrl: "/portfolio",
+        showAllCategory: true,
+      } satisfies CategoriesProps,
       undefined,
     );
 

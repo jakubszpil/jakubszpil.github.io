@@ -4,9 +4,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import ArticleDetail, { loader } from "../article-detail";
 import {
-  ArticleCategories,
-  type ArticleCategoriesProps,
-} from "../../components/article-categories";
+  BreadcrumbWithCategory,
+  type BreadcrumbWithCategoryProps,
+} from "../../components/breadcrumb-with-category";
 import { type Article, getArticle } from "../../lib/articles";
 import {
   EditResource,
@@ -16,11 +16,11 @@ import { Banner, type BannerProps } from "../../components/ui/banner";
 
 vi.mock("../../components/ui/edit-resource");
 vi.mock("../../components/ui/banner");
-vi.mock("../../components/article-categories");
+vi.mock("../../components/breadcrumb-with-category");
 vi.mock("../../lib/articles");
 
 describe("<ArticleDetail />", () => {
-  const MockedArticleCategories = vi.mocked(ArticleCategories);
+  const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);
   const MockedEditResource = vi.mocked(EditResource);
   const MockedBanner = vi.mocked(Banner);
   const MockedGetArticle = vi.mocked(getArticle);
@@ -31,7 +31,7 @@ describe("<ArticleDetail />", () => {
     title: "Test title",
     description: "Test description",
     keywords: ["test", "example"],
-    categories: ["test", "example"],
+    category: "test",
     createdAt: "2025-03-17",
     readingTime: "3 minuty",
   };
@@ -41,7 +41,7 @@ describe("<ArticleDetail />", () => {
   });
 
   afterEach(() => {
-    MockedArticleCategories.mockRestore();
+    MockedBreadcrumbWithCategory.mockRestore();
     MockedEditResource.mockRestore();
     MockedBanner.mockRestore();
     MockedGetArticle.mockRestore();
@@ -69,10 +69,13 @@ describe("<ArticleDetail />", () => {
 
     expect(MockedGetArticle).toHaveBeenCalledWith(MOCKED_ARTICLE.slug);
 
-    expect(MockedArticleCategories).toHaveBeenCalledWith(
+    expect(MockedBreadcrumbWithCategory).toHaveBeenCalledWith(
       {
-        categories: MOCKED_ARTICLE.categories,
-      } satisfies ArticleCategoriesProps,
+        category: MOCKED_ARTICLE.category,
+        baseLabel: "Artykuły",
+        baseUrl: "/blog",
+        categoryPrefixUrl: "/blog/kategorie",
+      } satisfies BreadcrumbWithCategoryProps,
       undefined,
     );
 
