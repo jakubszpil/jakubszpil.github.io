@@ -11,6 +11,14 @@
   src: url("/fonts/geist.ttf");
 }
 
+@font-face {
+  font-family: "Geist-Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-mono.ttf");
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -83,9 +91,8 @@
 }
 
 @theme inline {
-  --font-sans:
-    "Geist", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Geist";
+  --font-mono: "Geist-Mono";
 
   --color-border: var(--border);
   --color-input: var(--input);

@@ -1,6 +1,5 @@
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
 
 import { shuffleArray } from "./array";
 import {
@@ -100,9 +99,7 @@ const courseParsingStrategy: ParsingStrategy<Course> = async (slug, file) => {
 };
 
 async function getAllCourses(): Promise<Course[]> {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  const directory = join(__dirname, "../../content/courses");
+  const directory = join(process.cwd(), "app/content/courses");
 
   const files = await readdir(directory);
 

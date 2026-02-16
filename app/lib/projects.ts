@@ -1,6 +1,5 @@
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
 
 import {
   processFile,
@@ -59,9 +58,7 @@ const projectParsingStrategy: ParsingStrategy<Project> = async (slug, file) => {
 };
 
 async function getAllProjects(): Promise<Project[]> {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  const directory = join(__dirname, "../../content/projects");
+  const directory = join(process.cwd(), "app/content/projects");
 
   const files = await readdir(directory);
 
