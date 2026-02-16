@@ -1,4 +1,4 @@
-import { config } from "./config";
+import { INDIVIDUAL_NAMES } from "./config";
 
 export const capitalize = (value: string) =>
   value
@@ -14,10 +14,8 @@ export const retrieveSpaceInString = (value: string) => {
 export const retrieveIndividualName = (text?: string) => {
   const textAsLowerCase = text?.toLowerCase();
 
-  if (textAsLowerCase && textAsLowerCase in config.individualNames) {
-    return config.individualNames[
-      textAsLowerCase as keyof typeof config.individualNames
-    ];
+  if (textAsLowerCase && textAsLowerCase in INDIVIDUAL_NAMES) {
+    return INDIVIDUAL_NAMES[textAsLowerCase as keyof typeof INDIVIDUAL_NAMES];
   }
 
   return text;

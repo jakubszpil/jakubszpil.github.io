@@ -2,7 +2,7 @@ import { useId } from "react";
 
 import { Button, type ButtonProps } from "./ui/button";
 import { IconBrandGithub, IconBrandLinkedin } from "./ui/icons";
-import { config } from "../lib/config";
+import { SOCIALS } from "../lib/config";
 
 export interface SocialsProps {
   hideLabels?: boolean;
@@ -17,7 +17,7 @@ const Icons = {
 export function Socials({ hideLabels, variant }: SocialsProps) {
   const id = useId();
 
-  return config.socials.map((social, index) => {
+  return SOCIALS.map((social, index) => {
     const Icon = Icons[social.icon];
 
     return (
