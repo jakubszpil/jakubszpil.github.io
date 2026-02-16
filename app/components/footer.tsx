@@ -11,7 +11,7 @@ export function Footer({ children }: FooterProps) {
   return (
     <footer className="prose max-w-full border-t">
       <div className="container flex items-center gap-3 justify-start flex-wrap-reverse lg:justify-between">
-        <p className="xl:text-sm">
+        <p className="lg:text-sm! my-0!">
           &copy; {getCurrentYear()}
           <FooterLink to="/">jakubszpil</FooterLink>
         </p>

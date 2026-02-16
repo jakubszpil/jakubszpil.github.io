@@ -9,8 +9,8 @@ export interface NavbarProps {
 
 export function Navbar({ children }: NavbarProps) {
   return (
-    <header className="sticky w-full bg-background top-0 left-0 z-50 border-b">
-      <div className="container pb-3! pt-4! px-3! flex justify-between items-center">
+    <header className="sticky w-full bg-background/80 backdrop-blur-sm top-0 left-0 z-50 border-b">
+      <div className="container pb-2! pt-3! px-3! flex justify-between items-center">
         {children}
       </div>
     </header>

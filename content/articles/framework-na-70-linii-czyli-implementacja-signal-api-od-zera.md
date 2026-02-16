@@ -12,7 +12,7 @@ keywords:
     architektura,
     blog,
   ]
-categories: [typescript]
+category: typescript
 createdAt: 2025-06-22
 ---
 

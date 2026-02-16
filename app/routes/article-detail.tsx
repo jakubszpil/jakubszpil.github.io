@@ -1,11 +1,11 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
+import { Banner } from "../components/ui/banner";
+import { EditResource } from "../components/ui/edit-resource";
+import { BreadcrumbWithCategory } from "../components/breadcrumb-with-category";
 import { getArticle } from "../lib/articles";
 import { notFound } from "../lib/navigation";
 import { createMetaTags } from "../lib/meta";
-import { Banner } from "../components/ui/banner";
-import { EditResource } from "../components/ui/edit-resource";
-import { ArticleCategories } from "../components/article-categories";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug);
@@ -30,6 +30,13 @@ export default function ArticleDetail() {
 
   return (
     <>
+      <BreadcrumbWithCategory
+        category={article.category}
+        categoryPrefixUrl="/blog/kategorie"
+        baseUrl="/blog"
+        baseLabel="Artykuły"
+      />
+
       <header className="prose container">
         <h1 className="mb-5">{article.title}</h1>
         <Banner
@@ -37,7 +44,6 @@ export default function ArticleDetail() {
           createdAt={article.createdAt}
           readingTime={article.readingTime}
         />
-        <ArticleCategories categories={article.categories} />
       </header>
 
       <article

@@ -39,7 +39,7 @@ interface Course {
   description: string;
   createdAt: string;
   readingTime: string;
-  categories: string[];
+  category: string;
   keywords: string[];
   content: string;
   quiz: CourseQuiz;
@@ -92,7 +92,7 @@ const courseParsingStrategy: ParsingStrategy<Course> = async (slug, file) => {
     readingTime: getReadingTimeLabel(readingTime),
     createdAt: new Date(data.createdAt).toISOString(),
     quiz: await parseCourseQuiz(data.quiz),
-    categories: data.categories,
+    category: data.category,
     keywords: data.keywords,
     description: data.description,
     title: data.title,
@@ -131,9 +131,7 @@ async function getCoursesByCategory(
   const courses = await cachePromise("courses", getAllCourses);
 
   return courses
-    .filter((course) =>
-      category ? course.categories.includes(category) : true,
-    )
+    .filter((course) => (category ? category === course.category : true))
     .map(courseMinifingStrategy);
 }
 
@@ -143,11 +141,11 @@ async function getCoursesCategories(): Promise<string[]> {
   const occurrences: Record<string, number> = {};
 
   const categories = courses.reduce<string[]>((categories, course) => {
-    course.categories?.forEach((category) => {
-      if (!(category in occurrences)) occurrences[category] = 0;
-      if (!categories.includes(category)) categories.push(category);
-      occurrences[category]++;
-    });
+    if (!(course.category in occurrences)) occurrences[course.category] = 0;
+
+    if (!categories.includes(course.category)) categories.push(course.category);
+
+    occurrences[course.category]++;
 
     return categories;
   }, []);

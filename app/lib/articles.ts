@@ -26,7 +26,7 @@ interface Article {
   description: string;
   createdAt: string;
   readingTime: string;
-  categories: string[];
+  category: string;
   keywords: string[];
   content: string;
 }
@@ -53,7 +53,7 @@ const articleParsingStrategy: ParsingStrategy<Article> = async (slug, file) => {
     content: fileContent,
     readingTime: getReadingTimeLabel(readingTime),
     createdAt: new Date(data.createdAt).toISOString(),
-    categories: data.categories,
+    category: data.category,
     keywords: data.keywords,
     description: data.description,
     title: data.title,
@@ -94,9 +94,7 @@ async function getArticlesByCategory(
   const articles = await cachePromise("articles", getAllArticles);
 
   return articles
-    .filter((article) =>
-      category ? article.categories.includes(category) : true,
-    )
+    .filter((article) => (category ? article.category === category : true))
     .map(articleMinifingStrategy);
 }
 
@@ -106,11 +104,12 @@ async function getArticlesCategories(): Promise<string[]> {
   const occurrences: Record<string, number> = {};
 
   const categories = articles.reduce<string[]>((categories, article) => {
-    article.categories?.forEach((category) => {
-      if (!(category in occurrences)) occurrences[category] = 0;
-      if (!categories.includes(category)) categories.push(category);
-      occurrences[category]++;
-    });
+    if (!(article.category in occurrences)) occurrences[article.category] = 0;
+
+    if (!categories.includes(article.category))
+      categories.push(article.category);
+
+    occurrences[article.category]++;
 
     return categories;
   }, []);

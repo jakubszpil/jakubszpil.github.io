@@ -138,6 +138,11 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@custom-variant hover (&:hover);
+@custom-variant active (&:active);
+@custom-variant focus (&:focus);
+@custom-variant focus-visible (&:focus-visible);
+
 @custom-variant hover-available {
   @media not (hover: none) {
     @slot;
@@ -151,7 +156,7 @@
 }
 
 @utility container {
-  @apply mx-auto max-w-full! sm:max-w-2xl! md:max-w-3xl! lg:max-w-4xl! xl:max-w-5xl! 2xl:max-w-6xl! p-6 relative w-full;
+  @apply mx-auto max-w-full! sm:max-w-2xl! md:max-w-3xl! lg:max-w-4xl! xl:max-w-5xl! 2xl:max-w-6xl! px-6 py-4 relative w-full;
 }
 
 @utility prose {

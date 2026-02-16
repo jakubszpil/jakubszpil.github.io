@@ -12,7 +12,7 @@ keywords:
     praktyka,
     learning,
   ]
-categories: [bazy-danych]
+category: bazy-danych
 createdAt: 2025-07-05
 quiz:
   title: "Quiz: Podstawy projektowania baz danych"

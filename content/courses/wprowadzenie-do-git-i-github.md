@@ -15,7 +15,7 @@ keywords:
     "GitHub Pages",
     "learning",
   ]
-categories: [git]
+category: git
 createdAt: 2025-06-05
 quiz:
   title: "Quiz: Podstawy Git i GitHub"

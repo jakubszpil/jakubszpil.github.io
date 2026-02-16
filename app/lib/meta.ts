@@ -1,6 +1,10 @@
 import type { MetaArgs, MetaDescriptor } from "react-router";
 
-import { config } from "./config";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  DEFAULT_TITLE_TEMPLATE,
+} from "./config";
 
 type MetaTags = {
   title?: string;
@@ -11,16 +15,16 @@ type MetaTags = {
 };
 
 export function createMetaTags<T>(
-  setup: (args: MetaArgs<T>) => MetaTags
+  setup: (args: MetaArgs<T>) => MetaTags,
 ): (args: MetaArgs<T>) => MetaDescriptor[] {
   return (args: MetaArgs<T>) => {
     const params = setup(args);
 
     const title = params.title
-      ? config.meta.titleTemplate.replace("%s", params.title)
-      : config.meta.defaultTitle;
+      ? DEFAULT_TITLE_TEMPLATE.replace("%s", params.title)
+      : DEFAULT_TITLE;
 
-    const description = params.description ?? config.meta.description;
+    const description = params.description ?? DEFAULT_DESCRIPTION;
 
     const keywords = params.keywords?.join(",");
 

@@ -14,7 +14,7 @@ keywords:
     praktyka,
     learning,
   ]
-categories: [sql, bazy-danych]
+category: bazy-danych
 createdAt: 2025-07-04
 quiz:
   title: "Quiz: Podstawy SQL"

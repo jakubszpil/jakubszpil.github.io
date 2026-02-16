@@ -1,7 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
+import { Categories } from "../components/ui/categories";
 import { CourseCards } from "../components/course-cards";
-import { CourseCategories } from "../components/course-categories";
 import { getCoursesCategories, getCoursesByCategory } from "../lib/courses";
 import { createMetaTags } from "../lib/meta";
 import { getCapitalizedIndividualName } from "../lib/string";
@@ -27,7 +27,13 @@ export default function CourseList() {
     <>
       <header className="prose container">
         <h1>{title ?? "Learning"}</h1>
-        <CourseCategories showAllCategory categories={categories} />
+
+        <Categories
+          categories={categories}
+          showAllCategory={true}
+          baseUrl="/learning"
+          categoryPrefixUrl="/learning/kategorie"
+        />
       </header>
 
       <CourseCards courses={courses} />

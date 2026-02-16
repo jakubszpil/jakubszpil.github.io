@@ -13,17 +13,17 @@ import {
   type CourseCardsProps,
 } from "../../components/course-cards";
 import {
-  CourseCategories,
-  type CourseCategoriesProps,
-} from "../../components/course-categories";
+  Categories,
+  type CategoriesProps,
+} from "../../components/ui/categories";
 
 vi.mock("../../components/course-cards");
-vi.mock("../../components/course-categories");
+vi.mock("../../components/ui/categories");
 vi.mock("../../lib/courses");
 
 describe("<CourseList />", () => {
   const MockedCourseCards = vi.mocked(CourseCards);
-  const MockedCourseCategories = vi.mocked(CourseCategories);
+  const MockedCategories = vi.mocked(Categories);
   const MockedGetCoursesByCategory = vi.mocked(getCoursesByCategory);
   const MockedGetCoursesCategories = vi.mocked(getCoursesCategories);
 
@@ -58,7 +58,7 @@ describe("<CourseList />", () => {
 
   afterEach(() => {
     MockedCourseCards.mockRestore();
-    MockedCourseCategories.mockRestore();
+    MockedCategories.mockRestore();
     MockedGetCoursesByCategory.mockRestore();
     MockedGetCoursesCategories.mockRestore();
   });
@@ -80,11 +80,13 @@ describe("<CourseList />", () => {
     expect(MockedGetCoursesByCategory).toHaveBeenCalledWith(undefined);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
-    expect(MockedCourseCategories).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-      } satisfies CourseCategoriesProps,
+        baseUrl: "/learning",
+        categoryPrefixUrl: "/learning/kategorie",
+      } satisfies CategoriesProps,
       undefined,
     );
 
@@ -127,11 +129,13 @@ describe("<CourseList />", () => {
     expect(MockedGetCoursesByCategory).toHaveBeenCalledWith(MOCKED_CATEGORY);
     expect(MockedGetCoursesCategories).toHaveBeenCalled();
 
-    expect(MockedCourseCategories).toHaveBeenCalledWith(
+    expect(MockedCategories).toHaveBeenCalledWith(
       {
         categories: MOCKED_CATEGORIES,
         showAllCategory: true,
-      } satisfies CourseCategoriesProps,
+        baseUrl: "/learning",
+        categoryPrefixUrl: "/learning/kategorie",
+      } satisfies CategoriesProps,
       undefined,
     );
 
