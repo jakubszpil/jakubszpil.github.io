@@ -1,13 +1,7 @@
 import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
-import {
-  getReadingTimeLabel,
-  processContent,
-  processFile,
-  type MinifingStrategy,
-  type ParsingStrategy,
-} from "./content";
+import { getReadingTimeLabel, processContent, processFile } from "./content";
 import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
 
@@ -30,9 +24,7 @@ interface Article {
   content: string;
 }
 
-const articleMinifingStrategy: MinifingStrategy<Article, ArticleFeed> = (
-  article,
-) => {
+function mapperArticleFeed(article: Article): ArticleFeed {
   return {
     createdAt: article.createdAt,
     description: article.description,
@@ -40,9 +32,9 @@ const articleMinifingStrategy: MinifingStrategy<Article, ArticleFeed> = (
     slug: article.slug,
     title: article.title,
   };
-};
+}
 
-const articleParsingStrategy: ParsingStrategy<Article> = async (slug, file) => {
+async function parseArticle(slug: string, file: string): Promise<Article> {
   const { data, content } = processFile(file);
 
   const [fileContent, readingTime] = await processContent(content);
@@ -57,7 +49,7 @@ const articleParsingStrategy: ParsingStrategy<Article> = async (slug, file) => {
     description: data.description,
     title: data.title,
   };
-};
+}
 
 async function getAllArticles(): Promise<Article[]> {
   const directory = join(process.cwd(), "app/content/articles");
@@ -69,7 +61,7 @@ async function getAllArticles(): Promise<Article[]> {
   for (const filename of files) {
     const slug = filename.replace(".md", "");
     const file = await readFile(join(directory, filename), "utf-8");
-    const article = await articleParsingStrategy(slug, file);
+    const article = await parseArticle(slug, file);
 
     articles.push(article);
   }
@@ -80,9 +72,7 @@ async function getAllArticles(): Promise<Article[]> {
 async function getArticles(limit?: number): Promise<ArticleFeed[]> {
   const articles = await cachePromise("articles", getAllArticles);
 
-  return articles
-    .slice(0, limit ?? articles.length)
-    .map(articleMinifingStrategy);
+  return articles.slice(0, limit ?? articles.length).map(mapperArticleFeed);
 }
 
 async function getArticlesByCategory(
@@ -92,7 +82,7 @@ async function getArticlesByCategory(
 
   return articles
     .filter((article) => (category ? article.category === category : true))
-    .map(articleMinifingStrategy);
+    .map(mapperArticleFeed);
 }
 
 async function getArticlesCategories(): Promise<string[]> {

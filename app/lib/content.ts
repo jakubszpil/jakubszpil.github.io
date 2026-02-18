@@ -85,11 +85,3 @@ export function processFile(file: string) {
   const { data, content } = matter(file);
   return { data, content };
 }
-
-export interface ParsingStrategy<T> {
-  (slug: string, file: string): Promise<T>;
-}
-
-export interface MinifingStrategy<T, F> {
-  (resource: T): F;
-}
