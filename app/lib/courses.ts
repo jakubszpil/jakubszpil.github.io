@@ -98,7 +98,7 @@ async function getAllCourses(): Promise<Course[]> {
   const courses: Course[] = [];
 
   for (const filename of files) {
-    const slug = filename.replace(".md", "");
+    const slug = filename.replace(".mdx", "");
     const file = await readFile(join(directory, filename), "utf-8");
     const course = await parseCourse(slug, file);
 
