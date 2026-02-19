@@ -2,22 +2,22 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { getCourse, type Course } from "../../lib/courses";
+import { getCourse, type Course } from "~/lib/courses";
 import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
-} from "../../components/breadcrumb-with-category";
+} from "~/components/breadcrumb-with-category";
 import {
   EditResource,
   type EditResourceProps,
-} from "../../components/ui/edit-resource";
-import { Banner, type BannerProps } from "../../components/ui/banner";
+} from "~/components/ui/edit-resource";
+import { Banner, type BannerProps } from "~/components/ui/banner";
 import CourseDetail, { loader } from "../course-detail";
 
-vi.mock("../../components/ui/banner");
-vi.mock("../../components/ui/edit-resource");
-vi.mock("../../components/breadcrumb-with-category");
-vi.mock("../../lib/courses");
+vi.mock("~/components/ui/banner");
+vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/breadcrumb-with-category");
+vi.mock("~/lib/courses");
 
 describe("<CourseDetail />", () => {
   const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);

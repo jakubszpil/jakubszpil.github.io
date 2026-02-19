@@ -1,4 +1,4 @@
-import { notFound } from "../lib/navigation";
+import { notFound } from "~/lib/navigation";
 
 export async function clientLoader() {
   throw notFound();

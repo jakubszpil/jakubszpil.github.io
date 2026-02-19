@@ -7,19 +7,13 @@ import {
   type CourseFeed,
   getCoursesByCategory,
   getCoursesCategories,
-} from "../../lib/courses";
-import {
-  CourseCards,
-  type CourseCardsProps,
-} from "../../components/course-cards";
-import {
-  Categories,
-  type CategoriesProps,
-} from "../../components/ui/categories";
+} from "~/lib/courses";
+import { CourseCards, type CourseCardsProps } from "~/components/course-cards";
+import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
-vi.mock("../../components/course-cards");
-vi.mock("../../components/ui/categories");
-vi.mock("../../lib/courses");
+vi.mock("~/components/course-cards");
+vi.mock("~/components/ui/categories");
+vi.mock("~/lib/courses");
 
 describe("<CourseList />", () => {
   const MockedCourseCards = vi.mocked(CourseCards);

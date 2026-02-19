@@ -1,3 +1,4 @@
+import { Transition } from "@headlessui/react";
 import { useNavigate } from "react-router";
 import {
   startTransition,
@@ -8,7 +9,6 @@ import {
   type MouseEventHandler,
   type ReactElement,
 } from "react";
-import { Transition } from "@headlessui/react";
 
 import { BusyIndicator } from "./busy-indicator";
 import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
@@ -17,7 +17,7 @@ import { SearchButton } from "./search-button";
 import { ThemeSwitcher } from "./theme-switcher";
 import { Button } from "./ui/button";
 import { IconMenu2, IconX } from "./ui/icons";
-import { cn } from "../lib/helpers";
+import { cn } from "~/lib/utils";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];

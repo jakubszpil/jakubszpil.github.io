@@ -1,11 +1,11 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "../components/ui/banner";
-import { EditResource } from "../components/ui/edit-resource";
-import { BreadcrumbWithCategory } from "../components/breadcrumb-with-category";
-import { getArticle } from "../lib/articles";
-import { notFound } from "../lib/navigation";
-import { createMetaTags } from "../lib/meta";
+import { Banner } from "~/components/ui/banner";
+import { EditResource } from "~/components/ui/edit-resource";
+import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
+import { getArticle } from "~/lib/articles";
+import { notFound } from "~/lib/navigation";
+import { createMetaTags } from "~/lib/meta";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug);

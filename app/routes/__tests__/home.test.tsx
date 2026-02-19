@@ -2,27 +2,27 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { vi, describe, test, beforeEach, afterEach, expect } from "vitest";
 
-import { LinkWithPrefetch } from "../../components/ui/link-with-prefetch";
-import { ArticleCards } from "../../components/article-cards";
-import { CourseCards } from "../../components/course-cards";
-import { ProjectCards } from "../../components/project-cards";
-import { getArticles } from "../../lib/articles";
-import { getCourses } from "../../lib/courses";
-import { getProjects } from "../../lib/projects";
+import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
+import { ArticleCards } from "~/components/article-cards";
+import { CourseCards } from "~/components/course-cards";
+import { ProjectCards } from "~/components/project-cards";
+import { getArticles } from "~/lib/articles";
+import { getCourses } from "~/lib/courses";
+import { getProjects } from "~/lib/projects";
 import {
   MOCKED_ARTICLE_FEEDS,
   MOCKED_COURSE_FEEDS,
   MOCKED_PROJECT_FEEDS,
-} from "../../test-fixtures";
+} from "~/test-fixtures";
 import Home, { loader } from "../home";
 
-vi.mock("../../components/ui/link-with-prefetch");
-vi.mock("../../components/article-cards");
-vi.mock("../../components/course-cards");
-vi.mock("../../components/project-cards");
-vi.mock("../../lib/articles");
-vi.mock("../../lib/courses");
-vi.mock("../../lib/projects");
+vi.mock("~/components/ui/link-with-prefetch");
+vi.mock("~/components/article-cards");
+vi.mock("~/components/course-cards");
+vi.mock("~/components/project-cards");
+vi.mock("~/lib/articles");
+vi.mock("~/lib/courses");
+vi.mock("~/lib/projects");
 
 describe("<Home />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

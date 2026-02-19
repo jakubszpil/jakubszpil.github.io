@@ -7,19 +7,16 @@ import {
   type ArticleFeed,
   getArticlesByCategory,
   getArticlesCategories,
-} from "../../lib/articles";
+} from "~/lib/articles";
 import {
   ArticleCards,
   type ArticleCardsProps,
-} from "../../components/article-cards";
-import {
-  Categories,
-  type CategoriesProps,
-} from "../../components/ui/categories";
+} from "~/components/article-cards";
+import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
-vi.mock("../../components/article-cards");
-vi.mock("../../components/ui/categories");
-vi.mock("../../lib/articles");
+vi.mock("~/components/article-cards");
+vi.mock("~/components/ui/categories");
+vi.mock("~/lib/articles");
 
 describe("<ArticleList />", () => {
   const MockedArticleCards = vi.mocked(ArticleCards);

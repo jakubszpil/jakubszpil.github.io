@@ -1,5 +1,5 @@
-import type { CourseFeed } from "../lib/courses";
-import { cn } from "../lib/helpers";
+import type { CourseFeed } from "~/lib/courses";
+import { cn } from "~/lib/utils";
 import { CourseCard } from "./course-card";
 import type { ButtonProps } from "./ui/button";
 

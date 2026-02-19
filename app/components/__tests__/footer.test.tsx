@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, test, vi } from "vitest";
 
-import { getCurrentYear } from "../../lib/date";
+import { getCurrentYear } from "~/lib/date";
 import { LinkWithPrefetch } from "../ui/link-with-prefetch";
 import { Footer } from "../footer";
 import { FooterLink } from "../footer-link";
 
-vi.mock("../../lib/date");
+vi.mock("~/lib/date");
 vi.mock("../ui/link-with-prefetch");
 
 describe("<Footer />", () => {

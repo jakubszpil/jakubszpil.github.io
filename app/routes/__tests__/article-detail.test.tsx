@@ -6,18 +6,18 @@ import ArticleDetail, { loader } from "../article-detail";
 import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
-} from "../../components/breadcrumb-with-category";
-import { type Article, getArticle } from "../../lib/articles";
+} from "~/components/breadcrumb-with-category";
+import { type Article, getArticle } from "~/lib/articles";
 import {
   EditResource,
   type EditResourceProps,
-} from "../../components/ui/edit-resource";
-import { Banner, type BannerProps } from "../../components/ui/banner";
+} from "~/components/ui/edit-resource";
+import { Banner, type BannerProps } from "~/components/ui/banner";
 
-vi.mock("../../components/ui/edit-resource");
-vi.mock("../../components/ui/banner");
-vi.mock("../../components/breadcrumb-with-category");
-vi.mock("../../lib/articles");
+vi.mock("~/components/ui/edit-resource");
+vi.mock("~/components/ui/banner");
+vi.mock("~/components/breadcrumb-with-category");
+vi.mock("~/lib/articles");
 
 describe("<ArticleDetail />", () => {
   const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);

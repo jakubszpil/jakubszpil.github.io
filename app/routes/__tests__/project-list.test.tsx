@@ -8,19 +8,16 @@ import {
   ProjectStatus,
   getProjectsByTechnology,
   getProjectsTechnologies,
-} from "../../lib/projects";
+} from "~/lib/projects";
 import {
   ProjectCards,
   type ProjectCardsProps,
-} from "../../components/project-cards";
-import {
-  Categories,
-  type CategoriesProps,
-} from "../../components/ui/categories";
+} from "~/components/project-cards";
+import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
-vi.mock("../../components/project-cards");
-vi.mock("../../components/ui/categories");
-vi.mock("../../lib/projects");
+vi.mock("~/components/project-cards");
+vi.mock("~/components/ui/categories");
+vi.mock("~/lib/projects");
 
 describe("<ProjectList />", () => {
   const MockedProjectCards = vi.mocked(ProjectCards);
