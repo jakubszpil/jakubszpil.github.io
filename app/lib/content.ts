@@ -1,56 +1,11 @@
 import matter from "gray-matter";
 import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkHtml from "remark-html";
-import remarkGfm from "remark-gfm";
-import remarkReadingTime from "remark-reading-time";
-import remarkRehype from "remark-rehype";
-import rehypeRaw from "rehype-raw";
-import rehypeHighlight from "rehype-highlight";
-import rehypeStringify from "rehype-stringify";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
-function getAnchorContentBasedOnLevel(level: number): string {
-  let content = "";
-  for (let i = 0; i < level; i++) {
-    content += ">";
-  }
-  return content;
-}
+import { getRemarkPlugins } from "./remark-plugins";
+import { getRehypePlugins } from "./rehype-plugins";
 
 export async function processContent(content: string) {
-  const processor = unified()
-    .use(remarkParse)
-    .use(remarkHtml)
-    .use(remarkGfm)
-    .use(remarkReadingTime, { name: "readingTime" })
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings, {
-      properties: {
-        className:
-          "mr-2 no-underline hover:underline focus-visible:underline select-none",
-      },
-      headingProperties: {
-        className: "scroll-mt-20",
-      },
-      behavior: "prepend",
-      content: (element) => {
-        const tag = element.tagName;
-        const level = parseInt(tag[tag.length - 1], 10);
-
-        return [
-          {
-            type: "raw",
-            value: getAnchorContentBasedOnLevel(level),
-          },
-        ];
-      },
-    })
-    .use(rehypeHighlight)
-    .use(rehypeStringify);
+  const processor = unified().use(getRemarkPlugins()).use(getRehypePlugins());
 
   const results = await processor.process(content);
 
