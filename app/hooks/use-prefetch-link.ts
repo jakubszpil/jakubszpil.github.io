@@ -1,7 +1,11 @@
 import { createElement } from "react";
 
+import { useHydrated } from "./use-hydrated";
+
 export function usePrefetchLink(resource?: string) {
-  if (typeof window === "undefined") return null;
+  const hydrated = useHydrated();
+
+  if (!hydrated) return null;
 
   if (!resource) return null;
 

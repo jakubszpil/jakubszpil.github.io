@@ -1,11 +1,7 @@
 import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
-import {
-  processFile,
-  type MinifingStrategy,
-  type ParsingStrategy,
-} from "./content";
+import { processFile } from "./content";
 import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
 
@@ -32,9 +28,7 @@ interface ProjectFeed {
   status: ProjectStatus;
 }
 
-const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
-  project,
-) => {
+function projectMinifingStrategy(project: Project): ProjectFeed {
   return {
     createdAt: project.createdAt,
     description: project.description,
@@ -42,9 +36,12 @@ const projectMinifingStrategy: MinifingStrategy<Project, ProjectFeed> = (
     status: project.status,
     title: project.title,
   };
-};
+}
 
-const projectParsingStrategy: ParsingStrategy<Project> = async (slug, file) => {
+async function projectParsingStrategy(
+  slug: string,
+  file: string,
+): Promise<Project> {
   const { data } = processFile(file);
 
   return {
@@ -55,7 +52,7 @@ const projectParsingStrategy: ParsingStrategy<Project> = async (slug, file) => {
     status: data.status,
     title: data.title,
   };
-};
+}
 
 async function getAllProjects(): Promise<Project[]> {
   const directory = join(process.cwd(), "app/content/projects");

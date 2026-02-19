@@ -2,13 +2,7 @@ import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
 import { shuffleArray } from "./array";
-import {
-  getReadingTimeLabel,
-  processContent,
-  processFile,
-  type MinifingStrategy,
-  type ParsingStrategy,
-} from "./content";
+import { getReadingTimeLabel, processContent, processFile } from "./content";
 import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
 
@@ -44,9 +38,7 @@ interface Course {
   quiz: CourseQuiz;
 }
 
-const courseMinifingStrategy: MinifingStrategy<Course, CourseFeed> = (
-  course,
-) => {
+function mapperCourseFeed(course: Course): CourseFeed {
   return {
     createdAt: course.createdAt,
     description: course.description,
@@ -54,7 +46,7 @@ const courseMinifingStrategy: MinifingStrategy<Course, CourseFeed> = (
     slug: course.slug,
     title: course.title,
   };
-};
+}
 
 async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
   const questions = await Promise.all(
@@ -79,7 +71,7 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
   };
 }
 
-const courseParsingStrategy: ParsingStrategy<Course> = async (slug, file) => {
+async function parseCourse(slug: string, file: string): Promise<Course> {
   const { data, content } = processFile(file);
 
   const [fileContent, readingTime] = await processContent(content);
@@ -96,7 +88,7 @@ const courseParsingStrategy: ParsingStrategy<Course> = async (slug, file) => {
     description: data.description,
     title: data.title,
   };
-};
+}
 
 async function getAllCourses(): Promise<Course[]> {
   const directory = join(process.cwd(), "app/content/courses");
@@ -108,7 +100,7 @@ async function getAllCourses(): Promise<Course[]> {
   for (const filename of files) {
     const slug = filename.replace(".md", "");
     const file = await readFile(join(directory, filename), "utf-8");
-    const course = await courseParsingStrategy(slug, file);
+    const course = await parseCourse(slug, file);
 
     courses.push(course);
   }
@@ -119,7 +111,7 @@ async function getAllCourses(): Promise<Course[]> {
 async function getCourses(limit?: number): Promise<CourseFeed[]> {
   const courses = await cachePromise("courses", getAllCourses);
 
-  return courses.slice(0, limit ?? courses.length).map(courseMinifingStrategy);
+  return courses.slice(0, limit ?? courses.length).map(mapperCourseFeed);
 }
 
 async function getCoursesByCategory(
@@ -129,7 +121,7 @@ async function getCoursesByCategory(
 
   return courses
     .filter((course) => (category ? category === course.category : true))
-    .map(courseMinifingStrategy);
+    .map(mapperCourseFeed);
 }
 
 async function getCoursesCategories(): Promise<string[]> {
