@@ -18,10 +18,9 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true
-    // NOTE: uncomment section below when new shadcn components are added
-    // "paths": {
-    //   "~/*": ["./app/*"]
-    // }
+    "strict": true,
+    "paths": {
+      "~/*": ["./app/*"]
+    }
   }
 }

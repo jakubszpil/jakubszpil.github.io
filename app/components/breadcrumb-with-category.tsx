@@ -1,4 +1,4 @@
-import { getCapitalizedIndividualName } from "../lib/string";
+import { getCapitalizedIndividualName } from "~/lib/string";
 import {
   Breadcrumb,
   BreadcrumbItem,

@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import type { Course, CourseQuizQuestion } from "../lib/courses";
 import { shuffleArray } from "../lib/array";
 import { Button } from "./ui/button";
-import { cn } from "../lib/helpers";
+import { cn } from "../lib/utils";
 
 export interface CourseQuizProps {
   quiz: Course["quiz"];

@@ -2,7 +2,7 @@ import { Slot } from "radix-ui";
 import type { ComponentProps } from "react";
 
 import { IconChevronRight, IconDots } from "./icons";
-import { cn } from "../../lib/helpers";
+import { cn } from "~/lib/utils";
 
 function Breadcrumb({ ...props }: ComponentProps<"nav">) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;

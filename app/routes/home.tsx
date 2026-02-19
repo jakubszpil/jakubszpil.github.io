@@ -1,14 +1,14 @@
 import { useLoaderData } from "react-router";
 
-import { Button } from "../components/ui/button";
-import { LinkWithPrefetch } from "../components/ui/link-with-prefetch";
-import { ArticleCards } from "../components/article-cards";
-import { CourseCards } from "../components/course-cards";
-import { ProjectCards } from "../components/project-cards";
-import { getArticles } from "../lib/articles";
-import { getCourses } from "../lib/courses";
-import { getProjects } from "../lib/projects";
-import { createMetaTags } from "../lib/meta";
+import { Button } from "~/components/ui/button";
+import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
+import { ArticleCards } from "~/components/article-cards";
+import { CourseCards } from "~/components/course-cards";
+import { ProjectCards } from "~/components/project-cards";
+import { getArticles } from "~/lib/articles";
+import { getCourses } from "~/lib/courses";
+import { getProjects } from "~/lib/projects";
+import { createMetaTags } from "~/lib/meta";
 
 export async function loader() {
   const articles = await getArticles(3);

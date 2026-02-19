@@ -4,10 +4,10 @@ import { Form, useLocation, type Location } from "react-router";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { IconSearch } from "./ui/icons";
-import { queryParamName } from "../lib/search";
-import type { ArticleFeed } from "../lib/articles";
-import type { CourseFeed } from "../lib/courses";
-import type { ProjectFeed } from "../lib/projects";
+import { queryParamName } from "~/lib/search";
+import type { ArticleFeed } from "~/lib/articles";
+import type { CourseFeed } from "~/lib/courses";
+import type { ProjectFeed } from "~/lib/projects";
 
 export interface SearchFormProps {
   query: string | null;

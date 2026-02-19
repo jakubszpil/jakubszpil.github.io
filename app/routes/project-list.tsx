@@ -1,13 +1,13 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "../components/ui/categories";
-import { ProjectCards } from "../components/project-cards";
-import { createMetaTags } from "../lib/meta";
+import { Categories } from "~/components/ui/categories";
+import { ProjectCards } from "~/components/project-cards";
+import { createMetaTags } from "~/lib/meta";
 import {
   getProjectsTechnologies,
   getProjectsByTechnology,
-} from "../lib/projects";
-import { getCapitalizedIndividualName } from "../lib/string";
+} from "~/lib/projects";
+import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {

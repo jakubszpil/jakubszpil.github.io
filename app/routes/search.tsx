@@ -1,19 +1,19 @@
 import { useCallback } from "react";
 import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
 
-import { ArticleCards } from "../components/article-cards";
-import { CourseCards } from "../components/course-cards";
-import { ProjectCards } from "../components/project-cards";
-import { SearchForm } from "../components/search-form";
-import { getArticles, type ArticleFeed } from "../lib/articles";
-import { getCourses, type CourseFeed } from "../lib/courses";
-import { createMetaTags } from "../lib/meta";
-import { getProjects, type ProjectFeed } from "../lib/projects";
+import { ArticleCards } from "~/components/article-cards";
+import { CourseCards } from "~/components/course-cards";
+import { ProjectCards } from "~/components/project-cards";
+import { SearchForm } from "~/components/search-form";
+import { getArticles, type ArticleFeed } from "~/lib/articles";
+import { getCourses, type CourseFeed } from "~/lib/courses";
+import { createMetaTags } from "~/lib/meta";
+import { getProjects, type ProjectFeed } from "~/lib/projects";
 import {
   getSearchResults,
   getSearchResultsLength,
   validateSearhQuery,
-} from "../lib/search";
+} from "~/lib/search";
 
 export async function loader() {
   const articles = await getArticles();

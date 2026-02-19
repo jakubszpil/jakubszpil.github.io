@@ -1,12 +1,12 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "../components/ui/banner";
-import { EditResource } from "../components/ui/edit-resource";
-import { BreadcrumbWithCategory } from "../components/breadcrumb-with-category";
-import { CourseQuiz } from "../components/course-quiz";
-import { getCourse } from "../lib/courses";
-import { createMetaTags } from "../lib/meta";
-import { notFound } from "../lib/navigation";
+import { Banner } from "~/components/ui/banner";
+import { EditResource } from "~/components/ui/edit-resource";
+import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
+import { CourseQuiz } from "~/components/course-quiz";
+import { getCourse } from "~/lib/courses";
+import { createMetaTags } from "~/lib/meta";
+import { notFound } from "~/lib/navigation";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await getCourse(slug);
