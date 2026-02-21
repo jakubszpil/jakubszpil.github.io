@@ -1,9 +1,10 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "~/components/ui/banner";
-import { EditResource } from "~/components/ui/edit-resource";
+import { Banner } from "~/components/banner";
+import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
 import { CourseQuiz } from "~/components/course-quiz";
+import { TableOfContents } from "~/components/table-of-contents";
 import { getCourse } from "~/lib/courses";
 import { createMetaTags } from "~/lib/meta";
 import { notFound } from "~/lib/navigation";
@@ -45,14 +46,21 @@ export default function CourseDetail() {
         />
       </header>
 
-      <article
-        className="prose container pt-0 prose-emerald"
-        dangerouslySetInnerHTML={{ __html: course.content }}
-      />
+      <TableOfContents withQuizLink>
+        {(ref) => (
+          <>
+            <article
+              ref={ref}
+              className="prose container px-0 pt-0 prose-emerald"
+              dangerouslySetInnerHTML={{ __html: course.content }}
+            />
 
-      <CourseQuiz quiz={course.quiz} />
+            <CourseQuiz quiz={course.quiz} />
 
-      <EditResource slug={course.slug} resourceType="courses" />
+            <EditResource slug={course.slug} resourceType="courses" />
+          </>
+        )}
+      </TableOfContents>
     </>
   );
 }

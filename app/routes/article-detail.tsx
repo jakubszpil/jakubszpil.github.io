@@ -1,11 +1,12 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "~/components/ui/banner";
-import { EditResource } from "~/components/ui/edit-resource";
+import { Banner } from "~/components/banner";
+import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
 import { getArticle } from "~/lib/articles";
 import { notFound } from "~/lib/navigation";
 import { createMetaTags } from "~/lib/meta";
+import { TableOfContents } from "~/components/table-of-contents";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug);
@@ -46,12 +47,19 @@ export default function ArticleDetail() {
         />
       </header>
 
-      <article
-        className="prose container pt-0 prose-emerald"
-        dangerouslySetInnerHTML={{ __html: article.content }}
-      />
+      <TableOfContents>
+        {(ref) => (
+          <>
+            <article
+              ref={ref}
+              className="prose container px-0 pt-0 prose-emerald"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
 
-      <EditResource slug={article.slug} resourceType="articles" />
+            <EditResource slug={article.slug} resourceType="articles" />
+          </>
+        )}
+      </TableOfContents>
     </>
   );
 }

@@ -10,18 +10,6 @@ Dependency Injection (DI) to wzorzec projektowy stosowany w celu zwiększenia mo
 
 W TypeScript DI można zaimplementować na różne sposoby, m.in. za pomocą funkcji wstrzykujących, kontenerów IoC oraz dekoratorów. Poniżej znajdziesz szczegółowe omówienie praktycznych sposobów implementacji DI w TypeScript wraz z przykładami i wskazówkami.
 
-## Spis treści
-
-1. [Czym jest Dependency Injection?](#czym-jest-dependency-injection)
-2. [Zalety stosowania DI](#zalety-stosowania-di)
-3. [Podstawowy przykład Dependency Injection](#podstawowy-przykład-dependency-injection)
-4. [Wstrzykiwanie zależności przy pomocy funkcji](#wstrzykiwanie-zależności-przy-pomocy-funkcji)
-5. [Kontener IoC i automatyzacja DI](#kontener-ioc-i-automatyzacja-di)
-6. [Testowanie z wykorzystaniem DI](#testowanie-z-wykorzystaniem-di)
-7. [Podsumowanie](#podsumowanie)
-
----
-
 ## Czym jest Dependency Injection?
 
 **Dependency Injection** polega na przekazywaniu obiektów zależnych (tzw. zależności) do obiektu zamiast tworzenia ich bezpośrednio w jego wnętrzu. Dzięki temu możemy łatwo podmieniać zależności - np. na ich mocki podczas testowania - bez zmian w logice biznesowej.

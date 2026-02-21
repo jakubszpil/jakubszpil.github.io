@@ -26,6 +26,7 @@ export function getRehypePlugins(): PluggableList {
         },
         headingProperties: {
           className: "scroll-mt-20",
+          "data-heading": true,
         },
         behavior: "prepend",
         content: (element: { tagName: string }) => {

@@ -64,8 +64,10 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
 
   if (finished) {
     return (
-      <div className="container prose">
-        <h2>{quiz.title}</h2>
+      <div className="container px-0 prose">
+        <h2 className="scroll-mt-17.5" id="quiz">
+          {quiz.title}
+        </h2>
         <p>
           Wynik: {score} / {questions.length}
         </p>
@@ -88,8 +90,10 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
   }
 
   return (
-    <div className="container prose">
-      <h2>{quiz.title}</h2>
+    <div className="container px-0 prose">
+      <h2 className="scroll-mt-17.5" id="quiz">
+        {quiz.title}
+      </h2>
       <div>
         <p className="font-bold mb-0!">
           Pytanie {current + 1} z {questions.length}
