@@ -62,7 +62,7 @@ async function getAllProjects(): Promise<Project[]> {
   const projects: Project[] = [];
 
   for (const filename of files) {
-    const slug = filename.replace(".mdx", "");
+    const slug = filename.replace(".md", "");
     const file = await readFile(join(directory, filename), "utf-8");
     const project = await projectParsingStrategy(slug, file);
 
