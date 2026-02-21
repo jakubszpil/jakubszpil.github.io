@@ -1,0 +1,1 @@
+import{c as e}from"./date-CZi7u8xm.js";const t=e=>e.toLowerCase().split(` `).map(e=>`${e.slice(0,1).toUpperCase()}${e.slice(1)}`).join(` `),n=e=>e.replaceAll(`-`,` `),r=t=>{let n=t?.toLowerCase();return n&&n in e?e[n]:t},i=e=>r(t(n(e)));export{i as t};
