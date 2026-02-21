@@ -1,4 +1,4 @@
-import { CreationDate } from "./creation-date";
+import { CreationDate } from "./ui/creation-date";
 import { cn } from "~/lib/utils";
 
 export interface BannerProps {

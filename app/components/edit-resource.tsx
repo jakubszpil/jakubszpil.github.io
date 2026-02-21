@@ -1,4 +1,4 @@
-import { Button } from "./button";
+import { Button } from "./ui/button";
 
 export interface EditResourceProps {
   slug: string;
@@ -7,7 +7,7 @@ export interface EditResourceProps {
 
 export function EditResource({ slug, resourceType }: EditResourceProps) {
   return (
-    <div className="container">
+    <div className="container px-0 pb-2">
       <Button
         asChild
         variant="secondary"

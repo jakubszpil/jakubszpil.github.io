@@ -1,5 +1,5 @@
 import type { ArticleFeed } from "~/lib/articles";
-import { Banner } from "./ui/banner";
+import { Banner } from "./banner";
 import { Button, type ButtonProps } from "./ui/button";
 import { LinkWithPrefetch } from "./ui/link-with-prefetch";
 

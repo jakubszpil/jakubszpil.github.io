@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite dev",
-    "preview": "vite preview",
+    "preview": "vite preview --port 5173",
     "typecheck": "tsgo --noEmit",
     "test": "vitest run",
     "test:ci": "vitest run --hideSkippedTests --silent --no-color",

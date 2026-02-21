@@ -5,12 +5,12 @@ import {
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
 } from "../ui/link-with-prefetch";
-import { Banner, type BannerProps } from "../ui/banner";
+import { Banner, type BannerProps } from "../banner";
 import type { ArticleFeed } from "~/lib/articles";
 import { ArticleCard } from "../article-card";
 
 vi.mock("../ui/link-with-prefetch");
-vi.mock("../ui/banner");
+vi.mock("../banner");
 
 describe("<ArticleCard />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

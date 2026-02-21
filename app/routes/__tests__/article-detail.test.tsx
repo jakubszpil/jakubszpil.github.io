@@ -11,11 +11,11 @@ import { type Article, getArticle } from "~/lib/articles";
 import {
   EditResource,
   type EditResourceProps,
-} from "~/components/ui/edit-resource";
-import { Banner, type BannerProps } from "~/components/ui/banner";
+} from "~/components/edit-resource";
+import { Banner, type BannerProps } from "~/components/banner";
 
-vi.mock("~/components/ui/edit-resource");
-vi.mock("~/components/ui/banner");
+vi.mock("~/components/edit-resource");
+vi.mock("~/components/banner");
 vi.mock("~/components/breadcrumb-with-category");
 vi.mock("~/lib/articles");
 
