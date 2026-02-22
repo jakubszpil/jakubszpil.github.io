@@ -4,6 +4,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { getReadingTimeLabel, processContent, processFile } from "./content";
 import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
+import type { Heading } from "./headings";
 
 interface ArticleFeed {
   slug: string;
@@ -22,6 +23,7 @@ interface Article {
   category: string;
   keywords: string[];
   content: string;
+  headings: Heading[];
 }
 
 function mapperArticleFeed(article: Article): ArticleFeed {
@@ -37,17 +39,18 @@ function mapperArticleFeed(article: Article): ArticleFeed {
 async function parseArticle(slug: string, file: string): Promise<Article> {
   const { data, content } = processFile(file);
 
-  const [fileContent, readingTime] = await processContent(content);
+  const [fileContent, { headings, time }] = await processContent(content);
 
   return {
     slug,
     content: fileContent,
-    readingTime: getReadingTimeLabel(readingTime),
+    readingTime: getReadingTimeLabel(time),
     createdAt: new Date(data.createdAt).toISOString(),
     category: data.category,
     keywords: data.keywords,
     description: data.description,
     title: data.title,
+    headings,
   };
 }
 

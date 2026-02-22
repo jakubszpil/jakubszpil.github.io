@@ -1,10 +1,6 @@
-import { useCallback, type ReactNode, type RefObject } from "react";
+import { useCallback, type ReactNode } from "react";
 import { useLocation } from "react-router";
 
-import {
-  useTableOfContents,
-  type TableOfContentsHeading,
-} from "~/hooks/use-table-of-contents";
 import {
   TableOfContentsItem,
   TableOfContentsLink,
@@ -12,21 +8,23 @@ import {
   TableOfContentsTitle,
 } from "./ui/toc";
 import { ScrollArea } from "./ui/scroll-area";
+import type { Heading } from "~/lib/headings";
 
 export function TableOfContents({
   children,
   withQuizLink,
+  headings,
 }: {
-  children: (ref: RefObject<HTMLElement | null>) => ReactNode;
+  children: ReactNode;
   withQuizLink?: boolean;
+  headings: Heading[];
 }) {
-  const { ref, headings } = useTableOfContents();
   const { pathname, hash } = useLocation();
 
   const currentId = decodeURIComponent(hash.replace("#", ""));
 
   const renderTocHeading = useCallback(
-    (heading: TableOfContentsHeading) => {
+    (heading: Heading) => {
       return (
         <TableOfContentsItem key={heading.id}>
           <TableOfContentsLink
@@ -75,9 +73,7 @@ export function TableOfContents({
           </ScrollArea>
         </div>
 
-        <div className="container px-0 lg:col-span-2 lg:pt-0">
-          {children(ref)}
-        </div>
+        <div className="container px-0 lg:col-span-2 lg:pt-0">{children}</div>
       </div>
     </>
   );

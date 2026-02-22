@@ -34,6 +34,7 @@ describe("<ArticleDetail />", () => {
     category: "test",
     createdAt: "2025-03-17",
     readingTime: "3 minuty",
+    headings: [],
   };
 
   beforeEach(() => {

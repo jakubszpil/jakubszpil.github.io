@@ -47,18 +47,13 @@ export default function ArticleDetail() {
         />
       </header>
 
-      <TableOfContents>
-        {(ref) => (
-          <>
-            <article
-              ref={ref}
-              className="prose container px-0 pt-0 prose-emerald"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+      <TableOfContents headings={article.headings}>
+        <article
+          className="prose container px-0 pt-0 prose-emerald"
+          dangerouslySetInnerHTML={{ __html: article.content }}
+        />
 
-            <EditResource slug={article.slug} resourceType="articles" />
-          </>
-        )}
+        <EditResource slug={article.slug} resourceType="articles" />
       </TableOfContents>
     </>
   );
