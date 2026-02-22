@@ -25,7 +25,7 @@ export function getRehypePlugins(): PluggableList {
             "mr-2 no-underline hover:underline focus-visible:underline select-none",
         },
         headingProperties: {
-          className: "scroll-mt-20",
+          className: "scroll-mt-19",
           "data-heading": true,
         },
         behavior: "prepend",
