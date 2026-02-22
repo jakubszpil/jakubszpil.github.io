@@ -10,7 +10,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   define: {
     "import.meta.env.TIMESTAMP": Date.now(),
-    "import.meta.env.HYBRID_SSG": true,
+    "import.meta.env.HYBRID_SSG": false,
   },
   plugins: [
     tailwindcss({

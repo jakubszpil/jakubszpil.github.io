@@ -26,7 +26,7 @@ const rehypeTocPlugin: Plugin = () => {
     return null;
   };
 
-  const processLabel = (element: Element): string => {
+  const processLabel = (element: Element, divider = ""): string => {
     const parts: string[] = [];
 
     const children = element.children;
@@ -36,8 +36,8 @@ const rehypeTocPlugin: Plugin = () => {
         if (child.tagName === "a") continue;
 
         if (child.tagName === "code") {
-          const labelFromCode = processLabel(child);
-          parts.push(labelFromCode);
+          parts.push(processLabel(child, " "));
+          continue;
         }
       }
 
@@ -46,7 +46,7 @@ const rehypeTocPlugin: Plugin = () => {
       }
     }
 
-    return parts.join(" ");
+    return parts.join(divider);
   };
 
   const processHeadings = (elements: Element[]): Heading[] => {
