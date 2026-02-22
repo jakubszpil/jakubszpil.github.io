@@ -46,20 +46,15 @@ export default function CourseDetail() {
         />
       </header>
 
-      <TableOfContents withQuizLink>
-        {(ref) => (
-          <>
-            <article
-              ref={ref}
-              className="prose container px-0 pt-0 prose-emerald"
-              dangerouslySetInnerHTML={{ __html: course.content }}
-            />
+      <TableOfContents withQuizLink headings={course.headings}>
+        <article
+          className="prose container px-0 pt-0 prose-emerald"
+          dangerouslySetInnerHTML={{ __html: course.content }}
+        />
 
-            <CourseQuiz quiz={course.quiz} />
+        <CourseQuiz quiz={course.quiz} />
 
-            <EditResource slug={course.slug} resourceType="courses" />
-          </>
-        )}
+        <EditResource slug={course.slug} resourceType="courses" />
       </TableOfContents>
     </>
   );

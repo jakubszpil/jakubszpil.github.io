@@ -38,6 +38,7 @@ describe("<CourseDetail />", () => {
       questions: [],
       title: "Example Quiz",
     },
+    headings: [],
   };
 
   beforeEach(() => {

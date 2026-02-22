@@ -5,6 +5,7 @@ import { shuffleArray } from "./array";
 import { getReadingTimeLabel, processContent, processFile } from "./content";
 import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
+import type { Heading } from "./headings";
 
 interface CourseQuiz {
   title: string;
@@ -36,6 +37,7 @@ interface Course {
   keywords: string[];
   content: string;
   quiz: CourseQuiz;
+  headings: Heading[];
 }
 
 function mapperCourseFeed(course: Course): CourseFeed {
@@ -74,19 +76,20 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
 async function parseCourse(slug: string, file: string): Promise<Course> {
   const { data, content } = processFile(file);
 
-  const [fileContent, readingTime] = await processContent(content);
+  const [fileContent, { time, headings }] = await processContent(content);
 
   return {
     ...data,
     slug,
     content: fileContent,
-    readingTime: getReadingTimeLabel(readingTime),
+    readingTime: getReadingTimeLabel(time),
     createdAt: new Date(data.createdAt).toISOString(),
     quiz: await parseCourseQuiz(data.quiz),
     category: data.category,
     keywords: data.keywords,
     description: data.description,
     title: data.title,
+    headings,
   };
 }
 
