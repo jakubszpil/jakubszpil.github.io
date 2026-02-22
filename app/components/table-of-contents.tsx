@@ -1,5 +1,5 @@
 import { useCallback, type ReactNode } from "react";
-import { useLocation } from "react-router";
+import { useLocation, createPath } from "react-router";
 
 import {
   TableOfContentsItem,
@@ -21,6 +21,10 @@ export function TableOfContents({
 }) {
   const { pathname, hash } = useLocation();
 
+  const pathnameWithoutTrailingSlash = pathname.endsWith("/")
+    ? pathname.slice(0, -1)
+    : pathname;
+
   const currentId = decodeURIComponent(hash.replace("#", ""));
 
   const renderTocHeading = useCallback(
@@ -33,7 +37,10 @@ export function TableOfContents({
                 ? !currentId || currentId === heading.id
                 : currentId === heading.id
             }
-            href={`${pathname}#${heading.id}`}
+            href={createPath({
+              pathname: pathnameWithoutTrailingSlash,
+              hash: heading.id,
+            })}
           >
             {heading.label}
           </TableOfContentsLink>
@@ -43,7 +50,7 @@ export function TableOfContents({
         </TableOfContentsItem>
       );
     },
-    [currentId],
+    [currentId, pathnameWithoutTrailingSlash],
   );
 
   return (
