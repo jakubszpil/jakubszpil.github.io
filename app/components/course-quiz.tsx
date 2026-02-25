@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { Course, CourseQuizQuestion } from "../lib/courses";
 import { shuffleArray } from "../lib/array";
@@ -28,6 +28,8 @@ function shuffleQuestions(quiz: Course["quiz"]): CourseQuizQuestion[] {
 }
 
 export function CourseQuiz({ quiz }: CourseQuizProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -62,12 +64,15 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
     }
   }, [current, questions.length]);
 
+  useEffect(() => {
+    if (showAnswer) {
+      buttonRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showAnswer]);
+
   if (finished) {
     return (
-      <div className="container px-0 prose">
-        <h2 className="scroll-mt-17.5" id="quiz">
-          {quiz.title}
-        </h2>
+      <div className="container p-0 prose">
         <p>
           Wynik: {score} / {questions.length}
         </p>
@@ -90,12 +95,9 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
   }
 
   return (
-    <div className="container px-0 prose">
-      <h2 className="scroll-mt-17.5" id="quiz">
-        {quiz.title}
-      </h2>
+    <div className="container p-0 prose">
       <div>
-        <p className="font-bold mb-0!">
+        <p className="font-bold my-0!">
           Pytanie {current + 1} z {questions.length}
         </p>
         <div
@@ -138,7 +140,12 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
             {question?.explanation && (
               <blockquote className="my-3">{question.explanation}</blockquote>
             )}
-            <Button size="sm" onClick={handleNext} className="cursor-pointer">
+            <Button
+              size="sm"
+              onClick={handleNext}
+              className="cursor-pointer"
+              ref={buttonRef}
+            >
               {current + 1 < questions.length
                 ? "Następne pytanie"
                 : "Zakończ quiz"}
