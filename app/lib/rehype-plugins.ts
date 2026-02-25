@@ -10,14 +10,6 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import type { Heading } from "./headings";
 
-function getAnchorContentBasedOnLevel(level: number): string {
-  let content = "";
-  for (let i = 0; i < level; i++) {
-    content += ">";
-  }
-  return content;
-}
-
 const rehypeTocPlugin: Plugin = () => {
   const getHeadingElement = (node: Nodes): Element | null => {
     if (node.type === "element") {
@@ -106,20 +98,19 @@ export function getRehypePlugins(): PluggableList {
       {
         properties: {
           className:
-            "mr-2 no-underline hover:underline focus-visible:underline select-none",
+            "group-hover:opacity-100 focus-visible:opacity-100 opacity-0 lg:absolute inset-y-0 ml-2 lg:ml-0 lg:-left-6 lg:pr-6 select-none",
+          "aria-hidden": true,
         },
         headingProperties: {
-          className: "scroll-mt-19",
+          className:
+            "scroll-mt-19 text-(--tw-prose-links) dark:text-(--tw-prose-invert-links) relative group ",
         },
-        behavior: "prepend",
-        content: (element: { tagName: string }) => {
-          const tag = element.tagName;
-          const level = parseInt(tag[tag.length - 1], 10);
-
+        behavior: "append",
+        content: () => {
           return [
             {
               type: "raw",
-              value: getAnchorContentBasedOnLevel(level),
+              value: "#",
             },
           ];
         },

@@ -59,8 +59,9 @@ describe("<BusyIndicator />", () => {
           pathname: "/",
           search: "",
           state: {},
+          unstable_mask: undefined,
         },
-      };
+      } satisfies Navigation;
     });
 
     render(<BusyIndicator />);
