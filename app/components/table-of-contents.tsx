@@ -59,7 +59,7 @@ export function TableOfContents({
         <div className="container hidden lg:block px-0 text-sm! lg:order-2 lg:pt-0 sticky! max-h-[calc(100dvh-(var(--spacing))*37)] h-full top-19 bg-background z-40 rounded-tr-lg">
           <ScrollArea className="h-full relative">
             <TableOfContentsList className="relative h-max">
-              <TableOfContentsTitle className="bg-background sticky top-0 text-base left-0 pb-3 mb-0">
+              <TableOfContentsTitle className="bg-background sticky top-0 text-base text-emerald-600 dark:text-emerald-500 font-semibold left-0 pb-3 mb-0">
                 Spis treści
               </TableOfContentsTitle>
               {renderTocHeading({
