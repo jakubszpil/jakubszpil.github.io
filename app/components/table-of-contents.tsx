@@ -12,11 +12,9 @@ import type { Heading } from "~/lib/headings";
 
 export function TableOfContents({
   children,
-  withQuizLink,
   headings,
 }: {
   children: ReactNode;
-  withQuizLink?: boolean;
   headings: Heading[];
 }) {
   const { pathname, hash } = useLocation();
@@ -69,13 +67,6 @@ export function TableOfContents({
                 headings: [],
               })}
               {headings.map(renderTocHeading)}
-              {withQuizLink &&
-                renderTocHeading({
-                  id: "quiz",
-                  level: 2,
-                  label: "Quiz",
-                  headings: [],
-                })}
             </TableOfContentsList>
           </ScrollArea>
         </div>
