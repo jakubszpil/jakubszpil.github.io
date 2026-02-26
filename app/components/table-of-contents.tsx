@@ -9,6 +9,7 @@ import {
 } from "./ui/toc";
 import { ScrollArea } from "./ui/scroll-area";
 import type { Heading } from "~/lib/headings";
+import { useHydrated } from "~/hooks/use-hydrated";
 
 export function TableOfContents({
   children,
@@ -18,6 +19,8 @@ export function TableOfContents({
   headings: Heading[];
 }) {
   const { pathname, hash } = useLocation();
+
+  const hydrated = useHydrated();
 
   const pathnameWithoutTrailingSlash = pathname.endsWith("/")
     ? pathname.slice(0, -1)
@@ -31,9 +34,11 @@ export function TableOfContents({
         <TableOfContentsItem key={heading.id}>
           <TableOfContentsLink
             isActive={
-              heading.id === "_top"
-                ? !currentId || currentId === heading.id
-                : currentId === heading.id
+              hydrated
+                ? heading.id === "_top"
+                  ? !currentId || currentId === heading.id
+                  : currentId === heading.id
+                : false
             }
             href={createPath({
               pathname: pathnameWithoutTrailingSlash,
@@ -48,7 +53,7 @@ export function TableOfContents({
         </TableOfContentsItem>
       );
     },
-    [currentId, pathnameWithoutTrailingSlash],
+    [currentId, hydrated, pathnameWithoutTrailingSlash],
   );
 
   return (
