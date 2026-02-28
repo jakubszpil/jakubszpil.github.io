@@ -56,7 +56,7 @@ quiz:
       answer: 0
       explanation: "Aby uzyskać długość tablicy w JavaScript, używamy właściwości `.length`, np. `mojaTablica.length`. Jest to standardowy sposób."
 
-    - question: "Co zostanie wypisane w konsoli po wykonaniu poniższego kodu?\n\n```javascript\nlet x = 10;\nif (x > 5) { console.log('OK'); } else { console.log('NIE'); }\n```"
+    - question: "Co zostanie wypisane w konsoli po wykonaniu poniższego kodu?\n\n```javascript\nlet x = 10;\nif (x > 5) {\n console.log('OK'); \n} else {\n console.log('NIE'); \n}\n```"
       options:
         - "NIE"
         - "undefined"

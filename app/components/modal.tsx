@@ -24,7 +24,9 @@ export function Modal({ children, title, trigger, description }: ModalProps) {
 
       <DialogContent className="top-18 translate-y-0 h-auto flex flex-col max-h-[calc(100dvh-(var(--spacing)*24))]">
         <DialogHeader>
-          {title && <DialogTitle className="text-left">{title}</DialogTitle>}
+          {title && (
+            <DialogTitle className="text-left pr-8.5">{title}</DialogTitle>
+          )}
           {description && (
             <DialogDescription className="text-left">
               {description}

@@ -143,7 +143,7 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
             <Button
               size="sm"
               onClick={handleNext}
-              className="cursor-pointer"
+              className="cursor-pointer w-full sm:w-max"
               ref={buttonRef}
             >
               {current + 1 < questions.length
