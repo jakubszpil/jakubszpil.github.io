@@ -11,6 +11,7 @@ import { BusyIndicator } from "~/components/busy-indicator";
 import { ScrollRestoration } from "~/components/scroll-restoration";
 import { usePrerender } from "~/hooks/use-prerender";
 import { isRouteErrorResponse } from "~/lib/errors";
+import { TOP_ELEMENT_ID } from "~/lib/config";
 
 export default function Layout() {
   const prerender = usePrerender();
@@ -21,6 +22,7 @@ export default function Layout() {
 
   return (
     <>
+      <div id={TOP_ELEMENT_ID}></div>
       <ScrollRestoration />
       <Navbar>
         <NavbarLink className="font-bold" to="/">

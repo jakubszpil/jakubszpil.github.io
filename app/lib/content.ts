@@ -3,7 +3,6 @@ import { unified } from "unified";
 
 import { getRemarkPlugins } from "./remark-plugins";
 import { getRehypePlugins } from "./rehype-plugins";
-import type { Heading } from "./headings";
 
 export async function processContent(content: string) {
   const processor = unified().use(getRemarkPlugins()).use(getRehypePlugins());
@@ -14,15 +13,7 @@ export async function processContent(content: string) {
     time: number;
   };
 
-  const headings = results.data.headings as Heading[];
-
-  return [
-    results.toString(),
-    {
-      time: readingTime.time,
-      headings,
-    },
-  ] as const;
+  return [results.toString(), readingTime.time] as const;
 }
 
 export function getReadingTimeLabel(readingTime: number) {

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Button } from "~/components/ui/button";
@@ -30,6 +31,8 @@ export const meta = createMetaTags<typeof loader>(({ loaderData: course }) => ({
 export default function CourseDetail() {
   const course = useLoaderData<typeof loader>();
 
+  const ref = useRef<HTMLElement>(null);
+
   return (
     <>
       <BreadcrumbWithCategory
@@ -48,32 +51,29 @@ export default function CourseDetail() {
         />
       </header>
 
-      <TableOfContents headings={course.headings}>
-        <article
-          className="prose container px-0 pt-0 prose-emerald"
-          dangerouslySetInnerHTML={{ __html: course.content }}
-        />
-
-        <div className="bg-background container border-t sticky! px-0 pb-3 flex flex-wrap gap-2 justify-between items-center bottom-0 right-0">
-          <p>Chcesz sprawdzić swoją wiedzę?</p>
-
+      <TableOfContents
+        ref={ref}
+        additionalActions={
           <Modal
             trigger={
-              <Button
-                variant="secondary"
-                className="cursor-pointer w-full sm:w-max"
-              >
-                Rozwiąż Quiz
+              <Button size="sm" variant="link" className="cursor-pointer">
+                Quiz
               </Button>
             }
             title={course.quiz.title}
           >
             <CourseQuiz quiz={course.quiz} />
           </Modal>
-        </div>
+        }
+      />
 
-        <EditResource slug={course.slug} resourceType="courses" />
-      </TableOfContents>
+      <article
+        className="prose container prose-emerald"
+        dangerouslySetInnerHTML={{ __html: course.content }}
+        ref={ref}
+      />
+
+      <EditResource slug={course.slug} resourceType="courses" />
     </>
   );
 }

@@ -5,7 +5,6 @@ import { shuffleArray } from "./array";
 import { getReadingTimeLabel, processContent, processFile } from "./content";
 import { sortByCreationDate } from "./date";
 import { cachePromise } from "./promises";
-import type { Heading } from "./headings";
 
 interface CourseQuiz {
   title: string;
@@ -37,7 +36,6 @@ interface Course {
   keywords: string[];
   content: string;
   quiz: CourseQuiz;
-  headings: Heading[];
 }
 
 function mapperCourseFeed(course: Course): CourseFeed {
@@ -76,7 +74,7 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
 async function parseCourse(slug: string, file: string): Promise<Course> {
   const { data, content } = processFile(file);
 
-  const [fileContent, { time, headings }] = await processContent(content);
+  const [fileContent, time] = await processContent(content);
 
   return {
     ...data,
@@ -89,7 +87,6 @@ async function parseCourse(slug: string, file: string): Promise<Course> {
     keywords: data.keywords,
     description: data.description,
     title: data.title,
-    headings,
   };
 }
 
