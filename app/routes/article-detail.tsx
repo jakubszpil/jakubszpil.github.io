@@ -34,6 +34,8 @@ export default function ArticleDetail() {
 
   return (
     <>
+      <TableOfContents ref={ref} />
+
       <BreadcrumbWithCategory
         category={article.category}
         categoryPrefixUrl="/blog/kategorie"
@@ -50,10 +52,8 @@ export default function ArticleDetail() {
         />
       </header>
 
-      <TableOfContents ref={ref} />
-
       <article
-        className="prose container prose-emerald"
+        className="prose container pt-0 prose-emerald"
         dangerouslySetInnerHTML={{ __html: article.content }}
         ref={ref}
       />

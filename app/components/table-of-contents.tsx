@@ -1,13 +1,15 @@
-import { Transition } from "@headlessui/react";
 import {
   useCallback,
   useMemo,
   useState,
-  type MouseEvent,
   type ReactNode,
   type RefObject,
 } from "react";
 import { createPath, useLocation } from "react-router";
+
+import { useHydrated } from "~/hooks/use-hydrated";
+import { TOP_ELEMENT_ID } from "~/lib/config";
+import { cn } from "~/lib/utils";
 
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -18,8 +20,6 @@ import {
 } from "./ui/toc";
 import { ScrollArea } from "./ui/scroll-area";
 import { IconChevronRight } from "./ui/icons";
-import { useHydrated } from "~/hooks/use-hydrated";
-import { TOP_ELEMENT_ID } from "~/lib/config";
 
 export interface TableOfContentsProps {
   ref: RefObject<HTMLElement | null>;
@@ -71,42 +71,31 @@ export function TableOfContents({
   additionalActions,
 }: TableOfContentsProps) {
   const hydrated = useHydrated();
-
   const [show, setShow] = useState(false);
 
-  const handleClose = useCallback(
-    (heading: Heading, event: MouseEvent<HTMLAnchorElement>) => {
-      event.preventDefault();
-
-      const element = document.getElementById(heading.slug);
-
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-        setShow(false);
-      }
-    },
-    [],
-  );
-
   return (
-    <div className="sticky top-[calc(var(--spacing)*14.25-1px)] z-10">
-      <Card className="p-0 shadow-none rounded-none">
-        <div className="container py-2 px-3 flex justify-between items-center">
+    <div className="sticky top-14.25 z-10">
+      <Card className="p-0 border-t-0 border-x-0 shadow-none rounded-none">
+        <div className="container py-1 px-3 flex justify-between items-center">
           <Button
             onClick={() => setShow((prev) => !prev)}
             size="sm"
             variant="link"
-            className="cursor-pointer select-none"
+            className="cursor-pointer"
           >
-            <IconChevronRight /> Spis treści
+            <IconChevronRight
+              className={cn("transition-transform", show && "rotate-90")}
+            />
+            Spis treści
           </Button>
 
-          {hydrated && (
-            <Transition show={show}>
-              <Card className="absolute container top-11/12 w-full left-0 right-0 bg-card border py-2 h-max max-h-96 duration-75 transition-all data-closed:opacity-0 data-closed:invisible data-enter:translate-y-0 data-enter:data-closed:translate-y-24">
-                <TableOfContentsContent ref={ref} onClick={handleClose} />
-              </Card>
-            </Transition>
+          {hydrated && show && (
+            <Card className="absolute container top-11/12 w-auto inset-x-5 bg-card border py-2 h-max max-h-96">
+              <TableOfContentsContent
+                ref={ref}
+                onClick={() => setShow(false)}
+              />
+            </Card>
           )}
 
           {additionalActions && (
@@ -123,7 +112,7 @@ export function TableOfContentsContent({
   onClick,
 }: {
   ref: RefObject<HTMLElement | null>;
-  onClick: (heading: Heading, event: MouseEvent<HTMLAnchorElement>) => void;
+  onClick: () => void;
 }) {
   const { pathname } = useLocation();
 
@@ -145,7 +134,7 @@ export function TableOfContentsContent({
       return (
         <TableOfContentsItem key={heading.slug}>
           <TableOfContentsLink
-            onClick={(event) => onClick(heading, event)}
+            onClick={onClick}
             href={createPath({
               pathname: pathnameWithoutTrailingSlash,
               hash: heading.slug,

@@ -250,6 +250,12 @@ export const IconChevronRight = createReactComponent({
   node: [["path", { d: "M9 6l6 6l-6 6", key: "svg-0" }]],
 });
 
+export const IconChevronLeft = createReactComponent({
+  type: "outline",
+  name: "ChevronLeft",
+  node: [["path", { d: "M15 6l-6 6l6 6", key: "svg-0" }]],
+});
+
 export const IconCircle = createReactComponent({
   type: "outline",
   name: "Circle",

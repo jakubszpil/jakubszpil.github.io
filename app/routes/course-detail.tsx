@@ -11,6 +11,7 @@ import { Modal } from "~/components/modal";
 import { getCourse } from "~/lib/courses";
 import { createMetaTags } from "~/lib/meta";
 import { notFound } from "~/lib/navigation";
+import { IconChevronLeft } from "~/components/ui/icons";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await getCourse(slug);
@@ -35,6 +36,22 @@ export default function CourseDetail() {
 
   return (
     <>
+      <TableOfContents
+        ref={ref}
+        additionalActions={
+          <Modal
+            trigger={
+              <Button size="sm" variant="link" className="cursor-pointer">
+                Quiz <IconChevronLeft />
+              </Button>
+            }
+            title={course.quiz.title}
+          >
+            <CourseQuiz quiz={course.quiz} />
+          </Modal>
+        }
+      />
+
       <BreadcrumbWithCategory
         baseLabel="Learning"
         baseUrl="/learning"
@@ -51,24 +68,8 @@ export default function CourseDetail() {
         />
       </header>
 
-      <TableOfContents
-        ref={ref}
-        additionalActions={
-          <Modal
-            trigger={
-              <Button size="sm" variant="link" className="cursor-pointer">
-                Quiz
-              </Button>
-            }
-            title={course.quiz.title}
-          >
-            <CourseQuiz quiz={course.quiz} />
-          </Modal>
-        }
-      />
-
       <article
-        className="prose container prose-emerald"
+        className="prose container pt-0 prose-emerald"
         dangerouslySetInnerHTML={{ __html: course.content }}
         ref={ref}
       />

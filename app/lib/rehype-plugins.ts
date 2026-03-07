@@ -19,7 +19,7 @@ export function getRehypePlugins(): PluggableList {
         },
         headingProperties: {
           className:
-            "scroll-mt-30 text-(--tw-prose-links) dark:text-(--tw-prose-invert-links) relative group",
+            "scroll-mt-28 text-(--tw-prose-links) dark:text-(--tw-prose-invert-links) relative group",
           "data-heading": true,
         },
         behavior: "append",
