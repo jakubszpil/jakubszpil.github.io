@@ -74,7 +74,7 @@ export function TableOfContents({
   const [show, setShow] = useState(false);
 
   return (
-    <div className="sticky top-14.25 z-10">
+    <div className="sticky -mt-px top-[calc(var(--spacing)*14.25-1px)] z-10">
       <Card className="p-0 border-t-0 border-x-0 shadow-none rounded-none">
         <div className="container py-1 px-3 flex justify-between items-center">
           <Button
@@ -107,7 +107,7 @@ export function TableOfContents({
   );
 }
 
-export function TableOfContentsContent({
+function TableOfContentsContent({
   ref,
   onClick,
 }: {

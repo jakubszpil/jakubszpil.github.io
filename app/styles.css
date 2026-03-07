@@ -192,15 +192,14 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
-  #root {
-    @apply h-auto relative;
-  }
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground overflow-y-scroll;
   }
+
   html {
     @apply antialiased text-sm xs:text-base;
   }
