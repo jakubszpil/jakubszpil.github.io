@@ -31,3 +31,5 @@ export const INDIVIDUAL_NAMES = {
   devops: "DevOps",
   nestjs: "NestJS",
 } as const;
+
+export const TOP_ELEMENT_ID = "_top";

@@ -1,12 +1,13 @@
+import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Banner } from "~/components/banner";
 import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
+import { TableOfContents } from "~/components/table-of-contents";
 import { getArticle } from "~/lib/articles";
 import { notFound } from "~/lib/navigation";
 import { createMetaTags } from "~/lib/meta";
-import { TableOfContents } from "~/components/table-of-contents";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug);
@@ -29,6 +30,8 @@ export const meta = createMetaTags<typeof loader>(
 export default function ArticleDetail() {
   const article = useLoaderData<typeof loader>();
 
+  const ref = useRef<HTMLElement>(null);
+
   return (
     <>
       <BreadcrumbWithCategory
@@ -47,14 +50,15 @@ export default function ArticleDetail() {
         />
       </header>
 
-      <TableOfContents headings={article.headings}>
-        <article
-          className="prose container px-0 pt-0 prose-emerald"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
+      <TableOfContents ref={ref} />
 
-        <EditResource slug={article.slug} resourceType="articles" />
-      </TableOfContents>
+      <article
+        className="prose container prose-emerald"
+        dangerouslySetInnerHTML={{ __html: article.content }}
+        ref={ref}
+      />
+
+      <EditResource slug={article.slug} resourceType="articles" />
     </>
   );
 }

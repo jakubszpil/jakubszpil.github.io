@@ -7,7 +7,7 @@ export interface EditResourceProps {
 
 export function EditResource({ slug, resourceType }: EditResourceProps) {
   return (
-    <div className="container px-0 pb-2">
+    <div className="container pb-2">
       <Button
         asChild
         variant="secondary"
