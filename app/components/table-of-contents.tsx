@@ -7,7 +7,6 @@ import {
 } from "react";
 import { createPath, useLocation } from "react-router";
 
-import { useHydrated } from "~/hooks/use-hydrated";
 import { TOP_ELEMENT_ID } from "~/lib/config";
 import { cn } from "~/lib/utils";
 
@@ -33,45 +32,92 @@ type Heading = {
   level: number;
 };
 
-const processHeadings = (
-  elements: NodeListOf<HTMLHeadingElement>,
-): Heading[] => {
-  const stack: Heading[] = [];
-  const result: Heading[] = [];
-
-  for (const element of elements) {
-    const level = parseInt(element.tagName[1]);
-
-    const item: Heading = {
-      slug: String(element.id),
-      text: element.textContent.slice(0, element.textContent.length - 1),
-      headings: [],
-      level,
-    };
-
-    while (stack.length > 0 && stack[stack.length - 1].level! >= level) {
-      stack.pop();
-    }
-
-    if (stack.length === 0) {
-      result.push(item);
-    } else {
-      const parent = stack[stack.length - 1];
-      if (parent) parent.headings.push(item);
-    }
-
-    stack.push({ ...item, level });
-  }
-
-  return result;
-};
-
 export function TableOfContents({
   ref,
   additionalActions,
 }: TableOfContentsProps) {
-  const hydrated = useHydrated();
   const [show, setShow] = useState(false);
+
+  const { pathname } = useLocation();
+
+  const pathnameWithoutTrailingSlash = useMemo(
+    () => (pathname.endsWith("/") ? pathname.slice(0, -1) : pathname),
+    [pathname],
+  );
+
+  const headings: Heading[] = useMemo(() => {
+    if (!ref.current) return [];
+
+    const elements =
+      ref.current.querySelectorAll<HTMLHeadingElement>("[data-heading]");
+
+    const stack: Heading[] = [];
+    const headings: Heading[] = [];
+
+    for (const element of elements) {
+      const level = parseInt(element.tagName[1]);
+
+      const heading: Heading = {
+        slug: element.id,
+        text: element.textContent.slice(0, element.textContent.length - 1),
+        headings: [],
+        level,
+      };
+
+      while (stack.length > 0 && stack[stack.length - 1].level! >= level) {
+        stack.pop();
+      }
+
+      if (stack.length === 0) {
+        headings.push(heading);
+      } else {
+        const parent = stack[stack.length - 1];
+        if (parent) parent.headings.push(heading);
+      }
+
+      stack.push({ ...heading, level });
+    }
+
+    return headings;
+  }, [ref.current]);
+
+  const renderHeading = useCallback(
+    (heading: Heading) => {
+      return (
+        <TableOfContentsItem key={heading.slug}>
+          <TableOfContentsLink
+            onClick={() => setShow(false)}
+            href={createPath({
+              pathname: pathnameWithoutTrailingSlash,
+              hash: heading.slug,
+            })}
+          >
+            {heading.text}
+          </TableOfContentsLink>
+          <TableOfContentsList indent>
+            {heading.headings.map(renderHeading)}
+          </TableOfContentsList>
+        </TableOfContentsItem>
+      );
+    },
+    [pathnameWithoutTrailingSlash],
+  );
+
+  const renderHeadings = useCallback(() => {
+    return (
+      <ScrollArea className="h-full max-h-90">
+        <TableOfContentsList className="relative h-full max-h-90">
+          {renderHeading({
+            slug: TOP_ELEMENT_ID,
+            level: 2,
+            text: "Przegląd",
+            headings: [],
+          })}
+          {headings.map(renderHeading)}
+        </TableOfContentsList>
+      </ScrollArea>
+    );
+  }, [headings, renderHeading]);
 
   return (
     <div className="sticky -mt-px top-[calc(var(--spacing)*14.25-1px)] z-10">
@@ -84,17 +130,17 @@ export function TableOfContents({
             className="cursor-pointer"
           >
             <IconChevronRight
-              className={cn("transition-transform", show && "rotate-90")}
+              className={cn(
+                "transition-transform duration-100",
+                show && "rotate-90",
+              )}
             />
             Spis treści
           </Button>
 
-          {hydrated && show && (
+          {show && (
             <Card className="absolute container top-11/12 w-auto inset-x-5 bg-card border py-2 h-max max-h-96">
-              <TableOfContentsContent
-                ref={ref}
-                onClick={() => setShow(false)}
-              />
+              {renderHeadings()}
             </Card>
           )}
 
@@ -104,64 +150,5 @@ export function TableOfContents({
         </div>
       </Card>
     </div>
-  );
-}
-
-function TableOfContentsContent({
-  ref,
-  onClick,
-}: {
-  ref: RefObject<HTMLElement | null>;
-  onClick: () => void;
-}) {
-  const { pathname } = useLocation();
-
-  const pathnameWithoutTrailingSlash = pathname.endsWith("/")
-    ? pathname.slice(0, -1)
-    : pathname;
-
-  const headings: Heading[] = useMemo(() => {
-    if (!ref.current) return [];
-
-    const headings =
-      ref.current.querySelectorAll<HTMLHeadingElement>("[data-heading]");
-
-    return processHeadings(headings);
-  }, [ref.current]);
-
-  const renderTocHeading = useCallback(
-    (heading: Heading) => {
-      return (
-        <TableOfContentsItem key={heading.slug}>
-          <TableOfContentsLink
-            onClick={onClick}
-            href={createPath({
-              pathname: pathnameWithoutTrailingSlash,
-              hash: heading.slug,
-            })}
-          >
-            {heading.text}
-          </TableOfContentsLink>
-          <TableOfContentsList indent>
-            {heading.headings.map(renderTocHeading)}
-          </TableOfContentsList>
-        </TableOfContentsItem>
-      );
-    },
-    [pathnameWithoutTrailingSlash, onClick],
-  );
-
-  return (
-    <ScrollArea className="h-full max-h-90">
-      <TableOfContentsList className="relative h-full max-h-90">
-        {renderTocHeading({
-          slug: TOP_ELEMENT_ID,
-          level: 2,
-          text: "Przegląd",
-          headings: [],
-        })}
-        {headings.map(renderTocHeading)}
-      </TableOfContentsList>
-    </ScrollArea>
   );
 }
