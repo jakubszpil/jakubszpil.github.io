@@ -105,7 +105,7 @@ export function TableOfContents({
 
   const renderHeadings = useCallback(() => {
     return (
-      <ScrollArea className="h-full max-h-90">
+      <ScrollArea className="h-max max-h-90">
         <TableOfContentsList className="relative h-full max-h-90">
           {renderHeading({
             slug: TOP_ELEMENT_ID,
