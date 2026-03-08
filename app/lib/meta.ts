@@ -3,7 +3,8 @@ import type { MetaArgs, MetaDescriptor } from "react-router";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
-  DEFAULT_TITLE_TEMPLATE,
+  TITLE_TEMPLATE,
+  TITLE_TEMPLATE_TOKEN,
 } from "./config";
 
 type MetaTags = {
@@ -21,7 +22,7 @@ export function createMetaTags<T>(
     const params = setup(args);
 
     const title = params.title
-      ? DEFAULT_TITLE_TEMPLATE.replace("%s", params.title)
+      ? TITLE_TEMPLATE.replace(TITLE_TEMPLATE_TOKEN, params.title)
       : DEFAULT_TITLE;
 
     const description = params.description ?? DEFAULT_DESCRIPTION;

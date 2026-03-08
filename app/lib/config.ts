@@ -15,10 +15,12 @@ export const SOCIALS = [
 
 export const DEFAULT_TITLE = "Jakub Szpil";
 
-export const DEFAULT_TITLE_TEMPLATE = "%s - Jakub Szpil";
-
 export const DEFAULT_DESCRIPTION =
   "Cześć, jestem Kuba, jestem frontend developerem. Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz wiedzę i doświadczenie z frontu, jak i portfolio, które przywita Cię moimi ostatnimi projektami. Bon vojage! 🚢";
+
+export const TITLE_TEMPLATE_TOKEN = "%s";
+
+export const TITLE_TEMPLATE = `${TITLE_TEMPLATE_TOKEN} - ${DEFAULT_TITLE}`;
 
 export const INDIVIDUAL_NAMES = {
   javascript: "JavaScript",

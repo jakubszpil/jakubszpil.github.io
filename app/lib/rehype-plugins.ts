@@ -13,13 +13,11 @@ export function getRehypePlugins(): PluggableList {
       rehypeAutolinkHeadings,
       {
         properties: {
-          className:
-            "group-hover:opacity-100 focus-visible:opacity-100 opacity-0 lg:absolute inset-y-0 ml-2 lg:ml-0 lg:-left-6 lg:pr-6 select-none",
           "aria-hidden": true,
+          "data-heading-anchor": true,
         },
         headingProperties: {
-          className:
-            "scroll-mt-28 text-(--tw-prose-links) dark:text-(--tw-prose-invert-links) relative group",
+          className: "group",
           "data-heading": true,
         },
         behavior: "append",
