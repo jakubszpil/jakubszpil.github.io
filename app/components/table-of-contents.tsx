@@ -145,7 +145,9 @@ export function TableOfContents({
           )}
 
           {additionalActions && (
-            <div className="flex items-center gap-1">{additionalActions}</div>
+            <div className="flex items-center sm:gap-1">
+              {additionalActions}
+            </div>
           )}
         </div>
       </Card>

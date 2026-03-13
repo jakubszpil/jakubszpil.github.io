@@ -271,3 +271,89 @@ export const IconDots = createReactComponent({
     ["path", { d: "M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0", key: "svg-2" }],
   ],
 });
+
+export const IconEdit = createReactComponent({
+  type: "outline",
+  name: "Edit",
+  node: [
+    [
+      "path",
+      {
+        d: "M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1",
+        key: "svg-0",
+      },
+    ],
+    [
+      "path",
+      {
+        d: "M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415",
+        key: "svg-1",
+      },
+    ],
+    ["path", { d: "M16 5l3 3", key: "svg-2" }],
+  ],
+});
+
+export const IconCopy = createReactComponent({
+  type: "outline",
+  name: "Copy",
+  node: [
+    [
+      "path",
+      {
+        d: "M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666",
+        key: "svg-0",
+      },
+    ],
+    [
+      "path",
+      {
+        d: "M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1",
+        key: "svg-1",
+      },
+    ],
+  ],
+});
+
+export const IconMessage2Question = createReactComponent({
+  type: "outline",
+  name: "Message2Question",
+  node: [
+    ["path", { d: "M8 9h8", key: "svg-0" }],
+    ["path", { d: "M8 13h6", key: "svg-1" }],
+    [
+      "path",
+      {
+        d: "M14.5 18.5l-2.5 2.5l-3 -3h-3a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5",
+        key: "svg-2",
+      },
+    ],
+    ["path", { d: "M19 22v.01", key: "svg-3" }],
+    [
+      "path",
+      {
+        d: "M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483",
+        key: "svg-4",
+      },
+    ],
+  ],
+});
+
+export const IconCircleCheck = createReactComponent({
+  type: "outline",
+  name: "CircleCheck",
+  node: [
+    ["path", { d: "M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0", key: "svg-0" }],
+    ["path", { d: "M9 12l2 2l4 -4", key: "svg-1" }],
+  ],
+});
+
+export const IconInfoCircle = createReactComponent({
+  type: "outline",
+  name: "InfoCircle",
+  node: [
+    ["path", { d: "M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0", key: "svg-0" }],
+    ["path", { d: "M12 9h.01", key: "svg-1" }],
+    ["path", { d: "M11 12h1v4h1", key: "svg-2" }],
+  ],
+});

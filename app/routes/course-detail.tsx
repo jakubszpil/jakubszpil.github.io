@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Button } from "~/components/ui/button";
+import { IconMessage2Question } from "~/components/ui/icons";
 import { Banner } from "~/components/banner";
 import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
@@ -11,7 +12,6 @@ import { Modal } from "~/components/modal";
 import { getCourse } from "~/lib/courses";
 import { createMetaTags } from "~/lib/meta";
 import { notFound } from "~/lib/navigation";
-import { IconChevronLeft } from "~/components/ui/icons";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await getCourse(slug);
@@ -39,16 +39,20 @@ export default function CourseDetail() {
       <TableOfContents
         ref={ref}
         additionalActions={
-          <Modal
-            trigger={
-              <Button size="sm" variant="link" className="cursor-pointer">
-                Quiz <IconChevronLeft />
-              </Button>
-            }
-            title={course.quiz.title}
-          >
-            <CourseQuiz quiz={course.quiz} />
-          </Modal>
+          <>
+            <Modal
+              trigger={
+                <Button size="sm" variant="link" className="cursor-pointer">
+                  <IconMessage2Question /> Quiz
+                </Button>
+              }
+              title={course.quiz.title}
+            >
+              <CourseQuiz quiz={course.quiz} />
+            </Modal>
+
+            <EditResource slug={course.slug} resourceType="courses" />
+          </>
         }
       />
 
@@ -73,8 +77,6 @@ export default function CourseDetail() {
         dangerouslySetInnerHTML={{ __html: course.content }}
         ref={ref}
       />
-
-      <EditResource slug={course.slug} resourceType="courses" />
     </>
   );
 }

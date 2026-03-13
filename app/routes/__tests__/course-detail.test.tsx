@@ -8,20 +8,20 @@ import {
   type BreadcrumbWithCategoryProps,
 } from "~/components/breadcrumb-with-category";
 import {
-  EditResource,
-  type EditResourceProps,
-} from "~/components/edit-resource";
+  TableOfContents,
+  type TableOfContentsProps,
+} from "~/components/table-of-contents";
 import { Banner, type BannerProps } from "~/components/banner";
 import CourseDetail, { loader } from "../course-detail";
 
 vi.mock("~/components/banner");
-vi.mock("~/components/edit-resource");
+vi.mock("~/components/table-of-contents");
 vi.mock("~/components/breadcrumb-with-category");
 vi.mock("~/lib/courses");
 
 describe("<CourseDetail />", () => {
   const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);
-  const MockedEditResource = vi.mocked(EditResource);
+  const MockedTableOfContents = vi.mocked(TableOfContents);
   const MockedBanner = vi.mocked(Banner);
   const MockedGetCourse = vi.mocked(getCourse);
 
@@ -46,7 +46,7 @@ describe("<CourseDetail />", () => {
 
   afterEach(() => {
     MockedBreadcrumbWithCategory.mockRestore();
-    MockedEditResource.mockRestore();
+    MockedTableOfContents.mockRestore();
     MockedBanner.mockRestore();
     MockedGetCourse.mockRestore();
   });
@@ -83,11 +83,11 @@ describe("<CourseDetail />", () => {
       undefined,
     );
 
-    expect(MockedEditResource).toHaveBeenCalledWith(
+    expect(MockedTableOfContents).toHaveBeenCalledWith(
       {
-        slug: MOCKED_COURSE.slug,
-        resourceType: "courses",
-      } satisfies EditResourceProps,
+        ref: expect.any(Object),
+        additionalActions: expect.any(Object),
+      } satisfies TableOfContentsProps,
       undefined,
     );
 

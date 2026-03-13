@@ -34,7 +34,12 @@ export default function ArticleDetail() {
 
   return (
     <>
-      <TableOfContents ref={ref} />
+      <TableOfContents
+        ref={ref}
+        additionalActions={
+          <EditResource resourceType="articles" slug={article.slug} />
+        }
+      />
 
       <BreadcrumbWithCategory
         category={article.category}
@@ -57,8 +62,6 @@ export default function ArticleDetail() {
         dangerouslySetInnerHTML={{ __html: article.content }}
         ref={ref}
       />
-
-      <EditResource slug={article.slug} resourceType="articles" />
     </>
   );
 }

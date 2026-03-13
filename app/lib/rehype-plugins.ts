@@ -21,14 +21,7 @@ export function getRehypePlugins(): PluggableList {
           "data-heading": true,
         },
         behavior: "append",
-        content: () => {
-          return [
-            {
-              type: "raw",
-              value: "#",
-            },
-          ];
-        },
+        content: [],
       },
     ],
     rehypeHighlight,
