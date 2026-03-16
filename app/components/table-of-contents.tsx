@@ -59,7 +59,7 @@ export function TableOfContents({
 
       const heading: Heading = {
         slug: element.id,
-        text: element.textContent.slice(0, element.textContent.length - 1),
+        text: element.textContent,
         headings: [],
         level,
       };
