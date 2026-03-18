@@ -67,7 +67,7 @@ export function SearchForm({
         {renderDatalistOptions("🛠️ Projekt", "projects", projects)}
       </datalist>
 
-      <Button type="submit">
+      <Button type="submit" className="cursor-pointer">
         <IconSearch className="size-5" />
         Szukaj
       </Button>

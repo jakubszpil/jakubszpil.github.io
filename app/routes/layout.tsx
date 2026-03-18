@@ -37,7 +37,7 @@ export default function Layout() {
           <NavbarLink to="/me">🙋‍♂️ O mnie</NavbarLink>
         </NavbarMenu>
       </Navbar>
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
       <Footer>
