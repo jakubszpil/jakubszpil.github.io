@@ -1,6 +1,8 @@
 import {
   useCallback,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
   type RefObject,
@@ -37,6 +39,7 @@ export function TableOfContents({
   additionalActions,
 }: TableOfContentsProps) {
   const [show, setShow] = useState(false);
+  const tocRef = useRef<HTMLDivElement>(null);
 
   const { pathname } = useLocation();
 
@@ -44,6 +47,33 @@ export function TableOfContents({
     () => (pathname.endsWith("/") ? pathname.slice(0, -1) : pathname),
     [pathname],
   );
+
+  useEffect(() => {
+    if (!show) return;
+
+    const controller = new AbortController();
+
+    const handleSameElementTargetAction = (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      const sameElementTarget =
+        tocRef.current?.contains(target) || tocRef.current?.isSameNode(target);
+
+      if (!sameElementTarget) setShow(false);
+    };
+
+    const addListener = <K extends keyof DocumentEventMap>(event: K) =>
+      document.addEventListener(event, handleSameElementTargetAction, {
+        signal: controller.signal,
+      });
+
+    addListener("click");
+    addListener("focusin");
+
+    return () => {
+      controller.abort();
+    };
+  }, [show]);
 
   const headings: Heading[] = useMemo(() => {
     if (!ref.current) return [];
@@ -139,7 +169,10 @@ export function TableOfContents({
           </Button>
 
           {show && (
-            <Card className="absolute container top-11/12 w-auto inset-x-5 bg-card border py-2 h-max max-h-96">
+            <Card
+              ref={tocRef}
+              className="absolute container top-11/12 w-auto inset-x-5 bg-card border py-2 h-max max-h-96"
+            >
               {renderHeadings()}
             </Card>
           )}
