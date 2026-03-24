@@ -2,12 +2,14 @@
 
 import { defineConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import babel from "vite-plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    tsconfigPaths: true,
+  },
   define: {
     "import.meta.env.TIMESTAMP": Date.now(),
     "import.meta.env.HYBRID_SSG": false,
@@ -25,7 +27,6 @@ export default defineConfig({
         plugins: ["babel-plugin-react-compiler"],
       },
     }),
-    tsconfigPaths(),
   ],
   test: {
     include: ["./app/**/*.test.{ts,tsx}"],
