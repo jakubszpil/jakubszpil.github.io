@@ -1,1 +1,0 @@
-import{B as e,a as t}from"./chunk-LFPYN7LY-DT8903TA.js";import{t as n}from"./jsx-runtime-ByHYRw_7.js";var r=e(n());function i(e){return(0,r.jsx)(t,{...e,prefetch:`viewport`})}export{i as t};
