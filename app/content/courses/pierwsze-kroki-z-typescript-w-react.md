@@ -44,7 +44,7 @@ quiz:
       answer: 3
       explanation: "Poprawny typ dla referencji do buttona to HTMLButtonElement."
 
-    - question: "Co wyświetli poniższy komponent?nn```tsxntype WelcomeProps = { name: string };nconst Welcome = ({ name }: WelcomeProps) => <p>Cześć, {name}!</p>;n```nJeśli wywołasz `<Welcome name='Ala' />`"
+    - question: "Co wyświetli poniższy komponent?\n\n```tsx\ntype WelcomeProps = {\n  name: string\n};\n\nfunction Welcome({ name }: WelcomeProps) {\n  return <p>Cześć, {name}!</p>\n};\n```\nJeśli wywołasz `<Welcome name='Ala' />`"
       options:
         - "Witaj, Ala!"
         - "undefined"
