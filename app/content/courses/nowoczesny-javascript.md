@@ -16,7 +16,7 @@ quiz:
       answer: 2
       explanation: "`let` posiada zakres blokowy, podczas gdy `var` ma zakres funkcyjny."
 
-    - question: "Co zwróci poniższy kod?\n\n```javascript\nconst arr = [1, 2, 3];\nconst [a, , b] = arr;\nconsole.log(a, b);\n```"
+    - question: "Co zwróci poniższy kod?\n\n```js\nconst arr = [1, 2, 3];\nconst [a, , b] = arr;\nconsole.log(a, b);\n```"
       options:
         - "1 2"
         - "2 3"
@@ -43,7 +43,7 @@ quiz:
       answer: 3
       explanation: "Funkcje strzałkowe nie posiadają własnego `this` - dziedziczą go z otoczenia."
 
-    - question: "Jaką wartość zwróci poniższy kod?\n\n```javascript\nasync function test() { return 5; }\ntest().then(console.log);\n```"
+    - question: "Jaką wartość zwróci poniższy kod?\n\n```js\nasync function test() { return 5; }\ntest().then(console.log);\n```"
       options:
         - "5"
         - "Promise {<fulfilled>: 5}"
@@ -69,7 +69,7 @@ Pomyśl o tym jak o specjalnej, prywatnej przestrzeni. Jeśli zmienna `x` jest z
 
 **Przykład:**
 
-```javascript
+```js
 if (true) {
   let x = 5; // x istnieje tylko wewnątrz tego bloku if
   const y = 10; // y również istnieje tylko wewnątrz tego bloku
@@ -103,7 +103,7 @@ Dla porównania, `var` ma **zakres funkcyjny** (function scope), co oznacza, że
 
 **Przykład `const` z obiektem/tablicą:**
 
-```javascript
+```js
 const tablica = [1, 2, 3];
 tablica.push(4); // DOZWOLONE! Zmieniamy zawartość tablicy, nie przypisujemy nowej tablicy.
 console.log(tablica); // Wyświetli: [1, 2, 3, 4]
@@ -131,7 +131,7 @@ Największą zaletą funkcji strzałkowych jest ich zwięzła składnia, zwłasz
 - **Szybszy zapis (szczególnie dla funkcji jedno-liniowych):**
   Jeśli funkcja składa się tylko z jednej instrukcji, która zwraca wartość, możesz pominąć nawiasy klamrowe `{}` i słowo kluczowe `return`.
 
-  ```javascript
+  ```js
   // Tradycyjna funkcja
   function dodajStara(a, b) {
     return a + b;
@@ -162,7 +162,7 @@ Funkcje strzałkowe rozwiązują ten problem: **nie mają własnego `this`**. Za
 
 **Przykład problemu ze `this` w tradycyjnych funkcjach:**
 
-```javascript
+```js
 // Tradycyjna funkcja, która "gubi" kontekst this
 function TimerProblem() {
   this.sekundy = 0;
@@ -178,7 +178,7 @@ function TimerProblem() {
 
 **Rozwiązanie z funkcją strzałkową:**
 
-```javascript
+```js
 function TimerPoprawny() {
   this.sekundy = 0;
   // Funkcja strzałkowa dziedziczy 'this' z TimerPoprawny (czyli z obiektu TimerPoprawny)
@@ -203,7 +203,7 @@ Szablony stringów, wprowadzone w ES6, to potężne narzędzie do tworzenia cią
 - **Interpolacja zmiennych i wyrażeń:**
   Możesz łatwo osadzać zmienne lub dowolne wyrażenia JavaScript bezpośrednio w stringu, używając składni `${...}`. To znacznie ułatwia budowanie dynamicznych komunikatów.
 
-  ```javascript
+  ```js
   const imie = "Alicja";
   const wiek = 30;
 
@@ -225,7 +225,7 @@ Szablony stringów, wprowadzone w ES6, to potężne narzędzie do tworzenia cią
 - **Łatwe tworzenie tekstów wielolinijkowych:**
   Koniec z dodawaniem `n` do każdej linii! W szablonach stringów możesz po prostu nacisnąć Enter, a tekst zachowa formatowanie z nowymi liniami. Jest to szczególnie przydatne przy generowaniu fragmentów HTML bezpośrednio w JavaScript.
 
-  ```javascript
+  ```js
   // Stary sposób: brzydkie i niewygodne
   const htmlStare =
     "<div>\n  <h1>Witaj!</h1>\n  <p>To jest wielolinijkowy tekst.</p>\n</div>";
@@ -245,7 +245,7 @@ Szablony stringów, wprowadzone w ES6, to potężne narzędzie do tworzenia cią
 
 Szablony stringów wspierają także tzw. **tagowane szablony** (`tagged templates`), które pozwalają na zaawansowaną manipulację tekstem przed jego finalnym utworzeniem. Możesz zdefiniować funkcję ("tag"), która będzie przetwarzać części stringu i wartości zmiennych. Jest to bardziej zaawansowana funkcja, używana np. do tłumaczeń, walidacji, bezpiecznego generowania HTML (zapobieganie XSS) czy formatowania danych.
 
-```javascript
+```js
 // Przykład funkcji "tagującej"
 function upper(strings, ...values) {
   // 'strings' to tablica tekstów, 'values' to tablica zmiennych
@@ -273,7 +273,7 @@ Destrukturyzacja to potężna i bardzo często używana funkcja w nowoczesnym Ja
 
 Pozwala na szybkie przypisanie wartości z tablicy do zmiennych, bazując na ich pozycji.
 
-```javascript
+```js
 const kolory = ["czerwony", "zielony", "niebieski"];
 
 // Stary sposób:
@@ -303,7 +303,7 @@ console.log(resztaKolorow); // Wyświetli: ["zielony", "niebieski"]
 
 Pozwala na przypisanie wartości z obiektu do zmiennych na podstawie nazw ich **kluczy (właściwości)**. Kolejność nie ma znaczenia, liczy się nazwa klucza.
 
-```javascript
+```js
 const samochod = { marka: "Ford", model: "Focus", rok: 2018 };
 
 // Stary sposób:
@@ -345,7 +345,7 @@ Gdy używasz `...` do **rozbicia** elementów tablicy lub właściwości obiektu
 
 - **Kopiowanie i łączenie tablic:** Tworzenie płytkich kopii tablic lub łączenie ich bez modyfikowania oryginalnych.
 
-  ```javascript
+  ```js
   const cyfry = [1, 2, 3];
   const noweCyfry = [...cyfry, 4, 5]; // Rozwija [1, 2, 3] do 1, 2, 3, a potem dodaje 4, 5
   console.log(noweCyfry); // Wyświetli: [1, 2, 3, 4, 5]
@@ -358,7 +358,7 @@ Gdy używasz `...` do **rozbicia** elementów tablicy lub właściwości obiektu
 
 - **Kopiowanie i łączenie obiektów:** Podobnie jak z tablicami, możesz tworzyć kopie obiektów i łączyć ich właściwości.
 
-  ```javascript
+  ```js
   const osoba = { imie: "Anna", wiek: 28 };
   const osobaZZawodem = { ...osoba, zawod: "Programista" };
   console.log(osobaZZawodem); // Wyświetli: { imie: "Anna", wiek: 28, zawod: "Programista" }
@@ -372,7 +372,7 @@ Gdy używasz `...` do **rozbicia** elementów tablicy lub właściwości obiektu
 
 - **Przekazywanie argumentów funkcji:** Możesz rozwijać tablicę jako argumenty funkcji.
 
-  ```javascript
+  ```js
   function sumuj(a, b, c) {
     return a + b + c;
   }
@@ -388,7 +388,7 @@ Gdy używasz `...` do **zbierania** wielu elementów w jedną tablicę (lub wła
 
 - **Zbieranie argumentów funkcji:** Pozwala funkcji przyjmować nieokreśloną liczbę argumentów i traktować je jako tablicę.
 
-  ```javascript
+  ```js
   function suma(...liczby) {
     // 'liczby' zbiera wszystkie przekazane argumenty w tablicę
     return liczby.reduce(
@@ -402,7 +402,7 @@ Gdy używasz `...` do **zbierania** wielu elementów w jedną tablicę (lub wła
 
 - **W destrukturyzacji (jak widzieliśmy wcześniej):** Zbieranie pozostałych elementów do nowej tablicy lub obiektu.
 
-  ```javascript
+  ```js
   const [pierwszy, drugi, ...resztaTablicy] = [10, 20, 30, 40, 50];
   console.log(pierwszy); // Wyświetli: 10
   console.log(drugi); // Wyświetli: 20
@@ -447,7 +447,7 @@ Możesz "podpiąć" funkcje, które zostaną wywołane, gdy Promise zmieni swój
 
 **Przykład tworzenia i używania Promise:**
 
-```javascript
+```js
 const obietnica = new Promise((resolve, reject) => {
   // Symulujemy operację asynchroniczną (np. pobieranie danych)
   setTimeout(() => {
@@ -483,7 +483,7 @@ Jedną z największych zalet Promise jest możliwość łączenia wielu operacji
 
 **Przykład łańcucha Promise (pobieranie danych z API):**
 
-```javascript
+```js
 // fetch() to wbudowana funkcja JS, która zwraca Promise
 fetch("https://jsonplaceholder.typicode.com/users/1") // Pobierz dane użytkownika o ID 1
   .then((response) => {
@@ -535,7 +535,7 @@ Mimo że Promise są ogromnym krokiem naprzód w porównaniu do callbacków, kod
 
 **Przykład użycia `async/await` (porównaj z przykładem z Promise Chaining):**
 
-```javascript
+```js
 async function pobierzDaneUzytkownikaIPosty() {
   try {
     console.log("Rozpoczynam pobieranie danych...");
@@ -585,7 +585,7 @@ Widzisz, jak kod stał się znacznie bardziej liniowy i czytelny? Wygląda to pr
 - **Zwracanie wartości z funkcji `async`**:
   Jeśli funkcja `async` zwraca jakąś wartość, ta wartość jest automatycznie opakowywana w Promise, który zostanie spełniony z tą wartością.
 
-  ```javascript
+  ```js
   async function zwrocLiczbe() {
     // Możesz też użyć await, np. await Promise.resolve(42);
     return 42;
@@ -596,7 +596,7 @@ Widzisz, jak kod stał się znacznie bardziej liniowy i czytelny? Wygląda to pr
 - **Obsługa błędów z `try...catch`**:
   Największą zaletą `async/await` jest to, że pozwala na używanie standardowych bloków `try...catch` do obsługi błędów w kodzie asynchronicznym. Jeśli Promise, na który czeka `await`, zostanie odrzucony (rejected), `await` "rzuci" błąd, który zostanie przechwycony przez blok `catch`.
 
-  ```javascript
+  ```js
   async function symulujBlad() {
     try {
       const result = await new Promise((resolve, reject) => {
@@ -627,7 +627,7 @@ Napisz **funkcję strzałkową**, która przyjmuje dowolną liczbę argumentów 
 <span>Pokaż rozwiązanie</span>
 </summary>
 
-```javascript
+```js
 const sumaWszystkichLiczb = (...liczby) => {
   return liczby.reduce(
     (akumulator, aktualnaLiczba) => akumulator + aktualnaLiczba,
@@ -653,7 +653,7 @@ Utwórz obiekt reprezentujący produkt z kluczami: `nazwa`, `cena`, `dostepny`. 
 <span>Pokaż rozwiązanie</span>
 </summary>
 
-```javascript
+```js
 const produkt = { nazwa: "Książka JS", cena: 49.99, dostepny: true };
 
 const { nazwa, cena, dostepny, producent = "Nieznany" } = produkt;
@@ -677,7 +677,7 @@ Stwórz tablicę ulubionych filmów. Następnie użyj **operatora spread** do ut
 <span>Pokaż rozwiązanie</span>
 </summary>
 
-```javascript
+```js
 const ulubioneFilmy = ["Incepcja", "Matrix", "Interstellar"];
 
 const nowaListaFilmow = [...ulubioneFilmy, "Pulp Fiction", "Forrest Gump"];
@@ -699,7 +699,7 @@ Napisz **funkcję asynchroniczną** o nazwie `pobierzWiadomosc`, która symuluje
 <span>Pokaż rozwiązanie</span>
 </summary>
 
-```javascript
+```js
 // Funkcja symulująca pobieranie danych (zwraca Promise)
 const pobierzWiadomoscAPI = () => {
   return new Promise((resolve, reject) => {
@@ -740,12 +740,3 @@ console.log(
 ---
 
 Gratulacje! 🎉 Dotarłeś/aś do końca kursu wprowadzającego w nowoczesny JavaScript. Masz teraz solidne podstawy do dalszego rozwoju. Pamiętaj, że kluczem jest praktyka - im więcej będziesz kodować, tym lepiej zrozumiesz te koncepcje.
-
-Co chciałbyś/chciałabyś zgłębić dalej? Może:
-
-- **Moduły ES6** (import/export)?
-- **Klasy** w JavaScript (obiektowość)?
-- **Metody tablicowe** (map, filter, reduce)?
-- Głębsze nurkowanie w **asynchroniczność** i Web API?
-
-Daj znać! 😊

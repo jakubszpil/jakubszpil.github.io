@@ -28,7 +28,7 @@ Przed rozpoczęciem upewnij się, że posiadasz:
 
 Nie masz jeszcze projektu? Oto jak szybko utworzyć aplikację React:
 
-```sh
+```bash
 npx create-react-router@latest my-app
 cd my-app
 git init

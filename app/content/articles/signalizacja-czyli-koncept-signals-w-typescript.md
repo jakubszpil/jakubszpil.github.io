@@ -30,7 +30,7 @@ Signal to koncepcja znana z programowania reaktywnego, której celem jest uprosz
 
 Poniższy przykład przedstawia bazową implementację sygnału:
 
-```typescript
+```ts
 type Listener<T> = (value: T) => void;
 
 class Signal<T> {
@@ -68,7 +68,7 @@ Klasa `Signal` pozwala na subskrybowanie funkcji-odbiorców, ich usuwanie oraz e
 
 W większych aplikacjach warto zastosować typy generyczne i kolekcje, które zapobiegają wielokrotnemu dodawaniu tego samego subskrybenta:
 
-```typescript
+```ts
 type Listener<T> = (value: T) => void;
 
 class Signal<T> {
@@ -119,7 +119,7 @@ Sygnały są szeroko stosowane m.in. w:
 
 **Przykład:**
 
-```typescript
+```ts
 // Sygnał do powiadamiania o zmianie zalogowanego użytkownika
 const authSignal = new Signal<User | null>();
 

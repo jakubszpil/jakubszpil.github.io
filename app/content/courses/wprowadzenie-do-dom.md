@@ -350,7 +350,7 @@ Możesz dynamicznie budować całe fragmenty HTML za pomocą JavaScriptu.
 
 Tworzy nowy węzeł elementu o podanej nazwie tagu. Nie dodaje go automatycznie do DOM; musisz to zrobić ręcznie.
 
-```javascript
+```js
 const nowyDiv = document.createElement("div");
 const nowyAkapit = document.createElement("p");
 const nowyObrazek = document.createElement("img");

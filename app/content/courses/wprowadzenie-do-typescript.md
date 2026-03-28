@@ -163,7 +163,7 @@ Jak już wiesz, przeglądarki nie rozumieją TypeScriptu. Rozumieją tylko JavaS
 
 Załóżmy, że masz plik `moja-apka.ts` z takim kodem:
 
-```typescript
+```ts
 // moja-apka.ts
 let wiadomosc: string = "Cześć, świecie z TypeScript!";
 console.log(wiadomosc);
@@ -177,7 +177,7 @@ tsc moja-apka.ts
 
 Po wykonaniu tego polecenia, obok pliku `moja-apka.ts` pojawi się nowy plik o nazwie `moja-apka.js`, który będzie wyglądał tak:
 
-```javascript
+```js
 // moja-apka.js (wygenerowany automatycznie!)
 var wiadomosc = "Cześć, świecie z TypeScript!";
 console.log(wiadomosc);
@@ -254,7 +254,7 @@ No to jedziemy! Stwórzmy nasz pierwszy mały projekt TypeScript.
 
     W `src/index.ts` dodaj taki kod:
 
-    ```typescript
+    ```ts
     // src/index.ts
     function powitajUzytkownika(imie: string, wiek: number): string {
       if (wiek < 0) {
@@ -295,7 +295,7 @@ Teraz, gdy wiesz, jak ustawić projekt, zanurkujmy głębiej w sam język! Pozna
 
 W TypeScript możesz jawnie określić, jakiego typu danych spodziewasz się po zmiennej. Robisz to za pomocą dwukropka (`:`) po nazwie zmiennej, a następnie nazwy typu.
 
-```typescript
+```ts
 // Typy podstawowe:
 let wiek: number = 30; // Zmienna 'wiek' musi być liczbą
 let imie: string = "Adam"; // Zmienna 'imie' musi być tekstem
@@ -332,7 +332,7 @@ Funkcje w TypeScript mogą być bardzo precyzyjnie typowane. Możesz określić 
 
 <!-- end list -->
 
-```typescript
+```ts
 // Funkcja przyjmująca dwie liczby i zwracająca liczbę
 function dodaj(a: number, b: number): number {
   return a + b;
@@ -381,7 +381,7 @@ Interfejsy (`interface`) to jeden z najpotężniejszych narzędzi w TypeScript! 
 
 To super przydatne, gdy pracujesz z danymi, które mają określoną strukturę, np. dane pobrane z API (jakieś informacje o użytkowniku, produkcie itp.).
 
-```typescript
+```ts
 // Definiowanie interfejsu 'Uzytkownik'
 interface Uzytkownik {
   imie: string; // Właściwość 'imie' musi być typu string
@@ -428,7 +428,7 @@ Czasami potrzebujesz typów, które łączą w sobie cechy kilku innych. TypeScr
 
 - **Unie Typów (`|`)**: Pozwalają zmiennej przyjmować wartości jednego z kilku określonych typów. To jak znak "LUB" - zmienna może być _albo_ tym, _albo_ tym.
 
-  ```typescript
+  ```ts
   let id: string | number; // 'id' może być stringiem LUB liczbą
   id = "abc-123"; // OK
   id = 456; // OK
@@ -439,7 +439,7 @@ Czasami potrzebujesz typów, które łączą w sobie cechy kilku innych. TypeScr
 
 - **Typy Literalne**: Możesz określić, że zmienna może przyjąć tylko konkretne wartości (np. tylko jeden z kilku tekstów lub liczb).
 
-  ```typescript
+  ```ts
   type Kierunek = "północ" | "południe" | "wschód" | "zachód";
   let obecnyKierunek: Kierunek = "północ"; // OK
   // obecnyKierunek = "góra"; // 🚨 Błąd: Type '"góra"' is not assignable to type 'Kierunek'.
@@ -449,7 +449,7 @@ Czasami potrzebujesz typów, które łączą w sobie cechy kilku innych. TypeScr
 
 - **Typy Połączeń (Intersection Types) (`&`)**: Pozwalają połączyć ze sobą właściwości wielu typów w jeden nowy typ. To jak znak "I" - nowy typ musi mieć właściwości _zarówno_ tego, _jak i_ tego typu.
 
-  ```typescript
+  ```ts
   interface Admin {
     id: number;
     rola: "admin";
@@ -504,7 +504,7 @@ Jeśli znasz inne języki programowania obiektowego (OOP) takie jak Java czy C#,
 
 Klasy to szablony do tworzenia obiektów. Dziedziczenie pozwala tworzyć nowe klasy na podstawie istniejących, dziedzicząc ich właściwości i metody.
 
-```typescript
+```ts
 // Klasa bazowa 'Zwierze'
 class Zwierze {
   // Konstruktor to specjalna metoda, która jest wywoływana podczas tworzenia nowego obiektu.
@@ -558,7 +558,7 @@ Klasy w TypeScript to potężne narzędzie do organizacji kodu w sposób obiekto
 
 **Enumy (typy wyliczeniowe)** to specjalny typ w TypeScript, który pozwala zdefiniować zbiór nazwanych stałych wartości. Są super przydatne, gdy masz ograniczony zestaw opcji do wyboru (np. statusy, dni tygodnia, kolory). Zamiast używać "magicznych stringów" (`"pending"`, `"success"`), możesz użyć nazwanych, czytelnych wartości.
 
-```typescript
+```ts
 // Definiowanie Enum Kolor
 enum Kolor {
   Czerwony, // Domyślnie 0
@@ -592,7 +592,7 @@ Enumy zwiększają czytelność kodu i minimalizują ryzyko literówek. Zamiast 
 
 Czasami tworzysz złożone typy, używając unii, połączeń czy obiektów, a ich definicja staje się długa i powtarzalna. **Alias typów (`type`)** pozwala nadać tym złożonym typom prostą, zrozumiałą nazwę. To jak tworzenie własnych, niestandardowych typów!
 
-```typescript
+```ts
 // Złożony typ, który oznacza, że ID może być liczbą LUB stringiem
 type ID = string | number;
 
@@ -633,7 +633,7 @@ Teraz, gdy znasz podstawy składni, zobaczmy, jak możesz je wykorzystać w codz
 
 Często zdarza się, że funkcja może, ale nie musi, przyjąć pewien argument, albo że jeden z jej argumentów ma wartość domyślną. TypeScript świetnie sobie z tym radzi.
 
-```typescript
+```ts
 // Parametr opcjonalny 'imie' - oznaczony znakiem '?'
 // Wartość zwracana funkcji to 'string'
 function powiedzCzesc(imie?: string): string {
@@ -651,7 +651,7 @@ console.log(powiedzCzesc()); // Wypisze: Cześć, nieznajomy!
 
 Gdy masz dane, które mogą przyjmować różne, ale określone formy, unie typów są Twoim przyjacielem.
 
-```typescript
+```ts
 // Typy reprezentujące różne role użytkownika
 type Admin = {
   rola: "admin"; // Literalny typ string
@@ -748,7 +748,7 @@ Po zainstalowaniu takiego pakietu, Twój edytor kodu (np. VS Code) będzie magic
 
 Jeśli natrafisz na plik JavaScript, który jest absolutnym bałaganem i nie masz czasu go typować, a TypeScript ciągle krzyczy błędami, możesz go tymczasowo wyciszyć. Dodaj na górze pliku:
 
-```typescript
+```ts
 // @ts-nocheck
 ```
 
@@ -764,19 +764,19 @@ Początki bywają trudne, ale z każdym błędem uczysz się czegoś nowego! Oto
 
 - **Błąd typowania: Typ X nie jest przypisywalny do typu Y.**
 
-  ```typescript
+  ```ts
   let wiek: number = "dwadzieścia pięć"; // 🚨 Błąd: Type 'string' is not assignable to type 'number'.
   ```
 
   **Naprawa:** Upewnij się, że przypisujesz wartość odpowiedniego typu.
 
-  ```typescript
+  ```ts
   let wiek: number = 25; // Poprawnie!
   ```
 
 - **Brak typu dla zwracanej wartości funkcji (albo niezgodność)**
 
-  ```typescript
+  ```ts
   function zwrocTekst(): string {
     return 42; // 🚨 Błąd: Type 'number' is not assignable to type 'string'.
   }
@@ -784,7 +784,7 @@ Początki bywają trudne, ale z każdym błędem uczysz się czegoś nowego! Oto
 
   **Naprawa:** Upewnij się, że funkcja zwraca wartość zgodną z zadeklarowanym typem zwracanym.
 
-  ```typescript
+  ```ts
   function zwrocTekst(): string {
     return "To jest tekst."; // Poprawnie!
   }
@@ -792,7 +792,7 @@ Początki bywają trudne, ale z każdym błędem uczysz się czegoś nowego! Oto
 
 - **Brakujące właściwości w interfejsie**
 
-  ```typescript
+  ```ts
   interface Produkt {
     nazwa: string;
     cena: number;
@@ -807,7 +807,7 @@ Początki bywają trudne, ale z każdym błędem uczysz się czegoś nowego! Oto
 
   **Naprawa:** Dodaj wszystkie wymagane właściwości z interfejsu (lub oznacz je jako opcjonalne w interfejsie `?`).
 
-  ```typescript
+  ```ts
   const mojProdukt: Produkt = {
     nazwa: "Książka",
     cena: 50,
@@ -818,13 +818,13 @@ Początki bywają trudne, ale z każdym błędem uczysz się czegoś nowego! Oto
 - **Próba użycia `null` lub `undefined` tam, gdzie nie powinno być**
   W trybie `strict: true` (który jest bardzo zalecany!), TypeScript jest bardzo restrykcyjny, jeśli chodzi o `null` i `undefined`.
 
-  ```typescript
+  ```ts
   let nazwisko: string = null; // 🚨 Błąd: Type 'null' is not assignable to type 'string'.
   ```
 
   **Naprawa:** Jeśli zmienna może być `null` lub `undefined`, musisz to jawnie określić za pomocą unii typów:
 
-  ```typescript
+  ```ts
   let nazwisko: string | null = null; // Poprawnie!
   ```
 
@@ -912,7 +912,7 @@ Zadeklaruj trzy zmienne z jawnym typowaniem:
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-```typescript
+```ts
 // Rozwiązanie Zadania 1
 let mojaLiczba: number = 77;
 let mojTekst: string = "TypeScript jest super!";
@@ -938,7 +938,7 @@ Napisz funkcję o nazwie `pomnozDwieLiczby`, która:
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-```typescript
+```ts
 // Rozwiązanie Zadania 2
 function pomnozDwieLiczby(parametr1: number, parametr2: number): number {
   return parametr1 * parametr2;
@@ -968,7 +968,7 @@ Następnie utwórz obiekt o nazwie `mojProfil` typu `UzytkownikProfil`, który b
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-```typescript
+```ts
 // Rozwiązanie Zadania 3
 interface UzytkownikProfil {
   id: number;
@@ -1000,7 +1000,7 @@ Zdefiniuj alias typu o nazwie `StatusOperacji`, który może przyjąć jedną z 
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-```typescript
+```ts
 // Rozwiązanie Zadania 4
 type StatusOperacji = "oczekujący" | "udany" | "nieudany";
 
@@ -1025,7 +1025,7 @@ Utwórz instancję klasy `Samochod` i wywołaj jej metodę `jedz()`.
     <span>Pokaż rozwiązanie</span>
   </summary>
 
-```typescript
+```ts
 // Rozwiązanie Zadania 5
 class Pojazd {
   constructor(public marka: string) {}
