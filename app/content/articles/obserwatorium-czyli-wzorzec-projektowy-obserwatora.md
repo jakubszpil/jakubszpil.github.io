@@ -26,7 +26,7 @@ Wzorzec Obserwatora polega na tym, że obiekt zwany obserwowanym (Subject) zarz�
 
 Poniżej znajdziesz bazową implementację wzorca Obserwatora w TypeScript:
 
-```typescript
+```ts
 // Interfejs obserwatora
 interface Observer {
   update(message: string): void;
@@ -83,7 +83,7 @@ subject.notify("Hello, Observers!");
 
 W bardziej zaawansowanych przypadkach warto użyć typów generycznych, co pozwala przekazywać różne typy danych:
 
-```typescript
+```ts
 // Interfejs obserwatora z typem generycznym
 interface Observer<T> {
   update(data: T): void;
@@ -145,7 +145,7 @@ Dzięki zastosowaniu typów generycznych, wzorzec staje się bardziej elastyczny
 
 Aby zobaczyć praktyczne zastosowanie, oto przykład aplikacji monitorującej zmiany temperatury:
 
-```typescript
+```ts
 // Interfejs obserwatora
 interface Observer<T> {
   update(data: T): void;

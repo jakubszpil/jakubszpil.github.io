@@ -219,7 +219,11 @@
 
 @layer utilities {
   pre {
-    @apply bg-slate-800! dark:bg-neutral-900!;
+    @apply bg-slate-800! dark:bg-neutral-900! relative;
+  }
+
+  pre:has(> code.hljs) {
+    @apply pt-14 md:pt-12 pb-0;
   }
 
   pre code.hljs {

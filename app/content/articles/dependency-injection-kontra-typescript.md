@@ -32,7 +32,7 @@ DI zwiększa elastyczność kodu, ułatwia jego testowanie oraz pozwala na lepsz
 
 Rozważmy prosty scenariusz, w którym klasa `UserService` korzysta z `UserRepository`:
 
-```typescript
+```ts
 class UserRepository {
   getUser(userId: number): string {
     return `User ${userId}`;
@@ -66,7 +66,7 @@ W tym przykładzie `UserRepository` jest wstrzykiwany do `UserService` poprzez k
 
 W większych aplikacjach zarządzanie zależnościami ręcznie może być uciążliwe. Możemy zastosować funkcję `inject`, która będzie przechowywać i dostarczać instancje klas (prosta wersja kontenera IoC):
 
-```typescript
+```ts
 const dependencies: Map<string, any> = new Map();
 
 function inject<T>(dependency: new () => T): T {
@@ -113,7 +113,7 @@ W rozbudowanych projektach warto rozważyć użycie gotowych rozwiązań, np. [I
 
 Przykład z użyciem InversifyJS:
 
-```typescript
+```ts
 import "reflect-metadata";
 import { injectable, inject, Container } from "inversify";
 
@@ -154,7 +154,7 @@ console.log(userService.getUserName(1)); // User 1
 
 Dzięki zastosowaniu DI możemy łatwo podmieniać implementacje zależności, np. na mocki lub stuby podczas testów jednostkowych:
 
-```typescript
+```ts
 class MockUserRepository {
   getUser(userId: number): string {
     return "Mock User";

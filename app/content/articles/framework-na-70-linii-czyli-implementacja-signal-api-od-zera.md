@@ -50,7 +50,7 @@ Cel: zachować prostotę implementacji i zrozumienie działania reaktywności od
 
 Poniżej znajdziesz kompletny kod minimalistycznego Signal API - całość w TypeScript, gotowa do użycia i dalszej rozbudowy! 🛠️
 
-```typescript
+```ts
 type Task = (abortSignal: AbortSignal) => void;
 
 type Signal<T> = () => T;
@@ -128,7 +128,7 @@ export const computed = <T>(setup: () => T): Signal<T> => setup;
 
 Zobacz, jak można wykorzystać własny system sygnałów w praktyce: 👇
 
-```typescript
+```ts
 import { signal, effect } from "./lib";
 
 const count = signal(0);
@@ -143,7 +143,7 @@ count.update((v) => v + 5); // Wartość licznika: 6
 
 ### signal z obiektem
 
-```typescript
+```ts
 import { signal, effect } from "./lib";
 
 interface User {
@@ -175,7 +175,7 @@ state.update((prev) => ({
 
 Obliczanie wartości zależnej od innych sygnałów jest bardzo proste i pozwala na deklaratywność podobną do nowoczesnych frameworków:
 
-```typescript
+```ts
 import { signal, effect, computed } from "./lib";
 
 const a = signal(2);
