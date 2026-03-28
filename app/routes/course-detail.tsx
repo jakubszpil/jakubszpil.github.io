@@ -6,7 +6,6 @@ import { IconMessage2Question } from "~/components/ui/icons";
 import { Banner } from "~/components/banner";
 import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
-import { CopyCodeBlocks } from "~/components/copy-code-blocks";
 import { CourseQuiz } from "~/components/course-quiz";
 import { TableOfContents } from "~/components/table-of-contents";
 import { Modal } from "~/components/modal";
@@ -63,8 +62,6 @@ export default function CourseDetail() {
         category={course.category}
         categoryPrefixUrl="/learning/kategorie"
       />
-
-      <CopyCodeBlocks ref={ref} />
 
       <header className="prose container">
         <h1 className="mb-5">{course.title}</h1>

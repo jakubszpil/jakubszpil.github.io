@@ -151,7 +151,7 @@ export function TableOfContents({
 
   return (
     <div className="sticky -mt-px top-[calc(var(--spacing)*14.25-1px)] z-10">
-      <Card className="p-0 border-t-0 border-x-0 shadow-none rounded-none">
+      <Card className="p-0 border-t-0 border-x-0 border-border shadow-none rounded-none backdrop-blur-sm bg-neutral-50/80 dark:bg-card/80">
         <div className="container py-1 px-3 flex justify-between items-center">
           <Button
             onClick={() => setShow((prev) => !prev)}

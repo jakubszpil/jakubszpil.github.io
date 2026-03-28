@@ -222,10 +222,6 @@
     @apply bg-slate-800! dark:bg-neutral-900! relative;
   }
 
-  pre:has(> code.hljs) {
-    @apply pt-14 md:pt-12 pb-0;
-  }
-
   pre code.hljs {
     @apply block overflow-x-auto p-2 md:p-4;
   }

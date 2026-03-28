@@ -4,7 +4,6 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Banner } from "~/components/banner";
 import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
-import { CopyCodeBlocks } from "~/components/copy-code-blocks";
 import { TableOfContents } from "~/components/table-of-contents";
 import { getArticle } from "~/lib/articles";
 import { notFound } from "~/lib/navigation";
@@ -48,8 +47,6 @@ export default function ArticleDetail() {
         baseUrl="/blog"
         baseLabel="Artykuły"
       />
-
-      <CopyCodeBlocks ref={ref} />
 
       <header className="prose container">
         <h1 className="mb-5">{article.title}</h1>
