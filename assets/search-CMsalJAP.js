@@ -1,0 +1,1 @@
+import{t as e}from"./search-DJ97_ca4.js";export{e as clientLoader};
