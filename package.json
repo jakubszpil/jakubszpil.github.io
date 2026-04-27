@@ -14,25 +14,25 @@
     "clean-install": "rm -rf node_modules package-lock.json && npm install"
   },
   "dependencies": {
-    "@headlessui/react": "2.2.9",
-    "@react-router/dev": "7.14.0",
-    "@react-router/node": "7.14.0",
+    "@headlessui/react": "2.2.10",
+    "@react-router/dev": "7.14.2",
+    "@react-router/node": "7.14.2",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
-    "isbot": "5.1.37",
+    "isbot": "5.1.39",
     "radix-ui": "1.4.3",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-router": "7.14.0",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-router": "7.14.2",
     "tailwind-merge": "3.5.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.2.2",
+    "@tailwindcss/postcss": "4.2.4",
     "@tailwindcss/typography": "0.5.19",
-    "@tailwindcss/vite": "4.2.2",
+    "@tailwindcss/vite": "4.2.4",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
-    "@types/node": "25.5.2",
+    "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/uglify-js": "3.17.5",
@@ -40,8 +40,8 @@
     "@vitejs/plugin-react": "6.0.1",
     "babel-plugin-react-compiler": "1.0.0",
     "gray-matter": "4.0.3",
-    "happy-dom": "20.8.9",
-    "postcss": "8.5.8",
+    "happy-dom": "20.9.0",
+    "postcss": "8.5.12",
     "rehype-autolink-headings": "7.1.0",
     "rehype-highlight": "7.0.2",
     "rehype-raw": "7.0.0",
@@ -52,16 +52,16 @@
     "remark-parse": "11.0.0",
     "remark-reading-time": "2.1.0",
     "remark-rehype": "11.1.2",
-    "tailwindcss": "4.2.2",
+    "tailwindcss": "4.2.4",
     "tailwindcss-animate": "1.0.7",
-    "typescript": "6.0.2",
+    "typescript": "6.0.3",
     "uglify-js": "3.19.3",
     "unified": "11.0.5",
-    "vite": "8.0.3",
+    "vite": "8.0.10",
     "vite-plugin-babel": "1.6.0",
-    "vitest": "4.1.2"
+    "vitest": "4.1.5"
   },
   "overrides": {
-    "typescript": "6.0.2"
+    "typescript": "6.0.3"
   }
 }
