@@ -7,13 +7,16 @@ import {
   type ArticleFeed,
   getArticlesByCategory,
   getArticlesCategories,
-} from "~/blog/data-access/articles";
-import { ArticleCards, type ArticleCardsProps } from "~/blog/ui/article-cards";
-import { Categories, type CategoriesProps } from "~/shared/ui/categories";
+} from "../../blog/data-access/articles";
+import {
+  ArticleCards,
+  type ArticleCardsProps,
+} from "../../blog/ui/article-cards";
+import { Categories, type CategoriesProps } from "../../shared/ui/categories";
 
-vi.mock("~/blog/ui/article-cards");
-vi.mock("~/shared/ui/categories");
-vi.mock("~/blog/data-access/articles");
+vi.mock("../../blog/ui/article-cards");
+vi.mock("../../shared/ui/categories");
+vi.mock("../../blog/data-access/articles");
 
 describe("<ArticleList />", () => {
   const MockedArticleCards = vi.mocked(ArticleCards);

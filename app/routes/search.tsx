@@ -4,7 +4,7 @@ import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
 import { ArticleCards } from "~/blog/ui/article-cards";
 import { CourseCards } from "~/learning/ui/course-cards";
 import { ProjectCards } from "~/portfolio/ui/project-cards";
-import { SearchForm } from "~/components/search-form";
+import { SearchForm } from "~/core/ui/search-form";
 import { getArticles, type ArticleFeed } from "~/blog/data-access/articles";
 import { getCourses, type CourseFeed } from "~/learning/data-access/courses";
 import { createMetaTags } from "~/shared/utils/meta";

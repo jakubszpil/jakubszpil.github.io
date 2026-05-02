@@ -6,8 +6,8 @@ import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
 } from "./shared/utils/scroll-restoration";
-import { InlineScript } from "./components/inline-script";
-import { PreloadedScript } from "./components/preloaded-script";
+import { InlineScript } from "./core/ui/inline-script";
+import { PreloadedScript } from "./core/ui/preloaded-script";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi, beforeEach, afterEach } from "vitest";
 
-import { getDifferenceInYears } from "~/shared/utils/date";
-import { Socials } from "~/components/socials";
+import { getDifferenceInYears } from "../../shared/utils/date";
+import { Socials } from "../../core/ui/socials";
 import About from "../about";
 
-vi.mock("~/components/socials");
-vi.mock("~/lib/date");
+vi.mock("../../core/ui/socials");
+vi.mock("../../shared/utils/date");
 
 describe("<About />", () => {
   const MockedSocials = vi.mocked(Socials);

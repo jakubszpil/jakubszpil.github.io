@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, test, vi } from "vitest";
 
-import { getCurrentYear } from "~/shared/utils/date";
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { getCurrentYear } from "../../../shared/utils/date";
+import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 import { Footer } from "../footer";
 import { FooterLink } from "../footer-link";
 
-vi.mock("~/lib/date");
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../../../shared/utils/date");
+vi.mock("../../../shared/ui/link-with-prefetch");
 
 describe("<Footer />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

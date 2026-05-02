@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, test, vi } from "vitest";
 
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 import { Navbar } from "../navbar";
 import { NavbarLink } from "../navbar-link";
 
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../../../shared/ui/link-with-prefetch");
 
 describe("<Navbar />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

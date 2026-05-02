@@ -2,14 +2,14 @@ import { Outlet, useRouteError } from "react-router";
 
 import { Button } from "~/shared/ui/button";
 import { LinkWithPrefetch } from "~/shared/ui/link-with-prefetch";
-import { Navbar } from "~/components/navbar";
-import { NavbarLink } from "~/components/navbar-link";
-import { NavbarMenu } from "~/components/navbar-menu";
-import { Footer } from "~/components/footer";
-import { FooterLink } from "~/components/footer-link";
-import { BusyIndicator } from "~/components/busy-indicator";
-import { ScrollRestoration } from "~/components/scroll-restoration";
-import { usePrerender } from "~/hooks/use-prerender";
+import { Navbar } from "~/core/ui/navbar";
+import { NavbarLink } from "~/core/ui/navbar-link";
+import { NavbarMenu } from "~/core/ui/navbar-menu";
+import { Footer } from "~/core/ui/footer";
+import { FooterLink } from "~/core/ui/footer-link";
+import { BusyIndicator } from "~/core/ui/busy-indicator";
+import { ScrollRestoration } from "~/core/ui/scroll-restoration";
+import { usePrerender } from "~/shared/data-access/use-prerender";
 import { isRouteErrorResponse } from "~/shared/utils/errors";
 import { TOP_ELEMENT_ID } from "~/shared/utils/config";
 

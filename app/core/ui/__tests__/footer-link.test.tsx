@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
-import { NavbarLink, type NavbarLinkProps } from "../navbar-link";
+import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
+import { FooterLink, type FooterLinkProps } from "../footer-link";
 
-vi.mock("../ui/link-with-prefetch");
+vi.mock("../../../shared/ui/link-with-prefetch");
 
-describe("<NavbarLink />", () => {
+describe("<FooterLink />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
-  const MockedNavbarLinkProps: NavbarLinkProps = {
+  const MockedFooterLinkProps: FooterLinkProps = {
     children: "some text",
     to: "/test",
   };
@@ -26,12 +26,12 @@ describe("<NavbarLink />", () => {
   });
 
   test("should render", async () => {
-    render(<NavbarLink {...MockedNavbarLinkProps} />);
+    render(<FooterLink {...MockedFooterLinkProps} />);
 
     const link = await screen.findByTestId<HTMLAnchorElement>("link");
 
-    expect(link.pathname).toBe(MockedNavbarLinkProps.to);
+    expect(link.pathname).toBe(MockedFooterLinkProps.to);
 
-    expect(link.innerHTML).toBe(MockedNavbarLinkProps.children);
+    expect(link.innerHTML).toBe(MockedFooterLinkProps.children);
   });
 });

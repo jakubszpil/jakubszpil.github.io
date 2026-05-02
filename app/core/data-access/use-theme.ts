@@ -9,8 +9,8 @@ import {
   setLocalStorageTheme,
   Theme,
   toggleThemeClassName,
-} from "~/core/utils/theme";
-import { useHydrated } from "./use-hydrated";
+} from "../utils/theme";
+import { useHydrated } from "../../shared/data-access/use-hydrated";
 
 export function useTheme() {
   const hydrated = useHydrated();

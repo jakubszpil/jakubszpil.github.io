@@ -8,16 +8,16 @@ import {
   ProjectStatus,
   getProjectsByTechnology,
   getProjectsTechnologies,
-} from "~/portfolio/data-access/projects";
+} from "../../portfolio/data-access/projects";
 import {
   ProjectCards,
   type ProjectCardsProps,
-} from "~/portfolio/ui/project-cards";
-import { Categories, type CategoriesProps } from "~/shared/ui/categories";
+} from "../../portfolio/ui/project-cards";
+import { Categories, type CategoriesProps } from "../../shared/ui/categories";
 
-vi.mock("~/portfolio/ui/project-cards");
-vi.mock("~/shared/ui/categories");
-vi.mock("~/portfolio/data-access/projects");
+vi.mock("../../portfolio/ui/project-cards");
+vi.mock("../../shared/ui/categories");
+vi.mock("../../portfolio/data-access/projects");
 
 describe("<ProjectList />", () => {
   const MockedProjectCards = vi.mocked(ProjectCards);
