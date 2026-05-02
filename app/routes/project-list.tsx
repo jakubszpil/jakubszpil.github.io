@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "~/components/ui/categories";
+import { Categories } from "~/shared/ui/categories";
 import { ProjectCards } from "~/portfolio/ui/project-cards";
 import { createMetaTags } from "~/shared/utils/meta";
 import {

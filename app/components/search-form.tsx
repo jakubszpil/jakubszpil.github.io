@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Form, useLocation, type Location } from "react-router";
 
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { IconSearch } from "./ui/icons";
+import { Input } from "../shared/ui/input";
+import { Button } from "../shared/ui/button";
+import { IconSearch } from "../shared/ui/icons";
 import { queryParamName } from "~/core/utils/search";
 import type { ArticleFeed } from "~/blog/data-access/articles";
 import type { CourseFeed } from "~/learning/data-access/courses";

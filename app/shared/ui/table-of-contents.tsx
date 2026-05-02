@@ -9,18 +9,17 @@ import {
 } from "react";
 import { createPath, useLocation } from "react-router";
 
-import { TOP_ELEMENT_ID } from "~/shared/utils/config";
-import { cn } from "~/shared/utils/helpers";
-
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
+import { TOP_ELEMENT_ID } from "../utils/config";
+import { cn } from "../utils/helpers";
+import { Button } from "./button";
+import { Card } from "./card";
 import {
   TableOfContentsItem,
   TableOfContentsLink,
   TableOfContentsList,
-} from "./ui/toc";
-import { ScrollArea } from "./ui/scroll-area";
-import { IconChevronRight } from "./ui/icons";
+} from "./toc";
+import { ScrollArea } from "./scroll-area";
+import { IconChevronRight } from "./icons";
 
 export interface TableOfContentsProps {
   ref: RefObject<HTMLElement | null>;

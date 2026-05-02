@@ -6,17 +6,17 @@ import { getCourse, type Course } from "~/learning/data-access/courses";
 import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
-} from "~/components/breadcrumb-with-category";
+} from "~/shared/ui/breadcrumb-with-category";
 import {
   TableOfContents,
   type TableOfContentsProps,
-} from "~/components/table-of-contents";
-import { Banner, type BannerProps } from "~/components/banner";
+} from "~/shared/ui/table-of-contents";
+import { Banner, type BannerProps } from "~/shared/ui/banner";
 import CourseDetail, { loader } from "../course-detail";
 
-vi.mock("~/components/banner");
-vi.mock("~/components/table-of-contents");
-vi.mock("~/components/breadcrumb-with-category");
+vi.mock("~/shared/ui/banner");
+vi.mock("~/shared/ui/table-of-contents");
+vi.mock("~/shared/ui/breadcrumb-with-category");
 vi.mock("~/learning/data-access/courses");
 
 describe("<CourseDetail />", () => {

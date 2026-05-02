@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Button } from "~/components/ui/button";
-import { IconMessage2Question } from "~/components/ui/icons";
-import { Banner } from "~/components/banner";
-import { EditResource } from "~/components/edit-resource";
-import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
+import { Button } from "~/shared/ui/button";
+import { IconMessage2Question } from "~/shared/ui/icons";
+import { Banner } from "~/shared/ui/banner";
+import { EditResource } from "~/shared/ui/edit-resource";
+import { BreadcrumbWithCategory } from "~/shared/ui/breadcrumb-with-category";
 import { CourseQuiz } from "~/learning/ui/course-quiz";
-import { TableOfContents } from "~/components/table-of-contents";
-import { Modal } from "~/components/modal";
+import { TableOfContents } from "~/shared/ui/table-of-contents";
+import { Modal } from "~/shared/ui/modal";
 import { getCourse } from "~/learning/data-access/courses";
 import { createMetaTags } from "~/shared/utils/meta";
 import { notFound } from "~/shared/utils/navigation";

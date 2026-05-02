@@ -1,7 +1,7 @@
 import type { CourseFeed } from "../data-access/courses";
-import { Banner } from "../../components/banner";
-import { Button, type ButtonProps } from "../../components/ui/button";
-import { LinkWithPrefetch } from "../../components/ui/link-with-prefetch";
+import { Banner } from "../../shared/ui/banner";
+import { Button, type ButtonProps } from "../../shared/ui/button";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 
 export interface CourseCardProps {
   course: CourseFeed;

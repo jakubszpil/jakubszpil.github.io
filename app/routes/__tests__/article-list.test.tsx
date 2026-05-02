@@ -9,10 +9,10 @@ import {
   getArticlesCategories,
 } from "~/blog/data-access/articles";
 import { ArticleCards, type ArticleCardsProps } from "~/blog/ui/article-cards";
-import { Categories, type CategoriesProps } from "~/components/ui/categories";
+import { Categories, type CategoriesProps } from "~/shared/ui/categories";
 
 vi.mock("~/blog/ui/article-cards");
-vi.mock("~/components/ui/categories");
+vi.mock("~/shared/ui/categories");
 vi.mock("~/blog/data-access/articles");
 
 describe("<ArticleList />", () => {

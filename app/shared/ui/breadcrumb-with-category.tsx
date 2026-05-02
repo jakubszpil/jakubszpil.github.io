@@ -1,13 +1,13 @@
-import { getCapitalizedIndividualName } from "~/shared/utils/string";
+import { getCapitalizedIndividualName } from "../utils/string";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "./ui/breadcrumb";
-import { Button } from "./ui/button";
-import { LinkWithPrefetch } from "./ui/link-with-prefetch";
+} from "./breadcrumb";
+import { Button } from "./button";
+import { LinkWithPrefetch } from "./link-with-prefetch";
 
 export interface BreadcrumbWithCategoryProps {
   category: string;

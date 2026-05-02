@@ -1,7 +1,7 @@
 import { useId } from "react";
 
-import { Button, type ButtonProps } from "./ui/button";
-import { IconBrandGithub, IconBrandLinkedin } from "./ui/icons";
+import { Button, type ButtonProps } from "../shared/ui/button";
+import { IconBrandGithub, IconBrandLinkedin } from "../shared/ui/icons";
 import { SOCIALS } from "~/shared/utils/config";
 
 export interface SocialsProps {

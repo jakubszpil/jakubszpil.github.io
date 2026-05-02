@@ -2,7 +2,7 @@ import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import type { ComponentProps } from "react";
 
 import { IconCheck, IconChevronRight, IconCircle } from "./icons";
-import { cn } from "~/shared/utils/helpers";
+import { cn } from "../utils/helpers";
 
 function DropdownMenu({
   ...props

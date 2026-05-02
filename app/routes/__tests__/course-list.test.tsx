@@ -9,10 +9,10 @@ import {
   getCoursesCategories,
 } from "~/learning/data-access/courses";
 import { CourseCards, type CourseCardsProps } from "~/learning/ui/course-cards";
-import { Categories, type CategoriesProps } from "~/components/ui/categories";
+import { Categories, type CategoriesProps } from "~/shared/ui/categories";
 
 vi.mock("~/learning/ui/course-cards");
-vi.mock("~/components/ui/categories");
+vi.mock("~/shared/ui/categories");
 vi.mock("~/learning/data-access/courses");
 
 describe("<CourseList />", () => {

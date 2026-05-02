@@ -1,6 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "~/components/ui/categories";
+import { Categories } from "~/shared/ui/categories";
 import { ArticleCards } from "~/blog/ui/article-cards";
 import {
   getArticlesCategories,

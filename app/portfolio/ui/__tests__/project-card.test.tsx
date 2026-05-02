@@ -4,11 +4,11 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import {
   CreationDate,
   type CreationDateProps,
-} from "../../../components/ui/creation-date";
+} from "../../../shared/ui/creation-date";
 import { type ProjectFeed, ProjectStatus } from "../../data-access/projects";
 import { ProjectCard } from "../project-card";
 
-vi.mock("../../../components/ui/creation-date");
+vi.mock("../../../shared/ui/creation-date");
 
 describe("<ProjectCard />", () => {
   const MockedCreationDate = vi.mocked(CreationDate);

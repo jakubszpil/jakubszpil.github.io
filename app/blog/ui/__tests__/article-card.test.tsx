@@ -4,13 +4,13 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import {
   LinkWithPrefetch,
   type LinkWithPrefetchProps,
-} from "../../../components/ui/link-with-prefetch";
-import { Banner, type BannerProps } from "../../../components/banner";
+} from "../../../shared/ui/link-with-prefetch";
+import { Banner, type BannerProps } from "../../../shared/ui/banner";
 import type { ArticleFeed } from "../../data-access/articles";
 import { ArticleCard } from "../article-card";
 
-vi.mock("../../../components/ui/link-with-prefetch");
-vi.mock("../../../components/banner");
+vi.mock("../../../shared/ui/link-with-prefetch");
+vi.mock("../../../shared/ui/banner");
 
 describe("<ArticleCard />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

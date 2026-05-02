@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "~/components/banner";
-import { EditResource } from "~/components/edit-resource";
-import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
-import { TableOfContents } from "~/components/table-of-contents";
+import { Banner } from "~/shared/ui/banner";
+import { EditResource } from "~/shared/ui/edit-resource";
+import { BreadcrumbWithCategory } from "~/shared/ui/breadcrumb-with-category";
+import { TableOfContents } from "~/shared/ui/table-of-contents";
 import { getArticle } from "~/blog/data-access/articles";
 import { notFound } from "~/shared/utils/navigation";
 import { createMetaTags } from "~/shared/utils/meta";

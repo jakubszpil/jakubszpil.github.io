@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { ScrollArea } from "./ui/scroll-area";
+} from "./dialog";
+import { ScrollArea } from "./scroll-area";
 
 export interface ModalProps {
   children: ReactNode;

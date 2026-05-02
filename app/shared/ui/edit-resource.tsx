@@ -1,5 +1,5 @@
-import { Button } from "./ui/button";
-import { IconEdit } from "./ui/icons";
+import { Button } from "./button";
+import { IconEdit } from "./icons";
 
 export interface EditResourceProps {
   slug: string;

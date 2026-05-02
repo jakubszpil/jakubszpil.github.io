@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { LinkWithPrefetch } from "../ui/link-with-prefetch";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 import { NavbarMenu } from "../navbar-menu";
 import { NavbarLink } from "../navbar-link";
 import { SearchButton } from "../search-button";

@@ -13,10 +13,10 @@ import {
   ProjectCards,
   type ProjectCardsProps,
 } from "~/portfolio/ui/project-cards";
-import { Categories, type CategoriesProps } from "~/components/ui/categories";
+import { Categories, type CategoriesProps } from "~/shared/ui/categories";
 
 vi.mock("~/portfolio/ui/project-cards");
-vi.mock("~/components/ui/categories");
+vi.mock("~/shared/ui/categories");
 vi.mock("~/portfolio/data-access/projects");
 
 describe("<ProjectList />", () => {

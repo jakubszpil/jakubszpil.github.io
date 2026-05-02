@@ -1,7 +1,7 @@
 import { Outlet, useRouteError } from "react-router";
 
-import { Button } from "~/components/ui/button";
-import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
+import { Button } from "~/shared/ui/button";
+import { LinkWithPrefetch } from "~/shared/ui/link-with-prefetch";
 import { Navbar } from "~/components/navbar";
 import { NavbarLink } from "~/components/navbar-link";
 import { NavbarMenu } from "~/components/navbar-menu";
