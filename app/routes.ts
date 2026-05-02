@@ -19,11 +19,6 @@ export default [
       ...prefix("portfolio", definePortfolioRoutes()),
     ),
 
-    route("learning", "routes/course-list.tsx"),
-    route("learning/kategorie/:category", "routes/course-list.tsx", {
-      id: "course-list-with-category",
-    }),
-    route("learning/:slug", "routes/course-detail.tsx"),
     route("portfolio", "routes/project-list.tsx"),
     route("portfolio/technologie/:technology", "routes/project-list.tsx", {
       id: "project-list-with-technology",

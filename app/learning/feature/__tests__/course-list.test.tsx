@@ -7,16 +7,16 @@ import {
   type CourseFeed,
   getCoursesByCategory,
   getCoursesCategories,
-} from "../../learning/data-access/courses";
+} from "../../data-access/courses";
+import { CourseCards, type CourseCardsProps } from "../../ui/course-cards";
 import {
-  CourseCards,
-  type CourseCardsProps,
-} from "../../learning/ui/course-cards";
-import { Categories, type CategoriesProps } from "../../shared/ui/categories";
+  Categories,
+  type CategoriesProps,
+} from "../../../shared/ui/categories";
 
-vi.mock("../../learning/ui/course-cards");
-vi.mock("../../shared/ui/categories");
-vi.mock("../../learning/data-access/courses");
+vi.mock("../../ui/course-cards");
+vi.mock("../../data-access/courses");
+vi.mock("../../../shared/ui/categories");
 
 describe("<CourseList />", () => {
   const MockedCourseCards = vi.mocked(CourseCards);
