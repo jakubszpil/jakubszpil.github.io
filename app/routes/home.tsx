@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router";
 
 import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
-import { ArticleCards } from "~/components/article-cards";
+import { ArticleCards } from "~/blog/ui/article-cards";
 import { CourseCards } from "~/components/course-cards";
 import { ProjectCards } from "~/components/project-cards";
 import { getArticles } from "~/lib/articles";

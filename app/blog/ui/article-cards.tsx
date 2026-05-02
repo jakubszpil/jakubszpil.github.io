@@ -1,7 +1,7 @@
-import type { ArticleFeed } from "~/lib/articles";
-import { cn } from "~/lib/utils";
+import type { ArticleFeed } from "../../lib/articles";
+import { cn } from "../../lib/utils";
 import { ArticleCard } from "./article-card";
-import type { ButtonProps } from "./ui/button";
+import type { ButtonProps } from "../../components/ui/button";
 
 export interface ArticleCardsProps {
   articles: ArticleFeed[];

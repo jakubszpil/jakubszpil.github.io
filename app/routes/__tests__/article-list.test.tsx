@@ -8,13 +8,10 @@ import {
   getArticlesByCategory,
   getArticlesCategories,
 } from "~/lib/articles";
-import {
-  ArticleCards,
-  type ArticleCardsProps,
-} from "~/components/article-cards";
+import { ArticleCards, type ArticleCardsProps } from "~/blog/ui/article-cards";
 import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
-vi.mock("~/components/article-cards");
+vi.mock("~/blog/ui/article-cards");
 vi.mock("~/components/ui/categories");
 vi.mock("~/lib/articles");
 

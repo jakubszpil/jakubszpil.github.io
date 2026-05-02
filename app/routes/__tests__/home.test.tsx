@@ -3,7 +3,7 @@ import { createRoutesStub } from "react-router";
 import { vi, describe, test, beforeEach, afterEach, expect } from "vitest";
 
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
-import { ArticleCards } from "~/components/article-cards";
+import { ArticleCards } from "~/blog/ui/article-cards";
 import { CourseCards } from "~/components/course-cards";
 import { ProjectCards } from "~/components/project-cards";
 import { getArticles } from "~/lib/articles";
@@ -17,7 +17,7 @@ import {
 import Home, { loader } from "../home";
 
 vi.mock("~/components/ui/link-with-prefetch");
-vi.mock("~/components/article-cards");
+vi.mock("~/blog/ui/article-cards");
 vi.mock("~/components/course-cards");
 vi.mock("~/components/project-cards");
 vi.mock("~/lib/articles");
