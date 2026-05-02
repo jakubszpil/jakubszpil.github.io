@@ -5,7 +5,7 @@ import { Banner } from "~/components/banner";
 import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
 import { TableOfContents } from "~/components/table-of-contents";
-import { getArticle } from "~/lib/articles";
+import { getArticle } from "~/blog/data-access/articles";
 import { notFound } from "~/lib/navigation";
 import { createMetaTags } from "~/lib/meta";
 

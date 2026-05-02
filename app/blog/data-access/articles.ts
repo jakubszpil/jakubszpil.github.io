@@ -1,9 +1,13 @@
 import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
-import { getReadingTimeLabel, processContent, processFile } from "./content";
-import { sortByCreationDate } from "./date";
-import { cachePromise } from "./promises";
+import {
+  getReadingTimeLabel,
+  processContent,
+  processFile,
+} from "../../lib/content";
+import { sortByCreationDate } from "../../lib/date";
+import { cachePromise } from "../../lib/promises";
 
 interface ArticleFeed {
   slug: string;

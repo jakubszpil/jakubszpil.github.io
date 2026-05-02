@@ -3,7 +3,10 @@ import { join } from "node:path";
 import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
-import { getArticlesSlugs, getArticlesCategories } from "./app/lib/articles";
+import {
+  getArticlesSlugs,
+  getArticlesCategories,
+} from "./app/blog/data-access/articles";
 import { getCoursesSlugs, getCoursesCategories } from "./app/lib/courses";
 import { getProjectsTechnologies } from "./app/lib/projects";
 

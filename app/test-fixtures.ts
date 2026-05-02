@@ -1,4 +1,4 @@
-import type { ArticleFeed } from "./lib/articles";
+import type { ArticleFeed } from "./blog/data-access/articles";
 import type { CourseFeed } from "./lib/courses";
 import { ProjectStatus, type ProjectFeed } from "./lib/projects";
 

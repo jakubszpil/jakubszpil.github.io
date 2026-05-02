@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { IconSearch } from "./ui/icons";
 import { queryParamName } from "~/lib/search";
-import type { ArticleFeed } from "~/lib/articles";
+import type { ArticleFeed } from "~/blog/data-access/articles";
 import type { CourseFeed } from "~/lib/courses";
 import type { ProjectFeed } from "~/lib/projects";
 

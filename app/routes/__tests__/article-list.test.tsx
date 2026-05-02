@@ -7,13 +7,13 @@ import {
   type ArticleFeed,
   getArticlesByCategory,
   getArticlesCategories,
-} from "~/lib/articles";
+} from "~/blog/data-access/articles";
 import { ArticleCards, type ArticleCardsProps } from "~/blog/ui/article-cards";
 import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
 vi.mock("~/blog/ui/article-cards");
 vi.mock("~/components/ui/categories");
-vi.mock("~/lib/articles");
+vi.mock("~/blog/data-access/articles");
 
 describe("<ArticleList />", () => {
   const MockedArticleCards = vi.mocked(ArticleCards);

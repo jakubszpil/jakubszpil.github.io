@@ -1,4 +1,4 @@
-import type { ArticleFeed } from "../../lib/articles";
+import type { ArticleFeed } from "../data-access/articles";
 import { Banner } from "../../components/banner";
 import { Button, type ButtonProps } from "../../components/ui/button";
 import { LinkWithPrefetch } from "../../components/ui/link-with-prefetch";

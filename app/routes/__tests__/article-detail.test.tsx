@@ -7,7 +7,7 @@ import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
 } from "~/components/breadcrumb-with-category";
-import { type Article, getArticle } from "~/lib/articles";
+import { type Article, getArticle } from "~/blog/data-access/articles";
 import {
   TableOfContents,
   type TableOfContentsProps,
@@ -17,7 +17,7 @@ import { Banner, type BannerProps } from "~/components/banner";
 vi.mock("~/components/table-of-contents");
 vi.mock("~/components/banner");
 vi.mock("~/components/breadcrumb-with-category");
-vi.mock("~/lib/articles");
+vi.mock("~/blog/data-access/articles");
 
 describe("<ArticleDetail />", () => {
   const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);
