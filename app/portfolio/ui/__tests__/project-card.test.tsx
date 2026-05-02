@@ -1,11 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { CreationDate, type CreationDateProps } from "../ui/creation-date";
-import { type ProjectFeed, ProjectStatus } from "~/lib/projects";
+import {
+  CreationDate,
+  type CreationDateProps,
+} from "../../../components/ui/creation-date";
+import { type ProjectFeed, ProjectStatus } from "../../../lib/projects";
 import { ProjectCard } from "../project-card";
 
-vi.mock("../ui/creation-date");
+vi.mock("../../../components/ui/creation-date");
 
 describe("<ProjectCard />", () => {
   const MockedCreationDate = vi.mocked(CreationDate);

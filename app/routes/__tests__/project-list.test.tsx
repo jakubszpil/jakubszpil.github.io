@@ -12,10 +12,10 @@ import {
 import {
   ProjectCards,
   type ProjectCardsProps,
-} from "~/components/project-cards";
+} from "~/portfolio/ui/project-cards";
 import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
-vi.mock("~/components/project-cards");
+vi.mock("~/portfolio/ui/project-cards");
 vi.mock("~/components/ui/categories");
 vi.mock("~/lib/projects");
 

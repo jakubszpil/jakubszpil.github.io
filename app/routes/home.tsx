@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { LinkWithPrefetch } from "~/components/ui/link-with-prefetch";
 import { ArticleCards } from "~/blog/ui/article-cards";
 import { CourseCards } from "~/learning/ui/course-cards";
-import { ProjectCards } from "~/components/project-cards";
+import { ProjectCards } from "~/portfolio/ui/project-cards";
 import { getArticles } from "~/lib/articles";
 import { getCourses } from "~/lib/courses";
 import { getProjects } from "~/lib/projects";

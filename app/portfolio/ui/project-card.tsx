@@ -1,7 +1,7 @@
-import type { ProjectFeed, ProjectStatus } from "~/lib/projects";
-import { Button, type ButtonProps } from "./ui/button";
-import { CreationDate } from "./ui/creation-date";
-import { IconBrandGithub } from "./ui/icons";
+import type { ProjectFeed, ProjectStatus } from "../../lib/projects";
+import { Button, type ButtonProps } from "../../components/ui/button";
+import { CreationDate } from "../../components/ui/creation-date";
+import { IconBrandGithub } from "../../components/ui/icons";
 
 export interface ProjectCardProps {
   project: ProjectFeed;
