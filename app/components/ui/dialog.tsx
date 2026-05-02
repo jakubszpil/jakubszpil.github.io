@@ -1,6 +1,6 @@
 import { Dialog as DialogPrimitive } from "radix-ui";
 
-import { cn } from "~/shared/utils/utils";
+import { cn } from "~/shared/utils/helpers";
 import { Button } from "./button";
 import { IconX } from "./icons";
 import type { ComponentProps } from "react";

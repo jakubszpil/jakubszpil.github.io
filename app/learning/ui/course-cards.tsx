@@ -1,5 +1,5 @@
 import type { CourseFeed } from "../data-access/courses";
-import { cn } from "../../shared/utils/utils";
+import { cn } from "../../shared/utils/helpers";
 import { CourseCard } from "./course-card";
 import type { ButtonProps } from "../../components/ui/button";
 

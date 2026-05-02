@@ -10,7 +10,7 @@ import {
 import { createPath, useLocation } from "react-router";
 
 import { TOP_ELEMENT_ID } from "~/shared/utils/config";
-import { cn } from "~/shared/utils/utils";
+import { cn } from "~/shared/utils/helpers";
 
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";

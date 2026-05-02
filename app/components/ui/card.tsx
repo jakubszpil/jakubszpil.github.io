@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 
-import { cn } from "~/shared/utils/utils";
+import { cn } from "~/shared/utils/helpers";
 
 function Card({ className, ...props }: ComponentProps<"div">) {
   return (

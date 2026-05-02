@@ -1,5 +1,5 @@
 import type { ArticleFeed } from "../data-access/articles";
-import { cn } from "../../shared/utils/utils";
+import { cn } from "../../shared/utils/helpers";
 import { ArticleCard } from "./article-card";
 import type { ButtonProps } from "../../components/ui/button";
 
