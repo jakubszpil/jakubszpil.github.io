@@ -6,7 +6,7 @@ import {
   getReadingTimeLabel,
   processContent,
   processFile,
-} from "../../shared/utils/content";
+} from "../../shared/data-access/content";
 import { sortByCreationDate } from "../../shared/utils/date";
 import { cachePromise } from "../../shared/utils/promises";
 

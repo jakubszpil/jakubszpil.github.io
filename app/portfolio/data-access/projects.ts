@@ -1,7 +1,7 @@
 import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
-import { processFile } from "../../shared/utils/content";
+import { processFile } from "../../shared/data-access/content";
 import { sortByCreationDate } from "../../shared/utils/date";
 import { cachePromise } from "../../shared/utils/promises";
 
