@@ -28,7 +28,7 @@ interface ProjectFeed {
   status: ProjectStatus;
 }
 
-function projectMinifingStrategy(project: Project): ProjectFeed {
+function mapperProjectFeed(project: Project): ProjectFeed {
   return {
     createdAt: project.createdAt,
     description: project.description,
@@ -75,9 +75,7 @@ async function getAllProjects(): Promise<Project[]> {
 async function getProjects(limit?: number): Promise<ProjectFeed[]> {
   const projects = await cachePromise("projects", getAllProjects);
 
-  return projects
-    .slice(0, limit ?? projects.length)
-    .map(projectMinifingStrategy);
+  return projects.slice(0, limit ?? projects.length).map(mapperProjectFeed);
 }
 
 async function getProjectsByTechnology(
@@ -89,7 +87,7 @@ async function getProjectsByTechnology(
     .filter((project) =>
       technology ? project.technologies.includes(technology) : true,
     )
-    .map(projectMinifingStrategy);
+    .map(mapperProjectFeed);
 }
 
 async function getProjectsTechnologies(): Promise<string[]> {
