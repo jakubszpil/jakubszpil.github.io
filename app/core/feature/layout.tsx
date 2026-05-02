@@ -1,17 +1,17 @@
 import { Outlet, useRouteError } from "react-router";
 
-import { Button } from "~/shared/ui/button";
-import { LinkWithPrefetch } from "~/shared/ui/link-with-prefetch";
-import { Navbar } from "~/core/ui/navbar";
-import { NavbarLink } from "~/core/ui/navbar-link";
-import { NavbarMenu } from "~/core/ui/navbar-menu";
-import { Footer } from "~/core/ui/footer";
-import { FooterLink } from "~/core/ui/footer-link";
-import { BusyIndicator } from "~/core/ui/busy-indicator";
-import { ScrollRestoration } from "~/core/ui/scroll-restoration";
-import { usePrerender } from "~/shared/data-access/use-prerender";
-import { isRouteErrorResponse } from "~/shared/utils/errors";
-import { TOP_ELEMENT_ID } from "~/shared/utils/config";
+import { Navbar } from "../ui/navbar";
+import { NavbarLink } from "../ui/navbar-link";
+import { NavbarMenu } from "../ui/navbar-menu";
+import { Footer } from "../ui/footer";
+import { FooterLink } from "../ui/footer-link";
+import { BusyIndicator } from "../ui/busy-indicator";
+import { ScrollRestoration } from "../ui/scroll-restoration";
+import { Button } from "../../shared/ui/button";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { usePrerender } from "../../shared/data-access/use-prerender";
+import { isRouteErrorResponse } from "../../shared/utils/errors";
+import { TOP_ELEMENT_ID } from "../../shared/utils/config";
 
 export default function Layout() {
   const prerender = usePrerender();

@@ -1,4 +1,4 @@
-import { notFound } from "~/shared/utils/navigation";
+import { notFound } from "../../shared/utils/navigation";
 
 export async function clientLoader() {
   throw notFound();

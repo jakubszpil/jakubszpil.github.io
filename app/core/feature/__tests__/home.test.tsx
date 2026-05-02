@@ -2,27 +2,27 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { vi, describe, test, beforeEach, afterEach, expect } from "vitest";
 
-import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
-import { ArticleCards } from "../../blog/ui/article-cards";
-import { CourseCards } from "../../learning/ui/course-cards";
-import { ProjectCards } from "../../portfolio/ui/project-cards";
-import { getArticles } from "../../blog/data-access/articles";
-import { getCourses } from "../../learning/data-access/courses";
-import { getProjects } from "../../portfolio/data-access/projects";
+import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
+import { ArticleCards } from "../../../blog/ui/article-cards";
+import { CourseCards } from "../../../learning/ui/course-cards";
+import { ProjectCards } from "../../../portfolio/ui/project-cards";
+import { getArticles } from "../../../blog/data-access/articles";
+import { getCourses } from "../../../learning/data-access/courses";
+import { getProjects } from "../../../portfolio/data-access/projects";
 import {
   MOCKED_ARTICLE_FEEDS,
   MOCKED_COURSE_FEEDS,
   MOCKED_PROJECT_FEEDS,
-} from "../../test-fixtures";
+} from "../../../test-fixtures";
 import Home, { loader } from "../home";
 
-vi.mock("../../shared/ui/link-with-prefetch");
-vi.mock("../../blog/ui/article-cards");
-vi.mock("../../learning/ui/course-cards");
-vi.mock("../../portfolio/ui/project-cards");
-vi.mock("../../blog/data-access/articles");
-vi.mock("../../learning/data-access/courses");
-vi.mock("../../portfolio/data-access/projects");
+vi.mock("../../../shared/ui/link-with-prefetch");
+vi.mock("../../../blog/ui/article-cards");
+vi.mock("../../../learning/ui/course-cards");
+vi.mock("../../../portfolio/ui/project-cards");
+vi.mock("../../../blog/data-access/articles");
+vi.mock("../../../learning/data-access/courses");
+vi.mock("../../../portfolio/data-access/projects");
 
 describe("<Home />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

@@ -2,21 +2,21 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { describe, expect, test, vi } from "vitest";
 
-import { SearchForm } from "../../core/ui/search-form";
-import { ArticleCards } from "../../blog/ui/article-cards";
-import { CourseCards } from "../../learning/ui/course-cards";
-import { ProjectCards } from "../../portfolio/ui/project-cards";
+import { SearchForm } from "../../ui/search-form";
+import { ArticleCards } from "../../../blog/ui/article-cards";
+import { CourseCards } from "../../../learning/ui/course-cards";
+import { ProjectCards } from "../../../portfolio/ui/project-cards";
 import {
   MOCKED_ARTICLE_FEEDS,
   MOCKED_COURSE_FEEDS,
   MOCKED_PROJECT_FEEDS,
-} from "../../test-fixtures";
+} from "../../../test-fixtures";
 import Search, { type clientLoader } from "../search";
 
-vi.mock("../../core/ui/search-form");
-vi.mock("../../blog/ui/article-cards");
-vi.mock("../../learning/ui/course-cards");
-vi.mock("../../portfolio/ui/project-cards");
+vi.mock("../../ui/search-form");
+vi.mock("../../../blog/ui/article-cards");
+vi.mock("../../../learning/ui/course-cards");
+vi.mock("../../../portfolio/ui/project-cards");
 
 describe("<Search />", () => {
   const MockedSearchForm = vi.mocked(SearchForm);

@@ -1,22 +1,25 @@
 import { useCallback } from "react";
 import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
 
-import { ArticleCards } from "~/blog/ui/article-cards";
-import { CourseCards } from "~/learning/ui/course-cards";
-import { ProjectCards } from "~/portfolio/ui/project-cards";
-import { SearchForm } from "~/core/ui/search-form";
-import { getArticles, type ArticleFeed } from "~/blog/data-access/articles";
-import { getCourses, type CourseFeed } from "~/learning/data-access/courses";
-import { createMetaTags } from "~/shared/utils/meta";
-import {
-  getProjects,
-  type ProjectFeed,
-} from "~/portfolio/data-access/projects";
+import { SearchForm } from "../ui/search-form";
 import {
   getSearchResults,
   getSearchResultsLength,
   validateSearhQuery,
-} from "~/core/utils/search";
+} from "../utils/search";
+import { ArticleCards } from "../../blog/ui/article-cards";
+import { CourseCards } from "../../learning/ui/course-cards";
+import { ProjectCards } from "../../portfolio/ui/project-cards";
+import { getArticles, type ArticleFeed } from "../../blog/data-access/articles";
+import {
+  getCourses,
+  type CourseFeed,
+} from "../../learning/data-access/courses";
+import { createMetaTags } from "../../shared/utils/meta";
+import {
+  getProjects,
+  type ProjectFeed,
+} from "../../portfolio/data-access/projects";
 
 export async function loader() {
   const articles = await getArticles();
