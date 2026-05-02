@@ -11,7 +11,7 @@ import {
   getCoursesSlugs,
   getCoursesCategories,
 } from "./app/learning/data-access/courses";
-import { getProjectsTechnologies } from "./app/lib/projects";
+import { getProjectsTechnologies } from "./app/portfolio/data-access/projects";
 
 function minifyContent(content: string) {
   const { code } = minify({ "file.js": content }, { toplevel: true });

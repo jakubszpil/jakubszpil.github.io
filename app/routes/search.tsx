@@ -8,7 +8,10 @@ import { SearchForm } from "~/components/search-form";
 import { getArticles, type ArticleFeed } from "~/blog/data-access/articles";
 import { getCourses, type CourseFeed } from "~/learning/data-access/courses";
 import { createMetaTags } from "~/lib/meta";
-import { getProjects, type ProjectFeed } from "~/lib/projects";
+import {
+  getProjects,
+  type ProjectFeed,
+} from "~/portfolio/data-access/projects";
 import {
   getSearchResults,
   getSearchResultsLength,

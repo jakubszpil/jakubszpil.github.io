@@ -7,7 +7,7 @@ import { CourseCards } from "~/learning/ui/course-cards";
 import { ProjectCards } from "~/portfolio/ui/project-cards";
 import { getArticles } from "~/blog/data-access/articles";
 import { getCourses } from "~/learning/data-access/courses";
-import { getProjects } from "~/lib/projects";
+import { getProjects } from "~/portfolio/data-access/projects";
 import { createMetaTags } from "~/lib/meta";
 
 export async function loader() {

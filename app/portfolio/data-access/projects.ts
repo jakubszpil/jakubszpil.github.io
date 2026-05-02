@@ -1,9 +1,9 @@
 import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
-import { processFile } from "./content";
-import { sortByCreationDate } from "./date";
-import { cachePromise } from "./promises";
+import { processFile } from "../../lib/content";
+import { sortByCreationDate } from "../../lib/date";
+import { cachePromise } from "../../lib/promises";
 
 enum ProjectStatus {
   IDLE = "IDLE",

@@ -7,7 +7,7 @@ import { IconSearch } from "./ui/icons";
 import { queryParamName } from "~/lib/search";
 import type { ArticleFeed } from "~/blog/data-access/articles";
 import type { CourseFeed } from "~/learning/data-access/courses";
-import type { ProjectFeed } from "~/lib/projects";
+import type { ProjectFeed } from "~/portfolio/data-access/projects";
 
 export interface SearchFormProps {
   query: string | null;

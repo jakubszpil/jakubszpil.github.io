@@ -6,7 +6,7 @@ import { createMetaTags } from "~/lib/meta";
 import {
   getProjectsTechnologies,
   getProjectsByTechnology,
-} from "~/lib/projects";
+} from "~/portfolio/data-access/projects";
 import { getCapitalizedIndividualName } from "~/lib/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {

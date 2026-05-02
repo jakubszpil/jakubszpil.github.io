@@ -8,7 +8,7 @@ import { CourseCards } from "~/learning/ui/course-cards";
 import { ProjectCards } from "~/portfolio/ui/project-cards";
 import { getArticles } from "~/blog/data-access/articles";
 import { getCourses } from "~/learning/data-access/courses";
-import { getProjects } from "~/lib/projects";
+import { getProjects } from "~/portfolio/data-access/projects";
 import {
   MOCKED_ARTICLE_FEEDS,
   MOCKED_COURSE_FEEDS,
@@ -22,7 +22,7 @@ vi.mock("~/learning/ui/course-cards");
 vi.mock("~/portfolio/ui/project-cards");
 vi.mock("~/blog/data-access/articles");
 vi.mock("~/learning/data-access/courses");
-vi.mock("~/lib/projects");
+vi.mock("~/portfolio/data-access/projects");
 
 describe("<Home />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);

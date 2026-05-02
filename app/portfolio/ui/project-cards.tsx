@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils";
-import type { ProjectFeed } from "../../lib/projects";
+import type { ProjectFeed } from "../data-access/projects";
 import { ProjectCard } from "./project-card";
 import type { ButtonProps } from "../../components//ui/button";
 

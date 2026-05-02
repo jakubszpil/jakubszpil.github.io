@@ -5,7 +5,7 @@ import {
   CreationDate,
   type CreationDateProps,
 } from "../../../components/ui/creation-date";
-import { type ProjectFeed, ProjectStatus } from "../../../lib/projects";
+import { type ProjectFeed, ProjectStatus } from "../../data-access/projects";
 import { ProjectCard } from "../project-card";
 
 vi.mock("../../../components/ui/creation-date");

@@ -8,7 +8,7 @@ import {
   ProjectStatus,
   getProjectsByTechnology,
   getProjectsTechnologies,
-} from "~/lib/projects";
+} from "~/portfolio/data-access/projects";
 import {
   ProjectCards,
   type ProjectCardsProps,
@@ -17,7 +17,7 @@ import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
 vi.mock("~/portfolio/ui/project-cards");
 vi.mock("~/components/ui/categories");
-vi.mock("~/lib/projects");
+vi.mock("~/portfolio/data-access/projects");
 
 describe("<ProjectList />", () => {
   const MockedProjectCards = vi.mocked(ProjectCards);
