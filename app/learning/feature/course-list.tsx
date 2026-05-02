@@ -1,13 +1,13 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "~/shared/ui/categories";
-import { CourseCards } from "~/learning/ui/course-cards";
+import { CourseCards } from "../ui/course-cards";
 import {
   getCoursesCategories,
   getCoursesByCategory,
-} from "~/learning/data-access/courses";
-import { createMetaTags } from "~/shared/utils/meta";
-import { getCapitalizedIndividualName } from "~/shared/utils/string";
+} from "../data-access/courses";
+import { Categories } from "../../shared/ui/categories";
+import { createMetaTags } from "../../shared/utils/meta";
+import { getCapitalizedIndividualName } from "../../shared/utils/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {

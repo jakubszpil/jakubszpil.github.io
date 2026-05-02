@@ -3,10 +3,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ProjectCard, type ProjectCardProps } from "../project-card";
 import { ProjectCards } from "../project-cards";
-import {
-  type ProjectFeed,
-  ProjectStatus,
-} from "~/portfolio/data-access/projects";
+import { type ProjectFeed, ProjectStatus } from "../../data-access/projects";
 
 vi.mock("../project-card");
 
