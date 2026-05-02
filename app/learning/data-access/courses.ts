@@ -1,10 +1,14 @@
 import { join } from "node:path";
 import { readdir, readFile } from "node:fs/promises";
 
-import { shuffleArray } from "./array";
-import { getReadingTimeLabel, processContent, processFile } from "./content";
-import { sortByCreationDate } from "./date";
-import { cachePromise } from "./promises";
+import { shuffleArray } from "../../lib/array";
+import {
+  getReadingTimeLabel,
+  processContent,
+  processFile,
+} from "../../lib/content";
+import { sortByCreationDate } from "../../lib/date";
+import { cachePromise } from "../../lib/promises";
 
 interface CourseQuiz {
   title: string;

@@ -1,5 +1,5 @@
 import type { ArticleFeed } from "./blog/data-access/articles";
-import type { CourseFeed } from "./lib/courses";
+import type { CourseFeed } from "./learning/data-access/courses";
 import { ProjectStatus, type ProjectFeed } from "./lib/projects";
 
 const MOCKED_ARTICLE_FEEDS: ArticleFeed[] = [

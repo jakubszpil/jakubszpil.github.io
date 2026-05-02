@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { getCourse, type Course } from "~/lib/courses";
+import { getCourse, type Course } from "~/learning/data-access/courses";
 import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
@@ -17,7 +17,7 @@ import CourseDetail, { loader } from "../course-detail";
 vi.mock("~/components/banner");
 vi.mock("~/components/table-of-contents");
 vi.mock("~/components/breadcrumb-with-category");
-vi.mock("~/lib/courses");
+vi.mock("~/learning/data-access/courses");
 
 describe("<CourseDetail />", () => {
   const MockedBreadcrumbWithCategory = vi.mocked(BreadcrumbWithCategory);

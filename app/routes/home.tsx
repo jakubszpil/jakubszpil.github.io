@@ -6,7 +6,7 @@ import { ArticleCards } from "~/blog/ui/article-cards";
 import { CourseCards } from "~/learning/ui/course-cards";
 import { ProjectCards } from "~/portfolio/ui/project-cards";
 import { getArticles } from "~/blog/data-access/articles";
-import { getCourses } from "~/lib/courses";
+import { getCourses } from "~/learning/data-access/courses";
 import { getProjects } from "~/lib/projects";
 import { createMetaTags } from "~/lib/meta";
 

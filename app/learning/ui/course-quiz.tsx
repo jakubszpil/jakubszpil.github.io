@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "../../components/ui/button";
-import type { Course, CourseQuizQuestion } from "../../lib/courses";
+import type { Course, CourseQuizQuestion } from "../data-access/courses";
 import { shuffleArray } from "../../lib/array";
 import { cn } from "../../lib/utils";
 

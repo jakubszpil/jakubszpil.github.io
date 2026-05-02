@@ -1,4 +1,4 @@
-import type { CourseFeed } from "../../lib/courses";
+import type { CourseFeed } from "../data-access/courses";
 import { Banner } from "../../components/banner";
 import { Button, type ButtonProps } from "../../components/ui/button";
 import { LinkWithPrefetch } from "../../components/ui/link-with-prefetch";

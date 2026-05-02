@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { IconSearch } from "./ui/icons";
 import { queryParamName } from "~/lib/search";
 import type { ArticleFeed } from "~/blog/data-access/articles";
-import type { CourseFeed } from "~/lib/courses";
+import type { CourseFeed } from "~/learning/data-access/courses";
 import type { ProjectFeed } from "~/lib/projects";
 
 export interface SearchFormProps {

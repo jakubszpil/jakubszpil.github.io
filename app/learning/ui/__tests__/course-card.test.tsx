@@ -6,7 +6,7 @@ import {
   type LinkWithPrefetchProps,
 } from "../../../components/ui/link-with-prefetch";
 import { Banner, type BannerProps } from "../../../components/banner";
-import type { CourseFeed } from "../../../lib/courses";
+import type { CourseFeed } from "../../data-access/courses";
 import { CourseCard } from "../course-card";
 
 vi.mock("../../../components/ui/link-with-prefetch");

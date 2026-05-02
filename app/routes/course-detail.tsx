@@ -9,7 +9,7 @@ import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
 import { CourseQuiz } from "~/learning/ui/course-quiz";
 import { TableOfContents } from "~/components/table-of-contents";
 import { Modal } from "~/components/modal";
-import { getCourse } from "~/lib/courses";
+import { getCourse } from "~/learning/data-access/courses";
 import { createMetaTags } from "~/lib/meta";
 import { notFound } from "~/lib/navigation";
 

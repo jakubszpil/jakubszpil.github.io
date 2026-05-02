@@ -7,7 +7,10 @@ import {
   getArticlesSlugs,
   getArticlesCategories,
 } from "./app/blog/data-access/articles";
-import { getCoursesSlugs, getCoursesCategories } from "./app/lib/courses";
+import {
+  getCoursesSlugs,
+  getCoursesCategories,
+} from "./app/learning/data-access/courses";
 import { getProjectsTechnologies } from "./app/lib/projects";
 
 function minifyContent(content: string) {
