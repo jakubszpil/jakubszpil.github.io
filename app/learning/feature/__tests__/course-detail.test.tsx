@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub, generatePath } from "react-router";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { getCourse, type Course } from "../../data-access/courses";
+import { getCourse } from "../../data-access/courses";
 import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
@@ -13,6 +13,7 @@ import {
 } from "../../../shared/ui/table-of-contents";
 import { Banner, type BannerProps } from "../../../shared/ui/banner";
 import CourseDetail, { loader } from "../course-detail";
+import { MOCKED_COURSE } from "../../test-fixtures";
 
 vi.mock("../../../shared/ui/banner");
 vi.mock("../../../shared/ui/table-of-contents");
@@ -24,21 +25,6 @@ describe("<CourseDetail />", () => {
   const MockedTableOfContents = vi.mocked(TableOfContents);
   const MockedBanner = vi.mocked(Banner);
   const MockedGetCourse = vi.mocked(getCourse);
-
-  const MOCKED_COURSE: Course = {
-    slug: "test-example",
-    content: "<p>Test content</p>",
-    title: "Test title",
-    description: "Test description",
-    keywords: ["test", "example"],
-    category: "test",
-    createdAt: "2025-03-17",
-    readingTime: "3 minuty",
-    quiz: {
-      questions: [],
-      title: "Example Quiz",
-    },
-  };
 
   beforeEach(() => {
     MockedGetCourse.mockImplementation(() => Promise.resolve(MOCKED_COURSE));

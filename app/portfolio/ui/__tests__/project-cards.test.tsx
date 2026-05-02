@@ -3,36 +3,12 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ProjectCard, type ProjectCardProps } from "../project-card";
 import { ProjectCards } from "../project-cards";
-import { type ProjectFeed, ProjectStatus } from "../../data-access/projects";
+import { MOCKED_PROJECT_FEEDS } from "../../test-fixtures";
 
 vi.mock("../project-card");
 
 describe("<ProjectCards />", () => {
   const MockedProjectCard = vi.mocked(ProjectCard);
-
-  const MOCKED_PROJECT_FEEDS: ProjectFeed[] = [
-    {
-      slug: "example 1",
-      createdAt: "2025-12-12",
-      description: "Example description 1",
-      status: ProjectStatus.COMPLETED,
-      title: "Example title 1",
-    },
-    {
-      slug: "example 2",
-      createdAt: "2025-12-12",
-      description: "Example description 2",
-      status: ProjectStatus.COMPLETED,
-      title: "Example title 2",
-    },
-    {
-      slug: "example 3",
-      createdAt: "2025-12-12",
-      description: "Example description 3",
-      status: ProjectStatus.COMPLETED,
-      title: "Example title 3",
-    },
-  ];
 
   beforeEach(() => {
     MockedProjectCard.mockImplementation(() => <div>ProjectCard</div>);
@@ -58,15 +34,6 @@ describe("<ProjectCards />", () => {
       2,
       {
         project: MOCKED_PROJECT_FEEDS[1],
-        variant: "ghost",
-      } satisfies ProjectCardProps,
-      undefined,
-    );
-
-    expect(MockedProjectCard).toHaveBeenNthCalledWith(
-      3,
-      {
-        project: MOCKED_PROJECT_FEEDS[2],
         variant: "ghost",
       } satisfies ProjectCardProps,
       undefined,

@@ -4,8 +4,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import ProjectList, { loader } from "../project-list";
 import {
-  type ProjectFeed,
-  ProjectStatus,
   getProjectsByTechnology,
   getProjectsTechnologies,
 } from "../../data-access/projects";
@@ -14,6 +12,7 @@ import {
   Categories,
   type CategoriesProps,
 } from "../../../shared/ui/categories";
+import { MOCKED_PROJECT_FEEDS } from "../../test-fixtures";
 
 vi.mock("../../ui/project-cards");
 vi.mock("../../data-access/projects");
@@ -25,28 +24,11 @@ describe("<ProjectList />", () => {
   const MockedGetProjectsByTechnology = vi.mocked(getProjectsByTechnology);
   const MockedGetProjectsTechnologies = vi.mocked(getProjectsTechnologies);
 
-  const MOCKED_PROJECTS: ProjectFeed[] = [
-    {
-      slug: "test-example-1",
-      title: "Test title 1",
-      description: "Test description 1",
-      createdAt: "2025-03-17",
-      status: ProjectStatus.COMPLETED,
-    },
-    {
-      slug: "test-example-2",
-      title: "Test title 2",
-      description: "Test description 2",
-      createdAt: "2025-03-17",
-      status: ProjectStatus.COMPLETED,
-    },
-  ];
-
   const MOCKED_TECHNOLOGIES: string[] = ["test", "example"];
 
   beforeEach(() => {
     MockedGetProjectsByTechnology.mockImplementation(() =>
-      Promise.resolve(MOCKED_PROJECTS),
+      Promise.resolve(MOCKED_PROJECT_FEEDS),
     );
 
     MockedGetProjectsTechnologies.mockImplementation(() =>
@@ -90,7 +72,7 @@ describe("<ProjectList />", () => {
 
     expect(MockedProjectCards).toHaveBeenCalledWith(
       {
-        projects: MOCKED_PROJECTS,
+        projects: MOCKED_PROJECT_FEEDS,
       } satisfies ProjectCardsProps,
       undefined,
     );
@@ -100,7 +82,7 @@ describe("<ProjectList />", () => {
     const MOCKED_TECHNOLOGY = "example";
 
     MockedGetProjectsByTechnology.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_PROJECTS[1]]),
+      Promise.resolve([MOCKED_PROJECT_FEEDS[1]]),
     );
 
     const Stub = createRoutesStub([
@@ -141,7 +123,7 @@ describe("<ProjectList />", () => {
 
     expect(MockedProjectCards).toHaveBeenCalledWith(
       {
-        projects: [MOCKED_PROJECTS[1]],
+        projects: [MOCKED_PROJECT_FEEDS[1]],
       } satisfies ProjectCardsProps,
       undefined,
     );

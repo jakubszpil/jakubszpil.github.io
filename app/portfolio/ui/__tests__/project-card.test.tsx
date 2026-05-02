@@ -5,21 +5,13 @@ import {
   CreationDate,
   type CreationDateProps,
 } from "../../../shared/ui/creation-date";
-import { type ProjectFeed, ProjectStatus } from "../../data-access/projects";
 import { ProjectCard } from "../project-card";
+import { MOCKED_PROJECT_FEED } from "../../test-fixtures";
 
 vi.mock("../../../shared/ui/creation-date");
 
 describe("<ProjectCard />", () => {
   const MockedCreationDate = vi.mocked(CreationDate);
-
-  const MOCKED_PROJECT_FEED: ProjectFeed = {
-    slug: "example",
-    createdAt: "2025-12-12",
-    description: "Example description",
-    title: "Example title",
-    status: ProjectStatus.COMPLETED,
-  };
 
   beforeEach(() => {
     MockedCreationDate.mockImplementation(() => <div>CreationDate</div>);

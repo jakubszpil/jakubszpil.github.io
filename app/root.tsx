@@ -5,7 +5,7 @@ import styles from "./styles.css?url";
 import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
-} from "./shared/utils/scroll-restoration";
+} from "./core/utils/scroll-restoration";
 import { InlineScript } from "./core/ui/inline-script";
 import { PreloadedScript } from "./core/ui/preloaded-script";
 

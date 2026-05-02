@@ -7,12 +7,13 @@ import {
   BreadcrumbWithCategory,
   type BreadcrumbWithCategoryProps,
 } from "../../../shared/ui/breadcrumb-with-category";
-import { type Article, getArticle } from "../../data-access/articles";
+import { getArticle } from "../../data-access/articles";
 import {
   TableOfContents,
   type TableOfContentsProps,
 } from "../../../shared/ui/table-of-contents";
 import { Banner, type BannerProps } from "../../../shared/ui/banner";
+import { MOCKED_ARTICLE } from "../../test-fixtures";
 
 vi.mock("../../../shared/ui/table-of-contents");
 vi.mock("../../../shared/ui/banner");
@@ -24,17 +25,6 @@ describe("<ArticleDetail />", () => {
   const MockedTableOfContents = vi.mocked(TableOfContents);
   const MockedBanner = vi.mocked(Banner);
   const MockedGetArticle = vi.mocked(getArticle);
-
-  const MOCKED_ARTICLE: Article = {
-    slug: "test-example",
-    content: "<p>Test content</p>",
-    title: "Test title",
-    description: "Test description",
-    keywords: ["test", "example"],
-    category: "test",
-    createdAt: "2025-03-17",
-    readingTime: "3 minuty",
-  };
 
   beforeEach(() => {
     MockedGetArticle.mockImplementation(() => Promise.resolve(MOCKED_ARTICLE));

@@ -6,8 +6,8 @@ import {
   type LinkWithPrefetchProps,
 } from "../../../shared/ui/link-with-prefetch";
 import { Banner, type BannerProps } from "../../../shared/ui/banner";
-import type { ArticleFeed } from "../../data-access/articles";
 import { ArticleCard } from "../article-card";
+import { MOCKED_ARTICLE_FEED } from "../../test-fixtures";
 
 vi.mock("../../../shared/ui/link-with-prefetch");
 vi.mock("../../../shared/ui/banner");
@@ -15,14 +15,6 @@ vi.mock("../../../shared/ui/banner");
 describe("<ArticleCard />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
   const MockedBanner = vi.mocked(Banner);
-
-  const MOCKED_ARTICLE_FEED: ArticleFeed = {
-    slug: "example",
-    createdAt: "2025-12-12",
-    description: "Example description",
-    readingTime: "2 minuty",
-    title: "Example title",
-  };
 
   beforeEach(() => {
     MockedLinkWithPrefetch.mockImplementation(({ children }) => (

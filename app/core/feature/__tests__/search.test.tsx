@@ -2,16 +2,14 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { describe, expect, test, vi } from "vitest";
 
+import Search, { type clientLoader } from "../search";
 import { SearchForm } from "../../ui/search-form";
 import { ArticleCards } from "../../../blog/ui/article-cards";
 import { CourseCards } from "../../../learning/ui/course-cards";
 import { ProjectCards } from "../../../portfolio/ui/project-cards";
-import {
-  MOCKED_ARTICLE_FEEDS,
-  MOCKED_COURSE_FEEDS,
-  MOCKED_PROJECT_FEEDS,
-} from "../../../test-fixtures";
-import Search, { type clientLoader } from "../search";
+import { MOCKED_ARTICLE_FEEDS } from "../../../blog/test-fixtures";
+import { MOCKED_COURSE_FEEDS } from "../../../learning/test-fixtures";
+import { MOCKED_PROJECT_FEEDS } from "../../../portfolio/test-fixtures";
 
 vi.mock("../../ui/search-form");
 vi.mock("../../../blog/ui/article-cards");

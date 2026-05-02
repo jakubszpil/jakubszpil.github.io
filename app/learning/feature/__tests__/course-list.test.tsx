@@ -13,6 +13,7 @@ import {
   Categories,
   type CategoriesProps,
 } from "../../../shared/ui/categories";
+import { MOCKED_COURSE_FEEDS } from "../../test-fixtures";
 
 vi.mock("../../ui/course-cards");
 vi.mock("../../data-access/courses");
@@ -24,28 +25,11 @@ describe("<CourseList />", () => {
   const MockedGetCoursesByCategory = vi.mocked(getCoursesByCategory);
   const MockedGetCoursesCategories = vi.mocked(getCoursesCategories);
 
-  const MOCKED_COURSES: CourseFeed[] = [
-    {
-      slug: "test-example-1",
-      title: "Test title 1",
-      description: "Test description 1",
-      createdAt: "2025-03-17",
-      readingTime: "3 minuty",
-    },
-    {
-      slug: "test-example-2",
-      title: "Test title 2",
-      description: "Test description 2",
-      createdAt: "2025-03-17",
-      readingTime: "3 minuty",
-    },
-  ];
-
   const MOCKED_CATEGORIES: string[] = ["test", "example"];
 
   beforeEach(() => {
     MockedGetCoursesByCategory.mockImplementation(() =>
-      Promise.resolve(MOCKED_COURSES),
+      Promise.resolve(MOCKED_COURSE_FEEDS),
     );
 
     MockedGetCoursesCategories.mockImplementation(() =>
@@ -89,7 +73,7 @@ describe("<CourseList />", () => {
 
     expect(MockedCourseCards).toHaveBeenCalledWith(
       {
-        courses: MOCKED_COURSES,
+        courses: MOCKED_COURSE_FEEDS,
       } satisfies CourseCardsProps,
       undefined,
     );
@@ -99,7 +83,7 @@ describe("<CourseList />", () => {
     const MOCKED_CATEGORY = "example";
 
     MockedGetCoursesByCategory.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_COURSES[1]]),
+      Promise.resolve([MOCKED_COURSE_FEEDS[1]]),
     );
 
     const Stub = createRoutesStub([
@@ -138,7 +122,7 @@ describe("<CourseList />", () => {
 
     expect(MockedCourseCards).toHaveBeenCalledWith(
       {
-        courses: [MOCKED_COURSES[1]],
+        courses: [MOCKED_COURSE_FEEDS[1]],
       } satisfies CourseCardsProps,
       undefined,
     );

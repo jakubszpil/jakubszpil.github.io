@@ -4,7 +4,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import ArticleList, { loader } from "../article-list";
 import {
-  type ArticleFeed,
   getArticlesByCategory,
   getArticlesCategories,
 } from "../../data-access/articles";
@@ -13,6 +12,7 @@ import {
   Categories,
   type CategoriesProps,
 } from "../../../shared/ui/categories";
+import { MOCKED_ARTICLE_FEEDS } from "../../test-fixtures";
 
 vi.mock("../../ui/article-cards");
 vi.mock("../../data-access/articles");
@@ -24,28 +24,11 @@ describe("<ArticleList />", () => {
   const MockedGetArticlesByCategory = vi.mocked(getArticlesByCategory);
   const MockedGetArticlesCategories = vi.mocked(getArticlesCategories);
 
-  const MOCKED_ARTICLES: ArticleFeed[] = [
-    {
-      slug: "test-example-1",
-      title: "Test title 1",
-      description: "Test description 1",
-      createdAt: "2025-03-17",
-      readingTime: "3 minuty",
-    },
-    {
-      slug: "test-example-2",
-      title: "Test title 2",
-      description: "Test description 2",
-      createdAt: "2025-03-17",
-      readingTime: "3 minuty",
-    },
-  ];
-
   const MOCKED_CATEGORIES: string[] = ["test", "example"];
 
   beforeEach(() => {
     MockedGetArticlesByCategory.mockImplementation(() =>
-      Promise.resolve(MOCKED_ARTICLES),
+      Promise.resolve(MOCKED_ARTICLE_FEEDS),
     );
 
     MockedGetArticlesCategories.mockImplementation(() =>
@@ -89,7 +72,7 @@ describe("<ArticleList />", () => {
 
     expect(MockedArticleCards).toHaveBeenCalledWith(
       {
-        articles: MOCKED_ARTICLES,
+        articles: MOCKED_ARTICLE_FEEDS,
       } satisfies ArticleCardsProps,
       undefined,
     );
@@ -99,7 +82,7 @@ describe("<ArticleList />", () => {
     const MOCKED_CATEGORY = "example";
 
     MockedGetArticlesByCategory.mockImplementationOnce(() =>
-      Promise.resolve([MOCKED_ARTICLES[1]]),
+      Promise.resolve([MOCKED_ARTICLE_FEEDS[1]]),
     );
 
     const Stub = createRoutesStub([
@@ -138,7 +121,7 @@ describe("<ArticleList />", () => {
 
     expect(MockedArticleCards).toHaveBeenCalledWith(
       {
-        articles: [MOCKED_ARTICLES[1]],
+        articles: [MOCKED_ARTICLE_FEEDS[1]],
       } satisfies ArticleCardsProps,
       undefined,
     );
