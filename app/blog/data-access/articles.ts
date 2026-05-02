@@ -56,7 +56,7 @@ async function parseArticle(slug: string, file: string): Promise<Article> {
 }
 
 async function getAllArticles(): Promise<Article[]> {
-  const directory = join(process.cwd(), "app/content/articles");
+  const directory = join(process.cwd(), "content/articles");
 
   const files = await readdir(directory);
 

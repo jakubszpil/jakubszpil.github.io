@@ -10,7 +10,7 @@ export function EditResource({ slug, resourceType }: EditResourceProps) {
   return (
     <Button asChild variant="link" size="sm" className="cursor-pointer">
       <a
-        href={`https://github.com/jakubszpil/jakubszpil.github.io/edit/main/app/content/${resourceType}/${slug}.md`}
+        href={`https://github.com/jakubszpil/jakubszpil.github.io/edit/main/content/${resourceType}/${slug}.md`}
         target="_blank"
         rel="noreferrer"
       >

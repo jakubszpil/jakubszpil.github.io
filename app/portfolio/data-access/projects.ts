@@ -55,7 +55,7 @@ async function projectParsingStrategy(
 }
 
 async function getAllProjects(): Promise<Project[]> {
-  const directory = join(process.cwd(), "app/content/projects");
+  const directory = join(process.cwd(), "content/projects");
 
   const files = await readdir(directory);
 

@@ -12,7 +12,7 @@ type Helpers = ReturnType<typeof relative> & {
 
 export function defineRoutes(
   importUrl: string,
-  setup: (helpers: Helpers) => RouteConfigEntry[]
+  setup: (helpers: Helpers) => RouteConfigEntry[],
 ) {
   const __filename = fileURLToPath(importUrl);
   const __dirname = dirname(__filename);
@@ -20,7 +20,7 @@ export function defineRoutes(
   return (...children: RouteConfigEntry[]) => {
     const path = join(
       getAppDirectory(),
-      relativePathResolver(getAppDirectory(), __dirname)
+      relativePathResolver(getAppDirectory(), __dirname),
     );
 
     const helpers = relative(path);

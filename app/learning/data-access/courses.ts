@@ -95,7 +95,7 @@ async function parseCourse(slug: string, file: string): Promise<Course> {
 }
 
 async function getAllCourses(): Promise<Course[]> {
-  const directory = join(process.cwd(), "app/content/courses");
+  const directory = join(process.cwd(), "content/courses");
 
   const files = await readdir(directory);
 
