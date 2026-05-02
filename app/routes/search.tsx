@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
 
 import { ArticleCards } from "~/blog/ui/article-cards";
-import { CourseCards } from "~/components/course-cards";
+import { CourseCards } from "~/learning/ui/course-cards";
 import { ProjectCards } from "~/components/project-cards";
 import { SearchForm } from "~/components/search-form";
 import { getArticles, type ArticleFeed } from "~/lib/articles";

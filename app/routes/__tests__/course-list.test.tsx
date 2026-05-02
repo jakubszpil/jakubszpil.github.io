@@ -8,10 +8,10 @@ import {
   getCoursesByCategory,
   getCoursesCategories,
 } from "~/lib/courses";
-import { CourseCards, type CourseCardsProps } from "~/components/course-cards";
+import { CourseCards, type CourseCardsProps } from "~/learning/ui/course-cards";
 import { Categories, type CategoriesProps } from "~/components/ui/categories";
 
-vi.mock("~/components/course-cards");
+vi.mock("~/learning/ui/course-cards");
 vi.mock("~/components/ui/categories");
 vi.mock("~/lib/courses");
 

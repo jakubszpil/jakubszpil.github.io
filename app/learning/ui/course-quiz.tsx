@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { Course, CourseQuizQuestion } from "../lib/courses";
-import { shuffleArray } from "../lib/array";
-import { Button } from "./ui/button";
-import { cn } from "../lib/utils";
+import { Button } from "../../components/ui/button";
+import type { Course, CourseQuizQuestion } from "../../lib/courses";
+import { shuffleArray } from "../../lib/array";
+import { cn } from "../../lib/utils";
 
 export interface CourseQuizProps {
   quiz: Course["quiz"];

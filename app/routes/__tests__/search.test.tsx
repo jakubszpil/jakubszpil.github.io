@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from "vitest";
 
 import { SearchForm } from "~/components/search-form";
 import { ArticleCards } from "~/blog/ui/article-cards";
-import { CourseCards } from "~/components/course-cards";
+import { CourseCards } from "~/learning/ui/course-cards";
 import { ProjectCards } from "~/components/project-cards";
 import {
   MOCKED_ARTICLE_FEEDS,
@@ -15,7 +15,7 @@ import Search, { type clientLoader } from "../search";
 
 vi.mock("~/components/search-form");
 vi.mock("~/blog/ui/article-cards");
-vi.mock("~/components/course-cards");
+vi.mock("~/learning/ui/course-cards");
 vi.mock("~/components/project-cards");
 
 describe("<Search />", () => {

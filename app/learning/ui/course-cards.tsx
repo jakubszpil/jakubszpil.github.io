@@ -1,7 +1,7 @@
-import type { CourseFeed } from "~/lib/courses";
-import { cn } from "~/lib/utils";
+import type { CourseFeed } from "../../lib/courses";
+import { cn } from "../../lib/utils";
 import { CourseCard } from "./course-card";
-import type { ButtonProps } from "./ui/button";
+import type { ButtonProps } from "../../components/ui/button";
 
 export interface CourseCardsProps {
   courses: CourseFeed[];

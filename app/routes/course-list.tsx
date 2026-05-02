@@ -1,7 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Categories } from "~/components/ui/categories";
-import { CourseCards } from "~/components/course-cards";
+import { CourseCards } from "~/learning/ui/course-cards";
 import { getCoursesCategories, getCoursesByCategory } from "~/lib/courses";
 import { createMetaTags } from "~/lib/meta";
 import { getCapitalizedIndividualName } from "~/lib/string";

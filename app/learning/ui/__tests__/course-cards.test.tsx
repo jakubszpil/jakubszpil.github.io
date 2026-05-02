@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CourseCard, type CourseCardProps } from "../course-card";
 import { CourseCards } from "../course-cards";
-import type { CourseFeed } from "~/lib/courses";
+import type { CourseFeed } from "../../../lib/courses";
 
 vi.mock("../course-card");
 

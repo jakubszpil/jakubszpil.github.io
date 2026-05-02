@@ -6,7 +6,7 @@ import { IconMessage2Question } from "~/components/ui/icons";
 import { Banner } from "~/components/banner";
 import { EditResource } from "~/components/edit-resource";
 import { BreadcrumbWithCategory } from "~/components/breadcrumb-with-category";
-import { CourseQuiz } from "~/components/course-quiz";
+import { CourseQuiz } from "~/learning/ui/course-quiz";
 import { TableOfContents } from "~/components/table-of-contents";
 import { Modal } from "~/components/modal";
 import { getCourse } from "~/lib/courses";
