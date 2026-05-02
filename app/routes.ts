@@ -19,10 +19,6 @@ export default [
       ...prefix("portfolio", definePortfolioRoutes()),
     ),
 
-    route("portfolio", "routes/project-list.tsx"),
-    route("portfolio/technologie/:technology", "routes/project-list.tsx", {
-      id: "project-list-with-technology",
-    }),
     index("routes/home.tsx"),
     route("search", "routes/search.tsx"),
     route("me", "routes/about.tsx"),
