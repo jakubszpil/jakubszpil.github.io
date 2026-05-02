@@ -17,7 +17,7 @@ import { SearchButton } from "./search-button";
 import { ThemeSwitcher } from "./theme-switcher";
 import { Button } from "./ui/button";
 import { IconMenu2, IconX } from "./ui/icons";
-import { cn } from "~/lib/utils";
+import { cn } from "~/shared/utils/utils";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];

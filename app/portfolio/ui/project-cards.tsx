@@ -1,4 +1,4 @@
-import { cn } from "../../lib/utils";
+import { cn } from "../../shared/utils/utils";
 import type { ProjectFeed } from "../data-access/projects";
 import { ProjectCard } from "./project-card";
 import type { ButtonProps } from "../../components//ui/button";

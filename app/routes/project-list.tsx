@@ -2,12 +2,12 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { Categories } from "~/components/ui/categories";
 import { ProjectCards } from "~/portfolio/ui/project-cards";
-import { createMetaTags } from "~/lib/meta";
+import { createMetaTags } from "~/shared/utils/meta";
 import {
   getProjectsTechnologies,
   getProjectsByTechnology,
 } from "~/portfolio/data-access/projects";
-import { getCapitalizedIndividualName } from "~/lib/string";
+import { getCapitalizedIndividualName } from "~/shared/utils/string";
 
 export async function loader({ params: { technology } }: LoaderFunctionArgs) {
   return {

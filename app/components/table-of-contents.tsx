@@ -9,8 +9,8 @@ import {
 } from "react";
 import { createPath, useLocation } from "react-router";
 
-import { TOP_ELEMENT_ID } from "~/lib/config";
-import { cn } from "~/lib/utils";
+import { TOP_ELEMENT_ID } from "~/shared/utils/config";
+import { cn } from "~/shared/utils/utils";
 
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";

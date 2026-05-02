@@ -5,9 +5,9 @@ import {
   getReadingTimeLabel,
   processContent,
   processFile,
-} from "../../lib/content";
-import { sortByCreationDate } from "../../lib/date";
-import { cachePromise } from "../../lib/promises";
+} from "../../shared/utils/content";
+import { sortByCreationDate } from "../../shared/utils/date";
+import { cachePromise } from "../../shared/utils/promises";
 
 interface ArticleFeed {
   slug: string;

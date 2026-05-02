@@ -10,8 +10,8 @@ import { CourseQuiz } from "~/learning/ui/course-quiz";
 import { TableOfContents } from "~/components/table-of-contents";
 import { Modal } from "~/components/modal";
 import { getCourse } from "~/learning/data-access/courses";
-import { createMetaTags } from "~/lib/meta";
-import { notFound } from "~/lib/navigation";
+import { createMetaTags } from "~/shared/utils/meta";
+import { notFound } from "~/shared/utils/navigation";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const course = await getCourse(slug);

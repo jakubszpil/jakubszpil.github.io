@@ -1,5 +1,5 @@
 import { CreationDate } from "./ui/creation-date";
-import { cn } from "~/lib/utils";
+import { cn } from "~/shared/utils/utils";
 
 export interface BannerProps {
   readingTime: string;

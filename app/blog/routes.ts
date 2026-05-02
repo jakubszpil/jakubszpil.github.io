@@ -1,3 +1,3 @@
-import { defineRoutes } from "../lib/routing";
+import { defineRoutes } from "../shared/utils/routing";
 
 export default defineRoutes(import.meta.url, () => []);

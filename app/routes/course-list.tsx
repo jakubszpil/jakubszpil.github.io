@@ -6,8 +6,8 @@ import {
   getCoursesCategories,
   getCoursesByCategory,
 } from "~/learning/data-access/courses";
-import { createMetaTags } from "~/lib/meta";
-import { getCapitalizedIndividualName } from "~/lib/string";
+import { createMetaTags } from "~/shared/utils/meta";
+import { getCapitalizedIndividualName } from "~/shared/utils/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {

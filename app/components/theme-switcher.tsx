@@ -13,7 +13,7 @@ import {
   IconSunMoon,
 } from "./ui/icons";
 import { useTheme } from "~/hooks/use-theme";
-import { performThemeChange, Theme } from "~/lib/theme";
+import { performThemeChange, Theme } from "~/core/utils/theme";
 
 export function ThemeSwitcher() {
   const { setTheme } = useTheme();

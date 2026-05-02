@@ -5,7 +5,7 @@ import {
   type ComponentRef,
 } from "react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/shared/utils/utils";
 
 interface TableOfContentsListProps extends ComponentPropsWithoutRef<"ul"> {
   indent?: boolean;

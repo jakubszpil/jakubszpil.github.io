@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi, beforeEach, afterEach } from "vitest";
 
-import { getDifferenceInYears } from "~/lib/date";
+import { getDifferenceInYears } from "~/shared/utils/date";
 import { Socials } from "~/components/socials";
 import About from "../about";
 

@@ -4,7 +4,7 @@ import { Form, useLocation, type Location } from "react-router";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { IconSearch } from "./ui/icons";
-import { queryParamName } from "~/lib/search";
+import { queryParamName } from "~/core/utils/search";
 import type { ArticleFeed } from "~/blog/data-access/articles";
 import type { CourseFeed } from "~/learning/data-access/courses";
 import type { ProjectFeed } from "~/portfolio/data-access/projects";

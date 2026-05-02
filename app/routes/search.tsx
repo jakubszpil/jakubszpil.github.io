@@ -7,7 +7,7 @@ import { ProjectCards } from "~/portfolio/ui/project-cards";
 import { SearchForm } from "~/components/search-form";
 import { getArticles, type ArticleFeed } from "~/blog/data-access/articles";
 import { getCourses, type CourseFeed } from "~/learning/data-access/courses";
-import { createMetaTags } from "~/lib/meta";
+import { createMetaTags } from "~/shared/utils/meta";
 import {
   getProjects,
   type ProjectFeed,
@@ -16,7 +16,7 @@ import {
   getSearchResults,
   getSearchResultsLength,
   validateSearhQuery,
-} from "~/lib/search";
+} from "~/core/utils/search";
 
 export async function loader() {
   const articles = await getArticles();
