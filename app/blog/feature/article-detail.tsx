@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Banner } from "~/shared/ui/banner";
-import { EditResource } from "~/shared/ui/edit-resource";
-import { BreadcrumbWithCategory } from "~/shared/ui/breadcrumb-with-category";
-import { TableOfContents } from "~/shared/ui/table-of-contents";
-import { getArticle } from "~/blog/data-access/articles";
-import { notFound } from "~/shared/utils/navigation";
-import { createMetaTags } from "~/shared/utils/meta";
+import { Banner } from "../../shared/ui/banner";
+import { EditResource } from "../../shared/ui/edit-resource";
+import { BreadcrumbWithCategory } from "../../shared/ui/breadcrumb-with-category";
+import { TableOfContents } from "../../shared/ui/table-of-contents";
+import { getArticle } from "../../blog/data-access/articles";
+import { notFound } from "../../shared/utils/navigation";
+import { createMetaTags } from "../../shared/utils/meta";
 
 export async function loader({ params: { slug } }: LoaderFunctionArgs) {
   const article = await getArticle(slug);

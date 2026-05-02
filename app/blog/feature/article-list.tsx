@@ -1,13 +1,13 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-import { Categories } from "~/shared/ui/categories";
-import { ArticleCards } from "~/blog/ui/article-cards";
+import { ArticleCards } from "../ui/article-cards";
 import {
   getArticlesCategories,
   getArticlesByCategory,
-} from "~/blog/data-access/articles";
-import { createMetaTags } from "~/shared/utils/meta";
-import { getCapitalizedIndividualName } from "~/shared/utils/string";
+} from "../data-access/articles";
+import { Categories } from "../../shared/ui/categories";
+import { createMetaTags } from "../../shared/utils/meta";
+import { getCapitalizedIndividualName } from "../../shared/utils/string";
 
 export async function loader({ params: { category } }: LoaderFunctionArgs) {
   return {
