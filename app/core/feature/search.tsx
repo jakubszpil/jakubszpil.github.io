@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
 
-import { SearchForm } from "../ui/search-form";
 import {
   getSearchResults,
   getSearchResultsLength,
   validateSearhQuery,
-} from "../utils/search";
+} from "../data-access/search";
+import { SearchForm } from "../ui/search-form";
 import { ArticleCards } from "../../blog/ui/article-cards";
 import { CourseCards } from "../../learning/ui/course-cards";
 import { ProjectCards } from "../../portfolio/ui/project-cards";

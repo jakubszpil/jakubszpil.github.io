@@ -1,5 +1,9 @@
 export const HYBRID_SSG_ENABLED = Boolean(import.meta.env.HYBRID_SSG);
 
+export const ORIGIN = import.meta.env.PROD
+  ? "https://jakubszpil.github.io"
+  : "http://localhost:5173";
+
 export const SOCIALS = [
   {
     href: "https://www.linkedin.com/in/jakubszpil/",
