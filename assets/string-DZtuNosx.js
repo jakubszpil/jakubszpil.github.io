@@ -1,0 +1,1 @@
+import{s as e}from"./date-7OyDfssv.js";var t=e=>e.toLowerCase().split(` `).map(e=>`${e.slice(0,1).toUpperCase()}${e.slice(1)}`).join(` `),n=e=>e.replaceAll(`-`,` `),r=t=>{let n=t?.toLowerCase();return n&&n in e?e[n]:t},i=e=>r(t(n(e)));export{i as t};
