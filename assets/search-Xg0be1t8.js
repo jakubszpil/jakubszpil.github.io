@@ -1,0 +1,1 @@
+import{t as e}from"./search-BMTOzz4P.js";export{e as clientLoader};
