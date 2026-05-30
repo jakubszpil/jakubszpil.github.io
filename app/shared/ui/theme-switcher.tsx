@@ -1,17 +1,17 @@
-import { Button } from "../../shared/ui/button";
+import { Button } from "./button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "../../shared/ui/dropdown-menu";
+} from "./dropdown-menu";
 import {
   IconDeviceDesktop,
   IconMoonStars,
   IconSun,
   IconSunMoon,
-} from "../../shared/ui/icons";
+} from "./icons";
 import { useTheme } from "../data-access/use-theme";
 import { performThemeChange, Theme } from "../utils/theme";
 

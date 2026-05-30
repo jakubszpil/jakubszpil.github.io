@@ -14,7 +14,7 @@ import { BusyIndicator } from "./busy-indicator";
 import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
 import { Socials } from "./socials";
 import { SearchButton } from "./search-button";
-import { ThemeSwitcher } from "./theme-switcher";
+import { ThemeSwitcher } from "../../shared/ui/theme-switcher";
 import { Button } from "../../shared/ui/button";
 import { IconMenu2, IconX } from "../../shared/ui/icons";
 import { cn } from "../../shared/utils/helpers";
