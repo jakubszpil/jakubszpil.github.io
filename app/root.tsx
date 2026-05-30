@@ -8,6 +8,7 @@ import {
 } from "./core/utils/scroll-restoration";
 import { InlineScript } from "./core/ui/inline-script";
 import { PreloadedScript } from "./core/ui/preloaded-script";
+import { TooltipProvider } from "./shared/ui/tooltip";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -53,7 +54,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
         <ScrollRestoration
           getKey={getScrollRestorationKey}
           storageKey={getScrollRestorationStorageKey()}

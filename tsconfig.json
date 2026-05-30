@@ -19,6 +19,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "paths": {}
+    "paths": {
+      // "~/*": ["./app/*"]
+    }
   }
 }
