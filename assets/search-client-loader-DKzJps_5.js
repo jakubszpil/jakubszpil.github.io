@@ -1,0 +1,1 @@
+async function e({serverLoader:e}){return e()}export{e as clientLoader};

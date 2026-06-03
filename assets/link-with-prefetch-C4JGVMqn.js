@@ -1,0 +1,1 @@
+import{i as e}from"./chunk-QUQL4437-BYFpnalZ.js";import{t}from"./jsx-runtime-Blz5Xj2L.js";var n=t();function r(t){return(0,n.jsx)(e,{...t,prefetch:`viewport`})}export{r as t};
