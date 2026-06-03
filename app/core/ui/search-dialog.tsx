@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useFetcher, useNavigate } from "react-router";
 
 import type { loader } from "../feature/search";
-import type { ArticleFeed } from "../../blog/data-access/articles";
-import type { CourseFeed } from "../../learning/data-access/courses";
+import type { SearchEntry } from "../data-access/search";
 import { Button } from "../../shared/ui/button";
 import {
   Command,
@@ -18,23 +17,20 @@ import {
 import { IconSearch } from "../../shared/ui/icons";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 
-type SearchData = Awaited<ReturnType<typeof loader>>;
-
 export function SearchDialog() {
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState<SearchData | null>(null);
+
+  const fetcher = useFetcher<typeof loader>();
 
   const navigate = useNavigate();
 
   const handleOpenClose = useCallback(async () => {
-    if (!data) {
-      const response = await fetch("/search.json");
-      const results = await response.json();
-      setData(results);
+    if (!fetcher.data) {
+      await fetcher.load("/search.json");
     }
 
     setOpen((prev) => !prev);
-  }, [data]);
+  }, [fetcher]);
 
   const handleNavigate = useCallback(
     async (href: string) => {
@@ -45,40 +41,23 @@ export function SearchDialog() {
   );
 
   const renderItemWithSlug = useCallback(
-    (params: { title: string; href: string }) => {
+    (entry: SearchEntry) => {
       return (
         <CommandItem
-          key={params.href}
-          onSelect={() => handleNavigate(params.href)}
+          key={entry.href}
+          onSelect={() => handleNavigate(entry.href)}
           asChild
         >
-          <LinkWithPrefetch to={params.href}>{params.title}</LinkWithPrefetch>
+          <LinkWithPrefetch to={entry.href}>{entry.title}</LinkWithPrefetch>
         </CommandItem>
       );
     },
     [handleNavigate],
   );
 
-  const renderArticles = useCallback(
-    (articles: ArticleFeed[]) => {
-      return articles.map((article) =>
-        renderItemWithSlug({
-          href: `/blog/${article.slug}`,
-          title: article.title,
-        }),
-      );
-    },
-    [renderItemWithSlug],
-  );
-
-  const renderCourses = useCallback(
-    (courses: CourseFeed[]) => {
-      return courses.map((course) =>
-        renderItemWithSlug({
-          href: `/learning/${course.slug}`,
-          title: course.title,
-        }),
-      );
+  const renderEntries = useCallback(
+    (entries: SearchEntry[]) => {
+      return entries.map((entry) => renderItemWithSlug(entry));
     },
     [renderItemWithSlug],
   );
@@ -120,8 +99,8 @@ export function SearchDialog() {
         <Command>
           <CommandInput placeholder="Szukaj..." />
 
-          {data && (
-            <CommandList className="max-h-full sm:max-h-75">
+          {fetcher.data && (
+            <CommandList>
               <CommandEmpty>Brak rezultatów.</CommandEmpty>
 
               <CommandGroup heading="Nawigacja">
@@ -150,13 +129,13 @@ export function SearchDialog() {
               <CommandSeparator />
 
               <CommandGroup heading="Artykuły">
-                {renderArticles(data.articles)}
+                {renderEntries(fetcher.data.articles)}
               </CommandGroup>
 
               <CommandSeparator />
 
               <CommandGroup heading="Kursy">
-                {renderCourses(data.courses)}
+                {renderEntries(fetcher.data.courses)}
               </CommandGroup>
             </CommandList>
           )}
