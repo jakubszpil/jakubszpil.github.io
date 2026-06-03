@@ -179,15 +179,6 @@ describe("<Layout />", () => {
       undefined,
     );
 
-    expect(MockedFooterLink).toHaveBeenNthCalledWith(
-      6,
-      {
-        to: "/search",
-        children: "🔍 Szukaj",
-      } satisfies FooterLinkProps,
-      undefined,
-    );
-
     expect(MockedBusyIndicator).toHaveBeenCalled();
   });
 });

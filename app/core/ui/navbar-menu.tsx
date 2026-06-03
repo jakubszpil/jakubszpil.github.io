@@ -13,7 +13,7 @@ import {
 import { BusyIndicator } from "./busy-indicator";
 import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
 import { Socials } from "./socials";
-import { SearchButton } from "./search-button";
+import { SearchDialog } from "./search-dialog";
 import { ThemeSwitcher } from "./theme-switcher";
 import { Button } from "../../shared/ui/button";
 import { IconMenu2, IconX } from "../../shared/ui/icons";
@@ -74,7 +74,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
       <div className="flex flex-1 justify-end items-center sm:gap-1">
         <nav className="hidden items-center lg:flex">{children}</nav>
 
-        <SearchButton />
+        <SearchDialog />
 
         <div className="hidden xs:flex items-center sm:gap-1">
           <Socials hideLabels={true} />

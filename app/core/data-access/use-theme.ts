@@ -15,14 +15,13 @@ import { useHydrated } from "../../shared/data-access/use-hydrated";
 export function useTheme() {
   const hydrated = useHydrated();
 
-  const initialTheme = useMemo(() => {
-    if (hydrated) return getTheme();
-    return null;
-  }, [hydrated]);
-
-  const [theme, setTheme] = useState<Theme | null>(initialTheme);
+  const [theme, setTheme] = useState<Theme | null>(null);
 
   const resolvedTheme = useMemo(() => getResolvedTheme(theme), [theme]);
+
+  useEffect(() => {
+    if (hydrated) setTheme(getTheme());
+  }, [hydrated]);
 
   useEffect(() => {
     if (theme) setLocalStorageTheme(theme);
