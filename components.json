@@ -13,11 +13,11 @@
   "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
-    "components": "~/components",
-    "utils": "~/lib/utils",
-    "ui": "~/components/ui",
-    "lib": "~/lib",
-    "hooks": "~/hooks"
+    "components": "~/shared",
+    "utils": "~/shared/utils/helpers",
+    "ui": "~/shared/ui",
+    "lib": "~/shared/utils",
+    "hooks": "~/shared/data-access"
   },
   "registries": {}
 }

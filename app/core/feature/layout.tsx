@@ -46,7 +46,6 @@ export default function Layout() {
         <FooterLink to="/learning">🏫 Learning</FooterLink>
         <FooterLink to="/portfolio">🛠️ Portfolio</FooterLink>
         <FooterLink to="/me">🙋‍♂️ O mnie</FooterLink>
-        <FooterLink to="/search">🔍 Szukaj</FooterLink>
       </Footer>
     </>
   );
