@@ -110,7 +110,11 @@ export function SearchDialog() {
         <IconSearch className="size-6" />
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        className="top-18 translate-y-0 h-auto flex flex-col max-h-[calc(100dvh-(var(--spacing)*24))]"
+      >
         <Command>
           <CommandInput placeholder="Szukaj..." />
 
