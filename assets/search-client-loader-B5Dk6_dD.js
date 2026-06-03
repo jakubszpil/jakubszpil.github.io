@@ -1,0 +1,1 @@
+async function e({serverLoader:e}){return e()}e.hydrate=!0;export{e as clientLoader};
