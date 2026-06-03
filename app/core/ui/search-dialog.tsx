@@ -1,4 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
+import type { loader } from "../feature/search";
+import type { ArticleFeed } from "../../blog/data-access/articles";
+import type { CourseFeed } from "../../learning/data-access/courses";
 import { Button } from "../../shared/ui/button";
 import {
   Command,
@@ -11,25 +16,25 @@ import {
   CommandSeparator,
 } from "../../shared/ui/command";
 import { IconSearch } from "../../shared/ui/icons";
-import { useFetcher, useNavigate } from "react-router";
-import type { clientLoader } from "../feature/search";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
-import type { ArticleFeed } from "../../blog/data-access/articles";
-import type { CourseFeed } from "../../learning/data-access/courses";
+
+type SearchData = Awaited<ReturnType<typeof loader>>;
 
 export function SearchDialog() {
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState<SearchData | null>(null);
 
   const navigate = useNavigate();
-  const fetcher = useFetcher<typeof clientLoader>();
 
   const handleOpenClose = useCallback(async () => {
-    if (!fetcher.data) {
-      await fetcher.load("/search");
+    if (!data) {
+      const response = await fetch("/search.json");
+      const results = await response.json();
+      setData(results);
     }
 
     setOpen((prev) => !prev);
-  }, [fetcher]);
+  }, [data]);
 
   const handleNavigate = useCallback(
     async (href: string) => {
@@ -40,11 +45,10 @@ export function SearchDialog() {
   );
 
   const renderItemWithSlug = useCallback(
-    (params: { title: string; slug?: string; href: string }) => {
+    (params: { title: string; href: string }) => {
       return (
         <CommandItem
-          key={params.slug}
-          value={params.slug}
+          key={params.href}
           onSelect={() => handleNavigate(params.href)}
           asChild
         >
@@ -60,7 +64,6 @@ export function SearchDialog() {
       return articles.map((article) =>
         renderItemWithSlug({
           href: `/blog/${article.slug}`,
-          slug: article.slug,
           title: article.title,
         }),
       );
@@ -73,7 +76,6 @@ export function SearchDialog() {
       return courses.map((course) =>
         renderItemWithSlug({
           href: `/learning/${course.slug}`,
-          slug: course.slug,
           title: course.title,
         }),
       );
@@ -118,8 +120,8 @@ export function SearchDialog() {
         <Command>
           <CommandInput placeholder="Szukaj..." />
 
-          {fetcher.data && (
-            <CommandList>
+          {data && (
+            <CommandList className="max-h-full sm:max-h-75">
               <CommandEmpty>Brak rezultatów.</CommandEmpty>
 
               <CommandGroup heading="Nawigacja">
@@ -148,13 +150,13 @@ export function SearchDialog() {
               <CommandSeparator />
 
               <CommandGroup heading="Artykuły">
-                {renderArticles(fetcher.data.articles)}
+                {renderArticles(data.articles)}
               </CommandGroup>
 
               <CommandSeparator />
 
               <CommandGroup heading="Kursy">
-                {renderCourses(fetcher.data.courses)}
+                {renderCourses(data.courses)}
               </CommandGroup>
             </CommandList>
           )}

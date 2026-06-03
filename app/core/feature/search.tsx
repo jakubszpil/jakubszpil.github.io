@@ -16,3 +16,5 @@ export async function loader() {
 export async function clientLoader({ serverLoader }: ClientLoaderFunctionArgs) {
   return serverLoader<typeof loader>();
 }
+
+clientLoader.hydrate = true;

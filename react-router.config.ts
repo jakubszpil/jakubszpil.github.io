@@ -1,6 +1,6 @@
 import type { Config } from "@react-router/dev/config";
 import { join } from "node:path";
-import { readdir, readFile, rename, writeFile } from "node:fs/promises";
+import { readdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { minify } from "uglify-js";
 
 import {
@@ -29,6 +29,10 @@ export default {
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
+
+    // TODO: remove it when .data files will be not created within api routes (json, csv, ...etc)
+    await rm(join(__clientDirname, "search.json.data"));
+
     const files = await readdir(__clientDirname, { recursive: true });
 
     for (const file of files) {
