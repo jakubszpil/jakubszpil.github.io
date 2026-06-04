@@ -12,6 +12,7 @@ import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 import { usePrerender } from "../../shared/data-access/use-prerender";
 import { isRouteErrorResponse } from "../../shared/utils/errors";
 import { TOP_ELEMENT_ID } from "../../shared/utils/config";
+import { Search } from "./search";
 
 export default function Layout() {
   const prerender = usePrerender();
@@ -29,7 +30,7 @@ export default function Layout() {
           jakubszpil
         </NavbarLink>
         <BusyIndicator />
-        <NavbarMenu>
+        <NavbarMenu search={<Search />}>
           <NavbarLink to="/">🏠 Strona główna</NavbarLink>
           <NavbarLink to="/blog">📝 Blog</NavbarLink>
           <NavbarLink to="/learning">🏫 Learning</NavbarLink>

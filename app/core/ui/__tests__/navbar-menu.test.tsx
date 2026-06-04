@@ -4,11 +4,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 import { NavbarMenu } from "../navbar-menu";
 import { NavbarLink } from "../navbar-link";
-import { SearchDialog } from "../search-dialog";
 import { ThemeSwitcher } from "../theme-switcher";
 
 vi.mock("../../../shared/ui/link-with-prefetch");
-vi.mock("../search-dialog");
 vi.mock("../theme-switcher");
 vi.mock("react-router", async (importOriginal) => {
   const actual = await importOriginal<typeof import("react-router")>();
@@ -20,7 +18,6 @@ vi.mock("react-router", async (importOriginal) => {
 
 describe("<NavbarMenu />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
-  const MockedSearchDialog = vi.mocked(SearchDialog);
   const MockedThemeSwitcher = vi.mocked(ThemeSwitcher);
 
   beforeEach(() => {
@@ -30,30 +27,27 @@ describe("<NavbarMenu />", () => {
       </a>
     ));
 
-    MockedSearchDialog.mockImplementation(() => <div>SearchDialog</div>);
-
     MockedThemeSwitcher.mockImplementation(() => <div>ThemeSwitcher</div>);
   });
 
   afterEach(() => {
     MockedLinkWithPrefetch.mockRestore();
-    MockedSearchDialog.mockRestore();
     MockedThemeSwitcher.mockRestore();
   });
 
   test("should render", async () => {
     render(
-      <NavbarMenu>
+      <NavbarMenu search={<>Search</>}>
         <NavbarLink to="/about">About</NavbarLink>
-        <NavbarLink to="/search">Search</NavbarLink>
+        <NavbarLink to="/blog">Blog</NavbarLink>
       </NavbarMenu>,
     );
 
-    await screen.findAllByText(/About/);
+    await screen.findByText(/About/);
 
-    await screen.findAllByText(/Search/);
+    await screen.findByText(/Blog/);
 
-    expect(MockedSearchDialog).toHaveBeenCalled();
+    await screen.findByText(/Search/);
 
     expect(MockedThemeSwitcher).toHaveBeenCalled();
   });

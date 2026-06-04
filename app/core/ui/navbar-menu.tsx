@@ -8,12 +8,12 @@ import {
   useState,
   type MouseEventHandler,
   type ReactElement,
+  type ReactNode,
 } from "react";
 
 import { BusyIndicator } from "./busy-indicator";
 import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
 import { Socials } from "./socials";
-import { SearchDialog } from "./search-dialog";
 import { ThemeSwitcher } from "./theme-switcher";
 import { Button } from "../../shared/ui/button";
 import { IconMenu2, IconX } from "../../shared/ui/icons";
@@ -21,9 +21,10 @@ import { cn } from "../../shared/utils/helpers";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
+  search: ReactNode;
 }
 
-export function NavbarMenu({ children }: NavbarMenuProps) {
+export function NavbarMenu({ children, search }: NavbarMenuProps) {
   const [show, setShow] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ export function NavbarMenu({ children }: NavbarMenuProps) {
       <div className="flex flex-1 justify-end items-center sm:gap-1">
         <nav className="hidden items-center lg:flex">{children}</nav>
 
-        <SearchDialog />
+        {search}
 
         <div className="hidden xs:flex items-center sm:gap-1">
           <Socials hideLabels={true} />
