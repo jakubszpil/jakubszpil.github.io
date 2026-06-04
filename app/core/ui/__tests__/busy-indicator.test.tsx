@@ -24,6 +24,8 @@ describe("<BusyIndicator />", () => {
     location: undefined,
     state: "idle",
     text: undefined,
+    historyAction: undefined,
+    matches: undefined,
   };
 
   beforeEach(() => {
@@ -60,7 +62,7 @@ describe("<BusyIndicator />", () => {
           search: "",
           state: {},
         },
-      } satisfies Navigation;
+      };
     });
 
     render(<BusyIndicator />);
