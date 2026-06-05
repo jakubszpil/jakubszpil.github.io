@@ -1,7 +1,6 @@
 import { Transition } from "@headlessui/react";
+import { LoaderIcon } from "lucide-react";
 import { useNavigation } from "react-router";
-
-import { IconLoader } from "../../shared/ui/icons";
 
 export function BusyIndicator() {
   const navigation = useNavigation();
@@ -19,7 +18,7 @@ export function BusyIndicator() {
       enterFrom="opacity-0"
       enterTo="opacity-100"
     >
-      <IconLoader className="animate-spin" data-testid="spinner" />
+      <LoaderIcon className="animate-spin" data-testid="spinner" />
     </Transition>
   );
 }

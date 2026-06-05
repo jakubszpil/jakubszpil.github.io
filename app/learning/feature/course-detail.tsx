@@ -1,10 +1,10 @@
+import { MessageCircleQuestionMarkIcon } from "lucide-react";
 import { useRef } from "react";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 import { CourseQuiz } from "../ui/course-quiz";
 import { getCourse } from "../data-access/courses";
 import { Button } from "../../shared/ui/button";
-import { IconMessage2Question } from "../../shared/ui/icons";
 import { Banner } from "../../shared/ui/banner";
 import { EditResource } from "../../shared/ui/edit-resource";
 import { BreadcrumbWithCategory } from "../../shared/ui/breadcrumb-with-category";
@@ -43,7 +43,7 @@ export default function CourseDetail() {
             <Modal
               trigger={
                 <Button size="sm" variant="link" className="cursor-pointer">
-                  <IconMessage2Question /> Quiz
+                  <MessageCircleQuestionMarkIcon /> Quiz
                 </Button>
               }
               title={course.quiz.title}

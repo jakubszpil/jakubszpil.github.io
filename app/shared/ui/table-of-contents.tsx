@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -19,7 +20,6 @@ import {
   TableOfContentsList,
 } from "./toc";
 import { ScrollArea } from "./scroll-area";
-import { IconChevronRight } from "./icons";
 
 export interface TableOfContentsProps {
   ref: RefObject<HTMLElement | null>;
@@ -158,7 +158,7 @@ export function TableOfContents({
             variant="link"
             className="cursor-pointer"
           >
-            <IconChevronRight
+            <ChevronRightIcon
               className={cn(
                 "transition-transform duration-100",
                 show && "rotate-90",
