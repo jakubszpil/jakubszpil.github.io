@@ -1,3 +1,10 @@
+import {
+  MonitorSmartphoneIcon,
+  MoonStarIcon,
+  SunIcon,
+  SunMoonIcon,
+} from "lucide-react";
+
 import { Button } from "./button";
 import {
   DropdownMenu,
@@ -6,12 +13,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import {
-  IconDeviceDesktop,
-  IconMoonStars,
-  IconSun,
-  IconSunMoon,
-} from "./icons";
 import { useTheme } from "../data-access/use-theme";
 import { performThemeChange, Theme } from "../utils/theme";
 
@@ -30,7 +31,7 @@ export function ThemeSwitcher() {
           variant="ghost"
           className="cursor-pointer"
         >
-          <IconSunMoon className="size-6" />
+          <SunMoonIcon className="size-6" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -39,19 +40,19 @@ export function ThemeSwitcher() {
           className="cursor-pointer"
           onClick={() => handleThemeChange(Theme.LIGHT)}
         >
-          <IconSun className="size-6 mr-2" /> Jasny
+          <SunIcon className="size-6 mr-2" /> Jasny
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
           onClick={() => handleThemeChange(Theme.DARK)}
         >
-          <IconMoonStars className="size-6 mr-2" /> Ciemny
+          <MoonStarIcon className="size-6 mr-2" /> Ciemny
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer"
           onClick={() => handleThemeChange(Theme.SYSTEM)}
         >
-          <IconDeviceDesktop className="size-6 mr-2" /> System
+          <MonitorSmartphoneIcon className="size-6 mr-2" /> System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

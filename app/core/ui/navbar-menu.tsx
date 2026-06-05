@@ -1,4 +1,5 @@
 import { Transition } from "@headlessui/react";
+import { MenuIcon, XIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import {
   startTransition,
@@ -16,7 +17,6 @@ import { NavbarLink, type NavbarLinkProps } from "./navbar-link";
 import { Socials } from "./socials";
 import { ThemeSwitcher } from "../../shared/ui/theme-switcher";
 import { Button } from "../../shared/ui/button";
-import { IconMenu2, IconX } from "../../shared/ui/icons";
 import { cn } from "../../shared/utils/helpers";
 
 export interface NavbarMenuProps {
@@ -98,9 +98,9 @@ export function NavbarMenu({ children, search }: NavbarMenuProps) {
             {show ? "Zamknij menu" : "Otwórz menu"}
           </span>
           {show ? (
-            <IconX className="text-white! size-6" />
+            <XIcon className="text-white! size-6" />
           ) : (
-            <IconMenu2 className="size-6 text-black! dark:text-white!" />
+            <MenuIcon className="size-6 text-black! dark:text-white!" />
           )}
         </Button>
       </div>

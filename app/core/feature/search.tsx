@@ -1,3 +1,4 @@
+import { SearchIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import {
   useFetcher,
@@ -19,7 +20,6 @@ import {
 } from "../../shared/ui/command";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 import { Button } from "../../shared/ui/button";
-import { IconSearch } from "../../shared/ui/icons";
 
 export async function loader() {
   const articles = await getArticles();
@@ -114,7 +114,7 @@ export function Search() {
         title="Szukaj (CTRL+K)"
       >
         <span className="sr-only">Szukaj</span>
-        <IconSearch className="size-6" />
+        <SearchIcon className="size-6" />
       </Button>
 
       <CommandDialog

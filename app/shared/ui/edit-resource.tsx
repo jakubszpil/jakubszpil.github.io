@@ -1,5 +1,6 @@
+import { FilePenLineIcon } from "lucide-react";
+
 import { Button } from "./button";
-import { IconEdit } from "./icons";
 
 export interface EditResourceProps {
   slug: string;
@@ -14,7 +15,7 @@ export function EditResource({ slug, resourceType }: EditResourceProps) {
         target="_blank"
         rel="noreferrer"
       >
-        <IconEdit /> Edytuj
+        <FilePenLineIcon /> Edytuj
       </a>
     </Button>
   );

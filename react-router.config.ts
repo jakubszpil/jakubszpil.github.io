@@ -29,6 +29,7 @@ export default {
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
+
     const files = await readdir(__clientDirname, { recursive: true });
 
     for (const file of files) {
