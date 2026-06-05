@@ -1,155 +1,172 @@
-import { useCallback } from "react";
-import { useLoaderData, type ClientLoaderFunctionArgs } from "react-router";
+import { useCallback, useEffect, useState } from "react";
+import {
+  useFetcher,
+  useNavigate,
+  type ClientLoaderFunctionArgs,
+} from "react-router";
 
+import { getArticles } from "../../blog/data-access/articles";
+import { getCourses } from "../../learning/data-access/courses";
 import {
-  getSearchResults,
-  getSearchResultsLength,
-  validateSearhQuery,
-} from "../data-access/search";
-import { SearchForm } from "../ui/search-form";
-import { ArticleCards } from "../../blog/ui/article-cards";
-import { CourseCards } from "../../learning/ui/course-cards";
-import { ProjectCards } from "../../portfolio/ui/project-cards";
-import { getArticles, type ArticleFeed } from "../../blog/data-access/articles";
-import {
-  getCourses,
-  type CourseFeed,
-} from "../../learning/data-access/courses";
-import { createMetaTags } from "../../shared/utils/meta";
-import {
-  getProjects,
-  type ProjectFeed,
-} from "../../portfolio/data-access/projects";
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "../../shared/ui/command";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
+import { Button } from "../../shared/ui/button";
+import { IconSearch } from "../../shared/ui/icons";
 
 export async function loader() {
   const articles = await getArticles();
   const courses = await getCourses();
-  const projects = await getProjects();
-  return { articles, courses, projects };
-}
-
-export async function clientLoader({
-  request,
-  serverLoader,
-}: ClientLoaderFunctionArgs) {
-  const initialResults = await serverLoader<typeof loader>();
-
-  const query = validateSearhQuery(request.url);
-  const results = getSearchResults(initialResults, query);
-  const count = getSearchResultsLength(results);
 
   return {
-    results,
-    initialResults,
-    query,
-    count,
+    articles: articles.map((article) => ({
+      href: `/blog/${article.slug}`,
+      title: article.title,
+    })),
+    courses: courses.map((course) => ({
+      href: `/learning/${course.slug}`,
+      title: course.title,
+    })),
   };
+}
+
+export async function clientLoader({ serverLoader }: ClientLoaderFunctionArgs) {
+  return serverLoader<typeof loader>();
 }
 
 clientLoader.hydrate = true;
 
-export const meta = createMetaTags<typeof clientLoader>(({ loaderData }) => ({
-  title: loaderData?.query
-    ? `(${loaderData.count}) Rezultaty wyszukiwania dla ${loaderData.query}`
-    : "Szukaj",
-}));
+export function Search() {
+  const [open, setOpen] = useState(false);
 
-export default function Search() {
-  const { query, results, initialResults, count } =
-    useLoaderData<typeof clientLoader>();
+  const fetcher = useFetcher<typeof loader>();
 
-  const renderArticles = useCallback((articles: ArticleFeed[]) => {
-    if (!articles.length) {
-      return null;
+  const navigate = useNavigate();
+
+  const handleOpenClose = useCallback(async () => {
+    if (!fetcher.data) {
+      await fetcher.load("/search.json");
     }
 
-    return (
-      <section>
-        <h3>Artykuły ({articles.length})</h3>
-        <ArticleCards className="p-0 grid-cols-subgrid" articles={articles} />
-      </section>
-    );
-  }, []);
+    setOpen((prev) => !prev);
+  }, [fetcher.load, fetcher.data]);
 
-  const renderCourses = useCallback((courses: CourseFeed[]) => {
-    if (!courses.length) {
-      return null;
-    }
+  const handleNavigate = useCallback(
+    async (href: string) => {
+      await navigate(href);
+      setOpen(false);
+    },
+    [navigate],
+  );
 
-    return (
-      <section>
-        <h3>Kursy ({courses.length})</h3>
-        <CourseCards className="p-0 grid-cols-subgrid" courses={courses} />
-      </section>
-    );
-  }, []);
+  const renderItemWithSlug = useCallback(
+    (entry: { href: string; title: string }) => {
+      return (
+        <CommandItem
+          key={entry.href}
+          onSelect={() => handleNavigate(entry.href)}
+          asChild
+        >
+          <LinkWithPrefetch to={entry.href}>{entry.title}</LinkWithPrefetch>
+        </CommandItem>
+      );
+    },
+    [handleNavigate],
+  );
 
-  const renderProjects = useCallback((projects: ProjectFeed[]) => {
-    if (!projects.length) {
-      return null;
-    }
+  const renderEntries = useCallback(
+    (entries: Array<{ href: string; title: string }>) => {
+      return entries.map((entry) => renderItemWithSlug(entry));
+    },
+    [renderItemWithSlug],
+  );
 
-    return (
-      <section>
-        <h3>Projekty ({projects.length})</h3>
-        <ProjectCards className="p-0 grid-cols-subgrid" projects={projects} />
-      </section>
-    );
-  }, []);
+  useEffect(() => {
+    const ac = new AbortController();
 
-  const renderResults = useCallback(() => {
-    if (!query) {
-      return null;
-    }
+    const down = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        handleOpenClose();
+      }
+    };
 
-    if (!count) {
-      return <h2>Brak wyników wyszukiwania dla zapytania: {query}</h2>;
-    }
+    document.addEventListener("keydown", down, { signal: ac.signal });
 
-    const { articles, courses, projects } = results;
-
-    return (
-      <>
-        <h2>Wyniki wyszukiwania ({count})</h2>
-
-        <div className="grid grid-cols-1">
-          {renderArticles(articles)}
-          {renderCourses(courses)}
-          {renderProjects(projects)}
-        </div>
-      </>
-    );
-  }, [query, count, results, renderArticles, renderCourses, renderProjects]);
+    return () => ac.abort();
+  }, [handleOpenClose]);
 
   return (
-    <section className="prose max-w-full">
-      <header className="container pb-0!">
-        <h1 className="mb-0">Szukaj</h1>
-        <p>Wskazówka: Obszary po których możesz szukać:</p>
-        <ul>
-          <li>
-            Artykuły: (tytuł, opis, słowa klucz, kategorie, długość czytania)
-          </li>
-          <li>
-            Kursy: (tytuł, opis, słowa klucz, kategorie, długość czytania)
-          </li>
-          <li>Projekty: (tytuł, opis, słowa klucz, technologie)</li>
-        </ul>
-        <p>
-          Możesz też wkleić skopiowany link aby spróbować przejść do wskazanej
-          strony
-        </p>
-      </header>
+    <>
+      <Button
+        onClick={handleOpenClose}
+        size="icon"
+        variant="ghost"
+        className="inline-flex items-center justify-center cursor-pointer"
+        aria-label="Szukaj"
+        title="Szukaj (CTRL+K)"
+      >
+        <span className="sr-only">Szukaj</span>
+        <IconSearch className="size-6" />
+      </Button>
 
-      <SearchForm
-        action="/search"
-        query={query}
-        articles={initialResults?.articles ?? []}
-        courses={initialResults?.courses ?? []}
-        projects={initialResults?.projects ?? []}
-      />
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        className="top-18 translate-y-0 h-auto flex flex-col max-h-[calc(100dvh-(var(--spacing)*24))]"
+      >
+        <Command>
+          <CommandInput placeholder="Szukaj..." />
 
-      <div className="container pt-0!">{renderResults()}</div>
-    </section>
+          {fetcher.data && (
+            <CommandList>
+              <CommandEmpty>Brak rezultatów.</CommandEmpty>
+
+              <CommandGroup heading="Nawigacja">
+                {renderItemWithSlug({
+                  href: "/",
+                  title: "Strona główna",
+                })}
+                {renderItemWithSlug({
+                  href: "/blog",
+                  title: "Blog",
+                })}
+                {renderItemWithSlug({
+                  href: "/learning",
+                  title: "Learning",
+                })}
+                {renderItemWithSlug({
+                  href: "/portfolio",
+                  title: "Portfolio",
+                })}
+                {renderItemWithSlug({
+                  href: "/me",
+                  title: "O mnie",
+                })}
+              </CommandGroup>
+
+              <CommandSeparator />
+
+              <CommandGroup heading="Artykuły">
+                {renderEntries(fetcher.data.articles)}
+              </CommandGroup>
+
+              <CommandSeparator />
+
+              <CommandGroup heading="Kursy">
+                {renderEntries(fetcher.data.courses)}
+              </CommandGroup>
+            </CommandList>
+          )}
+        </Command>
+      </CommandDialog>
+    </>
   );
 }
