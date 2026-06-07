@@ -1,10 +1,6 @@
 import { SearchIcon } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import {
-  useFetcher,
-  useNavigate,
-  type ClientLoaderFunctionArgs,
-} from "react-router";
+import { useCallback, useEffect, useEffectEvent, useState } from "react";
+import { useFetcher, useNavigate } from "react-router";
 
 import { getArticles } from "../../blog/data-access/articles";
 import { getCourses } from "../../learning/data-access/courses";
@@ -37,12 +33,6 @@ export async function loader() {
   };
 }
 
-export async function clientLoader({ serverLoader }: ClientLoaderFunctionArgs) {
-  return serverLoader<typeof loader>();
-}
-
-clientLoader.hydrate = true;
-
 export function Search() {
   const [open, setOpen] = useState(false);
 
@@ -50,13 +40,7 @@ export function Search() {
 
   const navigate = useNavigate();
 
-  const handleOpenClose = useCallback(async () => {
-    if (!fetcher.data) {
-      await fetcher.load("/search.json");
-    }
-
-    setOpen((prev) => !prev);
-  }, [fetcher.load, fetcher.data]);
+  const handleOpen = () => setOpen(true);
 
   const handleNavigate = useCallback(
     async (href: string) => {
@@ -88,30 +72,43 @@ export function Search() {
     [renderItemWithSlug],
   );
 
+  const fetchData = useEffectEvent(async () => {
+    if (!fetcher.data) {
+      await fetcher.load("/search.json");
+    }
+  });
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const ac = new AbortController();
 
     const down = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      const isValidCommand = (e.metaKey || e.ctrlKey) && e.key === "k";
+      const isValidKey = e.key === "/";
+
+      if (isValidCommand || isValidKey) {
         e.preventDefault();
-        handleOpenClose();
+        handleOpen();
       }
     };
 
     document.addEventListener("keydown", down, { signal: ac.signal });
 
     return () => ac.abort();
-  }, [handleOpenClose]);
+  }, []);
 
   return (
     <>
       <Button
-        onClick={handleOpenClose}
+        onClick={handleOpen}
         size="icon"
         variant="ghost"
         className="inline-flex items-center justify-center cursor-pointer"
         aria-label="Szukaj"
-        title="Szukaj (CTRL+K)"
+        title="Szukaj ⌘K lub /"
       >
         <span className="sr-only">Szukaj</span>
         <SearchIcon className="size-6" />
