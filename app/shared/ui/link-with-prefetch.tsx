@@ -7,5 +7,7 @@ export interface LinkWithPrefetchProps extends LinkProps {}
 export function LinkWithPrefetch(props: LinkWithPrefetchProps) {
   const isMobile = useIsMobile();
 
-  return <Link {...props} prefetch={isMobile ? "viewport" : "intent"} />;
+  const prefetch = props.prefetch ?? (isMobile ? "viewport" : "intent");
+
+  return <Link {...props} prefetch={prefetch} />;
 }
