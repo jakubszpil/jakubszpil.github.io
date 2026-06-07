@@ -28,6 +28,14 @@ interface Article {
   content: string;
 }
 
+interface ArticleFrontmatter {
+  title: string;
+  description: string;
+  createdAt: string;
+  category: string;
+  keywords: string[];
+}
+
 function mapperArticleFeed(article: Article): ArticleFeed {
   return {
     createdAt: article.createdAt,
@@ -39,7 +47,7 @@ function mapperArticleFeed(article: Article): ArticleFeed {
 }
 
 async function parseArticle(slug: string, file: string): Promise<Article> {
-  const { data, content } = processFile(file);
+  const { data, content } = processFile<ArticleFrontmatter>(file);
 
   const [fileContent, time] = await processContent(content);
 

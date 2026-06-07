@@ -42,6 +42,15 @@ interface Course {
   quiz: CourseQuiz;
 }
 
+interface CourseFrontmatter {
+  title: string;
+  description: string;
+  createdAt: string;
+  category: string;
+  keywords: string[];
+  quiz: CourseQuiz;
+}
+
 function mapperCourseFeed(course: Course): CourseFeed {
   return {
     createdAt: course.createdAt,
@@ -76,7 +85,7 @@ async function parseCourseQuiz(quiz: CourseQuiz): Promise<CourseQuiz> {
 }
 
 async function parseCourse(slug: string, file: string): Promise<Course> {
-  const { data, content } = processFile(file);
+  const { data, content } = processFile<CourseFrontmatter>(file);
 
   const [fileContent, time] = await processContent(content);
 
