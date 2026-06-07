@@ -1,4 +1,4 @@
-import matter from "gray-matter";
+import matter from "front-matter";
 import { unified } from "unified";
 
 import { getRemarkPlugins } from "./remark-plugins";
@@ -36,7 +36,8 @@ export function getReadingTimeLabel(readingTime: number) {
   return `${minutes} minut`;
 }
 
-export function processFile(file: string) {
-  const { data, content } = matter(file);
-  return { data, content };
+export function processFile<Frontmatter>(file: string) {
+  const { attributes, body } = matter<Frontmatter>(file);
+
+  return { data: attributes, content: body };
 }

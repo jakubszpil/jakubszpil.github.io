@@ -26,7 +26,7 @@ export function ThemeSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          title="Zmień motyw"
+          title="Zmień motyw ⌘J"
           size="icon"
           variant="ghost"
           className="cursor-pointer"

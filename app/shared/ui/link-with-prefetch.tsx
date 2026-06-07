@@ -1,7 +1,11 @@
 import { Link, type LinkProps } from "react-router";
 
+import { useIsMobile } from "../data-access/use-mobile";
+
 export interface LinkWithPrefetchProps extends LinkProps {}
 
 export function LinkWithPrefetch(props: LinkWithPrefetchProps) {
-  return <Link {...props} prefetch="viewport" />;
+  const isMobile = useIsMobile();
+
+  return <Link {...props} prefetch={isMobile ? "viewport" : "intent"} />;
 }

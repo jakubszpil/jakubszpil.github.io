@@ -28,6 +28,14 @@ interface ProjectFeed {
   status: ProjectStatus;
 }
 
+interface ProjectFrontmatter {
+  title: string;
+  description: string;
+  createdAt: string;
+  categories: string[];
+  status: ProjectStatus;
+}
+
 function mapperProjectFeed(project: Project): ProjectFeed {
   return {
     createdAt: project.createdAt,
@@ -38,11 +46,8 @@ function mapperProjectFeed(project: Project): ProjectFeed {
   };
 }
 
-async function projectParsingStrategy(
-  slug: string,
-  file: string,
-): Promise<Project> {
-  const { data } = processFile(file);
+async function parseProject(slug: string, file: string): Promise<Project> {
+  const { data } = processFile<ProjectFrontmatter>(file);
 
   return {
     slug,
@@ -64,7 +69,7 @@ async function getAllProjects(): Promise<Project[]> {
   for (const filename of files) {
     const slug = filename.replace(".md", "");
     const file = await readFile(join(directory, filename), "utf-8");
-    const project = await projectParsingStrategy(slug, file);
+    const project = await parseProject(slug, file);
 
     projects.push(project);
   }
