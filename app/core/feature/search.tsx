@@ -58,7 +58,9 @@ export function Search() {
           onSelect={() => handleNavigate(entry.href)}
           asChild
         >
-          <LinkWithPrefetch to={entry.href}>{entry.title}</LinkWithPrefetch>
+          <LinkWithPrefetch prefetch="viewport" to={entry.href}>
+            {entry.title}
+          </LinkWithPrefetch>
         </CommandItem>
       );
     },
