@@ -1,6 +1,3 @@
-import { join } from "node:path";
-import { readdir, readFile } from "node:fs/promises";
-
 import {
   getReadingTimeLabel,
   processContent,
@@ -63,16 +60,21 @@ async function parseArticle(slug: string, file: string): Promise<Article> {
   };
 }
 
+const ARTICLES = import.meta.glob<string>("../../../content/articles/*.md", {
+  import: "default",
+  query: "?raw",
+});
+
 async function getAllArticles(): Promise<Article[]> {
-  const directory = join(process.cwd(), "content/articles");
-
-  const files = await readdir(directory);
-
   const articles: Article[] = [];
 
-  for (const filename of files) {
-    const slug = filename.replace(".md", "");
-    const file = await readFile(join(directory, filename), "utf-8");
+  for (const [key, loadFile] of Object.entries(ARTICLES)) {
+    const slug = key
+      .replace("../../../content/articles/", "")
+      .replace(".md", "");
+
+    const file = await loadFile();
+
     const article = await parseArticle(slug, file);
 
     articles.push(article);

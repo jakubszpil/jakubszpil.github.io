@@ -7,7 +7,6 @@ import {
   getScrollRestorationStorageKey,
 } from "./core/utils/scroll-restoration";
 import { InlineScript } from "./core/ui/inline-script";
-import { PreloadedScript } from "./core/ui/preloaded-script";
 import { TooltipProvider } from "./shared/ui/tooltip";
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -49,7 +48,6 @@ export function Layout({ children }: { children: ReactNode }) {
             else s.removeItem(k);
           `}
         />
-        <PreloadedScript src="/fetch.js" />
         <Meta />
         <Links />
       </head>

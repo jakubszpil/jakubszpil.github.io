@@ -1,4 +1,8 @@
-import { useLoaderData } from "react-router";
+import {
+  useLoaderData,
+  type AppLoadContext,
+  type LoaderFunctionArgs,
+} from "react-router";
 
 import { Button } from "../../shared/ui/button";
 import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
@@ -10,15 +14,18 @@ import { getCourses } from "../../learning/data-access/courses";
 import { getProjects } from "../../portfolio/data-access/projects";
 import { createMetaTags } from "../../shared/utils/meta";
 
-export async function loader() {
+export async function loader({ context }: LoaderFunctionArgs<AppLoadContext>) {
   const articles = await getArticles(3);
   const courses = await getCourses(3);
   const projects = await getProjects(3);
+
+  const message = context.env.VALUE_FROM_CLOUDFLARE;
 
   return {
     articles,
     courses,
     projects,
+    message,
   };
 }
 
@@ -47,6 +54,7 @@ export default function Home() {
           Cześć, <br className="sm:hidden" />
           jestem Kuba! 🙋‍♂️
         </h1>
+        <p>{data.message}</p>
         <p className="max-w-2xl">
           Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o
           tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz
