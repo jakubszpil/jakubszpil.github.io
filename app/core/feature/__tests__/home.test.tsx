@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { vi, describe, test, beforeEach, afterEach, expect } from "vitest";
 
-import Home, { type loader } from "../home";
+import Home from "../home";
 import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 import { ArticleCards } from "../../../blog/ui/article-cards";
 import { CourseCards } from "../../../learning/ui/course-cards";
@@ -22,7 +22,7 @@ describe("<Home />", () => {
   const MockedCourseCards = vi.mocked(CourseCards);
   const MockedProjectCards = vi.mocked(ProjectCards);
 
-  const MockedLoader: typeof loader = () =>
+  const MockedLoader = () =>
     Promise.resolve({
       articles: MOCKED_ARTICLE_FEEDS,
       courses: MOCKED_COURSE_FEEDS,

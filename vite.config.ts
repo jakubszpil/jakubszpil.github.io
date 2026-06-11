@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { getLoadContext } from "./app/context";
 
 // https://vitejs.dev/config/
-export default defineConfig(({}) => ({
+export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
@@ -53,4 +53,4 @@ export default defineConfig(({}) => ({
       enabled: false,
     },
   },
-}));
+});
