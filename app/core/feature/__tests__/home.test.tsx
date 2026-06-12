@@ -27,7 +27,6 @@ describe("<Home />", () => {
       articles: MOCKED_ARTICLE_FEEDS,
       courses: MOCKED_COURSE_FEEDS,
       projects: MOCKED_PROJECT_FEEDS,
-      message: "Hello from Cloudflare",
     });
 
   beforeEach(() => {

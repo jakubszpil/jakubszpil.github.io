@@ -9,10 +9,6 @@ import { renderToReadableStream } from "react-dom/server";
 import type { AppLoadContext, EntryContext } from "react-router";
 import { ServerRouter } from "react-router";
 
-function cache() {
-  return ["Cache-Control", "public, max-age=3600, s-maxage=604800"] as const;
-}
-
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -36,16 +32,9 @@ export default async function handleRequest(
     await body.allReady;
   }
 
-  responseHeaders.set(...cache());
   responseHeaders.set("Content-Type", "text/html");
   return new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode,
   });
-}
-
-export function handleDataRequest(response: Response) {
-  response.headers.set(...cache());
-
-  return response;
 }
