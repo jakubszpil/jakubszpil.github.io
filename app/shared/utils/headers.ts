@@ -16,7 +16,7 @@ export function createHeaders(...headers: Header[]) {
 }
 
 export const DEFAULT_CACHE_CONTROL_HEADER_VALUE =
-  "public, max-age=31536000, immutable";
+  "public, max-age=31536000, s-maxage=31536000, immutable";
 
 export function cacheControlHeader(
   value: string = DEFAULT_CACHE_CONTROL_HEADER_VALUE,
