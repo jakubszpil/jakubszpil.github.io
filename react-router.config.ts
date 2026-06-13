@@ -19,7 +19,6 @@ export default {
   future: {
     v8_viteEnvironmentApi: true,
     v8_splitRouteModules: true,
-    unstable_optimizeDeps: true,
   },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
