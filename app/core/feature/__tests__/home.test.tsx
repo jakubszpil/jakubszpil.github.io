@@ -2,14 +2,11 @@ import { render, screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { vi, describe, test, beforeEach, afterEach, expect } from "vitest";
 
-import Home, { loader } from "../home";
+import Home from "../home";
 import { LinkWithPrefetch } from "../../../shared/ui/link-with-prefetch";
 import { ArticleCards } from "../../../blog/ui/article-cards";
 import { CourseCards } from "../../../learning/ui/course-cards";
 import { ProjectCards } from "../../../portfolio/ui/project-cards";
-import { getArticles } from "../../../blog/data-access/articles";
-import { getCourses } from "../../../learning/data-access/courses";
-import { getProjects } from "../../../portfolio/data-access/projects";
 import { MOCKED_ARTICLE_FEEDS } from "../../../blog/test-fixtures";
 import { MOCKED_COURSE_FEEDS } from "../../../learning/test-fixtures";
 import { MOCKED_PROJECT_FEEDS } from "../../../portfolio/test-fixtures";
@@ -18,9 +15,6 @@ vi.mock("../../../shared/ui/link-with-prefetch");
 vi.mock("../../../blog/ui/article-cards");
 vi.mock("../../../learning/ui/course-cards");
 vi.mock("../../../portfolio/ui/project-cards");
-vi.mock("../../../blog/data-access/articles");
-vi.mock("../../../learning/data-access/courses");
-vi.mock("../../../portfolio/data-access/projects");
 
 describe("<Home />", () => {
   const MockedLinkWithPrefetch = vi.mocked(LinkWithPrefetch);
@@ -28,31 +22,21 @@ describe("<Home />", () => {
   const MockedCourseCards = vi.mocked(CourseCards);
   const MockedProjectCards = vi.mocked(ProjectCards);
 
-  const MockedGetArticles = vi.mocked(getArticles);
-  const MockedGetCourses = vi.mocked(getCourses);
-  const MockedGetProjects = vi.mocked(getProjects);
+  const MockedLoader = () =>
+    Promise.resolve({
+      articles: MOCKED_ARTICLE_FEEDS,
+      courses: MOCKED_COURSE_FEEDS,
+      projects: MOCKED_PROJECT_FEEDS,
+    });
 
   beforeEach(() => {
     MockedLinkWithPrefetch.mockImplementation(({ to, children }) => (
       <a href={String(to)}>{children}</a>
     ));
-
-    MockedGetArticles.mockImplementation(() =>
-      Promise.resolve(MOCKED_ARTICLE_FEEDS),
-    );
-    MockedGetCourses.mockImplementation(() =>
-      Promise.resolve(MOCKED_COURSE_FEEDS),
-    );
-    MockedGetProjects.mockImplementation(() =>
-      Promise.resolve(MOCKED_PROJECT_FEEDS),
-    );
   });
 
   afterEach(() => {
     MockedLinkWithPrefetch.mockRestore();
-    MockedGetArticles.mockRestore();
-    MockedGetCourses.mockRestore();
-    MockedGetProjects.mockRestore();
   });
 
   test("should render hero section", async () => {
@@ -60,7 +44,7 @@ describe("<Home />", () => {
       {
         path: "/",
         Component: Home,
-        loader,
+        loader: MockedLoader,
         HydrateFallback: () => <div></div>,
       },
     ]);
@@ -89,7 +73,7 @@ describe("<Home />", () => {
       {
         path: "/",
         Component: Home,
-        loader,
+        loader: MockedLoader,
         HydrateFallback: () => <div></div>,
       },
     ]);
@@ -127,7 +111,7 @@ describe("<Home />", () => {
       {
         path: "/",
         Component: Home,
-        loader,
+        loader: MockedLoader,
         HydrateFallback: () => <div></div>,
       },
     ]);
@@ -161,7 +145,7 @@ describe("<Home />", () => {
       {
         path: "/",
         Component: Home,
-        loader,
+        loader: MockedLoader,
         HydrateFallback: () => <div></div>,
       },
     ]);

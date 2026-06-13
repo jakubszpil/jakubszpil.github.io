@@ -11,12 +11,22 @@
     "test": "vitest run",
     "test:ci": "vitest run --hideSkippedTests --silent --no-color",
     "deploy": "npm run typecheck && npm run test && npm run build",
-    "clean-install": "rm -rf node_modules package-lock.json && npm install"
+    "clean-install": "rm -rf node_modules package-lock.json && npm install",
+    "wrangler:dev": "vite build && wrangler pages dev",
+    "wrangler:deploy": "wrangler pages deploy",
+    "wrangler:types": "wrangler types",
+    "postinstall": "wrangler types",
+    "db:migrate:local": "wrangler d1 migrations apply db --local",
+    "db:migrate:local:list": "wrangler d1 migrations list db --local",
+    "db:migrate:create": "wrangler d1 migrations create db",
+    "db:migrate:prod": "wrangler d1 migrations apply db --remote",
+    "db:migrate:prod:list": "wrangler d1 migrations list db --remote"
   },
   "dependencies": {
     "@base-ui/react": "1.5.0",
     "@headlessui/react": "2.2.10",
     "@hookform/resolvers": "5.4.0",
+    "@react-router/cloudflare": "7.17.0",
     "@react-router/dev": "7.17.0",
     "@react-router/node": "7.17.0",
     "class-variance-authority": "0.7.1",
@@ -69,11 +79,11 @@
     "tailwindcss": "4.2.4",
     "tailwindcss-animate": "1.0.7",
     "typescript": "6.0.3",
-    "uglify-js": "3.19.3",
     "unified": "11.0.5",
     "vite": "8.0.10",
     "vite-plugin-babel": "1.6.0",
-    "vitest": "4.1.5"
+    "vitest": "4.1.5",
+    "wrangler": "4.99.0"
   },
   "overrides": {
     "typescript": "6.0.3"

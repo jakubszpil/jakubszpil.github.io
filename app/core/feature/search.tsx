@@ -76,7 +76,7 @@ export function Search() {
 
   const fetchData = useEffectEvent(async () => {
     if (!fetcher.data) {
-      await fetcher.load("/search.json");
+      await fetcher.load("/search");
     }
   });
 

@@ -8,6 +8,11 @@ on:
 
 permissions:
   contents: write
+  deployments: write
+
+env:
+  DEPLOY_TO_GITHUB_PAGES: false
+  DEPLOY_TO_CLOUDFLARE_PAGES: false
 
 jobs:
   build-and-deploy:
@@ -40,9 +45,17 @@ jobs:
         run: |
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        with:
-          folder: dist/client
-          branch: gh-pages
+      # - name: Deploy 🚀 (GitHub Pages)
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   if: env.DEPLOY_TO_GITHUB_PAGES && github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   with:
+      #     folder: build/client
+      #     branch: gh-pages
+
+      # - name: Deploy 🚀 (Cloudflare Pages)
+      #   if: env.DEPLOY_TO_CLOUDFLARE_PAGES
+      #   env:
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID}}
+      #   run: |
+      #     npm run wrangler:deploy

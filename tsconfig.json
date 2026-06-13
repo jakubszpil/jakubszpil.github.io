@@ -3,7 +3,9 @@
     "**/*",
     "**/.server/**/*",
     "**/.client/**/*",
-    "react-router.config.ts"
+    "react-router.config.ts",
+    "worker-configuration.d.ts",
+    "functions/**/*.ts"
   ],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
@@ -13,6 +15,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
+    "rootDirs": ["."],
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
