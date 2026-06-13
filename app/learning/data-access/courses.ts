@@ -1,3 +1,6 @@
+import { join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+
 import { shuffleArray } from "../../shared/utils/array";
 import {
   getReadingTimeLabel,
@@ -100,21 +103,16 @@ async function parseCourse(slug: string, file: string): Promise<Course> {
   };
 }
 
-const COURSES = import.meta.glob<string>("../../../content/courses/*.md", {
-  import: "default",
-  query: "?raw",
-});
-
 async function getAllCourses(): Promise<Course[]> {
+  const directory = join(process.cwd(), "content/courses");
+
+  const files = await readdir(directory);
+
   const courses: Course[] = [];
 
-  for (const [key, loadFile] of Object.entries(COURSES)) {
-    const slug = key
-      .replace("../../../content/courses/", "")
-      .replace(".md", "");
-
-    const file = await loadFile();
-
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
     const course = await parseCourse(slug, file);
 
     courses.push(course);

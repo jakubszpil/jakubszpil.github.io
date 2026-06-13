@@ -2,11 +2,8 @@
 
 import { defineConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
-import { cloudflareDevProxy } from "@react-router/dev/vite/cloudflare";
 import babel from "vite-plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
-
-import { getLoadContext } from "./app/context";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,7 +15,6 @@ export default defineConfig({
     "import.meta.env.HYBRID_SSG": false,
   },
   plugins: [
-    !process.env.VITEST && cloudflareDevProxy({ getLoadContext }),
     tailwindcss({
       optimize: {
         minify: true,

@@ -1,3 +1,6 @@
+import { join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+
 import { processFile } from "../../shared/data-access/content";
 import { sortByCreationDate } from "../../shared/utils/date";
 import { cachePromise } from "../../shared/utils/promises";
@@ -56,24 +59,19 @@ async function parseProject(slug: string, file: string): Promise<Project> {
   };
 }
 
-const PROJECTS = import.meta.glob<string>("../../../content/projects/*.md", {
-  import: "default",
-  query: "?raw",
-});
-
 async function getAllProjects(): Promise<Project[]> {
+  const directory = join(process.cwd(), "content/projects");
+
+  const files = await readdir(directory);
+
   const projects: Project[] = [];
 
-  for (const [key, loadFile] of Object.entries(PROJECTS)) {
-    const slug = key
-      .replace("../../../content/projects/", "")
-      .replace(".md", "");
+  for (const filename of files) {
+    const slug = filename.replace(".md", "");
+    const file = await readFile(join(directory, filename), "utf-8");
+    const project = await parseProject(slug, file);
 
-    const file = await loadFile();
-
-    const course = await parseProject(slug, file);
-
-    projects.push(course);
+    projects.push(project);
   }
 
   return projects.toSorted(sortByCreationDate);
