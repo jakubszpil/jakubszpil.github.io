@@ -1,6 +1,6 @@
 import { SearchIcon } from "lucide-react";
 import { useCallback, useEffect, useEffectEvent, useState } from "react";
-import { useFetcher, useNavigate } from "react-router";
+import { useNavigate, type LoaderFunction } from "react-router";
 
 import { getArticles } from "../../blog/data-access/articles";
 import { getCourses } from "../../learning/data-access/courses";
@@ -33,10 +33,28 @@ export async function loader() {
   };
 }
 
+export function useSearchFetcher<T extends LoaderFunction>() {
+  const [data, setData] = useState<Awaited<ReturnType<T>> | null>(null);
+
+  const load = async (endpoint: string) => {
+    try {
+      const response = await fetch(endpoint);
+      const results = await response.json();
+
+      setData(results);
+    } catch (error) {
+      console.error(error);
+      setData(null);
+    }
+  };
+
+  return { data, load };
+}
+
 export function Search() {
   const [open, setOpen] = useState(false);
 
-  const fetcher = useFetcher<typeof loader>();
+  const fetcher = useSearchFetcher<typeof loader>();
 
   const navigate = useNavigate();
 

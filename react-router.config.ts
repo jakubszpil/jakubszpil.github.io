@@ -1,7 +1,6 @@
 import type { Config } from "@react-router/dev/config";
 import { join } from "node:path";
-import { readdir, readFile, rename, writeFile } from "node:fs/promises";
-import { minify } from "uglify-js";
+import { readdir, rename, rm } from "node:fs/promises";
 
 import {
   getArticlesSlugs,
@@ -13,18 +12,13 @@ import {
 } from "./app/learning/data-access/courses";
 import { getProjectsTechnologies } from "./app/portfolio/data-access/projects";
 
-function minifyContent(content: string) {
-  const { code } = minify({ "file.js": content }, { toplevel: true });
-  return code.replace(/\bvar\b/g, "let");
-}
-
 export default {
   ssr: false,
   buildDirectory: "dist",
   routeDiscovery: { mode: "initial" },
   future: {
     v8_viteEnvironmentApi: true,
-    v8_splitRouteModules: "enforce",
+    v8_splitRouteModules: true,
     unstable_optimizeDeps: true,
   },
   async buildEnd({ reactRouterConfig }) {
@@ -38,13 +32,9 @@ export default {
         const targetPath = `${join(path, "..")}.html`;
         await rename(path, targetPath);
       }
-
-      if (file.includes("fetch.js")) {
-        const targetPath = join(__clientDirname, file);
-        const fileContent = await readFile(targetPath, "utf-8");
-        await writeFile(targetPath, minifyContent(fileContent), "utf-8");
-      }
     }
+
+    await rm(join(__clientDirname, "search.json.data"));
 
     process.exit(0);
   },

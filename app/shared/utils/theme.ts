@@ -104,7 +104,7 @@ export function handleSystemThemeChange({ matches }: MediaQueryListEvent) {
 }
 
 export function toggleResolvedThemeIntoOpposite(
-  resolvedTheme: ResolvedTheme | null
+  resolvedTheme: ResolvedTheme | null,
 ): Theme {
   switch (resolvedTheme) {
     case null: {
@@ -118,5 +118,16 @@ export function toggleResolvedThemeIntoOpposite(
     case ResolvedTheme.DARK: {
       return Theme.LIGHT;
     }
+  }
+}
+
+export function initializeTheme() {
+  const key = "theme";
+  const value = localStorage.getItem(key);
+
+  if (value === null || isTheme(value)) {
+    toggleThemeClassName(getResolvedTheme(value));
+  } else {
+    localStorage.removeItem(key);
   }
 }
