@@ -11,7 +11,7 @@ export default defineRoutes(
       [
         ...children(),
         index("feature/home.tsx", { id: "home" }),
-        route("search", "feature/search.tsx", { id: "search" }),
+        route("search.json", "feature/search.tsx", { id: "search" }),
         route("me", "feature/about.tsx", { id: "me" }),
         route("*", "feature/not-found.tsx", { id: "not-found" }),
       ],

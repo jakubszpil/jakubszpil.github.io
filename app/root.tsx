@@ -7,14 +7,12 @@ import {
   getScrollRestorationStorageKey,
 } from "./core/utils/scroll-restoration";
 import { InlineScript } from "./core/ui/inline-script";
+import { PreloadedScript } from "./core/ui/preloaded-script";
 import { TooltipProvider } from "./shared/ui/tooltip";
-import { cacheControlHeader, createHeaders } from "./shared/utils/headers";
-
-export const headers = createHeaders(cacheControlHeader());
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pl">
+    <html lang="pl" data-timestamp={import.meta.env.TIMESTAMP}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,6 +49,7 @@ export function Layout({ children }: { children: ReactNode }) {
             else s.removeItem(k);
           `}
         />
+        <PreloadedScript src="/fetch.js" />
         <Meta />
         <Links />
       </head>
