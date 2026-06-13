@@ -2,7 +2,6 @@
 
 import { defineConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
-import babel from "vite-plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
@@ -21,12 +20,6 @@ export default defineConfig({
       },
     }),
     !process.env.VITEST && reactRouter(),
-    babel({
-      include: ["./app/**/*"],
-      babelConfig: {
-        plugins: ["babel-plugin-react-compiler"],
-      },
-    }),
   ],
   test: {
     include: ["./app/**/*.test.{ts,tsx}"],

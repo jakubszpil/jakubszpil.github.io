@@ -1,6 +1,6 @@
 import { SearchIcon } from "lucide-react";
 import { useCallback, useEffect, useEffectEvent, useState } from "react";
-import { useFetcher, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 import { getArticles } from "../../blog/data-access/articles";
 import { getCourses } from "../../learning/data-access/courses";
@@ -33,10 +33,11 @@ export async function loader() {
   };
 }
 
+type SearchData = Awaited<ReturnType<typeof loader>>;
+
 export function Search() {
   const [open, setOpen] = useState(false);
-
-  const fetcher = useFetcher<typeof loader>();
+  const [data, setData] = useState<SearchData | null>(null);
 
   const navigate = useNavigate();
 
@@ -75,8 +76,16 @@ export function Search() {
   );
 
   const fetchData = useEffectEvent(async () => {
-    if (!fetcher.data) {
-      await fetcher.load("/search.json");
+    if (!data) {
+      try {
+        const response = await fetch("/search.json");
+        const results = await response.json();
+
+        setData(results);
+      } catch (error) {
+        console.error(error);
+        setData(null);
+      }
     }
   });
 
@@ -124,7 +133,7 @@ export function Search() {
         <Command>
           <CommandInput placeholder="Szukaj..." />
 
-          {fetcher.data && (
+          {data && (
             <CommandList>
               <CommandEmpty>Brak rezultatów.</CommandEmpty>
 
@@ -154,13 +163,13 @@ export function Search() {
               <CommandSeparator />
 
               <CommandGroup heading="Artykuły">
-                {renderEntries(fetcher.data.articles)}
+                {renderEntries(data.articles)}
               </CommandGroup>
 
               <CommandSeparator />
 
               <CommandGroup heading="Kursy">
-                {renderEntries(fetcher.data.courses)}
+                {renderEntries(data.courses)}
               </CommandGroup>
             </CommandList>
           )}

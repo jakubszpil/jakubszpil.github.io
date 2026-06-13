@@ -49,10 +49,8 @@
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@types/uglify-js": "3.17.5",
     "@typescript/native-preview": "7.0.0-dev.20260317.1",
     "@vitejs/plugin-react": "6.0.1",
-    "babel-plugin-react-compiler": "1.0.0",
     "front-matter": "4.0.2",
     "happy-dom": "20.9.0",
     "postcss": "8.5.12",
@@ -69,10 +67,8 @@
     "tailwindcss": "4.2.4",
     "tailwindcss-animate": "1.0.7",
     "typescript": "6.0.3",
-    "uglify-js": "3.19.3",
     "unified": "11.0.5",
     "vite": "8.0.10",
-    "vite-plugin-babel": "1.6.0",
     "vitest": "4.1.5"
   },
   "overrides": {

@@ -6,13 +6,12 @@ import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
 } from "./core/utils/scroll-restoration";
-import { InlineScript } from "./core/ui/inline-script";
-import { PreloadedScript } from "./core/ui/preloaded-script";
 import { TooltipProvider } from "./shared/ui/tooltip";
+import { ThemeInjector } from "./shared/ui/theme-injector";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pl" data-timestamp={import.meta.env.TIMESTAMP}>
+    <html lang="pl">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,23 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <InlineScript
-          code={`
-            let k = "theme";
-            let t = "dark";
-            let s = localStorage;
-            let c = document.documentElement.classList;
-            let v = s.getItem(k);
-            if (v === null || v === "SYSTEM") 
-              matchMedia("(prefers-color-scheme: dark)").matches
-                ? c.add(t)
-                : c.remove(t);
-            else if (v === "DARK") c.add(t);
-            else if (v === "LIGHT") c.remove(t);
-            else s.removeItem(k);
-          `}
-        />
-        <PreloadedScript src="/fetch.js" />
+        <ThemeInjector />
         <Meta />
         <Links />
       </head>
