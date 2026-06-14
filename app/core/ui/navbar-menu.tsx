@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "lucide-react";
+import { MenuIcon, UserCircleIcon, XIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import {
   startTransition,
@@ -18,6 +18,7 @@ import { Socials } from "./socials";
 import { ThemeSwitcher } from "../../shared/ui/theme-switcher";
 import { Button } from "../../shared/ui/button";
 import { cn } from "../../shared/utils/helpers";
+import { LinkWithPrefetch } from "../../shared/ui/link-with-prefetch";
 
 export interface NavbarMenuProps {
   children: ReactElement<NavbarLinkProps>[];
@@ -82,6 +83,12 @@ export function NavbarMenu({ children, search }: NavbarMenuProps) {
         </div>
 
         <ThemeSwitcher />
+
+        <Button asChild size="icon" variant="ghost">
+          <LinkWithPrefetch to="/student">
+            <UserCircleIcon className="size-6" />
+          </LinkWithPrefetch>
+        </Button>
 
         <Button
           size="icon"
