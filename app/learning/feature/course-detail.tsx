@@ -48,7 +48,7 @@ export default function CourseDetail() {
               }
               title={course.quiz.title}
             >
-              <CourseQuiz quiz={course.quiz} />
+              <CourseQuiz quiz={course.quiz} key={course.slug} />
             </Modal>
 
             <EditResource slug={course.slug} resourceType="courses" />

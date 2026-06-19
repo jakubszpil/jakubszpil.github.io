@@ -64,6 +64,15 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
     }
   }, [current, questions.length]);
 
+  const handleReset = useCallback(() => {
+    setCurrent(0);
+    setSelected(null);
+    setShowAnswer(false);
+    setScore(0);
+    setFinished(false);
+    setQuestions(shuffleQuestions(quiz));
+  }, [quiz]);
+
   useEffect(() => {
     if (showAnswer) {
       buttonRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -76,18 +85,7 @@ export function CourseQuiz({ quiz }: CourseQuizProps) {
         <p>
           Wynik: {score} / {questions.length}
         </p>
-        <Button
-          className="cursor-pointer"
-          size="sm"
-          onClick={() => {
-            setCurrent(0);
-            setSelected(null);
-            setShowAnswer(false);
-            setScore(0);
-            setFinished(false);
-            setQuestions(shuffleQuestions(quiz));
-          }}
-        >
+        <Button className="cursor-pointer" size="sm" onClick={handleReset}>
           Rozwiąż ponownie
         </Button>
       </div>

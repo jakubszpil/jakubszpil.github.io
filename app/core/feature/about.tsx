@@ -2,11 +2,11 @@ import { Socials } from "../ui/socials";
 import { getDifferenceInYears } from "../../shared/utils/date";
 import { createMetaTags } from "../../shared/utils/meta";
 
-export const meta = createMetaTags(() => ({
+export const meta = createMetaTags({
   title: "O mnie",
   description:
     "Cześć! Nazywam się Kuba i jestem frontend developerem z 3-letnim doświadczeniem w tworzeniu nowoczesnych, responsywnych i przyjaznych użytkownikowi aplikacji internetowych. Moja przygoda z programowaniem zaczęła się od fascynacji technologią i chęci tworzenia rzeczy, które naprawdę mają wpływ na codzienne życie ludzi.",
-}));
+});
 
 export default function About() {
   const years = getDifferenceInYears(new Date("2021-07-01"));

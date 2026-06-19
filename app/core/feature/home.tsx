@@ -22,7 +22,7 @@ export async function loader() {
   };
 }
 
-export const meta = createMetaTags<typeof loader>(() => ({
+export const meta = createMetaTags({
   title: "Strona główna",
   description:
     "Cześć, jestem Kuba, jestem frontend developerem. Witaj na mojej stronie, gdzie znajdziesz blog z artykułami, głównie o tematyce frontendowej, sekcję z kursami, dzięki którym nabędziesz wiedzę i doświadczenie z frontu, jak i portfolio, które przywita Cię moimi ostatnimi projektami. Bon vojage! 🚢",
@@ -35,7 +35,7 @@ export const meta = createMetaTags<typeof loader>(() => ({
     "web development",
     "learning",
   ],
-}));
+});
 
 export default function Home() {
   const data = useLoaderData<typeof loader>();

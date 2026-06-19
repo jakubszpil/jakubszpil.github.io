@@ -124,10 +124,11 @@ export function createMetaDescriptors(
 }
 
 export function createMetaTags<T>(
-  setup: (args: MetaArgs<T>) => MetaTags,
+  setupOrTags: MetaTags | ((args: MetaArgs<T>) => MetaTags),
 ): (args: MetaArgs<T>) => MetaDescriptor[] {
   return (args: MetaArgs<T>) => {
-    const params = setup(args);
+    const params =
+      setupOrTags instanceof Function ? setupOrTags(args) : setupOrTags;
 
     return createMetaDescriptors(params, args.location.pathname);
   };

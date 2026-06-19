@@ -1,5 +1,5 @@
-const timestampValue = String(import.meta.env.TIMESTAMP);
-const timestampKey = "timestamp";
+const identifierValue = import.meta.env.BUILD_ID;
+const identifierKey = "v";
 
 class PrefetchCache {
   key = "prefetch-cache";
@@ -57,7 +57,7 @@ function createRequest(
   const url = createRequestUrl(requestInfo);
   const init = createRequestInit(requestInit);
 
-  url.searchParams.append(timestampKey, timestampValue);
+  url.searchParams.append(identifierKey, identifierValue);
 
   return new Request(url, init);
 }
@@ -67,19 +67,19 @@ function createPrefetchCache(cache: Cache) {
 }
 
 async function initializePrefetchCache() {
-  const storedTimestamp = localStorage.getItem(timestampKey);
+  const storedIdentifierValue = localStorage.getItem(identifierKey);
 
-  if (Number(timestampValue) !== Number(storedTimestamp)) {
-    if (storedTimestamp) {
-      if (await caches.has(storedTimestamp)) {
-        await caches.delete(storedTimestamp);
+  if (String(identifierValue) !== String(storedIdentifierValue)) {
+    if (storedIdentifierValue) {
+      if (await caches.has(storedIdentifierValue)) {
+        await caches.delete(storedIdentifierValue);
       }
     }
 
-    localStorage.setItem(timestampKey, timestampValue);
+    localStorage.setItem(identifierKey, identifierValue);
   }
 
-  const cache = await caches.open(timestampValue);
+  const cache = await caches.open(identifierValue);
   const prefetchCache = createPrefetchCache(cache);
 
   return prefetchCache;
@@ -119,7 +119,7 @@ async function initializePrefetchPolyfill(prefetchCache: PrefetchCache) {
         let pathname: string = value;
 
         if (element.rel === "prefetch" && key === "href") {
-          pathname = `${value}?${timestampKey}=${timestampValue}`;
+          pathname = `${value}?${identifierKey}=${identifierValue}`;
 
           const url = new URL(`${location.origin}${pathname}`);
 
