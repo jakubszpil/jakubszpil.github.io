@@ -108,9 +108,7 @@ export function NavbarMenu({ children, search }: NavbarMenuProps) {
       <Transition show={show}>
         <nav className="flex flex-col gap-1 justify-center items-center fixed h-dvh inset-0 dark bg-background text-foreground z-40 lg:hidden transition-all duration-150 data-closed:opacity-0 data-closed:invisible data-enter:translate-y-0 data-enter:data-closed:translate-y-10">
           {mobileLinks}
-          <NavbarLink size="lg" onClick={closeMenu} to="/search">
-            🔍 Szukaj
-          </NavbarLink>
+
           <div className="h-8 flex justify-center items-center absolute bottom-40">
             <BusyIndicator />
           </div>
