@@ -73,6 +73,7 @@ export default function CourseDetail() {
       </header>
 
       <article
+        key={course.slug}
         className="prose container pt-0 prose-emerald"
         dangerouslySetInnerHTML={{ __html: course.content }}
         ref={ref}
