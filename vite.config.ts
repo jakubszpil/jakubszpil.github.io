@@ -30,8 +30,8 @@ export default defineConfig(({}) => {
     },
     define: {
       ...defineVariables({
-        "import.meta.env.BUILD_ID": JSON.stringify(randomUUID().split("-")[0]),
         "import.meta.env.HYBRID_SSG": false,
+        "import.meta.env.BUILD_ID": JSON.stringify(randomUUID().split("-")[0]),
       }),
     },
     plugins: [
