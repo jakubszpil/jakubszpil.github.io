@@ -1,1 +1,0 @@
-import{I as e,R as t}from"./chunk-6CSD65Y2-BDsbv3m9.js";import{t as n}from"./jsx-runtime-DAxHJCQJ.js";var r=t(e(),1);n();var i=r.createContext(void 0);function a(e){let t=r.useContext(i);return e||t||`ltr`}export{a as t};
