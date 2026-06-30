@@ -14,12 +14,7 @@ import { getProjectsTechnologies } from "./app/portfolio/data-access/projects";
 
 export default {
   ssr: false,
-  buildDirectory: "dist",
   routeDiscovery: { mode: "initial" },
-  future: {
-    v8_viteEnvironmentApi: true,
-    v8_splitRouteModules: true,
-  },
   async buildEnd({ reactRouterConfig }) {
     const __clientDirname = join(reactRouterConfig.buildDirectory, "client");
 

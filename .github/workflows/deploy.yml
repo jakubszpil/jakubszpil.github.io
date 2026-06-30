@@ -44,5 +44,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
-          folder: dist/client
+          folder: build/client
           branch: gh-pages

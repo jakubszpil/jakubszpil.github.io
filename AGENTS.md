@@ -14,7 +14,7 @@
 - `npm run typecheck` - run TypeScript checks with `tsgo --noEmit`.
 - `npm run test` - run all Vitest tests.
 - `npm run test:ci` - run CI-style tests.
-- `npm run build` - build the static site into `dist/client`.
+- `npm run build` - build the static site into `build/client`.
 - `npm run deploy` - run typecheck, tests, and build.
 
 ## Current Structure
@@ -77,6 +77,6 @@ Prefer the current domain layout above. Some `.github` instructions mention olde
 
 - Do not rewrite unrelated files.
 - Do not rely on stale `.github` path references when actual repo structure differs.
-- Do not commit or intentionally modify generated output such as `dist/`, caches, or dependency folders.
+- Do not commit or intentionally modify generated output such as `build/`, caches, or dependency folders.
 - Do not run destructive commands unless the user explicitly asks for them.
 - Preserve user changes in the working tree. If unrelated changes appear, leave them alone.

@@ -37,7 +37,7 @@ Personal portfolio website for [Jakub Szpil](https://github.com/jakubszpil)
 npm run build
 ```
 
-Output: `/dist/client`
+Output: `/build/client`
 
 ## 🧪 Run Tests
 

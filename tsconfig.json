@@ -5,7 +5,7 @@
     "**/.client/**/*",
     "react-router.config.ts"
   ],
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "build"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["node", "vite/client"],

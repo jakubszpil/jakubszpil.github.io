@@ -22,7 +22,7 @@ Portfolio website built with React 19. Stack: React 19, TypeScript (strict), Vit
 - **UI:** Radix UI, Headless UI
 - **Content:** Markdown (gray-matter, remark/rehype)
 - **Testing:** Vitest, @testing-library/react, happy-dom
-- **Build output:** `/dist/client`
+- **Build output:** `/build/client`
 
 ## 4. Coding Conventions
 
@@ -51,7 +51,7 @@ Portfolio website built with React 19. Stack: React 19, TypeScript (strict), Vit
 ## 7. Development Workflow
 
 - `npm run dev` — Development server (Vite, port 5173)
-- `npm run build` — Production build (typecheck + build to `/dist/client`)
+- `npm run build` — Production build (typecheck + build to `/build/client`)
 - `npm run test` — Run tests (Vitest)
 - `npm run deploy` — Full CI pipeline (typecheck + test + build)
 
@@ -66,7 +66,7 @@ Portfolio website built with React 19. Stack: React 19, TypeScript (strict), Vit
 ## 9. Git & Deployment
 
 - Deployment via GitHub Actions (`deploy.yml`)
-- Environment: Production build to `/dist/client`
+- Environment: Production build to `/build/client`
 - Never commit build artifacts
 
 ## 10. Important Notes

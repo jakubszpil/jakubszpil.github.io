@@ -55,5 +55,5 @@ Use this skill for implementation work in the React app.
 ## Safety
 
 - Do not rewrite unrelated files.
-- Do not commit generated output such as `dist/`, caches, or dependency folders.
+- Do not commit generated output such as `build/`, caches, or dependency folders.
 - Preserve user changes in the working tree.

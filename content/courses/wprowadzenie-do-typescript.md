@@ -203,7 +203,7 @@ To polecenie stworzy plik `tsconfig.json` z domyślnymi, często używanymi usta
     "target": "es2016" /* Określa docelową wersję ECMAScript (JavaScript). Np. "es5", "es6" (lub "es2015"), "es2016", "esnext".  Ustawienie na "es2016" (lub nowsze) oznacza, że kompilator wygeneruje JavaScript z nowoczesną składnią. */,
     "module": "commonjs" /* Określa system modułów dla wygenerowanego JavaScriptu. "commonjs" jest popularne w Node.js, "esnext" dla nowoczesnych przeglądarek. */,
     "strict": true /* Włącza wszystkie rygorystyczne opcje sprawdzania typów. BARDZO zalecane dla większego bezpieczeństwa! 🔒 */,
-    "outDir": "./dist" /* Określa katalog wyjściowy dla skompilowanych plików .js. Cały nasz skompilowany kod trafi do folderu 'dist'. */,
+    "outDir": "./build" /* Określa katalog wyjściowy dla skompilowanych plików .js. Cały nasz skompilowany kod trafi do folderu 'build'. */,
     "esModuleInterop": true /* Pozwala na lepszą współpracę między CommonJS i ES Modules. Warto włączyć. */,
     "forceConsistentCasingInFileNames": true /* Wymusza spójność w nazwach plików (np. `mojaKlasa.ts` vs `mojaklasa.ts`). Zapobiega błędom na różnych systemach operacyjnych. */,
     "skipLibCheck": true /* Pomija sprawdzanie typów w plikach deklaracji bibliotek (np. node_modules/@types). Przydatne, aby uniknąć błędów z typami z zewnętrznych bibliotek. */
@@ -244,7 +244,7 @@ No to jedziemy! Stwórzmy nasz pierwszy mały projekt TypeScript.
     npx tsc --init
     ```
     `npx` pozwala uruchomić polecenie `tsc` zainstalowane lokalnie w projekcie (zamiast globalnie).
-    Otwórz `tsconfig.json` i upewnij się, że `outDir` jest ustawione na `./dist` i `include` na `"src/**/*"`. Możesz też zmienić `target` na `es2020` dla nowocześniejszego kodu wyjściowego.
+    Otwórz `tsconfig.json` i upewnij się, że `outDir` jest ustawione na `./build` i `include` na `"src/**/*"`. Możesz też zmienić `target` na `es2020` dla nowocześniejszego kodu wyjściowego.
 5.  **Stwórz folder `src` i plik `index.ts` w środku:**
 
     ```bash
@@ -276,10 +276,10 @@ No to jedziemy! Stwórzmy nasz pierwszy mały projekt TypeScript.
     ```bash
     npx tsc
     ```
-    Powinien pojawić się nowy folder `dist` z plikiem `index.js` w środku.
+    Powinien pojawić się nowy folder `build` z plikiem `index.js` w środku.
 7.  **Uruchom skompilowany kod JavaScript:**
     ```bash
-    node dist/index.js
+    node build/index.js
     ```
     Powinieneś/Powinnaś zobaczyć w konsoli: `Cześć, Alicja! Masz 25 lat. Fajnie, że jesteś! 🎉`.
 
