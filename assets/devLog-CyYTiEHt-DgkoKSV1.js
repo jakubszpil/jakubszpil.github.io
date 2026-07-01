@@ -1,0 +1,1 @@
+var e=(e,t,n)=>{console.log(`%c${e}: ${t}`,`color: ${n}; font-weight: bold;`)};export{e as t};

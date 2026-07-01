@@ -1,0 +1,1 @@
+var e=(e,t,n)=>{let r=0,i=1,a=t.x-e.x,o=t.y-e.y,s=(e,t)=>{if(e===0){if(t<0)return!1}else{let n=t/e;if(e<0){if(n>i)return!1;n>r&&(r=n)}else{if(n<r)return!1;n<i&&(i=n)}}return!0};return!s(-a,e.x-n.left)||!s(a,n.right-e.x)||!s(-o,e.y-n.top)||!s(o,n.bottom-e.y)?!1:r<=i};export{e as t};

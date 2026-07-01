@@ -1,0 +1,1 @@
+import{G as e,q as t}from"./components-D4YvkqkO.js";import{t as n}from"./jsx-runtime-CwoViFx0.js";var r=t(e(),1);n();var i=r.createContext(void 0);function a(e){let t=r.useContext(i);return e||t||`ltr`}export{a as t};
