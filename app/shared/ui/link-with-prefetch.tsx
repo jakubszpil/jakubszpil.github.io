@@ -24,10 +24,7 @@ export function LinkWithPrefetch({
   const [shouldPrefetch, setShouldPrefetch] = useState(false);
 
   const { elementRef } = useForesight<HTMLAnchorElement>({
-    callback: () => {
-      console.log(props.to);
-      return setShouldPrefetch(true);
-    },
+    callback: () => setShouldPrefetch(true),
     hitSlop,
     name,
     meta,
