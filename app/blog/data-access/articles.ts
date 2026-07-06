@@ -71,6 +71,8 @@ async function getAllArticles(): Promise<Article[]> {
   const articles: Article[] = [];
 
   for (const filename of files) {
+    if (!filename.includes(".md")) continue;
+
     const slug = filename.replace(".md", "");
     const file = await readFile(join(directory, filename), "utf-8");
     const article = await parseArticle(slug, file);
