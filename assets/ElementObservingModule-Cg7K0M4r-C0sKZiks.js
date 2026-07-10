@@ -1,1 +1,0 @@
-import{t as e}from"./BaseForesightModule-CNTEJw6R-CAQVcEAj.js";var t=class extends e{};export{t};
