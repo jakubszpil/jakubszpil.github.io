@@ -1,38 +1,9 @@
-import { queryClient } from "./query-client";
+import type { QueryClient } from "@tanstack/react-query";
+
+import { PrefetchCache, PrefetchCachePersister } from "./prefetch-cache";
 
 const identifierValue = import.meta.env.BUILD_ID;
 const identifierKey = "v";
-
-class PrefetchCache {
-  key = "prefetch-cache";
-
-  entries = new Set(JSON.parse(sessionStorage.getItem(this.key) || "[]"));
-
-  constructor(cache: Cache) {
-    const keys = cache.keys();
-
-    keys.then((keys) => {
-      keys.forEach((request) => {
-        this.entries.add(request.url);
-      });
-    });
-
-    window.addEventListener("beforeunload", () => {
-      sessionStorage.setItem(
-        this.key,
-        JSON.stringify([...this.entries.values()]),
-      );
-    });
-  }
-
-  has(url: string) {
-    return this.entries.has(url);
-  }
-
-  add(url: string) {
-    this.entries.add(url);
-  }
-}
 
 function createRequestUrl(requestInfo: RequestInfo | URL) {
   if (requestInfo instanceof URL) {
@@ -64,30 +35,21 @@ function createRequest(
   return new Request(url, init);
 }
 
-function createPrefetchCache(cache: Cache) {
-  return new PrefetchCache(cache);
-}
+async function initializePrefetchCache(queryClient: QueryClient) {
+  const prefetchCachePersister = new PrefetchCachePersister(identifierValue);
 
-async function initializePrefetchCache() {
-  const storedIdentifierValue = localStorage.getItem(identifierKey);
+  const entries = await prefetchCachePersister.getEntries();
 
-  if (String(identifierValue) !== String(storedIdentifierValue)) {
-    if (storedIdentifierValue) {
-      if (await caches.has(storedIdentifierValue)) {
-        await caches.delete(storedIdentifierValue);
-      }
-    }
-
-    localStorage.setItem(identifierKey, identifierValue);
-  }
-
-  const cache = await caches.open(identifierValue);
-  const prefetchCache = createPrefetchCache(cache);
+  const prefetchCache = new PrefetchCache({
+    entries,
+    queryClient,
+    entriesPersister: (entries) => prefetchCachePersister.setEntries(entries),
+  });
 
   return prefetchCache;
 }
 
-async function initializeFetchPolyfill() {
+async function initializeFetchPolyfill(queryClient: QueryClient) {
   const _fetch = globalThis.fetch;
 
   type ResponseEntry = [string, ResponseInit];
@@ -186,9 +148,9 @@ async function initializePrefetchPolyfill(prefetchCache: PrefetchCache) {
   };
 }
 
-export async function initializeFetchPolyfills() {
-  const prefetchCache = await initializePrefetchCache();
+export async function initializeFetchPolyfills(queryClient: QueryClient) {
+  const prefetchCache = await initializePrefetchCache(queryClient);
 
-  await initializeFetchPolyfill();
+  await initializeFetchPolyfill(queryClient);
   await initializePrefetchPolyfill(prefetchCache);
 }
