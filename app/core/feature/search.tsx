@@ -1,6 +1,5 @@
-import { useForesight } from "@foresightjs/react";
 import { SearchIcon } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { getArticles } from "../../blog/data-access/articles";
@@ -40,26 +39,6 @@ export function Search() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<SearchData | null>(null);
 
-  const fetchData = useCallback(async () => {
-    if (data) {
-      return;
-    }
-
-    try {
-      const response = await fetch("/search.json");
-      const results = await response.json();
-
-      setData(results);
-    } catch (error) {
-      console.error(error);
-      setData(null);
-    }
-  }, [data]);
-
-  const { elementRef } = useForesight<HTMLButtonElement>({
-    callback: fetchData,
-  });
-
   const navigate = useNavigate();
 
   const handleOpen = () => setOpen(true);
@@ -96,6 +75,25 @@ export function Search() {
     [renderItemWithSlug],
   );
 
+  const fetchData = useEffectEvent(async () => {
+    if (data) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/search.json");
+      const results = await response.json();
+      setData(results);
+    } catch (error) {
+      console.error(error);
+      setData(null);
+    }
+  });
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const ac = new AbortController();
 
@@ -123,7 +121,6 @@ export function Search() {
         className="inline-flex items-center justify-center cursor-pointer"
         aria-label="Szukaj"
         title="Szukaj ⌘K lub /"
-        ref={elementRef}
       >
         <span className="sr-only">Szukaj</span>
         <SearchIcon className="size-6" />

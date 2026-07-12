@@ -1,4 +1,4 @@
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
@@ -8,7 +8,7 @@ import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
 } from "./core/utils/scroll-restoration";
-import { queryClient, getPersistOptions } from "./core/utils/query-client";
+import { queryClient } from "./core/utils/query-client";
 import { TooltipProvider } from "./shared/ui/tooltip";
 import { ThemeInjector } from "./shared/ui/theme-injector";
 
@@ -39,12 +39,9 @@ export function Layout({ children }: { children: ReactNode }) {
 
 export default function App() {
   return (
-    <PersistQueryClientProvider
-      client={queryClient}
-      persistOptions={getPersistOptions()}
-    >
+    <QueryClientProvider client={queryClient}>
       <Outlet />
       <ReactQueryDevtools buttonPosition="bottom-right" />
-    </PersistQueryClientProvider>
+    </QueryClientProvider>
   );
 }

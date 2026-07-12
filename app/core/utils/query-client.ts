@@ -1,8 +1,8 @@
-import { QueryClient, type OmitKeyof } from "@tanstack/react-query";
-import type {
-  PersistedClient,
-  Persister,
-  PersistQueryClientOptions,
+import { QueryClient } from "@tanstack/react-query";
+import {
+  persistQueryClient,
+  type PersistedClient,
+  type Persister,
 } from "@tanstack/react-query-persist-client";
 import localforage from "localforage";
 
@@ -30,19 +30,19 @@ function createCustomPersister({ key }: { key: string }): Persister {
   };
 }
 
-const persister = createCustomPersister({
-  key: "REACT_QUERY_PERSISTED_CLIENT",
-});
+function initializeQueryClient() {
+  const persister = createCustomPersister({
+    key: "REACT_QUERY_PERSISTED_CLIENT",
+  });
 
-function getPersistOptions(): OmitKeyof<
-  PersistQueryClientOptions,
-  "queryClient"
-> {
-  return {
+  persistQueryClient({
+    queryClient,
     persister,
     buster: import.meta.env.BUILD_ID,
     maxAge: Infinity,
-  };
+  });
+
+  return queryClient;
 }
 
-export { queryClient, getPersistOptions };
+export { queryClient, initializeQueryClient };

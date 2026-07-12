@@ -54,12 +54,12 @@ async function initializeFetchPolyfill(queryClient: QueryClient) {
 
   type ResponseEntry = [string, ResponseInit];
 
-  async function setCachedResponse(response: Response) {
+  async function setCachedResponse(request: Request, response: Response) {
     const clone = response.clone();
     const data = await clone.text();
 
     queryClient.setQueryData<ResponseEntry>(
-      [response.url],
+      [request.url],
       [
         data,
         {
@@ -102,7 +102,7 @@ async function initializeFetchPolyfill(queryClient: QueryClient) {
 
     const response = await _fetch(request);
 
-    setCachedResponse(response);
+    setCachedResponse(request, response);
 
     return response;
   };
