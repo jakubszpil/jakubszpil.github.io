@@ -1,3 +1,5 @@
+import { queryClient } from "./query-client";
+
 const identifierValue = import.meta.env.BUILD_ID;
 const identifierKey = "v";
 
@@ -88,6 +90,35 @@ async function initializePrefetchCache() {
 async function initializeFetchPolyfill() {
   const _fetch = globalThis.fetch;
 
+  type ResponseEntry = [string, ResponseInit];
+
+  async function setCachedResponse(response: Response) {
+    const clone = response.clone();
+    const data = await clone.text();
+
+    queryClient.setQueryData<ResponseEntry>(
+      [response.url],
+      [
+        data,
+        {
+          headers: Object.fromEntries(clone.headers.entries()),
+          status: clone.status,
+          statusText: clone.statusText,
+        },
+      ],
+    );
+  }
+
+  function getCachedResponse(request: Request): Response | null {
+    const cachedResponse = queryClient.getQueryData<ResponseEntry>([
+      request.url,
+    ]);
+
+    if (!cachedResponse) return null;
+
+    return new Response(...cachedResponse);
+  }
+
   globalThis.fetch = async (input, init) => {
     const requestUrl = createRequestUrl(input);
 
@@ -99,7 +130,19 @@ async function initializeFetchPolyfill() {
       return _fetch(input, init);
     }
 
-    return _fetch(createRequest(input, init));
+    const request = createRequest(input, init);
+
+    const cachedResponse = getCachedResponse(request);
+
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+
+    const response = await _fetch(request);
+
+    setCachedResponse(response);
+
+    return response;
   };
 }
 

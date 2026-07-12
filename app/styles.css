@@ -3,22 +3,6 @@
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
 
-@font-face {
-  font-family: "Geist";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/geist.ttf");
-}
-
-@font-face {
-  font-family: "Geist-Mono";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/geist-mono.ttf");
-}
-
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -91,8 +75,10 @@
 }
 
 @theme inline {
-  --font-sans: "Geist";
-  --font-mono: "Geist-Mono";
+  --font-sans:
+    -apple-system-body, ui-sans-serif, -apple-system, "system-ui", "Segoe UI",
+    Helvetica, "Apple Color Emoji", Arial, "sans-serif", "Segoe UI Emoji",
+    "Segoe UI Symbol";
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -172,6 +158,33 @@
 
 @utility grid-cols-fill {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+@utility animate-wave {
+  transform-origin: 70% 70%;
+  animation: wave 1.8s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10%,
+  30% {
+    transform: rotate(14deg);
+  }
+
+  20%,
+  40% {
+    transform: rotate(-8deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
 }
 
 /*
