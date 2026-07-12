@@ -1,3 +1,5 @@
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
@@ -6,6 +8,7 @@ import {
   getScrollRestorationKey,
   getScrollRestorationStorageKey,
 } from "./core/utils/scroll-restoration";
+import { queryClient, getPersistOptions } from "./core/utils/query-client";
 import { TooltipProvider } from "./shared/ui/tooltip";
 import { ThemeInjector } from "./shared/ui/theme-injector";
 
@@ -18,20 +21,6 @@ export function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
         <link rel="preload" as="style" href={styles} />
         <link rel="stylesheet" href={styles} />
-        <link
-          rel="preload prefetch"
-          href="/fonts/geist.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload prefetch"
-          href="/fonts/geist-mono.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
         <ThemeInjector />
         <Meta />
         <Links />
@@ -49,5 +38,13 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={getPersistOptions()}
+    >
+      <Outlet />
+      <ReactQueryDevtools buttonPosition="bottom-right" />
+    </PersistQueryClientProvider>
+  );
 }
